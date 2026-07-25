@@ -1,5 +1,6 @@
 import { db } from './db.js'
 import { KNOWLEDGE_AREAS, HSG_TOPICS, SAMPLE_LESSON } from '../src/data/topics.js'
+import { seedFullContent } from './seedFullContent.js'
 
 export function seedIfEmpty() {
   const areaCount = db.prepare('SELECT COUNT(*) AS n FROM areas').get().n
@@ -33,4 +34,5 @@ export function seedIfEmpty() {
   insertLesson.run(id, title, JSON.stringify(lessonContent))
 
   console.log('Seeded database with default curriculum data.')
+  seedFullContent()
 }

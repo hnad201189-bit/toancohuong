@@ -3,11 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
   "scripts": {
     "dev": "vite",
     "server": "node --env-file-if-exists=server/.env server/index.js",
     "dev:all": "node scripts/dev-all.mjs",
     "build": "vite build",
+    "start": "node server/index.js",
     "lint": "oxlint",
     "preview": "vite preview"
   },

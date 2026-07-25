@@ -4,7 +4,9 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const dataDir = path.join(__dirname, 'data')
+// DATA_DIR lets a host mount a persistent disk at a custom path (e.g. Render);
+// defaults to the local server/data folder for plain `npm run server` use.
+const dataDir = process.env.DATA_DIR || path.join(__dirname, 'data')
 const dbPath = path.join(dataDir, 'app.db')
 
 fs.mkdirSync(dataDir, { recursive: true })
