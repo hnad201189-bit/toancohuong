@@ -1,0 +1,55 @@
+import { Router } from 'express'
+import { db } from '../db.js'
+import { requireAuth } from '../auth.js'
+import { slugify } from '../slugify.js'
+
+export const hsgTopicsRouter = Router()
+
+function serialize(row) {
+  return { id: row.id, name: row.name, progress: row.progress, hasLesson: !!row.has_lesson }
+}
+
+hsgTopicsRouter.get('/', (req, res) => {
+  const rows = db.prepare('SELECT * FROM hsg_topics ORDER BY sort_order').all()
+  res.json(rows.map(serialize))
+})
+
+hsgTopicsRouter.post('/', requireAuth, (req, res) => {
+  const { name, progress = 0 } = req.body || {}
+  if (!name) return res.status(400).json({ error: 'Thiếu tên chuyên đề HSG' })
+
+  const id = `hsg-${slugify(name)}`
+  const existing = db.prepare('SELECT id FROM hsg_topics WHERE id = ?').get(id)
+  if (existing) return res.status(409).json({ error: 'Chuyên đề HSG này đã tồn tại' })
+
+  const maxOrder = db.prepare('SELECT MAX(sort_order) AS m FROM hsg_topics').get().m ?? -1
+  db.prepare('INSERT INTO hsg_topics (id, sort_order, name, progress) VALUES (?, ?, ?, ?)').run(
+    id,
+    maxOrder + 1,
+    name,
+    progress
+  )
+  res.status(201).json(serialize(db.prepare('SELECT * FROM hsg_topics WHERE id = ?').get(id)))
+})
+
+hsgTopicsRouter.put('/:id', requireAuth, (req, res) => {
+  const row = db.prepare('SELECT * FROM hsg_topics WHERE id = ?').get(req.params.id)
+  if (!row) return res.status(404).json({ error: 'Không tìm thấy chuyên đề HSG' })
+
+  const name = req.body?.name ?? row.name
+  const progress = req.body?.progress ?? row.progress
+  db.prepare('UPDATE hsg_topics SET name = ?, progress = ? WHERE id = ?').run(
+    name,
+    progress,
+    req.params.id
+  )
+  res.json(serialize(db.prepare('SELECT * FROM hsg_topics WHERE id = ?').get(req.params.id)))
+})
+
+hsgTopicsRouter.delete('/:id', requireAuth, (req, res) => {
+  const row = db.prepare('SELECT * FROM hsg_topics WHERE id = ?').get(req.params.id)
+  if (!row) return res.status(404).json({ error: 'Không tìm thấy chuyên đề HSG' })
+  db.prepare('DELETE FROM lessons WHERE topic_id = ?').run(req.params.id)
+  db.prepare('DELETE FROM hsg_topics WHERE id = ?').run(req.params.id)
+  res.json({ ok: true })
+})
