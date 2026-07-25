@@ -977,6 +977,36 @@ table {
   width: 100%;
 }
 
+.exam-card__empty-note {
+  font-size: 13.5px;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+
+.exam-run__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.exam-run__timer {
+  font-family: var(--heading);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.exam-run__timer.is-warning {
+  color: var(--danger);
+}
+
+.quiz-option.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
 /* Empty state */
 
 .empty-state {
