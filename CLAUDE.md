@@ -81,7 +81,11 @@ Node's `--env-file-if-exists` flag — no `dotenv` package needed.
   is `npm install && npm run build`, start is `npm start`
   (`server/index.js`), with a persistent disk mounted at `/var/data`
   (`DATA_DIR`) for the SQLite file. `ADMIN_PASSWORD` and `ANTHROPIC_API_KEY`
-  are set as Render secrets (`sync: false`), not committed.
+  are set as Render secrets (`sync: false`), not committed. `NODE_VERSION`
+  must stay >= 22.13.0 — `node:sqlite` requires the `--experimental-sqlite`
+  flag on older 22.x builds, and without it the process crashes on import
+  (`server/db.js`) before it can start listening; this took down the first
+  deploy attempt when it was pinned to 22.11.0.
 
 ## Notes
 
