@@ -52,6 +52,7 @@ export const KNOWLEDGE_AREAS = [
       { id: 'quan-he-vuong-goc', name: 'Quan hệ vuông góc trong không gian', progress: 45, hasLesson: false },
       { id: 'goc-khoang-cach', name: 'Góc và khoảng cách', progress: 35, hasLesson: false },
       { id: 'the-tich-khoi-da-dien', name: 'Thể tích khối đa diện', progress: 30, hasLesson: false },
+      { id: 'phep-doi-hinh', name: 'Phép dời hình', progress: 0, hasLesson: false },
     ],
   },
   {
@@ -65,6 +66,7 @@ export const KNOWLEDGE_AREAS = [
       { id: 'so-dac-trung-phan-tan', name: 'Số đặc trưng đo mức độ phân tán', progress: 60, hasLesson: false },
       { id: 'bien-co-xac-suat', name: 'Biến cố và xác suất của biến cố', progress: 50, hasLesson: false },
       { id: 'quy-tac-tinh-xac-suat', name: 'Các quy tắc tính xác suất', progress: 50, hasLesson: false },
+      { id: 'mau-so-lieu-ghep-nhom', name: 'Mẫu số liệu ghép nhóm', progress: 0, hasLesson: false },
     ],
   },
   {

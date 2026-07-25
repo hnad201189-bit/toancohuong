@@ -1,6 +1,106 @@
 import { EXAM_DEFAULT } from './examDefault.mjs'
 
 export const THONG_KE_XAC_SUAT = {
+  'mau-so-lieu-ghep-nhom': {
+    title: 'Mẫu số liệu ghép nhóm',
+    theory: {
+      cards: [
+        {
+          title: 'Mẫu số liệu ghép nhóm',
+          formulas: ["[a;b),\\quad \\text{độ dài}=b-a"],
+          note: 'a là đầu mút trái, b là đầu mút phải của nhóm. Mẫu số liệu ghép nhóm là mẫu số liệu cho dưới dạng bảng tần số của các nhóm số liệu — dùng khi không thể (hoặc không cần) thu thập số liệu chính xác từng giá trị. Nhóm cuối cùng đôi khi lấy cả đầu mút phải.',
+        },
+        {
+          title: 'Ghép nhóm mẫu số liệu',
+          formulas: ["n=\\sum_{i=1}^k n_i"],
+          note: 'Bước 1: chia miền giá trị thành các nhóm [a;b). Bước 2: đếm tần số mỗi nhóm, lập bảng thống kê. Chú ý: không nên chia quá nhiều hoặc quá ít nhóm; các nhóm không giao nhau, nên có độ dài bằng nhau, và tổng độ dài các nhóm lớn hơn khoảng biến thiên của mẫu.',
+        },
+      ],
+    },
+    video: { caption: '00:00 / 10:20 — mau_so_lieu_ghep_nhom_baigiang.mp4' },
+    quiz: [
+      {
+        question: 'Mẫu số liệu ghép nhóm thường được trình bày dưới dạng?',
+        options: ['Danh sách các giá trị riêng lẻ', 'Bảng tần số của các nhóm số liệu', 'Một số duy nhất', 'Biểu đồ tròn'],
+        correctIndex: 1,
+      },
+      { question: 'Độ dài của nhóm [a;b) bằng?', options: ['a + b', 'a − b', 'b − a', 'ab'], correctIndex: 2 },
+      {
+        question: 'Khi ghép nhóm mẫu số liệu, các nhóm nên thoả mãn điều gì?',
+        options: [
+          'Có thể giao nhau tuỳ ý',
+          'Không giao nhau và nên có độ dài bằng nhau',
+          'Càng nhiều nhóm càng tốt',
+          'Chỉ cần 2 nhóm',
+        ],
+        correctIndex: 1,
+      },
+      {
+        question:
+          'Độ dài của 60 lá dương xỉ trưởng thành: [10;20) có 8 lá, [20;30) có 18, [30;40) có 24, [40;50) có 10. Số lá có chiều dài từ 30cm đến 50cm chiếm bao nhiêu phần trăm?',
+        options: ['50%', '56%', '56,7%', '57%'],
+        correctIndex: 2,
+      },
+      {
+        question:
+          'Khối lượng của 30 củ khoai tây: [70;80) có 3, [80;90) có 6, [90;100) có 12, [100;110) có 6, [110;120) có 3. Tần suất ghép nhóm của lớp [100;110) là?',
+        options: ['20%', '40%', '60%', '80%'],
+        correctIndex: 0,
+      },
+    ],
+    essays: [
+      {
+        prompt:
+          'Bài 1. Mẫu số liệu sau cho biết phân bố theo độ tuổi của dân số Việt Nam năm 2019: dưới 15 tuổi có 23 371 882 người, từ 15 đến dưới 65 tuổi có 65 420 451 người, từ 65 tuổi trở lên có 7 416 651 người. a) Đây có phải mẫu số liệu ghép nhóm không? b) Nêu các nhóm, tần số tương ứng và tổng dân số Việt Nam năm 2019.',
+        solution: [
+          'a) Đúng, đây là mẫu số liệu ghép nhóm vì được cho dưới dạng bảng tần số theo các khoảng (nhóm) tuổi.',
+          'b) 3 nhóm: "dưới 15" (tần số 23 371 882), "15 đến dưới 65" (tần số 65 420 451), "từ 65 trở lên" (tần số 7 416 651).',
+          'Dân số Việt Nam năm 2019 = tổng 3 tần số $=23\\,371\\,882+65\\,420\\,451+7\\,416\\,651=96\\,208\\,984$ người.',
+        ],
+      },
+      {
+        prompt:
+          'Bài 2. Cho mẫu số liệu ghép nhóm về thời gian (phút) đi từ nhà đến nơi làm việc của các nhân viên một công ty: [15;20) có 6, [20;25) có 14, [25;30) có 25, [30;35) có 37, [35;40) có 21, [40;45) có 13, [45;50) có 9. Đọc và giải thích mẫu số liệu này.',
+        solution: [
+          'Đây là mẫu số liệu ghép nhóm gồm 7 nhóm, mỗi nhóm độ dài 5 phút.',
+          'Nhóm đông nhất là $[30;35)$ với 37 nhân viên — nghĩa là có 37 người mất từ 30 đến dưới 35 phút để đi làm.',
+          'Tổng số nhân viên: $n=6+14+25+37+21+13+9=125$ người.',
+        ],
+      },
+      {
+        prompt:
+          'Bài 3. Bảng thống kê sau cho biết thời gian chạy (phút) của 30 vận động viên (VĐV) trong một giải chạy Marathon (số liệu gốc): 129(1), 130(2), 133(1), 134(1), 135(1), 136(2), 138(3), 141(3), 142(4), 143(5), 144(2), 145(5) — giá trị (số VĐV). Hãy chuyển mẫu số liệu trên sang mẫu số liệu ghép nhóm gồm 6 nhóm có độ dài bằng nhau và bằng 3.',
+        solution: [
+          'Giá trị nhỏ nhất là 129, chia thành 6 nhóm độ dài 3 bắt đầu từ 129:',
+          '$[129;132)$: gồm 129, 130 → tần số $1+2=3$',
+          '$[132;135)$: gồm 133, 134 → tần số $1+1=2$',
+          '$[135;138)$: gồm 135, 136 → tần số $1+2=3$',
+          '$[138;141)$: gồm 138 → tần số $3$',
+          '$[141;144)$: gồm 141, 142, 143 → tần số $3+4+5=12$',
+          '$[144;147)$: gồm 144, 145 → tần số $2+5=7$',
+          'Kiểm tra: $3+2+3+3+12+7=30$ ✓',
+        ],
+      },
+      {
+        prompt:
+          'Bài 4. Cân nặng (kg) của 35 người trưởng thành: 43 51 47 62 48 40 50 62 53 56 40 48 56 53 50 42 55 52 48 46 45 54 52 50 47 44 54 55 60 63 58 55 60 58 53. Chuyển mẫu số liệu trên thành dạng ghép nhóm, các nhóm có độ dài bằng nhau, trong đó có nhóm [40;45).',
+        solution: [
+          'Các nhóm độ dài 5 bắt đầu từ 40: $[40;45),[45;50),[50;55),[55;60),[60;65)$.',
+          'Đếm tần số từng nhóm: $[40;45)$: 5 người; $[45;50)$: 7 người; $[50;55)$: 11 người; $[55;60)$: 7 người; $[60;65)$: 5 người.',
+          'Kiểm tra: $5+7+11+7+5=35$ ✓',
+        ],
+      },
+    ],
+    flashcards: [
+      { front: 'Mẫu số liệu ghép nhóm là gì?', back: 'Mẫu số liệu cho dưới dạng bảng tần số của các nhóm (khoảng) số liệu' },
+      { front: 'Độ dài nhóm [a;b)', back: '$b-a$' },
+      { front: 'Bước 1 khi ghép nhóm', back: 'Chia miền giá trị thành các nhóm theo tiêu chí cho trước' },
+      { front: 'Bước 2 khi ghép nhóm', back: 'Đếm tần số mỗi nhóm, lập bảng thống kê' },
+      { front: 'Nguyên tắc chọn nhóm', back: 'Không giao nhau, độ dài bằng nhau, tổng độ dài > khoảng biến thiên' },
+    ],
+    exam: EXAM_DEFAULT,
+  },
+
   'so-dac-trung-xu-the': {
     title: 'Số đặc trưng đo xu thế trung tâm',
     theory: {
@@ -14,6 +114,16 @@ export const THONG_KE_XAC_SUAT = {
           title: 'Trung vị của mẫu số liệu ghép nhóm',
           formulas: ['M_e=L+\\dfrac{\\frac n2-C}{n_m}\\cdot h'],
           note: 'Mẹo: L là đầu mút trái của nhóm chứa trung vị, C là tần số tích luỹ trước nhóm đó, nm là tần số nhóm chứa trung vị, h là độ dài nhóm.',
+        },
+        {
+          title: 'Tứ phân vị của mẫu số liệu ghép nhóm',
+          formulas: ['Q_1=a_p+\\dfrac{\\frac n4-C}{n_p}\\cdot h', 'Q_3=a_p+\\dfrac{\\frac{3n}4-C}{n_p}\\cdot h'],
+          note: 'Cách tìm giống trung vị nhưng thay n/2 bằng n/4 (cho Q1) hoặc 3n/4 (cho Q3). Tứ phân vị thứ hai Q2 chính là trung vị Me.',
+        },
+        {
+          title: 'Mốt của mẫu số liệu ghép nhóm',
+          formulas: ['M_o=a_j+\\dfrac{m_j-m_{j-1}}{(m_j-m_{j-1})+(m_j-m_{j+1})}\\cdot h'],
+          note: 'j là nhóm có tần số lớn nhất (quy ước m₀ = m_{k+1} = 0). Chỉ định nghĩa mốt khi các nhóm có độ dài bằng nhau.',
         },
       ],
     },
@@ -32,6 +142,27 @@ export const THONG_KE_XAC_SUAT = {
         options: ['Tần số nhóm i', 'Giá trị đại diện (trung điểm) nhóm i', 'Tần suất nhóm i', 'Độ dài nhóm i'],
         correctIndex: 1,
       },
+      {
+        question:
+          'Khảo sát thời gian tập thể dục (phút) của học sinh khối 11: [0;20) có 5 học sinh, [20;40) có 9, [40;60) có 12, [60;80) có 10, [80;100) có 6. Giá trị đại diện của nhóm [20;40) là?',
+        options: ['10', '20', '30', '40'],
+        correctIndex: 2,
+      },
+      {
+        question: 'Với mẫu số liệu ở câu trên, mẫu số liệu ghép nhóm này có số mốt là?',
+        options: ['0', '1', '2', '3'],
+        correctIndex: 1,
+      },
+      {
+        question: 'Với mẫu số liệu ở câu trên, nhóm chứa mốt là?',
+        options: ['[20;40)', '[40;60)', '[60;80)', '[80;100)'],
+        correctIndex: 1,
+      },
+      {
+        question: 'Với mẫu số liệu ở câu trên, nhóm chứa trung vị là?',
+        options: ['[0;20)', '[20;40)', '[40;60)', '[60;80)'],
+        correctIndex: 2,
+      },
     ],
     essays: [
       {
@@ -48,17 +179,45 @@ export const THONG_KE_XAC_SUAT = {
       },
       {
         prompt:
-          'Bài 4. Bảng tần số ghép nhóm: [0;10) có 3 giá trị, [10;20) có 5, [20;30) có 2. Tính số trung bình (dùng giá trị đại diện là trung điểm mỗi nhóm).',
+          'Bài 4. Tìm cân nặng trung bình của học sinh lớp 11D cho trong bảng: [40,5;45,5) có 10 học sinh, [45,5;50,5) có 7, [50,5;55,5) có 16, [55,5;60,5) có 4, [60,5;65,5) có 2, [65,5;70,5) có 3.',
         solution: [
-          'Giá trị đại diện: $c_1=5,\\ c_2=15,\\ c_3=25$',
-          '$\\bar x=\\dfrac{3\\cdot5+5\\cdot15+2\\cdot25}{10}=\\dfrac{140}{10}=14$',
+          'Giá trị đại diện: $43;\\,48;\\,53;\\,58;\\,63;\\,68$. Cỡ mẫu $n=10+7+16+4+2+3=42$.',
+          '$\\bar x=\\dfrac{10\\cdot43+7\\cdot48+16\\cdot53+4\\cdot58+2\\cdot63+3\\cdot68}{42}=\\dfrac{2176}{42}\\approx51{,}8$ (kg)',
         ],
       },
       {
-        prompt: 'Bài 5. Với bảng tần số ở Bài 4, xác định nhóm chứa trung vị.',
+        prompt:
+          'Bài 5. Thời gian (phút) truy cập Internet mỗi buổi tối của học sinh: [9,5;12,5) có 3, [12,5;15,5) có 12, [15,5;18,5) có 15, [18,5;21,5) có 24, [21,5;24,5) có 2. Tính trung vị.',
         solution: [
-          '$n/2=5$. Tần số tích luỹ đến nhóm 1: 3 (chưa đủ 5).',
-          'Tần số tích luỹ đến nhóm 2: $3+5=8\\ge5$, vậy nhóm chứa trung vị là $[10;20)$',
+          'Cỡ mẫu $n=3+12+15+24+2=56 \\Rightarrow n/2=28$.',
+          'Tần số tích luỹ: 3; 15; 30; ... nhóm $[15{,}5;18{,}5)$ là nhóm đầu tiên có tích luỹ $\\ge28$ (tích luỹ trước đó là 15).',
+          '$M_e=15{,}5+\\dfrac{28-15}{15}\\cdot3=15{,}5+2{,}6=18{,}1$ (phút)',
+        ],
+      },
+      {
+        prompt:
+          'Bài 6. Tốc độ giao bóng (km/h) của một vận động viên quần vợt trong 200 lần giao bóng: [150;155) có 18, [155;160) có 28, [160;165) có 35, [165;170) có 43, [170;175) có 41, [175;180) có 35. Tìm tứ phân vị thứ nhất Q1 và tứ phân vị thứ ba Q3.',
+        solution: [
+          '$n=200$. $Q_1$ ứng vị trí $n/4=50$: tích luỹ 18; 46; 81 ⟹ nhóm chứa $Q_1$ là $[160;165)$ (tích luỹ trước 46).',
+          '$Q_1=160+\\dfrac{50-46}{35}\\cdot5\\approx160{,}6$',
+          '$Q_3$ ứng vị trí $3n/4=150$: tích luỹ ...124 (đến nhóm 4); 165 (đến nhóm 5) ⟹ nhóm chứa $Q_3$ là $[170;175)$ (tích luỹ trước 124).',
+          '$Q_3=170+\\dfrac{150-124}{41}\\cdot5\\approx173{,}2$',
+        ],
+      },
+      {
+        prompt:
+          'Bài 7. Bảng số liệu ghép nhóm cho biết chiều cao (cm) của 50 học sinh lớp 11A: [145;150) có 7, [150;155) có 14, [155;160) có 10, [160;165) có 10, [165;170) có 9. Tính mốt của mẫu số liệu này.',
+        solution: [
+          'Nhóm có tần số lớn nhất là $[150;155)$ với $m_j=14$ ($m_{j-1}=7$, $m_{j+1}=10$, $h=5$).',
+          '$M_o=150+\\dfrac{14-7}{(14-7)+(14-10)}\\cdot5=150+\\dfrac{7}{11}\\cdot5\\approx153{,}2$ (cm)',
+        ],
+      },
+      {
+        prompt:
+          'Bài 8. Cơ cấu dân số Việt Nam năm 2020 theo độ tuổi: dưới 5 tuổi có 7,89 triệu người, 5–14 tuổi có 14,68 triệu, 15–24 tuổi có 13,32 triệu, 25–64 tuổi có 53,78 triệu, trên 65 tuổi có 7,66 triệu (chọn 80 là giá trị đại diện cho nhóm trên 65 tuổi). Tính tuổi trung bình của người Việt Nam năm 2020.',
+        solution: [
+          'Giá trị đại diện các nhóm: $2{,}5;\\ 9{,}5;\\ 19{,}5;\\ 44{,}5;\\ 80$. Cỡ mẫu $n=7{,}89+14{,}68+13{,}32+53{,}78+7{,}66=97{,}33$ (triệu người).',
+          '$\\bar x=\\dfrac{7{,}89\\cdot2{,}5+14{,}68\\cdot9{,}5+13{,}32\\cdot19{,}5+53{,}78\\cdot44{,}5+7{,}66\\cdot80}{97{,}33}\\approx\\dfrac{3424{,}9}{97{,}33}\\approx35{,}2$ (tuổi)',
         ],
       },
     ],
@@ -66,7 +225,8 @@ export const THONG_KE_XAC_SUAT = {
       { front: 'Công thức số trung bình (mẫu ghép nhóm)', back: '$\\bar x=\\dfrac1n\\sum n_ic_i$' },
       { front: 'Giá trị đại diện ci của một nhóm', back: '$c_i=\\dfrac{L_i+R_i}{2}$' },
       { front: 'Công thức trung vị nhóm', back: '$M_e=L+\\dfrac{\\frac n2-C}{n_m}\\cdot h$' },
-      { front: 'Mốt ứng với nhóm có', back: '$\\max(n_i)$' },
+      { front: 'Công thức tứ phân vị Q1, Q3 nhóm', back: 'Giống trung vị nhưng thay $\\frac n2$ bằng $\\frac n4$ (Q1) hoặc $\\frac{3n}4$ (Q3)' },
+      { front: 'Công thức mốt nhóm', back: '$M_o=a_j+\\dfrac{m_j-m_{j-1}}{(m_j-m_{j-1})+(m_j-m_{j+1})}\\cdot h$' },
       { front: 'Cỡ mẫu n', back: '$n=\\sum_{i=1}^k n_i$' },
     ],
     exam: EXAM_DEFAULT,

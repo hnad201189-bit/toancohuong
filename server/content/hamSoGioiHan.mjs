@@ -24,6 +24,11 @@ export const HAM_SO_GIOI_HAN = {
       { question: 'lim (3n²+1)/(n²+2) bằng?', options: ['3', '1', '0', '+∞'], correctIndex: 0 },
       { question: 'lim ((−1)ⁿ/n) bằng?', options: ['0', '1', '−1', 'Không tồn tại'], correctIndex: 0 },
       { question: 'lim qⁿ với |q| < 1 bằng?', options: ['0', '1', 'q', '+∞'], correctIndex: 0 },
+      { question: 'lim (−n³+n²−3n+1)/(4n+2) bằng?', options: ['−∞', '−1/4', '+∞', '0'], correctIndex: 0 },
+      { question: 'lim ∛(8n³+1)/(2n−5) bằng?', options: ['4', '+∞', '−1/5', '1'], correctIndex: 3 },
+      { question: 'lim (2n+1)/(n³+4n²+3) bằng?', options: ['−∞', '0', '2', '1/3'], correctIndex: 1 },
+      { question: 'lim (1+3ⁿ)/(4+3ⁿ) bằng?', options: ['1/4', '+∞', '1', '3/4'], correctIndex: 2 },
+      { question: 'lim (4ⁿ⁺¹+6ⁿ⁺²)/(5ⁿ+8ⁿ) bằng?', options: ['0', '6/8', '−∞', '4/5'], correctIndex: 0 },
     ],
     essays: [
       {
@@ -51,6 +56,24 @@ export const HAM_SO_GIOI_HAN = {
           'Vì $\\left|\\frac23\\right|<1$ nên biểu thức tiến về $1+0=1$',
         ],
       },
+      {
+        prompt: 'Bài 6. Tính lim (4·3ⁿ + 7ⁿ⁺¹)/(2·5ⁿ + 7ⁿ) (giới hạn dãy chứa luỹ thừa với nhiều cơ số khác nhau).',
+        solution: [
+          'Cơ số lớn nhất xuất hiện là 7. Viết $7^{n+1}=7\\cdot7^n$, chia cả tử và mẫu cho $7^n$:',
+          '$\\dfrac{4\\cdot3^n+7\\cdot7^n}{2\\cdot5^n+7^n}=\\dfrac{4\\left(\\frac37\\right)^n+7}{2\\left(\\frac57\\right)^n+1}$',
+          'Vì $\\left|\\frac37\\right|<1$ và $\\left|\\frac57\\right|<1$ nên hai số hạng đó tiến về 0, giới hạn bằng $\\dfrac{7}{1}=7$.',
+        ],
+      },
+      {
+        prompt:
+          'Bài 7. Tính lim [1/(1·4) + 1/(2·5) + ⋯ + 1/(n(n+3))] (tổng có dạng phân tích thành hiệu, khử liên tiếp).',
+        solution: [
+          'Phân tích: $\\dfrac{1}{k(k+3)}=\\dfrac13\\left(\\dfrac1k-\\dfrac{1}{k+3}\\right)$.',
+          'Tổng khử liên tiếp (mỗi số hạng âm bị triệt tiêu bởi số hạng dương cách nó 3 vị trí):',
+          '$S_n=\\dfrac13\\left[\\left(1+\\dfrac12+\\dfrac13\\right)-\\left(\\dfrac1{n+1}+\\dfrac1{n+2}+\\dfrac1{n+3}\\right)\\right]$',
+          'Khi $n\\to+\\infty$, các số hạng $\\dfrac{1}{n+1},\\dfrac1{n+2},\\dfrac1{n+3}\\to0$, vậy $\\lim S_n=\\dfrac13\\cdot\\dfrac{11}{6}=\\dfrac{11}{18}$.',
+        ],
+      },
     ],
     flashcards: [
       { front: 'Giới hạn cơ bản 1/n', back: '$\\lim_{n\\to+\\infty}\\dfrac1n=0$' },
@@ -58,6 +81,8 @@ export const HAM_SO_GIOI_HAN = {
       { front: 'Tổng cấp số nhân lùi vô hạn', back: '$S=\\dfrac{u_1}{1-q},\\ |q|<1$' },
       { front: 'Giới hạn qⁿ khi |q| < 1', back: '$\\lim q^n=0$' },
       { front: 'Giới hạn phân thức cùng bậc', back: '$\\lim\\dfrac{an^k+\\cdots}{bn^k+\\cdots}=\\dfrac{a}{b}$' },
+      { front: 'Kỹ thuật giới hạn dãy mũ nhiều cơ số', back: 'Chia tử và mẫu cho luỹ thừa của cơ số lớn nhất' },
+      { front: 'Tổng khử liên tiếp (telescoping)', back: '$\\dfrac1{k(k+r)}=\\dfrac1r\\left(\\dfrac1k-\\dfrac1{k+r}\\right)$' },
     ],
     exam: EXAM_DEFAULT,
   },
@@ -89,6 +114,14 @@ export const HAM_SO_GIOI_HAN = {
         options: ['Thay số trực tiếp', 'Phân tích nhân tử hoặc nhân liên hợp', 'Bỏ qua', 'Lấy đạo hàm ngay'],
         correctIndex: 1,
       },
+      { question: 'lim x→0 (sin 3x / sin 5x) bằng?', options: ['1', '3/5', '5/3', '0'], correctIndex: 1 },
+      { question: 'lim x→0 (1 − cos 2x)/x² bằng?', options: ['0', '2', '1', '+∞'], correctIndex: 1 },
+      { question: 'lim x→0 (tan 5x / x) bằng?', options: ['0', '1', '5', '+∞'], correctIndex: 2 },
+      {
+        question: 'lim x→π/4 (sin x − cos x)/(x − π/4) bằng?',
+        options: ['0', '√2', '1', '−√2'],
+        correctIndex: 1,
+      },
     ],
     essays: [
       {
@@ -116,6 +149,22 @@ export const HAM_SO_GIOI_HAN = {
           '$\\dfrac{x^3-8}{x-2}=x^2+2x+4 \\to 4+4+4=12$',
         ],
       },
+      {
+        prompt:
+          'Bài 6. Tính lim x→1 (x²⁰¹⁸+x²⁰¹⁷+⋯+x−2018)/(x²⁰¹⁸−1) (dùng lim sinx/x=1 không áp dụng được — đây là dạng 0/0 bậc cao, tách thành tổng các giới hạn cơ bản).',
+        solution: [
+          'Viết tử số thành tổng: $\\sum_{k=1}^{2018}x^k-2018=\\sum_{k=1}^{2018}(x^k-1)$, mỗi số hạng đều có dạng 0/0 khi $x\\to1$.',
+          '$\\lim_{x\\to1}\\dfrac{x^k-1}{x^{2018}-1}=\\lim_{x\\to1}\\dfrac{(x-1)(x^{k-1}+\\cdots+1)}{(x-1)(x^{2017}+\\cdots+1)}=\\dfrac{k}{2018}$ (mỗi tổng có k, tương ứng 2018 số hạng bằng 1 khi x=1).',
+          'Cộng lại: $\\displaystyle\\sum_{k=1}^{2018}\\dfrac{k}{2018}=\\dfrac{1}{2018}\\cdot\\dfrac{2018\\cdot2019}{2}=\\dfrac{2019}{2}$.',
+        ],
+      },
+      {
+        prompt: 'Bài 7. Tính lim x→0 (1 − cos 2x)/x² (dùng công thức 1 − cos u = 2sin²(u/2)).',
+        solution: [
+          '$1-\\cos2x=2\\sin^2 x$',
+          '$\\dfrac{1-\\cos2x}{x^2}=2\\left(\\dfrac{\\sin x}{x}\\right)^2 \\to 2\\cdot1^2=2$',
+        ],
+      },
     ],
     flashcards: [
       { front: 'Giới hạn hàm đa thức tại a', back: '$\\lim_{x\\to a}f(x)=f(a)$' },
@@ -123,6 +172,8 @@ export const HAM_SO_GIOI_HAN = {
       { front: 'Giới hạn 1/x khi x → +∞', back: '$\\lim_{x\\to+\\infty}\\dfrac1x=0$' },
       { front: 'Khử dạng 0/0 bằng nhân tử', back: '$\\dfrac{f(x)}{g(x)}=\\dfrac{(x-a)h(x)}{(x-a)k(x)}$' },
       { front: 'Nhân liên hợp khử căn', back: '$(\\sqrt a-\\sqrt b)(\\sqrt a+\\sqrt b)=a-b$' },
+      { front: 'Giới hạn đặc biệt tan x / x', back: '$\\lim_{x\\to0}\\dfrac{\\tan x}{x}=1$' },
+      { front: 'Công thức 1 − cos u', back: '$1-\\cos u=2\\sin^2\\dfrac u2$' },
     ],
     exam: EXAM_DEFAULT,
   },

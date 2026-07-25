@@ -47,6 +47,21 @@ export const LUONG_GIAC = {
         options: ['sin x', '−sin x', 'cos x', '−cos x'],
         correctIndex: 1,
       },
+      { question: 'Giá trị của sin(13π/6) bằng?', options: ['−1/2', '1/2', '−√3/2', '√3/2'], correctIndex: 1 },
+      { question: 'Số đo theo đơn vị rađian của góc 315° là?', options: ['7π/2', '7π/4', '2π/7', '4π/7'], correctIndex: 1 },
+      {
+        question: 'Một bánh xe có 72 răng. Số đo góc mà bánh xe đã quay được khi di chuyển 10 răng là?',
+        options: ['60°', '30°', '40°', '50°'],
+        correctIndex: 3,
+      },
+      { question: 'Trong các hàm số sau, hàm số nào là hàm số chẵn?', options: ['y = tan x', 'y = cot x', 'y = cos x', 'y = sin x'], correctIndex: 2 },
+      {
+        question: 'Tập xác định của hàm số y = cot 2x là?',
+        options: ['D = R \\ {π/2 + kπ}', 'D = R \\ {π/2 + k2π}', 'D = R \\ {kπ}', 'D = R \\ {kπ/2}'],
+        correctIndex: 3,
+      },
+      { question: 'Hàm số f(x) = 2023·sin 3x tuần hoàn với chu kì bằng?', options: ['2π', '2023π', '2π/2023', '2π/3'], correctIndex: 3 },
+      { question: 'Tập giá trị của hàm số y = 2sin x + 3 là?', options: ['[−1;1]', '[1;5]', '[4;8]', '(1;5)'], correctIndex: 1 },
     ],
     essays: [
       {
@@ -140,6 +155,10 @@ export const LUONG_GIAC = {
         options: ['x = kπ', 'x = π/2 + kπ', 'x = k2π', 'x = π + k2π'],
         correctIndex: 1,
       },
+      { question: 'Nghiệm của phương trình tan x = 1 là?', options: ['x = π/4 + kπ', 'x = π/3 + k2π', 'x = π/4 + k2π', 'x = ±5π/6 + k2π'], correctIndex: 0 },
+      { question: 'Nghiệm của phương trình cos x = −1/2 là?', options: ['x = ±2π/3 + k2π', 'x = ±π/6 + kπ', 'x = ±π/3 + k2π', 'x = ±π/6 + k2π'], correctIndex: 0 },
+      { question: 'Nghiệm của phương trình cos x = 1 là?', options: ['x = kπ', 'x = k2π', 'x = π/2 + kπ', 'x = π + k2π'], correctIndex: 1 },
+      { question: 'Nghiệm của phương trình √3·tan x = 1 là?', options: ['x = π/6 + k2π', 'x = π/4 + kπ', 'x = π/3 + kπ', 'x = π/6 + kπ'], correctIndex: 3 },
     ],
     essays: [
       {
@@ -328,6 +347,19 @@ export const LUONG_GIAC = {
         options: ['sin a', '−sin a', 'cos a', '−cos a'],
         correctIndex: 2,
       },
+      {
+        question: 'Trong các công thức sau, công thức nào sai?',
+        options: ['cos 2a = cos²a − sin²a', 'cos 2a = 2sin a·cos a', 'cos 2a = 2cos²a − 1', 'cos 2a = 1 − 2sin²a'],
+        correctIndex: 1,
+      },
+      {
+        question: 'Trong các công thức sau, công thức nào đúng?',
+        options: ['cos(a − b) = cos a·cos b + sin a·sin b', 'cos(a + b) = cos a·cos b + sin a·sin b', 'sin(a − b) = sin a·cos b − cos a·sin b', 'sin(a + b) = sin a·cos b − cos a·sin b'],
+        correctIndex: 2,
+      },
+      { question: 'Rút gọn M = sin(x + y)cos y − cos(x + y)sin y?', options: ['M = cos x', 'M = sin x', 'M = sin(x + 2y)', 'M = cos(x + 2y)'], correctIndex: 1 },
+      { question: 'Cho tam giác ABC. Khẳng định nào dưới đây đúng?', options: ['cos(A + B) = cos C', 'cos(A + B) = sin C', 'cos(A + B) = −sin C', 'cos(A + B) = −cos C'], correctIndex: 3 },
+      { question: 'Cho góc α thỏa cos α = 4/5 và 0 < α < π/2. Giá trị của sin 2α bằng?', options: ['−12/25', '24/25', '−24/25', '12/25'], correctIndex: 1 },
     ],
     essays: [
       {
@@ -359,6 +391,14 @@ export const LUONG_GIAC = {
         solution: [
           '$\\cos a=\\dfrac{\\sqrt3}{2},\\quad \\sin b=\\dfrac12$',
           '$\\sin(a+b)=\\sin a\\cos b+\\cos a\\sin b=\\dfrac12\\cdot\\dfrac{\\sqrt3}{2}+\\dfrac{\\sqrt3}{2}\\cdot\\dfrac12=\\dfrac{\\sqrt3}{2}$',
+        ],
+      },
+      {
+        prompt: 'Bài 6. Cho tan α = 2 và 180° < α < 270°. Tính cos α + sin α.',
+        solution: [
+          '$\\tan\\alpha=2 \\Rightarrow \\sin\\alpha=2\\cos\\alpha$. Thay vào $\\sin^2\\alpha+\\cos^2\\alpha=1$: $4\\cos^2\\alpha+\\cos^2\\alpha=1 \\Rightarrow \\cos^2\\alpha=\\dfrac15$',
+          'Vì $180^\\circ<\\alpha<270^\\circ$ (góc phần tư III) nên $\\cos\\alpha<0 \\Rightarrow \\cos\\alpha=-\\dfrac{\\sqrt5}{5}$, suy ra $\\sin\\alpha=2\\cos\\alpha=-\\dfrac{2\\sqrt5}{5}$.',
+          '$\\cos\\alpha+\\sin\\alpha=-\\dfrac{\\sqrt5}{5}-\\dfrac{2\\sqrt5}{5}=-\\dfrac{3\\sqrt5}{5}$',
         ],
       },
     ],

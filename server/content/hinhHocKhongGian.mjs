@@ -6,14 +6,24 @@ export const HINH_HOC_KHONG_GIAN = {
     theory: {
       cards: [
         {
+          title: 'Các tính chất thừa nhận',
+          formulas: ["(P)\\cap(Q)=d\\ (\\text{nếu có điểm chung})"],
+          note: 'TC1: có duy nhất 1 đường thẳng qua 2 điểm phân biệt. TC2: có duy nhất 1 mặt phẳng qua 3 điểm không thẳng hàng. TC4: hai mp phân biệt có điểm chung thì chung nhau đúng 1 đường thẳng (giao tuyến). Ba cách xác định mặt phẳng: qua 3 điểm không thẳng hàng (ABC); qua 1 đường thẳng và 1 điểm ngoài đường đó (A,d); qua 2 đường thẳng cắt nhau (a,b).',
+        },
+        {
           title: 'Đường thẳng song song với mặt phẳng',
           formulas: ["d\\parallel(P) \\Leftrightarrow d\\not\\subset(P),\\ \\exists a\\subset(P): d\\parallel a"],
-          note: 'Mẹo: để chứng minh d//(P), chỉ cần tìm 1 đường thẳng a nằm trong (P) sao cho d//a, và d không nằm trong (P).',
+          note: 'Mẹo: để chứng minh d//(P), chỉ cần tìm 1 đường thẳng a nằm trong (P) sao cho d//a, và d không nằm trong (P). Tính chất 2: nếu a//(P) và mp(Q) chứa a cắt (P) theo giao tuyến b thì b//a.',
         },
         {
           title: 'Hai mặt phẳng song song',
           formulas: ["(P)\\parallel(Q) \\Leftrightarrow \\begin{cases}a,b\\subset(P),\\ a\\cap b=\\{I\\}\\\\ a\\parallel(Q),\\ b\\parallel(Q)\\end{cases}"],
-          note: 'Mẹo: chỉ cần 2 đường thẳng cắt nhau trong (P) cùng song song với (Q) là đủ để kết luận (P)//(Q).',
+          note: 'Mẹo: chỉ cần 2 đường thẳng cắt nhau trong (P) cùng song song với (Q) là đủ để kết luận (P)//(Q). Tính chất 3: nếu (P)//(Q) thì mp nào cắt (P) cũng cắt (Q), và 2 giao tuyến song song nhau.',
+        },
+        {
+          title: 'Định lý Thalès trong không gian',
+          formulas: ["\\dfrac{AB}{A'B'}=\\dfrac{BC}{B'C'}=\\dfrac{AC}{A'C'}"],
+          note: 'Ba mặt phẳng đôi một song song chắn trên hai cát tuyến các đoạn thẳng tương ứng tỉ lệ. Áp dụng: hình lăng trụ có các mặt bên là hình bình hành, các cạnh bên song song và bằng nhau; hình hộp là lăng trụ tứ giác có 2 đáy là hình bình hành.',
         },
       ],
     },
@@ -49,6 +59,31 @@ export const HINH_HOC_KHONG_GIAN = {
         options: ['d cắt a', 'd // a và d // b', 'd vuông góc a', 'd trùng a'],
         correctIndex: 1,
       },
+      {
+        question: 'Qua một điểm nằm ngoài một mặt phẳng cho trước, có bao nhiêu mặt phẳng song song với mặt phẳng đó?',
+        options: ['Không có', 'Duy nhất một', 'Hai', 'Vô số'],
+        correctIndex: 1,
+      },
+      {
+        question: 'Cho hai mặt phẳng song song (α), (β), và đường thẳng a // (α). Có mấy vị trí tương đối của a và (β)?',
+        options: ['1', '2', '3', '4'],
+        correctIndex: 1,
+      },
+      {
+        question: 'Hai điểm M, N lần lượt thay đổi trên hai mặt phẳng song song (P), (Q). Gọi I là trung điểm MN. Tập hợp các điểm I là?',
+        options: [
+          'Một đường thẳng song song và cách đều (P), (Q)',
+          'Một mặt phẳng song song và cách đều (P), (Q)',
+          'Một mặt phẳng cắt (P)',
+          'Một đường thẳng cắt (P)',
+        ],
+        correctIndex: 1,
+      },
+      {
+        question: 'Cho hai mặt phẳng (P), (Q) cắt nhau theo giao tuyến d. Hai đường thẳng p, q lần lượt nằm trong (P), (Q). Mệnh đề nào đúng?',
+        options: ['p và q luôn cắt nhau', 'p và q luôn chéo nhau', 'p và q luôn song song', 'Cả ba mệnh đề trên đều sai'],
+        correctIndex: 3,
+      },
     ],
     essays: [
       {
@@ -60,28 +95,61 @@ export const HINH_HOC_KHONG_GIAN = {
         ],
       },
       {
-        prompt: 'Bài 2. Cho hai mặt phẳng (P), (Q) song song. Đường thẳng a nằm trong (P). Hỏi a có song song với (Q) không?',
+        prompt:
+          'Bài 2. Cho hình chóp S.ABCD, đáy ABCD là tứ giác lồi có các cặp cạnh đối không song song. Tìm giao tuyến của (SAC) và (SBD); của (SAB) và (SCD).',
         solution: [
-          'Có. Vì $a\\subset(P)$ mà $(P)\\parallel(Q)$ nên (P) và (Q) không có điểm chung, suy ra a không cắt (Q).',
-          'Mặt khác $a\\not\\subset(Q)$ (do a thuộc P), vậy $a\\parallel(Q)$.',
+          'Gọi $O=AC\\cap BD$ (hai đường chéo của tứ giác lồi luôn cắt nhau). Ta có $S,O$ là 2 điểm chung của $(SAC)$ và $(SBD)$, vậy giao tuyến là $SO$.',
+          'Gọi $I=AB\\cap CD$ (tồn tại vì AB, CD không song song). Ta có $S,I$ là 2 điểm chung của $(SAB)$ và $(SCD)$, vậy giao tuyến là $SI$.',
         ],
       },
       {
-        prompt: 'Bài 3. Cho tứ diện ABCD, gọi M, N lần lượt là trung điểm AB, AC. Chứng minh MN // (BCD).',
+        prompt: 'Bài 3. Cho tứ diện ABCD. Gọi M là điểm trên cạnh AB, N là điểm trên cạnh CD. Tìm giao tuyến của (ABN) và (CDM).',
         solution: [
-          'MN là đường trung bình của tam giác ABC nên $MN\\parallel BC$.',
-          '$BC\\subset(BCD)$, $MN\\not\\subset(BCD)$, vậy $MN\\parallel(BCD)$.',
+          '$M\\in AB\\subset(ABN)$ và hiển nhiên $M\\in(CDM)$, vậy M là điểm chung của 2 mặt phẳng.',
+          '$N\\in CD\\subset(CDM)$ và hiển nhiên $N\\in(ABN)$, vậy N cũng là điểm chung.',
+          'Vậy giao tuyến của $(ABN)$ và $(CDM)$ là đường thẳng $MN$.',
         ],
       },
       {
-        prompt: 'Bài 4. Cho hình chóp S.ABC, gọi M, N lần lượt là trung điểm SB, SC. Chứng minh MN // (ABC).',
+        prompt:
+          'Bài 4. Cho tứ diện ABCD. Gọi M, N lần lượt là trọng tâm của các tam giác ABC và BCD. Chứng minh MN // (ABD) và MN // (ACD).',
         solution: [
-          'MN là đường trung bình của tam giác SBC nên $MN\\parallel BC$.',
-          '$BC\\subset(ABC)$, $MN\\not\\subset(ABC)$, vậy $MN\\parallel(ABC)$.',
+          'Gọi E là trung điểm BC. Vì M là trọng tâm $\\triangle ABC$ nên $M\\in AE$ với $\\dfrac{EM}{EA}=\\dfrac13$.',
+          'Vì N là trọng tâm $\\triangle BCD$ nên $N\\in DE$ với $\\dfrac{EN}{ED}=\\dfrac13$.',
+          'Trong tam giác EAD: $\\dfrac{EM}{EA}=\\dfrac{EN}{ED}=\\dfrac13 \\Rightarrow MN\\parallel AD$ (định lí Thalès đảo).',
+          '$AD\\subset(ABD)$ và $AD\\subset(ACD)$, mà $MN\\not\\subset$ hai mặt phẳng này, vậy $MN\\parallel(ABD)$ và $MN\\parallel(ACD)$.',
         ],
       },
       {
-        prompt: 'Bài 5. Cho hình lăng trụ ABC.A\'B\'C\'. Chứng minh (ABC) // (A\'B\'C\').',
+        prompt:
+          'Bài 5. Cho tứ diện ABCD. Gọi M là điểm bất kì trên cạnh BC. Mặt phẳng (α) qua M, song song với AB và CD, cắt BD, AD, AC lần lượt tại N, P, Q. Chứng minh MNPQ là hình bình hành.',
+        solution: [
+          '$(\\alpha)$ và $(ABC)$ có điểm chung M, mà $(\\alpha)\\parallel AB$, $AB\\subset(ABC)$ nên giao tuyến qua M song song AB, chính là $MQ$. Vậy $MQ\\parallel AB$.',
+          'Tương tự, $(\\alpha)\\cap(ABD)$ qua N song song AB (vì $(\\alpha)\\parallel AB$), chính là $NP$. Vậy $NP\\parallel AB$, suy ra $MQ\\parallel NP$.',
+          'Lập luận tương tự với $(\\alpha)\\parallel CD$: $(\\alpha)\\cap(ACD)=QP\\parallel CD$ và $(\\alpha)\\cap(BCD)=MN\\parallel CD$, suy ra $MN\\parallel QP$.',
+          'Tứ giác MNPQ có $MQ\\parallel NP$ và $MN\\parallel QP$, vậy MNPQ là hình bình hành.',
+        ],
+      },
+      {
+        prompt:
+          'Bài 6. Cho hình chóp S.ABCD, đáy ABCD là hình bình hành tâm O. Gọi M, N lần lượt là trung điểm SA, SD. Chứng minh MN // (SBC), SB // (OMN), SC // (OMN).',
+        solution: [
+          'MN là đường trung bình của $\\triangle SAD$ nên $MN\\parallel AD$. Mà $AD\\parallel BC$ (ABCD hbh) nên $MN\\parallel BC$. $BC\\subset(SBC)$, $MN\\not\\subset(SBC)$, vậy $MN\\parallel(SBC)$.',
+          'Trong $\\triangle SAC$: O là trung điểm AC, M là trung điểm SA, nên OM là đường trung bình $\\Rightarrow OM\\parallel SC$. $OM\\subset(OMN)$, vậy $SC\\parallel(OMN)$.',
+          'Trong $\\triangle SBD$: O là trung điểm BD, N là trung điểm SD, nên ON là đường trung bình $\\Rightarrow ON\\parallel SB$. $ON\\subset(OMN)$, vậy $SB\\parallel(OMN)$.',
+        ],
+      },
+      {
+        prompt:
+          'Bài 7. Cho hình chóp S.ABCD, đáy ABCD là hình thang với AD // BC, AD = 2BC. Gọi E, F, I lần lượt là trung điểm của SA, AD, SD. Chứng minh (EFB) // (SCD).',
+        solution: [
+          'EF là đường trung bình của $\\triangle SAD$ (E trung điểm SA, I trung điểm SD) $\\Rightarrow EI\\parallel SD$; xét trong $(EFB)$ ta dùng $EF\\parallel SD$ vì F, I cùng thuộc AD, SD tương ứng — cụ thể EF nối 2 trung điểm SA và AD nên $EF\\parallel SD$.',
+          'F là trung điểm AD nên $FD=\\dfrac12 AD=BC$; mà $FD\\parallel BC$ (vì AD // BC), suy ra tứ giác FBCD là hình bình hành $\\Rightarrow FB\\parallel DC$.',
+          '$(EFB)$ chứa 2 đường thẳng cắt nhau EF, FB lần lượt song song với 2 đường thẳng cắt nhau SD, DC của $(SCD)$. Vậy $(EFB)\\parallel(SCD)$.',
+        ],
+      },
+      {
+        prompt: 'Bài 8. Cho hình lăng trụ ABC.A\'B\'C\'. Chứng minh (ABC) // (A\'B\'C\').',
         solution: [
           'Do các mặt bên là hình bình hành nên $AB\\parallel A\'B\'$ và $AC\\parallel A\'C\'$.',
           '$AB, AC\\subset(ABC)$, cắt nhau tại A, và cùng song song $(A\'B\'C\')$.',
@@ -98,6 +166,7 @@ export const HINH_HOC_KHONG_GIAN = {
       },
       { front: 'Định lý giao tuyến với hai đường song song', back: '$a\\parallel b,\\ a\\subset(P),\\ b\\subset(Q) \\Rightarrow (P)\\cap(Q)\\parallel a$' },
       { front: 'Đường trung bình tam giác', back: '$MN\\parallel BC,\\ MN=\\dfrac12 BC$' },
+      { front: 'Định lý Thalès trong không gian', back: 'Ba mp song song chắn trên 2 cát tuyến các đoạn tỉ lệ: $\\dfrac{AB}{A\'B\'}=\\dfrac{BC}{B\'C\'}$' },
     ],
     exam: EXAM_DEFAULT,
   },
@@ -351,6 +420,126 @@ export const HINH_HOC_KHONG_GIAN = {
       { front: 'Thể tích khối hộp chữ nhật', back: '$V=a\\cdot b\\cdot c$' },
       { front: 'Thể tích khối lập phương cạnh a', back: '$V=a^3$' },
       { front: 'Diện tích tam giác đều cạnh a', back: '$S=\\dfrac{a^2\\sqrt3}{4}$' },
+    ],
+    exam: EXAM_DEFAULT,
+  },
+
+  'phep-doi-hinh': {
+    title: 'Phép dời hình',
+    theory: {
+      cards: [
+        {
+          title: 'Phép tịnh tiến',
+          formulas: [
+            "T_{\\vec v}(M)=M' \\Leftrightarrow \\overrightarrow{MM'}=\\vec v",
+            "\\vec v=(a;b):\\quad x'=x+a,\\ y'=y+b",
+          ],
+          note: 'Phép tịnh tiến bảo toàn khoảng cách: biến đường thẳng thành đường thẳng song song (hoặc trùng), biến đường tròn thành đường tròn cùng bán kính.',
+        },
+        {
+          title: 'Phép quay',
+          formulas: [
+            "Q_{(O,\\alpha)}(M)=M' \\Leftrightarrow OM'=OM,\\ (OM,OM')=\\alpha",
+            "\\text{Góc } 90°:\\ (x;y)\\mapsto(-y;x)",
+            "\\text{Góc } {-90°}:\\ (x;y)\\mapsto(y;-x)",
+          ],
+          note: 'Phép quay bảo toàn khoảng cách và biến đường tròn thành đường tròn cùng bán kính.',
+        },
+        {
+          title: 'Phép đối xứng tâm',
+          formulas: ["Đ_O(M)=M' \\Leftrightarrow \\overrightarrow{OM}=-\\overrightarrow{OM'}"],
+          note: 'O là trung điểm MM\'. Phép đối xứng tâm O chính là phép quay tâm O với góc quay 180°. Đây cũng là một phép dời hình (bảo toàn khoảng cách).',
+        },
+      ],
+    },
+    video: { caption: '00:00 / 12:30 — phep_doi_hinh_baigiang.mp4' },
+    quiz: [
+      {
+        question: 'Có bao nhiêu phép tịnh tiến biến một hình vuông thành chính nó?',
+        options: ['Không có', 'Một', 'Bốn', 'Vô số'],
+        correctIndex: 1,
+      },
+      {
+        question: 'Cho hai đường thẳng song song d và d\'. Tất cả những phép tịnh tiến biến d thành d\' là:',
+        options: [
+          'Các phép tịnh tiến theo vector vuông góc với d',
+          'Các phép tịnh tiến theo vector chỉ phương của d',
+          'Các phép tịnh tiến theo vector AA\', với A, A\' tùy ý lần lượt nằm trên d và d\'',
+          'Không có phép tịnh tiến nào',
+        ],
+        correctIndex: 2,
+      },
+      {
+        question: 'Trong mặt phẳng Oxy, cho phép biến hình f: M(x;y) ↦ M\'(x+2; y−3). f là phép tịnh tiến theo vector nào?',
+        options: ['v = (2; 3)', 'v = (−2; 3)', 'v = (−2; −3)', 'v = (2; −3)'],
+        correctIndex: 3,
+      },
+      {
+        question: 'Trong mặt phẳng Oxy, ảnh của đường tròn (x−2)² + (y−1)² = 16 qua phép tịnh tiến theo vector v = (1; 3) là đường tròn:',
+        options: ['(x−2)² + (y−1)² = 16', '(x+2)² + (y+1)² = 16', '(x−3)² + (y−4)² = 16', '(x+3)² + (y+4)² = 16'],
+        correctIndex: 2,
+      },
+      {
+        question: 'Khẳng định nào sau đây đúng về phép đối xứng tâm O?',
+        options: [
+          'Nếu OM = OM\' thì M\' là ảnh của M qua phép đối xứng tâm O',
+          'Nếu vector OM = −vector OM\' thì M\' là ảnh của M qua phép đối xứng tâm O',
+          'Phép quay là phép đối xứng tâm',
+          'Phép đối xứng tâm không phải là một phép quay',
+        ],
+        correctIndex: 1,
+      },
+      {
+        question: 'Trong mặt phẳng Oxy cho điểm M(1;1). Điểm nào là ảnh của M qua phép quay tâm O, góc 45°?',
+        options: ['(−1; 1)', '(1; 0)', '(√2; 0)', '(0; √2)'],
+        correctIndex: 3,
+      },
+    ],
+    essays: [
+      {
+        prompt: 'Bài 1. Trong mặt phẳng Oxy cho vector v = (2;−1) và điểm M(3;2). Tìm tọa độ điểm A sao cho a) A = T_v(M); b) M = T_v(A).',
+        solution: [
+          'a) $A=T_{\\vec v}(M) \\Leftrightarrow \\overrightarrow{MA}=\\vec v \\Rightarrow A=M+\\vec v=(3+2;\\,2-1)=(5;1)$',
+          'b) $M=T_{\\vec v}(A) \\Leftrightarrow \\overrightarrow{AM}=\\vec v \\Rightarrow A=M-\\vec v=(3-2;\\,2+1)=(1;3)$',
+        ],
+      },
+      {
+        prompt:
+          'Bài 2. Trong mp Oxy cho đường thẳng d: 3x − y + 9 = 0. a) Viết pt đường thẳng d\' là ảnh của d qua phép tịnh tiến theo vector v(2;−1). b) Tìm phép tịnh tiến theo vector có phương song song với trục Ox biến d thành d₁ đi qua gốc tọa độ.',
+        solution: [
+          'a) Với $M(x;y)\\in d$, ảnh $M\'(x\';y\')$ có $x\'=x+2,\\ y\'=y-1 \\Rightarrow x=x\'-2,\\ y=y\'+1$.',
+          'Thay vào d: $3(x\'-2)-(y\'+1)+9=0 \\Leftrightarrow 3x\'-y\'+2=0$. Vậy $d\': 3x-y+2=0$.',
+          'b) Gọi $\\vec u=(m;0)$. Vì tịnh tiến bảo toàn phương nên $d_1\\parallel d$ và qua gốc toạ độ: $d_1: 3x-y=0$.',
+          'Điểm $(-3;0)\\in d$ (vì $3(-3)-0+9=0$), ảnh của nó là $(-3+m;0)\\in d_1$: $3(-3+m)-0=0 \\Rightarrow m=3$.',
+          'Vậy $\\vec u=(3;0)$ và $d_1: 3x-y=0$.',
+        ],
+      },
+      {
+        prompt:
+          'Bài 3. Cho đường tròn (C): x² + y² − 2x + 4y − 4 = 0. Viết pt đường tròn (C\') là ảnh của (C) qua phép tịnh tiến theo vector v(−2;5).',
+        solution: [
+          '(C) có tâm $I(1;-2)$, bán kính $R=\\sqrt{1+4+4}=3$.',
+          'Tâm ảnh: $I\'=I+\\vec v=(1-2;\\,-2+5)=(-1;3)$, bán kính không đổi $R=3$.',
+          'Vậy $(C\'): (x+1)^2+(y-3)^2=9$.',
+        ],
+      },
+      {
+        prompt:
+          'Bài 4. Trong mp Oxy cho điểm A(3;−1) và đường thẳng d: x + y − 2 = 0. Tìm tọa độ ảnh của A và viết pt đường thẳng d\' là ảnh của d qua phép quay tâm O góc 90°.',
+        solution: [
+          'Quy tắc quay tâm O góc 90°: $(x;y)\\mapsto(-y;x)$.',
+          '$A\'=(-(-1);3)=(1;3)$.',
+          'Với $M(x;y)\\in d$, ảnh $M\'(x\';y\')$: $x\'=-y,\\ y\'=x \\Rightarrow y=x\',\\ x=-y\'$... thay vào $x+y-2=0$: $-y\'+x\'-2=0$.',
+          'Vậy $d\': x-y+2=0$.',
+        ],
+      },
+    ],
+    flashcards: [
+      { front: 'Phép tịnh tiến theo v(a;b)', back: '$x\'=x+a,\\ y\'=y+b$' },
+      { front: 'Phép quay tâm O góc 90°', back: '$(x;y)\\mapsto(-y;x)$' },
+      { front: 'Phép quay tâm O góc −90°', back: '$(x;y)\\mapsto(y;-x)$' },
+      { front: 'Phép đối xứng tâm O', back: 'O là trung điểm MM\', $\\overrightarrow{OM}=-\\overrightarrow{OM\'}$' },
+      { front: 'Tính chất chung của phép dời hình', back: 'Bảo toàn khoảng cách giữa hai điểm bất kỳ' },
     ],
     exam: EXAM_DEFAULT,
   },
