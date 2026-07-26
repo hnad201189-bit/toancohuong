@@ -15,6 +15,7 @@ export default function MainSite() {
   const [hsgTopics, setHsgTopics] = useState(null)
   const [lesson, setLesson] = useState(null)
   const [loadError, setLoadError] = useState(null)
+  const [navOpen, setNavOpen] = useState(false)
 
   function loadData() {
     setLoadError(null)
@@ -111,9 +112,19 @@ export default function MainSite() {
         onGoHsgTopic={goHsgTopic}
         onGoPhotoSolve={goPhotoSolve}
         onGoTutorFinder={goTutorFinder}
+        open={navOpen}
+        onClose={() => setNavOpen(false)}
       />
+      <div className={`sidebar-backdrop ${navOpen ? 'is-open' : ''}`} onClick={() => setNavOpen(false)} />
 
       <main className="content">
+        <div className="mobile-topbar">
+          <button className="mobile-topbar__btn" onClick={() => setNavOpen(true)} aria-label="Mở menu">
+            ☰
+          </button>
+          <span className="mobile-topbar__title">Toán 11</span>
+        </div>
+
         {view.screen === 'dashboard' && (
           <Dashboard
             areas={areas}

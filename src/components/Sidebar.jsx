@@ -11,33 +11,44 @@ export default function Sidebar({
   onGoHsgTopic,
   onGoPhotoSolve,
   onGoTutorFinder,
+  open,
+  onClose,
 }) {
+  // On mobile the sidebar is a slide-in drawer — close it after any navigation.
+  function go(fn, ...args) {
+    fn(...args)
+    onClose?.()
+  }
+
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${open ? 'is-open' : ''}`}>
       <div className="sidebar__brand">
         <div className="sidebar__logo">11</div>
         <div className="sidebar__brand-name">
           Toán 11
           <span>Học theo chuyên đề</span>
         </div>
+        <button className="sidebar__close" onClick={onClose} aria-label="Đóng menu">
+          ✕
+        </button>
       </div>
 
       <nav className="sidebar__nav">
         <button
           className={`sidebar__item sidebar__item--overview ${view.screen === 'dashboard' ? 'is-active' : ''}`}
-          onClick={onGoDashboard}
+          onClick={() => go(onGoDashboard)}
         >
           Tổng quan
         </button>
         <button
           className={`sidebar__item sidebar__item--overview ${view.screen === 'photo-solve' ? 'is-active' : ''}`}
-          onClick={onGoPhotoSolve}
+          onClick={() => go(onGoPhotoSolve)}
         >
           📷 Chụp ảnh giải bài
         </button>
         <button
           className={`sidebar__item sidebar__item--overview ${view.screen === 'tutor-finder' ? 'is-active' : ''}`}
-          onClick={onGoTutorFinder}
+          onClick={() => go(onGoTutorFinder)}
         >
           🎓 Tìm gia sư
         </button>
@@ -48,7 +59,7 @@ export default function Sidebar({
             <li key={area.id}>
               <button
                 className={`sidebar__item ${view.screen !== 'dashboard' && view.areaId === area.id ? 'is-active' : ''}`}
-                onClick={() => onGoArea(area.id)}
+                onClick={() => go(onGoArea, area.id)}
               >
                 <span className="sidebar__item-order">{area.order}</span>
                 <span className="sidebar__item-name">{area.name}</span>
@@ -68,7 +79,7 @@ export default function Sidebar({
                 <button
                   className={`sidebar__item sidebar__item--hsg ${view.screen === 'lesson' && view.topicId === topic.id ? 'is-active' : ''}`}
                   disabled={!hsgMode}
-                  onClick={() => onGoHsgTopic(topic.id)}
+                  onClick={() => go(onGoHsgTopic, topic.id)}
                 >
                   <span className="sidebar__item-name">{topic.name}</span>
                   {!hsgMode && <span className="sidebar__lock">🔒</span>}
