@@ -1,10 +1,15 @@
 import { db } from './db.js'
 import { KNOWLEDGE_AREAS, HSG_TOPICS, SAMPLE_LESSON } from '../src/data/topics.js'
-import { seedFullContent } from './seedFullContent.js'
+import { seedFullContent, backfillMissingExamBanks } from './seedFullContent.js'
 
 export function seedIfEmpty() {
   const areaCount = db.prepare('SELECT COUNT(*) AS n FROM areas').get().n
-  if (areaCount > 0) return
+  if (areaCount > 0) {
+    // Database already has curriculum data (e.g. an existing deployment) —
+    // still check for lessons stuck without an exam bank and patch those.
+    backfillMissingExamBanks()
+    return
+  }
 
   const insertArea = db.prepare(
     'INSERT INTO areas (id, order_num, name, description, progress) VALUES (?, ?, ?, ?, ?)'
