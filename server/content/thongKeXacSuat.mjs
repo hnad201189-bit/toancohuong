@@ -98,7 +98,46 @@ export const THONG_KE_XAC_SUAT = {
       { front: 'Bước 2 khi ghép nhóm', back: 'Đếm tần số mỗi nhóm, lập bảng thống kê' },
       { front: 'Nguyên tắc chọn nhóm', back: 'Không giao nhau, độ dài bằng nhau, tổng độ dài > khoảng biến thiên' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Mẫu số liệu ghép nhóm thường được trình bày dưới dạng?', options: ['Bảng tần số của các nhóm số liệu', 'Danh sách các giá trị riêng lẻ', 'Một số duy nhất', 'Biểu đồ tròn'], correctIndex: 0 },
+        { question: 'Độ dài của nhóm [a;b) bằng?', options: ['b − a', 'a + b', 'a − b', 'ab'], correctIndex: 0 },
+        { question: 'Khi ghép nhóm, các nhóm nên thoả mãn điều gì?', options: ['Không giao nhau và nên có độ dài bằng nhau', 'Có thể giao nhau tuỳ ý', 'Càng nhiều nhóm càng tốt', 'Chỉ cần 2 nhóm'], correctIndex: 0 },
+        { question: 'Cỡ mẫu n của mẫu ghép nhóm bằng?', options: ['Tổng tần số các nhóm', 'Số nhóm', 'Độ dài trung bình các nhóm', 'Giá trị lớn nhất trừ nhỏ nhất'], correctIndex: 0 },
+        { question: 'Trong bảng ghép nhóm, ni là kí hiệu của?', options: ['Tần số nhóm i', 'Giá trị đại diện nhóm i', 'Độ dài nhóm i', 'Tần suất phần trăm nhóm i'], correctIndex: 0 },
+        { question: 'Bước đầu tiên khi ghép nhóm một mẫu số liệu là?', options: ['Chia miền giá trị thành các nhóm', 'Tính số trung bình ngay', 'Vẽ biểu đồ tròn', 'Sắp xếp giảm dần'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Cho bảng: [0;10) có 4, [10;20) có 6, [20;30) có 10. Cỡ mẫu n bằng?', options: ['20', '16', '10', '30'], correctIndex: 0 },
+        { question: 'Với bảng ở câu trên, tần suất của nhóm [20;30) bằng?', options: ['50%', '10%', '20%', '30%'], correctIndex: 0 },
+        { question: 'Cho bảng: [5;10) có 3, [10;15) có 7, [15;20) có 5, [20;25) có 5. Nhóm có tần số lớn nhất là?', options: ['[10;15)', '[5;10)', '[15;20)', '[20;25)'], correctIndex: 0 },
+        { question: 'Độ dài của nhóm [15;25) là?', options: ['10', '15', '25', '40'], correctIndex: 0 },
+        { question: 'Cho mẫu ghép nhóm với các nhóm độ dài bằng nhau và bằng 5, bắt đầu từ 10. Nhóm thứ 3 là?', options: ['[20;25)', '[15;20)', '[10;15)', '[25;30)'], correctIndex: 0 },
+        { question: 'Bảng: [0;20) có 5, [20;40) có 9, [40;60) có 12, [60;80) có 10, [80;100) có 6. Tổng số phần tử của mẫu là?', options: ['42', '40', '36', '45'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Bảng: [10;20) có 8, [20;30) có 18, [30;40) có 24, [40;50) có 10 (tổng 60). Số lá có chiều dài dưới 30cm chiếm bao nhiêu phần trăm?', options: ['43,3%', '50%', '56,7%', '30%'], correctIndex: 0 },
+        { question: 'Khối lượng 30 củ khoai tây: [70;80) có 3, [80;90) có 6, [90;100) có 12, [100;110) có 6, [110;120) có 3. Tần suất ghép nhóm của lớp [90;100) là?', options: ['40%', '20%', '60%', '12%'], correctIndex: 0 },
+        { question: 'Một mẫu ghép nhóm có các nhóm độ dài bằng nhau và bằng 4, nhóm đầu là [12;16). Nhóm thứ 5 là?', options: ['[28;32)', '[24;28)', '[26;30)', '[30;34)'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Bảng thống kê thời gian tự học (giờ/ngày) của 40 học sinh: [0;1) có 5, [1;2) có 12, [2;3) có 15, [3;4) có 8. Tính tần suất (%) của nhóm [2;3).',
+          solution: ['Tần suất $=\\dfrac{15}{40}\\times100\\%=37{,}5\\%$'],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Cho mẫu số liệu gốc (điểm kiểm tra) của 20 học sinh: 5, 6, 7, 8, 5, 6, 9, 10, 7, 6, 8, 5, 9, 7, 6, 8, 9, 10, 7, 6. Ghép nhóm mẫu số liệu trên thành các nhóm độ dài bằng nhau và bằng 2, bắt đầu từ nhóm [5;7).',
+          solution: [
+            'Đếm tần số từng giá trị: $5$ (3 lần), $6$ (5 lần), $7$ (4 lần), $8$ (3 lần), $9$ (3 lần), $10$ (2 lần).',
+            'Nhóm $[5;7)$ gồm giá trị 5, 6: tần số $=3+5=8$',
+            'Nhóm $[7;9)$ gồm giá trị 7, 8: tần số $=4+3=7$',
+            'Nhóm $[9;11)$ gồm giá trị 9, 10: tần số $=3+2=5$',
+            'Kiểm tra: $8+7+5=20$ ✓',
+          ],
+        },
+      ],
+    },
   },
 
   'so-dac-trung-xu-the': {
@@ -229,7 +268,51 @@ export const THONG_KE_XAC_SUAT = {
       { front: 'Công thức mốt nhóm', back: '$M_o=a_j+\\dfrac{m_j-m_{j-1}}{(m_j-m_{j-1})+(m_j-m_{j+1})}\\cdot h$' },
       { front: 'Cỡ mẫu n', back: '$n=\\sum_{i=1}^k n_i$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Công thức số trung bình của mẫu ghép nhóm là?', options: ['x̄ = (1/n)Σnici', 'x̄ = Σni', 'x̄ = n/Σci', 'x̄ = Σci'], correctIndex: 0 },
+        { question: 'ci trong công thức số trung bình đại diện cho?', options: ['Giá trị đại diện (trung điểm) nhóm i', 'Tần số nhóm i', 'Tần suất nhóm i', 'Độ dài nhóm i'], correctIndex: 0 },
+        { question: 'Tứ phân vị thứ hai Q2 chính là?', options: ['Trung vị Me', 'Mốt', 'Số trung bình', 'Độ lệch chuẩn'], correctIndex: 0 },
+        { question: 'Mốt của mẫu ghép nhóm chỉ được định nghĩa khi?', options: ['Các nhóm có độ dài bằng nhau', 'Có đúng 2 nhóm', 'Cỡ mẫu là số chẵn', 'Không có điều kiện gì'], correctIndex: 0 },
+        { question: 'Cho mẫu: 2, 4, 4, 6, 8. Mốt bằng?', options: ['4', '2', '6', '8'], correctIndex: 0 },
+        { question: 'Cho mẫu đã sắp xếp: 1, 3, 5, 7, 9. Trung vị bằng?', options: ['5', '3', '7', '4'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Cho mẫu: 2, 4, 4, 6, 8. Số trung bình bằng?', options: ['4,8', '4', '5', '6'], correctIndex: 0 },
+        { question: 'Cho bảng: [0;20) có 5, [20;40) có 9, [40;60) có 12, [60;80) có 10, [80;100) có 6. Giá trị đại diện của nhóm [40;60) là?', options: ['50', '40', '60', '20'], correctIndex: 0 },
+        { question: 'Với bảng ở câu trên, nhóm chứa mốt là?', options: ['[40;60)', '[20;40)', '[60;80)', '[80;100)'], correctIndex: 0 },
+        { question: 'Với bảng ở câu trên, cỡ mẫu n bằng?', options: ['42', '40', '36', '45'], correctIndex: 0 },
+        { question: 'Với bảng ở câu trên, nhóm chứa trung vị là?', options: ['[40;60)', '[20;40)', '[0;20)', '[60;80)'], correctIndex: 0 },
+        { question: 'Cho mẫu: 1, 2, 2, 3, 3, 3, 4. Mốt bằng?', options: ['3', '2', '4', '1'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Bảng: [0;20) có 5, [20;40) có 9, [40;60) có 12, [60;80) có 10, [80;100) có 6. Số trung bình xấp xỉ bằng?', options: ['51,4', '50', '45', '55'], correctIndex: 0 },
+        {
+          question: 'Bảng: [40,5;45,5) có 10, [45,5;50,5) có 7, [50,5;55,5) có 16, [55,5;60,5) có 4, [60,5;65,5) có 2, [65,5;70,5) có 3. Trung vị nằm trong nhóm nào?',
+          options: ['[50,5; 55,5)', '[45,5; 50,5)', '[55,5; 60,5)', '[40,5; 45,5)'],
+          correctIndex: 0,
+        },
+        { question: 'Với bảng ở câu trên, trung vị Me xấp xỉ bằng?', options: ['51,75', '50,5', '53', '55,5'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Cho mẫu số liệu: 4, 6, 6, 8, 10, 12. Tính số trung bình và tìm mốt.',
+          solution: [
+            '$\\bar x=\\dfrac{4+6+6+8+10+12}{6}=\\dfrac{46}{6}\\approx7{,}67$',
+            'Giá trị 6 xuất hiện 2 lần, nhiều nhất, vậy $M_o=6$',
+          ],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Bảng thống kê điểm kiểm tra của 50 học sinh: [4;6) có 8, [6;8) có 20, [8;10) có 15, [10;12) có 7. Tính số trung bình và tìm nhóm chứa trung vị.',
+          solution: [
+            'Giá trị đại diện: $5,\\ 7,\\ 9,\\ 11$. $n=50$.',
+            '$\\bar x=\\dfrac{8\\cdot5+20\\cdot7+15\\cdot9+7\\cdot11}{50}=\\dfrac{392}{50}=7{,}84$',
+            'Tần số tích luỹ: $8; 28; 43; 50$. Vì $n/2=25$, nhóm đầu tiên có tích luỹ $\\ge25$ là $[6;8)$.',
+          ],
+        },
+      ],
+    },
   },
 
   'so-dac-trung-phan-tan': {
@@ -301,7 +384,47 @@ export const THONG_KE_XAC_SUAT = {
       { front: 'Độ lệch chuẩn', back: '$s=\\sqrt{s^2}$' },
       { front: 'So sánh độ phân tán qua phương sai', back: 'Nếu $s_A^2 > s_B^2$ thì A phân tán hơn B' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Khoảng biến thiên R được tính bằng?', options: ['max − min', 'max + min', '(max+min)/2', 'Q3 − Q1'], correctIndex: 0 },
+        { question: 'Khoảng tứ phân vị được tính bằng?', options: ['Q3 − Q1', 'Q2 − Q1', 'max − min', 'Q3 + Q1'], correctIndex: 0 },
+        { question: 'Độ lệch chuẩn s liên hệ với phương sai s² như thế nào?', options: ['s = √(s²)', 's = s²', 's² = √s', 's = 2s²'], correctIndex: 0 },
+        { question: 'Phương sai càng lớn cho biết điều gì về mẫu số liệu?', options: ['Dữ liệu càng phân tán', 'Dữ liệu càng đồng đều', 'Trung bình càng lớn', 'Trung vị càng lớn'], correctIndex: 0 },
+        { question: 'Đại lượng nào có cùng đơn vị đo với dữ liệu gốc?', options: ['Độ lệch chuẩn', 'Phương sai', 'Tần số', 'Tần suất'], correctIndex: 0 },
+        { question: 'Khoảng tứ phân vị ít bị ảnh hưởng bởi điều gì so với khoảng biến thiên?', options: ['Giá trị ngoại lệ', 'Số trung bình', 'Mốt', 'Cỡ mẫu'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Cho mẫu: 3, 7, 9, 12, 15. Khoảng biến thiên R bằng?', options: ['12', '9', '6', '15'], correctIndex: 0 },
+        { question: 'Cho mẫu đã sắp xếp: 2, 4, 6, 8, 10, 12, 14. Trung vị Q2 bằng?', options: ['8', '6', '10', '7'], correctIndex: 0 },
+        { question: 'Với mẫu ở câu trên, Q1 (trung vị nửa dưới {2,4,6}) bằng?', options: ['4', '2', '6', '3'], correctIndex: 0 },
+        { question: 'Với mẫu ở câu trên, Q3 (trung vị nửa trên {10,12,14}) bằng?', options: ['12', '10', '14', '11'], correctIndex: 0 },
+        { question: 'Với mẫu ở câu trên, khoảng tứ phân vị ΔQ bằng?', options: ['8', '6', '10', '4'], correctIndex: 0 },
+        { question: 'Cho mẫu: 5, 5, 5, 5, 5. Phương sai bằng?', options: ['0', '5', '25', '1'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Cho mẫu: 1, 3, 5. Phương sai s² bằng?', options: ['8/3', '4', '8', '3'], correctIndex: 0 },
+        { question: 'Cho mẫu: 1, 3, 5. Độ lệch chuẩn s xấp xỉ bằng?', options: ['1,63', '2,67', '1,15', '2'], correctIndex: 0 },
+        { question: 'Hai mẫu A: 4,4,4,4 và B: 1,3,5,7 có cùng trung bình 4. Mẫu nào có độ lệch chuẩn lớn hơn?', options: ['Mẫu B', 'Mẫu A', 'Bằng nhau', 'Không so sánh được'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Cho mẫu số liệu đã sắp xếp: 2, 5, 7, 9, 11, 13, 16. Tính khoảng biến thiên R và khoảng tứ phân vị ΔQ.',
+          solution: [
+            '$R=16-2=14$',
+            'Trung vị $Q_2=9$. Nửa dưới $\\{2,5,7\\}$ có $Q_1=5$. Nửa trên $\\{11,13,16\\}$ có $Q_3=13$.',
+            '$\\Delta_Q=Q_3-Q_1=13-5=8$',
+          ],
+        },
+        {
+          prompt: 'Câu 2 (Vận dụng). Cho mẫu số liệu: 3, 5, 7, 9. Tính số trung bình, phương sai và độ lệch chuẩn.',
+          solution: [
+            '$\\bar x=\\dfrac{3+5+7+9}{4}=6$',
+            '$s^2=\\dfrac{(3-6)^2+(5-6)^2+(7-6)^2+(9-6)^2}{4}=\\dfrac{9+1+1+9}{4}=5$',
+            '$s=\\sqrt5\\approx2{,}24$',
+          ],
+        },
+      ],
+    },
   },
 
   'bien-co-xac-suat': {
@@ -364,7 +487,43 @@ export const THONG_KE_XAC_SUAT = {
       { front: 'Miền giá trị của xác suất', back: '$0\\le P(A)\\le 1$' },
       { front: 'Không gian mẫu khi gieo xúc xắc 2 lần', back: '$n(\\Omega)=6\\times6=36$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Xác suất cổ điển của biến cố A được tính bằng?', options: ['n(A) / n(Ω)', 'n(A) + n(Ω)', 'n(Ω) / n(A)', 'n(A) − n(Ω)'], correctIndex: 0 },
+        { question: 'Không gian mẫu Ω là gì?', options: ['Tập hợp tất cả kết quả có thể của phép thử', 'Một biến cố cụ thể', 'Số phần tử của biến cố', 'Xác suất của phép thử'], correctIndex: 0 },
+        { question: 'Xác suất của biến cố chắc chắn bằng?', options: ['1', '0', '0,5', 'Không xác định'], correctIndex: 0 },
+        { question: 'Xác suất của biến cố không thể (rỗng) bằng?', options: ['0', '1', '0,5', 'Không xác định'], correctIndex: 0 },
+        { question: 'Gieo một con xúc xắc. Số phần tử của không gian mẫu Ω là?', options: ['6', '4', '8', '12'], correctIndex: 0 },
+        { question: 'Xác suất P(A) của một biến cố A luôn thoả mãn?', options: ['0 ≤ P(A) ≤ 1', 'P(A) ≥ 1', 'P(A) ≤ 0', 'P(A) = 1'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Gieo một xúc xắc, biến cố A: "xuất hiện mặt lẻ". n(A) bằng?', options: ['3', '2', '4', '6'], correctIndex: 0 },
+        { question: 'Gieo một xúc xắc, xác suất xuất hiện mặt số 5 bằng?', options: ['1/6', '1/2', '1/3', '5/6'], correctIndex: 0 },
+        { question: 'Gieo 2 đồng xu cân đối, n(Ω) bằng?', options: ['4', '2', '8', '16'], correctIndex: 0 },
+        { question: 'Rút ngẫu nhiên 1 lá bài từ bộ bài 52 lá, xác suất rút được lá Cơ (13 lá) bằng?', options: ['1/4', '1/13', '1/52', '1/2'], correctIndex: 0 },
+        { question: 'Một hộp có 4 bi đỏ, 6 bi xanh. Lấy ngẫu nhiên 1 bi, xác suất lấy được bi đỏ bằng?', options: ['2/5', '1/2', '3/5', '1/10'], correctIndex: 0 },
+        { question: 'Gieo một xúc xắc 2 lần, n(Ω) bằng?', options: ['36', '12', '6', '24'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Gieo 2 đồng xu cân đối. Xác suất để có đúng 1 mặt sấp bằng?', options: ['1/2', '1/4', '3/4', '1'], correctIndex: 0 },
+        { question: 'Gieo một xúc xắc 2 lần. Xác suất tổng số chấm bằng 8 là?', options: ['5/36', '6/36', '4/36', '1/6'], correctIndex: 0 },
+        { question: 'Một hộp có 3 bi đỏ, 2 bi xanh. Lấy ngẫu nhiên 2 bi cùng lúc. Xác suất lấy được 2 bi cùng màu bằng?', options: ['2/5', '3/10', '1/10', '3/5'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Gieo một con xúc xắc. Tính xác suất của biến cố A: "xuất hiện mặt có số chấm lớn hơn 4".',
+          solution: ['Mặt lớn hơn 4: $\\{5,6\\} \\Rightarrow n(A)=2$', '$P(A)=\\dfrac26=\\dfrac13$'],
+        },
+        {
+          prompt: 'Câu 2 (Vận dụng). Một hộp có 5 bi đỏ và 3 bi xanh. Lấy ngẫu nhiên 2 bi cùng lúc. Tính xác suất lấy được 2 bi khác màu.',
+          solution: [
+            'Tổng số cách chọn 2 bi trong 8 bi: $C_8^2=28$',
+            'Số cách chọn 1 đỏ và 1 xanh: $C_5^1\\cdot C_3^1=5\\times3=15$',
+            '$P=\\dfrac{15}{28}$',
+          ],
+        },
+      ],
+    },
   },
 
   'quy-tac-tinh-xac-suat': {
@@ -429,6 +588,46 @@ export const THONG_KE_XAC_SUAT = {
       { front: 'Quy tắc nhân khi A, B độc lập', back: '$P(A\\cap B)=P(A)\\cdot P(B)$' },
       { front: 'Tổng xác suất A và biến cố đối', back: '$P(A)+P(\\bar A)=1$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Công thức cộng xác suất tổng quát là?', options: ['P(A∪B) = P(A)+P(B)−P(A∩B)', 'P(A∪B) = P(A)+P(B)', 'P(A∪B) = P(A)·P(B)', 'P(A∪B) = P(A)−P(B)'], correctIndex: 0 },
+        { question: 'Nếu A, B xung khắc thì P(A∪B) bằng?', options: ['P(A) + P(B)', 'P(A)·P(B)', 'P(A) − P(B)', 'P(A∩B)'], correctIndex: 0 },
+        { question: 'Xác suất của biến cố đối P(Ā) bằng?', options: ['1 − P(A)', 'P(A)', '1 + P(A)', 'P(A) − 1'], correctIndex: 0 },
+        { question: 'Nếu A, B độc lập thì P(A∩B) bằng?', options: ['P(A)·P(B)', 'P(A) + P(B)', 'P(A) − P(B)', '0'], correctIndex: 0 },
+        { question: 'P(A) và P(Ā) luôn thoả mãn?', options: ['P(A) + P(Ā) = 1', 'P(A) − P(Ā) = 1', 'P(A)·P(Ā) = 1', 'P(A) = P(Ā)'], correctIndex: 0 },
+        { question: 'Hai biến cố A, B được gọi là xung khắc khi?', options: ['A ∩ B = ∅', 'A ∩ B = Ω', 'A = B', 'A, B độc lập'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Cho P(A) = 0,3. Xác suất biến cố đối P(Ā) bằng?', options: ['0,7', '0,3', '1,3', '0'], correctIndex: 0 },
+        { question: 'Cho P(A) = 0,5, P(B) = 0,2, P(A∩B) = 0,1. Tính P(A∪B).', options: ['0,6', '0,7', '0,5', '0,4'], correctIndex: 0 },
+        { question: 'Gieo 2 xúc xắc độc lập, A: "xúc xắc 1 ra mặt 6" (P=1/6), B: "xúc xắc 2 ra mặt 6" (P=1/6). P(A∩B) bằng?', options: ['1/36', '1/6', '2/6', '1/12'], correctIndex: 0 },
+        { question: 'Cho P(A) = 0,6, P(B) = 0,3, A và B xung khắc. Tính P(A∪B).', options: ['0,9', '0,18', '0,3', '1,0'], correctIndex: 0 },
+        { question: 'Một hộp có 4 bi đỏ, 5 bi xanh, 3 bi vàng. Xác suất lấy được bi đỏ hoặc bi vàng là?', options: ['7/12', '4/12', '3/12', '9/12'], correctIndex: 0 },
+        { question: 'Cho P(A) = 0,7. Xác suất để A không xảy ra bằng?', options: ['0,3', '0,7', '1,7', '0'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Hai xạ thủ độc lập cùng bắn vào 1 mục tiêu, xác suất bắn trúng lần lượt là 0,7 và 0,8. Xác suất để cả 2 đều bắn trúng là?', options: ['0,56', '0,7', '1,5', '0,14'], correctIndex: 0 },
+        { question: 'Với dữ kiện câu trên, xác suất để có ít nhất 1 người bắn trúng là?', options: ['0,94', '0,56', '0,5', '0,06'], correctIndex: 0 },
+        { question: 'Cho P(A) = 0,5, P(B) = 0,4, A và B độc lập. Tính P(A∪B).', options: ['0,7', '0,9', '0,2', '0,6'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Cho P(A) = 0,45, P(B) = 0,35, P(A∩B) = 0,15. Tính P(A∪B) và xác suất P(Ā).',
+          solution: [
+            '$P(A\\cup B)=0{,}45+0{,}35-0{,}15=0{,}65$',
+            '$P(\\bar A)=1-0{,}45=0{,}55$',
+          ],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Một hộp có 6 bi đỏ, 4 bi xanh. Lấy lần lượt và không hoàn lại 2 bi. Tính xác suất để cả 2 bi lấy được đều màu đỏ.',
+          solution: [
+            '$P(\\text{bi 1 đỏ})=\\dfrac{6}{10}$',
+            'Sau khi lấy 1 bi đỏ, còn 5 đỏ trong 9 bi: $P(\\text{bi 2 đỏ}\\mid\\text{bi 1 đỏ})=\\dfrac{5}{9}$',
+            '$P(\\text{cả 2 đỏ})=\\dfrac{6}{10}\\times\\dfrac{5}{9}=\\dfrac{1}{3}$',
+          ],
+        },
+      ],
+    },
   },
 }

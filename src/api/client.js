@@ -1,4 +1,5 @@
 const TOKEN_KEY = 'toan11-admin-token'
+const STUDENT_TOKEN_KEY = 'toan11-student-token'
 
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY)
@@ -12,11 +13,27 @@ export function clearToken() {
   localStorage.removeItem(TOKEN_KEY)
 }
 
-async function request(path, { method = 'GET', body, auth = false } = {}) {
+export function getStudentToken() {
+  return localStorage.getItem(STUDENT_TOKEN_KEY)
+}
+
+export function setStudentToken(token) {
+  localStorage.setItem(STUDENT_TOKEN_KEY, token)
+}
+
+export function clearStudentToken() {
+  localStorage.removeItem(STUDENT_TOKEN_KEY)
+}
+
+async function request(path, { method = 'GET', body, auth = false, studentAuth = false } = {}) {
   const headers = {}
   if (body !== undefined) headers['Content-Type'] = 'application/json'
   if (auth) {
     const token = getToken()
+    if (token) headers['Authorization'] = `Bearer ${token}`
+  }
+  if (studentAuth) {
+    const token = getStudentToken()
     if (token) headers['Authorization'] = `Bearer ${token}`
   }
 
@@ -28,7 +45,10 @@ async function request(path, { method = 'GET', body, auth = false } = {}) {
 
   const data = await res.json().catch(() => null)
   if (!res.ok) {
-    throw new Error(data?.error || `Lỗi máy chủ (${res.status})`)
+    const err = new Error(data?.error || `Lỗi máy chủ (${res.status})`)
+    err.status = res.status
+    err.data = data
+    throw err
   }
   return data
 }
@@ -38,13 +58,22 @@ export async function solveImage(file) {
   const formData = new FormData()
   formData.append('image', file)
 
-  const res = await fetch('/api/solve-image', { method: 'POST', body: formData })
+  const headers = {}
+  const token = getStudentToken()
+  if (token) headers['Authorization'] = `Bearer ${token}`
+
+  const res = await fetch('/api/solve-image', { method: 'POST', headers, body: formData })
   const data = await res.json().catch(() => null)
   if (!res.ok) {
-    throw new Error(data?.error || `Lỗi máy chủ (${res.status})`)
+    const err = new Error(data?.error || `Lỗi máy chủ (${res.status})`)
+    err.status = res.status
+    err.data = data
+    throw err
   }
   return data
 }
+
+export const getSolveQuota = () => request('/solve-image/quota', { studentAuth: true })
 
 // ---- Public reads ----
 export const getAreas = () => request('/areas')
@@ -72,6 +101,17 @@ export const updateContactRequest = (id, data) =>
 export const login = (password) => request('/auth/login', { method: 'POST', body: { password } })
 export const logout = () => request('/auth/logout', { method: 'POST', auth: true })
 export const checkAuth = () => request('/auth/check', { auth: true })
+
+// ---- Student accounts (dùng cho tính năng chụp ảnh giải bài) ----
+export const registerStudent = (data) => request('/students/register', { method: 'POST', body: data })
+export const loginStudent = (data) => request('/students/login', { method: 'POST', body: data })
+export const logoutStudent = () => request('/students/logout', { method: 'POST', studentAuth: true })
+export const getStudentMe = () => request('/students/me', { studentAuth: true })
+
+// ---- Admin: quản lý tài khoản học sinh ----
+export const getAllStudentsAdmin = () => request('/students/all', { auth: true })
+export const updateStudent = (id, data) => request(`/students/${id}`, { method: 'PUT', body: data, auth: true })
+export const deleteStudent = (id) => request(`/students/${id}`, { method: 'DELETE', auth: true })
 
 // ---- Admin writes (areas) ----
 export const createArea = (data) => request('/areas', { method: 'POST', body: data, auth: true })

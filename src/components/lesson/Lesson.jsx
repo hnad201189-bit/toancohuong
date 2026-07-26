@@ -47,9 +47,7 @@ export default function Lesson({ lesson, areaName, onBack }) {
         {tab === 'trac-nghiem' && <TracNghiem quiz={lesson.quiz} />}
         {tab === 'tu-luan' && <TuLuan essays={lesson.essays} />}
         {tab === 'flashcard' && <Flashcard cards={lesson.flashcards} />}
-        {tab === 'de-kiem-tra' && (
-          <DeKiemTra exam={lesson.exam} quiz={lesson.quiz} essays={lesson.essays} />
-        )}
+        {tab === 'de-kiem-tra' && <DeKiemTra exam={lesson.exam} />}
       </div>
     </div>
   )

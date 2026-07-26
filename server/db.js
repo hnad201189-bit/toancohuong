@@ -69,6 +69,22 @@ db.exec(`
     status TEXT NOT NULL DEFAULT 'new',
     created_at TEXT NOT NULL
   );
+
+  CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    phone TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending',
+    created_at TEXT NOT NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS solve_usage (
+    identity_key TEXT NOT NULL,
+    usage_date TEXT NOT NULL,
+    count INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (identity_key, usage_date)
+  );
 `)
 
 // Migration: older databases may already have a "tutors" table without the

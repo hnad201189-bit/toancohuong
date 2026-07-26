@@ -1,4 +1,5 @@
 import Math from '../Math'
+import MixedMath from '../MixedMath'
 
 export default function LyThuyet({ theory }) {
   return (
@@ -9,6 +10,18 @@ export default function LyThuyet({ theory }) {
           {card.formulas.map((f) => (
             <Math key={f} tex={f} block />
           ))}
+          {card.legend?.length > 0 && (
+            <div className="theory-card__legend">
+              <p className="theory-card__legend-title">Trong đó:</p>
+              <ul>
+                {card.legend.map((item) => (
+                  <li key={item}>
+                    <MixedMath text={item} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <p className="theory-card__note">💡 {card.note}</p>
         </div>
       ))}

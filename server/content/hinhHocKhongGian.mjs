@@ -168,7 +168,59 @@ export const HINH_HOC_KHONG_GIAN = {
       { front: 'Đường trung bình tam giác', back: '$MN\\parallel BC,\\ MN=\\dfrac12 BC$' },
       { front: 'Định lý Thalès trong không gian', back: 'Ba mp song song chắn trên 2 cát tuyến các đoạn tỉ lệ: $\\dfrac{AB}{A\'B\'}=\\dfrac{BC}{B\'C\'}$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Có bao nhiêu cách xác định một mặt phẳng?', options: ['3', '2', '4', '5'], correctIndex: 0 },
+        { question: 'Hai đường thẳng chéo nhau là hai đường thẳng:', options: ['Không đồng phẳng', 'Cắt nhau', 'Song song', 'Trùng nhau'], correctIndex: 0 },
+        { question: 'Hai mặt phẳng phân biệt có một điểm chung thì:', options: ['Cắt nhau theo một đường thẳng', 'Song song', 'Trùng nhau', 'Không có điểm chung nào khác'], correctIndex: 0 },
+        { question: 'Điều kiện để d // (P) là?', options: ['d không nằm trong (P) và song song với một đường thẳng thuộc (P)', 'd cắt (P)', 'd nằm trong (P)', 'd vuông góc (P)'], correctIndex: 0 },
+        { question: 'Qua một điểm nằm ngoài một mặt phẳng cho trước, có bao nhiêu mặt phẳng song song với mặt phẳng đó?', options: ['Duy nhất một', 'Không có', 'Hai', 'Vô số'], correctIndex: 0 },
+        { question: 'Nếu (P) // (Q) thì mọi mặt phẳng cắt (P):', options: ['Cũng cắt (Q), và hai giao tuyến song song nhau', 'Không cắt (Q)', 'Cắt (Q) theo giao tuyến vuông góc', 'Không xác định'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Cho hình chóp S.ABCD, đáy ABCD là hình bình hành. Khẳng định nào đúng?', options: ['AB // (SCD)', 'AB cắt (SCD)', 'AB ⊂ (SCD)', 'AB vuông góc (SCD)'], correctIndex: 0 },
+        { question: 'Cho tứ diện ABCD, M là trung điểm AB, N là trung điểm AC. Đường thẳng MN song song với mặt phẳng nào?', options: ['(BCD)', '(ABD)', '(ABC)', '(ACD)'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABCD, đáy là hình bình hành tâm O. Giao tuyến của (SAC) và (SBD) là?', options: ['SO', 'SA', 'SB', 'AC'], correctIndex: 0 },
+        { question: "Cho hình lăng trụ ABC.A'B'C'. Hai mặt phẳng (ABC) và (A'B'C') có quan hệ gì?", options: ['Song song', 'Cắt nhau', 'Vuông góc', 'Trùng nhau'], correctIndex: 0 },
+        { question: 'Trong không gian, hai đường thẳng không có điểm chung thì:', options: ['Song song hoặc chéo nhau', 'Luôn song song', 'Luôn chéo nhau', 'Luôn cắt nhau'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABCD, đáy ABCD là hình thang (AB // CD). Giao tuyến của (SAB) và (SCD) là đường thẳng qua S và:', options: ['Song song với AB và CD', 'Vuông góc AB', 'Trùng với AB', 'Trùng với CD'], correctIndex: 0 },
+        // Vận dụng (3)
+        {
+          question: 'Cho hình chóp S.ABCD, đáy là hình bình hành. M là trung điểm SA. Mặt phẳng (MBC) cắt SD tại N. Tứ giác MNCB là hình gì?',
+          options: ['Hình thang', 'Hình bình hành', 'Hình chữ nhật', 'Hình vuông'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Cho hình chóp S.ABCD, đáy ABCD là hình bình hành. Gọi M, N, P lần lượt là trung điểm SA, SB, SC. Mặt phẳng (MNP) song song với mặt phẳng nào?',
+          options: ['(ABCD)', '(SAB)', '(SBC)', '(SAD)'],
+          correctIndex: 0,
+        },
+        {
+          question: "Cho hình hộp ABCD.A'B'C'D'. Khẳng định nào sau đây SAI?",
+          options: ["(ABCD) cắt (A'B'C'D')", "AA' // BB'", "(ABB'A') // (DCC'D')", "AB // A'B'"],
+          correctIndex: 0,
+        },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Cho hình chóp S.ABCD, đáy ABCD là hình bình hành tâm O. Gọi M là trung điểm SB. Chứng minh OM // (SAD).',
+          solution: [
+            'O là trung điểm BD (tâm hình bình hành), M là trung điểm SB.',
+            'Trong tam giác SBD, OM là đường trung bình ứng với cạnh SD $\\Rightarrow OM\\parallel SD$.',
+            '$SD\\subset(SAD)$, $OM\\not\\subset(SAD)$, vậy $OM\\parallel(SAD)$.',
+          ],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Cho hình chóp S.ABCD, đáy ABCD là hình bình hành. Trên cạnh SA lấy điểm M sao cho SM = (1/3)SA. Mặt phẳng (α) qua M song song với mặt đáy (ABCD), cắt các cạnh SB, SC, SD lần lượt tại N, P, Q. Tính tỉ số SN/SB.',
+          solution: [
+            'Vì $(\\alpha)\\parallel(ABCD)$, áp dụng định lí Thalès trong không gian: ba mặt phẳng song song $(\\alpha)$, $(ABCD)$ và mặt phẳng chứa S song song với chúng chắn trên các cát tuyến $SA, SB$ những đoạn tỉ lệ.',
+            '$\\Rightarrow \\dfrac{SN}{SB}=\\dfrac{SM}{SA}=\\dfrac13$',
+          ],
+        },
+      ],
+    },
   },
 
   'quan-he-vuong-goc': {
@@ -262,7 +314,48 @@ export const HINH_HOC_KHONG_GIAN = {
       { front: 'Đường chéo hình vuông cạnh a', back: '$a\\sqrt2$' },
       { front: 'Đường chéo hình lập phương cạnh a', back: '$a\\sqrt3$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'd ⊥ (P) khi nào?', options: ['d vuông góc 2 đường cắt nhau trong (P)', 'd vuông góc 1 đường bất kỳ trong (P)', 'd nằm trong (P)', 'd song song (P)'], correctIndex: 0 },
+        { question: 'Nếu d ⊥ (P) và a ⊂ (P) thì?', options: ['d ⊥ a', 'd // a', 'd cắt a', 'Không xác định'], correctIndex: 0 },
+        { question: '(P) ⊥ (Q) khi nào?', options: ['(P) chứa 1 đường vuông góc (Q)', '(P) // (Q)', '(P) cắt (Q) tuỳ ý', '(P), (Q) không có điểm chung'], correctIndex: 0 },
+        { question: 'Nếu hai mặt phẳng cùng vuông góc với một đường thẳng thì hai mặt phẳng đó:', options: ['Song song nhau (hoặc trùng nhau)', 'Vuông góc nhau', 'Cắt nhau', 'Chéo nhau'], correctIndex: 0 },
+        { question: 'Đường chéo hình lập phương cạnh a có độ dài?', options: ['a√3', 'a√2', 'a', '2a'], correctIndex: 0 },
+        { question: 'Đường chéo hình vuông cạnh a có độ dài?', options: ['a√2', 'a√3', 'a', '2a'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Cho hình chóp S.ABCD, đáy hình vuông, SA ⊥ (ABCD). Khẳng định nào đúng?', options: ['BC ⊥ (SAB)', 'BC ⊥ (SAD)', 'BC ⊥ (SAC)', 'BC ⊥ (SBD)'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABCD có SA ⊥ (ABCD). Góc giữa SC và (ABCD) là góc nào?', options: ['Góc SCA', 'Góc SAC', 'Góc ASC', 'Góc SBA'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABC có SA ⊥ (ABC), tam giác ABC vuông tại B. Khẳng định nào đúng?', options: ['(SAB) ⊥ (SBC)', '(SAB) ⊥ (SAC)', '(SAC) ⊥ (SBC)', 'Không có mặt nào vuông góc'], correctIndex: 0 },
+        { question: 'Cho tứ diện đều ABCD. Khẳng định nào đúng?', options: ['AB ⊥ CD', 'AB // CD', 'AB cắt CD', 'AB, CD đồng phẳng'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a. Độ dài SC bằng?', options: ['a√3', 'a√2', '2a', 'a'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a. Tang của góc giữa SC và đáy bằng?', options: ['1/√2', '1', '√3', '2'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a√2. Góc giữa SC và mặt đáy bằng?', options: ['45°', '30°', '60°', '90°'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABC, SA ⊥ (ABC), tam giác ABC đều cạnh a, SA = a√3/2. Góc giữa (SBC) và (ABC) bằng?', options: ['45°', '30°', '60°', '90°'], correctIndex: 0 },
+        { question: "Cho hình lập phương ABCD.A'B'C'D' cạnh a. Khoảng cách từ A đến mặt phẳng (A'B'C'D') bằng?", options: ['a', 'a√2', 'a√3', 'a/2'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Cho hình chóp S.ABCD, đáy là hình chữ nhật, SA ⊥ (ABCD). Chứng minh CD ⊥ (SAD).',
+          solution: [
+            '$CD\\perp AD$ (tính chất hình chữ nhật).',
+            '$CD\\perp SA$ (vì $SA\\perp(ABCD)\\supset CD$).',
+            'CD vuông góc với 2 đường cắt nhau AD, SA trong (SAD), vậy $CD\\perp(SAD)$.',
+          ],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a. Gọi H là hình chiếu vuông góc của A lên SB. Chứng minh AH ⊥ (SBC).',
+          solution: [
+            '$BC\\perp AB$ (hình vuông) và $BC\\perp SA$ (vì $SA\\perp(ABCD)\\supset BC$) $\\Rightarrow BC\\perp(SAB)$.',
+            '$AH\\subset(SAB)$ nên $BC\\perp AH$. Theo giả thiết $AH\\perp SB$.',
+            'AH vuông góc với 2 đường cắt nhau SB, BC trong (SBC), vậy $AH\\perp(SBC)$.',
+          ],
+        },
+      ],
+    },
   },
 
   'goc-khoang-cach': {
@@ -356,7 +449,47 @@ export const HINH_HOC_KHONG_GIAN = {
       { front: 'Khoảng cách hai đường thẳng song song', back: '$d(a,b)=d(M,b),\\ M\\in a$' },
       { front: 'Khoảng cách 2 cạnh đối tứ diện đều cạnh a', back: '$\\dfrac{a\\sqrt2}{2}$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Góc giữa đường thẳng và mặt phẳng có giá trị trong khoảng nào?', options: ['[0°; 90°]', '[0°; 180°]', '(0°; 90°)', '[90°; 180°]'], correctIndex: 0 },
+        { question: 'Khoảng cách từ điểm A đến mặt phẳng (P) là?', options: ['Đoạn vuông góc từ A đến (P)', 'Đoạn thẳng bất kỳ từ A đến (P)', 'Đoạn song song với (P)', 'Không xác định được'], correctIndex: 0 },
+        { question: 'Hai mặt phẳng vuông góc thì góc giữa chúng bằng?', options: ['90°', '0°', '45°', '180°'], correctIndex: 0 },
+        { question: 'Khoảng cách giữa hai đường thẳng song song bằng?', options: ['Khoảng cách từ 1 điểm bất kỳ trên đường này đến đường kia', '0', 'Không xác định', 'Luôn bằng độ dài đường thẳng'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABCD có SA ⊥ (ABCD). Góc giữa SB và (ABCD) là góc nào?', options: ['Góc SBA', 'Góc SAB', 'Góc BSA', 'Góc ASB'], correctIndex: 0 },
+        { question: 'Nếu đường thẳng d nằm trong mặt phẳng (P) thì góc giữa d và (P) bằng?', options: ['0°', '90°', '45°', 'Không xác định'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a. Tan của góc giữa SC và đáy bằng?', options: ['1/√2', '√2', '1', '2'], correctIndex: 0 },
+        { question: "Cho hình lập phương ABCD.A'B'C'D' cạnh a. Khoảng cách từ A đến (A'B'C'D') bằng?", options: ['a', 'a√2', 'a√3', 'a/2'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a. Khoảng cách từ A đến SB bằng?', options: ['a√2/2', 'a', 'a√2', 'a/2'], correctIndex: 0 },
+        { question: 'Góc giữa hai mặt phẳng (P), (Q) cắt nhau theo giao tuyến d được xác định bằng cách nào?', options: ['Dựng 2 đường thẳng vuông góc d, lần lượt nằm trong (P), (Q) rồi tính góc giữa chúng', 'Đo trực tiếp góc giữa (P) và (Q)', 'Luôn bằng 90°', 'Không xác định được'], correctIndex: 0 },
+        { question: 'Khoảng cách giữa hai mặt phẳng song song được tính bằng?', options: ['Khoảng cách từ 1 điểm bất kỳ của mặt này đến mặt kia', 'Khoảng cách giữa 2 điểm bất kỳ', 'Luôn bằng 0', 'Không xác định'], correctIndex: 0 },
+        { question: 'Cho tứ diện đều cạnh a. Khoảng cách giữa hai cạnh đối diện bằng?', options: ['a√2/2', 'a√3/2', 'a/2', 'a'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a. Khoảng cách từ A đến (SCD) bằng?', options: ['a√2/2', 'a', 'a√3/2', 'a/2'], correctIndex: 0 },
+        { question: "Cho hình lập phương ABCD.A'B'C'D' cạnh a. Khoảng cách từ A đến (A'BD) bằng?", options: ['a√3/3', 'a√3', 'a/3', 'a√2/3'], correctIndex: 0 },
+        { question: 'Cho hình chóp tứ giác đều S.ABCD, đáy cạnh a, cạnh bên SA = a√2. Góc giữa cạnh bên SA và mặt đáy bằng?', options: ['60°', '45°', '30°', '90°'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a√3. Tính góc giữa SB và mặt phẳng đáy.',
+          solution: [
+            'Góc giữa SB và đáy là góc $\\widehat{SBA}$.',
+            '$\\tan(\\widehat{SBA})=\\dfrac{SA}{AB}=\\dfrac{a\\sqrt3}{a}=\\sqrt3 \\Rightarrow \\widehat{SBA}=60^\\circ$',
+          ],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = a. Tính khoảng cách giữa hai đường thẳng chéo nhau SB và CD.',
+          solution: [
+            '$AD\\perp AB$ (hình vuông) và $AD\\perp SA$ (vì $SA\\perp(ABCD)$) $\\Rightarrow AD\\perp(SAB)$.',
+            'Vì $CD\\parallel AB\\subset(SAB)$ nên $CD\\parallel(SAB) \\Rightarrow d(CD,SB)=d(D,(SAB))$.',
+            'Vì $AD\\perp(SAB)$ tại A nên $d(D,(SAB))=AD=a$. Vậy $d(SB,CD)=a$.',
+          ],
+        },
+      ],
+    },
   },
 
   'the-tich-khoi-da-dien': {
@@ -421,7 +554,46 @@ export const HINH_HOC_KHONG_GIAN = {
       { front: 'Thể tích khối lập phương cạnh a', back: '$V=a^3$' },
       { front: 'Diện tích tam giác đều cạnh a', back: '$S=\\dfrac{a^2\\sqrt3}{4}$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Công thức thể tích khối chóp là?', options: ['V = (1/3)S·h', 'V = S·h', 'V = (1/2)S·h', 'V = 3S·h'], correctIndex: 0 },
+        { question: 'Công thức thể tích khối lăng trụ là?', options: ['V = S·h', 'V = (1/3)S·h', 'V = (1/2)S·h', 'V = 2S·h'], correctIndex: 0 },
+        { question: 'Thể tích khối lập phương cạnh a là?', options: ['a³', 'a²', '3a', '6a²'], correctIndex: 0 },
+        { question: 'Thể tích khối hộp chữ nhật kích thước a, b, c là?', options: ['a·b·c', 'a+b+c', '2(a+b+c)', 'abc/3'], correctIndex: 0 },
+        { question: 'Hai khối chóp có cùng đáy và cùng chiều cao thì có:', options: ['Thể tích bằng nhau', 'Thể tích khác nhau', 'Diện tích xung quanh bằng nhau', 'Không so sánh được'], correctIndex: 0 },
+        { question: 'Diện tích tam giác đều cạnh a là?', options: ['a²√3/4', 'a²/2', 'a²√2/4', 'a²√3/2'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Tính thể tích khối chóp có diện tích đáy 12, chiều cao 5.', options: ['20', '60', '17', '6'], correctIndex: 0 },
+        { question: 'Tính thể tích khối lăng trụ có diện tích đáy 8, chiều cao 6.', options: ['48', '16', '24', '144'], correctIndex: 0 },
+        { question: 'Tính thể tích khối lập phương cạnh 4.', options: ['64', '16', '48', '256'], correctIndex: 0 },
+        { question: 'Tính thể tích khối hộp chữ nhật kích thước 2, 4, 6.', options: ['48', '12', '24', '96'], correctIndex: 0 },
+        { question: 'Cho hình chóp S.ABC đáy vuông tại A, AB = 3, AC = 4, SA ⊥ đáy, SA = 6. Thể tích khối chóp bằng?', options: ['12', '24', '36', '6'], correctIndex: 0 },
+        { question: 'Cho lăng trụ đứng có đáy là hình vuông cạnh 3, chiều cao 5. Thể tích bằng?', options: ['45', '15', '27', '135'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Cho hình chóp S.ABCD, đáy hình vuông cạnh a, SA ⊥ (ABCD), SA = 2a. Thể tích khối chóp bằng?', options: ['2a³/3', 'a³/3', 'a³', '2a³'], correctIndex: 0 },
+        { question: "Cho lăng trụ tam giác đều ABC.A'B'C' cạnh đáy a, chiều cao 2a. Thể tích khối lăng trụ bằng?", options: ['a³√3/2', 'a³√3/4', 'a³√3', 'a³/2'], correctIndex: 0 },
+        { question: 'Cho khối chóp tứ giác đều có đáy cạnh a, chiều cao bằng a. Thể tích bằng?', options: ['a³/3', 'a³', '2a³/3', 'a³/2'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Tính thể tích khối chóp S.ABC có đáy ABC vuông tại B, AB = 6, BC = 8, chiều cao SA = 9 (SA ⊥ đáy).',
+          solution: [
+            '$S_{ABC}=\\dfrac12\\cdot AB\\cdot BC=\\dfrac12\\cdot6\\cdot8=24$',
+            '$V=\\dfrac13 S_{ABC}\\cdot SA=\\dfrac13\\cdot24\\cdot9=72$',
+          ],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Cho hình chóp S.ABCD, đáy ABCD là hình chữ nhật với AB = a, AD = 2a, SA ⊥ (ABCD), SA = a√3. Tính thể tích khối chóp S.ABCD.',
+          solution: [
+            '$S_{ABCD}=AB\\cdot AD=a\\cdot2a=2a^2$',
+            '$V=\\dfrac13 S_{ABCD}\\cdot SA=\\dfrac13\\cdot2a^2\\cdot a\\sqrt3=\\dfrac{2a^3\\sqrt3}{3}$',
+          ],
+        },
+      ],
+    },
   },
 
   'phep-doi-hinh': {
@@ -541,6 +713,43 @@ export const HINH_HOC_KHONG_GIAN = {
       { front: 'Phép đối xứng tâm O', back: 'O là trung điểm MM\', $\\overrightarrow{OM}=-\\overrightarrow{OM\'}$' },
       { front: 'Tính chất chung của phép dời hình', back: 'Bảo toàn khoảng cách giữa hai điểm bất kỳ' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        { question: 'Phép tịnh tiến theo vector v = 0 biến mỗi điểm M thành:', options: ['Chính nó', 'Điểm đối xứng của nó', 'Một điểm bất kỳ', 'Không xác định'], correctIndex: 0 },
+        { question: 'Phép quay tâm O góc 90° biến điểm (x; y) thành?', options: ['(−y; x)', '(y; −x)', '(x; −y)', '(−x; y)'], correctIndex: 0 },
+        { question: "Phép đối xứng tâm O biến điểm M thành M' sao cho?", options: ["O là trung điểm MM'", "OM = 2OM'", "M trùng M'", "OM ⊥ OM'"], correctIndex: 0 },
+        { question: 'Phép tịnh tiến bảo toàn tính chất nào?', options: ['Khoảng cách giữa hai điểm bất kỳ', 'Diện tích gấp đôi', 'Góc gấp đôi', 'Không bảo toàn gì'], correctIndex: 0 },
+        { question: "Phép quay tâm O góc α biến M thành M' thì?", options: ["OM = OM' và góc (OM, OM') = α", "OM = 2OM'", "OM ⊥ OM'", "M trùng M'"], correctIndex: 0 },
+        { question: 'Phép đối xứng tâm O là trường hợp đặc biệt của phép quay với góc quay bằng?', options: ['180°', '90°', '360°', '0°'], correctIndex: 0 },
+        // Thông hiểu (6)
+        { question: 'Trong Oxy, phép tịnh tiến theo v = (3; −2) biến điểm A(1; 4) thành điểm nào?', options: ['(4; 2)', '(−2; 6)', '(4; −2)', '(2; 4)'], correctIndex: 0 },
+        { question: "Cho f: M(x;y) ↦ M'(x−1; y+5). f là phép tịnh tiến theo vector nào?", options: ['(−1; 5)', '(1; −5)', '(1; 5)', '(−1; −5)'], correctIndex: 0 },
+        { question: 'Ảnh của đường tròn tâm I(0;0) bán kính 5 qua phép tịnh tiến theo v = (3;4) là đường tròn tâm?', options: ['(3; 4)', '(0; 0)', '(−3; −4)', '(4; 3)'], correctIndex: 0 },
+        { question: 'Trong Oxy, ảnh của điểm A(2;0) qua phép quay tâm O góc 90° là?', options: ['(0; 2)', '(−2; 0)', '(0; −2)', '(2; 0)'], correctIndex: 0 },
+        { question: 'Ảnh của điểm A(1;2) qua phép đối xứng tâm O là?', options: ['(−1; −2)', '(1; −2)', '(−1; 2)', '(2; 1)'], correctIndex: 0 },
+        { question: 'Ảnh của điểm A(3;1) qua phép quay tâm O góc −90° là?', options: ['(1; −3)', '(−1; 3)', '(3; −1)', '(−3; 1)'], correctIndex: 0 },
+        // Vận dụng (3)
+        { question: 'Trong Oxy, cho đường thẳng d: x − 2y + 3 = 0. Ảnh d\' của d qua phép tịnh tiến theo v = (1;1) có phương trình?', options: ['x − 2y + 4 = 0', 'x − 2y + 2 = 0', 'x − 2y + 6 = 0', 'x + 2y + 4 = 0'], correctIndex: 0 },
+        { question: 'Trong Oxy, cho điểm A(2;3). Tìm ảnh của A qua phép đối xứng tâm I(1;1).', options: ['(0; −1)', '(−1; 0)', '(0; 1)', '(4; 5)'], correctIndex: 0 },
+        { question: 'Trong Oxy, đường tròn (C): x²+y²=4. Ảnh của (C) qua phép quay tâm O góc 90° là đường tròn nào?', options: ['x² + y² = 4 (không đổi)', 'x² + y² = 16', '(x−2)² + y² = 4', 'x² + (y−2)² = 4'], correctIndex: 0 },
+      ],
+      essays: [
+        {
+          prompt: "Câu 1 (Thông hiểu). Trong mặt phẳng Oxy cho vector v = (−1;3) và điểm M(4;−2). Tìm tọa độ điểm M' = T_v(M).",
+          solution: ["$M'=(4+(-1);\\,-2+3)=(3;1)$"],
+        },
+        {
+          prompt:
+            "Câu 2 (Vận dụng). Trong mặt phẳng Oxy, cho đường tròn (C): (x−1)² + (y+2)² = 9. Viết phương trình đường tròn (C') là ảnh của (C) qua phép quay tâm O góc 90°.",
+          solution: [
+            '(C) có tâm $I(1;-2)$, bán kính $R=3$.',
+            "Quy tắc quay tâm O góc 90°: $(x;y)\\mapsto(-y;x)$. Ảnh của tâm: $I'=(-(-2);1)=(2;1)$",
+            "Vậy $(C'): (x-2)^2+(y-1)^2=9$",
+          ],
+        },
+      ],
+    },
   },
 }

@@ -7,14 +7,17 @@ function formatTime(seconds) {
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
 }
 
-export default function DeKiemTra({ exam, quiz = [], essays = [] }) {
+export default function DeKiemTra({ exam }) {
   const [phase, setPhase] = useState('idle') // idle | running | finished
   const [answers, setAnswers] = useState({})
   const [openSolutions, setOpenSolutions] = useState({})
   const [secondsLeft, setSecondsLeft] = useState(0)
 
-  const examQuiz = quiz.slice(0, exam.mcqCount)
-  const examEssays = essays.slice(0, exam.essayCount)
+  // Đề kiểm tra dùng ngân hàng câu hỏi riêng (exam.mcq / exam.essays), tách biệt
+  // với ngân hàng luyện tập ở tab Trắc nghiệm / Tự luận — để số câu hiển thị
+  // (mcqCount/essayCount) luôn khớp với số câu thực sự có trong đề.
+  const examQuiz = (exam.mcq || []).slice(0, exam.mcqCount)
+  const examEssays = (exam.essays || []).slice(0, exam.essayCount)
   const hasQuestions = examQuiz.length > 0 || examEssays.length > 0
 
   useEffect(() => {

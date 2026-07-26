@@ -1,8 +1,26 @@
 import { Router } from 'express'
 import multer from 'multer'
 import Anthropic from '@anthropic-ai/sdk'
+import { quotaFor, identityFor, getUsageCount, incrementUsage } from '../quota.js'
 
 export const solveRouter = Router()
+
+function quotaMessage(student, quota) {
+  if (student?.status === 'approved') {
+    return `Bạn đã dùng hết ${quota} lượt giải bài hôm nay. Vui lòng quay lại vào ngày mai.`
+  }
+  if (student) {
+    return `Tài khoản của bạn đang chờ quản trị viên duyệt nên vẫn giới hạn ${quota} lượt/ngày như khách. Vui lòng chờ duyệt để được tăng lên 5 lượt/ngày, hoặc quay lại vào ngày mai.`
+  }
+  return `Bạn đã dùng hết ${quota} lượt giải bài miễn phí hôm nay. Đăng ký tài khoản và chờ quản trị viên duyệt để được 5 lượt/ngày, hoặc quay lại vào ngày mai.`
+}
+
+// GET /api/solve-image/quota — lets the frontend show remaining uses without spending one.
+solveRouter.get('/quota', (req, res) => {
+  const quota = quotaFor(req.student)
+  const used = getUsageCount(identityFor(req))
+  res.json({ quota, used, remaining: Math.max(0, quota - used) })
+})
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -39,6 +57,13 @@ solveRouter.post('/', upload.single('image'), async (req, res) => {
     return res.status(400).json({ error: 'Chỉ hỗ trợ ảnh JPEG, PNG, WEBP hoặc GIF' })
   }
 
+  const quota = quotaFor(req.student)
+  const identity = identityFor(req)
+  const used = getUsageCount(identity)
+  if (used >= quota) {
+    return res.status(429).json({ error: quotaMessage(req.student, quota), quota, used, remaining: 0 })
+  }
+
   try {
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
     const response = await anthropic.messages.create({
@@ -73,10 +98,14 @@ solveRouter.post('/', upload.single('image'), async (req, res) => {
       return res.status(502).json({ error: 'AI trả về định dạng không đọc được, vui lòng thử lại.' })
     }
 
+    incrementUsage(identity)
     res.json({
       problem: parsed.problem || '',
       steps: Array.isArray(parsed.steps) ? parsed.steps : [],
       answer: parsed.answer || '',
+      quota,
+      used: used + 1,
+      remaining: Math.max(0, quota - used - 1),
     })
   } catch (err) {
     console.error('solve-image error:', err)

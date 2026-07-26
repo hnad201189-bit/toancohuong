@@ -12,7 +12,9 @@ import { importRouter } from './routes/importRoutes.js'
 import { solveRouter } from './routes/solve.js'
 import { tutorsRouter } from './routes/tutors.js'
 import { contactRequestsRouter } from './routes/contactRequests.js'
+import { studentsRouter } from './routes/students.js'
 import { login, logout, checkAuth, requireAuth } from './auth.js'
+import { attachStudent } from './studentAuth.js'
 
 seedIfEmpty()
 
@@ -20,8 +22,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distPath = path.join(__dirname, '..', 'dist')
 
 const app = express()
+app.set('trust proxy', true) // needed so req.ip is the real client IP behind Render's proxy
 app.use(cors())
 app.use(express.json({ limit: '2mb' }))
+app.use(attachStudent) // optional: attaches req.student when a valid student token is sent
 
 app.post('/api/auth/login', login)
 app.post('/api/auth/logout', logout)
@@ -34,6 +38,7 @@ app.use('/api/import', importRouter)
 app.use('/api/solve-image', solveRouter)
 app.use('/api/tutors', tutorsRouter)
 app.use('/api/contact-requests', contactRequestsRouter)
+app.use('/api/students', studentsRouter)
 
 // Serve the built frontend (production) — dist/ only exists after `npm run build`.
 if (fs.existsSync(distPath)) {

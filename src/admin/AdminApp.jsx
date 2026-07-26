@@ -9,6 +9,7 @@ import AdminLessonEditorPage from './AdminLessonEditorPage'
 import AdminImportPage from './AdminImportPage'
 import AdminTutorsPage from './AdminTutorsPage'
 import AdminContactRequestsPage from './AdminContactRequestsPage'
+import AdminStudentsPage from './AdminStudentsPage'
 
 export default function AdminApp() {
   const { status, error, login, logout } = useAdminAuth()
@@ -34,6 +35,7 @@ export default function AdminApp() {
         <Route path="import" element={<AdminImportPage />} />
         <Route path="tutors" element={<AdminTutorsPage />} />
         <Route path="contact-requests" element={<AdminContactRequestsPage />} />
+        <Route path="students" element={<AdminStudentsPage />} />
         <Route path="topics/:topicId/lesson" element={<AdminLessonEditorPage />} />
       </Route>
     </Routes>

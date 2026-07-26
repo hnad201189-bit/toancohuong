@@ -31,6 +31,9 @@ export default function AdminLayout({ onLogout }) {
           >
             Yêu cầu kết nối
           </NavLink>
+          <NavLink to="/admin/students" className={({ isActive }) => `sidebar__item ${isActive ? 'is-active' : ''}`}>
+            Tài khoản học sinh
+          </NavLink>
         </nav>
 
         <div className="sidebar__footer admin-sidebar__footer">

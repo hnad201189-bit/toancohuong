@@ -1,16 +1,28 @@
-import { useRef, useState } from 'react'
-import { solveImage } from '../api/client'
+import { useEffect, useRef, useState } from 'react'
+import { solveImage, getSolveQuota } from '../api/client'
+import { useStudentAuth } from '../hooks/useStudentAuth'
 import MixedMath from './MixedMath'
+import AccountPanel from './AccountPanel'
 
 const MAX_SIZE = 8 * 1024 * 1024
 
 export default function PhotoSolve({ onBack }) {
+  const { student, register, login, logout } = useStudentAuth()
+  const [quota, setQuota] = useState(null)
   const [file, setFile] = useState(null)
   const [previewUrl, setPreviewUrl] = useState(null)
   const [result, setResult] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const inputRef = useRef(null)
+
+  function refreshQuota() {
+    getSolveQuota()
+      .then(setQuota)
+      .catch(() => setQuota(null))
+  }
+
+  useEffect(refreshQuota, [student])
 
   function pickFile(selected) {
     if (!selected) return
@@ -36,8 +48,10 @@ export default function PhotoSolve({ onBack }) {
     try {
       const data = await solveImage(file)
       setResult(data)
+      setQuota({ quota: data.quota, used: data.used, remaining: data.remaining })
     } catch (e) {
       setError(e.message)
+      if (e.status === 429) refreshQuota()
     } finally {
       setLoading(false)
     }
@@ -64,6 +78,15 @@ export default function PhotoSolve({ onBack }) {
         </p>
       </header>
 
+      <AccountPanel student={student} quota={quota} onRegister={register} onLogin={login} onLogout={logout} />
+
+      {quota && (
+        <p className="photo-solve__quota-note">
+          Còn <strong>{quota.remaining}</strong>/{quota.quota} lượt giải bài hôm nay
+          {!student && ' (khách — đăng ký và chờ duyệt để có 5 lượt/ngày)'}.
+        </p>
+      )}
+
       <div className="card photo-solve__card">
         {!previewUrl && (
           <label className="photo-solve__dropzone">
@@ -87,7 +110,11 @@ export default function PhotoSolve({ onBack }) {
               <button className="btn btn--ghost" onClick={reset} disabled={loading}>
                 Chọn ảnh khác
               </button>
-              <button className="btn btn--primary" onClick={handleSolve} disabled={loading}>
+              <button
+                className="btn btn--primary"
+                onClick={handleSolve}
+                disabled={loading || (quota && quota.remaining <= 0)}
+              >
                 {loading ? 'Đang giải…' : 'Giải bài'}
               </button>
             </div>

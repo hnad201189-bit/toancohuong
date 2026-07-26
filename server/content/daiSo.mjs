@@ -91,7 +91,113 @@ export const DAI_SO = {
       { front: 'Dãy bị chặn dưới', back: '$u_n \\ge m\\ \\ \\forall n$' },
       { front: 'Dãy số cho bởi truy hồi', back: 'u1 cho trước, $u_{n+1}=f(u_n)$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        {
+          question: 'Dãy số un = f(n) xác định trên tập nào?',
+          options: ['R', 'N*', 'Z', 'Q'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Cho dãy số un = 3n − 1. Số hạng đầu u1 bằng?',
+          options: ['1', '2', '3', '4'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Cho dãy số un = 2n. Số hạng u4 bằng?',
+          options: ['6', '8', '10', '4'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Dãy số un được gọi là dãy tăng nếu:',
+          options: ['un+1 > un với mọi n', 'un+1 < un với mọi n', 'un+1 = un với mọi n', 'un > 0 với mọi n'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Dãy số un được gọi là bị chặn trên nếu:',
+          options: [
+            'Tồn tại M sao cho un ≤ M với mọi n',
+            'Tồn tại m sao cho un ≥ m với mọi n',
+            'un ≤ 0 với mọi n',
+            'Dãy số un tăng',
+          ],
+          correctIndex: 0,
+        },
+        {
+          question: 'Cho dãy số xác định bởi u1 = 3, un+1 = un + 2. Số hạng u2 bằng?',
+          options: ['3', '5', '7', '4'],
+          correctIndex: 1,
+        },
+        // Thông hiểu (6)
+        {
+          question: 'Cho dãy số un = 5n − 2. Số hạng u10 bằng?',
+          options: ['45', '48', '50', '52'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Dãy số un = −2n + 5 là dãy số:',
+          options: ['Tăng', 'Giảm', 'Không đổi', 'Dao động'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Cho dãy số un = n/(n+2). So sánh u5 và u10.',
+          options: ['u5 < u10', 'u5 > u10', 'u5 = u10', 'Không so sánh được'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Cho dãy số un = (−1)ⁿ · n. Số hạng u5 bằng?',
+          options: ['5', '−5', '10', '−10'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Dãy số un = 1/(2n−1) là dãy số:',
+          options: ['Tăng', 'Giảm', 'Không đổi', 'Dao động'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Cho dãy số xác định bởi u1 = 2, un+1 = 3un − 1. Số hạng u3 bằng?',
+          options: ['11', '14', '17', '20'],
+          correctIndex: 1,
+        },
+        // Vận dụng (3)
+        {
+          question: 'Cho dãy số un = n² − 5n + 6 (n ∈ N*). Giá trị nhỏ nhất của un bằng?',
+          options: ['−1', '0', '1', '2'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Cho dãy số u1 = 1, un+1 = un + 2n + 1. Số hạng u4 bằng?',
+          options: ['9', '16', '25', '12'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Dãy số un = (3n−1)/(n+2) bị chặn trên bởi giá trị nào sau đây?',
+          options: ['2', '3', '4', 'Không bị chặn'],
+          correctIndex: 1,
+        },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Cho dãy số un = 4n − 7. Viết 5 số hạng đầu tiên và xét tính tăng, giảm của dãy số.',
+          solution: [
+            '$u_1=-3,\\ u_2=1,\\ u_3=5,\\ u_4=9,\\ u_5=13$',
+            '$u_{n+1}-u_n = 4 > 0$ với mọi $n$, vậy dãy số tăng.',
+          ],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Cho dãy số xác định bởi u1 = 1, un+1 = un + 2n + 1 (n ≥ 1). Chứng minh un = n² với mọi n ≥ 1, từ đó tính u10.',
+          solution: [
+            'Quy nạp: với $n=1$, $u_1=1=1^2$ đúng.',
+            'Giả sử $u_n=n^2$ đúng với $n=k$, ta chứng minh đúng với $n=k+1$:',
+            '$u_{k+1}=u_k+2k+1=k^2+2k+1=(k+1)^2$',
+            'Vậy $u_n=n^2$ với mọi $n\\ge1 \\Rightarrow u_{10}=10^2=100$',
+          ],
+        },
+      ],
+    },
   },
 
   'ham-so-mu-logarit': {
@@ -173,7 +279,107 @@ export const DAI_SO = {
       { front: 'Mũ và lôgarit ngược nhau', back: '$a^{\\log_a x}=x,\\quad \\log_a(a^x)=x$' },
       { front: 'Tính đơn điệu hàm số mũ', back: 'a > 1: đồng biến — 0 < a < 1: nghịch biến' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        {
+          question: 'Tập xác định của hàm số y = log5 x là?',
+          options: ['R', '(0; +∞)', '[0; +∞)', 'R\\{0}'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Hàm số y = 3ˣ có tính chất nào?',
+          options: [
+            'Đồng biến trên R vì cơ số 3 > 1',
+            'Nghịch biến trên R',
+            'Chỉ đồng biến trên (0;+∞)',
+            'Không xác định trên R',
+          ],
+          correctIndex: 0,
+        },
+        {
+          question: 'Giá trị của log2 16 bằng?',
+          options: ['2', '3', '4', '8'],
+          correctIndex: 2,
+        },
+        {
+          question: 'Giá trị của 5⁰ bằng?',
+          options: ['0', '1', '5', 'Không xác định'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Đồ thị hàm số y = aˣ (0 < a ≠ 1) luôn đi qua điểm nào?',
+          options: ['(0; 1)', '(1; 0)', '(0; 0)', '(1; 1)'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Giá trị của loga 1 (0 < a ≠ 1) bằng?',
+          options: ['0', '1', 'a', 'Không xác định'],
+          correctIndex: 0,
+        },
+        // Thông hiểu (6)
+        {
+          question: 'Giá trị của biểu thức 2³ · 2⁻¹ bằng?',
+          options: ['2', '4', '8', '16'],
+          correctIndex: 1,
+        },
+        {
+          question: 'log3 27 − log3 9 bằng?',
+          options: ['0', '1', '2', '3'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Tập xác định của hàm số y = log2(4 − x) là?',
+          options: ['(−∞; 4)', '(4; +∞)', 'R', '(0; 4)'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Cho log2 5 = a. Tính log2 20 theo a.',
+          options: ['a + 2', '2a', 'a + 4', 'a²'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Hàm số y = log_(1/2) x là hàm số:',
+          options: ['Đồng biến trên (0;+∞)', 'Nghịch biến trên (0;+∞)', 'Đồng biến trên R', 'Không xác định'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Giá trị của 4^(1/2) + 8^(1/3) bằng?',
+          options: ['2', '4', '6', '8'],
+          correctIndex: 1,
+        },
+        // Vận dụng (3)
+        {
+          question: 'Cho log2 3 = a. Tính log4 3 theo a.',
+          options: ['a/2', '2a', 'a²', 'a + 2'],
+          correctIndex: 0,
+        },
+        {
+          question: 'So sánh log3 5 và log9 25.',
+          options: ['log3 5 > log9 25', 'log3 5 < log9 25', 'log3 5 = log9 25', 'Không so sánh được'],
+          correctIndex: 2,
+        },
+        {
+          question: 'Tập xác định của hàm số y = log2(x² − 4) là?',
+          options: ['(−2; 2)', '(−∞; −2) ∪ (2; +∞)', '(2; +∞)', 'R\\{−2; 2}'],
+          correctIndex: 1,
+        },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Tính giá trị biểu thức A = log2 32 − log2 4 + log2 1.',
+          solution: ['$A = \\log_2 32 - \\log_2 4 + \\log_2 1 = 5 - 2 + 0 = 3$'],
+        },
+        {
+          prompt: 'Câu 2 (Vận dụng). Cho log2 3 = a và log2 5 = b. Tính log2 45 theo a và b.',
+          solution: [
+            '$45 = 9\\cdot 5 = 3^2 \\cdot 5$',
+            '$\\log_2 45 = \\log_2 3^2 + \\log_2 5 = 2\\log_2 3 + \\log_2 5 = 2a + b$',
+          ],
+        },
+      ],
+    },
   },
 
   'pt-bpt-mu-logarit': {
@@ -262,7 +468,104 @@ export const DAI_SO = {
       { front: 'Bất PT mũ, cơ số a > 1', back: '$a^{f(x)}>a^{g(x)}\\Leftrightarrow f(x)>g(x)$' },
       { front: 'Bất PT mũ, cơ số 0 < a < 1', back: '$a^{f(x)}>a^{g(x)}\\Leftrightarrow f(x)<g(x)$' },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        {
+          question: 'Nghiệm của phương trình 3ˣ = 9 là?',
+          options: ['x = 1', 'x = 2', 'x = 3', 'x = 9'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Nghiệm của phương trình log2 x = 3 là?',
+          options: ['x = 3', 'x = 6', 'x = 8', 'x = 9'],
+          correctIndex: 2,
+        },
+        {
+          question: 'Phương trình a^f(x) = a^g(x) (0 < a ≠ 1) tương đương với:',
+          options: ['f(x) = g(x)', 'f(x) > g(x)', 'f(x) < g(x)', 'f(x) = −g(x)'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Bất phương trình 2ˣ > 4 có tập nghiệm là?',
+          options: ['x > 2', 'x < 2', 'x > 4', 'x < 4'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Điều kiện xác định của phương trình log3 x = 2 là?',
+          options: ['x > 0', 'x ≥ 0', 'x < 0', 'x ≠ 0'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Với cơ số 0 < a < 1, bất phương trình a^f(x) > a^g(x) tương đương với:',
+          options: ['f(x) > g(x)', 'f(x) < g(x)', 'f(x) = g(x)', 'Không xác định'],
+          correctIndex: 1,
+        },
+        // Thông hiểu (6)
+        {
+          question: 'Nghiệm của phương trình 5^(x−1) = 25 là?',
+          options: ['x = 2', 'x = 3', 'x = 4', 'x = 5'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Nghiệm của phương trình log3(x+2) = 2 là?',
+          options: ['x = 0', 'x = 1', 'x = 2', 'x = 4'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Tập nghiệm của bất phương trình (1/3)ˣ ≤ 9 là?',
+          options: ['x ≥ −2', 'x ≤ −2', 'x ≥ 2', 'x ≤ 2'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Nghiệm của phương trình 2^(x²−3x) = 1 là?',
+          options: ['x = 0 hoặc x = 3', 'x = 0', 'x = 3', 'Vô nghiệm'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Điều kiện xác định của phương trình log2(x−1) + log2(x+1) = 3 là?',
+          options: ['x > 1', 'x > −1', 'x ≥ 1', 'x ∈ R'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Tập nghiệm của bất phương trình log3 x < 2 là?',
+          options: ['0 < x < 9', 'x < 9', 'x > 9', 'x < 0'],
+          correctIndex: 0,
+        },
+        // Vận dụng (3)
+        {
+          question: 'Nghiệm của phương trình 9ˣ − 4·3ˣ − 45 = 0 là?',
+          options: ['x = 1', 'x = 2', 'x = 3', 'x = 4'],
+          correctIndex: 1,
+        },
+        {
+          question: 'Tập nghiệm của bất phương trình log2(x−1) > log2(5−x) là?',
+          options: ['(3; 5)', '(1; 3)', '(1; 5)', '(3; +∞)'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Nghiệm của phương trình log2 x + log2(x−3) = 2 là?',
+          options: ['x = 1', 'x = 4', 'x = 5', 'x = −1'],
+          correctIndex: 1,
+        },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Giải phương trình log3(2x−1) = 2.',
+          solution: ['Điều kiện: $x>\\dfrac12$', '$2x-1=3^2=9 \\Rightarrow x=5$ (thoả điều kiện)'],
+        },
+        {
+          prompt: 'Câu 2 (Vận dụng). Giải phương trình 4ˣ − 5·2ˣ + 4 = 0.',
+          solution: [
+            'Đặt $t=2^x\\ (t>0)$: $\\ t^2-5t+4=0 \\Rightarrow t=1$ hoặc $t=4$',
+            '$2^x=1 \\Rightarrow x=0$',
+            '$2^x=4 \\Rightarrow x=2$',
+            'Vậy phương trình có hai nghiệm $x=0$ và $x=2$.',
+          ],
+        },
+      ],
+    },
   },
 
   'he-bpt-bac-nhat-hai-an': {
@@ -362,6 +665,105 @@ export const DAI_SO = {
         back: '$F_{\\max}=\\max\\big(F(A_1),\\dots,F(A_k)\\big)$',
       },
     ],
-    exam: EXAM_DEFAULT,
+    exam: {
+      ...EXAM_DEFAULT,
+      mcq: [
+        // Nhận biết (6)
+        {
+          question: 'Bất phương trình bậc nhất hai ẩn có dạng tổng quát là?',
+          options: ['ax + by + c ≤ 0 (hoặc <, ≥, >)', 'ax² + by + c ≤ 0', 'ax + by = c', 'ax + b ≤ 0'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Điểm (0; 0) có thuộc miền nghiệm của bất phương trình x + y ≤ 5 không?',
+          options: ['Có', 'Không', 'Không xác định', 'Chỉ khi x = y'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Đường thẳng biên của miền nghiệm bất phương trình x − 2y + 4 ≤ 0 có phương trình?',
+          options: ['x − 2y + 4 = 0', 'x + 2y = 4', 'x − 2y = 0', '2x − y + 4 = 0'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Miền nghiệm của hệ bất phương trình bậc nhất hai ẩn là giao của:',
+          options: ['Các nửa mặt phẳng', 'Các đường thẳng', 'Các điểm', 'Các đường tròn'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Hàm mục tiêu trong bài toán quy hoạch tuyến tính hai biến có dạng?',
+          options: ['F(x,y) = ax + by', 'F(x,y) = ax² + by', 'F(x,y) = ax + by + c = 0', 'F(x,y) = ax·by'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Giá trị lớn nhất của F = ax + by trên miền đa giác nghiệm đạt được tại đâu?',
+          options: ['Một đỉnh của đa giác', 'Tâm của đa giác', 'Trung điểm một cạnh', 'Bất kỳ điểm nào'],
+          correctIndex: 0,
+        },
+        // Thông hiểu (6)
+        {
+          question: 'Điểm nào sau đây thuộc miền nghiệm của bất phương trình x − y ≥ 1?',
+          options: ['(3; 1)', '(0; 2)', '(1; 3)', '(0; 0)'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Cho hệ: x ≥ 0, y ≥ 0, 2x + y ≤ 6. Điểm nào KHÔNG thuộc miền nghiệm?',
+          options: ['(4; 0)', '(2; 1)', '(0; 5)', '(1; 3)'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Miền nghiệm của bất phương trình 2x + 3y − 6 > 0 KHÔNG chứa điểm nào?',
+          options: ['(0; 0)', '(3; 1)', '(5; 2)', '(0; 3)'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Đường thẳng x + y = 4 chia mặt phẳng thành hai miền. Điểm (5; 5) thuộc miền nghiệm của bất phương trình nào?',
+          options: ['x + y ≥ 4', 'x + y ≤ 4', 'x + y = 4', 'x − y ≥ 4'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Cho hệ x ≥ 0, y ≥ 0, x + y ≤ 5, x ≤ 3. Điểm nào sau đây KHÔNG thuộc miền nghiệm?',
+          options: ['(4; 0)', '(0; 0)', '(3; 0)', '(0; 5)'],
+          correctIndex: 0,
+        },
+        {
+          question: 'Hàm F(x,y) = x + y đạt giá trị nhỏ nhất trên miền x ≥ 0, y ≥ 0, x + y ≤ 4 tại điểm nào?',
+          options: ['(0; 0)', '(4; 0)', '(0; 4)', '(2; 2)'],
+          correctIndex: 0,
+        },
+        // Vận dụng (3)
+        {
+          question: 'Cho hệ x ≥ 0, y ≥ 0, x + 2y ≤ 8, 3x + y ≤ 9. Giá trị lớn nhất của F = 2x + 3y bằng?',
+          options: ['6', '12', '13', '16'],
+          correctIndex: 2,
+        },
+        {
+          question:
+            'Một cửa hàng bán tối đa 100 sản phẩm A và 80 sản phẩm B mỗi ngày, tổng số không vượt quá 150 sản phẩm. Lãi mỗi sản phẩm A là 40 nghìn đồng, sản phẩm B là 30 nghìn đồng. Lợi nhuận lớn nhất có thể đạt được (nghìn đồng) là?',
+          options: ['4000', '5200', '5500', '5900'],
+          correctIndex: 2,
+        },
+        {
+          question: 'Cho hệ x ≥ 0, y ≥ 0, x + y ≤ 6, x − y ≤ 2. Hàm F = 3x + y đạt giá trị lớn nhất tại đỉnh nào?',
+          options: ['(0; 0)', '(2; 0)', '(4; 2)', '(0; 6)'],
+          correctIndex: 2,
+        },
+      ],
+      essays: [
+        {
+          prompt: 'Câu 1 (Thông hiểu). Xác định miền nghiệm của hệ bất phương trình: x ≥ 0, y ≥ 0, x + y ≤ 5. Tìm toạ độ các đỉnh của miền nghiệm.',
+          solution: ['Miền nghiệm là tam giác với các đỉnh $(0;0),\\ (5;0),\\ (0;5)$'],
+        },
+        {
+          prompt:
+            'Câu 2 (Vận dụng). Một cửa hàng bán hai loại hộp quà: hộp A lãi 25 nghìn đồng/hộp, hộp B lãi 20 nghìn đồng/hộp. Do nguyên liệu, cửa hàng chỉ làm được tối đa 6 hộp A, tối đa 8 hộp B mỗi ngày, và tổng số hộp không vượt quá 10. Gọi x, y lần lượt là số hộp A, B làm trong ngày. Tìm x, y để lợi nhuận lớn nhất.',
+          solution: [
+            'Ràng buộc: $0\\le x\\le 6,\\ 0\\le y\\le 8,\\ x+y\\le 10$. Hàm lợi nhuận $F=25x+20y$ (nghìn đồng).',
+            'Các đỉnh của miền nghiệm: $(0;0),\\ (6;0),\\ (6;4),\\ (2;8),\\ (0;8)$',
+            '$F(0;0)=0,\\ F(6;0)=150,\\ F(6;4)=230,\\ F(2;8)=210,\\ F(0;8)=160$',
+            'Vậy $F_{\\max}=230$ (nghìn đồng) tại $(x;y)=(6;4)$',
+          ],
+        },
+      ],
+    },
   },
 }
