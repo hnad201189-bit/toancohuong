@@ -46,7 +46,7 @@ export default function Dashboard({
         </div>
       </section>
 
-      {grade === 11 && hsgTopics.length > 0 && (
+      {hsgTopics.length > 0 && (
         <section className="hsg-section">
           <div className="hsg-section__header">
             <h2 className="section-title section-title--hsg">▲ Ôn thi HSG / chuyên</h2>

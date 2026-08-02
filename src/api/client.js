@@ -78,7 +78,7 @@ export const getSolveQuota = () => request('/solve-image/quota', { studentAuth: 
 // ---- Public reads ----
 export const getAreas = (grade = 11) => request(`/areas?grade=${grade}`)
 export const getArea = (id) => request(`/areas/${id}`)
-export const getHsgTopics = () => request('/hsg-topics')
+export const getHsgTopics = (grade = 11) => request(`/hsg-topics?grade=${grade}`)
 export const getLesson = (topicId) => request(`/topics/${topicId}/lesson`)
 
 // ---- Tutors (gia sư) ----

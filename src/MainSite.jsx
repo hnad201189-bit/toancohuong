@@ -20,7 +20,7 @@ export default function MainSite() {
 
   function loadData() {
     setLoadError(null)
-    Promise.all([getAreas(grade), grade === 11 ? getHsgTopics() : Promise.resolve([])])
+    Promise.all([getAreas(grade), getHsgTopics(grade)])
       .then(([a, h]) => {
         setAreas(a)
         setHsgTopics(h)

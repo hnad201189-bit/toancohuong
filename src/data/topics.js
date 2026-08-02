@@ -253,6 +253,15 @@ export const HSG_TOPICS = [
   { id: 'hsg-he-thuc-luong-nang-cao', name: 'Hệ thức lượng nâng cao, góc — khoảng cách khó', progress: 0 },
 ]
 
+// ---- Chuyên đề Ôn thi HSG lớp 6 ----
+export const GRADE6_HSG_TOPICS = [
+  { id: 'l6-hsg-day-so-quy-luat', name: 'Dãy số và quy luật', progress: 0 },
+  { id: 'l6-hsg-chia-het-nang-cao', name: 'Các bài toán chia hết nâng cao', progress: 0 },
+  { id: 'l6-hsg-so-nguyen-to-nang-cao', name: 'Số nguyên tố, ước số và bội số nâng cao', progress: 0 },
+  { id: 'l6-hsg-dem-dirichlet', name: 'Bài toán đếm và nguyên lý Dirichlet', progress: 0 },
+  { id: 'l6-hsg-hinh-hoc-tu-duy', name: 'Bài toán hình học tư duy nâng cao', progress: 0 },
+]
+
 export const OVERALL_PROGRESS = Math.round(
   KNOWLEDGE_AREAS.reduce((sum, a) => sum + a.progress, 0) / KNOWLEDGE_AREAS.length
 )

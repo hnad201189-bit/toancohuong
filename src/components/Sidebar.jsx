@@ -85,7 +85,7 @@ export default function Sidebar({
           ))}
         </ul>
 
-        {grade === 11 && hsgTopics.length > 0 && (
+        {hsgTopics.length > 0 && (
           <div className={`sidebar__hsg-group ${!hsgMode ? 'is-locked' : ''}`}>
             <div className="sidebar__group-label sidebar__group-label--hsg">
               ▲ Ôn thi HSG / chuyên
@@ -109,7 +109,7 @@ export default function Sidebar({
       </nav>
 
       <div className="sidebar__footer">
-        {grade === 11 && (
+        {hsgTopics.length > 0 && (
           <label className="hsg-toggle">
             <span>Chế độ ôn thi HSG</span>
             <span

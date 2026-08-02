@@ -6,6 +6,13 @@ import { HINH_HOC_KHONG_GIAN } from './content/hinhHocKhongGian.mjs'
 import { THONG_KE_XAC_SUAT } from './content/thongKeXacSuat.mjs'
 import { TOAN_UNG_DUNG } from './content/toanUngDung.mjs'
 import { HSG } from './content/hsg.mjs'
+import { LOP6_SO_TU_NHIEN } from './content/lop6SoTuNhien.mjs'
+import { LOP6_SO_NGUYEN } from './content/lop6SoNguyen.mjs'
+import { LOP6_PHAN_SO_THAP_PHAN } from './content/lop6PhanSoThapPhan.mjs'
+import { LOP6_HINH_HOC_TRUC_QUAN } from './content/lop6HinhHocTrucQuan.mjs'
+import { LOP6_HINH_HOC_CO_BAN } from './content/lop6HinhHocCoBan.mjs'
+import { LOP6_DU_LIEU_XAC_SUAT } from './content/lop6DuLieuXacSuat.mjs'
+import { LOP6_HSG } from './content/lop6Hsg.mjs'
 import { SAMPLE_LESSON } from '../src/data/topics.js'
 
 const { id: sampleId, areaId: _sampleAreaId, title: sampleTitle, ...sampleContent } = SAMPLE_LESSON
@@ -17,7 +24,18 @@ const ALL_REGULAR = {
   ...HINH_HOC_KHONG_GIAN,
   ...THONG_KE_XAC_SUAT,
   ...TOAN_UNG_DUNG,
+  ...LOP6_SO_TU_NHIEN,
+  ...LOP6_SO_NGUYEN,
+  ...LOP6_PHAN_SO_THAP_PHAN,
+  ...LOP6_HINH_HOC_TRUC_QUAN,
+  ...LOP6_HINH_HOC_CO_BAN,
+  ...LOP6_DU_LIEU_XAC_SUAT,
   [sampleId]: { title: sampleTitle, ...sampleContent },
+}
+
+const ALL_HSG = {
+  ...HSG,
+  ...LOP6_HSG,
 }
 
 const upsertLesson = db.prepare(
@@ -42,7 +60,7 @@ export function seedFullContent() {
 
   let hsgCount = 0
   const missingHsg = []
-  for (const [topicId, lesson] of Object.entries(HSG)) {
+  for (const [topicId, lesson] of Object.entries(ALL_HSG)) {
     const topic = db.prepare('SELECT id FROM hsg_topics WHERE id = ?').get(topicId)
     if (!topic) {
       missingHsg.push(topicId)
@@ -55,7 +73,7 @@ export function seedFullContent() {
   }
 
   console.log(
-    `Seeded lesson content: ${regularCount}/${Object.keys(ALL_REGULAR).length} regular, ${hsgCount}/${Object.keys(HSG).length} HSG`
+    `Seeded lesson content: ${regularCount}/${Object.keys(ALL_REGULAR).length} regular, ${hsgCount}/${Object.keys(ALL_HSG).length} HSG`
   )
   if (missingTopics.length) console.log('Missing regular topic ids:', missingTopics)
   if (missingHsg.length) console.log('Missing HSG topic ids:', missingHsg)
@@ -82,7 +100,7 @@ export function backfillMissingExamBanks() {
     }
     if (content.exam?.mcq?.length > 0) continue
 
-    const source = ALL_REGULAR[row.topic_id] || HSG[row.topic_id]
+    const source = ALL_REGULAR[row.topic_id] || ALL_HSG[row.topic_id]
     if (!source) continue
 
     const { title, ...sourceContent } = source
@@ -94,4 +112,44 @@ export function backfillMissingExamBanks() {
     console.log(`Backfilled exam question banks for ${patched} lesson(s) that were missing exam.mcq.`)
   }
   return patched
+}
+
+// Runs on every server start. seedFullContent() only fires on first boot (an
+// empty `areas` table), so a topic/hsg_topic row added later by a new grade
+// rollout (e.g. Lớp 6) never gets its matching `lessons` row inserted on an
+// already-seeded production database — it just sits with has_lesson = 0
+// forever. This inserts a lesson row (and flips has_lesson = 1) for any
+// topic/hsg_topic that already exists but has no lesson yet, using the same
+// source maps as seedFullContent().
+export function seedMissingLessons() {
+  let inserted = 0
+
+  for (const [topicId, lesson] of Object.entries(ALL_REGULAR)) {
+    const topic = db.prepare('SELECT id FROM topics WHERE id = ?').get(topicId)
+    if (!topic) continue
+    const existing = db.prepare('SELECT topic_id FROM lessons WHERE topic_id = ?').get(topicId)
+    if (existing) continue
+
+    const { title, ...content } = lesson
+    upsertLesson.run(topicId, title, JSON.stringify(content))
+    db.prepare('UPDATE topics SET has_lesson = 1 WHERE id = ?').run(topicId)
+    inserted++
+  }
+
+  for (const [topicId, lesson] of Object.entries(ALL_HSG)) {
+    const topic = db.prepare('SELECT id FROM hsg_topics WHERE id = ?').get(topicId)
+    if (!topic) continue
+    const existing = db.prepare('SELECT topic_id FROM lessons WHERE topic_id = ?').get(topicId)
+    if (existing) continue
+
+    const { title, ...content } = lesson
+    upsertLesson.run(topicId, title, JSON.stringify(content))
+    db.prepare('UPDATE hsg_topics SET has_lesson = 1 WHERE id = ?').run(topicId)
+    inserted++
+  }
+
+  if (inserted > 0) {
+    console.log(`Inserted ${inserted} new lesson row(s) for topics that had no lesson yet.`)
+  }
+  return inserted
 }

@@ -36,6 +36,7 @@ db.exec(`
 
   CREATE TABLE IF NOT EXISTS hsg_topics (
     id TEXT PRIMARY KEY,
+    grade INTEGER NOT NULL DEFAULT 11,
     sort_order INTEGER NOT NULL,
     name TEXT NOT NULL,
     progress INTEGER NOT NULL DEFAULT 0,
@@ -108,6 +109,9 @@ if (!areaColumns.includes('grade')) {
 const hsgColumns = db.prepare('PRAGMA table_info(hsg_topics)').all().map((c) => c.name)
 if (!hsgColumns.includes('has_lesson')) {
   db.exec('ALTER TABLE hsg_topics ADD COLUMN has_lesson INTEGER NOT NULL DEFAULT 0')
+}
+if (!hsgColumns.includes('grade')) {
+  db.exec('ALTER TABLE hsg_topics ADD COLUMN grade INTEGER NOT NULL DEFAULT 11')
 }
 
 // Migration: older databases created "lessons" with a FK to topics(id) only,

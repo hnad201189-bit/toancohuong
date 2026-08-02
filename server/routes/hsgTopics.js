@@ -6,25 +6,28 @@ import { slugify } from '../slugify.js'
 export const hsgTopicsRouter = Router()
 
 function serialize(row) {
-  return { id: row.id, name: row.name, progress: row.progress, hasLesson: !!row.has_lesson }
+  return { id: row.id, grade: row.grade, name: row.name, progress: row.progress, hasLesson: !!row.has_lesson }
 }
 
 hsgTopicsRouter.get('/', (req, res) => {
-  const rows = db.prepare('SELECT * FROM hsg_topics ORDER BY sort_order').all()
+  const grade = Number(req.query.grade) || 11
+  const rows = db.prepare('SELECT * FROM hsg_topics WHERE grade = ? ORDER BY sort_order').all(grade)
   res.json(rows.map(serialize))
 })
 
 hsgTopicsRouter.post('/', requireAuth, (req, res) => {
   const { name, progress = 0 } = req.body || {}
+  const grade = Number(req.body?.grade) || 11
   if (!name) return res.status(400).json({ error: 'Thiếu tên chuyên đề HSG' })
 
-  const id = `hsg-${slugify(name)}`
+  const id = `${grade === 11 ? '' : `l${grade}-`}hsg-${slugify(name)}`
   const existing = db.prepare('SELECT id FROM hsg_topics WHERE id = ?').get(id)
   if (existing) return res.status(409).json({ error: 'Chuyên đề HSG này đã tồn tại' })
 
-  const maxOrder = db.prepare('SELECT MAX(sort_order) AS m FROM hsg_topics').get().m ?? -1
-  db.prepare('INSERT INTO hsg_topics (id, sort_order, name, progress) VALUES (?, ?, ?, ?)').run(
+  const maxOrder = db.prepare('SELECT MAX(sort_order) AS m FROM hsg_topics WHERE grade = ?').get(grade).m ?? -1
+  db.prepare('INSERT INTO hsg_topics (id, grade, sort_order, name, progress) VALUES (?, ?, ?, ?, ?)').run(
     id,
+    grade,
     maxOrder + 1,
     name,
     progress
