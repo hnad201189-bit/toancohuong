@@ -13,6 +13,12 @@ import { LOP6_HINH_HOC_TRUC_QUAN } from './content/lop6HinhHocTrucQuan.mjs'
 import { LOP6_HINH_HOC_CO_BAN } from './content/lop6HinhHocCoBan.mjs'
 import { LOP6_DU_LIEU_XAC_SUAT } from './content/lop6DuLieuXacSuat.mjs'
 import { LOP6_HSG } from './content/lop6Hsg.mjs'
+import { LOP12_DAO_HAM_KHAO_SAT } from './content/lop12DaoHamKhaoSat.mjs'
+import { LOP12_NGUYEN_HAM_TICH_PHAN } from './content/lop12NguyenHamTichPhan.mjs'
+import { LOP12_VECTO_TOA_DO_KHONG_GIAN } from './content/lop12VectoToaDoKhongGian.mjs'
+import { LOP12_PT_MP_DT_MC } from './content/lop12PtMpDtMc.mjs'
+import { LOP12_THONG_KE_NANG_CAO } from './content/lop12ThongKeNangCao.mjs'
+import { LOP12_XAC_SUAT_CO_DIEU_KIEN } from './content/lop12XacSuatCoDieuKien.mjs'
 import { SAMPLE_LESSON } from '../src/data/topics.js'
 
 const { id: sampleId, areaId: _sampleAreaId, title: sampleTitle, ...sampleContent } = SAMPLE_LESSON
@@ -30,6 +36,12 @@ const ALL_REGULAR = {
   ...LOP6_HINH_HOC_TRUC_QUAN,
   ...LOP6_HINH_HOC_CO_BAN,
   ...LOP6_DU_LIEU_XAC_SUAT,
+  ...LOP12_DAO_HAM_KHAO_SAT,
+  ...LOP12_NGUYEN_HAM_TICH_PHAN,
+  ...LOP12_VECTO_TOA_DO_KHONG_GIAN,
+  ...LOP12_PT_MP_DT_MC,
+  ...LOP12_THONG_KE_NANG_CAO,
+  ...LOP12_XAC_SUAT_CO_DIEU_KIEN,
   [sampleId]: { title: sampleTitle, ...sampleContent },
 }
 
