@@ -9,6 +9,7 @@ import { getAreas, getHsgTopics, getLesson } from './api/client'
 import { useLocalStorage } from './hooks/useLocalStorage'
 
 export default function MainSite() {
+  const [grade, setGradeRaw] = useLocalStorage('toan-grade', 11)
   const [hsgMode, setHsgMode] = useLocalStorage('toan11-hsg-mode', false)
   const [view, setView] = useState({ screen: 'dashboard' })
   const [areas, setAreas] = useState(null)
@@ -19,7 +20,7 @@ export default function MainSite() {
 
   function loadData() {
     setLoadError(null)
-    Promise.all([getAreas(), getHsgTopics()])
+    Promise.all([getAreas(grade), grade === 11 ? getHsgTopics() : Promise.resolve([])])
       .then(([a, h]) => {
         setAreas(a)
         setHsgTopics(h)
@@ -27,7 +28,16 @@ export default function MainSite() {
       .catch((e) => setLoadError(e.message))
   }
 
-  useEffect(loadData, [])
+  useEffect(loadData, [grade])
+
+  // Switching grade invalidates whatever area/topic was open — go back to
+  // that grade's dashboard rather than showing a stale/mismatched screen.
+  function setGrade(nextGrade) {
+    if (nextGrade === grade) return
+    setAreas(null)
+    setGradeRaw(nextGrade)
+    setView({ screen: 'dashboard' })
+  }
 
   function goDashboard() {
     loadData()
@@ -102,6 +112,8 @@ export default function MainSite() {
   return (
     <div className="app-shell">
       <Sidebar
+        grade={grade}
+        setGrade={setGrade}
         areas={areas}
         hsgTopics={hsgTopics}
         view={view}
@@ -122,11 +134,12 @@ export default function MainSite() {
           <button className="mobile-topbar__btn" onClick={() => setNavOpen(true)} aria-label="Mở menu">
             ☰
           </button>
-          <span className="mobile-topbar__title">Toán 11</span>
+          <span className="mobile-topbar__title">Toán {grade}</span>
         </div>
 
         {view.screen === 'dashboard' && (
           <Dashboard
+            grade={grade}
             areas={areas}
             hsgTopics={hsgTopics}
             overallProgress={overallProgress}

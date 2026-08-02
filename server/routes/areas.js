@@ -20,6 +20,7 @@ function getTopicsForArea(areaId) {
 function serializeArea(row) {
   return {
     id: row.id,
+    grade: row.grade,
     order: row.order_num,
     name: row.name,
     description: row.description,
@@ -29,7 +30,8 @@ function serializeArea(row) {
 }
 
 areasRouter.get('/', (req, res) => {
-  const rows = db.prepare('SELECT * FROM areas ORDER BY order_num').all()
+  const grade = Number(req.query.grade) || 11
+  const rows = db.prepare('SELECT * FROM areas WHERE grade = ? ORDER BY order_num').all(grade)
   res.json(rows.map(serializeArea))
 })
 
@@ -41,16 +43,17 @@ areasRouter.get('/:id', (req, res) => {
 
 areasRouter.post('/', requireAuth, (req, res) => {
   const { name, description = '', progress = 0 } = req.body || {}
+  const grade = Number(req.body?.grade) || 11
   if (!name) return res.status(400).json({ error: 'Thiếu tên mảng kiến thức' })
 
-  const maxOrder = db.prepare('SELECT MAX(order_num) AS m FROM areas').get().m || 0
-  const id = slugify(name)
+  const maxOrder = db.prepare('SELECT MAX(order_num) AS m FROM areas WHERE grade = ?').get(grade).m || 0
+  const id = `${grade === 11 ? '' : `l${grade}-`}${slugify(name)}`
   const existing = db.prepare('SELECT id FROM areas WHERE id = ?').get(id)
   if (existing) return res.status(409).json({ error: 'Mảng kiến thức này đã tồn tại' })
 
   db.prepare(
-    'INSERT INTO areas (id, order_num, name, description, progress) VALUES (?, ?, ?, ?, ?)'
-  ).run(id, maxOrder + 1, name, description, progress)
+    'INSERT INTO areas (id, grade, order_num, name, description, progress) VALUES (?, ?, ?, ?, ?, ?)'
+  ).run(id, grade, maxOrder + 1, name, description, progress)
 
   res.status(201).json(serializeArea(db.prepare('SELECT * FROM areas WHERE id = ?').get(id)))
 })

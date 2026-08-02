@@ -275,6 +275,33 @@ table {
   flex-shrink: 0;
 }
 
+.sidebar__grade-switch {
+  display: flex;
+  gap: 6px;
+  padding: 0 8px;
+}
+
+.sidebar__grade-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid transparent;
+  color: var(--sidebar-text-soft);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 0;
+  border-radius: 8px;
+}
+
+.sidebar__grade-btn:hover {
+  color: #fff;
+}
+
+.sidebar__grade-btn.is-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
 .sidebar__logo {
   width: 40px;
   height: 40px;

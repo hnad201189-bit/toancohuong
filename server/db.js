@@ -18,6 +18,7 @@ db.exec(`
 
   CREATE TABLE IF NOT EXISTS areas (
     id TEXT PRIMARY KEY,
+    grade INTEGER NOT NULL DEFAULT 11,
     order_num INTEGER NOT NULL,
     name TEXT NOT NULL,
     description TEXT NOT NULL DEFAULT '',
@@ -92,6 +93,14 @@ db.exec(`
 const tutorColumns = db.prepare('PRAGMA table_info(tutors)').all().map((c) => c.name)
 if (!tutorColumns.includes('achievements')) {
   db.exec("ALTER TABLE tutors ADD COLUMN achievements TEXT NOT NULL DEFAULT ''")
+}
+
+// Migration: older databases may already have an "areas" table without the
+// "grade" column added above — existing rows default to 11 (the only grade
+// that existed before multi-grade support).
+const areaColumns = db.prepare('PRAGMA table_info(areas)').all().map((c) => c.name)
+if (!areaColumns.includes('grade')) {
+  db.exec('ALTER TABLE areas ADD COLUMN grade INTEGER NOT NULL DEFAULT 11')
 }
 
 // Migration: older databases may already have a "hsg_topics" table without

@@ -1,6 +1,7 @@
 import ProgressBar from './ProgressBar'
 
 export default function Dashboard({
+  grade,
   areas,
   hsgTopics,
   overallProgress,
@@ -14,7 +15,7 @@ export default function Dashboard({
   return (
     <div className="screen dashboard">
       <header className="screen__header">
-        <h1>Tổng quan chương trình Toán 11</h1>
+        <h1>Tổng quan chương trình Toán {grade}</h1>
         <p className="screen__subtitle">Theo dõi tiến độ học tập theo từng mảng kiến thức và chuyên đề.</p>
       </header>
 
@@ -45,31 +46,33 @@ export default function Dashboard({
         </div>
       </section>
 
-      <section className="hsg-section">
-        <div className="hsg-section__header">
-          <h2 className="section-title section-title--hsg">▲ Ôn thi HSG / chuyên</h2>
-          {!hsgMode && (
-            <button className="btn btn--hsg" onClick={() => setHsgMode(true)}>
-              🔒 Mở chế độ HSG
-            </button>
-          )}
-        </div>
-
-        {hsgMode ? (
-          <div className="grid-areas">
-            {hsgTopics.map((topic) => (
-              <button key={topic.id} className="area-card area-card--hsg" onClick={() => onOpenHsgTopic(topic.id)}>
-                <h3 className="area-card__name">{topic.name}</h3>
-                <ProgressBar value={topic.progress} tone="hsg" size="sm" />
+      {grade === 11 && hsgTopics.length > 0 && (
+        <section className="hsg-section">
+          <div className="hsg-section__header">
+            <h2 className="section-title section-title--hsg">▲ Ôn thi HSG / chuyên</h2>
+            {!hsgMode && (
+              <button className="btn btn--hsg" onClick={() => setHsgMode(true)}>
+                🔒 Mở chế độ HSG
               </button>
-            ))}
+            )}
           </div>
-        ) : (
-          <p className="hsg-section__hint">
-            Mở chế độ ôn thi HSG để truy cập {hsgTopics.length} chuyên đề nâng cao dành cho học sinh giỏi / chuyên.
-          </p>
-        )}
-      </section>
+
+          {hsgMode ? (
+            <div className="grid-areas">
+              {hsgTopics.map((topic) => (
+                <button key={topic.id} className="area-card area-card--hsg" onClick={() => onOpenHsgTopic(topic.id)}>
+                  <h3 className="area-card__name">{topic.name}</h3>
+                  <ProgressBar value={topic.progress} tone="hsg" size="sm" />
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p className="hsg-section__hint">
+              Mở chế độ ôn thi HSG để truy cập {hsgTopics.length} chuyên đề nâng cao dành cho học sinh giỏi / chuyên.
+            </p>
+          )}
+        </section>
+      )}
     </div>
   )
 }

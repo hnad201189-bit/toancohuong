@@ -83,6 +83,168 @@ export const KNOWLEDGE_AREAS = [
   },
 ]
 
+// ---- Lớp 6 (khung sườn — chưa có nội dung bài học chi tiết) ----
+export const GRADE6_AREAS = [
+  {
+    id: 'l6-so-tu-nhien',
+    order: 1,
+    name: 'Số tự nhiên & Tính chia hết',
+    description: 'Tập hợp, các phép tính, luỹ thừa, số nguyên tố, ước chung — bội chung',
+    progress: 0,
+    topics: [
+      { id: 'l6-tap-hop', name: 'Tập hợp và các phép toán trên tập hợp', progress: 0, hasLesson: false },
+      { id: 'l6-phep-tinh-so-tu-nhien', name: 'Các phép tính với số tự nhiên, luỹ thừa', progress: 0, hasLesson: false },
+      { id: 'l6-tinh-chia-het', name: 'Tính chia hết, dấu hiệu chia hết', progress: 0, hasLesson: false },
+      { id: 'l6-so-nguyen-to', name: 'Số nguyên tố, hợp số, phân tích ra thừa số nguyên tố', progress: 0, hasLesson: false },
+      { id: 'l6-uoc-boi-chung', name: 'Ước chung, bội chung, ƯCLN, BCNN', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l6-so-nguyen',
+    order: 2,
+    name: 'Số nguyên',
+    description: 'Tập hợp số nguyên và các phép tính với số nguyên',
+    progress: 0,
+    topics: [
+      { id: 'l6-tap-hop-so-nguyen', name: 'Số nguyên âm và tập hợp số nguyên', progress: 0, hasLesson: false },
+      { id: 'l6-cong-tru-so-nguyen', name: 'Phép cộng, phép trừ số nguyên', progress: 0, hasLesson: false },
+      { id: 'l6-nhan-chia-so-nguyen', name: 'Phép nhân, phép chia số nguyên', progress: 0, hasLesson: false },
+      { id: 'l6-quy-tac-dau-ngoac', name: 'Quy tắc dấu ngoặc, quy tắc chuyển vế', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l6-phan-so-thap-phan',
+    order: 3,
+    name: 'Phân số & Số thập phân',
+    description: 'Phân số, số thập phân, tỉ số và tỉ số phần trăm',
+    progress: 0,
+    topics: [
+      { id: 'l6-khai-niem-phan-so', name: 'Khái niệm phân số, phân số bằng nhau', progress: 0, hasLesson: false },
+      { id: 'l6-phep-tinh-phan-so', name: 'Các phép tính với phân số', progress: 0, hasLesson: false },
+      { id: 'l6-so-thap-phan', name: 'Số thập phân và các phép tính', progress: 0, hasLesson: false },
+      { id: 'l6-ti-so-phan-tram', name: 'Tỉ số, tỉ số phần trăm', progress: 0, hasLesson: false },
+      { id: 'l6-hai-bai-toan-phan-so', name: 'Hai bài toán về phân số', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l6-hinh-hoc-truc-quan',
+    order: 4,
+    name: 'Hình học trực quan',
+    description: 'Các hình phẳng trong thực tiễn và tính đối xứng',
+    progress: 0,
+    topics: [
+      { id: 'l6-tam-giac-deu-luc-giac', name: 'Tam giác đều, hình vuông, lục giác đều', progress: 0, hasLesson: false },
+      { id: 'l6-hinh-binh-hanh-hinh-thang', name: 'Hình chữ nhật, hình thoi, hình bình hành, hình thang cân', progress: 0, hasLesson: false },
+      { id: 'l6-chu-vi-dien-tich', name: 'Chu vi và diện tích các hình đã học', progress: 0, hasLesson: false },
+      { id: 'l6-tinh-doi-xung', name: 'Tính đối xứng của hình phẳng', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l6-hinh-hoc-co-ban',
+    order: 5,
+    name: 'Hình học cơ bản',
+    description: 'Điểm, đường thẳng, đoạn thẳng, góc',
+    progress: 0,
+    topics: [
+      { id: 'l6-diem-duong-thang', name: 'Điểm, đường thẳng, ba điểm thẳng hàng', progress: 0, hasLesson: false },
+      { id: 'l6-doan-thang-trung-diem', name: 'Đoạn thẳng, độ dài đoạn thẳng, trung điểm', progress: 0, hasLesson: false },
+      { id: 'l6-tia-va-goc', name: 'Tia, góc và số đo góc', progress: 0, hasLesson: false },
+      { id: 'l6-cac-loai-goc', name: 'Các loại góc, hai góc kề bù', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l6-du-lieu-xac-suat',
+    order: 6,
+    name: 'Dữ liệu & Xác suất thực nghiệm',
+    description: 'Thu thập, biểu diễn dữ liệu và xác suất thực nghiệm',
+    progress: 0,
+    topics: [
+      { id: 'l6-thu-thap-du-lieu', name: 'Thu thập, phân loại và biểu diễn dữ liệu', progress: 0, hasLesson: false },
+      { id: 'l6-bieu-do', name: 'Biểu đồ tranh, biểu đồ cột', progress: 0, hasLesson: false },
+      { id: 'l6-xac-suat-thuc-nghiem', name: 'Phép thử nghiệm, sự kiện, xác suất thực nghiệm', progress: 0, hasLesson: false },
+    ],
+  },
+]
+
+// ---- Lớp 12 (khung sườn — chưa có nội dung bài học chi tiết) ----
+export const GRADE12_AREAS = [
+  {
+    id: 'l12-dao-ham-khao-sat',
+    order: 1,
+    name: 'Ứng dụng đạo hàm & Khảo sát hàm số',
+    description: 'Tính đơn điệu, cực trị, GTLN-GTNN, tiệm cận, khảo sát và vẽ đồ thị',
+    progress: 0,
+    topics: [
+      { id: 'l12-don-dieu-cuc-tri', name: 'Tính đơn điệu và cực trị của hàm số', progress: 0, hasLesson: false },
+      { id: 'l12-gtln-gtnn', name: 'Giá trị lớn nhất, giá trị nhỏ nhất của hàm số', progress: 0, hasLesson: false },
+      { id: 'l12-duong-tiem-can', name: 'Đường tiệm cận của đồ thị hàm số', progress: 0, hasLesson: false },
+      { id: 'l12-khao-sat-ham-so', name: 'Khảo sát và vẽ đồ thị hàm số', progress: 0, hasLesson: false },
+      { id: 'l12-ung-dung-dao-ham-thuc-te', name: 'Ứng dụng đạo hàm giải quyết bài toán thực tế', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l12-nguyen-ham-tich-phan',
+    order: 2,
+    name: 'Nguyên hàm & Tích phân',
+    description: 'Nguyên hàm, tích phân và các ứng dụng tính diện tích, thể tích',
+    progress: 0,
+    topics: [
+      { id: 'l12-nguyen-ham', name: 'Nguyên hàm và các tính chất', progress: 0, hasLesson: false },
+      { id: 'l12-tich-phan', name: 'Tích phân và các phương pháp tính', progress: 0, hasLesson: false },
+      { id: 'l12-ung-dung-tich-phan-dien-tich', name: 'Ứng dụng tích phân tính diện tích hình phẳng', progress: 0, hasLesson: false },
+      { id: 'l12-ung-dung-tich-phan-the-tich', name: 'Ứng dụng tích phân tính thể tích vật thể', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l12-vecto-toa-do-khong-gian',
+    order: 3,
+    name: 'Vectơ & Toạ độ trong không gian',
+    description: 'Vectơ, toạ độ điểm và vectơ trong không gian Oxyz',
+    progress: 0,
+    topics: [
+      { id: 'l12-vecto-khong-gian', name: 'Vectơ và các phép toán vectơ trong không gian', progress: 0, hasLesson: false },
+      { id: 'l12-toa-do-diem-vecto', name: 'Toạ độ của điểm và vectơ trong không gian', progress: 0, hasLesson: false },
+      { id: 'l12-bieu-thuc-toa-do', name: 'Biểu thức toạ độ của các phép toán vectơ', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l12-pt-mp-dt-mc',
+    order: 4,
+    name: 'Phương trình mặt phẳng, đường thẳng, mặt cầu',
+    description: 'Viết phương trình và tính góc, khoảng cách trong không gian toạ độ',
+    progress: 0,
+    topics: [
+      { id: 'l12-pt-mat-phang', name: 'Phương trình mặt phẳng', progress: 0, hasLesson: false },
+      { id: 'l12-pt-duong-thang', name: 'Phương trình đường thẳng trong không gian', progress: 0, hasLesson: false },
+      { id: 'l12-pt-mat-cau', name: 'Phương trình mặt cầu', progress: 0, hasLesson: false },
+      { id: 'l12-khoang-cach-goc-toa-do', name: 'Khoảng cách và góc trong không gian toạ độ', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l12-thong-ke-nang-cao',
+    order: 5,
+    name: 'Thống kê',
+    description: 'Số đặc trưng đo mức độ phân tán cho mẫu số liệu ghép nhóm (nâng cao)',
+    progress: 0,
+    topics: [
+      { id: 'l12-khoang-bien-thien-nang-cao', name: 'Khoảng biến thiên, khoảng tứ phân vị của mẫu số liệu ghép nhóm', progress: 0, hasLesson: false },
+      { id: 'l12-phuong-sai-nang-cao', name: 'Phương sai, độ lệch chuẩn của mẫu số liệu ghép nhóm', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l12-xac-suat-co-dieu-kien',
+    order: 6,
+    name: 'Xác suất có điều kiện',
+    description: 'Xác suất có điều kiện, công thức nhân xác suất và công thức xác suất toàn phần',
+    progress: 0,
+    topics: [
+      { id: 'l12-khai-niem-xstd', name: 'Khái niệm xác suất có điều kiện', progress: 0, hasLesson: false },
+      { id: 'l12-cong-thuc-nhan-xac-suat', name: 'Công thức nhân xác suất, công thức Bayes', progress: 0, hasLesson: false },
+      { id: 'l12-cong-thuc-xac-suat-toan-phan', name: 'Công thức xác suất toàn phần', progress: 0, hasLesson: false },
+    ],
+  },
+]
+
 export const HSG_TOPICS = [
   { id: 'hsg-pt-luong-giac-tham-so', name: 'PT lượng giác chứa tham số', progress: 10 },
   { id: 'hsg-day-so-truy-hoi', name: 'Dãy số truy hồi & giới hạn nâng cao', progress: 5 },

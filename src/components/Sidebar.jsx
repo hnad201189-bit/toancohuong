@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 
+const GRADES = [6, 11, 12]
+
 export default function Sidebar({
+  grade,
+  setGrade,
   areas,
   hsgTopics,
   view,
@@ -23,14 +27,26 @@ export default function Sidebar({
   return (
     <aside className={`sidebar ${open ? 'is-open' : ''}`}>
       <div className="sidebar__brand">
-        <div className="sidebar__logo">11</div>
+        <div className="sidebar__logo">{grade}</div>
         <div className="sidebar__brand-name">
-          Toán 11
+          Toán {grade}
           <span>Học theo chuyên đề</span>
         </div>
         <button className="sidebar__close" onClick={onClose} aria-label="Đóng menu">
           ✕
         </button>
+      </div>
+
+      <div className="sidebar__grade-switch">
+        {GRADES.map((g) => (
+          <button
+            key={g}
+            className={`sidebar__grade-btn ${grade === g ? 'is-active' : ''}`}
+            onClick={() => go(setGrade, g)}
+          >
+            Lớp {g}
+          </button>
+        ))}
       </div>
 
       <nav className="sidebar__nav">
@@ -69,46 +85,50 @@ export default function Sidebar({
           ))}
         </ul>
 
-        <div className={`sidebar__hsg-group ${!hsgMode ? 'is-locked' : ''}`}>
-          <div className="sidebar__group-label sidebar__group-label--hsg">
-            ▲ Ôn thi HSG / chuyên
+        {grade === 11 && hsgTopics.length > 0 && (
+          <div className={`sidebar__hsg-group ${!hsgMode ? 'is-locked' : ''}`}>
+            <div className="sidebar__group-label sidebar__group-label--hsg">
+              ▲ Ôn thi HSG / chuyên
+            </div>
+            <ul className="sidebar__list">
+              {hsgTopics.map((topic) => (
+                <li key={topic.id}>
+                  <button
+                    className={`sidebar__item sidebar__item--hsg ${view.screen === 'lesson' && view.topicId === topic.id ? 'is-active' : ''}`}
+                    disabled={!hsgMode}
+                    onClick={() => go(onGoHsgTopic, topic.id)}
+                  >
+                    <span className="sidebar__item-name">{topic.name}</span>
+                    {!hsgMode && <span className="sidebar__lock">🔒</span>}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="sidebar__list">
-            {hsgTopics.map((topic) => (
-              <li key={topic.id}>
-                <button
-                  className={`sidebar__item sidebar__item--hsg ${view.screen === 'lesson' && view.topicId === topic.id ? 'is-active' : ''}`}
-                  disabled={!hsgMode}
-                  onClick={() => go(onGoHsgTopic, topic.id)}
-                >
-                  <span className="sidebar__item-name">{topic.name}</span>
-                  {!hsgMode && <span className="sidebar__lock">🔒</span>}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        )}
       </nav>
 
       <div className="sidebar__footer">
-        <label className="hsg-toggle">
-          <span>Chế độ ôn thi HSG</span>
-          <span
-            className={`hsg-toggle__switch ${hsgMode ? 'is-on' : ''}`}
-            role="switch"
-            aria-checked={hsgMode}
-            tabIndex={0}
-            onClick={() => setHsgMode((v) => !v)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                setHsgMode((v) => !v)
-              }
-            }}
-          >
-            <span className="hsg-toggle__knob" />
-          </span>
-        </label>
+        {grade === 11 && (
+          <label className="hsg-toggle">
+            <span>Chế độ ôn thi HSG</span>
+            <span
+              className={`hsg-toggle__switch ${hsgMode ? 'is-on' : ''}`}
+              role="switch"
+              aria-checked={hsgMode}
+              tabIndex={0}
+              onClick={() => setHsgMode((v) => !v)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  setHsgMode((v) => !v)
+                }
+              }}
+            >
+              <span className="hsg-toggle__knob" />
+            </span>
+          </label>
+        )}
 
         <Link to="/admin" className="sidebar__admin-link">
           ⚙ Trang quản trị
