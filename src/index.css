@@ -1621,6 +1621,84 @@ table {
   font-size: 14px;
 }
 
+.tutor-browse__nearby {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tutor-browse__nearby-active {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.tutor-browse__radius {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.tutor-browse__radius select {
+  padding: 7px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-btn);
+  font: inherit;
+  font-size: 13px;
+  background: #fff;
+}
+
+.location-map {
+  width: 100%;
+  border-radius: var(--radius-card-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.location-map__user-marker span {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.tutor-card__distance {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.tutor-register__location {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tutor-register__location-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.tutor-register__location-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+
 .tutor-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1834,6 +1912,35 @@ table {
 .admin-tutor-status--rejected {
   background: rgba(192, 57, 43, 0.1);
   color: var(--danger);
+}
+
+.admin-tutor-location-editor {
+  flex-basis: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 4px;
+}
+
+.admin-tutor-location-editor__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-tutor-location-editor__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 /* Admin contact requests page */

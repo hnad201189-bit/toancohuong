@@ -11,6 +11,17 @@ function maskPhone(phone) {
   return '*'.repeat(digits.length - 3) + visible
 }
 
+// Haversine distance between two lat/lng points, in kilometers.
+function distanceKm(lat1, lng1, lat2, lng2) {
+  const toRad = (deg) => (deg * Math.PI) / 180
+  const R = 6371
+  const dLat = toRad(lat2 - lat1)
+  const dLng = toRad(lng2 - lng1)
+  const a =
+    Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+}
+
 function serializeBase(row) {
   return {
     id: row.id,
@@ -22,6 +33,8 @@ function serializeBase(row) {
     price: row.price,
     status: row.status,
     createdAt: row.created_at,
+    lat: row.lat ?? null,
+    lng: row.lng ?? null,
   }
 }
 
@@ -35,7 +48,7 @@ function serializeAdmin(row) {
 
 // ---- Public: list approved tutors, optional filters (phone masked) ----
 tutorsRouter.get('/', (req, res) => {
-  const { area, subject } = req.query
+  const { area, subject, lat, lng, radius } = req.query
   let rows = db.prepare("SELECT * FROM tutors WHERE status = 'approved' ORDER BY created_at DESC").all()
 
   if (area) {
@@ -46,21 +59,36 @@ tutorsRouter.get('/', (req, res) => {
     rows = rows.filter((r) => r.subjects.split(',').includes(subject))
   }
 
-  res.json(rows.map(serializePublic))
+  let results = rows.map(serializePublic)
+
+  const userLat = Number(lat)
+  const userLng = Number(lng)
+  if (Number.isFinite(userLat) && Number.isFinite(userLng)) {
+    const radiusKm = Number.isFinite(Number(radius)) && Number(radius) > 0 ? Number(radius) : 15
+    results = results
+      .filter((t) => t.lat != null && t.lng != null)
+      .map((t) => ({ ...t, distanceKm: Math.round(distanceKm(userLat, userLng, t.lat, t.lng) * 10) / 10 }))
+      .filter((t) => t.distanceKm <= radiusKm)
+      .sort((a, b) => a.distanceKm - b.distanceKm)
+  }
+
+  res.json(results)
 })
 
 // ---- Public: tutor self-registration (always starts as pending) ----
 tutorsRouter.post('/', (req, res) => {
-  const { name, phone, subjects, area, bio, achievements, price } = req.body || {}
+  const { name, phone, subjects, area, bio, achievements, price, lat, lng } = req.body || {}
   if (!name?.trim() || !phone?.trim()) {
     return res.status(400).json({ error: 'Thiếu tên hoặc số điện thoại' })
   }
 
   const subjectsStr = Array.isArray(subjects) ? subjects.join(',') : ''
+  const latVal = Number.isFinite(Number(lat)) ? Number(lat) : null
+  const lngVal = Number.isFinite(Number(lng)) ? Number(lng) : null
   const result = db
     .prepare(
-      `INSERT INTO tutors (name, phone, subjects, area, bio, achievements, price, status, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?)`
+      `INSERT INTO tutors (name, phone, subjects, area, bio, achievements, price, status, created_at, lat, lng)
+       VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?, ?)`
     )
     .run(
       name.trim(),
@@ -70,7 +98,9 @@ tutorsRouter.post('/', (req, res) => {
       (bio || '').trim(),
       (achievements || '').trim(),
       (price || '').trim(),
-      new Date().toISOString()
+      new Date().toISOString(),
+      latVal,
+      lngVal
     )
 
   res.status(201).json(serializeAdmin(db.prepare('SELECT * FROM tutors WHERE id = ?').get(result.lastInsertRowid)))
@@ -113,14 +143,17 @@ tutorsRouter.put('/:id', requireAuth, (req, res) => {
   const achievements = req.body?.achievements ?? row.achievements
   const price = req.body?.price ?? row.price
   const status = req.body?.status ?? row.status
+  // lat/lng support explicit clearing via `null` (distinct from an omitted key, which keeps the old value).
+  const lat = 'lat' in (req.body || {}) ? (Number.isFinite(Number(req.body.lat)) ? Number(req.body.lat) : null) : row.lat
+  const lng = 'lng' in (req.body || {}) ? (Number.isFinite(Number(req.body.lng)) ? Number(req.body.lng) : null) : row.lng
 
   if (!['pending', 'approved', 'rejected'].includes(status)) {
     return res.status(400).json({ error: 'Trạng thái không hợp lệ' })
   }
 
   db.prepare(
-    `UPDATE tutors SET name = ?, phone = ?, subjects = ?, area = ?, bio = ?, achievements = ?, price = ?, status = ? WHERE id = ?`
-  ).run(name, phone, subjects, area, bio, achievements, price, status, req.params.id)
+    `UPDATE tutors SET name = ?, phone = ?, subjects = ?, area = ?, bio = ?, achievements = ?, price = ?, status = ?, lat = ?, lng = ? WHERE id = ?`
+  ).run(name, phone, subjects, area, bio, achievements, price, status, lat, lng, req.params.id)
 
   res.json(serializeAdmin(db.prepare('SELECT * FROM tutors WHERE id = ?').get(req.params.id)))
 })

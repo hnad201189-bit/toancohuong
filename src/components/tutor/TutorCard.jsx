@@ -33,7 +33,14 @@ export default function TutorCard({ tutor }) {
         </div>
       </div>
 
-      {tutor.area && <p className="tutor-card__area">📍 {tutor.area}</p>}
+      {(tutor.area || tutor.distanceKm != null) && (
+        <p className="tutor-card__area">
+          📍 {tutor.area}
+          {tutor.distanceKm != null && (
+            <span className="tutor-card__distance">{tutor.area ? ' · ' : ''}cách bạn {tutor.distanceKm} km</span>
+          )}
+        </p>
+      )}
 
       {tutor.subjects.length > 0 && (
         <div className="tutor-card__subjects">

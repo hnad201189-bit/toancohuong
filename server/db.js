@@ -59,7 +59,9 @@ db.exec(`
     achievements TEXT NOT NULL DEFAULT '',
     price TEXT NOT NULL DEFAULT '',
     status TEXT NOT NULL DEFAULT 'pending',
-    created_at TEXT NOT NULL
+    created_at TEXT NOT NULL,
+    lat REAL,
+    lng REAL
   );
 
   CREATE TABLE IF NOT EXISTS contact_requests (
@@ -94,6 +96,15 @@ db.exec(`
 const tutorColumns = db.prepare('PRAGMA table_info(tutors)').all().map((c) => c.name)
 if (!tutorColumns.includes('achievements')) {
   db.exec("ALTER TABLE tutors ADD COLUMN achievements TEXT NOT NULL DEFAULT ''")
+}
+// Migration: older databases predate the "find tutors near me" map feature and
+// have no lat/lng columns — existing rows have no location until a tutor or
+// admin sets one via the map picker.
+if (!tutorColumns.includes('lat')) {
+  db.exec('ALTER TABLE tutors ADD COLUMN lat REAL')
+}
+if (!tutorColumns.includes('lng')) {
+  db.exec('ALTER TABLE tutors ADD COLUMN lng REAL')
 }
 
 // Migration: older databases may already have an "areas" table without the

@@ -1,14 +1,35 @@
 import { useState } from 'react'
 import { registerTutor } from '../../api/client'
 import { SUBJECT_OPTIONS } from '../../data/subjects'
+import { getCurrentPosition } from '../../lib/geolocation'
+import LocationMap from './LocationMap'
 
-const BLANK = { name: '', phone: '', area: '', bio: '', achievements: '', price: '', subjects: [] }
+const BLANK = { name: '', phone: '', area: '', bio: '', achievements: '', price: '', subjects: [], lat: null, lng: null }
 
 export default function TutorRegisterForm({ onDone }) {
   const [form, setForm] = useState(BLANK)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
   const [done, setDone] = useState(false)
+  const [locating, setLocating] = useState(false)
+  const [locationError, setLocationError] = useState(null)
+
+  function handlePick(lat, lng) {
+    setForm((v) => ({ ...v, lat, lng }))
+  }
+
+  async function handleUseMyLocation() {
+    setLocating(true)
+    setLocationError(null)
+    try {
+      const { lat, lng } = await getCurrentPosition()
+      setForm((v) => ({ ...v, lat, lng }))
+    } catch (err) {
+      setLocationError(err.message)
+    } finally {
+      setLocating(false)
+    }
+  }
 
   function toggleSubject(s) {
     setForm((v) => ({
@@ -76,6 +97,33 @@ export default function TutorRegisterForm({ onDone }) {
         value={form.area}
         onChange={(e) => setForm((v) => ({ ...v, area: e.target.value }))}
       />
+
+      <div className="tutor-register__location">
+        <div className="tutor-register__location-head">
+          <span>
+            📍 Ghim vị trí trên bản đồ (không bắt buộc) — giúp phụ huynh tìm thấy bạn qua tính năng "Tìm gần đây"
+          </span>
+          <button type="button" className="btn btn--ghost" onClick={handleUseMyLocation} disabled={locating}>
+            {locating ? 'Đang định vị…' : 'Dùng vị trí hiện tại'}
+          </button>
+        </div>
+        {locationError && <p className="admin-error">{locationError}</p>}
+        <LocationMap lat={form.lat} lng={form.lng} onPick={handlePick} height={220} />
+        <div className="tutor-register__location-foot">
+          {form.lat != null && form.lng != null ? (
+            <>
+              <span>
+                Đã chọn: {form.lat.toFixed(5)}, {form.lng.toFixed(5)}
+              </span>
+              <button type="button" className="btn btn--ghost" onClick={() => setForm((v) => ({ ...v, lat: null, lng: null }))}>
+                Xoá vị trí
+              </button>
+            </>
+          ) : (
+            <span>Chưa chọn vị trí — bấm vào bản đồ để ghim, hoặc kéo thả ghim để chỉnh.</span>
+          )}
+        </div>
+      </div>
 
       <div className="tutor-register__subjects">
         {SUBJECT_OPTIONS.map((s) => (
