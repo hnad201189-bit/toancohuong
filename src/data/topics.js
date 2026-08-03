@@ -164,6 +164,20 @@ export const GRADE6_AREAS = [
       { id: 'l6-xac-suat-thuc-nghiem', name: 'Phép thử nghiệm, sự kiện, xác suất thực nghiệm', progress: 0, hasLesson: false },
     ],
   },
+  {
+    id: 'l6-luyen-de-tong-hop',
+    order: 7,
+    name: 'Luyện đề tổng hợp Toán 6',
+    description: 'Bài tập tổng hợp mức độ cơ bản đến nâng cao, luyện theo từng chương',
+    progress: 0,
+    topics: [
+      { id: 'l6-lt-so-tu-nhien', name: 'Luyện tập: Số tự nhiên và bốn phép tính', progress: 0, hasLesson: false },
+      { id: 'l6-lt-chia-het', name: 'Luyện tập: Tính chia hết, số nguyên tố, ước chung – bội chung', progress: 0, hasLesson: false },
+      { id: 'l6-lt-so-nguyen', name: 'Luyện tập: Số nguyên', progress: 0, hasLesson: false },
+      { id: 'l6-lt-phan-so', name: 'Luyện tập: Phân số và số thập phân', progress: 0, hasLesson: false },
+      { id: 'l6-lt-hinh-hoc', name: 'Luyện tập: Hình học phẳng (đoạn thẳng, góc, tam giác)', progress: 0, hasLesson: false },
+    ],
+  },
 ]
 
 // ---- Lớp 12 (khung sườn — chưa có nội dung bài học chi tiết) ----

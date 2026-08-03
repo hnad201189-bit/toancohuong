@@ -13,6 +13,7 @@ import { LOP6_HINH_HOC_TRUC_QUAN } from './content/lop6HinhHocTrucQuan.mjs'
 import { LOP6_HINH_HOC_CO_BAN } from './content/lop6HinhHocCoBan.mjs'
 import { LOP6_DU_LIEU_XAC_SUAT } from './content/lop6DuLieuXacSuat.mjs'
 import { LOP6_HSG } from './content/lop6Hsg.mjs'
+import { LOP6_LUYEN_DE_TONG_HOP } from './content/lop6LuyenDeTongHop.mjs'
 import { LOP12_DAO_HAM_KHAO_SAT } from './content/lop12DaoHamKhaoSat.mjs'
 import { LOP12_NGUYEN_HAM_TICH_PHAN } from './content/lop12NguyenHamTichPhan.mjs'
 import { LOP12_VECTO_TOA_DO_KHONG_GIAN } from './content/lop12VectoToaDoKhongGian.mjs'
@@ -36,6 +37,7 @@ const ALL_REGULAR = {
   ...LOP6_HINH_HOC_TRUC_QUAN,
   ...LOP6_HINH_HOC_CO_BAN,
   ...LOP6_DU_LIEU_XAC_SUAT,
+  ...LOP6_LUYEN_DE_TONG_HOP,
   ...LOP12_DAO_HAM_KHAO_SAT,
   ...LOP12_NGUYEN_HAM_TICH_PHAN,
   ...LOP12_VECTO_TOA_DO_KHONG_GIAN,
