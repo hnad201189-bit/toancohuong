@@ -167,3 +167,36 @@ export function seedMissingLessons() {
   }
   return inserted
 }
+
+// Runs on every server start. Unlike backfillMissingExamBanks/seedMissingLessons,
+// this targets a single field: `practiceBank`, added to some already-fully-seeded
+// lessons (e.g. the "Luyện đề tổng hợp" topics) after their lesson rows already
+// existed. Patches only lessons missing (or with an empty) practiceBank, and only
+// ever touches that one key — title/theory/quiz/essays/flashcards/exam are spread
+// through untouched, so any future admin edit to those fields survives.
+export function backfillPracticeBanks() {
+  const rows = db.prepare('SELECT topic_id, content FROM lessons').all()
+  const updateContent = db.prepare('UPDATE lessons SET content = ? WHERE topic_id = ?')
+  let patched = 0
+
+  for (const row of rows) {
+    let content
+    try {
+      content = JSON.parse(row.content)
+    } catch {
+      continue
+    }
+    if (content.practiceBank?.length > 0) continue
+
+    const source = ALL_REGULAR[row.topic_id]
+    if (!source?.practiceBank?.length) continue
+
+    updateContent.run(JSON.stringify({ ...content, practiceBank: source.practiceBank }), row.topic_id)
+    patched++
+  }
+
+  if (patched > 0) {
+    console.log(`Backfilled practice banks for ${patched} lesson(s) that were missing practiceBank.`)
+  }
+  return patched
+}
