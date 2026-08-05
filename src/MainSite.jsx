@@ -82,6 +82,10 @@ export default function MainSite() {
     goLesson(topicId, { label: 'Tổng quan', onBack: goDashboard })
   }
 
+  function goMockExam(exam) {
+    setView({ screen: 'mock-exam', examId: exam.id, examName: exam.name })
+  }
+
   if (!gateConfirmed) {
     return <GradeGate selectedGrade={grade} onSelect={selectGradeFromGate} />
   }
@@ -135,6 +139,7 @@ export default function MainSite() {
         onGoDashboard={goDashboard}
         onGoArea={goArea}
         onGoHsgTopic={goHsgTopic}
+        onGoMockExam={goMockExam}
         onGoPhotoSolve={goPhotoSolve}
         onGoTutorFinder={goTutorFinder}
         open={navOpen}
@@ -193,6 +198,18 @@ export default function MainSite() {
 
         {view.screen === 'lesson' && lesson && (
           <Lesson lesson={lesson} areaName={view.back?.label ?? 'Tổng quan'} onBack={view.back?.onBack ?? goDashboard} />
+        )}
+
+        {view.screen === 'mock-exam' && (
+          <div className="screen">
+            <button className="breadcrumb" onClick={goDashboard}>
+              ← Tổng quan
+            </button>
+            <div className="card empty-state">
+              <h2>{view.examName}</h2>
+              <p>Đề thi thử cho khối lớp {grade} đang được biên soạn, sẽ sớm được cập nhật.</p>
+            </div>
+          </div>
         )}
 
         {view.screen === 'photo-solve' && <PhotoSolve onBack={goDashboard} />}

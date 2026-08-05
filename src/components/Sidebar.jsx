@@ -1,6 +1,21 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const GRADES = [6, 7, 8, 9, 10, 11, 12]
+
+const BASE_MOCK_EXAMS = [
+  { id: 'giua-ky-1', name: 'Thi giữa kì I' },
+  { id: 'het-ky-1', name: 'Thi hết kì I' },
+  { id: 'giua-ky-2', name: 'Thi giữa kì II' },
+  { id: 'het-ky-2', name: 'Thi hết kì II' },
+]
+
+function getMockExams(grade) {
+  const list = [...BASE_MOCK_EXAMS]
+  if (grade === 9) list.push({ id: 'vao-10', name: 'Thi vào 10' })
+  if (grade === 12) list.push({ id: 'dai-hoc', name: 'Thi Đại học' })
+  return list
+}
 
 export default function Sidebar({
   grade,
@@ -13,11 +28,16 @@ export default function Sidebar({
   onGoDashboard,
   onGoArea,
   onGoHsgTopic,
+  onGoMockExam,
   onGoPhotoSolve,
   onGoTutorFinder,
   open,
   onClose,
 }) {
+  const [coBanOpen, setCoBanOpen] = useState(false)
+  const [thiThuOpen, setThiThuOpen] = useState(false)
+  const mockExams = getMockExams(grade)
+
   // On mobile the sidebar is a slide-in drawer — close it after any navigation.
   function go(fn, ...args) {
     fn(...args)
@@ -70,21 +90,55 @@ export default function Sidebar({
           🎓 Tìm gia sư
         </button>
 
-        <div className="sidebar__group-label">Mảng kiến thức</div>
-        <ul className="sidebar__list">
-          {areas.map((area) => (
-            <li key={area.id}>
-              <button
-                className={`sidebar__item ${view.screen !== 'dashboard' && view.areaId === area.id ? 'is-active' : ''}`}
-                onClick={() => go(onGoArea, area.id)}
-              >
-                <span className="sidebar__item-order">{area.order}</span>
-                <span className="sidebar__item-name">{area.name}</span>
-                <span className="sidebar__item-pct">{area.progress}%</span>
-              </button>
-            </li>
-          ))}
-        </ul>
+        <button
+          type="button"
+          className="sidebar__group-label sidebar__group-label--toggle"
+          aria-expanded={coBanOpen}
+          onClick={() => setCoBanOpen((v) => !v)}
+        >
+          KIẾN THỨC CƠ BẢN
+          <span className="sidebar__group-caret">{coBanOpen ? '▾' : '▸'}</span>
+        </button>
+        {coBanOpen && (
+          <ul className="sidebar__list">
+            {areas.map((area) => (
+              <li key={area.id}>
+                <button
+                  className={`sidebar__item ${view.screen !== 'dashboard' && view.areaId === area.id ? 'is-active' : ''}`}
+                  onClick={() => go(onGoArea, area.id)}
+                >
+                  <span className="sidebar__item-order">{area.order}</span>
+                  <span className="sidebar__item-name">{area.name}</span>
+                  <span className="sidebar__item-pct">{area.progress}%</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <button
+          type="button"
+          className="sidebar__group-label sidebar__group-label--toggle"
+          aria-expanded={thiThuOpen}
+          onClick={() => setThiThuOpen((v) => !v)}
+        >
+          THI THỬ
+          <span className="sidebar__group-caret">{thiThuOpen ? '▾' : '▸'}</span>
+        </button>
+        {thiThuOpen && (
+          <ul className="sidebar__list">
+            {mockExams.map((exam) => (
+              <li key={exam.id}>
+                <button
+                  className={`sidebar__item ${view.screen === 'mock-exam' && view.examId === exam.id ? 'is-active' : ''}`}
+                  onClick={() => go(onGoMockExam, exam)}
+                >
+                  <span className="sidebar__item-name">{exam.name}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {hsgTopics.length > 0 && (
           <div className={`sidebar__hsg-group ${!hsgMode ? 'is-locked' : ''}`}>
