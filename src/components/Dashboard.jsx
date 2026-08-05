@@ -29,22 +29,29 @@ export default function Dashboard({
         </button>
       </section>
 
-      <section>
-        <h2 className="section-title">{areas.length} mảng kiến thức</h2>
-        <div className="grid-areas">
-          {areas.map((area) => (
-            <button key={area.id} className="area-card" onClick={() => onOpenArea(area.id)}>
-              <div className="area-card__top">
-                <span className="area-card__order">{area.order}</span>
-                <span className="area-card__count">{area.topics.length} chuyên đề</span>
-              </div>
-              <h3 className="area-card__name">{area.name}</h3>
-              <p className="area-card__desc">{area.description}</p>
-              <ProgressBar value={area.progress} />
-            </button>
-          ))}
+      {areas.length > 0 ? (
+        <section>
+          <h2 className="section-title">{areas.length} mảng kiến thức</h2>
+          <div className="grid-areas">
+            {areas.map((area) => (
+              <button key={area.id} className="area-card" onClick={() => onOpenArea(area.id)}>
+                <div className="area-card__top">
+                  <span className="area-card__order">{area.order}</span>
+                  <span className="area-card__count">{area.topics.length} chuyên đề</span>
+                </div>
+                <h3 className="area-card__name">{area.name}</h3>
+                <p className="area-card__desc">{area.description}</p>
+                <ProgressBar value={area.progress} />
+              </button>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <div className="card empty-state">
+          <h2>Chương trình Toán {grade} đang được biên soạn</h2>
+          <p>Nội dung chuyên đề cho khối lớp này sẽ sớm được cập nhật. Bạn có thể chọn lớp khác ở thanh bên.</p>
         </div>
-      </section>
+      )}
 
       {hsgTopics.length > 0 && (
         <section className="hsg-section">

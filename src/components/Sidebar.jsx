@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const GRADES = [6, 11, 12]
+const GRADES = [6, 7, 8, 9, 10, 11, 12]
 
 export default function Sidebar({
   grade,
@@ -43,8 +43,9 @@ export default function Sidebar({
             key={g}
             className={`sidebar__grade-btn ${grade === g ? 'is-active' : ''}`}
             onClick={() => go(setGrade, g)}
+            title={`Lớp ${g}`}
           >
-            Lớp {g}
+            {g}
           </button>
         ))}
       </div>

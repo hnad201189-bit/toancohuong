@@ -5,6 +5,7 @@ import TopicDetail from './components/TopicDetail'
 import Lesson from './components/lesson/Lesson'
 import PhotoSolve from './components/PhotoSolve'
 import TutorFinder from './components/tutor/TutorFinder'
+import GradeGate from './components/GradeGate'
 import { getAreas, getHsgTopics, getLesson } from './api/client'
 import { useLocalStorage } from './hooks/useLocalStorage'
 
@@ -17,6 +18,9 @@ export default function MainSite() {
   const [lesson, setLesson] = useState(null)
   const [loadError, setLoadError] = useState(null)
   const [navOpen, setNavOpen] = useState(false)
+  // Not persisted on purpose — the grade picker is meant to greet the user
+  // on every visit, not just the first one.
+  const [gateConfirmed, setGateConfirmed] = useState(false)
 
   function loadData() {
     setLoadError(null)
@@ -37,6 +41,11 @@ export default function MainSite() {
     setAreas(null)
     setGradeRaw(nextGrade)
     setView({ screen: 'dashboard' })
+  }
+
+  function selectGradeFromGate(nextGrade) {
+    setGrade(nextGrade)
+    setGateConfirmed(true)
   }
 
   function goDashboard() {
@@ -71,6 +80,10 @@ export default function MainSite() {
   function goHsgTopic(topicId) {
     if (!hsgMode) return
     goLesson(topicId, { label: 'Tổng quan', onBack: goDashboard })
+  }
+
+  if (!gateConfirmed) {
+    return <GradeGate selectedGrade={grade} onSelect={selectGradeFromGate} />
   }
 
   if (loadError) {
