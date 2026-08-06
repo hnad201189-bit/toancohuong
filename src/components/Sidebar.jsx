@@ -17,9 +17,16 @@ function getMockExams(grade) {
   return list
 }
 
-// Sẽ được biên soạn dựa trên các file PDF người dùng cung cấp — hiện chưa có
-// chuyên đề nào, nhóm "Ôn luyện" chỉ hiện khung điều hướng + trạng thái trống.
-const ON_LUYEN_TOPICS = []
+// Sẽ được biên soạn dựa trên các file PDF người dùng cung cấp — hiện phần
+// lớn khối lớp chưa có chuyên đề nào, nhóm "Ôn luyện" hiện khung điều hướng +
+// trạng thái trống cho các khối đó.
+const ON_LUYEN_TOPICS_BY_GRADE = {
+  6: [{ id: 'chinh-phuc-diem-10', name: '⭐ Chinh Phục Điểm 10 Toán 6' }],
+}
+
+function getOnLuyenTopics(grade) {
+  return ON_LUYEN_TOPICS_BY_GRADE[grade] || []
+}
 
 export default function Sidebar({
   grade,
@@ -44,6 +51,7 @@ export default function Sidebar({
   const [thiThuOpen, setThiThuOpen] = useState(false)
   const [hsgOpen, setHsgOpen] = useState(false)
   const mockExams = getMockExams(grade)
+  const onLuyenTopics = getOnLuyenTopics(grade)
 
   // On mobile the sidebar is a slide-in drawer — close it after any navigation.
   function go(fn, ...args) {
@@ -133,9 +141,9 @@ export default function Sidebar({
           <span className="sidebar__group-caret">{onLuyenOpen ? '▾' : '▸'}</span>
         </button>
         {onLuyenOpen && (
-          ON_LUYEN_TOPICS.length > 0 ? (
+          onLuyenTopics.length > 0 ? (
             <ul className="sidebar__list">
-              {ON_LUYEN_TOPICS.map((topic) => (
+              {onLuyenTopics.map((topic) => (
                 <li key={topic.id}>
                   <button
                     className={`sidebar__item ${view.screen === 'on-luyen' && view.topicId === topic.id ? 'is-active' : ''}`}
