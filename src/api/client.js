@@ -79,7 +79,6 @@ export const getSolveQuota = () => request('/solve-image/quota', { studentAuth: 
 export const getAreas = (grade = 11) => request(`/areas?grade=${grade}`)
 export const getArea = (id) => request(`/areas/${id}`)
 export const getHsgTopics = (grade = 11) => request(`/hsg-topics?grade=${grade}`)
-export const getOnLuyenTopics = (grade = 11) => request(`/on-luyen-topics?grade=${grade}`)
 export const getLesson = (topicId) => request(`/topics/${topicId}/lesson`)
 
 // ---- Tutors (gia sư) ----
@@ -135,12 +134,6 @@ export const createHsgTopic = (data) => request('/hsg-topics', { method: 'POST',
 export const updateHsgTopic = (id, data) =>
   request(`/hsg-topics/${id}`, { method: 'PUT', body: data, auth: true })
 export const deleteHsgTopic = (id) => request(`/hsg-topics/${id}`, { method: 'DELETE', auth: true })
-
-// ---- Admin writes (Ôn luyện topics) ----
-export const createOnLuyenTopic = (data) => request('/on-luyen-topics', { method: 'POST', body: data, auth: true })
-export const updateOnLuyenTopic = (id, data) =>
-  request(`/on-luyen-topics/${id}`, { method: 'PUT', body: data, auth: true })
-export const deleteOnLuyenTopic = (id) => request(`/on-luyen-topics/${id}`, { method: 'DELETE', auth: true })
 
 // ---- Admin writes (bulk import) ----
 export const importAreas = (rows) => request('/import/areas', { method: 'POST', body: { rows }, auth: true })

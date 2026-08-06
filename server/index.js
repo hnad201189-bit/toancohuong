@@ -8,7 +8,6 @@ import { seedIfEmpty } from './seed.js'
 import { areasRouter } from './routes/areas.js'
 import { topicsRouter } from './routes/topics.js'
 import { hsgTopicsRouter } from './routes/hsgTopics.js'
-import { onLuyenTopicsRouter } from './routes/onLuyenTopics.js'
 import { importRouter } from './routes/importRoutes.js'
 import { solveRouter } from './routes/solve.js'
 import { tutorsRouter } from './routes/tutors.js'
@@ -35,7 +34,6 @@ app.get('/api/auth/check', requireAuth, checkAuth)
 app.use('/api/areas', areasRouter)
 app.use('/api/topics', topicsRouter)
 app.use('/api/hsg-topics', hsgTopicsRouter)
-app.use('/api/on-luyen-topics', onLuyenTopicsRouter)
 app.use('/api/import', importRouter)
 app.use('/api/solve-image', solveRouter)
 app.use('/api/tutors', tutorsRouter)

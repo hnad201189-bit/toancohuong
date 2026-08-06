@@ -6,7 +6,7 @@ import Lesson from './components/lesson/Lesson'
 import PhotoSolve from './components/PhotoSolve'
 import TutorFinder from './components/tutor/TutorFinder'
 import GradeGate from './components/GradeGate'
-import { getAreas, getHsgTopics, getOnLuyenTopics, getLesson } from './api/client'
+import { getAreas, getHsgTopics, getLesson } from './api/client'
 import { useLocalStorage } from './hooks/useLocalStorage'
 
 export default function MainSite() {
@@ -15,7 +15,6 @@ export default function MainSite() {
   const [view, setView] = useState({ screen: 'dashboard' })
   const [areas, setAreas] = useState(null)
   const [hsgTopics, setHsgTopics] = useState(null)
-  const [onLuyenTopics, setOnLuyenTopics] = useState(null)
   const [lesson, setLesson] = useState(null)
   const [loadError, setLoadError] = useState(null)
   const [navOpen, setNavOpen] = useState(false)
@@ -25,11 +24,10 @@ export default function MainSite() {
 
   function loadData() {
     setLoadError(null)
-    Promise.all([getAreas(grade), getHsgTopics(grade), getOnLuyenTopics(grade)])
-      .then(([a, h, o]) => {
+    Promise.all([getAreas(grade), getHsgTopics(grade)])
+      .then(([a, h]) => {
         setAreas(a)
         setHsgTopics(h)
-        setOnLuyenTopics(o)
       })
       .catch((e) => setLoadError(e.message))
   }
@@ -88,8 +86,8 @@ export default function MainSite() {
     setView({ screen: 'mock-exam', examId: exam.id, examName: exam.name })
   }
 
-  function goOnLuyenTopic(topicId) {
-    goLesson(topicId, { label: 'Tổng quan', onBack: goDashboard })
+  function goOnLuyenTopic(topic) {
+    setView({ screen: 'on-luyen', topicId: topic.id, topicName: topic.name })
   }
 
   if (!gateConfirmed) {
@@ -110,7 +108,7 @@ export default function MainSite() {
     )
   }
 
-  if (!areas || !hsgTopics || !onLuyenTopics) {
+  if (!areas || !hsgTopics) {
     return (
       <div className="screen">
         <p>Đang tải dữ liệu…</p>
@@ -139,7 +137,6 @@ export default function MainSite() {
         setGrade={setGrade}
         areas={areas}
         hsgTopics={hsgTopics}
-        onLuyenTopics={onLuyenTopics}
         view={view}
         hsgMode={hsgMode}
         setHsgMode={setHsgMode}
@@ -216,6 +213,18 @@ export default function MainSite() {
             <div className="card empty-state">
               <h2>{view.examName}</h2>
               <p>Đề thi thử cho khối lớp {grade} đang được biên soạn, sẽ sớm được cập nhật.</p>
+            </div>
+          </div>
+        )}
+
+        {view.screen === 'on-luyen' && (
+          <div className="screen">
+            <button className="breadcrumb" onClick={goDashboard}>
+              ← Tổng quan
+            </button>
+            <div className="card empty-state">
+              <h2>{view.topicName}</h2>
+              <p>Chuyên đề ôn luyện cho khối lớp {grade} đang được biên soạn, sẽ sớm được cập nhật.</p>
             </div>
           </div>
         )}

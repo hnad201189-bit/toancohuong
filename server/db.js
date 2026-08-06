@@ -43,15 +43,6 @@ db.exec(`
     has_lesson INTEGER NOT NULL DEFAULT 0
   );
 
-  CREATE TABLE IF NOT EXISTS on_luyen_topics (
-    id TEXT PRIMARY KEY,
-    grade INTEGER NOT NULL DEFAULT 11,
-    sort_order INTEGER NOT NULL,
-    name TEXT NOT NULL,
-    progress INTEGER NOT NULL DEFAULT 0,
-    has_lesson INTEGER NOT NULL DEFAULT 0
-  );
-
   CREATE TABLE IF NOT EXISTS lessons (
     topic_id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
