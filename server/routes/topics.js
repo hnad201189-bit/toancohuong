@@ -33,6 +33,7 @@ topicsRouter.delete('/:id', requireAuth, (req, res) => {
 function findParentTable(id) {
   if (db.prepare('SELECT id FROM topics WHERE id = ?').get(id)) return 'topics'
   if (db.prepare('SELECT id FROM hsg_topics WHERE id = ?').get(id)) return 'hsg_topics'
+  if (db.prepare('SELECT id FROM on_luyen_topics WHERE id = ?').get(id)) return 'on_luyen_topics'
   return null
 }
 

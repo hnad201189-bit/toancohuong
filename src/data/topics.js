@@ -276,6 +276,11 @@ export const GRADE6_HSG_TOPICS = [
   { id: 'l6-hsg-hinh-hoc-tu-duy', name: 'Bài toán hình học tư duy nâng cao', progress: 0 },
 ]
 
+// ---- Chuyên đề Ôn luyện lớp 6 ----
+export const GRADE6_ON_LUYEN_TOPICS = [
+  { id: 'l6-on-luyen-chinh-phuc-diem-10', name: '⭐ Chinh Phục Điểm 10 Toán 6', progress: 0 },
+]
+
 export const OVERALL_PROGRESS = Math.round(
   KNOWLEDGE_AREAS.reduce((sum, a) => sum + a.progress, 0) / KNOWLEDGE_AREAS.length
 )

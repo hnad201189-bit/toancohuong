@@ -14,6 +14,7 @@ import { LOP6_HINH_HOC_CO_BAN } from './content/lop6HinhHocCoBan.mjs'
 import { LOP6_DU_LIEU_XAC_SUAT } from './content/lop6DuLieuXacSuat.mjs'
 import { LOP6_HSG } from './content/lop6Hsg.mjs'
 import { LOP6_LUYEN_DE_TONG_HOP } from './content/lop6LuyenDeTongHop.mjs'
+import { LOP6_ON_LUYEN } from './content/lop6OnLuyen.mjs'
 import { LOP12_DAO_HAM_KHAO_SAT } from './content/lop12DaoHamKhaoSat.mjs'
 import { LOP12_NGUYEN_HAM_TICH_PHAN } from './content/lop12NguyenHamTichPhan.mjs'
 import { LOP12_VECTO_TOA_DO_KHONG_GIAN } from './content/lop12VectoToaDoKhongGian.mjs'
@@ -52,6 +53,10 @@ const ALL_HSG = {
   ...LOP6_HSG,
 }
 
+const ALL_ON_LUYEN = {
+  ...LOP6_ON_LUYEN,
+}
+
 const upsertLesson = db.prepare(
   `INSERT INTO lessons (topic_id, title, content) VALUES (?, ?, ?)
    ON CONFLICT(topic_id) DO UPDATE SET title = excluded.title, content = excluded.content`
@@ -86,11 +91,26 @@ export function seedFullContent() {
     hsgCount++
   }
 
+  let onLuyenCount = 0
+  const missingOnLuyen = []
+  for (const [topicId, lesson] of Object.entries(ALL_ON_LUYEN)) {
+    const topic = db.prepare('SELECT id FROM on_luyen_topics WHERE id = ?').get(topicId)
+    if (!topic) {
+      missingOnLuyen.push(topicId)
+      continue
+    }
+    const { title, ...content } = lesson
+    upsertLesson.run(topicId, title, JSON.stringify(content))
+    db.prepare('UPDATE on_luyen_topics SET has_lesson = 1 WHERE id = ?').run(topicId)
+    onLuyenCount++
+  }
+
   console.log(
-    `Seeded lesson content: ${regularCount}/${Object.keys(ALL_REGULAR).length} regular, ${hsgCount}/${Object.keys(ALL_HSG).length} HSG`
+    `Seeded lesson content: ${regularCount}/${Object.keys(ALL_REGULAR).length} regular, ${hsgCount}/${Object.keys(ALL_HSG).length} HSG, ${onLuyenCount}/${Object.keys(ALL_ON_LUYEN).length} Ôn luyện`
   )
   if (missingTopics.length) console.log('Missing regular topic ids:', missingTopics)
   if (missingHsg.length) console.log('Missing HSG topic ids:', missingHsg)
+  if (missingOnLuyen.length) console.log('Missing Ôn luyện topic ids:', missingOnLuyen)
 }
 
 // Runs on every server start (not just first boot). Lessons seeded before the
@@ -114,7 +134,7 @@ export function backfillMissingExamBanks() {
     }
     if (content.exam?.mcq?.length > 0) continue
 
-    const source = ALL_REGULAR[row.topic_id] || ALL_HSG[row.topic_id]
+    const source = ALL_REGULAR[row.topic_id] || ALL_HSG[row.topic_id] || ALL_ON_LUYEN[row.topic_id]
     if (!source) continue
 
     const { title, ...sourceContent } = source
@@ -162,6 +182,18 @@ export function seedMissingLessons() {
     inserted++
   }
 
+  for (const [topicId, lesson] of Object.entries(ALL_ON_LUYEN)) {
+    const topic = db.prepare('SELECT id FROM on_luyen_topics WHERE id = ?').get(topicId)
+    if (!topic) continue
+    const existing = db.prepare('SELECT topic_id FROM lessons WHERE topic_id = ?').get(topicId)
+    if (existing) continue
+
+    const { title, ...content } = lesson
+    upsertLesson.run(topicId, title, JSON.stringify(content))
+    db.prepare('UPDATE on_luyen_topics SET has_lesson = 1 WHERE id = ?').run(topicId)
+    inserted++
+  }
+
   if (inserted > 0) {
     console.log(`Inserted ${inserted} new lesson row(s) for topics that had no lesson yet.`)
   }
@@ -188,7 +220,7 @@ export function backfillPracticeBanks() {
     }
     if (content.practiceBank?.length > 0) continue
 
-    const source = ALL_REGULAR[row.topic_id]
+    const source = ALL_REGULAR[row.topic_id] || ALL_ON_LUYEN[row.topic_id]
     if (!source?.practiceBank?.length) continue
 
     updateContent.run(JSON.stringify({ ...content, practiceBank: source.practiceBank }), row.topic_id)

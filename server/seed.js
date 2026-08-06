@@ -5,6 +5,7 @@ import {
   GRADE12_AREAS,
   HSG_TOPICS,
   GRADE6_HSG_TOPICS,
+  GRADE6_ON_LUYEN_TOPICS,
   SAMPLE_LESSON,
 } from '../src/data/topics.js'
 import { seedFullContent, backfillMissingExamBanks, seedMissingLessons, backfillPracticeBanks } from './seedFullContent.js'
@@ -17,6 +18,9 @@ const insertTopic = db.prepare(
 )
 const insertHsg = db.prepare(
   'INSERT INTO hsg_topics (id, grade, sort_order, name, progress) VALUES (?, ?, ?, ?, ?)'
+)
+const insertOnLuyen = db.prepare(
+  'INSERT INTO on_luyen_topics (id, grade, sort_order, name, progress) VALUES (?, ?, ?, ?, ?)'
 )
 
 // Seeds any area not yet present in the DB (checked per area id, not per
@@ -47,6 +51,16 @@ function seedHsgIfMissing(grade, topics) {
   })
 }
 
+// Same idea again for the "Ôn luyện" flat topic list.
+function seedOnLuyenIfMissing(grade, topics) {
+  const existingCount = db.prepare('SELECT COUNT(*) AS n FROM on_luyen_topics WHERE grade = ?').get(grade).n
+  topics.forEach((topic, i) => {
+    if (db.prepare('SELECT 1 FROM on_luyen_topics WHERE id = ?').get(topic.id)) return
+    insertOnLuyen.run(topic.id, grade, existingCount + i, topic.name, topic.progress)
+    console.log(`Seeded new Ôn luyện topic "${topic.name}" (grade ${grade}).`)
+  })
+}
+
 export function seedIfEmpty() {
   const isFirstBoot = db.prepare('SELECT COUNT(*) AS n FROM areas').get().n === 0
 
@@ -64,6 +78,7 @@ export function seedIfEmpty() {
   seedGradeIfMissing(12, GRADE12_AREAS)
   seedHsgIfMissing(11, HSG_TOPICS)
   seedHsgIfMissing(6, GRADE6_HSG_TOPICS)
+  seedOnLuyenIfMissing(6, GRADE6_ON_LUYEN_TOPICS)
 
   if (isFirstBoot) seedFullContent()
   seedMissingLessons()
