@@ -376,6 +376,12 @@ table {
   font-size: 10px;
 }
 
+.sidebar__group-empty {
+  font-size: 13px;
+  padding: 4px 12px 10px;
+  color: var(--sidebar-text-soft);
+}
+
 .sidebar__list {
   list-style: none;
   margin: 0;

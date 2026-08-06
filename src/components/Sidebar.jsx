@@ -17,6 +17,10 @@ function getMockExams(grade) {
   return list
 }
 
+// Sẽ được biên soạn dựa trên các file PDF người dùng cung cấp — hiện chưa có
+// chuyên đề nào, nhóm "Ôn luyện" chỉ hiện khung điều hướng + trạng thái trống.
+const ON_LUYEN_TOPICS = []
+
 export default function Sidebar({
   grade,
   setGrade,
@@ -29,13 +33,16 @@ export default function Sidebar({
   onGoArea,
   onGoHsgTopic,
   onGoMockExam,
+  onGoOnLuyenTopic,
   onGoPhotoSolve,
   onGoTutorFinder,
   open,
   onClose,
 }) {
   const [coBanOpen, setCoBanOpen] = useState(false)
+  const [onLuyenOpen, setOnLuyenOpen] = useState(false)
   const [thiThuOpen, setThiThuOpen] = useState(false)
+  const [hsgOpen, setHsgOpen] = useState(false)
   const mockExams = getMockExams(grade)
 
   // On mobile the sidebar is a slide-in drawer — close it after any navigation.
@@ -119,6 +126,34 @@ export default function Sidebar({
         <button
           type="button"
           className="sidebar__group-label sidebar__group-label--toggle"
+          aria-expanded={onLuyenOpen}
+          onClick={() => setOnLuyenOpen((v) => !v)}
+        >
+          ÔN LUYỆN
+          <span className="sidebar__group-caret">{onLuyenOpen ? '▾' : '▸'}</span>
+        </button>
+        {onLuyenOpen && (
+          ON_LUYEN_TOPICS.length > 0 ? (
+            <ul className="sidebar__list">
+              {ON_LUYEN_TOPICS.map((topic) => (
+                <li key={topic.id}>
+                  <button
+                    className={`sidebar__item ${view.screen === 'on-luyen' && view.topicId === topic.id ? 'is-active' : ''}`}
+                    onClick={() => go(onGoOnLuyenTopic, topic)}
+                  >
+                    <span className="sidebar__item-name">{topic.name}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="sidebar__group-empty">Chưa có chuyên đề, sẽ sớm được bổ sung.</p>
+          )
+        )}
+
+        <button
+          type="button"
+          className="sidebar__group-label sidebar__group-label--toggle"
           aria-expanded={thiThuOpen}
           onClick={() => setThiThuOpen((v) => !v)}
         >
@@ -141,25 +176,35 @@ export default function Sidebar({
         )}
 
         {hsgTopics.length > 0 && (
-          <div className={`sidebar__hsg-group ${!hsgMode ? 'is-locked' : ''}`}>
-            <div className="sidebar__group-label sidebar__group-label--hsg">
+          <>
+            <button
+              type="button"
+              className="sidebar__group-label sidebar__group-label--toggle sidebar__group-label--hsg"
+              aria-expanded={hsgOpen}
+              onClick={() => setHsgOpen((v) => !v)}
+            >
               ▲ Ôn thi HSG / chuyên
-            </div>
-            <ul className="sidebar__list">
-              {hsgTopics.map((topic) => (
-                <li key={topic.id}>
-                  <button
-                    className={`sidebar__item sidebar__item--hsg ${view.screen === 'lesson' && view.topicId === topic.id ? 'is-active' : ''}`}
-                    disabled={!hsgMode}
-                    onClick={() => go(onGoHsgTopic, topic.id)}
-                  >
-                    <span className="sidebar__item-name">{topic.name}</span>
-                    {!hsgMode && <span className="sidebar__lock">🔒</span>}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <span className="sidebar__group-caret">{hsgOpen ? '▾' : '▸'}</span>
+            </button>
+            {hsgOpen && (
+              <div className={`sidebar__hsg-group ${!hsgMode ? 'is-locked' : ''}`}>
+                <ul className="sidebar__list">
+                  {hsgTopics.map((topic) => (
+                    <li key={topic.id}>
+                      <button
+                        className={`sidebar__item sidebar__item--hsg ${view.screen === 'lesson' && view.topicId === topic.id ? 'is-active' : ''}`}
+                        disabled={!hsgMode}
+                        onClick={() => go(onGoHsgTopic, topic.id)}
+                      >
+                        <span className="sidebar__item-name">{topic.name}</span>
+                        {!hsgMode && <span className="sidebar__lock">🔒</span>}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
         )}
       </nav>
 

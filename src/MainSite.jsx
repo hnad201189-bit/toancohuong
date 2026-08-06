@@ -86,6 +86,10 @@ export default function MainSite() {
     setView({ screen: 'mock-exam', examId: exam.id, examName: exam.name })
   }
 
+  function goOnLuyenTopic(topic) {
+    setView({ screen: 'on-luyen', topicId: topic.id, topicName: topic.name })
+  }
+
   if (!gateConfirmed) {
     return <GradeGate selectedGrade={grade} onSelect={selectGradeFromGate} />
   }
@@ -140,6 +144,7 @@ export default function MainSite() {
         onGoArea={goArea}
         onGoHsgTopic={goHsgTopic}
         onGoMockExam={goMockExam}
+        onGoOnLuyenTopic={goOnLuyenTopic}
         onGoPhotoSolve={goPhotoSolve}
         onGoTutorFinder={goTutorFinder}
         open={navOpen}
@@ -208,6 +213,18 @@ export default function MainSite() {
             <div className="card empty-state">
               <h2>{view.examName}</h2>
               <p>Đề thi thử cho khối lớp {grade} đang được biên soạn, sẽ sớm được cập nhật.</p>
+            </div>
+          </div>
+        )}
+
+        {view.screen === 'on-luyen' && (
+          <div className="screen">
+            <button className="breadcrumb" onClick={goDashboard}>
+              ← Tổng quan
+            </button>
+            <div className="card empty-state">
+              <h2>{view.topicName}</h2>
+              <p>Chuyên đề ôn luyện cho khối lớp {grade} đang được biên soạn, sẽ sớm được cập nhật.</p>
             </div>
           </div>
         )}
