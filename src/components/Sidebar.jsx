@@ -17,11 +17,17 @@ function getMockExams(grade) {
   return list
 }
 
-// Sẽ được biên soạn dựa trên các file PDF người dùng cung cấp — hiện phần
-// lớn khối lớp chưa có chuyên đề nào, nhóm "Ôn luyện" hiện khung điều hướng +
-// trạng thái trống cho các khối đó.
+// Sẽ tiếp tục được biên soạn dựa trên các file PDF người dùng cung cấp — mỗi
+// mục trỏ tới một tài liệu tĩnh tự soạn trong public/tai-lieu (xem skill
+// tomtatsach), mở ở tab mới vì không phải chuyên đề trong hệ thống lesson.
 const ON_LUYEN_TOPICS_BY_GRADE = {
-  6: [{ id: 'chinh-phuc-diem-10', name: '⭐ Chinh Phục Điểm 10 Toán 6' }],
+  6: [
+    {
+      id: 'chinh-phuc-diem-10',
+      name: '⭐ Chinh Phục Điểm 10 Toán 6',
+      href: '/tai-lieu/chuong-1-tap-hop-so-tu-nhien.html',
+    },
+  ],
 }
 
 function getOnLuyenTopics(grade) {
@@ -143,16 +149,25 @@ export default function Sidebar({
         {onLuyenOpen && (
           onLuyenTopics.length > 0 ? (
             <ul className="sidebar__list">
-              {onLuyenTopics.map((topic) => (
-                <li key={topic.id}>
-                  <button
-                    className={`sidebar__item ${view.screen === 'on-luyen' && view.topicId === topic.id ? 'is-active' : ''}`}
-                    onClick={() => go(onGoOnLuyenTopic, topic)}
-                  >
-                    <span className="sidebar__item-name">{topic.name}</span>
-                  </button>
-                </li>
-              ))}
+              {onLuyenTopics.map((topic) =>
+                topic.href ? (
+                  <li key={topic.id}>
+                    <a className="sidebar__item" href={topic.href} target="_blank" rel="noopener noreferrer" onClick={onClose}>
+                      <span className="sidebar__item-name">{topic.name}</span>
+                      <span className="sidebar__item-external">↗</span>
+                    </a>
+                  </li>
+                ) : (
+                  <li key={topic.id}>
+                    <button
+                      className={`sidebar__item ${view.screen === 'on-luyen' && view.topicId === topic.id ? 'is-active' : ''}`}
+                      onClick={() => go(onGoOnLuyenTopic, topic)}
+                    >
+                      <span className="sidebar__item-name">{topic.name}</span>
+                    </button>
+                  </li>
+                )
+              )}
             </ul>
           ) : (
             <p className="sidebar__group-empty">Chưa có chuyên đề, sẽ sớm được bổ sung.</p>

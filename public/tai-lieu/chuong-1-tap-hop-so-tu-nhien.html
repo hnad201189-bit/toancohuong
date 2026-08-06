@@ -1,0 +1,1864 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chương I — Ôn tập và bổ túc về số tự nhiên (bản soạn mới)</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f5f7f5;
+    --bg-alt: #ebefea;
+    --paper: #ffffff;
+    --ink: #1e2b27;
+    --ink-soft: #4b5d57;
+    --ink-faint: #7c8b85;
+    --accent: #205c56;
+    --accent-soft: #e3ece9;
+    --accent-warm: #a85a24;
+    --accent-warm-soft: #f5e7d8;
+    --line: #d8ded9;
+    --line-strong: #b9c4bd;
+    --shadow: 0 1px 2px rgba(20, 35, 30, 0.06), 0 6px 20px rgba(20, 35, 30, 0.05);
+    --radius: 10px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #101917;
+    --bg-alt: #17211e;
+    --paper: #152420;
+    --ink: #e7ece9;
+    --ink-soft: #a9b8b2;
+    --ink-faint: #7c9088;
+    --accent: #74d1bd;
+    --accent-soft: #1b332e;
+    --accent-warm: #e3a15d;
+    --accent-warm-soft: #2e2318;
+    --line: #26332f;
+    --line-strong: #34433d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101917;
+      --bg-alt: #17211e;
+      --paper: #152420;
+      --ink: #e7ece9;
+      --ink-soft: #a9b8b2;
+      --ink-faint: #7c9088;
+      --accent: #74d1bd;
+      --accent-soft: #1b332e;
+      --accent-warm: #e3a15d;
+      --accent-warm-soft: #2e2318;
+      --line: #26332f;
+      --line-strong: #34433d;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Header / hero ---------- */
+  header.masthead {
+    grid-column: 1 / -1;
+    padding: 56px 0 34px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+  h1.title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(30px, 4.4vw, 44px);
+    line-height: 1.14;
+    margin: 0 0 14px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.dek {
+    font-size: 17.5px;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 0 22px;
+  }
+  .provenance {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    font-size: 13.5px;
+    color: var(--ink-faint);
+  }
+  .provenance strong { color: var(--ink-soft); font-weight: 600; }
+  .provenance .div { color: var(--line-strong); }
+
+  .notice {
+    grid-column: 1 / -1;
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .notice b { color: var(--ink); }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 28px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.8px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n {
+    font-family: var(--mono);
+    color: var(--ink-faint);
+    margin-right: 8px;
+  }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-num {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--accent);
+    font-style: italic;
+  }
+  h2.topic-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    margin: 10px 0 30px;
+  }
+
+  h3.sub {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 18.5px;
+    margin: 34px 0 12px;
+    color: var(--ink);
+  }
+  h3.sub .tag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-style: normal;
+    margin-right: 10px;
+    vertical-align: 1px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 600; }
+  .set { font-family: var(--mono); background: var(--bg-alt); padding: 1px 5px; border-radius: 4px; }
+
+  /* ---------- Definition card ---------- */
+  .defcard {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin: 18px 0 26px;
+    max-width: 720px;
+  }
+  .defcard .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .defcard p:last-child { margin-bottom: 0; }
+
+  /* ---------- Callouts: worked example (warm) & diagram (neutral) ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 760px;
+    border: 1px solid var(--line);
+  }
+  .callout.example {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.diagram {
+    background: var(--bg-alt);
+    font-size: 14.8px;
+  }
+  .callout.diagram .label { color: var(--ink-faint); }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .steps { margin-top: 10px; }
+  .callout .steps div { margin-bottom: 6px; }
+  .callout .stepnum { font-family: var(--mono); color: var(--accent-warm); margin-right: 8px; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+  }
+  .problem .q {
+    padding: 18px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 22px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .variant-tag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    font-weight: 400;
+    margin-left: 8px;
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .math {
+    font-family: var(--mono);
+    background: var(--bg-alt);
+    border-radius: 6px;
+    padding: 2px 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ---------- Properties table ---------- */
+  .tablewrap { overflow-x: auto; margin: 18px 0 28px; max-width: 780px; }
+  table.props {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 560px;
+    font-size: 14.8px;
+  }
+  table.props th, table.props td {
+    border: 1px solid var(--line);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.props thead th {
+    background: var(--bg-alt);
+    font-family: var(--serif);
+    font-weight: 600;
+    font-style: italic;
+  }
+  table.props td.formula, table.props th.formula {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  table.props tbody th { font-weight: 600; background: var(--bg-alt); white-space: nowrap; }
+
+  /* ---------- Column addition (cryptarithm) ---------- */
+  .colsum {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    display: inline-block;
+    text-align: right;
+    line-height: 1.5;
+    padding: 6px 4px;
+  }
+  .colsum .line { padding: 0 6px; }
+  .colsum .rule { border-top: 1.5px solid var(--ink); margin-top: 2px; }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 22px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  code { font-family: var(--mono); }
+</style>
+
+<div class="shell">
+  <header class="masthead">
+    <div class="eyebrow">Toán 6 · Chương I · bản soạn mới, không sao chép nguyên bản</div>
+    <h1 class="title">Ôn tập và bổ túc về số tự nhiên</h1>
+    <p class="dek">Trọn Chương I chương trình Toán 6: tập hợp, số tự nhiên và cách ghi số, bốn phép tính, lũy thừa, thứ tự thực hiện phép tính, tính chất chia hết, số nguyên tố — hợp số, và ước chung — bội chung. Mỗi chủ đề có khái niệm được diễn giải lại, ví dụ đời sống, mô tả hình vẽ bằng lời, và bài tập tự soạn kèm lời giải trình bày từng bước.</p>
+    <div class="provenance">
+      <span><strong>Phạm vi tham khảo:</strong> trọn Chương I, sách bài tập nâng cao Toán 6</span>
+      <span class="div">·</span>
+      <span><strong>Đề bài &amp; lời giải:</strong> tự soạn hoàn toàn mới</span>
+      <span class="div">·</span>
+      <span><strong>Độ khó:</strong> cơ bản → nâng cao trong từng chủ đề</span>
+    </div>
+  </header>
+
+  <div class="notice">
+    <b>Vì sao không chép nguyên văn?</b> Cuốn sách nguồn là ấn phẩm đã xuất bản. Tài liệu này chỉ dùng phạm vi chủ đề của sách (không dùng đề bài, số liệu hay lời giải gốc) để tự soạn nội dung mới cùng độ khó — mọi bài toán, cách diễn đạt và ví dụ dưới đây đều do người viết tạo mới.
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Mục lục</div>
+    <ol>
+      <li><a href="#chu-de-1"><span class="n">1</span>Tập hợp &amp; phần tử</a></li>
+      <li><a href="#chu-de-2"><span class="n">2</span>Số tự nhiên &amp; cách ghi số</a></li>
+      <li><a href="#chu-de-3"><span class="n">3</span>Số phần tử &amp; tập con</a></li>
+      <li><a href="#chu-de-4"><span class="n">4</span>Phép cộng &amp; phép nhân</a></li>
+      <li><a href="#chu-de-5"><span class="n">5</span>Phép trừ &amp; phép chia</a></li>
+      <li><a href="#chu-de-6"><span class="n">6</span>Lũy thừa</a></li>
+      <li><a href="#chu-de-7"><span class="n">7</span>Thứ tự phép tính, tìm x</a></li>
+      <li><a href="#chu-de-8"><span class="n">8</span>Tính chất &amp; dấu hiệu chia hết</a></li>
+      <li><a href="#chu-de-9"><span class="n">9</span>Số nguyên tố &amp; hợp số</a></li>
+      <li><a href="#chu-de-10"><span class="n">10</span>ƯCLN &amp; BCNN</a></li>
+      <li><a href="#phuong-phap"><span class="n">＋</span>Cách trình bày lời giải</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ================= CHỦ ĐỀ 1 ================= -->
+    <section class="topic" id="chu-de-1">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 1</span>
+        <h2 class="topic-title">Tập hợp và phần tử của tập hợp</h2>
+      </div>
+      <p class="topic-intro">Trước khi làm việc với số, Toán 6 dừng lại ở một ý tưởng đơn giản nhưng nền tảng: gom các đối tượng lại thành một "tập hợp" để gọi tên và thao tác với chúng như một khối thống nhất.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Tập hợp là gì?</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa</div>
+        <p>Một <span class="kw">tập hợp</span> là một nhóm các đối tượng được xác định rõ ràng — nghĩa là với bất kỳ đối tượng nào, ta luôn khẳng định được nó có thuộc nhóm đó hay không. Mỗi đối tượng trong tập hợp gọi là một <span class="kw">phần tử</span>. Tập hợp thường được đặt tên bằng chữ in hoa (A, B, C, …), còn phần tử viết trong dấu ngoặc nhọn <span class="set">{ }</span>, các phần tử cách nhau bởi dấu chấm phẩy hoặc dấu phẩy.</p>
+        <p>Nếu <code>x</code> là một phần tử của tập hợp A, ta viết <code>x ∈ A</code> (đọc: x thuộc A). Nếu không, ta viết <code>x ∉ A</code> (x không thuộc A).</p>
+      </div>
+
+      <p>Có hai cách để mô tả cùng một tập hợp:</p>
+      <ol class="plain">
+        <li><b>Liệt kê phần tử</b> — viết ra đầy đủ, mỗi phần tử chỉ ghi một lần, thường theo thứ tự tăng dần cho dễ kiểm tra.</li>
+        <li><b>Chỉ ra tính chất đặc trưng</b> — nêu điều kiện mà mọi phần tử của tập hợp phải thỏa mãn, dạng <code>A = {x ∈ N | tính chất của x}</code>.</li>
+      </ol>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Giỏ quà Tết nhà bạn Hà có: 1 hộp mứt, 2 gói trà, 1 chai nước mắm, 1 gói bánh. Nếu gọi Q là tập hợp <i>các loại</i> quà trong giỏ (không tính số lượng từng loại), thì:</p>
+        <p><code>Q = {hộp mứt; gói trà; chai nước mắm; gói bánh}</code> — Q có đúng <b>4 phần tử</b>, dù tổng số món quà là 5, vì "2 gói trà" chỉ tính là <i>một loại</i> xuất hiện trong tập hợp.</p>
+        <p>Đây là điểm học sinh hay nhầm: <span class="kw">tập hợp không đếm số lần lặp</span>, chỉ quan tâm một đối tượng có mặt hay không.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ — mô tả bằng tính chất đặc trưng</div>
+        <p>Tập hợp B gồm các số tự nhiên chia hết cho 5 và nhỏ hơn 30:</p>
+        <p><code>B = {x ∈ N | x ⋮ 5, x &lt; 30}</code></p>
+        <p>Liệt kê: <code>B = {0; 5; 10; 15; 20; 25}</code> — hai cách viết mô tả cùng một tập hợp, chỉ khác hình thức.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Sơ đồ Venn</h3>
+      <div class="callout diagram">
+        <div class="label">Hình minh họa (mô tả bằng lời thay cho ảnh chụp)</div>
+        <p>Sách giáo khoa thường vẽ tập hợp bằng một <b>đường cong khép kín</b> (hình bầu dục hoặc hình tròn), bên trong đặt các dấu chấm — mỗi dấu chấm kèm tên là một phần tử. Ví dụ để minh họa tập hợp Q ở trên: vẽ một hình bầu dục, bên trong đặt 4 dấu chấm được ghi nhãn lần lượt "hộp mứt", "gói trà", "chai nước mắm", "gói bánh". Nếu một đối tượng nằm ngoài đường cong (ví dụ "phong bao lì xì" không có trong giỏ), điều đó thể hiện nó <i>không thuộc</i> tập hợp Q.</p>
+        <p>Với bài toán "đường đi" (một tập hợp được tạo từ việc ghép nối hai chặng), hình vẽ thường dùng 3 mốc thẳng hàng nối bằng các cung cong mang tên từng con đường — xem minh họa lời tại Bài 1.3 bên dưới.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext"><p>Viết tập hợp P gồm các số tự nhiên chẵn, lớn hơn 10 và nhỏ hơn 22, bằng hai cách. Sau đó cho biết 12, 21, 24 có thuộc P không.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Xác định điều kiện: x chẵn, và 10 &lt; x &lt; 22 (không tính hai đầu mút 10 và 22).</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Liệt kê các số chẵn trong khoảng đó theo thứ tự tăng dần: 12, 14, 16, 18, 20.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Cách 1 (liệt kê):</b> <span class="math">P = {12; 14; 16; 18; 20}</span></p><p><b>Cách 2 (tính chất đặc trưng):</b> <span class="math">P = {x ∈ N | x chẵn, 10 &lt; x &lt; 22}</span></p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>Kiểm tra từng số theo định nghĩa: 12 là số chẵn và nằm trong khoảng → <span class="math">12 ∈ P</span>. 21 là số lẻ → <span class="math">21 ∉ P</span>. 24 chẵn nhưng lớn hơn 22 → <span class="math">24 ∉ P</span>.</p></div></div>
+            <p class="answer hidden">P = {12; 14; 16; 18; 20}, có 5 phần tử.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext"><p>Có ba con đường đi từ nhà bạn Minh (kí hiệu N) đến trường (kí hiệu T): d₁, d₂, d₃. Từ trường đến sân vận động (kí hiệu S) có hai con đường: e₁, e₂. Viết tập hợp M gồm tất cả các cách đi từ nhà Minh đến sân vận động, đi qua trường. Mỗi cách đi viết bằng cách ghép tên hai con đường, ví dụ d₁e₁ nghĩa là đi đường d₁ rồi đến đường e₁.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi cách đi trọn vẹn gồm đúng một lựa chọn ở chặng N→T <i>và</i> một lựa chọn ở chặng T→S — hai lựa chọn độc lập với nhau.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Nếu đi đường d₁, có 2 cách tiếp tục: d₁e₁, d₁e₂. Tương tự với d₂ và d₃, mỗi đường cũng cho 2 cách tiếp tục.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Liệt kê đủ cả 3×2 = 6 khả năng:</p><p><span class="math">M = {d₁e₁; d₁e₂; d₂e₁; d₂e₂; d₃e₁; d₃e₂}</span></p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>Nhận xét tổng quát: nếu chặng đầu có m lựa chọn, chặng sau có n lựa chọn, số cách đi trọn vẹn (tập hợp M) có <span class="math">m × n</span> phần tử.</p></div></div>
+            <p class="answer hidden">M có 6 phần tử, đúng bằng 3 × 2.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p1-3" data-qid="Bài 1.3">
+        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext"><p>Cho tập hợp <span class="math">H = {x ∈ N | x + 6 = 4}</span>. Hỏi H có bao nhiêu phần tử? Giải thích.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Giải phương trình trong điều kiện: <span class="math">x + 6 = 4 ⇒ x = -2</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Đối chiếu với điều kiện <span class="math">x ∈ N</span> (N chỉ gồm 0, 1, 2, 3, …, không có số âm). Vì -2 không phải số tự nhiên nên không có giá trị x nào thỏa mãn đồng thời cả hai điều kiện.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Vậy H không chứa phần tử nào — H là <span class="kw">tập hợp rỗng</span>, kí hiệu <span class="math">∅</span>.</p></div></div>
+            <p class="answer hidden">H = ∅, có 0 phần tử.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 2 ================= -->
+    <section class="topic" id="chu-de-2">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 2</span>
+        <h2 class="topic-title">Tập hợp số tự nhiên và cách ghi số</h2>
+      </div>
+      <p class="topic-intro">Tập hợp quen thuộc nhất chính là tập hợp các số tự nhiên. Chủ đề này hệ thống lại: kí hiệu N và N*, thứ tự trên trục số, quy tắc ghi số trong hệ thập phân, và cách đọc/viết số La Mã.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>N và N* — thứ tự và tính liền kề</h3>
+      <div class="defcard">
+        <div class="k">Kí hiệu</div>
+        <p><span class="math">N = {0; 1; 2; 3; 4; …}</span> là tập hợp số tự nhiên. <span class="math">N* = {1; 2; 3; 4; …}</span> là tập hợp số tự nhiên khác 0 (bỏ đi phần tử 0).</p>
+        <p>Với hai số tự nhiên a, b bất kỳ, luôn xảy ra đúng một trong ba trường hợp: <span class="math">a &lt; b</span>, <span class="math">a = b</span>, hoặc <span class="math">a &gt; b</span>. Nếu <span class="math">a &lt; b</span> và <span class="math">b &lt; c</span> thì chắc chắn <span class="math">a &lt; c</span> (tính bắc cầu).</p>
+        <p>Mỗi số tự nhiên có đúng <b>một số liền sau</b> (hơn nó 1 đơn vị). Mọi số tự nhiên, trừ số 0, đều có đúng <b>một số liền trước</b>. Số 0 là số tự nhiên nhỏ nhất; <span class="kw">không tồn tại số tự nhiên lớn nhất</span> vì với bất kỳ số nào ta cũng cộng thêm 1 để được số lớn hơn — do đó N có vô số phần tử.</p>
+      </div>
+
+      <div class="callout diagram">
+        <div class="label">Mô tả hình vẽ — tia số</div>
+        <p>Tia số được vẽ là một đường thẳng nằm ngang, có mũi tên ở đầu bên phải chỉ chiều tăng dần. Điểm gốc, ghi số 0, nằm ở đầu bên trái. Các điểm 1, 2, 3, … được đánh dấu cách đều nhau về phía phải, khoảng cách giữa hai điểm liên tiếp bằng nhau và được gọi là "một đơn vị độ dài". Số nằm bên trái luôn nhỏ hơn số nằm bên phải trên cùng tia số — đây là cách trực quan hóa quan hệ thứ tự.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Ghi số tự nhiên trong hệ thập phân</h3>
+      <p>Mọi số tự nhiên đều viết được bằng 10 chữ số 0–9. Giá trị của mỗi chữ số phụ thuộc vào <b>vị trí</b> của nó (hàng đơn vị, hàng chục, hàng trăm, …). Ví dụ số 4726 có nghĩa là <span class="math">4×1000 + 7×100 + 2×10 + 6×1</span>. Các hàng được nhóm thành từng <b>lớp</b> 3 hàng một: lớp đơn vị (đơn vị, chục, trăm), lớp nghìn (nghìn, chục nghìn, trăm nghìn), lớp triệu, … — cách nhóm này là lý do ta viết số lớn có dấu chấm hoặc khoảng trắng ngăn cách mỗi 3 chữ số.</p>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Dân số một huyện được ghi là 214 508 người. Đọc theo lớp: <b>214</b> (lớp nghìn) <b>508</b> (lớp đơn vị) → "hai trăm mười bốn nghìn năm trăm lẻ tám". Cách phân lớp giúp đọc số lớn mà không bị nhầm hàng, giống cách máy tính hay hiển thị số tiền là 214.508.000 đồng.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Số La Mã</h3>
+      <div class="defcard">
+        <div class="k">Bảy kí hiệu gốc</div>
+        <p><span class="math">I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000</span>.</p>
+        <p>Quy tắc: nếu kí hiệu nhỏ đứng <b>trước</b> kí hiệu lớn hơn thì <i>trừ</i> đi (ví dụ <code>IV = 5 − 1 = 4</code>, <code>IX = 10 − 1 = 9</code>); nếu đứng <b>sau</b> thì <i>cộng</i> vào (ví dụ <code>VI = 5 + 1 = 6</code>, <code>XI = 10 + 1 = 11</code>). Một kí hiệu không được lặp quá 3 lần liên tiếp (viết <code>III</code> cho 3, nhưng không viết <code>IIII</code> cho 4 mà viết <code>IV</code>).</p>
+      </div>
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Số La Mã xuất hiện trên mặt đồng hồ cổ (số 4 thường ghi là <code>IIII</code> theo quy ước thẩm mỹ riêng của ngành đồng hồ, khác quy tắc toán học chuẩn <code>IV</code>), trong tên các kỳ Thế vận hội, hoặc để đánh số thế kỷ — "thế kỷ XXI" nghĩa là thế kỷ 21 <span class="math">(XXI = 10+10+1 = 21)</span>.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext"><p>a) Tìm số liền sau của 4999 và của x (x ∈ N). b) Tìm số liền trước của 100000 và của y (y ∈ N*).</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Số liền sau của một số = số đó cộng thêm 1.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>4999 + 1 = 5000. Với x tổng quát: số liền sau là <span class="math">x + 1</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Số liền trước của một số = số đó trừ đi 1 (chỉ áp dụng được khi số đó ≥ 1).</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>100000 − 1 = 99999. Với y ∈ N* (nghĩa là y ≥ 1): số liền trước là <span class="math">y − 1</span> (khi y = 1 thì số liền trước là 0).</p></div></div>
+            <p class="answer hidden">a) 5000 và x+1.  b) 99999 và y−1.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext"><p>Một giá sách được đánh số trang liên tục từ trang 118 đến trang 356. Hỏi giá sách đó có tất cả bao nhiêu trang?</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Đây là bài đếm số lượng số tự nhiên liên tiếp trong một đoạn [m; n]. Công thức: số lượng = <span class="math">n − m + 1</span> (cộng thêm 1 vì cả hai đầu mút đều được tính).</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Ở đây m = 118, n = 356.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">356 − 118 + 1 = 239</span></p></div></div>
+            <p class="answer hidden">Giá sách có 239 trang.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p2-3" data-qid="Bài 2.3">
+        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext"><p>a) Viết số tự nhiên nhỏ nhất có 6 chữ số khác nhau đôi một. b) Viết số 47 và số 94 bằng số La Mã.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Câu a: để số nhỏ nhất, ưu tiên đặt chữ số nhỏ ở các hàng cao — nhưng chữ số hàng cao nhất (hàng trăm nghìn) không được là 0, nếu không số sẽ chỉ còn 5 chữ số.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Vậy hàng trăm nghìn đặt chữ số nhỏ nhất khác 0 là 1; các hàng còn lại đặt 0, 2, 3, 4, 5 theo thứ tự tăng dần: <span class="math">102345</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Câu b: 47 = 40 + 7 = XL + VII → <span class="math">XLVII</span>. 94 = 90 + 4 = XC + IV → <span class="math">XCIV</span>.</p></div></div>
+            <p class="answer hidden">a) 102345.  b) XLVII và XCIV.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 3 ================= -->
+    <section class="topic" id="chu-de-3">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 3</span>
+        <h2 class="topic-title">Số phần tử của một tập hợp — Tập hợp con</h2>
+      </div>
+      <p class="topic-intro">Sau khi biết cách mô tả một tập hợp, câu hỏi tự nhiên tiếp theo là: tập hợp đó có bao nhiêu phần tử, và một tập hợp có thể "nằm gọn" bên trong một tập hợp khác hay không.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Đếm số phần tử</h3>
+      <div class="defcard">
+        <div class="k">Ba khả năng</div>
+        <p>Một tập hợp có thể có <b>một phần tử</b>, có <b>nhiều phần tử</b> (hữu hạn hoặc vô số), hoặc <b>không có phần tử nào</b> — trường hợp cuối gọi là tập hợp rỗng, kí hiệu <span class="math">∅</span>.</p>
+        <p>Với một tập hợp gồm các số tự nhiên cách đều nhau (một cấp số cộng), nếu số đầu là a, số cuối là b, khoảng cách giữa hai số liên tiếp là d, thì số phần tử tính theo công thức:</p>
+        <p style="text-align:center"><span class="math">Số phần tử = (b − a) ÷ d + 1</span></p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Tập hợp con</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa &amp; kí hiệu</div>
+        <p>Tập hợp A gọi là <span class="kw">tập hợp con</span> của tập hợp B, kí hiệu <span class="math">A ⊂ B</span>, nếu <i>mọi</i> phần tử của A đều là phần tử của B. Mọi tập hợp đều là tập con của chính nó; tập hợp rỗng là tập con của mọi tập hợp.</p>
+        <p>Tính chất bắc cầu: nếu <span class="math">A ⊂ B</span> và <span class="math">B ⊂ C</span> thì <span class="math">A ⊂ C</span> — vì mọi phần tử của A vừa thuộc B, mà mọi phần tử của B lại thuộc C, nên chúng cũng thuộc C.</p>
+        <p><i>Ghi chú mở rộng:</i> nếu một tập hợp có n phần tử thì nó có đúng <span class="math">2ⁿ</span> tập hợp con (kể cả tập rỗng và chính nó). Ở lớp 6 ta chưa chứng minh công thức này, chỉ kiểm chứng bằng cách liệt kê với tập nhỏ (xem Bài 3.2); phép chứng minh chặt chẽ sẽ gặp lại ở phần tổ hợp bậc THPT.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Tổ 2 của lớp 6B có 10 bạn, trong đó có 4 bạn nữ. Nếu gọi <b>T</b> là tập hợp các bạn trong tổ 2 và <b>N</b> là tập hợp các bạn nữ trong tổ 2, thì hiển nhiên <span class="math">N ⊂ T</span>: mọi bạn nữ trong tổ chắc chắn là thành viên của tổ. Đây là cách "tập hợp con" xuất hiện tự nhiên trong đời sống — một nhóm nhỏ nằm trọn trong một nhóm lớn hơn.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext"><p>Viết tập hợp K gồm các số tự nhiên chẵn từ 12 đến 40 (kể cả hai đầu mút). Tính số phần tử của K.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Liệt kê: <span class="math">K = {12; 14; 16; …; 40}</span>. Hai số chẵn liên tiếp cách nhau 2 đơn vị.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng công thức đếm với a = 12, b = 40, d = 2:</p><p><span class="math">Số phần tử = (40 − 12) ÷ 2 + 1 = 28 ÷ 2 + 1 = 14 + 1 = 15</span></p></div></div>
+            <p class="answer hidden">K có 15 phần tử.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext"><p>Cho tập hợp E = {cam; táo; nho}. Liệt kê tất cả các tập hợp con của E và kiểm tra với công thức 2ⁿ.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Liệt kê theo số phần tử tăng dần. Tập con 0 phần tử: <span class="math">∅</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Tập con 1 phần tử: <span class="math">{cam}, {táo}, {nho}</span> — 3 tập.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Tập con 2 phần tử: <span class="math">{cam;táo}, {cam;nho}, {táo;nho}</span> — 3 tập.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>Tập con 3 phần tử: chính E. Tổng cộng: 1 + 3 + 3 + 1 = 8 tập con.</p></div></div>
+            <div class="step hidden"><span class="b">5</span><div class="t"><p>Kiểm tra: E có 3 phần tử, và <span class="math">2³ = 8</span> — khớp với ghi chú ở phần khái niệm.</p></div></div>
+            <p class="answer hidden">E có đúng 8 tập hợp con.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 4 ================= -->
+    <section class="topic" id="chu-de-4">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 4</span>
+        <h2 class="topic-title">Phép cộng và phép nhân trong tập hợp số tự nhiên</h2>
+      </div>
+      <p class="topic-intro">Hai phép tính đầu tiên học sinh làm quen là cộng và nhân. Điều đáng chú ý không phải là cách thực hiện phép tính (đã quen từ tiểu học), mà là các <b>tính chất</b> của chúng — công cụ giúp tính nhanh và giải các bài toán tìm số.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Tên gọi và các tính chất</h3>
+      <p><span class="math">a + b = c</span> — a, b gọi là <i>số hạng</i>, c gọi là <i>tổng</i>. <span class="math">a × b = d</span> — a, b gọi là <i>thừa số</i>, d gọi là <i>tích</i>.</p>
+
+      <div class="tablewrap">
+        <table class="props">
+          <thead>
+            <tr><th>Tính chất</th><th class="formula">Với phép cộng</th><th class="formula">Với phép nhân</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Giao hoán</th><td class="formula">a + b = b + a</td><td class="formula">a · b = b · a</td></tr>
+            <tr><th>Kết hợp</th><td class="formula">(a + b) + c = a + (b + c)</td><td class="formula">(a · b) · c = a · (b · c)</td></tr>
+            <tr><th>Phần tử trung hòa</th><td class="formula">a + 0 = a</td><td class="formula">a · 1 = a</td></tr>
+            <tr><th>Phân phối (nhân với cộng)</th><td class="formula" colspan="2">a · (b + c) = a·b + a·c</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng — tính nhanh khi mua sắm</div>
+        <p>Mẹ mua 4 món đồ giá lần lượt: 15 000đ, 38 000đ, 25 000đ, 12 000đ. Thay vì cộng lần lượt từ trái sang phải, ta dùng tính chất giao hoán và kết hợp để nhóm các số "tròn":</p>
+        <p><span class="math">15000 + 38000 + 25000 + 12000 = (15000+25000) + (38000+12000) = 40000 + 50000 = 90000</span></p>
+        <p>Việc nhóm 15 000 với 25 000 (được 40 000 tròn) và 38 000 với 12 000 (được 50 000 tròn) giúp cộng nhẩm dễ hơn nhiều so với cộng tuần tự.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext"><p>Tính nhanh: a) 78 + 65 + 22 + 35.  b) 25 × 17 × 4.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Câu a: tìm các cặp số cộng lại tròn chục/trăm. Quan sát: 78 và 22 cộng được 100; 65 và 35 cộng được 100.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Dùng giao hoán để đưa các số cần nhóm lại gần nhau, rồi kết hợp:</p><p><span class="math">(78+22) + (65+35) = 100 + 100 = 200</span></p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Câu b: quan sát 25 và 4 nhân lại được 100 — một cặp "đẹp" quen thuộc.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>Dùng giao hoán đổi chỗ 17 và 4 cho nhau, rồi kết hợp 25 với 4 trước:</p><p><span class="math">25 × 17 × 4 = 25 × 4 × 17 = 100 × 17 = 1700</span></p></div></div>
+            <p class="answer hidden">a) 200.  b) 1700.</p>
+        </div>
+      </div>
+
+      <div class="problem">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext"><p>Tính tổng tất cả các chữ số được dùng để viết các số tự nhiên từ 1 đến 199.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Chia đoạn 1–199 thành hai đoạn dễ xử lý: từ 1 đến 99, và từ 100 đến 199.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Đoạn 1–99:</b> viết mỗi số dưới dạng hai chữ số (thêm 0 phía trước nếu cần, ví dụ 7 viết là 07 — không đổi tổng vì chữ số 0 thêm vào không góp giá trị). Khi đó chữ số hàng chục lần lượt là 0,0,…,0 (10 lần), 1,1,…,1 (10 lần), …, 9,9,…,9 (10 lần) — mỗi chữ số từ 0 đến 9 xuất hiện đúng 10 lần ở hàng chục. Tương tự ở hàng đơn vị.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Tổng hàng chục = tổng hàng đơn vị = <span class="math">10 × (0+1+…+9) = 10 × 45 = 450</span>. Tổng đoạn 1–99 = <span class="math">450 + 450 = 900</span>.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Đoạn 100–199:</b> có 100 số, mỗi số đều có chữ số hàng trăm là 1 → đóng góp <span class="math">100 × 1 = 100</span>. Hai chữ số còn lại của mỗi số (hàng chục, hàng đơn vị) quét đúng lại từ 00 đến 99 như đoạn trên → đóng góp thêm 900.</p></div></div>
+            <div class="step hidden"><span class="b">5</span><div class="t"><p>Tổng đoạn 100–199 = <span class="math">100 + 900 = 1000</span>. Cộng hai đoạn: <span class="math">900 + 1000 = 1900</span>.</p></div></div>
+            <p class="answer hidden">Tổng các chữ số từ 1 đến 199 là 1900.</p>
+        </div>
+      </div>
+
+      <div class="problem">
+        <div class="q"><span class="qid">Bài 4.3</span><div class="qtext"><p>Tìm các chữ số x, y (x, y khác 0, x ≠ y) sao cho phép cộng sau đúng:</p>
+        <div class="colsum">
+          <div class="line">&nbsp;xy</div>
+          <div class="line">+ yx</div>
+          <div class="line rule">121</div>
+        </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Viết số hai chữ số theo giá trị hàng: <span class="math">xy = 10x + y</span>, <span class="math">yx = 10y + x</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng lại: <span class="math">(10x+y) + (10y+x) = 11x + 11y = 11(x+y)</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Theo đề bài, tổng này bằng 121: <span class="math">11(x+y) = 121 ⇒ x + y = 11</span>.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>Vì x, y là chữ số khác 0 (để xy, yx đều là số có hai chữ số hợp lệ) và khác nhau, các cặp thỏa <span class="math">x+y=11</span> là: (2,9), (3,8), (4,7), (5,6) và các hoán vị của chúng — tổng cộng 8 cặp (x,y).</p></div></div>
+            <div class="step hidden"><span class="b">5</span><div class="t"><p>Thử lại với một cặp, ví dụ x=4, y=7: <span class="math">47 + 74 = 121</span> ✓ đúng.</p></div></div>
+            <p class="answer hidden">Có nhiều đáp số: mọi cặp chữ số khác 0 với x + y = 11 đều thỏa mãn (ví dụ 47+74, 29+92, 38+83, 56+65…).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p4-4" data-qid="Bài 4.4">
+        <div class="q"><span class="qid">Bài 4.4</span><div class="qtext"><p>Tìm bốn số tự nhiên liên tiếp có tích bằng 1680.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Gọi bốn số tự nhiên liên tiếp là <span class="math">n, n+1, n+2, n+3</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Ước lượng: khi bốn số gần bằng nhau, tích của chúng xấp xỉ <span class="math">n⁴</span>. Ta cần <span class="math">n⁴ ≈ 1680</span>. Vì <span class="math">6⁴ = 1296</span> và <span class="math">7⁴ = 2401</span>, số n cần tìm nằm giữa 6 và 7, nên thử n = 5 hoặc n = 6.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Thử n = 6: <span class="math">6 × 7 × 8 × 9 = 3024</span> — quá lớn so với 1680.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử n = 5: <span class="math">5 × 6 × 7 × 8 = 1680</span> ✓ — đúng bằng đề bài.</p></div></div>
+            <p class="answer hidden">Bốn số cần tìm là 5, 6, 7, 8.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 5 ================= -->
+    <section class="topic" id="chu-de-5">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 5</span>
+        <h2 class="topic-title">Phép trừ và phép chia số tự nhiên</h2>
+      </div>
+      <p class="topic-intro">Không phải phép trừ nào cũng thực hiện được trong tập số tự nhiên, và phép chia luôn rơi vào một trong hai dạng: chia hết hoặc chia có dư. Nắm chắc hai điều kiện này là nền tảng để giải các bài toán "chia đều", "xếp hàng", "tìm số dư".</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Phép trừ — điều kiện thực hiện được</h3>
+      <div class="defcard">
+        <div class="k">Điều kiện</div>
+        <p><span class="math">a − b = c</span> (a: số bị trừ, b: số trừ, c: hiệu) chỉ thực hiện được trong N khi <span class="kw">a ≥ b</span>. Nếu a &lt; b, phép trừ không có kết quả trong tập số tự nhiên (phải chờ đến số nguyên ở chương sau).</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Phép chia — chia hết và chia có dư</h3>
+      <div class="defcard">
+        <div class="k">Công thức chung</div>
+        <p>Với hai số tự nhiên a, b (b ≠ 0), luôn tồn tại đúng một cặp số tự nhiên q (thương) và r (số dư) sao cho:</p>
+        <p style="text-align:center"><span class="math">a = b × q + r,&nbsp;&nbsp; 0 ≤ r &lt; b</span></p>
+        <p>Nếu <span class="math">r = 0</span>: phép chia hết, kí hiệu <span class="math">a ⋮ b</span>. Nếu <span class="math">r ≠ 0</span>: phép chia có dư. Số dư <span class="kw">luôn nhỏ hơn số chia</span> — đây là điều kiện hay bị bỏ sót khi giải bài toán ngược (biết thương, tìm số bị chia).</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Cô giáo có 47 viên kẹo, chia đều cho 5 tổ. Thực hiện phép chia: <span class="math">47 = 5 × 9 + 2</span>. Mỗi tổ nhận 9 viên (thương), còn dư 2 viên (không đủ chia tiếp cho 5 tổ nữa) — cô giữ lại hoặc chia thêm cho 2 bạn bất kỳ. Đây là hình ảnh trực quan nhất của "chia có dư": phần dư luôn nhỏ hơn số phần cần chia.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p5-1" data-qid="Bài 5.1">
+        <div class="q"><span class="qid">Bài 5.1</span><div class="qtext"><p>Một thùng đựng 235 quả trứng. Người ta lấy ra một số quả để làm bánh, còn lại 148 quả. Hỏi đã lấy ra bao nhiêu quả?</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Số lấy ra = số ban đầu − số còn lại.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">235 − 148 = 87</span></p></div></div>
+            <p class="answer hidden">Đã lấy ra 87 quả trứng.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p5-2" data-qid="Bài 5.2">
+        <div class="q"><span class="qid">Bài 5.2</span><div class="qtext"><p>Một đội có 86 học sinh xếp thành các hàng, mỗi hàng 7 học sinh. Hỏi xếp được nhiều nhất bao nhiêu hàng đủ 7 học sinh, và còn dư mấy học sinh?</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Đây là phép chia có dư: thực hiện <span class="math">86 : 7</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">86 = 7 × 12 + 2</span> (vì 7×12=84, còn thiếu 2 để đủ 86).</p></div></div>
+            <p class="answer hidden">Xếp được 12 hàng đủ 7 học sinh, còn dư 2 học sinh.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p5-3" data-qid="Bài 5.3">
+        <div class="q"><span class="qid">Bài 5.3</span><div class="qtext"><p>Tìm số tự nhiên a nhỏ nhất biết khi chia a cho 15 được thương 6 và số dư là số dư lớn nhất có thể.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhắc lại điều kiện: số dư r luôn thỏa <span class="math">0 ≤ r &lt; 15</span> — nên số dư lớn nhất có thể là <span class="math">15 − 1 = 14</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng công thức <span class="math">a = b × q + r</span> với b=15, q=6, r=14:</p><p><span class="math">a = 15 × 6 + 14 = 90 + 14 = 104</span></p></div></div>
+            <p class="answer hidden">a = 104.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 6 ================= -->
+    <section class="topic" id="chu-de-6">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 6</span>
+        <h2 class="topic-title">Lũy thừa với số mũ tự nhiên</h2>
+      </div>
+      <p class="topic-intro">Lũy thừa là cách viết gọn cho một phép nhân lặp lại nhiều lần — và giống phép nhân, nó cũng có những quy tắc riêng khi nhân hoặc chia hai lũy thừa cùng cơ số.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Định nghĩa và quy ước</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa</div>
+        <p><span class="math">aⁿ = a × a × … × a</span> (n thừa số a, n ≥ 1). Đọc là "a mũ n"; a gọi là <i>cơ số</i>, n gọi là <i>số mũ</i>. Quy ước: <span class="math">a¹ = a</span> và <span class="math">a⁰ = 1</span> (với a ≠ 0).</p>
+      </div>
+
+      <div class="tablewrap">
+        <table class="props">
+          <thead><tr><th>Phép tính</th><th class="formula">Công thức</th><th>Điều kiện</th></tr></thead>
+          <tbody>
+            <tr><th>Nhân hai lũy thừa cùng cơ số</th><td class="formula">aᵐ × aⁿ = aᵐ⁺ⁿ</td><td>a ≠ 0</td></tr>
+            <tr><th>Chia hai lũy thừa cùng cơ số</th><td class="formula">aᵐ : aⁿ = aᵐ⁻ⁿ</td><td>a ≠ 0, m ≥ n</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một loại vi khuẩn cứ mỗi giờ lại nhân đôi số lượng. Ban đầu có 3 con, sau 5 giờ số vi khuẩn là <span class="math">3 × 2⁵ = 3 × 32 = 96</span> con. Số mũ ở đây đếm đúng số lần nhân đôi đã xảy ra — mỗi giờ trôi qua tương ứng với việc nhân thêm một thừa số 2.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p6-1" data-qid="Bài 6.1">
+        <div class="q"><span class="qid">Bài 6.1</span><div class="qtext"><p>Viết gọn bằng lũy thừa rồi tính giá trị: a) 5×5×5×5.  b) 2×2×2×3×3.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Câu a: đếm số lần 5 xuất hiện — 4 lần → <span class="math">5⁴</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">5⁴ = 625</span></p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Câu b: nhóm riêng từng cơ số — 2 xuất hiện 3 lần, 3 xuất hiện 2 lần → <span class="math">2³ × 3²</span>.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">2³ × 3² = 8 × 9 = 72</span></p></div></div>
+            <p class="answer hidden">a) 5⁴ = 625.  b) 2³×3² = 72.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p6-2" data-qid="Bài 6.2">
+        <div class="q"><span class="qid">Bài 6.2</span><div class="qtext"><p>So sánh 2¹⁰ và 10³.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính giá trị từng lũy thừa: <span class="math">2¹⁰ = 1024</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">10³ = 1000</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>So sánh: <span class="math">1024 &gt; 1000</span>.</p></div></div>
+            <p class="answer hidden">2¹⁰ &gt; 10³.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p6-3" data-qid="Bài 6.3">
+        <div class="q"><span class="qid">Bài 6.3</span><div class="qtext"><p>Tìm số tự nhiên x biết: 3ˣ = 81.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Thử dần các lũy thừa của 3: <span class="math">3¹=3, 3²=9, 3³=27, 3⁴=81</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Vậy <span class="math">3⁴ = 81</span>, khớp với đề bài.</p></div></div>
+            <p class="answer hidden">x = 4.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p6-4" data-qid="Bài 6.4">
+        <div class="q"><span class="qid">Bài 6.4</span><div class="qtext"><p>Tính giá trị biểu thức: 2³ × 2⁵ : 2⁴.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Áp dụng quy tắc nhân/chia lũy thừa cùng cơ số, cộng/trừ số mũ: <span class="math">2³⁺⁵⁻⁴</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">3+5-4=4</span>, vậy biểu thức bằng <span class="math">2⁴ = 16</span>.</p></div></div>
+            <p class="answer hidden">16.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 7 ================= -->
+    <section class="topic" id="chu-de-7">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 7</span>
+        <h2 class="topic-title">Thứ tự thực hiện phép tính — Tìm x</h2>
+      </div>
+      <p class="topic-intro">Một biểu thức có nhiều phép tính khác nhau chỉ cho ra một kết quả đúng nếu thực hiện đúng thứ tự quy định — đây cũng là công cụ chính để giải các bài toán "tìm x" nhiều bước.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Quy tắc thứ tự</h3>
+      <div class="defcard">
+        <div class="k">Không có ngoặc</div>
+        <p><span class="kw">Lũy thừa → Nhân/chia → Cộng/trừ</span> (nhân và chia ngang cấp, làm từ trái sang phải; cộng và trừ cũng vậy).</p>
+      </div>
+      <div class="defcard">
+        <div class="k">Có ngoặc</div>
+        <p>Thực hiện từ ngoặc trong cùng ra ngoài cùng: <span class="kw">( ) → [ ] → { }</span>, trong mỗi ngoặc vẫn áp dụng đúng thứ tự lũy thừa → nhân/chia → cộng/trừ.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một cửa hàng bán 3 áo giá 150 000đ/áo, mỗi áo giảm 20 000đ, và 2 quần giá 200 000đ/quần (không giảm). Số tiền phải trả:</p>
+        <p><span class="math">3 × (150000 − 20000) + 2 × 200000 = 3×130000 + 400000 = 390000+400000 = 790000</span>đ. Phải nhân trước (giá mỗi món × số lượng) rồi mới cộng hai khoản lại — cộng trước sẽ ra kết quả sai.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p7-1" data-qid="Bài 7.1">
+        <div class="q"><span class="qid">Bài 7.1</span><div class="qtext"><p>Tính giá trị biểu thức: 120 − 3×(15−8) + 2³.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Trong ngoặc trước: <span class="math">15−8=7</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Lũy thừa: <span class="math">2³=8</span>. Nhân: <span class="math">3×7=21</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng trừ từ trái sang phải: <span class="math">120−21+8=99+8=107</span>.</p></div></div>
+            <p class="answer hidden">107.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p7-2" data-qid="Bài 7.2">
+        <div class="q"><span class="qid">Bài 7.2</span><div class="qtext"><p>Tìm x biết: 3x + 15 = 72.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Coi <span class="math">3x</span> là số hạng chưa biết: <span class="math">3x = 72 − 15 = 57</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">x = 57 : 3 = 19</span>.</p></div></div>
+            <p class="answer hidden">x = 19.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p7-3" data-qid="Bài 7.3">
+        <div class="q"><span class="qid">Bài 7.3</span><div class="qtext"><p>Tính giá trị biểu thức: 240 : {4 × [20 − (3×4−2)]}.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Ngoặc tròn trước: <span class="math">3×4−2=12−2=10</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Ngoặc vuông: <span class="math">20−10=10</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Ngoặc nhọn: <span class="math">4×10=40</span>.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>Cuối cùng: <span class="math">240:40=6</span>.</p></div></div>
+            <p class="answer hidden">6.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p7-4" data-qid="Bài 7.4">
+        <div class="q"><span class="qid">Bài 7.4</span><div class="qtext"><p>Tìm x biết: 2×(x−5) + 8 = 30.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">2×(x−5) = 30 − 8 = 22</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">x−5 = 22:2 = 11</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">x = 11+5 = 16</span>.</p></div></div>
+            <p class="answer hidden">x = 16.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 8 ================= -->
+    <section class="topic" id="chu-de-8">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 8</span>
+        <h2 class="topic-title">Tính chất chia hết của một tổng — Dấu hiệu chia hết</h2>
+      </div>
+      <p class="topic-intro">Không cần thực hiện phép chia, ta vẫn có thể biết một số (hay một tổng) có chia hết cho 2, 3, 5, 9 hay không, chỉ bằng cách quan sát chữ số.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Tính chất chia hết của một tổng</h3>
+      <div class="defcard">
+        <div class="k">Hai quy tắc</div>
+        <p>Nếu <b>mọi số hạng</b> của một tổng đều chia hết cho m thì tổng đó chia hết cho m.</p>
+        <p>Nếu trong một tổng, <b>một số hạng không chia hết</b> cho m còn tất cả các số hạng khác đều chia hết cho m, thì tổng đó <span class="kw">không</span> chia hết cho m.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Dấu hiệu chia hết cho 2, 3, 5, 9</h3>
+      <div class="tablewrap">
+        <table class="props">
+          <thead><tr><th>Chia hết cho</th><th>Dấu hiệu nhận biết</th></tr></thead>
+          <tbody>
+            <tr><th>2</th><td>Chữ số tận cùng là 0, 2, 4, 6 hoặc 8</td></tr>
+            <tr><th>5</th><td>Chữ số tận cùng là 0 hoặc 5</td></tr>
+            <tr><th>3</th><td>Tổng các chữ số chia hết cho 3</td></tr>
+            <tr><th>9</th><td>Tổng các chữ số chia hết cho 9</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Muốn kiểm tra nhanh số 2 034 567 có chia hết cho 3 (và cho 9) không, mà không cần chia trực tiếp: cộng các chữ số <span class="math">2+0+3+4+5+6+7=27</span>. Vì 27 chia hết cho cả 3 và 9, nên số ban đầu cũng chia hết cho cả 3 và 9 — cách này nhanh hơn nhiều so với thực hiện phép chia một số 7 chữ số.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p8-1" data-qid="Bài 8.1">
+        <div class="q"><span class="qid">Bài 8.1</span><div class="qtext"><p>Không thực hiện phép chia, cho biết tổng sau có chia hết cho 3 không: 1233 + 405 + 90.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Kiểm tra từng số hạng bằng tổng chữ số: 1233 → 1+2+3+3=9 (chia hết 3); 405 → 4+0+5=9 (chia hết 3); 90 → 9+0=9 (chia hết 3).</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Cả ba số hạng đều chia hết cho 3 → theo tính chất, tổng của chúng cũng chia hết cho 3.</p></div></div>
+            <p class="answer hidden">Có, tổng chia hết cho 3.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p8-2" data-qid="Bài 8.2">
+        <div class="q"><span class="qid">Bài 8.2</span><div class="qtext"><p>Tìm chữ số x để số 45x chia hết cho cả 2 và 5.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Chia hết cho 5: chữ số tận cùng là 0 hoặc 5. Chia hết cho 2: chữ số tận cùng là số chẵn.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Cần đồng thời cả hai điều kiện — trong hai lựa chọn {0, 5} của dấu hiệu chia hết 5, chỉ có 0 là số chẵn.</p></div></div>
+            <p class="answer hidden">x = 0 (số 450).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p8-3" data-qid="Bài 8.3">
+        <div class="q"><span class="qid">Bài 8.3</span><div class="qtext"><p>Tìm chữ số a để số 7a5 chia hết cho 9.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Tổng các chữ số: <span class="math">7+a+5=12+a</span>, cần chia hết cho 9.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì a là một chữ số (0 ≤ a ≤ 9), tổng 12+a nằm trong khoảng từ 12 đến 21. Bội của 9 trong khoảng đó chỉ có 18.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">12+a=18 ⇒ a=6</span>.</p></div></div>
+            <p class="answer hidden">a = 6 (số 765).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p8-4" data-qid="Bài 8.4">
+        <div class="q"><span class="qid">Bài 8.4</span><div class="qtext"><p>Kiểm chứng: tổng của ba số tự nhiên liên tiếp luôn chia hết cho 3. Áp dụng: tìm ba số tự nhiên liên tiếp có tổng bằng 141.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Gọi ba số liên tiếp là <span class="math">n, n+1, n+2</span>. Tổng: <span class="math">n+(n+1)+(n+2)=3n+3=3(n+1)</span> — luôn chia hết cho 3 vì có thừa số 3 tách riêng được.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng với tổng bằng 141: <span class="math">3(n+1)=141 ⇒ n+1=47 ⇒ n=46</span>.</p></div></div>
+            <p class="answer hidden">Ba số cần tìm: 46, 47, 48.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 9 ================= -->
+    <section class="topic" id="chu-de-9">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 9</span>
+        <h2 class="topic-title">Số nguyên tố, hợp số, phân tích ra thừa số nguyên tố</h2>
+      </div>
+      <p class="topic-intro">Mọi số tự nhiên lớn hơn 1 đều thuộc đúng một trong hai loại: số nguyên tố hoặc hợp số — và mọi hợp số đều "tháo rời" được thành tích của các số nguyên tố, giống như phân tách một hợp chất thành các nguyên tố hoá học cấu thành.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Số nguyên tố và hợp số</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa</div>
+        <p><span class="kw">Số nguyên tố</span> là số tự nhiên lớn hơn 1, chỉ có đúng hai ước là 1 và chính nó. <span class="kw">Hợp số</span> là số tự nhiên lớn hơn 1, có nhiều hơn hai ước. Số 0 và số 1 không phải số nguyên tố cũng không phải hợp số.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Phân tích ra thừa số nguyên tố</h3>
+      <div class="defcard">
+        <div class="k">Cách làm &amp; ứng dụng đếm ước</div>
+        <p>Phân tích một hợp số ra thừa số nguyên tố là viết số đó thành tích các số nguyên tố (thường lần lượt chia cho 2, 3, 5, 7, … đến khi thương bằng 1).</p>
+        <p>Nếu <span class="math">n = a^x × b^y × c^z</span> (a, b, c là các số nguyên tố khác nhau), thì số ước của n bằng <span class="math">(x+1)(y+1)(z+1)</span>.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Bảo mật máy tính (mã hoá RSA) dựa trên một sự thật đơn giản nhưng mạnh mẽ: nhân hai số nguyên tố lớn thì dễ, nhưng "tháo ngược" lại — tìm hai số nguyên tố từ tích của chúng — cực kỳ khó và tốn thời gian nếu các số đó đủ lớn (hàng trăm chữ số). Đây chính là ứng dụng thực tế của khái niệm "phân tích ra thừa số nguyên tố" mà các em học ở lớp 6.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p9-1" data-qid="Bài 9.1">
+        <div class="q"><span class="qid">Bài 9.1</span><div class="qtext"><p>Phân tích số 360 ra thừa số nguyên tố.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Chia lần lượt cho số nguyên tố nhỏ nhất có thể: <span class="math">360:2=180, 180:2=90, 90:2=45</span> (45 không chia hết cho 2 nữa).</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Chuyển sang 3: <span class="math">45:3=15, 15:3=5</span> (5 không chia hết cho 3 nữa).</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Chuyển sang 5: <span class="math">5:5=1</span> — dừng lại.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>Gộp các thừa số: ba lần chia 2, hai lần chia 3, một lần chia 5.</p></div></div>
+            <p class="answer hidden">360 = 2³ × 3² × 5.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p9-2" data-qid="Bài 9.2">
+        <div class="q"><span class="qid">Bài 9.2</span><div class="qtext"><p>Số 84 có bao nhiêu ước?</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Phân tích: <span class="math">84 = 2² × 3 × 7</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng công thức đếm ước: số mũ lần lượt là 2, 1, 1 → số ước = <span class="math">(2+1)(1+1)(1+1)</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">3×2×2=12</span>.</p></div></div>
+            <p class="answer hidden">84 có 12 ước.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p9-3" data-qid="Bài 9.3">
+        <div class="q"><span class="qid">Bài 9.3</span><div class="qtext"><p>Trong các số sau, số nào là số nguyên tố: 57, 59, 91, 97?</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>57 = 3 × 19 → có ước khác 1 và chính nó → hợp số.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>91 = 7 × 13 → hợp số.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>59: thử chia cho 2, 3, 5, 7 (đủ vì 7² đã vượt 59) — không chia hết cho số nào → số nguyên tố.</p></div></div>
+            <div class="step hidden"><span class="b">4</span><div class="t"><p>97: thử chia cho 2, 3, 5, 7 (đủ vì 7² &lt; 97 &lt; 11²) — không chia hết cho số nào → số nguyên tố.</p></div></div>
+            <p class="answer hidden">59 và 97 là số nguyên tố.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 10 ================= -->
+    <section class="topic" id="chu-de-10">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 10</span>
+        <h2 class="topic-title">Ước chung, bội chung — ƯCLN, BCNN</h2>
+      </div>
+      <p class="topic-intro">Hai bài toán ngược nhau xuất hiện thường xuyên trong đời sống: "chia đều thành các phần lớn nhất có thể" (dùng ƯCLN) và "hai chu kỳ trùng nhau sớm nhất khi nào" (dùng BCNN). Cả hai đều tính được nhanh chóng nhờ phân tích ra thừa số nguyên tố.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Tìm ƯCLN và BCNN qua phân tích thừa số nguyên tố</h3>
+      <div class="defcard">
+        <div class="k">Quy tắc</div>
+        <p><span class="kw">ƯCLN</span>(a, b): lấy các thừa số nguyên tố <b>chung</b>, mỗi thừa số lấy với số mũ <b>nhỏ nhất</b>.</p>
+        <p><span class="kw">BCNN</span>(a, b): lấy các thừa số nguyên tố <b>chung và riêng</b>, mỗi thừa số lấy với số mũ <b>lớn nhất</b>.</p>
+      </div>
+      <div class="tablewrap">
+        <table class="props">
+          <thead><tr><th>Tính chất</th><th class="formula">Công thức</th></tr></thead>
+          <tbody>
+            <tr><th>Liên hệ ƯCLN và BCNN</th><td class="formula">ƯCLN(a,b) × BCNN(a,b) = a × b</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Hai xe buýt cùng khởi hành lúc 6 giờ sáng từ một bến: xe A cứ 15 phút quay lại bến 1 lần, xe B cứ 20 phút quay lại 1 lần. Hỏi sớm nhất sau bao lâu cả hai xe cùng có mặt tại bến? Đây là bài toán BCNN: <span class="math">15=3×5, 20=2²×5 ⇒ BCNN(15,20)=2²×3×5=60</span> phút — tức đúng 7 giờ sáng hai xe lại cùng có mặt.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="p10-1" data-qid="Bài 10.1">
+        <div class="q"><span class="qid">Bài 10.1</span><div class="qtext"><p>Tìm ƯCLN(48, 60) bằng cách phân tích ra thừa số nguyên tố.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Phân tích từng số: <span class="math">48=2⁴×3</span>, <span class="math">60=2²×3×5</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Thừa số chung: 2 (số mũ nhỏ nhất là 2) và 3 (số mũ nhỏ nhất là 1). Thừa số 5 không chung nên bỏ qua.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">ƯCLN = 2² × 3 = 12</span>.</p></div></div>
+            <p class="answer hidden">ƯCLN(48, 60) = 12.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p10-2" data-qid="Bài 10.2">
+        <div class="q"><span class="qid">Bài 10.2</span><div class="qtext"><p>Tìm BCNN(18, 24).</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>Phân tích từng số: <span class="math">18=2×3²</span>, <span class="math">24=2³×3</span>.</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Lấy mỗi thừa số (chung và riêng) với số mũ lớn nhất: 2 lấy số mũ 3, 3 lấy số mũ 2.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">BCNN = 2³ × 3² = 8×9 = 72</span>.</p></div></div>
+            <p class="answer hidden">BCNN(18, 24) = 72.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p10-3" data-qid="Bài 10.3">
+        <div class="q"><span class="qid">Bài 10.3</span><div class="qtext"><p>Có 60 quyển vở và 36 cây bút, muốn chia thành các phần quà giống nhau, nhiều nhất có thể (không dư món nào). Hỏi chia được nhiều nhất bao nhiêu phần quà, mỗi phần có bao nhiêu vở và bao nhiêu bút?</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>"Chia đều, nhiều phần nhất có thể, không dư" chính là bài toán ƯCLN: số phần quà tối đa = ƯCLN(60, 36).</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Phân tích: <span class="math">60=2²×3×5</span>, <span class="math">36=2²×3²</span> → <span class="math">ƯCLN=2²×3=12</span>.</p></div></div>
+            <div class="step hidden"><span class="b">3</span><div class="t"><p>Mỗi phần: vở = <span class="math">60:12=5</span>, bút = <span class="math">36:12=3</span>.</p></div></div>
+            <p class="answer hidden">Chia được nhiều nhất 12 phần quà, mỗi phần 5 quyển vở và 3 cây bút.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="p10-4" data-qid="Bài 10.4">
+        <div class="q"><span class="qid">Bài 10.4</span><div class="qtext"><p>Hai bạn cùng sinh hoạt một câu lạc bộ: bạn A cứ 4 ngày đến 1 lần, bạn B cứ 6 ngày đến 1 lần. Hôm nay cả hai cùng có mặt. Hỏi sau ít nhất bao nhiêu ngày nữa cả hai lại cùng có mặt?</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+            <div class="step hidden"><span class="b">1</span><div class="t"><p>"Sớm nhất hai chu kỳ trùng nhau" là bài toán BCNN: số ngày cần tìm = BCNN(4, 6).</p></div></div>
+            <div class="step hidden"><span class="b">2</span><div class="t"><p>Phân tích: <span class="math">4=2²</span>, <span class="math">6=2×3</span> → <span class="math">BCNN=2²×3=12</span>.</p></div></div>
+            <p class="answer hidden">Sau ít nhất 12 ngày nữa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= APPENDIX: PHƯƠNG PHÁP ================= -->
+    <section class="appendix" id="phuong-phap">
+      <div class="topic-head">
+        <span class="topic-num">Phụ lục</span>
+        <h2 class="topic-title">Cách trình bày một lời giải, tóm tắt lại</h2>
+      </div>
+      <p class="topic-intro">Nhìn lại tất cả lời giải mẫu ở trên, có một khuôn mẫu chung lặp lại — đây chính là cách một lời giải Toán nên được trình bày rõ ràng, từng bước, để người đọc theo kịp mạch suy luận chứ không chỉ thấy đáp số.</p>
+
+      <div class="method-grid">
+        <div class="method-card"><span class="mnum">1</span><p><b>Đọc kỹ và gọi tên đại lượng.</b> Xác định cái gì đã cho, cái gì cần tìm; nếu cần, đặt ẩn hoặc kí hiệu cho đại lượng chưa biết.</p></div>
+        <div class="method-card"><span class="mnum">2</span><p><b>Chọn hướng giải.</b> Liên hệ với công thức/tính chất phù hợp (đếm số phần tử, tính chất phép cộng-nhân, quy tắc số La Mã…), hoặc ước lượng nếu bài toán không có công thức trực tiếp.</p></div>
+        <div class="method-card"><span class="mnum">3</span><p><b>Trình bày từng bước có giải thích.</b> Mỗi bước biến đổi đi kèm một câu lý do ngắn — không chỉ chép công thức mà nói rõ "vì sao" bước đó hợp lệ.</p></div>
+        <div class="method-card"><span class="mnum">4</span><p><b>Thử lại hoặc đối chiếu điều kiện.</b> Thay kết quả vào đề bài kiểm tra (như Bài 4.3, 4.4), hoặc đối chiếu với điều kiện ban đầu (như Bài 1.3 kiểm tra x ∈ N).</p></div>
+        <div class="method-card"><span class="mnum">5</span><p><b>Kết luận rõ ràng.</b> Nêu đáp số cuối cùng thành một câu độc lập, tách khỏi phần suy luận, để dễ tra cứu.</p></div>
+      </div>
+
+      <p>Khuôn mẫu 5 bước này sẽ được dùng làm khung gợi ý mỗi khi cần trình bày lời giải từng bước cho các bài toán tiếp theo.</p>
+    </section>
+
+    <footer>
+      Bản soạn mới cho trọn Chương I (Ôn tập và bổ túc về số tự nhiên), lớp 6. Toàn bộ đề bài, số liệu và lời giải trong tài liệu này là nội dung tự soạn, không sao chép từ bất kỳ ấn phẩm đã xuất bản nào.
+    </footer>
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'p1-1': [{
+      qHtml: '<p>Viết tập hợp Q gồm các số tự nhiên lẻ, lớn hơn 15 và nhỏ hơn 27, bằng hai cách. Sau đó cho biết 17, 26, 29 có thuộc Q không.</p>',
+      steps: [
+        '<p>Xác định điều kiện: x lẻ, và 15 &lt; x &lt; 27 (không tính hai đầu mút 15 và 27).</p>',
+        '<p>Liệt kê các số lẻ trong khoảng đó theo thứ tự tăng dần: 17, 19, 21, 23, 25.</p>',
+        '<p><b>Cách 1 (liệt kê):</b> <span class="math">Q = {17; 19; 21; 23; 25}</span></p><p><b>Cách 2 (tính chất đặc trưng):</b> <span class="math">Q = {x ∈ N | x lẻ, 15 &lt; x &lt; 27}</span></p>',
+        '<p>Kiểm tra từng số: 17 lẻ và nằm trong khoảng → <span class="math">17 ∈ Q</span>. 26 là số chẵn → <span class="math">26 ∉ Q</span>. 29 lẻ nhưng lớn hơn 27 → <span class="math">29 ∉ Q</span>.</p>'
+      ],
+      answerHtml: 'Q = {17; 19; 21; 23; 25}, có 5 phần tử.'
+    }],
+    'p1-2': [{
+      qHtml: '<p>Từ nhà bạn An đến hiệu sách có bốn con đường: a₁, a₂, a₃, a₄. Từ hiệu sách đến công viên có ba con đường: b₁, b₂, b₃. Viết tập hợp M gồm tất cả các cách đi từ nhà An đến công viên, đi qua hiệu sách.</p>',
+      steps: [
+        '<p>Mỗi cách đi trọn vẹn gồm đúng một lựa chọn ở chặng nhà→hiệu sách <i>và</i> một lựa chọn ở chặng hiệu sách→công viên — hai lựa chọn độc lập với nhau.</p>',
+        '<p>Nếu đi đường a₁, có 3 cách tiếp tục: a₁b₁, a₁b₂, a₁b₃. Tương tự với a₂, a₃, a₄, mỗi đường cũng cho 3 cách tiếp tục.</p>',
+        '<p>Liệt kê đủ cả 4×3 = 12 khả năng:</p><p><span class="math">M = {a₁b₁; a₁b₂; a₁b₃; a₂b₁; a₂b₂; a₂b₃; a₃b₁; a₃b₂; a₃b₃; a₄b₁; a₄b₂; a₄b₃}</span></p>',
+        '<p>Nhận xét tổng quát: nếu chặng đầu có m lựa chọn, chặng sau có n lựa chọn, số cách đi trọn vẹn (tập hợp M) có <span class="math">m × n</span> phần tử.</p>'
+      ],
+      answerHtml: 'M có 12 phần tử, đúng bằng 4 × 3.'
+    }],
+    'p1-3': [{
+      qHtml: '<p>Cho tập hợp <span class="math">H = {x ∈ N | x + 9 = 5}</span>. Hỏi H có bao nhiêu phần tử? Giải thích.</p>',
+      steps: [
+        '<p>Giải phương trình trong điều kiện: <span class="math">x + 9 = 5 ⇒ x = -4</span>.</p>',
+        '<p>Đối chiếu với điều kiện <span class="math">x ∈ N</span> (N chỉ gồm 0, 1, 2, 3, …, không có số âm). Vì -4 không phải số tự nhiên nên không có giá trị x nào thỏa mãn đồng thời cả hai điều kiện.</p>',
+        '<p>Vậy H không chứa phần tử nào — H là <span class="kw">tập hợp rỗng</span>, kí hiệu <span class="math">∅</span>.</p>'
+      ],
+      answerHtml: 'H = ∅, có 0 phần tử.'
+    }],
+    'p2-1': [{
+      qHtml: '<p>a) Tìm số liền sau của 7999 và của x (x ∈ N). b) Tìm số liền trước của 50000 và của y (y ∈ N*).</p>',
+      steps: [
+        '<p>Số liền sau của một số = số đó cộng thêm 1.</p>',
+        '<p>7999 + 1 = 8000. Với x tổng quát: số liền sau là <span class="math">x + 1</span>.</p>',
+        '<p>Số liền trước của một số = số đó trừ đi 1 (chỉ áp dụng được khi số đó ≥ 1).</p>',
+        '<p>50000 − 1 = 49999. Với y ∈ N* (nghĩa là y ≥ 1): số liền trước là <span class="math">y − 1</span> (khi y = 1 thì số liền trước là 0).</p>'
+      ],
+      answerHtml: 'a) 8000 và x+1.  b) 49999 và y−1.'
+    }],
+    'p2-2': [{
+      qHtml: '<p>Một sân vận động đánh số ghế liên tục từ ghế 201 đến ghế 480. Hỏi sân đó có tất cả bao nhiêu ghế?</p>',
+      steps: [
+        '<p>Đây là bài đếm số lượng số tự nhiên liên tiếp trong một đoạn [m; n]. Công thức: số lượng = <span class="math">n − m + 1</span> (cộng thêm 1 vì cả hai đầu mút đều được tính).</p>',
+        '<p>Ở đây m = 201, n = 480.</p>',
+        '<p><span class="math">480 − 201 + 1 = 280</span></p>'
+      ],
+      answerHtml: 'Sân vận động có 280 ghế.'
+    }],
+    'p2-3': [{
+      qHtml: '<p>a) Viết số tự nhiên lớn nhất có 5 chữ số khác nhau đôi một. b) Viết số 59 và số 84 bằng số La Mã.</p>',
+      steps: [
+        '<p>Câu a: để số lớn nhất, ưu tiên đặt chữ số lớn ở các hàng cao — vì các chữ số phải khác nhau đôi một, ta chọn 5 chữ số lớn nhất có thể: 9, 8, 7, 6, 5.</p>',
+        '<p>Xếp theo thứ tự giảm dần để được số lớn nhất: <span class="math">98765</span>.</p>',
+        '<p>Câu b: 59 = 50 + 9 = L + IX → <span class="math">LIX</span>. 84 = 80 + 4 = LXXX + IV → <span class="math">LXXXIV</span>.</p>'
+      ],
+      answerHtml: 'a) 98765.  b) LIX và LXXXIV.'
+    }],
+    'p3-1': [{
+      qHtml: '<p>Viết tập hợp K gồm các số tự nhiên chia hết cho 3, từ 9 đến 45 (kể cả hai đầu mút). Tính số phần tử của K.</p>',
+      steps: [
+        '<p>Liệt kê: <span class="math">K = {9; 12; 15; …; 45}</span>. Hai số liên tiếp trong K cách nhau 3 đơn vị.</p>',
+        '<p>Áp dụng công thức đếm với a = 9, b = 45, d = 3:</p><p><span class="math">Số phần tử = (45 − 9) ÷ 3 + 1 = 36 ÷ 3 + 1 = 12 + 1 = 13</span></p>'
+      ],
+      answerHtml: 'K có 13 phần tử.'
+    }],
+    'p3-2': [{
+      qHtml: '<p>Cho tập hợp F = {bút; thước; tẩy; gôm}. Liệt kê tất cả các tập hợp con có đúng 2 phần tử của F, rồi tính tổng số tập hợp con của F.</p>',
+      steps: [
+        '<p>F có 4 phần tử, cần liệt kê mọi cách chọn ra đúng 2 trong 4 phần tử đó (không phân biệt thứ tự).</p>',
+        '<p>Liệt kê đủ 6 tập con 2 phần tử: <span class="math">{bút;thước}, {bút;tẩy}, {bút;gôm}, {thước;tẩy}, {thước;gôm}, {tẩy;gôm}</span>.</p>',
+        '<p>Áp dụng công thức tổng số tập con: F có 4 phần tử nên có <span class="math">2⁴ = 16</span> tập con (kể cả ∅ và chính F).</p>'
+      ],
+      answerHtml: 'Có 6 tập con 2 phần tử; tổng cộng F có 16 tập hợp con.'
+    }],
+    'p4-1': [{
+      qHtml: '<p>Tính nhanh: a) 46 + 89 + 54 + 11.  b) 125 × 13 × 8.</p>',
+      steps: [
+        '<p>Câu a: tìm các cặp số cộng lại tròn chục/trăm. Quan sát: 46 và 54 cộng được 100; 89 và 11 cộng được 100.</p>',
+        '<p>Dùng giao hoán để đưa các số cần nhóm lại gần nhau, rồi kết hợp:</p><p><span class="math">(46+54) + (89+11) = 100 + 100 = 200</span></p>',
+        '<p>Câu b: quan sát 125 và 8 nhân lại được 1000 — một cặp "đẹp" quen thuộc.</p>',
+        '<p>Dùng giao hoán đổi chỗ 13 và 8 cho nhau, rồi kết hợp 125 với 8 trước:</p><p><span class="math">125 × 13 × 8 = 125 × 8 × 13 = 1000 × 13 = 13000</span></p>'
+      ],
+      answerHtml: 'a) 200.  b) 13000.'
+    }],
+    'p4-4': [{
+      qHtml: '<p>Tìm ba số tự nhiên liên tiếp có tích bằng 990.</p>',
+      steps: [
+        '<p>Gọi ba số tự nhiên liên tiếp là <span class="math">n, n+1, n+2</span>.</p>',
+        '<p>Ước lượng: khi ba số gần bằng nhau, tích của chúng xấp xỉ <span class="math">n³</span>. Ta cần <span class="math">n³ ≈ 990</span>. Vì <span class="math">9³ = 729</span> và <span class="math">10³ = 1000</span>, số n cần tìm gần 10, nên thử n = 9.</p>',
+        '<p>Thử n = 9: <span class="math">9 × 10 × 11 = 990</span> ✓ — đúng bằng đề bài.</p>'
+      ],
+      answerHtml: 'Ba số cần tìm là 9, 10, 11.'
+    }],
+    'p5-1': [{
+      qHtml: '<p>Một kho có 412 bao gạo, xuất đi một số bao, còn lại 275 bao. Hỏi đã xuất đi bao nhiêu bao?</p>',
+      steps: [
+        '<p>Số xuất đi = số ban đầu − số còn lại.</p>',
+        '<p><span class="math">412 − 275 = 137</span></p>'
+      ],
+      answerHtml: 'Đã xuất đi 137 bao gạo.'
+    }],
+    'p5-2': [{
+      qHtml: '<p>Một đội có 95 học sinh xếp thành các hàng, mỗi hàng 8 học sinh. Hỏi xếp được nhiều nhất bao nhiêu hàng đủ 8 học sinh, và còn dư mấy học sinh?</p>',
+      steps: [
+        '<p>Đây là phép chia có dư: thực hiện <span class="math">95 : 8</span>.</p>',
+        '<p><span class="math">95 = 8 × 11 + 7</span> (vì 8×11=88, còn thiếu 7 để đủ 95).</p>'
+      ],
+      answerHtml: 'Xếp được 11 hàng đủ 8 học sinh, còn dư 7 học sinh.'
+    }],
+    'p5-3': [{
+      qHtml: '<p>Tìm số tự nhiên b nhỏ nhất biết khi chia b cho 12 được thương 8 và số dư là số dư lớn nhất có thể.</p>',
+      steps: [
+        '<p>Số dư r luôn thỏa <span class="math">0 ≤ r &lt; 12</span> — nên số dư lớn nhất có thể là <span class="math">12 − 1 = 11</span>.</p>',
+        '<p>Áp dụng <span class="math">a = b × q + r</span> với b=12, q=8, r=11: <span class="math">b = 12 × 8 + 11 = 96 + 11 = 107</span></p>'
+      ],
+      answerHtml: 'b = 107.'
+    }],
+    'p6-1': [{
+      qHtml: '<p>Viết gọn bằng lũy thừa rồi tính giá trị: a) 4×4×4.  b) 3×3×5×5×5.</p>',
+      steps: [
+        '<p>Câu a: đếm số lần 4 xuất hiện — 3 lần → <span class="math">4³</span>.</p>',
+        '<p><span class="math">4³ = 64</span></p>',
+        '<p>Câu b: nhóm riêng từng cơ số — 3 xuất hiện 2 lần, 5 xuất hiện 3 lần → <span class="math">3² × 5³</span>.</p>',
+        '<p><span class="math">3² × 5³ = 9 × 125 = 1125</span></p>'
+      ],
+      answerHtml: 'a) 4³ = 64.  b) 3²×5³ = 1125.'
+    }],
+    'p6-2': [{
+      qHtml: '<p>So sánh 3⁵ và 5³.</p>',
+      steps: [
+        '<p>Tính giá trị từng lũy thừa: <span class="math">3⁵ = 243</span>.</p>',
+        '<p><span class="math">5³ = 125</span>.</p>',
+        '<p>So sánh: <span class="math">243 &gt; 125</span>.</p>'
+      ],
+      answerHtml: '3⁵ &gt; 5³.'
+    }],
+    'p6-3': [{
+      qHtml: '<p>Tìm số tự nhiên x biết: 2ˣ = 64.</p>',
+      steps: [
+        '<p>Thử dần các lũy thừa của 2: <span class="math">2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32, 2⁶=64</span>.</p>',
+        '<p>Vậy <span class="math">2⁶ = 64</span>, khớp với đề bài.</p>'
+      ],
+      answerHtml: 'x = 6.'
+    }],
+    'p6-4': [{
+      qHtml: '<p>Tính giá trị biểu thức: 3⁶ × 3² : 3⁵.</p>',
+      steps: [
+        '<p>Áp dụng quy tắc cộng/trừ số mũ cùng cơ số: <span class="math">3⁶⁺²⁻⁵</span>.</p>',
+        '<p><span class="math">6+2-5=3</span>, vậy biểu thức bằng <span class="math">3³ = 27</span>.</p>'
+      ],
+      answerHtml: '27.'
+    }],
+    'p7-1': [{
+      qHtml: '<p>Tính giá trị biểu thức: 150 − 2×(18−11) + 3².</p>',
+      steps: [
+        '<p>Trong ngoặc trước: <span class="math">18−11=7</span>.</p>',
+        '<p>Lũy thừa: <span class="math">3²=9</span>. Nhân: <span class="math">2×7=14</span>.</p>',
+        '<p>Cộng trừ từ trái sang phải: <span class="math">150−14+9=136+9=145</span>.</p>'
+      ],
+      answerHtml: '145.'
+    }],
+    'p7-2': [{
+      qHtml: '<p>Tìm x biết: 5x + 12 = 62.</p>',
+      steps: [
+        '<p><span class="math">5x = 62 − 12 = 50</span>.</p>',
+        '<p><span class="math">x = 50 : 5 = 10</span>.</p>'
+      ],
+      answerHtml: 'x = 10.'
+    }],
+    'p7-3': [{
+      qHtml: '<p>Tính giá trị biểu thức: 200 : {5 × [18 − (2×6−4)]}.</p>',
+      steps: [
+        '<p>Ngoặc tròn trước: <span class="math">2×6−4=12−4=8</span>.</p>',
+        '<p>Ngoặc vuông: <span class="math">18−8=10</span>.</p>',
+        '<p>Ngoặc nhọn: <span class="math">5×10=50</span>.</p>',
+        '<p>Cuối cùng: <span class="math">200:50=4</span>.</p>'
+      ],
+      answerHtml: '4.'
+    }],
+    'p7-4': [{
+      qHtml: '<p>Tìm x biết: 3×(x−4) + 9 = 30.</p>',
+      steps: [
+        '<p><span class="math">3×(x−4) = 30 − 9 = 21</span>.</p>',
+        '<p><span class="math">x−4 = 21:3 = 7</span>.</p>',
+        '<p><span class="math">x = 7+4 = 11</span>.</p>'
+      ],
+      answerHtml: 'x = 11.'
+    }],
+    'p8-1': [{
+      qHtml: '<p>Không thực hiện phép chia, cho biết tổng sau có chia hết cho 9 không: 234 + 900 + 63.</p>',
+      steps: [
+        '<p>Kiểm tra từng số hạng bằng tổng chữ số: 234 → 2+3+4=9 (chia hết 9); 900 → 9+0+0=9 (chia hết 9); 63 → 6+3=9 (chia hết 9).</p>',
+        '<p>Cả ba số hạng đều chia hết cho 9 → tổng của chúng cũng chia hết cho 9.</p>'
+      ],
+      answerHtml: 'Có, tổng chia hết cho 9.'
+    }],
+    'p8-2': [{
+      qHtml: '<p>Tìm chữ số y để số 68y chia hết cho cả 2 và 5.</p>',
+      steps: [
+        '<p>Chia hết cho 5: tận cùng là 0 hoặc 5. Chia hết cho 2: tận cùng là số chẵn.</p>',
+        '<p>Trong hai lựa chọn {0, 5}, chỉ có 0 là số chẵn — thỏa cả hai điều kiện.</p>'
+      ],
+      answerHtml: 'y = 0 (số 680).'
+    }],
+    'p8-3': [{
+      qHtml: '<p>Tìm chữ số b để số 4b2 chia hết cho 9.</p>',
+      steps: [
+        '<p>Tổng các chữ số: <span class="math">4+b+2=6+b</span>, cần chia hết cho 9.</p>',
+        '<p>Vì 0 ≤ b ≤ 9, tổng 6+b nằm trong khoảng 6 đến 15. Bội của 9 trong khoảng đó chỉ có 9.</p>',
+        '<p><span class="math">6+b=9 ⇒ b=3</span>.</p>'
+      ],
+      answerHtml: 'b = 3 (số 432).'
+    }],
+    'p8-4': [{
+      qHtml: '<p>Kiểm chứng: tổng của ba số tự nhiên liên tiếp luôn chia hết cho 3. Áp dụng: tìm ba số tự nhiên liên tiếp có tổng bằng 234.</p>',
+      steps: [
+        '<p>Gọi ba số liên tiếp là <span class="math">n, n+1, n+2</span>. Tổng: <span class="math">3n+3=3(n+1)</span> — luôn chia hết cho 3.</p>',
+        '<p>Áp dụng với tổng bằng 234: <span class="math">3(n+1)=234 ⇒ n+1=78 ⇒ n=77</span>.</p>'
+      ],
+      answerHtml: 'Ba số cần tìm: 77, 78, 79.'
+    }],
+    'p9-1': [{
+      qHtml: '<p>Phân tích số 252 ra thừa số nguyên tố.</p>',
+      steps: [
+        '<p>Chia cho 2: <span class="math">252:2=126, 126:2=63</span> (63 không chia hết cho 2 nữa).</p>',
+        '<p>Chuyển sang 3: <span class="math">63:3=21, 21:3=7</span> (7 không chia hết cho 3 nữa).</p>',
+        '<p>Chuyển sang 7: <span class="math">7:7=1</span> — dừng lại.</p>',
+        '<p>Gộp: hai lần chia 2, hai lần chia 3, một lần chia 7.</p>'
+      ],
+      answerHtml: '252 = 2² × 3² × 7.'
+    }],
+    'p9-2': [{
+      qHtml: '<p>Số 60 có bao nhiêu ước?</p>',
+      steps: [
+        '<p>Phân tích: <span class="math">60 = 2² × 3 × 5</span>.</p>',
+        '<p>Số mũ lần lượt là 2, 1, 1 → số ước = <span class="math">(2+1)(1+1)(1+1)</span>.</p>',
+        '<p><span class="math">3×2×2=12</span>.</p>'
+      ],
+      answerHtml: '60 có 12 ước.'
+    }],
+    'p9-3': [{
+      qHtml: '<p>Trong các số sau, số nào là hợp số: 61, 63, 71, 87?</p>',
+      steps: [
+        '<p>63 = 9 × 7 → hợp số.</p>',
+        '<p>87 = 3 × 29 → hợp số.</p>',
+        '<p>61: thử chia cho 2, 3, 5, 7 — không chia hết cho số nào → số nguyên tố (không phải hợp số).</p>',
+        '<p>71: thử chia cho 2, 3, 5, 7 — không chia hết cho số nào → số nguyên tố (không phải hợp số).</p>'
+      ],
+      answerHtml: '63 và 87 là hợp số.'
+    }],
+    'p10-1': [{
+      qHtml: '<p>Tìm ƯCLN(72, 90) bằng cách phân tích ra thừa số nguyên tố.</p>',
+      steps: [
+        '<p>Phân tích từng số: <span class="math">72=2³×3²</span>, <span class="math">90=2×3²×5</span>.</p>',
+        '<p>Thừa số chung: 2 (số mũ nhỏ nhất là 1) và 3 (số mũ nhỏ nhất là 2). Thừa số 5 không chung.</p>',
+        '<p><span class="math">ƯCLN = 2 × 3² = 18</span>.</p>'
+      ],
+      answerHtml: 'ƯCLN(72, 90) = 18.'
+    }],
+    'p10-2': [{
+      qHtml: '<p>Tìm BCNN(15, 20).</p>',
+      steps: [
+        '<p>Phân tích từng số: <span class="math">15=3×5</span>, <span class="math">20=2²×5</span>.</p>',
+        '<p>Lấy mỗi thừa số (chung và riêng) với số mũ lớn nhất: 2 lấy số mũ 2, 3 lấy số mũ 1, 5 lấy số mũ 1.</p>',
+        '<p><span class="math">BCNN = 2² × 3 × 5 = 60</span>.</p>'
+      ],
+      answerHtml: 'BCNN(15, 20) = 60.'
+    }],
+    'p10-3': [{
+      qHtml: '<p>Có 84 quyển vở và 56 cây bút, muốn chia thành các phần quà giống nhau, nhiều nhất có thể (không dư món nào). Hỏi chia được nhiều nhất bao nhiêu phần quà, mỗi phần có bao nhiêu vở và bao nhiêu bút?</p>',
+      steps: [
+        '<p>Số phần quà tối đa = ƯCLN(84, 56).</p>',
+        '<p>Phân tích: <span class="math">84=2²×3×7</span>, <span class="math">56=2³×7</span> → <span class="math">ƯCLN=2²×7=28</span>.</p>',
+        '<p>Mỗi phần: vở = <span class="math">84:28=3</span>, bút = <span class="math">56:28=2</span>.</p>'
+      ],
+      answerHtml: 'Chia được nhiều nhất 28 phần quà, mỗi phần 3 quyển vở và 2 cây bút.'
+    }],
+    'p10-4': [{
+      qHtml: '<p>Hai bạn cùng sinh hoạt một câu lạc bộ: bạn C cứ 6 ngày đến 1 lần, bạn D cứ 8 ngày đến 1 lần. Hôm nay cả hai cùng có mặt. Hỏi sau ít nhất bao nhiêu ngày nữa cả hai lại cùng có mặt?</p>',
+      steps: [
+        '<p>Số ngày cần tìm = BCNN(6, 8).</p>',
+        '<p>Phân tích: <span class="math">6=2×3</span>, <span class="math">8=2³</span> → <span class="math">BCNN=2³×3=24</span>.</p>'
+      ],
+      answerHtml: 'Sau ít nhất 24 ngày nữa.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
