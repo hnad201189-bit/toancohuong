@@ -28,6 +28,13 @@ const ON_LUYEN_TOPICS_BY_GRADE = {
       href: '/tai-lieu/chuong-1-tap-hop-so-tu-nhien.html',
     },
   ],
+  11: [
+    {
+      id: 'giai-ma-luong-giac',
+      name: '📐 Giải Mã Lượng Giác',
+      href: '/tai-lieu/giai-ma-luong-giac.html',
+    },
+  ],
 }
 
 function getOnLuyenTopics(grade) {
