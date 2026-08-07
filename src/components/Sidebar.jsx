@@ -47,6 +47,7 @@ export default function Sidebar({
   onGoHsgTopic,
   onGoMockExam,
   onGoOnLuyenTopic,
+  onGoGames,
   onGoPhotoSolve,
   onGoTutorFinder,
   open,
@@ -106,6 +107,14 @@ export default function Sidebar({
         >
           📷 Chụp ảnh giải bài
         </button>
+        {grade === 1 && (
+          <button
+            className={`sidebar__item sidebar__item--overview ${view.screen === 'games' ? 'is-active' : ''}`}
+            onClick={() => go(onGoGames)}
+          >
+            🎮 Trò chơi
+          </button>
+        )}
         <button
           className={`sidebar__item sidebar__item--overview ${view.screen === 'tutor-finder' ? 'is-active' : ''}`}
           onClick={() => go(onGoTutorFinder)}

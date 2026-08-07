@@ -2193,6 +2193,239 @@ table {
   }
 }
 
+/* ---------- Trò chơi (Lớp 1) ---------- */
+
+.game-card {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.game-card__icon {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.game-hud {
+  display: flex;
+  gap: 20px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-soft);
+  margin-bottom: 4px;
+}
+
+.game-hud__timer.is-warning {
+  color: var(--danger);
+}
+
+.game-result {
+  text-align: center;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.game-result h2 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.game-result__score {
+  font-size: 17px;
+}
+
+.game-result__best {
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.game-result__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.game-next {
+  margin-top: 20px;
+}
+
+/* Đếm hình vui */
+.dem-hinh__stage {
+  text-align: center;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dem-hinh__objects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+
+.dem-hinh__obj {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.dem-hinh__question {
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+.dem-hinh__options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.dem-hinh__opt {
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-card-sm);
+  padding: 16px 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.dem-hinh__opt:hover:not(:disabled) {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.dem-hinh__opt:disabled {
+  cursor: default;
+}
+
+.dem-hinh__opt.is-correct {
+  border-color: var(--success);
+  background: #e6f4ee;
+  color: var(--success);
+}
+
+.dem-hinh__opt.is-wrong {
+  border-color: var(--danger);
+  background: #fbe9e7;
+  color: var(--danger);
+}
+
+/* Ghép số */
+.ghep-so__board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 560px;
+}
+
+.ghep-so__col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ghep-so__card {
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-card-sm);
+  padding: 16px 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.ghep-so__card:hover:not(:disabled) {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.ghep-so__card.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.ghep-so__card.is-wrong {
+  border-color: var(--danger);
+  background: #fbe9e7;
+  color: var(--danger);
+}
+
+.ghep-so__card.is-solved {
+  border-color: var(--success);
+  background: #e6f4ee;
+  color: var(--success);
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* Ai nhanh ai đúng */
+.ai-nhanh__stage {
+  text-align: center;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ai-nhanh__question {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: 32px;
+  margin-bottom: 26px;
+}
+
+.ai-nhanh__options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.ai-nhanh__opt {
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-card-sm);
+  padding: 18px 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.ai-nhanh__opt:hover:not(:disabled) {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.ai-nhanh__opt:disabled {
+  cursor: default;
+}
+
+.ai-nhanh__opt.is-correct {
+  border-color: var(--success);
+  background: #e6f4ee;
+  color: var(--success);
+}
+
+.ai-nhanh__opt.is-wrong {
+  border-color: var(--danger);
+  background: #fbe9e7;
+  color: var(--danger);
+}
+
 /* Sidebar becomes a slide-in drawer below this width, opened via the
    hamburger button in .mobile-topbar. Applies to both the public sidebar
    and the admin sidebar (which also carries the .sidebar class). */
@@ -2312,5 +2545,15 @@ table {
 
   .admin-page {
     padding: 20px 16px 60px;
+  }
+
+  .ghep-so__board {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .dem-hinh__options,
+  .ai-nhanh__options {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

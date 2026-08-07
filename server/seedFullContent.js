@@ -6,6 +6,7 @@ import { HINH_HOC_KHONG_GIAN } from './content/hinhHocKhongGian.mjs'
 import { THONG_KE_XAC_SUAT } from './content/thongKeXacSuat.mjs'
 import { TOAN_UNG_DUNG } from './content/toanUngDung.mjs'
 import { HSG } from './content/hsg.mjs'
+import { LOP1_SO_PHAM_VI_10 } from './content/lop1SoPhamVi10.mjs'
 import { LOP6_SO_TU_NHIEN } from './content/lop6SoTuNhien.mjs'
 import { LOP6_SO_NGUYEN } from './content/lop6SoNguyen.mjs'
 import { LOP6_PHAN_SO_THAP_PHAN } from './content/lop6PhanSoThapPhan.mjs'
@@ -31,6 +32,7 @@ const ALL_REGULAR = {
   ...HINH_HOC_KHONG_GIAN,
   ...THONG_KE_XAC_SUAT,
   ...TOAN_UNG_DUNG,
+  ...LOP1_SO_PHAM_VI_10,
   ...LOP6_SO_TU_NHIEN,
   ...LOP6_SO_NGUYEN,
   ...LOP6_PHAN_SO_THAP_PHAN,

@@ -6,6 +6,7 @@ import Lesson from './components/lesson/Lesson'
 import PhotoSolve from './components/PhotoSolve'
 import TutorFinder from './components/tutor/TutorFinder'
 import GradeGate from './components/GradeGate'
+import Games from './components/games/Games'
 import { getAreas, getHsgTopics, getLesson } from './api/client'
 import { useLocalStorage } from './hooks/useLocalStorage'
 
@@ -90,6 +91,10 @@ export default function MainSite() {
     setView({ screen: 'on-luyen', topicId: topic.id, topicName: topic.name })
   }
 
+  function goGames() {
+    setView({ screen: 'games' })
+  }
+
   if (!gateConfirmed) {
     return <GradeGate selectedGrade={grade} onSelect={selectGradeFromGate} />
   }
@@ -145,6 +150,7 @@ export default function MainSite() {
         onGoHsgTopic={goHsgTopic}
         onGoMockExam={goMockExam}
         onGoOnLuyenTopic={goOnLuyenTopic}
+        onGoGames={goGames}
         onGoPhotoSolve={goPhotoSolve}
         onGoTutorFinder={goTutorFinder}
         open={navOpen}
@@ -228,6 +234,8 @@ export default function MainSite() {
             </div>
           </div>
         )}
+
+        {view.screen === 'games' && <Games onBack={goDashboard} />}
 
         {view.screen === 'photo-solve' && <PhotoSolve onBack={goDashboard} />}
 
