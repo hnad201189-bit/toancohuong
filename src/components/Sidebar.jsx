@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const GRADES = [6, 7, 8, 9, 10, 11, 12]
+const GRADES = [1, 6, 7, 8, 9, 10, 11, 12]
 
 const BASE_MOCK_EXAMS = [
   { id: 'giua-ky-1', name: 'Thi giữa kì I' },
@@ -58,6 +58,8 @@ export default function Sidebar({
   const [hsgOpen, setHsgOpen] = useState(false)
   const mockExams = getMockExams(grade)
   const onLuyenTopics = getOnLuyenTopics(grade)
+  // Lớp 1 chỉ cần Kiến thức cơ bản — không có thi HSG/thi thử ở bậc tiểu học.
+  const showExamPrepGroups = grade !== 1
 
   // On mobile the sidebar is a slide-in drawer — close it after any navigation.
   function go(fn, ...args) {
@@ -137,65 +139,69 @@ export default function Sidebar({
           </ul>
         )}
 
-        <button
-          type="button"
-          className="sidebar__group-label sidebar__group-label--toggle"
-          aria-expanded={onLuyenOpen}
-          onClick={() => setOnLuyenOpen((v) => !v)}
-        >
-          ÔN LUYỆN
-          <span className="sidebar__group-caret">{onLuyenOpen ? '▾' : '▸'}</span>
-        </button>
-        {onLuyenOpen && (
-          onLuyenTopics.length > 0 ? (
-            <ul className="sidebar__list">
-              {onLuyenTopics.map((topic) =>
-                topic.href ? (
-                  <li key={topic.id}>
-                    <a className="sidebar__item" href={topic.href} target="_blank" rel="noopener noreferrer" onClick={onClose}>
-                      <span className="sidebar__item-name">{topic.name}</span>
-                      <span className="sidebar__item-external">↗</span>
-                    </a>
-                  </li>
-                ) : (
-                  <li key={topic.id}>
+        {showExamPrepGroups && (
+          <>
+            <button
+              type="button"
+              className="sidebar__group-label sidebar__group-label--toggle"
+              aria-expanded={onLuyenOpen}
+              onClick={() => setOnLuyenOpen((v) => !v)}
+            >
+              ÔN LUYỆN
+              <span className="sidebar__group-caret">{onLuyenOpen ? '▾' : '▸'}</span>
+            </button>
+            {onLuyenOpen && (
+              onLuyenTopics.length > 0 ? (
+                <ul className="sidebar__list">
+                  {onLuyenTopics.map((topic) =>
+                    topic.href ? (
+                      <li key={topic.id}>
+                        <a className="sidebar__item" href={topic.href} target="_blank" rel="noopener noreferrer" onClick={onClose}>
+                          <span className="sidebar__item-name">{topic.name}</span>
+                          <span className="sidebar__item-external">↗</span>
+                        </a>
+                      </li>
+                    ) : (
+                      <li key={topic.id}>
+                        <button
+                          className={`sidebar__item ${view.screen === 'on-luyen' && view.topicId === topic.id ? 'is-active' : ''}`}
+                          onClick={() => go(onGoOnLuyenTopic, topic)}
+                        >
+                          <span className="sidebar__item-name">{topic.name}</span>
+                        </button>
+                      </li>
+                    )
+                  )}
+                </ul>
+              ) : (
+                <p className="sidebar__group-empty">Chưa có chuyên đề, sẽ sớm được bổ sung.</p>
+              )
+            )}
+
+            <button
+              type="button"
+              className="sidebar__group-label sidebar__group-label--toggle"
+              aria-expanded={thiThuOpen}
+              onClick={() => setThiThuOpen((v) => !v)}
+            >
+              THI THỬ
+              <span className="sidebar__group-caret">{thiThuOpen ? '▾' : '▸'}</span>
+            </button>
+            {thiThuOpen && (
+              <ul className="sidebar__list">
+                {mockExams.map((exam) => (
+                  <li key={exam.id}>
                     <button
-                      className={`sidebar__item ${view.screen === 'on-luyen' && view.topicId === topic.id ? 'is-active' : ''}`}
-                      onClick={() => go(onGoOnLuyenTopic, topic)}
+                      className={`sidebar__item ${view.screen === 'mock-exam' && view.examId === exam.id ? 'is-active' : ''}`}
+                      onClick={() => go(onGoMockExam, exam)}
                     >
-                      <span className="sidebar__item-name">{topic.name}</span>
+                      <span className="sidebar__item-name">{exam.name}</span>
                     </button>
                   </li>
-                )
-              )}
-            </ul>
-          ) : (
-            <p className="sidebar__group-empty">Chưa có chuyên đề, sẽ sớm được bổ sung.</p>
-          )
-        )}
-
-        <button
-          type="button"
-          className="sidebar__group-label sidebar__group-label--toggle"
-          aria-expanded={thiThuOpen}
-          onClick={() => setThiThuOpen((v) => !v)}
-        >
-          THI THỬ
-          <span className="sidebar__group-caret">{thiThuOpen ? '▾' : '▸'}</span>
-        </button>
-        {thiThuOpen && (
-          <ul className="sidebar__list">
-            {mockExams.map((exam) => (
-              <li key={exam.id}>
-                <button
-                  className={`sidebar__item ${view.screen === 'mock-exam' && view.examId === exam.id ? 'is-active' : ''}`}
-                  onClick={() => go(onGoMockExam, exam)}
-                >
-                  <span className="sidebar__item-name">{exam.name}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
+                ))}
+              </ul>
+            )}
+          </>
         )}
 
         {hsgTopics.length > 0 && (

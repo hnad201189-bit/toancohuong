@@ -84,6 +84,62 @@ export const KNOWLEDGE_AREAS = [
 ]
 
 // ---- Lớp 6 (khung sườn — chưa có nội dung bài học chi tiết) ----
+// ---- Lớp 1 (khung sườn — chưa có nội dung bài học chi tiết) ----
+export const GRADE1_AREAS = [
+  {
+    id: 'l1-so-pham-vi-10',
+    order: 1,
+    name: 'Số và phép tính trong phạm vi 10',
+    description: 'Đếm, so sánh và các phép tính cộng, trừ trong phạm vi 10',
+    progress: 0,
+    topics: [
+      { id: 'l1-cac-so-den-10', name: 'Các số đến 10, đếm và so sánh', progress: 0, hasLesson: false },
+      { id: 'l1-cong-pham-vi-10', name: 'Phép cộng trong phạm vi 10', progress: 0, hasLesson: false },
+      { id: 'l1-tru-pham-vi-10', name: 'Phép trừ trong phạm vi 10', progress: 0, hasLesson: false },
+      { id: 'l1-bang-cong-tru-10', name: 'Bảng cộng, bảng trừ trong phạm vi 10 (ôn tập)', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l1-so-pham-vi-100',
+    order: 2,
+    name: 'Số và phép tính trong phạm vi 100',
+    description: 'Đọc, viết số và các phép tính cộng, trừ không nhớ trong phạm vi 100',
+    progress: 0,
+    topics: [
+      { id: 'l1-cac-so-den-100', name: 'Các số đến 100, đọc viết và cấu tạo số', progress: 0, hasLesson: false },
+      { id: 'l1-so-sanh-so-100', name: 'So sánh các số trong phạm vi 100', progress: 0, hasLesson: false },
+      { id: 'l1-cong-khong-nho-100', name: 'Phép cộng không nhớ trong phạm vi 100', progress: 0, hasLesson: false },
+      { id: 'l1-tru-khong-nho-100', name: 'Phép trừ không nhớ trong phạm vi 100', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l1-hinh-hoc-do-luong',
+    order: 3,
+    name: 'Hình học và đo lường',
+    description: 'Nhận biết hình cơ bản, định hướng không gian, đo độ dài và xem giờ đúng',
+    progress: 0,
+    topics: [
+      { id: 'l1-hinh-vuong-tron-tam-giac', name: 'Nhận biết hình vuông, hình tròn, hình tam giác, hình chữ nhật', progress: 0, hasLesson: false },
+      { id: 'l1-vi-tri-dinh-huong', name: 'Vị trí, định hướng trong không gian (trên–dưới, trái–phải)', progress: 0, hasLesson: false },
+      { id: 'l1-do-do-dai', name: 'Đo độ dài bằng thước, đơn vị xăng-ti-mét (cm)', progress: 0, hasLesson: false },
+      { id: 'l1-xem-gio-dung', name: 'Xem giờ đúng trên đồng hồ', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l1-thong-ke-xac-suat',
+    order: 4,
+    name: 'Một số yếu tố thống kê — xác suất đơn giản',
+    description: 'Thu thập, kiểm đếm số liệu đơn giản và làm quen với khả năng xảy ra',
+    progress: 0,
+    topics: [
+      { id: 'l1-thu-thap-kiem-dem', name: 'Thu thập, kiểm đếm số liệu đơn giản', progress: 0, hasLesson: false },
+      { id: 'l1-bieu-do-tranh-don-gian', name: 'Biểu đồ tranh đơn giản', progress: 0, hasLesson: false },
+      { id: 'l1-nhieu-hon-it-hon', name: 'So sánh nhiều hơn — ít hơn', progress: 0, hasLesson: false },
+      { id: 'l1-kha-nang-xay-ra', name: 'Khả năng xảy ra của một sự kiện (chắc chắn, có thể, không thể)', progress: 0, hasLesson: false },
+    ],
+  },
+]
+
 export const GRADE6_AREAS = [
   {
     id: 'l6-so-tu-nhien',

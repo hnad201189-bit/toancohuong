@@ -1,4 +1,4 @@
-const GRADES = [6, 7, 8, 9, 10, 11, 12]
+const GRADES = [1, 6, 7, 8, 9, 10, 11, 12]
 
 // Grades that currently have real lesson content. Kept as a plain hardcoded
 // list (mirroring Sidebar's own GRADES list) rather than derived from an API
