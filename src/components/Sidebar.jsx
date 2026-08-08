@@ -34,6 +34,11 @@ const ON_LUYEN_TOPICS_BY_GRADE = {
       name: '📐 Giải Mã Lượng Giác',
       href: '/tai-lieu/giai-ma-luong-giac.html',
     },
+    {
+      id: '10-diem-to-hop-xac-suat',
+      name: '🎲 10 Điểm Tổ Hợp Xác Suất',
+      href: '/tai-lieu/10-diem-to-hop-xac-suat.html',
+    },
   ],
 }
 
