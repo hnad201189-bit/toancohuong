@@ -44,6 +44,11 @@ const ON_LUYEN_TOPICS_BY_GRADE = {
       name: '📝 10 Điểm Thi Học Kì I',
       href: '/tai-lieu/10-diem-thi-hoc-ki-1.html',
     },
+    {
+      id: 'sieu-cap-trac-nghiem-luong-giac',
+      name: '⚡ Siêu Cấp Trắc Nghiệm Lượng Giác',
+      href: '/tai-lieu/sieu-cap-trac-nghiem-luong-giac.html',
+    },
   ],
 }
 

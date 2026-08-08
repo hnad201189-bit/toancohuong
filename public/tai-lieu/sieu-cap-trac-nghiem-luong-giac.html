@@ -1,0 +1,1411 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siêu Cấp Trắc Nghiệm Lượng Giác — Toán 11 (bản soạn mới)</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f7f4f6;
+    --bg-alt: #efe7ec;
+    --paper: #ffffff;
+    --ink: #2a1c22;
+    --ink-soft: #6b4c58;
+    --ink-faint: #9c8189;
+    --accent: #9c2953;
+    --accent-soft: #f5e2ea;
+    --accent-warm: #b5791f;
+    --accent-warm-soft: #f7ecd7;
+    --line: #e6dde2;
+    --line-strong: #cbb7c0;
+    --ok: #1f7a4d;
+    --ok-soft: #e3f3ea;
+    --bad: #b23b3b;
+    --bad-soft: #f8e6e6;
+    --shadow: 0 1px 2px rgba(50, 20, 35, 0.07), 0 6px 20px rgba(50, 20, 35, 0.06);
+    --radius: 10px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1216;
+    --bg-alt: #22181d;
+    --paper: #201519;
+    --ink: #f2e6ea;
+    --ink-soft: #ccadb8;
+    --ink-faint: #93737f;
+    --accent: #e08ab0;
+    --accent-soft: #3a2029;
+    --accent-warm: #d9b568;
+    --accent-warm-soft: #332818;
+    --line: #33232a;
+    --line-strong: #45303a;
+    --ok: #6bcf9a;
+    --ok-soft: #17301f;
+    --bad: #e08787;
+    --bad-soft: #3a1f1f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1216;
+      --bg-alt: #22181d;
+      --paper: #201519;
+      --ink: #f2e6ea;
+      --ink-soft: #ccadb8;
+      --ink-faint: #93737f;
+      --accent: #e08ab0;
+      --accent-soft: #3a2029;
+      --accent-warm: #d9b568;
+      --accent-warm-soft: #332818;
+      --line: #33232a;
+      --line-strong: #45303a;
+      --ok: #6bcf9a;
+      --ok-soft: #17301f;
+      --bad: #e08787;
+      --bad-soft: #3a1f1f;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 28px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.8px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n {
+    font-family: var(--mono);
+    color: var(--ink-faint);
+    margin-right: 8px;
+  }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-num {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--accent);
+    font-style: italic;
+  }
+  h2.topic-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    margin: 10px 0 30px;
+  }
+
+  h3.sub {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 18.5px;
+    margin: 34px 0 12px;
+    color: var(--ink);
+  }
+  h3.sub .tag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-style: normal;
+    margin-right: 10px;
+    vertical-align: 1px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 600; }
+  .set { font-family: var(--mono); background: var(--bg-alt); padding: 1px 5px; border-radius: 4px; }
+
+  /* ---------- Definition card ---------- */
+  .defcard {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin: 18px 0 26px;
+    max-width: 740px;
+  }
+  .defcard .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .defcard p:last-child { margin-bottom: 0; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 760px;
+    border: 1px solid var(--line);
+  }
+  .callout.example {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks (MCQ) ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+  }
+  .problem .q {
+    padding: 18px 22px 14px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px 22px 20px;
+  }
+  .opt {
+    text-align: left;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    cursor: pointer;
+    font-size: 14.5px;
+    font-family: var(--sans);
+    color: var(--ink);
+  }
+  .opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+  .opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .opt:disabled { cursor: default; }
+  .opt.is-correct { border-color: var(--ok); background: var(--ok-soft); color: var(--ok); font-weight: 600; }
+  .opt.is-wrong { border-color: var(--bad); background: var(--bad-soft); color: var(--bad); font-weight: 600; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 22px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .math {
+    font-family: var(--mono);
+    background: var(--bg-alt);
+    border-radius: 6px;
+    padding: 2px 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 22px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  code { font-family: var(--mono); }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">Mục lục</div>
+    <ol>
+      <li><a href="#chu-de-1"><span class="n">1</span>PT lượng giác cơ bản</a></li>
+      <li><a href="#chu-de-2"><span class="n">2</span>PT bậc hai 1 hslg</a></li>
+      <li><a href="#chu-de-3"><span class="n">3</span>PT bậc nhất sinx, cosx</a></li>
+      <li><a href="#chu-de-4"><span class="n">4</span>PT đẳng cấp bậc hai</a></li>
+      <li><a href="#chu-de-5"><span class="n">5</span>PT đối xứng</a></li>
+      <li><a href="#phuong-phap"><span class="n">＋</span>Chiến thuật làm trắc nghiệm</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="callout note" style="max-width:760px; margin: 0 0 36px;">
+      <div class="label">Cách dùng tài liệu này</div>
+      <p>Khác với <i>Giải Mã Lượng Giác</i> (trình bày tự luận từng bước), tài liệu này luyện đúng định dạng thi thật: mỗi câu có 4 phương án, bấm chọn để kiểm tra ngay đúng/sai. Nếu chọn sai, phương án đúng sẽ tự hiện màu xanh để đối chiếu. Vẫn có "Gợi ý bước tiếp theo" và "Xem đáp án" cho những câu cần xem lại cách giải chi tiết.</p>
+    </div>
+
+    <!-- ================= CHỦ ĐỀ 1 ================= -->
+    <section class="topic" id="chu-de-1">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 1</span>
+        <h2 class="topic-title">Phương trình lượng giác cơ bản</h2>
+      </div>
+      <p class="topic-intro">Bốn bẫy phổ biến nhất ở dạng cơ bản: sai chu kỳ (nhầm kπ với k2π), sai góc tham chiếu, thiếu một họ nghiệm, và tính sai số nghiệm trong một đoạn cho trước. Cả 4 bẫy đều xuất hiện có chủ đích trong các phương án nhiễu bên dưới.</p>
+
+      <div class="callout example">
+        <div class="label">Mẹo kiểm tra nhanh</div>
+        <p>Khi phân vân giữa hai phương án gần giống nhau, đừng giải lại từ đầu — hãy thế k=0 (và k=1 nếu cần) vào từng phương án rồi kiểm tra trực tiếp xem có thỏa phương trình gốc hay không. Cách này thường nhanh hơn nhiều so với làm lại toàn bộ phép biến đổi, đặc biệt hữu ích khi thời gian làm bài có hạn.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Luyện trắc nghiệm</h3>
+
+      <div class="problem" data-pool="tn1-1" data-qid="Câu 1" data-correct="A">
+        <div class="q"><span class="qid">Câu 1</span><div class="qtext"><p>Giải phương trình <span class="math">2sin x − 1 = 0</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = π/6 + k2π hoặc x = 5π/6 + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = π/6 + kπ hoặc x = 5π/6 + kπ</button>
+          <button type="button" class="opt" data-key="C">C. x = π/3 + k2π hoặc x = 2π/3 + k2π</button>
+          <button type="button" class="opt" data-key="D">D. x = π/6 + k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đưa về dạng cơ bản: <span class="math">sin x = 1/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">1/2 = sin(π/6)</span>, cho hai họ nghiệm: <span class="math">x = π/6 + k2π</span> hoặc <span class="math">x = π − π/6 + k2π = 5π/6 + k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Lưu ý chu kỳ là <span class="math">2π</span> (vì đây là phương trình sin cơ bản), không phải π — bẫy ở phương án B.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = π/6 + k2π hoặc x = 5π/6 + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn1-2" data-qid="Câu 2" data-correct="A">
+        <div class="q"><span class="qid">Câu 2</span><div class="qtext"><p>Giải phương trình <span class="math">cos(2x + π/3) = −1/2</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = π/6 + kπ hoặc x = −π/2 + kπ</button>
+          <button type="button" class="opt" data-key="B">B. x = π/6 + k2π hoặc x = −π/2 + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = π/3 + kπ hoặc x = −π/3 + kπ</button>
+          <button type="button" class="opt" data-key="D">D. x = π/6 + kπ hoặc x = 5π/6 + kπ</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">−1/2 = cos(2π/3)</span>, nên <span class="math">2x+π/3 = ±2π/3+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trường hợp 1: <span class="math">2x = π/3+k2π ⇒ x = π/6+kπ</span> (chia cả hai vế cho 2 khiến chu kỳ 2π thành π).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp 2: <span class="math">2x = −π+k2π ⇒ x = −π/2+kπ</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = π/6 + kπ hoặc x = −π/2 + kπ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn1-3" data-qid="Câu 3" data-correct="B">
+        <div class="q"><span class="qid">Câu 3</span><div class="qtext"><p>Tìm số nghiệm của phương trình <span class="math">tan(x − π/4) = 1</span> trên đoạn <span class="math">[0; 2π]</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. 1</button>
+          <button type="button" class="opt" data-key="B">B. 2</button>
+          <button type="button" class="opt" data-key="C">C. 3</button>
+          <button type="button" class="opt" data-key="D">D. 4</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">tan(x−π/4) = 1 = tan(π/4) ⇒ x−π/4 = π/4+kπ ⇒ x = π/2+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Xét trong [0;2π]: k=0 cho x=π/2 (nhận); k=1 cho x=3π/2 (nhận); k=2 cho x=5π/2 (vượt quá 2π, loại); k=−1 cho x=−π/2 (âm, loại).</p></div></div>
+          <p class="answer hidden">Đáp án đúng: B. 2 nghiệm (π/2 và 3π/2).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn1-4" data-qid="Câu 4" data-correct="A">
+        <div class="q"><span class="qid">Câu 4</span><div class="qtext"><p>Tính tổng tất cả các nghiệm của phương trình <span class="math">2cos x + 1 = 0</span> trên khoảng <span class="math">(0; 2π)</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. 2π</button>
+          <button type="button" class="opt" data-key="B">B. π</button>
+          <button type="button" class="opt" data-key="C">C. 4π/3</button>
+          <button type="button" class="opt" data-key="D">D. 8π/3</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">cos x = −1/2 ⇒ x = ±2π/3 + k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trong (0;2π): <span class="math">x=2π/3</span> (k=0) và <span class="math">x=−2π/3+2π=4π/3</span> (k=1) đều hợp lệ.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tổng: <span class="math">2π/3 + 4π/3 = 6π/3 = 2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. 2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn1-5" data-qid="Câu 5" data-correct="A">
+        <div class="q"><span class="qid">Câu 5</span><div class="qtext"><p>Nghiệm âm lớn nhất của phương trình <span class="math">√3 tan x − 3 = 0</span> là</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. −2π/3</button>
+          <button type="button" class="opt" data-key="B">B. −π/3</button>
+          <button type="button" class="opt" data-key="C">C. −5π/3</button>
+          <button type="button" class="opt" data-key="D">D. π/3</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">tan x = 3/√3 = √3 ⇒ x = π/3+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Các nghiệm cách đều π: …, −2π/3 (k=−1), π/3 (k=0), 4π/3 (k=1), … Trong các nghiệm âm, −2π/3 là gần 0 nhất (lớn nhất).</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. −2π/3.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 2 ================= -->
+    <section class="topic" id="chu-de-2">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 2</span>
+        <h2 class="topic-title">Phương trình bậc hai đối với một hàm số lượng giác</h2>
+      </div>
+      <p class="topic-intro">Bẫy đặc trưng của dạng này: quên loại nghiệm ẩn phụ không thỏa <span class="math">|t| ≤ 1</span> (khi t = sin hoặc cos), hoặc quên hẳn một trong hai họ nghiệm sau khi giải xong phương trình bậc hai.</p>
+
+      <div class="callout example">
+        <div class="label">Mẹo kiểm tra nhanh</div>
+        <p>Với phương trình bậc hai ẩn t, luôn đếm xem phương trình gốc cho ra <b>bao nhiêu nghiệm t hợp lệ</b> trước khi nhìn đáp án — nếu chỉ có 1 nghiệm t hợp lệ mà phương án lại liệt kê 2 họ nghiệm (hoặc ngược lại), phương án đó chắc chắn sai.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Luyện trắc nghiệm</h3>
+
+      <div class="problem" data-pool="tn2-1" data-qid="Câu 6" data-correct="A">
+        <div class="q"><span class="qid">Câu 6</span><div class="qtext"><p>Giải phương trình <span class="math">2sin²x + 5sin x − 3 = 0</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = π/6 + k2π hoặc x = 5π/6 + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = π/6 + kπ hoặc x = 5π/6 + kπ</button>
+          <button type="button" class="opt" data-key="C">C. x = −π/6 + k2π hoặc x = 7π/6 + k2π</button>
+          <button type="button" class="opt" data-key="D">D. Vô nghiệm</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t=sin x, t∈[−1;1]</span>: <span class="math">2t²+5t−3=0</span>. Δ=25+24=49, √Δ=7.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">t=(−5±7)/4</span>, tức t=1/2 hoặc t=−3. Loại t=−3 vì |−3|>1.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">sin x=1/2 ⇒ x=π/6+k2π</span> hoặc <span class="math">x=5π/6+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = π/6 + k2π hoặc x = 5π/6 + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn2-2" data-qid="Câu 7" data-correct="A">
+        <div class="q"><span class="qid">Câu 7</span><div class="qtext"><p>Giải phương trình <span class="math">2cos²x − 3cos x + 1 = 0</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = k2π hoặc x = ±π/3 + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = ±π/3 + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = kπ hoặc x = ±π/3 + kπ</button>
+          <button type="button" class="opt" data-key="D">D. x = k2π hoặc x = ±π/6 + k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t=cos x</span>: <span class="math">2t²−3t+1=0</span>. Δ=9−8=1.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">t=(3±1)/4</span>, tức t=1 hoặc t=1/2 — cả hai đều hợp lệ, đừng bỏ sót nghiệm nào.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">cos x=1 ⇒ x=k2π</span>. <span class="math">cos x=1/2 ⇒ x=±π/3+k2π</span> (góc tham chiếu π/3, không phải π/6).</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = k2π hoặc x = ±π/3 + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn2-3" data-qid="Câu 8" data-correct="A">
+        <div class="q"><span class="qid">Câu 8</span><div class="qtext"><p>Phương trình <span class="math">tan²x − (√3+1)tan x + √3 = 0</span> có nghiệm là</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = π/4 + kπ hoặc x = π/3 + kπ</button>
+          <button type="button" class="opt" data-key="B">B. x = π/4 + kπ hoặc x = π/6 + kπ</button>
+          <button type="button" class="opt" data-key="C">C. x = π/4 + k2π hoặc x = π/3 + k2π</button>
+          <button type="button" class="opt" data-key="D">D. x = −π/4 + kπ hoặc x = −π/3 + kπ</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhận thấy phân tích được: <span class="math">t²−(1+√3)t+√3 = (t−1)(t−√3)</span>, với t=tan x.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">tan x=1 ⇒ x=π/4+kπ</span>. <span class="math">tan x=√3 ⇒ x=π/3+kπ</span> (không phải π/6 — tan(π/6)=1/√3 chứ không phải √3).</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = π/4 + kπ hoặc x = π/3 + kπ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn2-4" data-qid="Câu 9" data-correct="B">
+        <div class="q"><span class="qid">Câu 9</span><div class="qtext"><p>Số nghiệm của phương trình <span class="math">4sin²x − 1 = 0</span> trên đoạn <span class="math">[0; π]</span> là</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. 4</button>
+          <button type="button" class="opt" data-key="B">B. 2</button>
+          <button type="button" class="opt" data-key="C">C. 3</button>
+          <button type="button" class="opt" data-key="D">D. 1</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">sin²x=1/4 ⇒ sin x=±1/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhánh <span class="math">sin x=1/2</span>: trong [0;π] cho x=π/6 và x=5π/6, cả hai hợp lệ.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Nhánh <span class="math">sin x=−1/2</span>: các nghiệm (−π/6+k2π hoặc 7π/6+k2π) đều rơi ngoài [0;π] — không đóng góp nghiệm nào.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: B. 2 nghiệm.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn2-5" data-qid="Câu 10" data-correct="A">
+        <div class="q"><span class="qid">Câu 10</span><div class="qtext"><p>Giải phương trình <span class="math">cot²x − 4cot x + 3 = 0</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = π/4 + kπ hoặc x = arccot(3) + kπ</button>
+          <button type="button" class="opt" data-key="B">B. x = π/4 + kπ hoặc x = arctan(3) + kπ</button>
+          <button type="button" class="opt" data-key="C">C. x = π/4 + k2π hoặc x = arccot(3) + k2π</button>
+          <button type="button" class="opt" data-key="D">D. x = −π/4 + kπ hoặc x = arccot(3) + kπ</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt t=cot x: <span class="math">(t−1)(t−3)=t²−4t+3=0 ⇒ t=1</span> hoặc <span class="math">t=3</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">cot x=1 ⇒ x=π/4+kπ</span> (góc đặc biệt). <span class="math">cot x=3</span> không phải góc đặc biệt, viết bằng <span class="math">arccot</span> — chú ý không nhầm với arctan.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = π/4 + kπ hoặc x = arccot(3) + kπ.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 3 ================= -->
+    <section class="topic" id="chu-de-3">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 3</span>
+        <h2 class="topic-title">Phương trình bậc nhất đối với sin x và cos x</h2>
+      </div>
+      <p class="topic-intro">Ngoài giải phương trình, dạng này còn hay xuất hiện câu hỏi "tìm tham số m để phương trình có nghiệm" — chỉ cần nhớ đúng điều kiện <span class="math">a²+b² ≥ c²</span>, không cần giải phương trình lượng giác nào cả.</p>
+
+      <div class="callout example">
+        <div class="label">Mẹo kiểm tra nhanh</div>
+        <p>Với câu hỏi điều kiện có nghiệm theo tham số m, sau khi ra được bất phương trình bậc hai ẩn m, hãy thử một giá trị m cụ thể nằm trong khoảng đáp án đang cân nhắc (ví dụ m=0) và một giá trị nằm ngoài, thay lại vào bất đẳng thức gốc <span class="math">a²+b²≥c²</span> để xác nhận chiều đúng — tránh nhầm chiều bất đẳng thức khi giải.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Luyện trắc nghiệm</h3>
+
+      <div class="problem" data-pool="tn3-1" data-qid="Câu 11" data-correct="A">
+        <div class="q"><span class="qid">Câu 11</span><div class="qtext"><p>Giải phương trình <span class="math">sin x − cos x = 1</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = π/2 + k2π hoặc x = π + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = k2π hoặc x = π/2 + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = π/2 + kπ hoặc x = π + kπ</button>
+          <button type="button" class="opt" data-key="D">D. x = −π/2 + k2π hoặc x = k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a=1, b=−1, biên độ <span class="math">R=√(1+1)=√2</span>. Chọn φ=−π/4 (vì cosφ=1/√2, sinφ=−1/√2): vế trái <span class="math">=√2 sin(x−π/4)</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">√2 sin(x−π/4)=1 ⇒ sin(x−π/4)=√2/2</span>, cho <span class="math">x−π/4=π/4+k2π</span> hoặc <span class="math">x−π/4=3π/4+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giải ra: <span class="math">x=π/2+k2π</span> hoặc <span class="math">x=π+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = π/2 + k2π hoặc x = π + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn3-2" data-qid="Câu 12" data-correct="A">
+        <div class="q"><span class="qid">Câu 12</span><div class="qtext"><p>Tìm m để phương trình <span class="math">(m+1)sin x − m cos x = 1</span> có nghiệm.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. m ≤ −1 hoặc m ≥ 0</button>
+          <button type="button" class="opt" data-key="B">B. −1 ≤ m ≤ 0</button>
+          <button type="button" class="opt" data-key="C">C. m ≥ 0</button>
+          <button type="button" class="opt" data-key="D">D. m ≤ −1</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a=m+1, b=−m, c=1. Điều kiện có nghiệm: <span class="math">a²+b²≥c²</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">(m+1)²+m²≥1 ⇒ m²+2m+1+m²≥1 ⇒ 2m²+2m≥0</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">2m(m+1)≥0 ⇒ m≤−1</span> hoặc <span class="math">m≥0</span> (tích hai nhân tử không âm khi cả hai cùng dấu hoặc bằng 0).</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. m ≤ −1 hoặc m ≥ 0.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn3-3" data-qid="Câu 13" data-correct="A">
+        <div class="q"><span class="qid">Câu 13</span><div class="qtext"><p>Giải phương trình <span class="math">cos x − √3 sin x = √2</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = −7π/12 + k2π hoặc x = −π/12 + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = 7π/12 + k2π hoặc x = π/12 + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = −7π/12 + kπ hoặc x = −π/12 + kπ</button>
+          <button type="button" class="opt" data-key="D">D. x = 5π/12 + k2π hoặc x = 13π/12 + k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Viết lại: <span class="math">−√3 sin x + cos x</span>, a=−√3, b=1, R=2. Chọn φ=5π/6 (cosφ=−√3/2, sinφ=1/2): vế trái <span class="math">=2 sin(x+5π/6)</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">2sin(x+5π/6)=√2 ⇒ sin(x+5π/6)=√2/2</span>, cho <span class="math">x+5π/6=π/4+k2π</span> hoặc <span class="math">x+5π/6=3π/4+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp 1: <span class="math">x=π/4−5π/6+k2π = −7π/12+k2π</span>. Trường hợp 2: <span class="math">x=3π/4−5π/6+k2π = −π/12+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = −7π/12 + k2π hoặc x = −π/12 + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn3-4" data-qid="Câu 14" data-correct="A">
+        <div class="q"><span class="qid">Câu 14</span><div class="qtext"><p>Giải phương trình <span class="math">2sin x + 2cos x = −2</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = −π/2 + k2π hoặc x = π + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = π/2 + k2π hoặc x = −π + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = −π/2 + kπ hoặc x = π + kπ</button>
+          <button type="button" class="opt" data-key="D">D. x = k2π hoặc x = −π/2 + k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chia 2 vế cho 2: <span class="math">sin x+cos x=−1</span>. Viết lại <span class="math">√2sin(x+π/4)=−1 ⇒ sin(x+π/4)=−√2/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">x+π/4=−π/4+k2π</span> hoặc <span class="math">x+π/4=5π/4+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giải ra: <span class="math">x=−π/2+k2π</span> hoặc <span class="math">x=π+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = −π/2 + k2π hoặc x = π + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn3-5" data-qid="Câu 15" data-correct="A">
+        <div class="q"><span class="qid">Câu 15</span><div class="qtext"><p>Giải phương trình <span class="math">√3 cos x + sin x = √3</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = k2π hoặc x = π/3 + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = k2π hoặc x = 2π/3 + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = π/3 + k2π hoặc x = 2π/3 + k2π</button>
+          <button type="button" class="opt" data-key="D">D. x = −π/3 + k2π hoặc x = k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Viết lại theo thứ tự sin trước: <span class="math">sin x+√3cos x</span>, a=1, b=√3, R=2, φ=π/3. Vế trái <span class="math">=2sin(x+π/3)</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">2sin(x+π/3)=√3 ⇒ sin(x+π/3)=√3/2</span>, cho <span class="math">x+π/3=π/3+k2π</span> hoặc <span class="math">x+π/3=2π/3+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giải ra: <span class="math">x=k2π</span> hoặc <span class="math">x=π/3+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = k2π hoặc x = π/3 + k2π.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 4 ================= -->
+    <section class="topic" id="chu-de-4">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 4</span>
+        <h2 class="topic-title">Phương trình đẳng cấp bậc hai đối với sin x và cos x</h2>
+      </div>
+      <p class="topic-intro">Bẫy thường gặp: quên thử trường hợp <span class="math">cos x = 0</span> trước khi chia, hoặc nhầm lẫn giữa arctan và arccot khi nghiệm không phải góc đặc biệt.</p>
+
+      <div class="callout example">
+        <div class="label">Mẹo kiểm tra nhanh</div>
+        <p>Nếu đề bài hỏi "phương trình có tập nghiệm trùng với phương trình nào", không cần giải hết phương trình gốc — chỉ cần chia cho cos²x để ra phương trình bậc hai ẩn tan x, so hệ số với từng phương án là đủ, không cần bấm máy tính giải nghiệm cụ thể.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Luyện trắc nghiệm</h3>
+
+      <div class="problem" data-pool="tn4-1" data-qid="Câu 16" data-correct="A">
+        <div class="q"><span class="qid">Câu 16</span><div class="qtext"><p>Giải phương trình <span class="math">sin²x − 3sin x cos x + 2cos²x = 0</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = π/4 + kπ hoặc x = arctan(2) + kπ</button>
+          <button type="button" class="opt" data-key="B">B. x = π/4 + kπ hoặc x = arctan(2) + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = −π/4 + kπ hoặc x = arctan(2) + kπ</button>
+          <button type="button" class="opt" data-key="D">D. x = π/4 + kπ hoặc x = arccot(2) + kπ</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thử cos x=0: sin²x=1, vế trái=1≠0 — không phải nghiệm, an toàn chia cho cos²x.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">tan²x−3tan x+2=0 ⇒ (t−1)(t−2)=0 ⇒ t=1</span> hoặc <span class="math">t=2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">tan x=1 ⇒ x=π/4+kπ</span>. <span class="math">tan x=2 ⇒ x=arctan(2)+kπ</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = π/4 + kπ hoặc x = arctan(2) + kπ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn4-2" data-qid="Câu 17" data-correct="A">
+        <div class="q"><span class="qid">Câu 17</span><div class="qtext"><p>Giải phương trình <span class="math">3sin²x + 2sin x cos x − cos²x = 0</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = arctan(1/3) + kπ hoặc x = −π/4 + kπ</button>
+          <button type="button" class="opt" data-key="B">B. x = arctan(3) + kπ hoặc x = −π/4 + kπ</button>
+          <button type="button" class="opt" data-key="C">C. x = arctan(1/3) + kπ hoặc x = π/4 + kπ</button>
+          <button type="button" class="opt" data-key="D">D. x = arctan(1/3) + k2π hoặc x = −π/4 + k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thử cos x=0: 3(1)=3≠0, loại. Chia cho cos²x: <span class="math">3tan²x+2tan x−1=0</span>. Δ=4+12=16.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">tan x=(−2±4)/6</span>, tức <span class="math">tan x=1/3</span> hoặc <span class="math">tan x=−1</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = arctan(1/3) + kπ hoặc x = −π/4 + kπ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn4-3" data-qid="Câu 18" data-correct="A">
+        <div class="q"><span class="qid">Câu 18</span><div class="qtext"><p>Giải phương trình <span class="math">sin²x − sin x cos x = 0</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = kπ hoặc x = π/4 + kπ</button>
+          <button type="button" class="opt" data-key="B">B. x = π/4 + kπ</button>
+          <button type="button" class="opt" data-key="C">C. x = k2π hoặc x = π/4 + k2π</button>
+          <button type="button" class="opt" data-key="D">D. x = kπ hoặc x = −π/4 + kπ</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vế trái phân tích được ngay: <span class="math">sin x(sin x − cos x) = 0</span> — không cần chia cho cos²x.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">sin x=0 ⇒ x=kπ</span>. <span class="math">sin x=cos x ⇒ tan x=1 ⇒ x=π/4+kπ</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = kπ hoặc x = π/4 + kπ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn4-4" data-qid="Câu 19" data-correct="A">
+        <div class="q"><span class="qid">Câu 19</span><div class="qtext"><p>Phương trình <span class="math">cos²x − sin x cos x − 2sin²x = 0</span> có tập nghiệm trùng với tập nghiệm của phương trình nào sau đây?</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. tan x = 1/2 hoặc tan x = −1</button>
+          <button type="button" class="opt" data-key="B">B. tan x = 2 hoặc tan x = −1</button>
+          <button type="button" class="opt" data-key="C">C. cot x = 1/2 hoặc cot x = −1</button>
+          <button type="button" class="opt" data-key="D">D. tan x = 1/2 hoặc tan x = 1</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thử cos x=0: 0−0−2(1)=−2≠0, loại. Chia cho cos²x: <span class="math">1−tan x−2tan²x=0</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhân −1 và sắp lại: <span class="math">2tan²x+tan x−1=0</span>. Δ=1+8=9.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">tan x=(−1±3)/4</span>, tức <span class="math">tan x=1/2</span> hoặc <span class="math">tan x=−1</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. tan x = 1/2 hoặc tan x = −1.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn4-5" data-qid="Câu 20" data-correct="C">
+        <div class="q"><span class="qid">Câu 20</span><div class="qtext"><p>Số nghiệm của phương trình <span class="math">sin²x + cos²x − cos 2x = 0</span> trên đoạn <span class="math">[0; 2π]</span> là</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. 4</button>
+          <button type="button" class="opt" data-key="B">B. 1</button>
+          <button type="button" class="opt" data-key="C">C. 3</button>
+          <button type="button" class="opt" data-key="D">D. 2</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">sin²x+cos²x=1</span> luôn đúng, phương trình rút gọn còn <span class="math">1−cos2x=0 ⇒ cos2x=1</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">2x=k2π ⇒ x=kπ</span>. Trong đoạn <b>đóng</b> [0;2π]: x=0 (k=0), x=π (k=1), x=2π (k=2) — cả 3 đầu mút đều được tính vì đoạn đóng.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: C. 3 nghiệm (0, π, 2π).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 5 ================= -->
+    <section class="topic" id="chu-de-5">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 5</span>
+        <h2 class="topic-title">Phương trình đối xứng đối với sin x và cos x</h2>
+      </div>
+      <p class="topic-intro">Bẫy thường gặp: quên điều kiện <span class="math">|t| ≤ √2</span> của ẩn phụ t=sinx±cosx nên không loại được nghiệm ngoại lai, hoặc nhầm dấu công thức liên hệ giữa sinx·cosx và t² khi đề dùng hiệu thay vì tổng.</p>
+
+      <div class="callout example">
+        <div class="label">Mẹo kiểm tra nhanh</div>
+        <p>Sau khi tìm được nghiệm t, luôn tự hỏi: "t này có nằm trong [−√2; √2] không?" trước khi đi tiếp — đây là bước học sinh dễ quên nhất trong cả dạng bài, và các phương án nhiễu trong các câu dưới đây thường cố tình thiếu đúng một họ nghiệm ứng với một trong hai giá trị t hợp lệ.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Luyện trắc nghiệm</h3>
+
+      <div class="problem" data-pool="tn5-1" data-qid="Câu 21" data-correct="A">
+        <div class="q"><span class="qid">Câu 21</span><div class="qtext"><p>Giải phương trình <span class="math">sin x − cos x − sin x cos x = 1</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = π/2 + k2π hoặc x = π + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = k2π hoặc x = π/2 + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = π/2 + kπ hoặc x = π + kπ</button>
+          <button type="button" class="opt" data-key="D">D. x = −π/2 + k2π hoặc x = k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t=sin x−cos x, t∈[−√2;√2]</span>, khi đó <span class="math">sin x cos x=(1−t²)/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">t−(1−t²)/2=1 ⇒ 2t−(1−t²)=2 ⇒ t²+2t−3=0 ⇒ (t+3)(t−1)=0</span>. Loại t=−3, nhận t=1.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">sin x−cos x=1 ⇒ √2sin(x−π/4)=1 ⇒ x=π/2+k2π</span> hoặc <span class="math">x=π+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = π/2 + k2π hoặc x = π + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn5-2" data-qid="Câu 22" data-correct="A">
+        <div class="q"><span class="qid">Câu 22</span><div class="qtext"><p>Giải phương trình <span class="math">sin x + cos x − sin x cos x = −1</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = −π/2 + k2π hoặc x = π + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = π/2 + k2π hoặc x = −π + k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = k2π hoặc x = π/2 + k2π</button>
+          <button type="button" class="opt" data-key="D">D. x = −π/2 + kπ hoặc x = π + kπ</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t=sin x+cos x, t∈[−√2;√2]</span>, <span class="math">sin x cos x=(t²−1)/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">t−(t²−1)/2=−1 ⇒ 2t−(t²−1)=−2 ⇒ t²−2t−3=0 ⇒ (t−3)(t+1)=0</span>. Loại t=3, nhận t=−1.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">sin x+cos x=−1 ⇒ x=−π/2+k2π</span> hoặc <span class="math">x=π+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = −π/2 + k2π hoặc x = π + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn5-3" data-qid="Câu 23" data-correct="A">
+        <div class="q"><span class="qid">Câu 23</span><div class="qtext"><p>Giải phương trình <span class="math">2(sin x + cos x) − 4sin x cos x = 2</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = −π/4 + kπ, x = k2π hoặc x = π/2 + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = −π/4 + kπ</button>
+          <button type="button" class="opt" data-key="C">C. x = k2π hoặc x = π/2 + k2π</button>
+          <button type="button" class="opt" data-key="D">D. x = π/4 + kπ, x = k2π hoặc x = π/2 + k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chia 2 vế cho 2: <span class="math">sin x+cos x−2sin x cos x=1</span>. Đặt <span class="math">t=sin x+cos x</span>, <span class="math">sin x cos x=(t²−1)/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">t−(t²−1)=1 ⇒ −t²+t=0 ⇒ t(1−t)=0 ⇒ t=0</span> hoặc <span class="math">t=1</span> — cả hai đều hợp lệ (khác với đa số câu trước, có 2 nghiệm t).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>t=0: <span class="math">sin x+cos x=0 ⇒ tan x=−1 ⇒ x=−π/4+kπ</span>. t=1: <span class="math">sin x+cos x=1 ⇒ x=k2π</span> hoặc <span class="math">x=π/2+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = −π/4 + kπ, x = k2π hoặc x = π/2 + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn5-4" data-qid="Câu 24" data-correct="A">
+        <div class="q"><span class="qid">Câu 24</span><div class="qtext"><p>Giải phương trình <span class="math">2sin x cos x − 2(sin x + cos x) = −2</span>.</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. x = k2π hoặc x = π/2 + k2π</button>
+          <button type="button" class="opt" data-key="B">B. x = k2π</button>
+          <button type="button" class="opt" data-key="C">C. x = π/2 + k2π</button>
+          <button type="button" class="opt" data-key="D">D. x = −π/2 + k2π hoặc x = π + k2π</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chia 2 vế cho 2: <span class="math">sin x cos x−(sin x+cos x)=−1</span>. Đặt <span class="math">t=sin x+cos x</span>, <span class="math">sin x cos x=(t²−1)/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">(t²−1)/2−t=−1 ⇒ t²−1−2t=−2 ⇒ t²−2t+1=0 ⇒ (t−1)²=0 ⇒ t=1</span> (nghiệm kép).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">sin x+cos x=1 ⇒ x=k2π</span> hoặc <span class="math">x=π/2+k2π</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. x = k2π hoặc x = π/2 + k2π.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="tn5-5" data-qid="Câu 25" data-correct="A">
+        <div class="q"><span class="qid">Câu 25</span><div class="qtext"><p>Nghiệm t = sinx + cosx của một phương trình đối xứng luôn thỏa điều kiện nào sau đây?</p></div></div>
+        <div class="options">
+          <button type="button" class="opt" data-key="A">A. −√2 ≤ t ≤ √2</button>
+          <button type="button" class="opt" data-key="B">B. −1 ≤ t ≤ 1</button>
+          <button type="button" class="opt" data-key="C">C. −2 ≤ t ≤ 2</button>
+          <button type="button" class="opt" data-key="D">D. 0 ≤ t ≤ √2</button>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp án</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Viết lại <span class="math">t=sin x+cos x=√2sin(x+π/4)</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì <span class="math">sin(x+π/4)∈[−1;1]</span> với mọi x, nhân cả hai vế với √2: <span class="math">t∈[−√2;√2]</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: A. −√2 ≤ t ≤ √2.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="phuong-phap">
+      <div class="topic-head">
+        <span class="topic-num">Phụ lục</span>
+        <h2 class="topic-title">Chiến thuật làm bài trắc nghiệm lượng giác</h2>
+      </div>
+      <p class="topic-intro">Trắc nghiệm không chỉ đòi hỏi giải đúng — còn đòi hỏi làm nhanh và tránh đúng những bẫy mà người ra đề cố tình cài vào các phương án nhiễu. Dưới đây là 5 nguyên tắc rút ra từ chính các câu ở trên.</p>
+
+      <div class="method-grid">
+        <div class="method-card"><span class="mnum">1</span><p><b>Xác định dạng trước khi nhìn đáp án.</b> Nhận diện phương trình thuộc dạng nào (cơ bản, bậc hai, bậc nhất sin-cos, đẳng cấp, đối xứng) rồi mới đọc 4 phương án — tránh bị đáp án "quen mắt" dẫn dắt sai hướng.</p></div>
+        <div class="method-card"><span class="mnum">2</span><p><b>Tự giải hoàn chỉnh, đừng đoán.</b> Giải trọn vẹn rồi mới đối chiếu với 4 lựa chọn; nếu vừa nhìn đề vừa nhìn đáp án để "đoán ngược", rất dễ bị phương án nhiễu (đúng dạng, sai chi tiết) đánh lừa.</p></div>
+        <div class="method-card"><span class="mnum">3</span><p><b>Cảnh giác 4 bẫy quen thuộc.</b> Sai chu kỳ (kπ ↔ k2π), sai góc tham chiếu, thiếu một họ nghiệm, và nhầm arctan ↔ arccot — bốn lỗi này xuất hiện lặp lại có chủ đích trong các phương án nhiễu ở tài liệu này.</p></div>
+        <div class="method-card"><span class="mnum">4</span><p><b>Thế số khi phân vân.</b> Nếu lưỡng lự giữa 2 phương án, thế k=0 (và k=1) vào từng phương án rồi kiểm tra lại phương trình gốc — nhanh hơn giải lại từ đầu.</p></div>
+        <div class="method-card"><span class="mnum">5</span><p><b>Liệt kê tường minh khi đếm nghiệm.</b> Với câu đếm số nghiệm/tổng nghiệm trong một đoạn, viết ra từng nghiệm cụ thể (kèm giá trị k) thay vì chỉ ước lượng bằng cảm giác.</p></div>
+      </div>
+
+      <p>Khuôn mẫu này áp dụng cho toàn bộ 25 câu ở trên — bấm "Gợi ý bước tiếp theo" để xem lại cách giải theo đúng trình tự, hoặc bấm trực tiếp vào một phương án để tự kiểm tra trước.</p>
+    </section>
+
+    <footer>
+      Siêu Cấp Trắc Nghiệm Lượng Giác — tài liệu tự soạn luyện trắc nghiệm chương Phương trình lượng giác thường gặp, Toán 11, đồng bộ cùng <i>Giải Mã Lượng Giác</i> (bản tự luận). Toàn bộ câu hỏi, số liệu, phương án và lời giải trong tài liệu này là nội dung tự soạn, không sao chép từ bất kỳ ấn phẩm đã xuất bản nào.
+    </footer>
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'tn1-1': [{
+      qHtml: '<p>Giải phương trình <span class="math">2cos x + √3 = 0</span>.</p>',
+      options: [
+        { key: 'A', html: 'A. x = 5π/6 + k2π hoặc x = −5π/6 + k2π' },
+        { key: 'B', html: 'B. x = 5π/6 + kπ hoặc x = −5π/6 + kπ' },
+        { key: 'C', html: 'C. x = π/6 + k2π hoặc x = −π/6 + k2π' },
+        { key: 'D', html: 'D. x = 5π/6 + k2π' }
+      ],
+      correct: 'A',
+      steps: [
+        '<p>Đưa về dạng cơ bản: <span class="math">cos x = −√3/2</span>.</p>',
+        '<p><span class="math">−√3/2 = cos(5π/6)</span>, cho <span class="math">x = 5π/6 + k2π</span> hoặc <span class="math">x = −5π/6 + k2π</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: A. x = 5π/6 + k2π hoặc x = −5π/6 + k2π.'
+    }],
+    'tn1-2': [{
+      qHtml: '<p>Giải phương trình <span class="math">sin(2x − π/6) = √3/2</span>.</p>',
+      options: [
+        { key: 'A', html: 'A. x = π/4 + kπ hoặc x = 5π/12 + kπ' },
+        { key: 'B', html: 'B. x = π/4 + k2π hoặc x = 5π/12 + k2π' },
+        { key: 'C', html: 'C. x = π/6 + kπ hoặc x = π/3 + kπ' },
+        { key: 'D', html: 'D. x = π/4 + kπ' }
+      ],
+      correct: 'A',
+      steps: [
+        '<p><span class="math">√3/2 = sin(π/3)</span>, nên <span class="math">2x−π/6=π/3+k2π</span> hoặc <span class="math">2x−π/6=2π/3+k2π</span>.</p>',
+        '<p>Giải ra: <span class="math">x=π/4+kπ</span> hoặc <span class="math">x=5π/12+kπ</span> (chia 2 khiến chu kỳ còn π).</p>'
+      ],
+      answerHtml: 'Đáp án đúng: A. x = π/4 + kπ hoặc x = 5π/12 + kπ.'
+    }],
+    'tn1-3': [{
+      qHtml: '<p>Tìm số nghiệm của phương trình <span class="math">cot(x + π/3) = √3</span> trên đoạn <span class="math">[0; 2π]</span>.</p>',
+      options: [
+        { key: 'A', html: 'A. 1' },
+        { key: 'B', html: 'B. 2' },
+        { key: 'C', html: 'C. 3' },
+        { key: 'D', html: 'D. 4' }
+      ],
+      correct: 'B',
+      steps: [
+        '<p><span class="math">cot(x+π/3)=√3=cot(π/6) ⇒ x+π/3=π/6+kπ ⇒ x=−π/6+kπ</span>.</p>',
+        '<p>Trong [0;2π]: k=1 cho x=5π/6 (nhận); k=2 cho x=11π/6 (nhận); k=0 cho x=−π/6 (âm, loại).</p>'
+      ],
+      answerHtml: 'Đáp án đúng: B. 2 nghiệm (5π/6 và 11π/6).'
+    }],
+    'tn1-4': [{
+      qHtml: '<p>Tính tổng tất cả các nghiệm của phương trình <span class="math">2sin x − √3 = 0</span> trên khoảng <span class="math">(0; 2π)</span>.</p>',
+      options: [
+        { key: 'A', html: 'A. π' },
+        { key: 'B', html: 'B. 2π/3' },
+        { key: 'C', html: 'C. 4π/3' },
+        { key: 'D', html: 'D. 2π' }
+      ],
+      correct: 'A',
+      steps: [
+        '<p><span class="math">sin x=√3/2 ⇒ x=π/3+k2π</span> hoặc <span class="math">x=2π/3+k2π</span>.</p>',
+        '<p>Trong (0;2π): π/3 và 2π/3 đều hợp lệ. Tổng: <span class="math">π/3+2π/3=π</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: A. π.'
+    }],
+    'tn1-5': [{
+      qHtml: '<p>Nghiệm dương nhỏ nhất của phương trình <span class="math">√3 cot x − 1 = 0</span> là</p>',
+      options: [
+        { key: 'A', html: 'A. π/3' },
+        { key: 'B', html: 'B. π/6' },
+        { key: 'C', html: 'C. 2π/3' },
+        { key: 'D', html: 'D. −2π/3' }
+      ],
+      correct: 'A',
+      steps: [
+        '<p><span class="math">cot x=1/√3=cot(π/3) ⇒ x=π/3+kπ</span>.</p>',
+        '<p>Các nghiệm: …, −2π/3 (k=−1), π/3 (k=0), 4π/3 (k=1), … Nghiệm dương nhỏ nhất là π/3.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: A. π/3.'
+    }],
+    'tn2-1': [{
+      qHtml: '<p>Giải phương trình <span class="math">2cos²x − 5cos x + 2 = 0</span>.</p>',
+      options: [
+        { key: 'A', html: 'A. x = ±π/3 + k2π' },
+        { key: 'B', html: 'B. x = ±π/3 + kπ' },
+        { key: 'C', html: 'C. x = ±π/6 + k2π' },
+        { key: 'D', html: 'D. Vô nghiệm' }
+      ],
+      correct: 'A',
+      steps: [
+        '<p>Đặt t=cos x: <span class="math">2t²−5t+2=0</span>. Δ=25−16=9.</p>',
+        '<p><span class="math">t=(5±3)/4</span>, tức t=2 (loại) hoặc t=1/2. <span class="math">cos x=1/2 ⇒ x=±π/3+k2π</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: A. x = ±π/3 + k2π.'
+    }],
+    'tn2-2': [{
+      qHtml: '<p>Giải phương trình <span class="math">2sin²x − 3sin x + 1 = 0</span>.</p>',
+      options: [
+        { key: 'A', html: 'A. x = π/2 + k2π, x = π/6 + k2π hoặc x = 5π/6 + k2π' },
+        { key: 'B', html: 'B. x = π/6 + k2π hoặc x = 5π/6 + k2π' },
+        { key: 'C', html: 'C. x = π/2 + kπ, x = π/6 + kπ hoặc x = 5π/6 + kπ' },
+        { key: 'D', html: 'D. x = π/2 + k2π, x = π/3 + k2π hoặc x = 2π/3 + k2π' }
+      ],
+      correct: 'A',
+      steps: [
+        '<p>Đặt t=sin x: <span class="math">2t²−3t+1=0</span>. Δ=9−8=1, t=(3±1)/4 → t=1 hoặc t=1/2 — cả hai đều hợp lệ.</p>',
+        '<p><span class="math">sin x=1 ⇒ x=π/2+k2π</span>. <span class="math">sin x=1/2 ⇒ x=π/6+k2π</span> hoặc <span class="math">x=5π/6+k2π</span> — đừng bỏ sót họ nghiệm nào trong ba họ.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: A. x = π/2 + k2π, x = π/6 + k2π hoặc x = 5π/6 + k2π.'
+    }],
+    'tn2-3': [{
+      qHtml: '<p>Phương trình <span class="math">tan²x − (1+√2)tan x + √2 = 0</span> có nghiệm là</p>',
+      options: [
+        { key: 'A', html: 'A. x = π/4 + kπ hoặc x = arctan(√2) + kπ' },
+        { key: 'B', html: 'B. x = π/4 + kπ hoặc x = arctan(√2) + k2π' },
+        { key: 'C', html: 'C. x = π/4 + kπ hoặc x = arccot(√2) + kπ' },
+        { key: 'D', html: 'D. x = −π/4 + kπ hoặc x = arctan(√2) + kπ' }
+      ],
+      correct: 'A',
+      steps: [
+        '<p>Phân tích: <span class="math">(t−1)(t−√2)=t²−(1+√2)t+√2</span>, với t=tan x.</p>',
+        '<p><span class="math">tan x=1 ⇒ x=π/4+kπ</span>. <span class="math">tan x=√2</span> không phải góc đặc biệt, viết bằng arctan.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: A. x = π/4 + kπ hoặc x = arctan(√2) + kπ.'
+    }],
+    'tn2-4': [{
+      qHtml: '<p>Số nghiệm của phương trình <span class="math">4cos²x − 3 = 0</span> trên đoạn <span class="math">[0; π]</span> là</p>',
+      options: [
+        { key: 'A', html: 'A. 4' },
+        { key: 'B', html: 'B. 2' },
+        { key: 'C', html: 'C. 3' },
+        { key: 'D', html: 'D. 1' }
+      ],
+      correct: 'B',
+      steps: [
+        '<p><span class="math">cos²x=3/4 ⇒ cos x=±√3/2</span>.</p>',
+        '<p>Trong [0;π]: <span class="math">cos x=√3/2</span> cho x=π/6; <span class="math">cos x=−√3/2</span> cho x=5π/6. Tổng cộng 2 nghiệm.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: B. 2 nghiệm.'
+    }],
+    'tn2-5': [{
+      qHtml: '<p>Giải phương trình <span class="math">cot²x − 3cot x + 2 = 0</span>.</p>',
+      options: [
+        { key: 'A', html: 'A. x = π/4 + kπ hoặc x = arccot(2) + kπ' },
+        { key: 'B', html: 'B. x = π/4 + kπ hoặc x = arctan(2) + kπ' },
+        { key: 'C', html: 'C. x = π/4 + k2π hoặc x = arccot(2) + k2π' },
+        { key: 'D', html: 'D. x = −π/4 + kπ hoặc x = arccot(2) + kπ' }
+      ],
+      correct: 'A',
+      steps: [
+        '<p>Đặt t=cot x: <span class="math">(t−1)(t−2)=t²−3t+2=0 ⇒ t=1</span> hoặc <span class="math">t=2</span>.</p>',
+        '<p><span class="math">cot x=1 ⇒ x=π/4+kπ</span>. <span class="math">cot x=2 ⇒ x=arccot(2)+kπ</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: A. x = π/4 + kπ hoặc x = arccot(2) + kπ.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var optionsEl = el.querySelector('.options');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      function readOptions() {
+        return Array.prototype.map.call(optionsEl.querySelectorAll('.opt'), function (b) {
+          return { key: b.dataset.key, html: b.innerHTML };
+        });
+      }
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        options: readOptions(),
+        correct: el.dataset.correct,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answered: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answered) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function lockOptions(correctKey, chosenKey) {
+        var opts = optionsEl.querySelectorAll('.opt');
+        opts.forEach(function (b) {
+          b.disabled = true;
+          if (b.dataset.key === correctKey) b.classList.add('is-correct');
+          else if (chosenKey && b.dataset.key === chosenKey) b.classList.add('is-wrong');
+        });
+      }
+
+      function unlockOptions() {
+        var opts = optionsEl.querySelectorAll('.opt');
+        opts.forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove('is-correct', 'is-wrong');
+        });
+      }
+
+      function bindOptions(correctKey) {
+        var opts = optionsEl.querySelectorAll('.opt');
+        opts.forEach(function (b) {
+          b.addEventListener('click', function () {
+            if (state.answered) return;
+            state.answered = true;
+            lockOptions(correctKey, b.dataset.key);
+            updateButtons();
+          });
+        });
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        el.dataset.correct = v.correct;
+        optionsEl.innerHTML = v.options.map(function (o) {
+          return '<button type="button" class="opt" data-key="' + o.key + '">' + o.html + '</button>';
+        }).join('');
+        bindOptions(v.correct);
+
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answered = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      bindOptions(original.correct);
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.remove('hidden');
+        if (!state.answered) {
+          state.answered = true;
+          lockOptions(el.dataset.correct, null);
+        }
+        updateButtons();
+        if (ansEl) ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        unlockOptions();
+        state.revealed = 0;
+        state.answered = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
