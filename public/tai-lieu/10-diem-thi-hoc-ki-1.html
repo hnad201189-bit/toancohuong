@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 Điểm Thi Học Kì I — Toán 11 (bản soạn mới)</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --bg-alt: #e9edf1;
+    --paper: #ffffff;
+    --ink: #1c2733;
+    --ink-soft: #4d5c6b;
+    --ink-faint: #7c8a97;
+    --accent: #1f4e79;
+    --accent-soft: #e2ecf4;
+    --accent-warm: #a9791f;
+    --accent-warm-soft: #f6ecd7;
+    --line: #dde3e9;
+    --line-strong: #b9c4cd;
+    --shadow: 0 1px 2px rgba(20, 35, 50, 0.06), 0 6px 20px rgba(20, 35, 50, 0.06);
+    --radius: 10px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #10161d;
+    --bg-alt: #161e26;
+    --paper: #141c24;
+    --ink: #e8edf2;
+    --ink-soft: #adbac6;
+    --ink-faint: #7c8a97;
+    --accent: #6ba3d6;
+    --accent-soft: #1c2e3e;
+    --accent-warm: #d9b568;
+    --accent-warm-soft: #2e2818;
+    --line: #24303a;
+    --line-strong: #34424e;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10161d;
+      --bg-alt: #161e26;
+      --paper: #141c24;
+      --ink: #e8edf2;
+      --ink-soft: #adbac6;
+      --ink-faint: #7c8a97;
+      --accent: #6ba3d6;
+      --accent-soft: #1c2e3e;
+      --accent-warm: #d9b568;
+      --accent-warm-soft: #2e2818;
+      --line: #24303a;
+      --line-strong: #34424e;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 28px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.8px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n {
+    font-family: var(--mono);
+    color: var(--ink-faint);
+    margin-right: 8px;
+  }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-num {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--accent);
+    font-style: italic;
+  }
+  h2.topic-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    margin: 10px 0 30px;
+  }
+
+  h3.sub {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 18.5px;
+    margin: 34px 0 12px;
+    color: var(--ink);
+  }
+  h3.sub .tag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-style: normal;
+    margin-right: 10px;
+    vertical-align: 1px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 600; }
+  .set { font-family: var(--mono); background: var(--bg-alt); padding: 1px 5px; border-radius: 4px; }
+
+  /* ---------- Definition card ---------- */
+  .defcard {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin: 18px 0 26px;
+    max-width: 740px;
+  }
+  .defcard .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .defcard p:last-child { margin-bottom: 0; }
+
+  /* ---------- Callouts: worked example (warm) & diagram (neutral) ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 760px;
+    border: 1px solid var(--line);
+  }
+  .callout.example {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.diagram {
+    background: var(--bg-alt);
+    font-size: 14.8px;
+  }
+  .callout.diagram .label { color: var(--ink-faint); }
+  .callout.note {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .steps { margin-top: 10px; }
+  .callout .steps div { margin-bottom: 6px; }
+  .callout .stepnum { font-family: var(--mono); color: var(--accent-warm); margin-right: 8px; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+  }
+  .problem .q {
+    padding: 18px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 22px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .variant-tag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    font-weight: 400;
+    margin-left: 8px;
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .math {
+    font-family: var(--mono);
+    background: var(--bg-alt);
+    border-radius: 6px;
+    padding: 2px 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ---------- Properties table ---------- */
+  .tablewrap { overflow-x: auto; margin: 18px 0 28px; max-width: 780px; }
+  table.props {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 560px;
+    font-size: 14.8px;
+  }
+  table.props th, table.props td {
+    border: 1px solid var(--line);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.props thead th {
+    background: var(--bg-alt);
+    font-family: var(--serif);
+    font-weight: 600;
+    font-style: italic;
+  }
+  table.props td.formula, table.props th.formula {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  table.props tbody th { font-weight: 600; background: var(--bg-alt); white-space: nowrap; }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 22px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  code { font-family: var(--mono); }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">Mục lục</div>
+    <ol>
+      <li><a href="#chu-de-1"><span class="n">1</span>Dãy số – CSC – CSN</a></li>
+      <li><a href="#chu-de-2"><span class="n">2</span>Quan hệ song song trong không gian</a></li>
+      <li><a href="#chu-de-3"><span class="n">3</span>Đề luyện tập tổng hợp</a></li>
+      <li><a href="#phuong-phap"><span class="n">＋</span>Cách trình bày lời giải</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="callout note" style="max-width:760px; margin: 0 0 36px;">
+      <div class="label">Trước khi bắt đầu</div>
+      <p>Một đề thi học kì I thật thường gồm 4 phần lớn: <b>Lượng giác</b>, <b>Tổ hợp – Xác suất</b>, <b>Dãy số</b>, và <b>Hình học không gian</b>. Hai phần đầu đã có tài liệu riêng, luyện sâu hơn ở <i>Giải Mã Lượng Giác</i> và <i>10 Điểm Tổ Hợp Xác Suất</i> cùng mục Ôn luyện — tài liệu này tập trung vào hai phần còn lại (Chủ đề 1, 2), rồi khép lại bằng một <b>đề luyện tập tổng hợp</b> (Chủ đề 3) ráp đủ cả 4 phần lại với nhau, đúng cấu trúc một đề thi thật.</p>
+    </div>
+
+    <!-- ================= CHỦ ĐỀ 1 ================= -->
+    <section class="topic" id="chu-de-1">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 1</span>
+        <h2 class="topic-title">Dãy số – Cấp số cộng – Cấp số nhân</h2>
+      </div>
+      <p class="topic-intro">Cấp số cộng và cấp số nhân là hai kiểu dãy số "đều đặn" nhất: một kiểu tăng (hoặc giảm) một lượng cố định mỗi bước, một kiểu nhân với một tỉ lệ cố định mỗi bước — đúng hai mô hình toán học mô tả tăng trưởng tuyến tính và tăng trưởng theo cấp số nhân trong đời sống.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Công thức số hạng tổng quát và tổng n số hạng đầu</h3>
+      <div class="tablewrap">
+        <table class="props">
+          <thead>
+            <tr><th></th><th class="formula">Cấp số cộng (công sai d)</th><th class="formula">Cấp số nhân (công bội q)</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Số hạng tổng quát</th><td class="formula">uₙ = u₁ + (n−1)d</td><td class="formula">uₙ = u₁ · qⁿ⁻¹</td></tr>
+            <tr><th>Tổng n số hạng đầu</th><td class="formula">Sₙ = n(u₁+uₙ)/2 = n[2u₁+(n−1)d]/2</td><td class="formula">Sₙ = u₁(qⁿ−1)/(q−1)  (q≠1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Điểm khác biệt cốt lõi: cấp số cộng <b>cộng thêm</b> một lượng d cố định mỗi bước (tăng trưởng tuyến tính — đồ thị các điểm (n; uₙ) nằm trên một đường thẳng); cấp số nhân <b>nhân thêm</b> một tỉ lệ q cố định mỗi bước (tăng trưởng theo cấp số nhân — đồ thị là một đường cong, tăng ngày càng nhanh nếu q&gt;1).</p>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một rạp hát có hàng ghế đầu tiên 20 ghế, mỗi hàng phía sau nhiều hơn hàng trước đúng 2 ghế (do vòng cung mở rộng dần) — số ghế mỗi hàng lập thành một <b>cấp số cộng</b>: 20, 22, 24, … Trong khi đó, nếu một loại vi khuẩn cứ mỗi giờ số lượng lại nhân đôi, bắt đầu từ 100 con, thì số lượng sau mỗi giờ là 100, 200, 400, 800, … — một <b>cấp số nhân</b> với công bội q=2. Cùng là "dãy số tăng dần", nhưng cách tăng hoàn toàn khác bản chất: cộng thêm một lượng cố định, hay nhân với một tỉ lệ cố định.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="hk1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext"><p>Cho cấp số cộng (uₙ) có u₁ = 5 và công sai d = 4. Tìm u₁₀ và tổng 10 số hạng đầu S₁₀.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Áp dụng công thức <span class="math">uₙ = u₁ + (n−1)d</span> với n=10: <span class="math">u₁₀ = 5 + 9×4 = 5+36 = 41</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng công thức <span class="math">Sₙ = n(u₁+uₙ)/2</span> với n=10: <span class="math">S₁₀ = 10×(5+41)/2 = 10×46/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: <span class="math">10×46/2 = 230</span>.</p></div></div>
+          <p class="answer hidden">u₁₀ = 41; S₁₀ = 230.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext"><p>Cho cấp số cộng (uₙ) thỏa hệ: u₂ + u₄ = 18 và u₃ + u₆ = 27. Tìm u₁, công sai d, rồi tính S₁₂.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Viết mỗi số hạng qua u₁, d: <span class="math">u₂+u₄ = (u₁+d)+(u₁+3d) = 2u₁+4d = 18</span>, tức <span class="math">u₁+2d=9</span>. (i)</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">u₃+u₆ = (u₁+2d)+(u₁+5d) = 2u₁+7d = 27</span>. (ii)</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Từ (i): <span class="math">u₁ = 9−2d</span>. Thế vào (ii): <span class="math">2(9−2d)+7d=27 ⇒ 18+3d=27 ⇒ d=3</span>, suy ra <span class="math">u₁ = 9−6 = 3</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">S₁₂ = 12×[2u₁+11d]/2 = 6×(6+33) = 6×39</span>.</p></div></div>
+          <p class="answer hidden">u₁ = 3, d = 3, S₁₂ = 234.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk1-3" data-qid="Bài 1.3">
+        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext"><p>Cho cấp số nhân (vₙ) có v₁ = 3 và công bội q = 2. Tìm v₆ và tổng 6 số hạng đầu S₆.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Áp dụng <span class="math">vₙ = v₁·qⁿ⁻¹</span> với n=6: <span class="math">v₆ = 3×2⁵ = 3×32</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính: <span class="math">3×32 = 96</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Áp dụng <span class="math">Sₙ = v₁(qⁿ−1)/(q−1)</span> với n=6: <span class="math">S₆ = 3×(2⁶−1)/(2−1) = 3×63/1</span>.</p></div></div>
+          <p class="answer hidden">v₆ = 96; S₆ = 189.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk1-4" data-qid="Bài 1.4">
+        <div class="q"><span class="qid">Bài 1.4</span><div class="qtext"><p>Cho cấp số nhân (vₙ) có v₂ = 6 và v₅ = 48. Tìm công bội q và số hạng đầu v₁.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Viết <span class="math">v₂=v₁q</span>, <span class="math">v₅=v₁q⁴</span>. Chia hai vế cho nhau để triệt tiêu v₁: <span class="math">v₅/v₂ = q³ = 48/6 = 8</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">q³=8 ⇒ q=2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thay lại: <span class="math">v₁ = v₂/q = 6/2</span>.</p></div></div>
+          <p class="answer hidden">q = 2, v₁ = 3.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk1-5" data-qid="Bài 1.5">
+        <div class="q"><span class="qid">Bài 1.5</span><div class="qtext"><p>Một khoản tiền gửi tiết kiệm 20 triệu đồng, lãi suất kép 8%/năm (mỗi năm số tiền tăng thêm 8% so với năm trước, không rút lãi). Hỏi sau 3 năm, số tiền trong sổ tiết kiệm là bao nhiêu (làm tròn đến hàng nghìn đồng)?</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi năm số tiền được nhân với hệ số <span class="math">1+8% = 1,08</span> — số tiền qua các năm lập thành cấp số nhân với công bội q=1,08, số hạng đầu 20 (triệu đồng).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số tiền sau 3 năm: <span class="math">20 × 1,08³</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính lũy thừa: <span class="math">1,08² = 1,1664</span>, <span class="math">1,08³ = 1,1664×1,08 = 1,259712</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">20 × 1,259712 = 25,19424</span> triệu đồng <span class="math">= 25 194 240</span> đồng, làm tròn đến hàng nghìn.</p></div></div>
+          <p class="answer hidden">Khoảng 25 194 000 đồng.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 2 ================= -->
+    <section class="topic" id="chu-de-2">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 2</span>
+        <h2 class="topic-title">Đường thẳng và mặt phẳng trong không gian — Quan hệ song song</h2>
+      </div>
+      <p class="topic-intro">Ba kỹ năng lặp lại xuyên suốt chủ đề này: tìm giao tuyến của hai mặt phẳng, chứng minh một đường thẳng song song với một mặt phẳng, và xác định thiết diện — mặt cắt tạo bởi một mặt phẳng đi qua khối chóp hoặc lăng trụ.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Ba kỹ thuật cốt lõi</h3>
+      <div class="defcard">
+        <div class="k">Tìm giao tuyến của hai mặt phẳng (P), (Q)</div>
+        <p>Cách chuẩn: tìm <b>hai điểm chung phân biệt</b> của (P) và (Q); đường thẳng nối hai điểm đó chính là giao tuyến. Nhiều bài đã có sẵn một điểm chung "hiển nhiên" (ví dụ đỉnh chóp S nếu cả hai mặt phẳng đều chứa S); điểm chung thứ hai thường tìm bằng cách xét giao điểm của hai đường thẳng đồng phẳng (thường nằm trong mặt đáy), có thể phải kéo dài chúng ra ngoài hình vẽ ban đầu.</p>
+      </div>
+      <div class="defcard">
+        <div class="k">Chứng minh d // (P)</div>
+        <p>Chỉ cần chỉ ra: (1) d không nằm trong (P), và (2) d song song với một đường thẳng d' nào đó <b>nằm trong</b> (P) — thường d' được dựng bằng đường trung bình của tam giác, hoặc bằng tính chất hình bình hành của đáy.</p>
+      </div>
+      <div class="defcard">
+        <div class="k">Xác định thiết diện</div>
+        <p>Lần lượt tìm giao tuyến của mặt phẳng cắt với <b>từng mặt</b> của khối chóp/lăng trụ (đáy, các mặt bên), rồi nối các đoạn giao tuyến liên tiếp lại — đa giác khép kín tạo thành chính là thiết diện. Mẹo: nếu đã biết mặt phẳng cắt song song với một cạnh nào đó của khối, mọi giao tuyến của nó với các mặt chứa cạnh đó đều phải song song với cạnh đó.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Hình chóp đáy hình thang dùng xuyên suốt chủ đề</h3>
+      <div class="callout diagram">
+        <div class="label">Hình minh họa (mô tả bằng lời)</div>
+        <p>Nhiều bài dưới đây dùng chung một hình: hình chóp <b>S.ABCD</b> có đáy ABCD là hình thang với AB // CD, AB là đáy lớn. Tưởng tượng đáy ABCD nằm ngang (một hình thang cân đối, AB dài phía trước, CD ngắn hơn phía sau, hai cạnh bên AD và BC nối chéo), đỉnh S nhô lên phía trên, nối với cả 4 đỉnh đáy bằng bốn cạnh bên SA, SB, SC, SD tạo thành bốn mặt tam giác nghiêng bao quanh — đây chính là "khung" hay dùng để luyện tìm giao tuyến và thiết diện.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Trong kết cấu mái nhà dạng vì kèo, các thanh giằng ngang (đòn tay) luôn được lắp <b>song song với mặt phẳng nền nhà</b> dù mái có độ dốc và các thanh xiên khác nhau — đây chính là ứng dụng trực tiếp của quan hệ "đường thẳng song song mặt phẳng": kỹ sư không cần kiểm tra từng thanh giằng có cắt nền nhà hay không, chỉ cần đảm bảo mỗi thanh song song với một đường thẳng nằm ngang bất kỳ trên nền, là đủ để suy ra nó song song với cả mặt nền.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="hk2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext"><p>Cho hình chóp S.ABCD có đáy ABCD là hình bình hành. Gọi O là giao điểm của hai đường chéo AC và BD. Tìm giao tuyến của hai mặt phẳng (SAC) và (SBD).</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tìm điểm chung thứ nhất: S thuộc cả (SAC) (vì (SAC) chứa cạnh SA, SC qua S) và (SBD) (tương tự) — S là điểm chung hiển nhiên.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tìm điểm chung thứ hai: O = AC∩BD. Vì <span class="math">O∈AC⊂(SAC)</span> và <span class="math">O∈BD⊂(SBD)</span>, O cũng là điểm chung của hai mặt phẳng.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hai mặt phẳng có hai điểm chung phân biệt S và O ⇒ giao tuyến là đường thẳng nối chúng.</p></div></div>
+          <p class="answer hidden">Giao tuyến là đường thẳng SO.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext"><p>Cho tứ diện ABCD. Gọi M, N lần lượt là trung điểm của các cạnh AB, AC. Chứng minh MN // (BCD).</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>M, N lần lượt là trung điểm AB, AC ⇒ MN là đường trung bình của tam giác ABC ⇒ <span class="math">MN // BC</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mà <span class="math">BC ⊂ (BCD)</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Và MN không nằm trong (BCD) (vì M, N nằm trên các cạnh AB, AC xuất phát từ đỉnh A ở ngoài mặt phẳng đó).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Theo định lí: một đường thẳng không nằm trong mặt phẳng nhưng song song với một đường thẳng nằm trong mặt phẳng đó thì song song với cả mặt phẳng.</p></div></div>
+          <p class="answer hidden">MN // BC, BC ⊂ (BCD), MN ⊄ (BCD) ⇒ MN // (BCD).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk2-3" data-qid="Bài 2.3">
+        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext"><p>Cho hình chóp S.ABCD có đáy ABCD là hình bình hành. Gọi M là trung điểm của cạnh SC. Xác định thiết diện của hình chóp cắt bởi mặt phẳng (ABM).</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Giao tuyến với đáy: <span class="math">(ABM)∩(ABCD) = AB</span> (vì A, B đều thuộc cả hai mặt phẳng).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Giao tuyến với mặt bên (SBC): chứa B và M (cả hai đều thuộc (SBC) vì M∈SC), vậy <span class="math">(ABM)∩(SBC) = BM</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giao tuyến với mặt bên (SCD): vì AB // CD (đáy hình bình hành), suy ra <span class="math">AB // (SCD)</span> (AB song song một đường nằm trong (SCD) và AB không nằm trong (SCD)). Do (ABM) chứa AB và cắt (SCD) theo một đường thẳng qua M, đường đó phải song song AB (tính chất giao tuyến khi một mặt phẳng chứa đường thẳng song song với mặt phẳng kia). Gọi N là giao điểm của đường đó với SD — vì M là trung điểm SC nên N là trung điểm SD (đường trung bình tam giác SCD).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Giao tuyến với mặt bên (SAD): chứa A và N (N vừa tìm được ở bước 3 nằm trên đường giao tuyến thuộc (ABM), và N∈SD⊂(SAD)), vậy <span class="math">(ABM)∩(SAD) = AN</span>.</p></div></div>
+          <p class="answer hidden">Thiết diện là tứ giác ABMN (với N là trung điểm SD) — đây là một hình thang vì MN // AB và MN = AB/2.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk2-4" data-qid="Bài 2.4">
+        <div class="q"><span class="qid">Bài 2.4</span><div class="qtext"><p>Cho hình chóp S.ABCD có đáy ABCD là tứ giác lồi mà hai cạnh AB và CD không song song, cắt nhau tại điểm E khi kéo dài. Tìm giao tuyến của hai mặt phẳng (SAB) và (SCD).</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>S là điểm chung hiển nhiên của (SAB) và (SCD) (cả hai mặt phẳng đều đi qua S).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì AB và CD không song song, kéo dài hai cạnh này trong mặt đáy sẽ cắt nhau tại E: <span class="math">E∈AB⊂(SAB)</span> và <span class="math">E∈CD⊂(SCD)</span> — E là điểm chung thứ hai.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hai điểm chung phân biệt S, E ⇒ giao tuyến là đường nối chúng.</p></div></div>
+          <p class="answer hidden">Giao tuyến là đường thẳng SE.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk2-5" data-qid="Bài 2.5">
+        <div class="q"><span class="qid">Bài 2.5</span><div class="qtext"><p>Cho hình chóp S.ABCD có đáy ABCD là hình bình hành. Gọi d là giao tuyến của hai mặt phẳng (SAB) và (SCD). Chứng minh d // AB.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Cả hai mặt phẳng (SAB), (SCD) cùng chứa điểm S ⇒ giao tuyến d tồn tại và đi qua S.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">AB⊂(SAB)</span>, <span class="math">CD⊂(SCD)</span>, và <span class="math">AB // CD</span> (giả thiết đáy hình bình hành).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Định lí: nếu hai mặt phẳng lần lượt chứa hai đường thẳng song song với nhau thì giao tuyến của chúng (nếu có) cũng song song với hai đường thẳng đó (hoặc trùng với một trong hai).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Áp dụng với hai đường thẳng AB, CD song song nằm trong hai mặt phẳng đang xét ⇒ d // AB (và d // CD).</p></div></div>
+          <p class="answer hidden">d // AB (và d // CD), vì d là giao tuyến của hai mặt phẳng chứa hai đường thẳng song song AB, CD.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 3 ================= -->
+    <section class="topic" id="chu-de-3">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 3</span>
+        <h2 class="topic-title">Đề luyện tập tổng hợp theo cấu trúc thi Học kì I</h2>
+      </div>
+      <p class="topic-intro">Một đề thi học kì I thật thường có 4 câu lớn, mỗi câu khai thác một chương khác nhau. Bốn "câu" dưới đây mô phỏng đúng cấu trúc đó — làm lần lượt cả 4 câu để tự đánh giá mức độ sẵn sàng trước khi vào phòng thi thật.</p>
+
+      <h3 class="sub"><span class="tag">Đề mẫu</span>Bốn câu, đủ bốn chương</h3>
+
+      <div class="problem" data-pool="hk3-1" data-qid="Câu 1 (Lượng giác)">
+        <div class="q"><span class="qid">Câu 1 (Lượng giác)</span><div class="qtext"><p>a) Tìm tập xác định của hàm số <span class="math">y = (1+sin x)/cos x</span>.</p><p>b) Giải phương trình <span class="math">2cos(x − π/4) = √2</span>.</p><p>c) Giải phương trình <span class="math">sin 2x − √3 cos 2x = 1</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Câu a:</b> tử số xác định mọi x, điều kiện chỉ từ mẫu: <span class="math">cos x ≠ 0 ⇒ x ≠ π/2+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Câu b:</b> <span class="math">cos(x−π/4) = √2/2 = cos(π/4)</span>, nên <span class="math">x−π/4 = ±π/4+k2π</span>, suy ra <span class="math">x = π/2+k2π</span> hoặc <span class="math">x = k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Câu c:</b> dạng a sin+b cos, với a=1, b=−√3: biên độ <span class="math">R=√(1+3)=2</span>, chọn <span class="math">φ=−π/3</span> để <span class="math">sin2x−√3cos2x = 2sin(2x−π/3)</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">2sin(2x−π/3)=1 ⇒ sin(2x−π/3)=1/2</span>, cho <span class="math">2x−π/3=π/6+k2π</span> hoặc <span class="math">2x−π/3=5π/6+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Giải ra: <span class="math">x=π/4+kπ</span> hoặc <span class="math">x=7π/12+kπ</span>.</p></div></div>
+          <p class="answer hidden">a) D=R\{π/2+kπ}.  b) x=k2π hoặc x=π/2+k2π.  c) x=π/4+kπ hoặc x=7π/12+kπ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk3-2" data-qid="Câu 2 (Tổ hợp – Xác suất)">
+        <div class="q"><span class="qid">Câu 2 (Tổ hợp – Xác suất)</span><div class="qtext"><p>a) Tìm hệ số của x⁵ trong khai triển <span class="math">(x + 1)⁸</span>.</p><p>b) Một hộp có 4 bi đỏ, 5 bi xanh. Lấy ngẫu nhiên đồng thời 3 bi. Tính xác suất để trong 3 bi lấy ra có ít nhất 1 bi đỏ.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Câu a:</b> số hạng tổng quát <span class="math">Tₖ₊₁=C₈ᵏx⁸⁻ᵏ</span>, cần <span class="math">8−k=5 ⇒ k=3</span>, hệ số <span class="math">C₈³=56</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Câu b:</b> "ít nhất 1 đỏ" khó liệt kê trực tiếp — dùng biến cố đối "không có bi đỏ nào" (toàn bi xanh).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tổng 9 bi, lấy 3: <span class="math">n(Ω)=C₉³=84</span>. Toàn xanh (chọn 3 trong 5 xanh): <span class="math">n=C₅³=10</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">P(không đỏ) = 10/84 = 5/42</span>. Vậy <span class="math">P(ít nhất 1 đỏ) = 1 − 5/42 = 37/42</span>.</p></div></div>
+          <p class="answer hidden">a) Hệ số 56.  b) P = 37/42.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk3-3" data-qid="Câu 3 (Dãy số)">
+        <div class="q"><span class="qid">Câu 3 (Dãy số)</span><div class="qtext"><p>Cho cấp số cộng (uₙ) có u₄ = 15 và u₉ = 35. Tìm u₁, công sai d, và tính S₁₅.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Trừ hai đẳng thức: <span class="math">u₉−u₄ = 5d = 35−15 = 20 ⇒ d=4</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">u₄=u₁+3d=15 ⇒ u₁=15−12=3</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">S₁₅ = 15×[2u₁+14d]/2 = 15×(6+56)/2 = 15×31</span>.</p></div></div>
+          <p class="answer hidden">u₁ = 3, d = 4, S₁₅ = 465.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk3-4" data-qid="Câu 4 (Hình học không gian)">
+        <div class="q"><span class="qid">Câu 4 (Hình học không gian)</span><div class="qtext"><p>Cho hình chóp S.ABCD có đáy ABCD là hình thang, AB // CD, AB = 2CD. Gọi M, N lần lượt là trung điểm của SA, SB.</p><p>a) Chứng minh MN // CD.</p><p>b) Xác định thiết diện của hình chóp cắt bởi mặt phẳng (MNC).</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Câu a:</b> M, N là trung điểm SA, SB ⇒ MN là đường trung bình tam giác SAB ⇒ <span class="math">MN // AB</span> và <span class="math">MN = AB/2</span>. Mà <span class="math">AB // CD</span> (giả thiết) nên <span class="math">MN // CD</span> (bắc cầu).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì <span class="math">AB=2CD</span>, ta có <span class="math">MN = AB/2 = CD</span> — vậy MN không chỉ song song mà còn <b>bằng</b> CD.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Câu b:</b> vì <span class="math">MN // CD</span> và <span class="math">MN = CD</span>, tứ giác MNCD (nối theo đúng thứ tự M→N→C→D) có một cặp cạnh đối vừa song song vừa bằng nhau ⇒ đó là một hình bình hành. Do đó D cũng thuộc mặt phẳng (MNC).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Vậy mặt phẳng (MNC) thực chất là mặt phẳng (MNCD), cắt hình chóp theo thiết diện là tứ giác MNCD — chính là hình bình hành nói trên.</p></div></div>
+          <p class="answer hidden">a) MN // CD (và MN = CD = AB/2).  b) Thiết diện là hình bình hành MNCD.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="phuong-phap">
+      <div class="topic-head">
+        <span class="topic-num">Phụ lục</span>
+        <h2 class="topic-title">Cách trình bày một lời giải, tóm tắt lại</h2>
+      </div>
+      <p class="topic-intro">Nhìn lại toàn bộ lời giải mẫu ở trên, có một khuôn mẫu chung lặp lại — đây chính là cách một bài toán ôn tập học kì nên được trình bày, để giám khảo (và chính bạn khi xem lại) theo kịp mạch suy luận chứ không chỉ thấy đáp số.</p>
+
+      <div class="method-grid">
+        <div class="method-card"><span class="mnum">1</span><p><b>Đọc kỹ và gọi tên đại lượng.</b> Với dãy số: xác định u₁, d hoặc q. Với hình không gian: xác định rõ các điểm/đường đã cho.</p></div>
+        <div class="method-card"><span class="mnum">2</span><p><b>Chọn đúng công thức/định lí.</b> Dãy số dùng công thức uₙ, Sₙ; hình không gian dùng đúng 1 trong 3 kỹ thuật: tìm 2 điểm chung, chứng minh song song, hoặc dựng thiết diện.</p></div>
+        <div class="method-card"><span class="mnum">3</span><p><b>Trình bày từng bước có giải thích.</b> Đặc biệt trong hình không gian, mỗi khẳng định "điểm này thuộc mặt phẳng kia" cần nêu rõ lý do (thuộc đường thẳng nào, đường đó nằm trong mặt phẳng nào).</p></div>
+        <div class="method-card"><span class="mnum">4</span><p><b>Kiểm tra lại phép tính.</b> Với dãy số, thử thay ngược u₁, d (hoặc q) vào giả thiết ban đầu để chắc chắn không sai số học.</p></div>
+        <div class="method-card"><span class="mnum">5</span><p><b>Kết luận rõ ràng.</b> Nêu đáp số cuối cùng thành câu độc lập — với đề tổng hợp, nêu đáp số riêng cho từng câu, từng ý.</p></div>
+      </div>
+
+      <p>Khuôn mẫu 5 bước này được dùng làm khung gợi ý cho mọi bài toán ở trên — bấm "Gợi ý bước tiếp theo" để xem lại đúng theo trình tự đó.</p>
+    </section>
+
+    <footer>
+      10 Điểm Thi Học Kì I — tài liệu tự soạn ôn tập tổng hợp Toán 11, hoàn thiện bộ ba cùng <i>Giải Mã Lượng Giác</i> và <i>10 Điểm Tổ Hợp Xác Suất</i>. Toàn bộ đề bài, số liệu và lời giải trong tài liệu này là nội dung tự soạn, không sao chép từ bất kỳ ấn phẩm đã xuất bản nào.
+    </footer>
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'hk1-1': [{
+      qHtml: '<p>Cho cấp số cộng (uₙ) có u₁ = 7 và công sai d = 3. Tìm u₁₂ và tổng 12 số hạng đầu S₁₂.</p>',
+      steps: [
+        '<p>Áp dụng <span class="math">uₙ = u₁ + (n−1)d</span> với n=12: <span class="math">u₁₂ = 7 + 11×3 = 7+33 = 40</span>.</p>',
+        '<p>Áp dụng <span class="math">Sₙ = n(u₁+uₙ)/2</span>: <span class="math">S₁₂ = 12×(7+40)/2 = 12×47/2</span>.</p>',
+        '<p>Tính: <span class="math">6×47 = 282</span>.</p>'
+      ],
+      answerHtml: 'u₁₂ = 40; S₁₂ = 282.'
+    }],
+    'hk1-2': [{
+      qHtml: '<p>Cho cấp số cộng (uₙ) thỏa hệ: u₂ + u₅ = 23 và u₄ + u₇ = 35. Tìm u₁, công sai d, rồi tính S₁₀.</p>',
+      steps: [
+        '<p><span class="math">u₂+u₅ = 2u₁+5d = 23</span>. (i)</p>',
+        '<p><span class="math">u₄+u₇ = 2u₁+9d = 35</span>. (ii)</p>',
+        '<p>(ii)−(i): <span class="math">4d=12 ⇒ d=3</span>. Thay vào (i): <span class="math">2u₁+15=23 ⇒ u₁=4</span>.</p>',
+        '<p><span class="math">S₁₀ = 10×[2×4+9×3]/2 = 5×(8+27) = 5×35</span>.</p>'
+      ],
+      answerHtml: 'u₁ = 4, d = 3, S₁₀ = 175.'
+    }],
+    'hk1-3': [{
+      qHtml: '<p>Cho cấp số nhân (vₙ) có v₁ = 2 và công bội q = 3. Tìm v₅ và tổng 5 số hạng đầu S₅.</p>',
+      steps: [
+        '<p><span class="math">v₅ = v₁·q⁴ = 2×3⁴ = 2×81</span>.</p>',
+        '<p>Tính: <span class="math">2×81 = 162</span>.</p>',
+        '<p><span class="math">S₅ = v₁(q⁵−1)/(q−1) = 2×(243−1)/2 = 2×242/2</span>.</p>'
+      ],
+      answerHtml: 'v₅ = 162; S₅ = 242.'
+    }],
+    'hk1-4': [{
+      qHtml: '<p>Cho cấp số nhân (vₙ) có v₂ = 8 và v₆ = 128. Tìm công bội q (biết q &gt; 0) và số hạng đầu v₁.</p>',
+      steps: [
+        '<p><span class="math">v₆/v₂ = q⁴ = 128/8 = 16</span>.</p>',
+        '<p><span class="math">q⁴=16</span>, kết hợp điều kiện q&gt;0 ⇒ <span class="math">q=2</span>.</p>',
+        '<p><span class="math">v₁ = v₂/q = 8/2</span>.</p>'
+      ],
+      answerHtml: 'q = 2, v₁ = 4.'
+    }],
+    'hk1-5': [{
+      qHtml: '<p>Một khoản tiền gửi tiết kiệm 15 triệu đồng, lãi suất kép 10%/năm. Hỏi sau 4 năm, số tiền trong sổ tiết kiệm là bao nhiêu (làm tròn đến hàng nghìn đồng)?</p>',
+      steps: [
+        '<p>Mỗi năm nhân hệ số <span class="math">1,1</span> — cấp số nhân với v₁=15 (triệu), q=1,1.</p>',
+        '<p>Số tiền sau 4 năm: <span class="math">15 × 1,1⁴</span>.</p>',
+        '<p><span class="math">1,1²=1,21</span>, <span class="math">1,1⁴=1,21²=1,4641</span>.</p>',
+        '<p><span class="math">15×1,4641 = 21,9615</span> triệu đồng <span class="math">= 21 961 500</span> đồng, làm tròn đến hàng nghìn.</p>'
+      ],
+      answerHtml: 'Khoảng 21 962 000 đồng.'
+    }],
+    'hk2-1': [{
+      qHtml: '<p>Cho hình chóp S.ABCD có đáy ABCD là hình thoi. Gọi O là giao điểm của hai đường chéo AC và BD. Tìm giao tuyến của hai mặt phẳng (SAC) và (SBD).</p>',
+      steps: [
+        '<p>S thuộc cả hai mặt phẳng (SAC), (SBD) — điểm chung thứ nhất.</p>',
+        '<p><span class="math">O=AC∩BD</span>, với <span class="math">O∈AC⊂(SAC)</span> và <span class="math">O∈BD⊂(SBD)</span> — điểm chung thứ hai (hình thoi cũng là một dạng hình bình hành nên vẫn có hai đường chéo cắt nhau tại O).</p>',
+        '<p>Hai điểm chung S, O ⇒ giao tuyến nối chúng.</p>'
+      ],
+      answerHtml: 'Giao tuyến là đường thẳng SO.'
+    }],
+    'hk2-4': [{
+      qHtml: '<p>Cho hình chóp S.ABCD có đáy ABCD là tứ giác lồi mà hai cạnh AD và BC không song song, cắt nhau tại điểm F khi kéo dài. Tìm giao tuyến của hai mặt phẳng (SAD) và (SBC).</p>',
+      steps: [
+        '<p>S là điểm chung hiển nhiên của (SAD) và (SBC).</p>',
+        '<p>Kéo dài AD và BC trong mặt đáy, chúng cắt nhau tại F: <span class="math">F∈AD⊂(SAD)</span> và <span class="math">F∈BC⊂(SBC)</span> — điểm chung thứ hai.</p>',
+        '<p>Hai điểm chung S, F ⇒ giao tuyến nối chúng.</p>'
+      ],
+      answerHtml: 'Giao tuyến là đường thẳng SF.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

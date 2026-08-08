@@ -39,6 +39,11 @@ const ON_LUYEN_TOPICS_BY_GRADE = {
       name: '🎲 10 Điểm Tổ Hợp Xác Suất',
       href: '/tai-lieu/10-diem-to-hop-xac-suat.html',
     },
+    {
+      id: '10-diem-thi-hoc-ki-1',
+      name: '📝 10 Điểm Thi Học Kì I',
+      href: '/tai-lieu/10-diem-thi-hoc-ki-1.html',
+    },
   ],
 }
 
