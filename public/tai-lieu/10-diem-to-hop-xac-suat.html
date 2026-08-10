@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>10 Điểm Tổ Hợp Xác Suất — Toán 11 (bản soạn mới)</title>
+<link rel="stylesheet" href="/vendor/katex/katex.min.css">
 </head>
 <body>
 <style>
@@ -455,8 +456,8 @@
       <h3 class="sub"><span class="tag">Khái niệm</span>Quy tắc cộng và quy tắc nhân</h3>
       <div class="defcard">
         <div class="k">Hai quy tắc nền tảng</div>
-        <p><span class="kw">Quy tắc cộng:</span> nếu một công việc có thể hoàn thành theo một trong k <b>phương án khác nhau và không trùng nhau</b> (làm theo phương án này thì chắc chắn không phải phương án kia), phương án 1 có n₁ cách, phương án 2 có n₂ cách, …, thì tổng số cách hoàn thành công việc là <span class="math">n₁ + n₂ + … + nₖ</span>. Dấu hiệu nhận biết: trong câu hỏi thường có chữ "hoặc" — chỉ chọn <i>một trong các</i> phương án.</p>
-        <p><span class="kw">Quy tắc nhân:</span> nếu một công việc gồm k <b>công đoạn liên tiếp</b>, công đoạn 1 có n₁ cách thực hiện, và với mỗi cách đó công đoạn 2 luôn có n₂ cách, …, thì tổng số cách hoàn thành cả công việc là <span class="math">n₁ × n₂ × … × nₖ</span>. Dấu hiệu nhận biết: công việc phải trải qua <i>đủ tất cả</i> các công đoạn theo thứ tự (thường có chữ "và", "rồi", "sau đó").</p>
+        <p><span class="kw">Quy tắc cộng:</span> nếu một công việc có thể hoàn thành theo một trong k <b>phương án khác nhau và không trùng nhau</b> (làm theo phương án này thì chắc chắn không phải phương án kia), phương án 1 có n₁ cách, phương án 2 có n₂ cách, …, thì tổng số cách hoàn thành công việc là <span class="math">$n_{1} + n_{2} + \ldots  + n_{k}$</span>. Dấu hiệu nhận biết: trong câu hỏi thường có chữ "hoặc" — chỉ chọn <i>một trong các</i> phương án.</p>
+        <p><span class="kw">Quy tắc nhân:</span> nếu một công việc gồm k <b>công đoạn liên tiếp</b>, công đoạn 1 có n₁ cách thực hiện, và với mỗi cách đó công đoạn 2 luôn có n₂ cách, …, thì tổng số cách hoàn thành cả công việc là <span class="math">$n_{1} \times  n_{2} \times  \ldots  \times  n_{k}$</span>. Dấu hiệu nhận biết: công việc phải trải qua <i>đủ tất cả</i> các công đoạn theo thứ tự (thường có chữ "và", "rồi", "sau đó").</p>
       </div>
 
       <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Sơ đồ hình cây</h3>
@@ -467,7 +468,7 @@
 
       <div class="callout example">
         <div class="label">Ví dụ đời sống mở rộng</div>
-        <p>Một ổ khóa số có 4 vòng xoay, mỗi vòng ghi 10 chữ số từ 0 đến 9 và xoay độc lập với nhau. Số mã khóa khác nhau có thể đặt được tính theo quy tắc nhân: vòng 1 có 10 khả năng, vòng 2 có 10 khả năng (không phụ thuộc vòng 1 đã chọn số nào), tương tự vòng 3, vòng 4 — tổng cộng <span class="math">10 × 10 × 10 × 10 = 10⁴ = 10 000</span> mã khác nhau. Đây là lý do kẻ trộm không thể "đoán mò" mở khóa nhanh dù mỗi vòng chỉ có 10 số.</p>
+        <p>Một ổ khóa số có 4 vòng xoay, mỗi vòng ghi 10 chữ số từ 0 đến 9 và xoay độc lập với nhau. Số mã khóa khác nhau có thể đặt được tính theo quy tắc nhân: vòng 1 có 10 khả năng, vòng 2 có 10 khả năng (không phụ thuộc vòng 1 đã chọn số nào), tương tự vòng 3, vòng 4 — tổng cộng <span class="math">$10 \times  10 \times  10 \times  10 = 10^{4} = 10 000$</span> mã khác nhau. Đây là lý do kẻ trộm không thể "đoán mò" mở khóa nhanh dù mỗi vòng chỉ có 10 số.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
@@ -483,7 +484,7 @@
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Đề bài có chữ "hoặc": khách chỉ mua <i>một</i> chiếc áo, hoặc là sơ mi, hoặc là thun — hai phương án không trùng nhau. Đây là dấu hiệu của quy tắc cộng.</p></div></div>
           <div class="step hidden"><span class="b">2</span><div class="t"><p>Phương án 1 (chọn sơ mi): 8 cách. Phương án 2 (chọn thun): 5 cách.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Áp dụng quy tắc cộng: <span class="math">8 + 5 = 13</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Áp dụng quy tắc cộng: <span class="math">$8 + 5 = 13$</span>.</p></div></div>
           <p class="answer hidden">Có 13 cách chọn.</p>
         </div>
       </div>
@@ -499,7 +500,7 @@
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Chuyến đi gồm 2 công đoạn liên tiếp, bắt buộc phải đi cả hai: đoạn A→B <i>và</i> đoạn B→C. Đây là dấu hiệu của quy tắc nhân.</p></div></div>
           <div class="step hidden"><span class="b">2</span><div class="t"><p>Công đoạn 1 (A→B): 3 cách. Với mỗi cách đó, công đoạn 2 (B→C) luôn có 4 cách, không phụ thuộc đã chọn đường nào ở A→B.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Áp dụng quy tắc nhân: <span class="math">3 × 4 = 12</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Áp dụng quy tắc nhân: <span class="math">$3 \times  4 = 12$</span>.</p></div></div>
           <p class="answer hidden">Có 12 cách đi.</p>
         </div>
       </div>
@@ -514,9 +515,9 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Có hai trường hợp không trùng nhau: (a) nam làm lớp trưởng, nữ làm lớp phó; (b) nữ làm lớp trưởng, nam làm lớp phó. Giữa hai trường hợp dùng quy tắc cộng; trong mỗi trường hợp dùng quy tắc nhân (chọn 2 chức vụ liên tiếp).</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trường hợp (a): chọn lớp trưởng nam có 15 cách, chọn lớp phó nữ có 10 cách → <span class="math">15 × 10 = 150</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp (b): chọn lớp trưởng nữ có 10 cách, chọn lớp phó nam có 15 cách → <span class="math">10 × 15 = 150</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p>Hai trường hợp không trùng nhau (không thể vừa là "nam làm lớp trưởng" vừa là "nữ làm lớp trưởng"), cộng lại: <span class="math">150 + 150 = 300</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trường hợp (a): chọn lớp trưởng nam có 15 cách, chọn lớp phó nữ có 10 cách → <span class="math">$15 \times  10 = 150$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp (b): chọn lớp trưởng nữ có 10 cách, chọn lớp phó nam có 15 cách → <span class="math">$10 \times  15 = 150$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Hai trường hợp không trùng nhau (không thể vừa là "nam làm lớp trưởng" vừa là "nữ làm lớp trưởng"), cộng lại: <span class="math">$150 + 150 = 300$</span>.</p></div></div>
           <p class="answer hidden">Có 300 cách chọn.</p>
         </div>
       </div>
@@ -531,9 +532,9 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Biển số gồm 7 vị trí liên tiếp phải điền đủ: 2 vị trí chữ cái rồi 5 vị trí chữ số — quy tắc nhân với 7 công đoạn.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mỗi vị trí chữ cái có 24 khả năng (được lặp lại, không loại trừ chữ đã dùng): <span class="math">24 × 24 = 24²</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Mỗi vị trí chữ số có 10 khả năng: <span class="math">10 × 10 × 10 × 10 × 10 = 10⁵</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p>Nhân hai phần lại: <span class="math">24² × 10⁵ = 576 × 100 000 = 57 600 000</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mỗi vị trí chữ cái có 24 khả năng (được lặp lại, không loại trừ chữ đã dùng): <span class="math">$24 \times  24 = 24^{2}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Mỗi vị trí chữ số có 10 khả năng: <span class="math">$10 \times  10 \times  10 \times  10 \times  10 = 10^{5}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Nhân hai phần lại: <span class="math">$24^{2} \times  10^{5} = 576 \times  100 000 = 57 600 000$</span>.</p></div></div>
           <p class="answer hidden">Tối đa 57 600 000 biển số khác nhau.</p>
         </div>
       </div>
@@ -579,8 +580,8 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Đây là bài toán xếp <b>toàn bộ</b> 6 quyển sách vào 6 vị trí trên kệ — đúng dạng hoán vị của 6 phần tử.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">P₆ = 6! = 6×5×4×3×2×1</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: <span class="math">6! = 720</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$P_{6} = 6! = 6\times 5\times 4\times 3\times 2\times 1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: <span class="math">$6! = 720$</span>.</p></div></div>
           <p class="answer hidden">Có 720 cách xếp.</p>
         </div>
       </div>
@@ -595,8 +596,8 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>"Bạn X được giải Nhất, bạn Y được giải Nhì" khác với "bạn Y được giải Nhất, bạn X được giải Nhì" — thứ tự (vai trò giải thưởng) có phân biệt. Đây là chỉnh hợp chập 3 của 12.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">A₁₂³ = 12 × 11 × 10</span> (nhân 3 số nguyên liên tiếp giảm dần từ 12, vì chọn Nhất rồi Nhì rồi Ba lần lượt từ số bạn còn lại).</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: <span class="math">12 × 11 × 10 = 1320</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$A_{12}^{3} = 12 \times  11 \times  10$</span> (nhân 3 số nguyên liên tiếp giảm dần từ 12, vì chọn Nhất rồi Nhì rồi Ba lần lượt từ số bạn còn lại).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: <span class="math">$12 \times  11 \times  10 = 1320$</span>.</p></div></div>
           <p class="answer hidden">Có 1320 cách trao giải.</p>
         </div>
       </div>
@@ -611,8 +612,8 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>"Chọn A, B, C, D vào nhóm" và "chọn D, C, B, A vào nhóm" là <b>cùng một</b> nhóm — không phân biệt thứ tự. Đây là tổ hợp chập 4 của 10.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">C₁₀⁴ = 10! / (4!·6!) = (10×9×8×7) / (4×3×2×1)</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: tử số <span class="math">10×9×8×7 = 5040</span>, mẫu số <span class="math">4! = 24</span>, thương <span class="math">5040 / 24 = 210</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$C_{10}^{4} = 10! / (4!\cdot 6!) = (10\times 9\times 8\times 7) / (4\times 3\times 2\times 1)$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: tử số <span class="math">$10\times 9\times 8\times 7 = 5040$</span>, mẫu số <span class="math">$4! = 24$</span>, thương <span class="math">$5040 / 24 = 210$</span>.</p></div></div>
           <p class="answer hidden">Có 210 cách chọn.</p>
         </div>
       </div>
@@ -627,9 +628,9 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Việc chọn tách thành 2 công đoạn độc lập, đều là tổ hợp (không phân vai trong nhóm nam, cũng không phân vai trong nhóm nữ): chọn 3 nam trong 8 nam, <b>và</b> chọn 2 nữ trong 6 nữ.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số cách chọn 3 nam: <span class="math">C₈³ = (8×7×6)/(3×2×1) = 56</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số cách chọn 2 nữ: <span class="math">C₆² = (6×5)/(2×1) = 15</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p>Hai công đoạn liên tiếp (và độc lập) — áp dụng quy tắc nhân: <span class="math">56 × 15 = 840</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số cách chọn 3 nam: <span class="math">$C_{8}^{3} = (8\times 7\times 6)/(3\times 2\times 1) = 56$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số cách chọn 2 nữ: <span class="math">$C_{6}^{2} = (6\times 5)/(2\times 1) = 15$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Hai công đoạn liên tiếp (và độc lập) — áp dụng quy tắc nhân: <span class="math">$56 \times  15 = 840$</span>.</p></div></div>
           <p class="answer hidden">Có 840 cách chọn.</p>
         </div>
       </div>
@@ -643,8 +644,8 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Câu a: huy chương có phân biệt (Vàng khác Bạc khác Đồng) — chỉnh hợp chập 3 của 7. <span class="math">A₇³ = 7×6×5 = 210</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Câu b: 3 người đại diện không phân vai trò — tổ hợp chập 3 của 7. <span class="math">C₇³ = (7×6×5)/(3×2×1) = 210/6 = 35</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Câu a: huy chương có phân biệt (Vàng khác Bạc khác Đồng) — chỉnh hợp chập 3 của 7. <span class="math">$A_{7}^{3} = 7\times 6\times 5 = 210$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Câu b: 3 người đại diện không phân vai trò — tổ hợp chập 3 của 7. <span class="math">$C_{7}^{3} = (7\times 6\times 5)/(3\times 2\times 1) = 210/6 = 35$</span>.</p></div></div>
           <div class="step hidden"><span class="b">3</span><div class="t"><p>Nhận xét: hai câu dùng cùng số liệu (7 người, chọn 3) nhưng kết quả khác nhau đúng bằng 3! = 6 lần — vì mỗi nhóm 3 người không phân vai (câu b) ứng với 3! = 6 cách phân vai Vàng/Bạc/Đồng khác nhau (câu a).</p></div></div>
           <p class="answer hidden">a) 210 khả năng.  b) 35 cách chọn.</p>
         </div>
@@ -662,26 +663,26 @@
       <h3 class="sub"><span class="tag">Khái niệm</span>Công thức khai triển</h3>
       <div class="defcard">
         <div class="k">Nhị thức Newton</div>
-        <p style="text-align:center"><span class="math">(a + b)ⁿ = Cₙ⁰aⁿ + Cₙ¹aⁿ⁻¹b + Cₙ²aⁿ⁻²b² + … + Cₙⁿbⁿ</span></p>
-        <p>Số hạng thứ (k+1) trong khai triển, gọi là <span class="kw">số hạng tổng quát</span>, có công thức <span class="math">Tₖ₊₁ = Cₙᵏ aⁿ⁻ᵏ bᵏ</span> — muốn tìm hệ số của một lũy thừa cụ thể của biến, chỉ cần tìm đúng giá trị k làm số mũ khớp với yêu cầu, rồi thay vào công thức này.</p>
-        <p>Thay a = b = 1 vào công thức khai triển, ta được một hệ quả hay dùng: <span class="math">Cₙ⁰ + Cₙ¹ + … + Cₙⁿ = 2ⁿ</span> — tổng tất cả hệ số nhị thức của bậc n luôn bằng 2ⁿ.</p>
+        <p style="text-align:center"><span class="math">$(a + b)^{n} = C_{n}^{0}a^{n} + C_{n}^{1}a^{n-1}b + C_{n}^{2}a^{n-2}b^{2} + \ldots  + C_{n}^{n}b^{n}$</span></p>
+        <p>Số hạng thứ (k+1) trong khai triển, gọi là <span class="kw">số hạng tổng quát</span>, có công thức <span class="math">$T_{k+1} = C_{n}^{k} a^{n-k} b^{k}$</span> — muốn tìm hệ số của một lũy thừa cụ thể của biến, chỉ cần tìm đúng giá trị k làm số mũ khớp với yêu cầu, rồi thay vào công thức này.</p>
+        <p>Thay a = b = 1 vào công thức khai triển, ta được một hệ quả hay dùng: <span class="math">$C_{n}^{0} + C_{n}^{1} + \ldots  + C_{n}^{n} = 2^{n}$</span> — tổng tất cả hệ số nhị thức của bậc n luôn bằng 2ⁿ.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Tam giác Pascal</h3>
       <div class="callout diagram">
         <div class="label">Hình minh họa (mô tả bằng lời)</div>
-        <p>Tam giác Pascal là một cách sắp các hệ số Cₙᵏ thành hình tam giác: hàng n = 0 chỉ có một số 1 ở đỉnh; mỗi hàng sau bắt đầu và kết thúc bằng số 1, còn mỗi số ở giữa bằng <b>tổng hai số ngay phía trên</b> nó (công thức <span class="math">Cₙᵏ = Cₙ₋₁ᵏ⁻¹ + Cₙ₋₁ᵏ</span>). Ví dụ hàng n=4 là 1, 4, 6, 4, 1 — đúng bằng các hệ số xuất hiện khi khai triển (a+b)⁴. Cách dựng hình tam giác này cho phép tra nhanh hệ số nhị thức của các bậc nhỏ mà không cần tính giai thừa.</p>
+        <p>Tam giác Pascal là một cách sắp các hệ số Cₙᵏ thành hình tam giác: hàng n = 0 chỉ có một số 1 ở đỉnh; mỗi hàng sau bắt đầu và kết thúc bằng số 1, còn mỗi số ở giữa bằng <b>tổng hai số ngay phía trên</b> nó (công thức <span class="math">$C_{n}^{k} = C_{n-1}^{k-1} + C_{n-1}^{k}$</span>). Ví dụ hàng n=4 là 1, 4, 6, 4, 1 — đúng bằng các hệ số xuất hiện khi khai triển (a+b)⁴. Cách dựng hình tam giác này cho phép tra nhanh hệ số nhị thức của các bậc nhỏ mà không cần tính giai thừa.</p>
       </div>
 
       <div class="callout example">
         <div class="label">Ví dụ đời sống mở rộng</div>
-        <p>Trên một lưới ô vuông (như bản đồ các con phố cắt vuông góc), số đường đi ngắn nhất từ góc dưới-trái đến một điểm cách đó m bước sang phải và k bước lên trên (chỉ được đi phải hoặc lên, không được đi lùi) luôn bằng đúng hệ số tổ hợp <span class="math">C₍ₘ₊ₖ₎ᵏ</span> — vì mỗi đường đi ứng với việc chọn k trong tổng số (m+k) bước để là bước "đi lên", các bước còn lại tự động là "đi phải". Đây là lý do bài toán tưởng như thuần hình học lại giải được gọn bằng đúng công cụ của chủ đề này.</p>
+        <p>Trên một lưới ô vuông (như bản đồ các con phố cắt vuông góc), số đường đi ngắn nhất từ góc dưới-trái đến một điểm cách đó m bước sang phải và k bước lên trên (chỉ được đi phải hoặc lên, không được đi lùi) luôn bằng đúng hệ số tổ hợp <span class="math">$C_{(m+k)}^{k}$</span> — vì mỗi đường đi ứng với việc chọn k trong tổng số (m+k) bước để là bước "đi lên", các bước còn lại tự động là "đi phải". Đây là lý do bài toán tưởng như thuần hình học lại giải được gọn bằng đúng công cụ của chủ đề này.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
 
       <div class="problem" data-pool="th3-1" data-qid="Bài 3.1">
-        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext"><p>Viết khai triển <span class="math">(x + 2)⁴</span> theo nhị thức Newton (viết đủ cả 5 số hạng).</p></div></div>
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext"><p>Viết khai triển <span class="math">$(x + 2)^{4}$</span> theo nhị thức Newton (viết đủ cả 5 số hạng).</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -689,15 +690,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Với n=4, hệ số nhị thức lần lượt là <span class="math">C₄⁰, C₄¹, C₄², C₄³, C₄⁴</span> = 1, 4, 6, 4, 1 (hàng n=4 của tam giác Pascal).</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng <span class="math">Tₖ₊₁ = C₄ᵏ x⁴⁻ᵏ 2ᵏ</span> cho k = 0,1,2,3,4: <span class="math">x⁴, 4·x³·2, 6·x²·2², 4·x·2³, 2⁴</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính từng hệ số: <span class="math">4·2=8, 6·4=24, 4·8=32, 2⁴=16</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Với n=4, hệ số nhị thức lần lượt là <span class="math">$C_{4}^{0}, C_{4}^{1}, C_{4}^{2}, C_{4}^{3}, C_{4}^{4}$</span> = 1, 4, 6, 4, 1 (hàng n=4 của tam giác Pascal).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng <span class="math">$T_{k+1} = C_{4}^{k} x^{4-k} 2^{k}$</span> cho k = 0,1,2,3,4: <span class="math">$x^{4}, 4\cdot x^{3}\cdot 2, 6\cdot x^{2}\cdot 2^{2}, 4\cdot x\cdot 2^{3}, 2^{4}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính từng hệ số: <span class="math">$4\cdot 2=8, 6\cdot 4=24, 4\cdot 8=32, 2^{4}=16$</span>.</p></div></div>
           <p class="answer hidden">(x+2)⁴ = x⁴ + 8x³ + 24x² + 32x + 16.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="th3-2" data-qid="Bài 3.2">
-        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext"><p>Tìm hệ số của x³ trong khai triển <span class="math">(x + 3)⁵</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext"><p>Tìm hệ số của x³ trong khai triển <span class="math">$(x + 3)^{5}$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -705,15 +706,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số hạng tổng quát: <span class="math">Tₖ₊₁ = C₅ᵏ x⁵⁻ᵏ 3ᵏ</span>. Cần số mũ của x bằng 3: <span class="math">5−k = 3 ⇒ k = 2</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hệ số tương ứng: <span class="math">C₅² · 3² = 10 · 9</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: <span class="math">10 × 9 = 90</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số hạng tổng quát: <span class="math">$T_{k+1} = C_{5}^{k} x^{5-k} 3^{k}$</span>. Cần số mũ của x bằng 3: <span class="math">$5-k = 3 \Rightarrow  k = 2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hệ số tương ứng: <span class="math">$C_{5}^{2} \cdot  3^{2} = 10 \cdot  9$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: <span class="math">$10 \times  9 = 90$</span>.</p></div></div>
           <p class="answer hidden">Hệ số của x³ là 90.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="th3-3" data-qid="Bài 3.3">
-        <div class="q"><span class="qid">Bài 3.3</span><div class="qtext"><p>Tìm số hạng không chứa x trong khai triển <span class="math">(x² + 1/x)⁹</span> (x ≠ 0).</p></div></div>
+        <div class="q"><span class="qid">Bài 3.3</span><div class="qtext"><p>Tìm số hạng không chứa x trong khai triển <span class="math">$(x^{2} + 1/x)^{9}$</span> (x ≠ 0).</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -721,15 +722,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số hạng tổng quát: <span class="math">Tₖ₊₁ = C₉ᵏ (x²)⁹⁻ᵏ (1/x)ᵏ = C₉ᵏ x^(18−3k)</span> (gộp số mũ: 2(9−k) − k = 18−3k).</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>"Không chứa x" nghĩa là số mũ của x bằng 0: <span class="math">18 − 3k = 0 ⇒ k = 6</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số hạng đó là hằng số <span class="math">C₉⁶ = C₉³ = (9×8×7)/(3×2×1) = 84</span> (dùng tính chất Cₙᵏ = Cₙⁿ⁻ᵏ để tính với số nhỏ hơn).</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số hạng tổng quát: <span class="math">$T_{k+1} = C_{9}^{k} (x^{2})^{9-k} (1/x)^{k} = C_{9}^{k} x^{18-3k}$</span> (gộp số mũ: 2(9−k) − k = 18−3k).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>"Không chứa x" nghĩa là số mũ của x bằng 0: <span class="math">$18 - 3k = 0 \Rightarrow  k = 6$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số hạng đó là hằng số <span class="math">$C_{9}^{6} = C_{9}^{3} = (9\times 8\times 7)/(3\times 2\times 1) = 84$</span> (dùng tính chất Cₙᵏ = Cₙⁿ⁻ᵏ để tính với số nhỏ hơn).</p></div></div>
           <p class="answer hidden">Số hạng không chứa x bằng 84.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="th3-4" data-qid="Bài 3.4">
-        <div class="q"><span class="qid">Bài 3.4</span><div class="qtext"><p>Tính tổng <span class="math">C₆⁰ + C₆¹ + C₆² + … + C₆⁶</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 3.4</span><div class="qtext"><p>Tính tổng <span class="math">$C_{6}^{0} + C_{6}^{1} + C_{6}^{2} + \ldots  + C_{6}^{6}$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -737,8 +738,8 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhận ra đây đúng là vế phải của khai triển <span class="math">(1+1)⁶</span> khi thay a=b=1 vào nhị thức Newton bậc 6.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">(1+1)⁶ = 2⁶</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhận ra đây đúng là vế phải của khai triển <span class="math">$(1+1)^{6}$</span> khi thay a=b=1 vào nhị thức Newton bậc 6.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$(1+1)^{6} = 2^{6}$</span>.</p></div></div>
           <p class="answer hidden">Tổng bằng 2⁶ = 64.</p>
         </div>
       </div>
@@ -755,9 +756,9 @@
       <h3 class="sub"><span class="tag">Khái niệm</span>Không gian mẫu và biến cố</h3>
       <div class="defcard">
         <div class="k">Định nghĩa</div>
-        <p>Một <span class="kw">phép thử ngẫu nhiên</span> là một hành động có thể lặp lại trong cùng điều kiện, mà kết quả không đoán trước được, nhưng biết trước <i>tập hợp mọi kết quả có thể xảy ra</i>. Tập hợp đó gọi là <span class="kw">không gian mẫu</span>, kí hiệu <span class="math">Ω</span>.</p>
-        <p>Một <span class="kw">biến cố</span> A là một tập con của Ω — tập các kết quả "thuận lợi" khiến ta nói "A xảy ra". Biến cố <span class="math">Ω</span> (chứa mọi kết quả) gọi là <i>biến cố chắc chắn</i>; biến cố <span class="math">∅</span> (không chứa kết quả nào) gọi là <i>biến cố không thể</i>.</p>
-        <p><span class="kw">Biến cố đối</span> của A, kí hiệu <span class="math">Ā</span>, là tập <span class="math">Ω \ A</span> — "A không xảy ra". Hai biến cố A, B gọi là <span class="kw">xung khắc</span> nếu <span class="math">A ∩ B = ∅</span> (không thể cùng xảy ra trong một lần thử). Biến cố "A hoặc B xảy ra" là <span class="math">A ∪ B</span>; biến cố "cả A và B cùng xảy ra" là <span class="math">A ∩ B</span>.</p>
+        <p>Một <span class="kw">phép thử ngẫu nhiên</span> là một hành động có thể lặp lại trong cùng điều kiện, mà kết quả không đoán trước được, nhưng biết trước <i>tập hợp mọi kết quả có thể xảy ra</i>. Tập hợp đó gọi là <span class="kw">không gian mẫu</span>, kí hiệu <span class="math">$\Omega$</span>.</p>
+        <p>Một <span class="kw">biến cố</span> A là một tập con của Ω — tập các kết quả "thuận lợi" khiến ta nói "A xảy ra". Biến cố <span class="math">$\Omega$</span> (chứa mọi kết quả) gọi là <i>biến cố chắc chắn</i>; biến cố <span class="math">$\varnothing$</span> (không chứa kết quả nào) gọi là <i>biến cố không thể</i>.</p>
+        <p><span class="kw">Biến cố đối</span> của A, kí hiệu <span class="math">$\overline{A}$</span>, là tập <span class="math">$\Omega  \setminus A$</span> — "A không xảy ra". Hai biến cố A, B gọi là <span class="kw">xung khắc</span> nếu <span class="math">$A \cap  B = \varnothing$</span> (không thể cùng xảy ra trong một lần thử). Biến cố "A hoặc B xảy ra" là <span class="math">$A \cup  B$</span>; biến cố "cả A và B cùng xảy ra" là <span class="math">$A \cap  B$</span>.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Bảng ô vuông cho hai lần gieo</h3>
@@ -782,7 +783,7 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Xúc xắc có 6 mặt, mỗi mặt là một kết quả có thể của phép thử: <span class="math">Ω = {1;2;3;4;5;6}</span>, n(Ω) = 6.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Xúc xắc có 6 mặt, mỗi mặt là một kết quả có thể của phép thử: <span class="math">$\Omega  = \{1;2;3;4;5;6\}$</span>, n(Ω) = 6.</p></div></div>
           <div class="step hidden"><span class="b">2</span><div class="t"><p>Trong 6 kết quả đó, lọc ra các số chia hết cho 3: 3 và 6.</p></div></div>
           <p class="answer hidden">Ω = {1;2;3;4;5;6}; A = {3;6}.</p>
         </div>
@@ -797,9 +798,9 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Không gian mẫu: <span class="math">Ω = {1;2;3;4;5}</span>. Biến cố B (bi đỏ): <span class="math">B = {1;2;3}</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Biến cố đối <span class="math">B̄ = Ω \ B</span> — lấy tất cả kết quả của Ω mà không thuộc B.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">B̄ = {4;5}</span> — đúng là biến cố "lấy được bi xanh", khớp với trực giác vì mỗi lần lấy chỉ có đúng 2 khả năng: đỏ hoặc xanh.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Không gian mẫu: <span class="math">$\Omega  = \{1;2;3;4;5\}$</span>. Biến cố B (bi đỏ): <span class="math">$B = \{1;2;3\}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Biến cố đối <span class="math">$\overline{B} = \Omega  \setminus B$</span> — lấy tất cả kết quả của Ω mà không thuộc B.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$\overline{B} = \{4;5\}$</span> — đúng là biến cố "lấy được bi xanh", khớp với trực giác vì mỗi lần lấy chỉ có đúng 2 khả năng: đỏ hoặc xanh.</p></div></div>
           <p class="answer hidden">B̄ = {4;5} (biến cố "lấy được bi xanh").</p>
         </div>
       </div>
@@ -813,9 +814,9 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi lần gieo có 2 khả năng, hai lần gieo độc lập nên n(Ω) = 2×2 = 4: <span class="math">Ω = {SS; SN; NS; NN}</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">C = {SS; SN; NS}</span> (ít nhất một S). <span class="math">D = {NN}</span> (toàn N).</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">C ∩ D</span>: không có kết quả nào vừa "có ít nhất 1 sấp" vừa "toàn ngửa" — hai tập không giao nhau, tức <span class="math">C ∩ D = ∅</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi lần gieo có 2 khả năng, hai lần gieo độc lập nên n(Ω) = 2×2 = 4: <span class="math">$\Omega  = \{SS; SN; NS; NN\}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$C = \{SS; SN; NS\}$</span> (ít nhất một S). <span class="math">$D = \{NN\}$</span> (toàn N).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$C \cap  D$</span>: không có kết quả nào vừa "có ít nhất 1 sấp" vừa "toàn ngửa" — hai tập không giao nhau, tức <span class="math">$C \cap  D = \varnothing$</span>.</p></div></div>
           <p class="answer hidden">Có, C và D xung khắc (thực chất C và D là hai biến cố đối nhau).</p>
         </div>
       </div>
@@ -829,9 +830,9 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">E = {2;4;6}</span> (các số chẵn trong Ω). <span class="math">F = {5;6}</span> (các số lớn hơn 4).</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">E ∩ F</span>: cần vừa chẵn vừa lớn hơn 4 — chỉ có 6 thỏa cả hai điều kiện.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">E ∪ F</span>: gộp tất cả phần tử của cả hai tập (không lặp lại phần tử chung): 2, 4, 6 (từ E) và thêm 5 (từ F, chưa có trong E).</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">$E = \{2;4;6\}$</span> (các số chẵn trong Ω). <span class="math">$F = \{5;6\}$</span> (các số lớn hơn 4).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$E \cap  F$</span>: cần vừa chẵn vừa lớn hơn 4 — chỉ có 6 thỏa cả hai điều kiện.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$E \cup  F$</span>: gộp tất cả phần tử của cả hai tập (không lặp lại phần tử chung): 2, 4, 6 (từ E) và thêm 5 (từ F, chưa có trong E).</p></div></div>
           <p class="answer hidden">E ∩ F = {6}; E ∪ F = {2;4;5;6}.</p>
         </div>
       </div>
@@ -849,9 +850,9 @@
       <div class="defcard">
         <div class="k">Định nghĩa cổ điển của xác suất</div>
         <p>Nếu không gian mẫu Ω hữu hạn và các kết quả <b>đồng khả năng</b> (khả năng xảy ra như nhau), xác suất của biến cố A là:</p>
-        <p style="text-align:center"><span class="math">P(A) = n(A) / n(Ω)</span></p>
-        <p>với n(A) là số kết quả thuận lợi cho A, n(Ω) là tổng số kết quả có thể. Luôn có <span class="math">0 ≤ P(A) ≤ 1</span>, và <span class="math">P(Ā) = 1 − P(A)</span> (xác suất biến cố đối).</p>
-        <p><span class="kw">Quy tắc cộng xác suất:</span> nếu A, B xung khắc thì <span class="math">P(A∪B) = P(A) + P(B)</span>. <span class="kw">Quy tắc nhân xác suất:</span> nếu A, B là hai biến cố <b>độc lập</b> (việc A xảy ra hay không không ảnh hưởng đến khả năng B xảy ra) thì <span class="math">P(A∩B) = P(A) · P(B)</span>.</p>
+        <p style="text-align:center"><span class="math">$P(A) = n(A) / n(\Omega )$</span></p>
+        <p>với n(A) là số kết quả thuận lợi cho A, n(Ω) là tổng số kết quả có thể. Luôn có <span class="math">$0 \le  P(A) \le  1$</span>, và <span class="math">$P(\overline{A}) = 1 - P(A)$</span> (xác suất biến cố đối).</p>
+        <p><span class="kw">Quy tắc cộng xác suất:</span> nếu A, B xung khắc thì <span class="math">$P(A\cup B) = P(A) + P(B)$</span>. <span class="kw">Quy tắc nhân xác suất:</span> nếu A, B là hai biến cố <b>độc lập</b> (việc A xảy ra hay không không ảnh hưởng đến khả năng B xảy ra) thì <span class="math">$P(A\cap B) = P(A) \cdot  P(B)$</span>.</p>
       </div>
 
       <div class="callout example">
@@ -870,9 +871,9 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">Ω = {1;2;3;4;5;6}</span>, n(Ω) = 6, các kết quả đồng khả năng (xúc xắc cân đối).</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><span class="math">$\Omega  = \{1;2;3;4;5;6\}$</span>, n(Ω) = 6, các kết quả đồng khả năng (xúc xắc cân đối).</p></div></div>
           <div class="step hidden"><span class="b">2</span><div class="t"><p>Số nguyên tố trong tập {1,…,6}: 2, 3, 5 (chú ý 1 không phải số nguyên tố, 6 = 2×3 là hợp số). Vậy n(A) = 3.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">P(A) = n(A)/n(Ω) = 3/6 = 1/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$P(A) = n(A)/n(\Omega ) = 3/6 = 1/2$</span>.</p></div></div>
           <p class="answer hidden">P(A) = 1/2.</p>
         </div>
       </div>
@@ -886,9 +887,9 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tổng số bi: 5+3+2=10. Lấy đồng thời 2 bi (không thứ tự) trong 10 bi: <span class="math">n(Ω) = C₁₀² = (10×9)/2 = 45</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>"2 bi cùng màu đỏ" nghĩa là chọn 2 trong 5 bi đỏ: <span class="math">n(A) = C₅² = (5×4)/2 = 10</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">P(A) = 10/45 = 2/9</span> (rút gọn cho 5).</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tổng số bi: 5+3+2=10. Lấy đồng thời 2 bi (không thứ tự) trong 10 bi: <span class="math">$n(\Omega ) = C_{10}^{2} = (10\times 9)/2 = 45$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>"2 bi cùng màu đỏ" nghĩa là chọn 2 trong 5 bi đỏ: <span class="math">$n(A) = C_{5}^{2} = (5\times 4)/2 = 10$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$P(A) = 10/45 = 2/9$</span> (rút gọn cho 5).</p></div></div>
           <p class="answer hidden">P(A) = 2/9.</p>
         </div>
       </div>
@@ -919,7 +920,7 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Hai xạ thủ bắn độc lập với nhau — dùng quy tắc nhân xác suất cho biến cố "cả hai đều trúng".</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">P(A ∩ B) = P(A) · P(B) = 0,7 × 0,6</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$P(A \cap  B) = P(A) \cdot  P(B) = 0,7 \times  0,6$</span>.</p></div></div>
           <p class="answer hidden">P = 0,42.</p>
         </div>
       </div>
@@ -934,7 +935,7 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>"Ít nhất một người trúng" khó liệt kê trực tiếp (có 3 trường hợp: chỉ A, chỉ B, cả hai) — dùng biến cố đối: "ít nhất 1 trúng" đối lập với "cả hai đều trượt".</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Xác suất A trượt: <span class="math">1−0,7=0,3</span>. Xác suất B trượt: <span class="math">1−0,6=0,4</span>. Hai người bắn độc lập nên "cả hai đều trượt" cũng độc lập: <span class="math">P(cả hai trượt) = 0,3 × 0,4 = 0,12</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Xác suất A trượt: <span class="math">$1-0,7=0,3$</span>. Xác suất B trượt: <span class="math">$1-0,6=0,4$</span>. Hai người bắn độc lập nên "cả hai đều trượt" cũng độc lập: <span class="math">P(cả hai trượt) = 0,3 × 0,4 = 0,12</span>.</p></div></div>
           <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">P(ít nhất 1 trúng) = 1 − P(cả hai trượt) = 1 − 0,12</span>.</p></div></div>
           <p class="answer hidden">P = 0,88.</p>
         </div>
@@ -966,6 +967,8 @@
   </main>
 </div>
 
+<script src="/vendor/katex/katex.min.js"></script>
+<script src="/vendor/katex/auto-render.min.js"></script>
 <script>
   window.VARIANTS = {
     'th1-1': [{
@@ -973,7 +976,7 @@
       steps: [
         '<p>Có chữ "hoặc": khách chỉ ăn một món, hoặc cơm hoặc bún — hai phương án không trùng nhau. Dùng quy tắc cộng.</p>',
         '<p>Phương án 1 (chọn cơm): 6 cách. Phương án 2 (chọn bún): 9 cách.</p>',
-        '<p>Áp dụng quy tắc cộng: <span class="math">6 + 9 = 15</span>.</p>'
+        '<p>Áp dụng quy tắc cộng: <span class="math">$6 + 9 = 15$</span>.</p>'
       ],
       answerHtml: 'Có 15 cách chọn.'
     }],
@@ -982,7 +985,7 @@
       steps: [
         '<p>Chuyến đi gồm 2 công đoạn bắt buộc liên tiếp: nhà→trường <i>và</i> trường→thư viện. Dùng quy tắc nhân.</p>',
         '<p>Công đoạn 1: 4 cách. Công đoạn 2: 6 cách, không phụ thuộc đã chọn đường nào ở công đoạn 1.</p>',
-        '<p>Áp dụng quy tắc nhân: <span class="math">4 × 6 = 24</span>.</p>'
+        '<p>Áp dụng quy tắc nhân: <span class="math">$4 \times  6 = 24$</span>.</p>'
       ],
       answerHtml: 'Có 24 cách đi.'
     }],
@@ -990,9 +993,9 @@
       qHtml: '<p>Một câu lạc bộ có 9 bạn nam và 7 bạn nữ. Cần chọn ra 1 đội trưởng và 1 đội phó, biết hai bạn được chọn phải khác giới tính. Hỏi có bao nhiêu cách chọn?</p>',
       steps: [
         '<p>Hai trường hợp không trùng nhau: (a) nam làm đội trưởng, nữ làm đội phó; (b) nữ làm đội trưởng, nam làm đội phó.</p>',
-        '<p>Trường hợp (a): <span class="math">9 × 7 = 63</span>.</p>',
-        '<p>Trường hợp (b): <span class="math">7 × 9 = 63</span>.</p>',
-        '<p>Cộng lại (quy tắc cộng): <span class="math">63 + 63 = 126</span>.</p>'
+        '<p>Trường hợp (a): <span class="math">$9 \times  7 = 63$</span>.</p>',
+        '<p>Trường hợp (b): <span class="math">$7 \times  9 = 63$</span>.</p>',
+        '<p>Cộng lại (quy tắc cộng): <span class="math">$63 + 63 = 126$</span>.</p>'
       ],
       answerHtml: 'Có 126 cách chọn.'
     }],
@@ -1000,9 +1003,9 @@
       qHtml: '<p>Một loại mã sản phẩm gồm 3 chữ cái đầu (chọn từ 26 chữ cái, có thể lặp lại) theo sau bởi 4 chữ số (từ 0 đến 9, có thể lặp lại). Hỏi có thể tạo ra tối đa bao nhiêu mã sản phẩm khác nhau?</p>',
       steps: [
         '<p>7 vị trí liên tiếp phải điền đủ: 3 vị trí chữ cái rồi 4 vị trí chữ số — quy tắc nhân.</p>',
-        '<p>Phần chữ cái: <span class="math">26 × 26 × 26 = 26³ = 17 576</span>.</p>',
-        '<p>Phần chữ số: <span class="math">10⁴ = 10 000</span>.</p>',
-        '<p>Nhân lại: <span class="math">17 576 × 10 000 = 175 760 000</span>.</p>'
+        '<p>Phần chữ cái: <span class="math">$26 \times  26 \times  26 = 26^{3} = 17 576$</span>.</p>',
+        '<p>Phần chữ số: <span class="math">$10^{4} = 10 000$</span>.</p>',
+        '<p>Nhân lại: <span class="math">$17 576 \times  10 000 = 175 760 000$</span>.</p>'
       ],
       answerHtml: 'Tối đa 175 760 000 mã sản phẩm khác nhau.'
     }],
@@ -1010,8 +1013,8 @@
       qHtml: '<p>Có bao nhiêu cách xếp 5 bạn học sinh thành một hàng dọc để chụp ảnh?</p>',
       steps: [
         '<p>Xếp toàn bộ 5 bạn vào 5 vị trí trong hàng — hoán vị của 5 phần tử.</p>',
-        '<p><span class="math">P₅ = 5! = 5×4×3×2×1</span>.</p>',
-        '<p><span class="math">5! = 120</span>.</p>'
+        '<p><span class="math">$P_{5} = 5! = 5\times 4\times 3\times 2\times 1$</span>.</p>',
+        '<p><span class="math">$5! = 120$</span>.</p>'
       ],
       answerHtml: 'Có 120 cách xếp.'
     }],
@@ -1019,8 +1022,8 @@
       qHtml: '<p>Một câu lạc bộ cờ vua có 9 thành viên. Ban tổ chức cần chọn ra 3 người để trao giải Nhất, Nhì, Ba. Hỏi có bao nhiêu cách trao giải?</p>',
       steps: [
         '<p>Ba giải phân biệt vai trò — chỉnh hợp chập 3 của 9.</p>',
-        '<p><span class="math">A₉³ = 9 × 8 × 7</span>.</p>',
-        '<p>Tính: <span class="math">9 × 8 × 7 = 504</span>.</p>'
+        '<p><span class="math">$A_{9}^{3} = 9 \times  8 \times  7$</span>.</p>',
+        '<p>Tính: <span class="math">$9 \times  8 \times  7 = 504$</span>.</p>'
       ],
       answerHtml: 'Có 504 cách trao giải.'
     }],
@@ -1028,67 +1031,67 @@
       qHtml: '<p>Một chi đoàn có 12 đoàn viên. Cần chọn ra 5 bạn để lập một tổ tình nguyện, không phân biệt vai trò. Hỏi có bao nhiêu cách chọn?</p>',
       steps: [
         '<p>Không phân biệt thứ tự — tổ hợp chập 5 của 12.</p>',
-        '<p><span class="math">C₁₂⁵ = (12×11×10×9×8) / 5!</span>.</p>',
-        '<p>Tử số: <span class="math">12×11×10×9×8 = 95 040</span>. Mẫu số: <span class="math">5! = 120</span>. Thương: <span class="math">95 040 / 120 = 792</span>.</p>'
+        '<p><span class="math">$C_{12}^{5} = (12\times 11\times 10\times 9\times 8) / 5!$</span>.</p>',
+        '<p>Tử số: <span class="math">$12\times 11\times 10\times 9\times 8 = 95 040$</span>. Mẫu số: <span class="math">$5! = 120$</span>. Thương: <span class="math">$95 040 / 120 = 792$</span>.</p>'
       ],
       answerHtml: 'Có 792 cách chọn.'
     }],
     'th2-4': [{
       qHtml: '<p>Một đội kịch có 6 bạn nam và 5 bạn nữ. Cần chọn ra 4 bạn để đóng một hoạt cảnh, trong đó có đúng 2 nam và 2 nữ. Hỏi có bao nhiêu cách chọn?</p>',
       steps: [
-        '<p>Chọn 2 nam trong 6 nam (tổ hợp): <span class="math">C₆² = (6×5)/2 = 15</span>.</p>',
-        '<p>Chọn 2 nữ trong 5 nữ (tổ hợp): <span class="math">C₅² = (5×4)/2 = 10</span>.</p>',
-        '<p>Nhân lại (quy tắc nhân): <span class="math">15 × 10 = 150</span>.</p>'
+        '<p>Chọn 2 nam trong 6 nam (tổ hợp): <span class="math">$C_{6}^{2} = (6\times 5)/2 = 15$</span>.</p>',
+        '<p>Chọn 2 nữ trong 5 nữ (tổ hợp): <span class="math">$C_{5}^{2} = (5\times 4)/2 = 10$</span>.</p>',
+        '<p>Nhân lại (quy tắc nhân): <span class="math">$15 \times  10 = 150$</span>.</p>'
       ],
       answerHtml: 'Có 150 cách chọn.'
     }],
     'th2-5': [{
       qHtml: '<p>Một giải đấu cờ tướng có 8 kỳ thủ. a) Có bao nhiêu cách trao 3 giải Nhất, Nhì, Ba khác nhau? b) Có bao nhiêu cách chọn ra 3 kỳ thủ bất kỳ để lập đội tuyển (không phân biệt vai trò)?</p>',
       steps: [
-        '<p>Câu a: 3 giải phân biệt — chỉnh hợp chập 3 của 8. <span class="math">A₈³ = 8×7×6 = 336</span>.</p>',
-        '<p>Câu b: 3 người không phân vai — tổ hợp chập 3 của 8. <span class="math">C₈³ = (8×7×6)/(3×2×1) = 336/6 = 56</span>.</p>',
+        '<p>Câu a: 3 giải phân biệt — chỉnh hợp chập 3 của 8. <span class="math">$A_{8}^{3} = 8\times 7\times 6 = 336$</span>.</p>',
+        '<p>Câu b: 3 người không phân vai — tổ hợp chập 3 của 8. <span class="math">$C_{8}^{3} = (8\times 7\times 6)/(3\times 2\times 1) = 336/6 = 56$</span>.</p>',
         '<p>Kiểm tra: 336 = 56 × 3! = 56 × 6, đúng như quan hệ giữa chỉnh hợp và tổ hợp.</p>'
       ],
       answerHtml: 'a) 336 cách.  b) 56 cách.'
     }],
     'th3-1': [{
-      qHtml: '<p>Viết khai triển <span class="math">(x + 1)⁵</span> theo nhị thức Newton.</p>',
+      qHtml: '<p>Viết khai triển <span class="math">$(x + 1)^{5}$</span> theo nhị thức Newton.</p>',
       steps: [
         '<p>Với n=5, hàng n=5 của tam giác Pascal là: 1, 5, 10, 10, 5, 1.</p>',
-        '<p>Áp dụng <span class="math">Tₖ₊₁ = C₅ᵏ x⁵⁻ᵏ 1ᵏ</span> cho k=0..5, vì 1ᵏ luôn bằng 1 nên hệ số chính là hệ số Pascal.</p>'
+        '<p>Áp dụng <span class="math">$T_{k+1} = C_{5}^{k} x^{5-k} 1^{k}$</span> cho k=0..5, vì 1ᵏ luôn bằng 1 nên hệ số chính là hệ số Pascal.</p>'
       ],
       answerHtml: '(x+1)⁵ = x⁵ + 5x⁴ + 10x³ + 10x² + 5x + 1.'
     }],
     'th3-2': [{
-      qHtml: '<p>Tìm hệ số của x⁴ trong khai triển <span class="math">(x + 2)⁶</span>.</p>',
+      qHtml: '<p>Tìm hệ số của x⁴ trong khai triển <span class="math">$(x + 2)^{6}$</span>.</p>',
       steps: [
-        '<p>Số hạng tổng quát: <span class="math">Tₖ₊₁ = C₆ᵏ x⁶⁻ᵏ 2ᵏ</span>. Cần <span class="math">6−k=4 ⇒ k=2</span>.</p>',
-        '<p>Hệ số: <span class="math">C₆² · 2² = 15 · 4</span>.</p>',
-        '<p>Tính: <span class="math">15 × 4 = 60</span>.</p>'
+        '<p>Số hạng tổng quát: <span class="math">$T_{k+1} = C_{6}^{k} x^{6-k} 2^{k}$</span>. Cần <span class="math">$6-k=4 \Rightarrow  k=2$</span>.</p>',
+        '<p>Hệ số: <span class="math">$C_{6}^{2} \cdot  2^{2} = 15 \cdot  4$</span>.</p>',
+        '<p>Tính: <span class="math">$15 \times  4 = 60$</span>.</p>'
       ],
       answerHtml: 'Hệ số của x⁴ là 60.'
     }],
     'th3-3': [{
-      qHtml: '<p>Tìm số hạng không chứa x trong khai triển <span class="math">(x³ + 1/x)⁸</span> (x ≠ 0).</p>',
+      qHtml: '<p>Tìm số hạng không chứa x trong khai triển <span class="math">$(x^{3} + 1/x)^{8}$</span> (x ≠ 0).</p>',
       steps: [
-        '<p>Số hạng tổng quát: <span class="math">Tₖ₊₁ = C₈ᵏ (x³)⁸⁻ᵏ (1/x)ᵏ = C₈ᵏ x^(24−4k)</span>.</p>',
-        '<p>Cần số mũ bằng 0: <span class="math">24 − 4k = 0 ⇒ k = 6</span>.</p>',
-        '<p><span class="math">C₈⁶ = C₈² = (8×7)/2 = 28</span>.</p>'
+        '<p>Số hạng tổng quát: <span class="math">$T_{k+1} = C_{8}^{k} (x^{3})^{8-k} (1/x)^{k} = C_{8}^{k} x^{24-4k}$</span>.</p>',
+        '<p>Cần số mũ bằng 0: <span class="math">$24 - 4k = 0 \Rightarrow  k = 6$</span>.</p>',
+        '<p><span class="math">$C_{8}^{6} = C_{8}^{2} = (8\times 7)/2 = 28$</span>.</p>'
       ],
       answerHtml: 'Số hạng không chứa x bằng 28.'
     }],
     'th3-4': [{
-      qHtml: '<p>Tính tổng <span class="math">C₇⁰ + C₇¹ + … + C₇⁷</span>.</p>',
+      qHtml: '<p>Tính tổng <span class="math">$C_{7}^{0} + C_{7}^{1} + \ldots  + C_{7}^{7}$</span>.</p>',
       steps: [
-        '<p>Đây là vế phải của <span class="math">(1+1)⁷</span> theo nhị thức Newton bậc 7.</p>',
-        '<p><span class="math">2⁷ = 128</span>.</p>'
+        '<p>Đây là vế phải của <span class="math">$(1+1)^{7}$</span> theo nhị thức Newton bậc 7.</p>',
+        '<p><span class="math">$2^{7} = 128$</span>.</p>'
       ],
       answerHtml: 'Tổng bằng 128.'
     }],
     'th4-1': [{
       qHtml: '<p>Gieo một con xúc xắc cân đối 1 lần. Mô tả không gian mẫu Ω, và biến cố B: "số chấm xuất hiện lớn hơn 4".</p>',
       steps: [
-        '<p><span class="math">Ω = {1;2;3;4;5;6}</span>.</p>',
+        '<p><span class="math">$\Omega  = \{1;2;3;4;5;6\}$</span>.</p>',
         '<p>Lọc các số lớn hơn 4: 5 và 6.</p>'
       ],
       answerHtml: 'Ω = {1;2;3;4;5;6}; B = {5;6}.'
@@ -1096,9 +1099,9 @@
     'th4-2': [{
       qHtml: '<p>Một hộp có 4 bi vàng (đánh số 1, 2, 3, 4) và 3 bi tím (đánh số 5, 6, 7). Lấy ngẫu nhiên 1 viên bi. Gọi C là biến cố "lấy được bi vàng". Tìm biến cố đối của C và mô tả bằng tập hợp.</p>',
       steps: [
-        '<p><span class="math">Ω = {1;2;3;4;5;6;7}</span>. <span class="math">C = {1;2;3;4}</span>.</p>',
-        '<p><span class="math">C̄ = Ω \\ C</span> — lấy phần còn lại của Ω.</p>',
-        '<p><span class="math">C̄ = {5;6;7}</span> — đúng là biến cố "lấy được bi tím".</p>'
+        '<p><span class="math">$\Omega  = \{1;2;3;4;5;6;7\}$</span>. <span class="math">$C = \{1;2;3;4\}$</span>.</p>',
+        '<p><span class="math">$\overline{C} = \Omega  \setminus C$</span> — lấy phần còn lại của Ω.</p>',
+        '<p><span class="math">$\overline{C} = \{5;6;7\}$</span> — đúng là biến cố "lấy được bi tím".</p>'
       ],
       answerHtml: 'C̄ = {5;6;7} (biến cố "lấy được bi tím").'
     }],
@@ -1106,17 +1109,17 @@
       qHtml: '<p>Gieo một đồng xu ba lần liên tiếp. Gọi E là biến cố "cả ba lần đều xuất hiện mặt sấp", F là biến cố "có ít nhất một lần xuất hiện mặt ngửa". Hỏi E và F có xung khắc không?</p>',
       steps: [
         '<p>n(Ω) = 2³ = 8 kết quả có thể.</p>',
-        '<p><span class="math">E = {SSS}</span> (chỉ 1 kết quả). <span class="math">F</span> gồm 7 kết quả còn lại (mọi kết quả có ít nhất 1 chữ N).</p>',
-        '<p>SSS không có chữ N nào nên không thuộc F — vậy <span class="math">E ∩ F = ∅</span>.</p>'
+        '<p><span class="math">$E = \{SSS\}$</span> (chỉ 1 kết quả). <span class="math">$F$</span> gồm 7 kết quả còn lại (mọi kết quả có ít nhất 1 chữ N).</p>',
+        '<p>SSS không có chữ N nào nên không thuộc F — vậy <span class="math">$E \cap  F = \varnothing$</span>.</p>'
       ],
       answerHtml: 'Có, E và F xung khắc (thực chất là hai biến cố đối nhau).'
     }],
     'th4-4': [{
       qHtml: '<p>Gieo một con xúc xắc 1 lần. Gọi G: "số chấm là số lẻ" và H: "số chấm nhỏ hơn 3". Xác định biến cố G ∩ H và G ∪ H.</p>',
       steps: [
-        '<p><span class="math">G = {1;3;5}</span>. <span class="math">H = {1;2}</span>.</p>',
-        '<p><span class="math">G ∩ H</span>: vừa lẻ vừa nhỏ hơn 3 — chỉ có 1.</p>',
-        '<p><span class="math">G ∪ H</span>: gộp cả hai tập không lặp phần tử chung: 1, 3, 5 (từ G) và thêm 2 (từ H).</p>'
+        '<p><span class="math">$G = \{1;3;5\}$</span>. <span class="math">$H = \{1;2\}$</span>.</p>',
+        '<p><span class="math">$G \cap  H$</span>: vừa lẻ vừa nhỏ hơn 3 — chỉ có 1.</p>',
+        '<p><span class="math">$G \cup  H$</span>: gộp cả hai tập không lặp phần tử chung: 1, 3, 5 (từ G) và thêm 2 (từ H).</p>'
       ],
       answerHtml: 'G ∩ H = {1}; G ∪ H = {1;2;3;5}.'
     }],
@@ -1125,16 +1128,16 @@
       steps: [
         '<p>n(Ω) = 6.</p>',
         '<p>Ước của 6 trong {1,…,6}: 1, 2, 3, 6 → n(A) = 4.</p>',
-        '<p><span class="math">P(A) = 4/6 = 2/3</span>.</p>'
+        '<p><span class="math">$P(A) = 4/6 = 2/3$</span>.</p>'
       ],
       answerHtml: 'P(A) = 2/3.'
     }],
     'th5-2': [{
       qHtml: '<p>Một hộp có 4 bi đỏ, 4 bi vàng, 2 bi xanh (tổng 10 bi, chỉ khác nhau về màu). Lấy ngẫu nhiên đồng thời 2 bi. Tính xác suất để lấy được 2 bi cùng màu vàng.</p>',
       steps: [
-        '<p><span class="math">n(Ω) = C₁₀² = 45</span>.</p>',
-        '<p>Chọn 2 trong 4 bi vàng: <span class="math">n(A) = C₄² = (4×3)/2 = 6</span>.</p>',
-        '<p><span class="math">P(A) = 6/45 = 2/15</span> (rút gọn cho 3).</p>'
+        '<p><span class="math">$n(\Omega ) = C_{10}^{2} = 45$</span>.</p>',
+        '<p>Chọn 2 trong 4 bi vàng: <span class="math">$n(A) = C_{4}^{2} = (4\times 3)/2 = 6$</span>.</p>',
+        '<p><span class="math">$P(A) = 6/45 = 2/15$</span> (rút gọn cho 3).</p>'
       ],
       answerHtml: 'P(A) = 2/15.'
     }],
@@ -1151,7 +1154,7 @@
       qHtml: '<p>Hai học sinh A và B cùng làm một câu hỏi khó trong đề thi, một cách độc lập. Xác suất A làm đúng câu đó là 0,8; xác suất B làm đúng câu đó là 0,5. Tính xác suất cả hai đều làm đúng câu khó đó.</p>',
       steps: [
         '<p>Hai bạn làm độc lập — quy tắc nhân xác suất.</p>',
-        '<p><span class="math">P(A ∩ B) = 0,8 × 0,5</span>.</p>'
+        '<p><span class="math">$P(A \cap  B) = 0,8 \times  0,5$</span>.</p>'
       ],
       answerHtml: 'P = 0,4.'
     }],
@@ -1159,7 +1162,7 @@
       qHtml: '<p>Với hai học sinh A, B ở bài trước (xác suất làm đúng lần lượt 0,8 và 0,5, làm bài độc lập), tính xác suất có ít nhất một trong hai bạn làm đúng câu khó đó.</p>',
       steps: [
         '<p>Dùng biến cố đối: "ít nhất 1 đúng" đối lập với "cả hai đều sai".</p>',
-        '<p>Xác suất A sai: <span class="math">1−0,8=0,2</span>. Xác suất B sai: <span class="math">1−0,5=0,5</span>. Độc lập nên <span class="math">P(cả hai sai) = 0,2 × 0,5 = 0,1</span>.</p>',
+        '<p>Xác suất A sai: <span class="math">$1-0,8=0,2$</span>. Xác suất B sai: <span class="math">$1-0,5=0,5$</span>. Độc lập nên <span class="math">P(cả hai sai) = 0,2 × 0,5 = 0,1</span>.</p>',
         '<p><span class="math">P(ít nhất 1 đúng) = 1 − 0,1</span>.</p>'
       ],
       answerHtml: 'P = 0,9.'
@@ -1168,6 +1171,15 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function renderMathIn(root) {
+      if (window.renderMathInElement) {
+        renderMathInElement(root, {
+          delimiters: [{ left: '$', right: '$', display: false }],
+          throwOnError: false
+        });
+      }
+    }
 
     function initProblem(el) {
       var qtext = el.querySelector('.qtext');
@@ -1234,6 +1246,7 @@
         if (qidEl) {
           qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
         }
+        renderMathIn(el);
       }
 
       if (btnHint) btnHint.addEventListener('click', function () {
@@ -1274,6 +1287,7 @@
     }
 
     document.querySelectorAll('.problem').forEach(initProblem);
+    renderMathIn(document.body);
   });
 </script>
 

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Giải Mã Lượng Giác — Hàm số &amp; phương trình lượng giác (Toán 11, bản soạn mới)</title>
+<link rel="stylesheet" href="/vendor/katex/katex.min.css">
 </head>
 <body>
 <style>
@@ -457,27 +458,27 @@
       <h3 class="sub"><span class="tag">Khái niệm</span>Bốn hàm số lượng giác cơ bản</h3>
       <div class="defcard">
         <div class="k">Tập xác định</div>
-        <p><span class="math">y = sin x</span> và <span class="math">y = cos x</span> xác định với <b>mọi</b> x ∈ R — không có điều kiện ràng buộc, vì với góc x bất kỳ, điểm trên đường tròn lượng giác luôn có tọa độ (cos x; sin x) xác định.</p>
-        <p><span class="math">y = tan x = sin x / cos x</span> chỉ xác định khi <span class="math">cos x ≠ 0</span>, tức là <span class="math">x ≠ π/2 + kπ, k ∈ Z</span>.</p>
-        <p><span class="math">y = cot x = cos x / sin x</span> chỉ xác định khi <span class="math">sin x ≠ 0</span>, tức là <span class="math">x ≠ kπ, k ∈ Z</span>.</p>
+        <p><span class="math">$y = \sin x$</span> và <span class="math">$y = \cos x$</span> xác định với <b>mọi</b> x ∈ R — không có điều kiện ràng buộc, vì với góc x bất kỳ, điểm trên đường tròn lượng giác luôn có tọa độ (cos x; sin x) xác định.</p>
+        <p><span class="math">$y = \tan x = \sin x / \cos x$</span> chỉ xác định khi <span class="math">$\cos x \ne  0$</span>, tức là <span class="math">$x \ne  \pi /2 + k\pi , k \in  Z$</span>.</p>
+        <p><span class="math">$y = \cot x = \cos x / \sin x$</span> chỉ xác định khi <span class="math">$\sin x \ne  0$</span>, tức là <span class="math">$x \ne  k\pi , k \in  Z$</span>.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Đường tròn lượng giác và hai trục phụ</h3>
       <div class="callout diagram">
         <div class="label">Hình minh họa (mô tả bằng lời thay cho ảnh chụp)</div>
-        <p>Vẽ một đường tròn tâm O, bán kính 1, gọi là <b>đường tròn lượng giác</b>. Điểm A(1; 0) là gốc để tính góc, chiều dương ngược chiều kim đồng hồ. Với một góc x, điểm M trên đường tròn ứng với góc đó có hoành độ chính là <span class="math">cos x</span> và tung độ chính là <span class="math">sin x</span> — đây là lý do sin, cos luôn xác định: M luôn tồn tại trên đường tròn với mọi x.</p>
+        <p>Vẽ một đường tròn tâm O, bán kính 1, gọi là <b>đường tròn lượng giác</b>. Điểm A(1; 0) là gốc để tính góc, chiều dương ngược chiều kim đồng hồ. Với một góc x, điểm M trên đường tròn ứng với góc đó có hoành độ chính là <span class="math">$\cos x$</span> và tung độ chính là <span class="math">$\sin x$</span> — đây là lý do sin, cos luôn xác định: M luôn tồn tại trên đường tròn với mọi x.</p>
         <p>Kẻ thêm <b>trục tang</b>: một đường thẳng đứng tiếp xúc đường tròn tại A, và <b>trục côtang</b>: một đường thẳng ngang tiếp xúc đường tròn tại B(0; 1). Giá trị tan x đọc được là giao điểm của tia OM kéo dài với trục tang; giá trị cot x là giao điểm của tia OM kéo dài với trục côtang. Khi M trùng B (tức x = π/2 + kπ), tia OM song song với trục tang — <b>không cắt trục tang ở đâu cả</b>, đó chính là lý do hình học cho việc tan x không xác định tại các góc này (và tương tự, cot x "vỡ" tại các bội của π vì khi đó tia OM song song trục côtang).</p>
       </div>
 
       <div class="callout example">
         <div class="label">Ví dụ đời sống mở rộng</div>
-        <p>Một chiếc đèn pin gắn trên giá xoay được đặt cách một bức tường phẳng 2 mét, chiếu một vệt sáng lên tường. Gọi x là góc nghiêng của đèn so với phương vuông góc với tường. Khi x còn nhỏ, vệt sáng ở gần; khi x tăng dần tới 90°, vệt sáng "chạy" ra xa vô tận dọc theo tường vì tia sáng gần như song song với mặt tường và không còn cắt tường ở điểm hữu hạn nào nữa. Khoảng cách từ chân tường đến vệt sáng tỉ lệ với <span class="math">tan x</span> — và đúng tại x = 90° (tức π/2), tan x "không xác định": về mặt vật lý, tia sáng không chạm tường ở đâu cả.</p>
+        <p>Một chiếc đèn pin gắn trên giá xoay được đặt cách một bức tường phẳng 2 mét, chiếu một vệt sáng lên tường. Gọi x là góc nghiêng của đèn so với phương vuông góc với tường. Khi x còn nhỏ, vệt sáng ở gần; khi x tăng dần tới 90°, vệt sáng "chạy" ra xa vô tận dọc theo tường vì tia sáng gần như song song với mặt tường và không còn cắt tường ở điểm hữu hạn nào nữa. Khoảng cách từ chân tường đến vệt sáng tỉ lệ với <span class="math">$\tan x$</span> — và đúng tại x = 90° (tức π/2), tan x "không xác định": về mặt vật lý, tia sáng không chạm tường ở đâu cả.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
 
       <div class="problem" data-pool="lg1-1" data-qid="Bài 1.1">
-        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext"><p>Tìm tập xác định của hàm số <span class="math">y = tan(2x − π/4)</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext"><p>Tìm tập xác định của hàm số <span class="math">$y = \tan(2x - \pi /4)$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -485,15 +486,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hàm <span class="math">tan(u)</span> xác định khi <span class="math">u ≠ π/2 + kπ</span>. Ở đây <span class="math">u = 2x − π/4</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đặt điều kiện: <span class="math">2x − π/4 ≠ π/2 + kπ</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">2x ≠ π/2 + π/4 + kπ = 3π/4 + kπ</span>, suy ra <span class="math">x ≠ 3π/8 + kπ/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hàm <span class="math">$\tan(u)$</span> xác định khi <span class="math">$u \ne  \pi /2 + k\pi$</span>. Ở đây <span class="math">$u = 2x - \pi /4$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đặt điều kiện: <span class="math">$2x - \pi /4 \ne  \pi /2 + k\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$2x \ne  \pi /2 + \pi /4 + k\pi  = 3\pi /4 + k\pi$</span>, suy ra <span class="math">$x \ne  3\pi /8 + k\pi /2$</span>.</p></div></div>
           <p class="answer hidden">D = R \ {3π/8 + kπ/2, k ∈ Z}.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg1-2" data-qid="Bài 1.2">
-        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext"><p>Tìm tập xác định của hàm số <span class="math">y = sin x / (1 + cos x)</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext"><p>Tìm tập xác định của hàm số <span class="math">$y = \sin x / (1 + \cos x)$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -501,14 +502,14 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tử số sin x xác định với mọi x, nên điều kiện chỉ đến từ mẫu số: <span class="math">1 + cos x ≠ 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">cos x ≠ −1</span>. Giá trị −1 đạt được đúng khi <span class="math">x = π + k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tử số sin x xác định với mọi x, nên điều kiện chỉ đến từ mẫu số: <span class="math">$1 + \cos x \ne  0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$\cos x \ne  -1$</span>. Giá trị −1 đạt được đúng khi <span class="math">$x = \pi  + k2\pi$</span>.</p></div></div>
           <p class="answer hidden">D = R \ {π + k2π, k ∈ Z}.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg1-3" data-qid="Bài 1.3">
-        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext"><p>Tìm tập xác định của hàm số <span class="math">y = tan(x/2) / sin x</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext"><p>Tìm tập xác định của hàm số <span class="math">$y = \tan(x/2) / \sin x$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -516,15 +517,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Có hai điều kiện độc lập: tử số cần <span class="math">x/2 ≠ π/2 + kπ</span>, tức <span class="math">x ≠ π + k2π</span>; mẫu số cần <span class="math">sin x ≠ 0</span>, tức <span class="math">x ≠ kπ</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhận xét: tập <span class="math">{π + k2π}</span> chỉ gồm các <i>bội lẻ</i> của π — mà mọi bội lẻ của π cũng là một trường hợp riêng của <span class="math">{kπ}</span>. Vậy điều kiện thứ nhất không thêm gì mới, đã "nằm trong" điều kiện thứ hai.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Do đó chỉ cần giữ lại điều kiện rộng hơn: <span class="math">x ≠ kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Có hai điều kiện độc lập: tử số cần <span class="math">$x/2 \ne  \pi /2 + k\pi$</span>, tức <span class="math">$x \ne  \pi  + k2\pi$</span>; mẫu số cần <span class="math">$\sin x \ne  0$</span>, tức <span class="math">$x \ne  k\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhận xét: tập <span class="math">$\{\pi  + k2\pi \}$</span> chỉ gồm các <i>bội lẻ</i> của π — mà mọi bội lẻ của π cũng là một trường hợp riêng của <span class="math">$\{k\pi \}$</span>. Vậy điều kiện thứ nhất không thêm gì mới, đã "nằm trong" điều kiện thứ hai.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Do đó chỉ cần giữ lại điều kiện rộng hơn: <span class="math">$x \ne  k\pi$</span>.</p></div></div>
           <p class="answer hidden">D = R \ {kπ, k ∈ Z}.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg1-4" data-qid="Bài 1.4">
-        <div class="q"><span class="qid">Bài 1.4</span><div class="qtext"><p>Tìm tất cả các giá trị của tham số m để hàm số <span class="math">y = cos x / (m − sin x)</span> xác định với mọi x ∈ R.</p></div></div>
+        <div class="q"><span class="qid">Bài 1.4</span><div class="qtext"><p>Tìm tất cả các giá trị của tham số m để hàm số <span class="math">$y = \cos x / (m - \sin x)$</span> xác định với mọi x ∈ R.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -532,8 +533,8 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hàm xác định với mọi x khi và chỉ khi mẫu không triệt tiêu với bất kỳ x nào: <span class="math">m − sin x ≠ 0</span> với mọi x, tức <span class="math">m ≠ sin x</span> với mọi x.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Điều này có nghĩa m không được trùng với <i>bất kỳ</i> giá trị nào mà sin x có thể nhận. Mà <span class="math">sin x</span> nhận đủ mọi giá trị trong đoạn <span class="math">[−1; 1]</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hàm xác định với mọi x khi và chỉ khi mẫu không triệt tiêu với bất kỳ x nào: <span class="math">$m - \sin x \ne  0$</span> với mọi x, tức <span class="math">$m \ne  \sin x$</span> với mọi x.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Điều này có nghĩa m không được trùng với <i>bất kỳ</i> giá trị nào mà sin x có thể nhận. Mà <span class="math">$\sin x$</span> nhận đủ mọi giá trị trong đoạn <span class="math">$[-1; 1]$</span>.</p></div></div>
           <div class="step hidden"><span class="b">3</span><div class="t"><p>Vậy để m không trùng giá trị nào của sin x, m phải nằm hẳn ngoài đoạn đó.</p></div></div>
           <p class="answer hidden">m &lt; −1 hoặc m &gt; 1.</p>
         </div>
@@ -551,25 +552,25 @@
       <h3 class="sub"><span class="tag">Khái niệm</span>Chẵn – lẻ và chu kỳ tuần hoàn</h3>
       <div class="defcard">
         <div class="k">Định nghĩa</div>
-        <p>Hàm số f gọi là <span class="kw">hàm chẵn</span> nếu <span class="math">f(−x) = f(x)</span> với mọi x thuộc tập xác định (đồ thị đối xứng qua trục Oy); gọi là <span class="kw">hàm lẻ</span> nếu <span class="math">f(−x) = −f(x)</span> (đồ thị đối xứng qua gốc O). Trong bốn hàm cơ bản: <span class="math">cos x</span> là hàm chẵn; <span class="math">sin x, tan x, cot x</span> đều là hàm lẻ.</p>
-        <p>Hàm số f gọi là <span class="kw">tuần hoàn</span> với chu kỳ T (T &gt; 0) nếu <span class="math">f(x + T) = f(x)</span> với mọi x thuộc tập xác định. Chu kỳ (dương, nhỏ nhất) của <span class="math">sin x, cos x</span> là <span class="math">2π</span>; của <span class="math">tan x, cot x</span> là <span class="math">π</span>. Với <span class="math">sin(ax), cos(ax)</span>, chu kỳ là <span class="math">2π/|a|</span>; với <span class="math">tan(ax), cot(ax)</span>, chu kỳ là <span class="math">π/|a|</span>. Khi cộng hai hàm tuần hoàn chu kỳ T₁, T₂, hàm tổng tuần hoàn với chu kỳ là <span class="kw">bội chung nhỏ nhất</span> của T₁ và T₂ (nếu tồn tại).</p>
+        <p>Hàm số f gọi là <span class="kw">hàm chẵn</span> nếu <span class="math">$f(-x) = f(x)$</span> với mọi x thuộc tập xác định (đồ thị đối xứng qua trục Oy); gọi là <span class="kw">hàm lẻ</span> nếu <span class="math">$f(-x) = -f(x)$</span> (đồ thị đối xứng qua gốc O). Trong bốn hàm cơ bản: <span class="math">$\cos x$</span> là hàm chẵn; <span class="math">$\sin x, \tan x, \cot x$</span> đều là hàm lẻ.</p>
+        <p>Hàm số f gọi là <span class="kw">tuần hoàn</span> với chu kỳ T (T &gt; 0) nếu <span class="math">$f(x + T) = f(x)$</span> với mọi x thuộc tập xác định. Chu kỳ (dương, nhỏ nhất) của <span class="math">$\sin x, \cos x$</span> là <span class="math">$2\pi$</span>; của <span class="math">$\tan x, \cot x$</span> là <span class="math">$\pi$</span>. Với <span class="math">$\sin(ax), \cos(ax)$</span>, chu kỳ là <span class="math">$2\pi /|a|$</span>; với <span class="math">$\tan(ax), \cot(ax)$</span>, chu kỳ là <span class="math">$\pi /|a|$</span>. Khi cộng hai hàm tuần hoàn chu kỳ T₁, T₂, hàm tổng tuần hoàn với chu kỳ là <span class="kw">bội chung nhỏ nhất</span> của T₁ và T₂ (nếu tồn tại).</p>
       </div>
 
       <h3 class="sub"><span class="tag">Khái niệm</span>Giá trị lớn nhất, giá trị nhỏ nhất</h3>
       <div class="defcard">
         <div class="k">Nguyên tắc chung</div>
-        <p>Với mọi x, <span class="math">−1 ≤ sin x ≤ 1</span> và <span class="math">−1 ≤ cos x ≤ 1</span>, còn tan x, cot x không bị chặn. Muốn tìm GTLN–GTNN của một biểu thức chứa sin, cos, ta "kẹp" biểu thức bên trong khoảng đó rồi suy ngược ra khoảng giá trị của cả hàm số. Một trường hợp đặc biệt hay gặp: biểu thức dạng <span class="math">a sin x + b cos x</span> luôn thỏa <span class="math">−√(a²+b²) ≤ a sin x + b cos x ≤ √(a²+b²)</span> (sẽ chứng minh ở Chủ đề 4).</p>
+        <p>Với mọi x, <span class="math">$-1 \le  \sin x \le  1$</span> và <span class="math">$-1 \le  \cos x \le  1$</span>, còn tan x, cot x không bị chặn. Muốn tìm GTLN–GTNN của một biểu thức chứa sin, cos, ta "kẹp" biểu thức bên trong khoảng đó rồi suy ngược ra khoảng giá trị của cả hàm số. Một trường hợp đặc biệt hay gặp: biểu thức dạng <span class="math">$a \sin x + b \cos x$</span> luôn thỏa <span class="math">$-\sqrt{a^{2}+b^{2}} \le  a \sin x + b \cos x \le  \sqrt{a^{2}+b^{2}}$</span> (sẽ chứng minh ở Chủ đề 4).</p>
       </div>
 
       <div class="callout example">
         <div class="label">Ví dụ đời sống mở rộng</div>
-        <p>Nhịp thủy triều tại một cửa sông, nhịp tim lúc nghỉ ngơi, hay góc quay của kim đồng hồ đều là các hiện tượng <b>lặp lại đều đặn theo thời gian</b> — đúng bản chất của một hàm tuần hoàn. Nếu mực nước triều tại một điểm được xấp xỉ bởi một hàm dạng <span class="math">h(t) = h₀ + A sin(ωt + φ)</span>, thì đại lượng "12 giờ 25 phút giữa hai lần triều cường liên tiếp" chính là chu kỳ T của hàm số đó — biết T, ta suy ra được hệ số ω = 2π/T mà không cần đo đạc lại từ đầu.</p>
+        <p>Nhịp thủy triều tại một cửa sông, nhịp tim lúc nghỉ ngơi, hay góc quay của kim đồng hồ đều là các hiện tượng <b>lặp lại đều đặn theo thời gian</b> — đúng bản chất của một hàm tuần hoàn. Nếu mực nước triều tại một điểm được xấp xỉ bởi một hàm dạng <span class="math">$h(t) = h_{0} + A \sin(\omega t + \varphi )$</span>, thì đại lượng "12 giờ 25 phút giữa hai lần triều cường liên tiếp" chính là chu kỳ T của hàm số đó — biết T, ta suy ra được hệ số ω = 2π/T mà không cần đo đạc lại từ đầu.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
 
       <div class="problem" data-pool="lg2-1" data-qid="Bài 2.1">
-        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext"><p>Xét tính chẵn – lẻ của hàm số <span class="math">y = x·cos x</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext"><p>Xét tính chẵn – lẻ của hàm số <span class="math">$y = x\cdot \cos x$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -577,14 +578,14 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tập xác định R đối xứng qua 0 (thỏa điều kiện cần trước khi xét chẵn/lẻ). Tính <span class="math">f(−x)</span>: <span class="math">f(−x) = (−x)·cos(−x)</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì cos là hàm chẵn nên <span class="math">cos(−x) = cos x</span>. Suy ra <span class="math">f(−x) = −x·cos x = −f(x)</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tập xác định R đối xứng qua 0 (thỏa điều kiện cần trước khi xét chẵn/lẻ). Tính <span class="math">$f(-x)$</span>: <span class="math">$f(-x) = (-x)\cdot \cos(-x)$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì cos là hàm chẵn nên <span class="math">$\cos(-x) = \cos x$</span>. Suy ra <span class="math">$f(-x) = -x\cdot \cos x = -f(x)$</span>.</p></div></div>
           <p class="answer hidden">y = x·cos x là hàm số lẻ.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg2-2" data-qid="Bài 2.2">
-        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext"><p>Tìm chu kỳ tuần hoàn của hàm số <span class="math">y = sin 3x + cos(x/2)</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext"><p>Tìm chu kỳ tuần hoàn của hàm số <span class="math">$y = \sin 3x + \cos(x/2)$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -592,15 +593,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chu kỳ riêng: <span class="math">sin 3x</span> có T₁ = 2π/3; <span class="math">cos(x/2)</span> có T₂ = 2π/(1/2) = 4π.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tìm T nhỏ nhất là bội nguyên của cả T₁ lẫn T₂: cần <span class="math">T = k·(2π/3) = m·4π</span> với k, m nguyên dương. Từ đó <span class="math">k = 6m</span>, nhỏ nhất khi m = 1, k = 6.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">T = 6·(2π/3) = 4π</span> (kiểm tra: 4π cũng bằng đúng 1 lần T₂, khớp).</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chu kỳ riêng: <span class="math">$\sin 3x$</span> có T₁ = 2π/3; <span class="math">$\cos(x/2)$</span> có T₂ = 2π/(1/2) = 4π.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tìm T nhỏ nhất là bội nguyên của cả T₁ lẫn T₂: cần <span class="math">$T = k\cdot (2\pi /3) = m\cdot 4\pi$</span> với k, m nguyên dương. Từ đó <span class="math">$k = 6m$</span>, nhỏ nhất khi m = 1, k = 6.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$T = 6\cdot (2\pi /3) = 4\pi$</span> (kiểm tra: 4π cũng bằng đúng 1 lần T₂, khớp).</p></div></div>
           <p class="answer hidden">Chu kỳ T = 4π.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg2-3" data-qid="Bài 2.3">
-        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext"><p>Tìm giá trị lớn nhất và giá trị nhỏ nhất của hàm số <span class="math">y = 3 − 2sin x</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext"><p>Tìm giá trị lớn nhất và giá trị nhỏ nhất của hàm số <span class="math">$y = 3 - 2\sin x$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -608,15 +609,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vì <span class="math">−1 ≤ sin x ≤ 1</span>, nhân với −2 (đổi chiều bất đẳng thức): <span class="math">−2 ≤ −2sin x ≤ 2</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng 3 vào cả ba vế: <span class="math">1 ≤ 3 − 2sin x ≤ 5</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vì <span class="math">$-1 \le  \sin x \le  1$</span>, nhân với −2 (đổi chiều bất đẳng thức): <span class="math">$-2 \le  -2\sin x \le  2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng 3 vào cả ba vế: <span class="math">$1 \le  3 - 2\sin x \le  5$</span>.</p></div></div>
           <div class="step hidden"><span class="b">3</span><div class="t"><p>GTLN = 5 đạt được khi sin x = −1; GTNN = 1 đạt được khi sin x = 1.</p></div></div>
           <p class="answer hidden">GTLN = 5, GTNN = 1.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg2-4" data-qid="Bài 2.4">
-        <div class="q"><span class="qid">Bài 2.4</span><div class="qtext"><p>Tìm giá trị lớn nhất, giá trị nhỏ nhất của hàm số <span class="math">y = 3sin x + 4cos x</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 2.4</span><div class="qtext"><p>Tìm giá trị lớn nhất, giá trị nhỏ nhất của hàm số <span class="math">$y = 3\sin x + 4\cos x$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -624,14 +625,14 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Áp dụng chặn của biểu thức <span class="math">a sin x + b cos x</span> với a = 3, b = 4: biên độ <span class="math">R = √(a² + b²) = √(9+16) = √25 = 5</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Suy ra <span class="math">−5 ≤ 3sin x + 4cos x ≤ 5</span> với mọi x, và hai biên đều đạt được (sẽ thấy rõ khi viết lại dưới dạng R·sin(x+φ) ở Chủ đề 4).</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Áp dụng chặn của biểu thức <span class="math">$a \sin x + b \cos x$</span> với a = 3, b = 4: biên độ <span class="math">$R = \sqrt{a^{2} + b^{2}} = \sqrt{9+16} = \sqrt{25} = 5$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Suy ra <span class="math">$-5 \le  3\sin x + 4\cos x \le  5$</span> với mọi x, và hai biên đều đạt được (sẽ thấy rõ khi viết lại dưới dạng R·sin(x+φ) ở Chủ đề 4).</p></div></div>
           <p class="answer hidden">GTLN = 5, GTNN = −5.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg2-5" data-qid="Bài 2.5">
-        <div class="q"><span class="qid">Bài 2.5</span><div class="qtext"><p>Tìm m để giá trị nhỏ nhất của hàm số <span class="math">y = sin²x − 2sin x + m</span> bằng −2.</p></div></div>
+        <div class="q"><span class="qid">Bài 2.5</span><div class="qtext"><p>Tìm m để giá trị nhỏ nhất của hàm số <span class="math">$y = \sin^{2}x - 2\sin x + m$</span> bằng −2.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -639,9 +640,9 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = sin x</span>, điều kiện <span class="math">t ∈ [−1; 1]</span>. Hàm trở thành <span class="math">y = t² − 2t + m = (t−1)² + (m−1)</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trên đoạn [−1;1], biểu thức <span class="math">(t−1)²</span> đạt giá trị nhỏ nhất bằng 0 tại t = 1 (đầu mút bên phải, gần "tâm" 1 nhất).</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Vậy GTNN của y là <span class="math">0 + (m−1) = m−1</span>. Theo đề bài, <span class="math">m − 1 = −2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \sin x$</span>, điều kiện <span class="math">$t \in  [-1; 1]$</span>. Hàm trở thành <span class="math">$y = t^{2} - 2t + m = (t-1)^{2} + (m-1)$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trên đoạn [−1;1], biểu thức <span class="math">$(t-1)^{2}$</span> đạt giá trị nhỏ nhất bằng 0 tại t = 1 (đầu mút bên phải, gần "tâm" 1 nhất).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Vậy GTNN của y là <span class="math">$0 + (m-1) = m-1$</span>. Theo đề bài, <span class="math">$m - 1 = -2$</span>.</p></div></div>
           <p class="answer hidden">m = −1.</p>
         </div>
       </div>
@@ -662,10 +663,10 @@
             <tr><th>Phương trình</th><th class="formula">Điều kiện có nghiệm</th><th class="formula">Công thức nghiệm</th></tr>
           </thead>
           <tbody>
-            <tr><th>sin u = sin v</th><td class="formula">luôn có (mọi u, v)</td><td class="formula">u = v + k2π hoặc u = π−v + k2π</td></tr>
-            <tr><th>cos u = cos v</th><td class="formula">luôn có</td><td class="formula">u = v + k2π hoặc u = −v + k2π</td></tr>
-            <tr><th>tan u = tan v</th><td class="formula">u, v ≠ π/2+kπ</td><td class="formula">u = v + kπ</td></tr>
-            <tr><th>cot u = cot v</th><td class="formula">u, v ≠ kπ</td><td class="formula">u = v + kπ</td></tr>
+            <tr><th>$\sin u = \sin v$</th><td class="formula">luôn có (mọi u, v)</td><td class="formula">$u = v + k2\pi$ hoặc $u = \pi -v + k2\pi$</td></tr>
+            <tr><th>$\cos u = \cos v$</th><td class="formula">luôn có</td><td class="formula">$u = v + k2\pi$ hoặc $u = -v + k2\pi$</td></tr>
+            <tr><th>$\tan u = \tan v$</th><td class="formula">$u, v \ne  \pi /2+k\pi$</td><td class="formula">$u = v + k\pi$</td></tr>
+            <tr><th>$\cot u = \cot v$</th><td class="formula">$u, v \ne  k\pi$</td><td class="formula">$u = v + k\pi$</td></tr>
           </tbody>
         </table>
       </div>
@@ -673,13 +674,13 @@
 
       <div class="callout example">
         <div class="label">Ví dụ đời sống mở rộng</div>
-        <p>Áp suất âm thanh của một nốt nhạc thuần (tiếng còi thử của âm thoa) dao động điều hòa theo mô hình <span class="math">p(t) = A sin(2πft)</span>, với f là tần số (Hz). Câu hỏi "tại những thời điểm nào áp suất bằng 0" chính là giải phương trình lượng giác cơ bản <span class="math">sin(2πft) = 0</span> — và nghiệm <span class="math">2πft = kπ</span>, tức <span class="math">t = k/(2f)</span>, cho biết áp suất triệt tiêu đều đặn 2f lần mỗi giây, đúng bằng gấp đôi tần số của nốt nhạc.</p>
+        <p>Áp suất âm thanh của một nốt nhạc thuần (tiếng còi thử của âm thoa) dao động điều hòa theo mô hình <span class="math">$p(t) = A \sin(2\pi ft)$</span>, với f là tần số (Hz). Câu hỏi "tại những thời điểm nào áp suất bằng 0" chính là giải phương trình lượng giác cơ bản <span class="math">$\sin(2\pi ft) = 0$</span> — và nghiệm <span class="math">$2\pi ft = k\pi$</span>, tức <span class="math">$t = k/(2f)$</span>, cho biết áp suất triệt tiêu đều đặn 2f lần mỗi giây, đúng bằng gấp đôi tần số của nốt nhạc.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
 
       <div class="problem" data-pool="lg3-1" data-qid="Bài 3.1">
-        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext"><p>Giải phương trình <span class="math">sin(2x − π/3) = 1/2</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext"><p>Giải phương trình <span class="math">$\sin(2x - \pi /3) = 1/2$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -687,15 +688,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đưa 1/2 về dạng sin của góc đặc biệt: <span class="math">1/2 = sin(π/6)</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng công thức nghiệm sin u = sin v với u = 2x−π/3, v = π/6: <span class="math">2x−π/3 = π/6+k2π</span> hoặc <span class="math">2x−π/3 = π−π/6+k2π = 5π/6+k2π</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp 1: <span class="math">2x = π/2+k2π ⇒ x = π/4+kπ</span>.</p><p>Trường hợp 2: <span class="math">2x = 7π/6+k2π ⇒ x = 7π/12+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đưa 1/2 về dạng sin của góc đặc biệt: <span class="math">$1/2 = \sin(\pi /6)$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng công thức nghiệm sin u = sin v với u = 2x−π/3, v = π/6: <span class="math">$2x-\pi /3 = \pi /6+k2\pi$</span> hoặc <span class="math">$2x-\pi /3 = \pi -\pi /6+k2\pi  = 5\pi /6+k2\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp 1: <span class="math">$2x = \pi /2+k2\pi  \Rightarrow  x = \pi /4+k\pi$</span>.</p><p>Trường hợp 2: <span class="math">$2x = 7\pi /6+k2\pi  \Rightarrow  x = 7\pi /12+k\pi$</span>.</p></div></div>
           <p class="answer hidden">x = π/4 + kπ hoặc x = 7π/12 + kπ, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg3-2" data-qid="Bài 3.2">
-        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext"><p>Giải phương trình <span class="math">cos(3x + π/4) = −√2/2</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext"><p>Giải phương trình <span class="math">$\cos(3x + \pi /4) = -\sqrt{2}/2$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -703,15 +704,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đưa −√2/2 về dạng cos của góc đặc biệt: <span class="math">−√2/2 = cos(3π/4)</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng cos u = cos v: <span class="math">3x+π/4 = 3π/4+k2π</span> hoặc <span class="math">3x+π/4 = −3π/4+k2π</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp 1: <span class="math">3x = π/2+k2π ⇒ x = π/6+k2π/3</span>.</p><p>Trường hợp 2: <span class="math">3x = −π+k2π ⇒ x = −π/3+k2π/3</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đưa −√2/2 về dạng cos của góc đặc biệt: <span class="math">$-\sqrt{2}/2 = \cos(3\pi /4)$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng cos u = cos v: <span class="math">$3x+\pi /4 = 3\pi /4+k2\pi$</span> hoặc <span class="math">$3x+\pi /4 = -3\pi /4+k2\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp 1: <span class="math">$3x = \pi /2+k2\pi  \Rightarrow  x = \pi /6+k2\pi /3$</span>.</p><p>Trường hợp 2: <span class="math">$3x = -\pi +k2\pi  \Rightarrow  x = -\pi /3+k2\pi /3$</span>.</p></div></div>
           <p class="answer hidden">x = π/6 + k2π/3 hoặc x = −π/3 + k2π/3, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg3-3" data-qid="Bài 3.3">
-        <div class="q"><span class="qid">Bài 3.3</span><div class="qtext"><p>Giải phương trình <span class="math">tan(2x − π/6) = √3/3</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 3.3</span><div class="qtext"><p>Giải phương trình <span class="math">$\tan(2x - \pi /6) = \sqrt{3}/3$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -719,15 +720,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhận ra <span class="math">√3/3 = 1/√3 = tan(π/6)</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng tan u = tan v (không cần điều kiện góc đặc biệt gì thêm vì vế phải hữu hạn): <span class="math">2x−π/6 = π/6+kπ</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">2x = π/3+kπ ⇒ x = π/6+kπ/2</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhận ra <span class="math">$\sqrt{3}/3 = 1/\sqrt{3} = \tan(\pi /6)$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng tan u = tan v (không cần điều kiện góc đặc biệt gì thêm vì vế phải hữu hạn): <span class="math">$2x-\pi /6 = \pi /6+k\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$2x = \pi /3+k\pi  \Rightarrow  x = \pi /6+k\pi /2$</span>.</p></div></div>
           <p class="answer hidden">x = π/6 + kπ/2, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg3-4" data-qid="Bài 3.4">
-        <div class="q"><span class="qid">Bài 3.4</span><div class="qtext"><p>Tìm số nghiệm của phương trình <span class="math">2sin x − 1 = 0</span> trên đoạn <span class="math">[0; 3π]</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 3.4</span><div class="qtext"><p>Tìm số nghiệm của phương trình <span class="math">$2\sin x - 1 = 0$</span> trên đoạn <span class="math">$[0; 3\pi ]$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -735,7 +736,7 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đưa về dạng cơ bản: <span class="math">sin x = 1/2</span>, cho hai họ nghiệm <span class="math">x = π/6+k2π</span> và <span class="math">x = 5π/6+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đưa về dạng cơ bản: <span class="math">$\sin x = 1/2$</span>, cho hai họ nghiệm <span class="math">$x = \pi /6+k2\pi$</span> và <span class="math">$x = 5\pi /6+k2\pi$</span>.</p></div></div>
           <div class="step hidden"><span class="b">2</span><div class="t"><p>Xét họ thứ nhất trong [0; 3π] (≈ [0; 9,42]): k=0 cho x=π/6 (nhận); k=1 cho x=π/6+2π=13π/6≈6,81 (nhận, vì &lt;3π); k=2 đã vượt quá 3π.</p></div></div>
           <div class="step hidden"><span class="b">3</span><div class="t"><p>Xét họ thứ hai: k=0 cho x=5π/6 (nhận); k=1 cho x=5π/6+2π=17π/6≈8,90 (nhận, vì &lt;3π); k=2 vượt quá 3π.</p></div></div>
           <div class="step hidden"><span class="b">4</span><div class="t"><p>Gộp lại có đúng 4 nghiệm phân biệt trong đoạn: π/6, 5π/6, 13π/6, 17π/6.</p></div></div>
@@ -750,25 +751,25 @@
         <span class="topic-num">Chủ đề 4</span>
         <h2 class="topic-title">Phương trình bậc nhất đối với sin x và cos x</h2>
       </div>
-      <p class="topic-intro">Dạng <span class="math">a sin x + b cos x = c</span> (a, b không đồng thời bằng 0) trông như "hai hàm cộng lại", nhưng thực chất luôn viết gọn được thành <b>một</b> hàm sin duy nhất với biên độ lớn hơn — đây là kỹ thuật quan trọng bậc nhất của cả chương.</p>
+      <p class="topic-intro">Dạng <span class="math">$a \sin x + b \cos x = c$</span> (a, b không đồng thời bằng 0) trông như "hai hàm cộng lại", nhưng thực chất luôn viết gọn được thành <b>một</b> hàm sin duy nhất với biên độ lớn hơn — đây là kỹ thuật quan trọng bậc nhất của cả chương.</p>
 
       <h3 class="sub"><span class="tag">Khái niệm</span>Công thức biên độ</h3>
       <div class="defcard">
         <div class="k">Biến đổi a sin x + b cos x</div>
-        <p>Với mọi a, b không đồng thời bằng 0, đặt <span class="math">R = √(a²+b²)</span> và chọn góc φ sao cho <span class="math">cos φ = a/R, sin φ = b/R</span> (luôn chọn được vì <span class="math">(a/R)² + (b/R)² = 1</span>). Khi đó:</p>
-        <p style="text-align:center"><span class="math">a sin x + b cos x = R·sin(x + φ)</span></p>
-        <p>Vì <span class="math">sin(x+φ) ∈ [−1;1]</span>, phương trình <span class="math">a sin x + b cos x = c</span> có nghiệm khi và chỉ khi <span class="math">|c| ≤ R</span>, tức <span class="math">a² + b² ≥ c²</span> — đây cũng chính là lý do biểu thức <span class="math">a sin x + b cos x</span> luôn bị chặn trong <span class="math">[−R; R]</span> (áp dụng ở Chủ đề 2, Bài 2.4).</p>
+        <p>Với mọi a, b không đồng thời bằng 0, đặt <span class="math">$R = \sqrt{a^{2}+b^{2}}$</span> và chọn góc φ sao cho <span class="math">$\cos \varphi  = a/R, \sin \varphi  = b/R$</span> (luôn chọn được vì <span class="math">$(a/R)^{2} + (b/R)^{2} = 1$</span>). Khi đó:</p>
+        <p style="text-align:center"><span class="math">$a \sin x + b \cos x = R\cdot \sin(x + \varphi )$</span></p>
+        <p>Vì <span class="math">$\sin(x+\varphi ) \in  [-1;1]$</span>, phương trình <span class="math">$a \sin x + b \cos x = c$</span> có nghiệm khi và chỉ khi <span class="math">$|c| \le  R$</span>, tức <span class="math">$a^{2} + b^{2} \ge  c^{2}$</span> — đây cũng chính là lý do biểu thức <span class="math">$a \sin x + b \cos x$</span> luôn bị chặn trong <span class="math">$[-R; R]$</span> (áp dụng ở Chủ đề 2, Bài 2.4).</p>
       </div>
 
       <div class="callout example">
         <div class="label">Ví dụ đời sống mở rộng</div>
-        <p>Cường độ ánh sáng mặt trời chiếu vuông góc tới một tấm pin năng lượng mặt trời nghiêng cố định thay đổi trong ngày theo một biểu thức xấp xỉ dạng <span class="math">a sin x + b cos x</span>, với x tỉ lệ thời gian trong ngày. Việc viết lại thành <span class="math">R sin(x+φ)</span> giúp kỹ sư đọc ngay hai thông tin quan trọng mà không cần khảo sát đồ thị: cường độ cực đại đúng bằng biên độ R (đạt tại một thời điểm duy nhất trong ngày), và pha φ cho biết thời điểm đó lệch bao xa so với mốc x = 0.</p>
+        <p>Cường độ ánh sáng mặt trời chiếu vuông góc tới một tấm pin năng lượng mặt trời nghiêng cố định thay đổi trong ngày theo một biểu thức xấp xỉ dạng <span class="math">$a \sin x + b \cos x$</span>, với x tỉ lệ thời gian trong ngày. Việc viết lại thành <span class="math">$R \sin(x+\varphi )$</span> giúp kỹ sư đọc ngay hai thông tin quan trọng mà không cần khảo sát đồ thị: cường độ cực đại đúng bằng biên độ R (đạt tại một thời điểm duy nhất trong ngày), và pha φ cho biết thời điểm đó lệch bao xa so với mốc x = 0.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
 
       <div class="problem" data-pool="lg4-1" data-qid="Bài 4.1">
-        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext"><p>Giải phương trình <span class="math">sin x + √3 cos x = 1</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext"><p>Giải phương trình <span class="math">$\sin x + \sqrt{3} \cos x = 1$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -776,16 +777,16 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>a = 1, b = √3, biên độ <span class="math">R = √(1+3) = 2</span>. Cần φ với <span class="math">cos φ = 1/2, sin φ = √3/2</span>, chọn <span class="math">φ = π/3</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vế trái viết lại: <span class="math">2 sin(x + π/3) = 1 ⇒ sin(x+π/3) = 1/2</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">1/2 = sin(π/6)</span>, nên <span class="math">x+π/3 = π/6+k2π</span> hoặc <span class="math">x+π/3 = 5π/6+k2π</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p>Trường hợp 1: <span class="math">x = −π/6+k2π</span>. Trường hợp 2: <span class="math">x = π/2+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a = 1, b = √3, biên độ <span class="math">$R = \sqrt{1+3} = 2$</span>. Cần φ với <span class="math">$\cos \varphi  = 1/2, \sin \varphi  = \sqrt{3}/2$</span>, chọn <span class="math">$\varphi  = \pi /3$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vế trái viết lại: <span class="math">$2 \sin(x + \pi /3) = 1 \Rightarrow  \sin(x+\pi /3) = 1/2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$1/2 = \sin(\pi /6)$</span>, nên <span class="math">$x+\pi /3 = \pi /6+k2\pi$</span> hoặc <span class="math">$x+\pi /3 = 5\pi /6+k2\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Trường hợp 1: <span class="math">$x = -\pi /6+k2\pi$</span>. Trường hợp 2: <span class="math">$x = \pi /2+k2\pi$</span>.</p></div></div>
           <p class="answer hidden">x = −π/6 + k2π hoặc x = π/2 + k2π, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg4-2" data-qid="Bài 4.2">
-        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext"><p>Giải phương trình <span class="math">√3 sin x − cos x = √2</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext"><p>Giải phương trình <span class="math">$\sqrt{3} \sin x - \cos x = \sqrt{2}$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -793,16 +794,16 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>a = √3, b = −1, <span class="math">R = √(3+1) = 2</span>. Cần <span class="math">cos φ = √3/2, sin φ = −1/2</span>, chọn <span class="math">φ = −π/6</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vế trái: <span class="math">2 sin(x − π/6) = √2 ⇒ sin(x−π/6) = √2/2</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">√2/2 = sin(π/4)</span>, nên <span class="math">x−π/6 = π/4+k2π</span> hoặc <span class="math">x−π/6 = 3π/4+k2π</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p>Trường hợp 1: <span class="math">x = 5π/12+k2π</span>. Trường hợp 2: <span class="math">x = 11π/12+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a = √3, b = −1, <span class="math">$R = \sqrt{3+1} = 2$</span>. Cần <span class="math">$\cos \varphi  = \sqrt{3}/2, \sin \varphi  = -1/2$</span>, chọn <span class="math">$\varphi  = -\pi /6$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vế trái: <span class="math">$2 \sin(x - \pi /6) = \sqrt{2} \Rightarrow  \sin(x-\pi /6) = \sqrt{2}/2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$\sqrt{2}/2 = \sin(\pi /4)$</span>, nên <span class="math">$x-\pi /6 = \pi /4+k2\pi$</span> hoặc <span class="math">$x-\pi /6 = 3\pi /4+k2\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Trường hợp 1: <span class="math">$x = 5\pi /12+k2\pi$</span>. Trường hợp 2: <span class="math">$x = 11\pi /12+k2\pi$</span>.</p></div></div>
           <p class="answer hidden">x = 5π/12 + k2π hoặc x = 11π/12 + k2π, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg4-3" data-qid="Bài 4.3">
-        <div class="q"><span class="qid">Bài 4.3</span><div class="qtext"><p>Tìm tất cả các giá trị của tham số m để phương trình <span class="math">(m−1)sin x + 2cos x = m</span> có nghiệm.</p></div></div>
+        <div class="q"><span class="qid">Bài 4.3</span><div class="qtext"><p>Tìm tất cả các giá trị của tham số m để phương trình <span class="math">$(m-1)\sin x + 2\cos x = m$</span> có nghiệm.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -810,15 +811,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đây là dạng a sin x + b cos x = c với a=m−1, b=2, c=m. Điều kiện có nghiệm: <span class="math">a² + b² ≥ c²</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">(m−1)² + 4 ≥ m² ⇒ m² − 2m + 1 + 4 ≥ m²</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Rút gọn (hai hạng tử m² triệt tiêu): <span class="math">−2m + 5 ≥ 0</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đây là dạng a sin x + b cos x = c với a=m−1, b=2, c=m. Điều kiện có nghiệm: <span class="math">$a^{2} + b^{2} \ge  c^{2}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$(m-1)^{2} + 4 \ge  m^{2} \Rightarrow  m^{2} - 2m + 1 + 4 \ge  m^{2}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Rút gọn (hai hạng tử m² triệt tiêu): <span class="math">$-2m + 5 \ge  0$</span>.</p></div></div>
           <p class="answer hidden">m ≤ 5/2.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg4-4" data-qid="Bài 4.4">
-        <div class="q"><span class="qid">Bài 4.4</span><div class="qtext"><p>Độ cao của một ghế ngồi trên vòng đu quay mini tại một hội chợ, tính bằng mét, sau t giây kể từ lúc khởi động được mô hình bởi <span class="math">h(t) = 15sin t − 15√3cos t + 40</span>. Hỏi thời điểm sớm nhất (t ≥ 0) ghế đạt độ cao 25 m là bao nhiêu giây?</p></div></div>
+        <div class="q"><span class="qid">Bài 4.4</span><div class="qtext"><p>Độ cao của một ghế ngồi trên vòng đu quay mini tại một hội chợ, tính bằng mét, sau t giây kể từ lúc khởi động được mô hình bởi <span class="math">$h(t) = 15\sin t - 15\sqrt{3}\cos t + 40$</span>. Hỏi thời điểm sớm nhất (t ≥ 0) ghế đạt độ cao 25 m là bao nhiêu giây?</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -826,10 +827,10 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt h(t) = 25: <span class="math">15sin t − 15√3cos t = −15 ⇒ sin t − √3cos t = −1</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>a=1, b=−√3, <span class="math">R=√(1+3)=2</span>, chọn <span class="math">φ=−π/3</span> (vì cos φ=1/2, sin φ=−√3/2). Vế trái = <span class="math">2 sin(t−π/3)</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">2sin(t−π/3)=−1 ⇒ sin(t−π/3)=−1/2 = sin(−π/6)</span>, cho <span class="math">t−π/3=−π/6+k2π</span> hoặc <span class="math">t−π/3=7π/6+k2π</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p>Suy ra <span class="math">t = π/6+k2π</span> hoặc <span class="math">t = 3π/2+k2π</span>. Với t ≥ 0, giá trị nhỏ nhất trong hai họ là <span class="math">t=π/6</span> (so với t=3π/2 lớn hơn nhiều).</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt h(t) = 25: <span class="math">$15\sin t - 15\sqrt{3}\cos t = -15 \Rightarrow  \sin t - \sqrt{3}\cos t = -1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a=1, b=−√3, <span class="math">$R=\sqrt{1+3}=2$</span>, chọn <span class="math">$\varphi =-\pi /3$</span> (vì cos φ=1/2, sin φ=−√3/2). Vế trái = <span class="math">$2 \sin(t-\pi /3)$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$2\sin(t-\pi /3)=-1 \Rightarrow  \sin(t-\pi /3)=-1/2 = \sin(-\pi /6)$</span>, cho <span class="math">$t-\pi /3=-\pi /6+k2\pi$</span> hoặc <span class="math">$t-\pi /3=7\pi /6+k2\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Suy ra <span class="math">$t = \pi /6+k2\pi$</span> hoặc <span class="math">$t = 3\pi /2+k2\pi$</span>. Với t ≥ 0, giá trị nhỏ nhất trong hai họ là <span class="math">$t=\pi /6$</span> (so với t=3π/2 lớn hơn nhiều).</p></div></div>
           <p class="answer hidden">Thời điểm sớm nhất: t = π/6 giây.</p>
         </div>
       </div>
@@ -846,18 +847,18 @@
       <h3 class="sub"><span class="tag">Khái niệm</span>Phương pháp đặt ẩn phụ</h3>
       <div class="defcard">
         <div class="k">Quy trình 3 bước</div>
-        <p>1) Đặt <span class="math">t = sin x</span> (hoặc cos x, tan x, cot x) — <b>tuỳ theo hàm nào xuất hiện trong đề</b>. 2) Nếu t = sin x hoặc t = cos x, bắt buộc kèm điều kiện <span class="math">t ∈ [−1; 1]</span>; nếu t = tan x hoặc t = cot x, t nhận mọi giá trị thực nhưng nhớ điều kiện xác định tương ứng của tan/cot. 3) Giải phương trình bậc hai ẩn t, loại nghiệm không thỏa điều kiện, rồi quay lại giải phương trình lượng giác cơ bản cho từng nghiệm t còn lại.</p>
+        <p>1) Đặt <span class="math">$t = \sin x$</span> (hoặc cos x, tan x, cot x) — <b>tuỳ theo hàm nào xuất hiện trong đề</b>. 2) Nếu t = sin x hoặc t = cos x, bắt buộc kèm điều kiện <span class="math">$t \in  [-1; 1]$</span>; nếu t = tan x hoặc t = cot x, t nhận mọi giá trị thực nhưng nhớ điều kiện xác định tương ứng của tan/cot. 3) Giải phương trình bậc hai ẩn t, loại nghiệm không thỏa điều kiện, rồi quay lại giải phương trình lượng giác cơ bản cho từng nghiệm t còn lại.</p>
       </div>
 
       <div class="callout example">
         <div class="label">Ví dụ đời sống mở rộng</div>
-        <p>Chiều cao sóng biển tại một điểm quan trắc cố định, đo trong một khoảng thời gian ngắn, có thể xấp xỉ bởi <span class="math">y = h₀ + a·sin²(ωt)</span> (bình phương đảm bảo y luôn không âm, phù hợp với đại lượng vật lý là độ cao). Khi cần tìm những thời điểm độ cao sóng đạt đúng một giá trị cho trước, ta đặt <span class="math">t = sin(ωt)</span> để đưa bài toán về đúng một phương trình bậc hai ẩn t — kỹ thuật trọng tâm của chủ đề này.</p>
+        <p>Chiều cao sóng biển tại một điểm quan trắc cố định, đo trong một khoảng thời gian ngắn, có thể xấp xỉ bởi <span class="math">$y = h_{0} + a\cdot \sin^{2}(\omega t)$</span> (bình phương đảm bảo y luôn không âm, phù hợp với đại lượng vật lý là độ cao). Khi cần tìm những thời điểm độ cao sóng đạt đúng một giá trị cho trước, ta đặt <span class="math">$t = \sin(\omega t)$</span> để đưa bài toán về đúng một phương trình bậc hai ẩn t — kỹ thuật trọng tâm của chủ đề này.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
 
       <div class="problem" data-pool="lg5-1" data-qid="Bài 5.1">
-        <div class="q"><span class="qid">Bài 5.1</span><div class="qtext"><p>Giải phương trình <span class="math">2sin²x − 5sin x + 2 = 0</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 5.1</span><div class="qtext"><p>Giải phương trình <span class="math">$2\sin^{2}x - 5\sin x + 2 = 0$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -865,16 +866,16 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = sin x, t ∈ [−1;1]</span>. Phương trình trở thành <span class="math">2t² − 5t + 2 = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Δ = 25 − 16 = 9, √Δ = 3. Nghiệm: <span class="math">t = (5±3)/4</span>, tức t = 2 hoặc t = 1/2.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đối chiếu điều kiện: t = 2 bị loại vì |2| &gt; 1. Chỉ nhận <span class="math">t = 1/2</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">sin x = 1/2 = sin(π/6) ⇒ x = π/6+k2π</span> hoặc <span class="math">x = 5π/6+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \sin x, t \in  [-1;1]$</span>. Phương trình trở thành <span class="math">$2t^{2} - 5t + 2 = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Δ = 25 − 16 = 9, √Δ = 3. Nghiệm: <span class="math">$t = (5\pm 3)/4$</span>, tức t = 2 hoặc t = 1/2.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đối chiếu điều kiện: t = 2 bị loại vì |2| &gt; 1. Chỉ nhận <span class="math">$t = 1/2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$\sin x = 1/2 = \sin(\pi /6) \Rightarrow  x = \pi /6+k2\pi$</span> hoặc <span class="math">$x = 5\pi /6+k2\pi$</span>.</p></div></div>
           <p class="answer hidden">x = π/6 + k2π hoặc x = 5π/6 + k2π, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg5-2" data-qid="Bài 5.2">
-        <div class="q"><span class="qid">Bài 5.2</span><div class="qtext"><p>Giải phương trình <span class="math">2cos²x + cos x − 1 = 0</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 5.2</span><div class="qtext"><p>Giải phương trình <span class="math">$2\cos^{2}x + \cos x - 1 = 0$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -882,16 +883,16 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = cos x, t ∈ [−1;1]</span>. Được <span class="math">2t² + t − 1 = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Δ = 1+8 = 9, √Δ=3. <span class="math">t = (−1±3)/4</span>, tức t = 1/2 hoặc t = −1. Cả hai đều thỏa |t|≤1.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">cos x = 1/2 ⇒ x = ±π/3+k2π</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">cos x = −1 ⇒ x = π+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \cos x, t \in  [-1;1]$</span>. Được <span class="math">$2t^{2} + t - 1 = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Δ = 1+8 = 9, √Δ=3. <span class="math">$t = (-1\pm 3)/4$</span>, tức t = 1/2 hoặc t = −1. Cả hai đều thỏa |t|≤1.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$\cos x = 1/2 \Rightarrow  x = \pm \pi /3+k2\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$\cos x = -1 \Rightarrow  x = \pi +k2\pi$</span>.</p></div></div>
           <p class="answer hidden">x = ±π/3 + k2π hoặc x = π + k2π, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg5-3" data-qid="Bài 5.3">
-        <div class="q"><span class="qid">Bài 5.3</span><div class="qtext"><p>Giải phương trình <span class="math">tan²x − (1+√3)tan x + √3 = 0</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 5.3</span><div class="qtext"><p>Giải phương trình <span class="math">$\tan^{2}x - (1+\sqrt{3})\tan x + \sqrt{3} = 0$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -899,15 +900,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = tan x</span> (điều kiện xác định của tan: x ≠ π/2+kπ). Nhận thấy vế trái phân tích được: <span class="math">t² − (1+√3)t + √3 = (t−1)(t−√3)</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vậy <span class="math">(t−1)(t−√3) = 0 ⇒ t = 1</span> hoặc <span class="math">t = √3</span> — cả hai đều là giá trị hợp lệ của tan x (không cần loại nghiệm nào).</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">tan x = 1 ⇒ x = π/4+kπ</span>. <span class="math">tan x = √3 ⇒ x = π/3+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \tan x$</span> (điều kiện xác định của tan: x ≠ π/2+kπ). Nhận thấy vế trái phân tích được: <span class="math">$t^{2} - (1+\sqrt{3})t + \sqrt{3} = (t-1)(t-\sqrt{3})$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vậy <span class="math">$(t-1)(t-\sqrt{3}) = 0 \Rightarrow  t = 1$</span> hoặc <span class="math">$t = \sqrt{3}$</span> — cả hai đều là giá trị hợp lệ của tan x (không cần loại nghiệm nào).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$\tan x = 1 \Rightarrow  x = \pi /4+k\pi$</span>. <span class="math">$\tan x = \sqrt{3} \Rightarrow  x = \pi /3+k\pi$</span>.</p></div></div>
           <p class="answer hidden">x = π/4 + kπ hoặc x = π/3 + kπ, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg5-4" data-qid="Bài 5.4">
-        <div class="q"><span class="qid">Bài 5.4</span><div class="qtext"><p>Giải phương trình <span class="math">cot²x − 4cot x + 3 = 0</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 5.4</span><div class="qtext"><p>Giải phương trình <span class="math">$\cot^{2}x - 4\cot x + 3 = 0$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -915,9 +916,9 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = cot x</span>. Phân tích: <span class="math">t² − 4t + 3 = (t−1)(t−3) = 0 ⇒ t = 1</span> hoặc <span class="math">t = 3</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">cot x = 1 ⇒ x = π/4+kπ</span> (góc đặc biệt).</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">cot x = 3</span> không phải góc đặc biệt — nghiệm được viết bằng arccot: <span class="math">x = arccot(3) + kπ</span>. Đây là điều bình thường: không phải phương trình lượng giác nào cũng cho nghiệm là góc "đẹp".</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \cot x$</span>. Phân tích: <span class="math">$t^{2} - 4t + 3 = (t-1)(t-3) = 0 \Rightarrow  t = 1$</span> hoặc <span class="math">$t = 3$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$\cot x = 1 \Rightarrow  x = \pi /4+k\pi$</span> (góc đặc biệt).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$\cot x = 3$</span> không phải góc đặc biệt — nghiệm được viết bằng arccot: <span class="math">$x = \operatorname{arccot}(3) + k\pi$</span>. Đây là điều bình thường: không phải phương trình lượng giác nào cũng cho nghiệm là góc "đẹp".</p></div></div>
           <p class="answer hidden">x = π/4 + kπ hoặc x = arccot(3) + kπ, k ∈ Z.</p>
         </div>
       </div>
@@ -934,7 +935,7 @@
       <h3 class="sub"><span class="tag">Khái niệm</span>Vì sao chia được cho cos²x?</h3>
       <div class="defcard">
         <div class="k">Kiểm tra trường hợp cos x = 0 trước</div>
-        <p>Trước khi chia, luôn phải thử <span class="math">cos x = 0</span> (khi đó <span class="math">sin²x = 1</span>) trực tiếp vào phương trình gốc. Nếu thay vào cho một đẳng thức <b>sai</b> (như 1 = 0), nghĩa là <span class="math">cos x = 0</span> chắc chắn không phải nghiệm — lúc này chia cả hai vế cho <span class="math">cos²x</span> là phép biến đổi <b>tương đương</b> (không làm mất nghiệm nào), và mỗi số hạng bậc 2 chia cho cos²x cho ra một biểu thức theo <span class="math">tan x</span> (dùng <span class="math">1/cos²x = 1 + tan²x</span>).</p>
+        <p>Trước khi chia, luôn phải thử <span class="math">$\cos x = 0$</span> (khi đó <span class="math">$\sin^{2}x = 1$</span>) trực tiếp vào phương trình gốc. Nếu thay vào cho một đẳng thức <b>sai</b> (như 1 = 0), nghĩa là <span class="math">$\cos x = 0$</span> chắc chắn không phải nghiệm — lúc này chia cả hai vế cho <span class="math">$\cos^{2}x$</span> là phép biến đổi <b>tương đương</b> (không làm mất nghiệm nào), và mỗi số hạng bậc 2 chia cho cos²x cho ra một biểu thức theo <span class="math">$\tan x$</span> (dùng <span class="math">$1/\cos^{2}x = 1 + \tan^{2}x$</span>).</p>
       </div>
 
       <div class="callout example">
@@ -945,7 +946,7 @@
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
 
       <div class="problem" data-pool="lg6-1" data-qid="Bài 6.1">
-        <div class="q"><span class="qid">Bài 6.1</span><div class="qtext"><p>Giải phương trình <span class="math">sin²x − 2sin x cos x − 3cos²x = 0</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 6.1</span><div class="qtext"><p>Giải phương trình <span class="math">$\sin^{2}x - 2\sin x \cos x - 3\cos^{2}x = 0$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -954,15 +955,15 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Thử cos x = 0: khi đó sin²x = 1, vế trái = 1−0−0 = 1 ≠ 0. Vậy cos x = 0 không phải nghiệm, an toàn để chia cho cos²x.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Chia hai vế cho cos²x: <span class="math">tan²x − 2tan x − 3 = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Phân tích: <span class="math">(tan x − 3)(tan x + 1) = 0 ⇒ tan x = 3</span> hoặc <span class="math">tan x = −1</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">tan x = 3 ⇒ x = arctan 3 + kπ</span>. <span class="math">tan x = −1 ⇒ x = −π/4+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Chia hai vế cho cos²x: <span class="math">$\tan^{2}x - 2\tan x - 3 = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Phân tích: <span class="math">$(\tan x - 3)(\tan x + 1) = 0 \Rightarrow  \tan x = 3$</span> hoặc <span class="math">$\tan x = -1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$\tan x = 3 \Rightarrow  x = \arctan 3 + k\pi$</span>. <span class="math">$\tan x = -1 \Rightarrow  x = -\pi /4+k\pi$</span>.</p></div></div>
           <p class="answer hidden">x = arctan(3) + kπ hoặc x = −π/4 + kπ, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg6-2" data-qid="Bài 6.2">
-        <div class="q"><span class="qid">Bài 6.2</span><div class="qtext"><p>Giải phương trình <span class="math">3sin²x + sin x cos x − 2cos²x = 0</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 6.2</span><div class="qtext"><p>Giải phương trình <span class="math">$3\sin^{2}x + \sin x \cos x - 2\cos^{2}x = 0$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -971,14 +972,14 @@
         </div>
         <div class="sol-body">
           <div class="step hidden"><span class="b">1</span><div class="t"><p>Thử cos x = 0: vế trái = 3(1) − 0 − 0 = 3 ≠ 0, loại. Chia hai vế cho cos²x.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">3tan²x + tan x − 2 = 0</span>. Δ = 1+24 = 25, √Δ = 5.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">tan x = (−1±5)/6</span>, tức <span class="math">tan x = 2/3</span> hoặc <span class="math">tan x = −1</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$3\tan^{2}x + \tan x - 2 = 0$</span>. Δ = 1+24 = 25, √Δ = 5.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$\tan x = (-1\pm 5)/6$</span>, tức <span class="math">$\tan x = 2/3$</span> hoặc <span class="math">$\tan x = -1$</span>.</p></div></div>
           <p class="answer hidden">x = arctan(2/3) + kπ hoặc x = −π/4 + kπ, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg6-3" data-qid="Bài 6.3">
-        <div class="q"><span class="qid">Bài 6.3</span><div class="qtext"><p>Giải phương trình <span class="math">cos²x − √3 sin x cos x = 0</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 6.3</span><div class="qtext"><p>Giải phương trình <span class="math">$\cos^{2}x - \sqrt{3} \sin x \cos x = 0$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -986,15 +987,15 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vế phải bằng 0, nên thay vì chia cho cos²x, có thể <b>đặt nhân tử chung cos x</b> ngay: <span class="math">cos x(cos x − √3 sin x) = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trường hợp cos x = 0: <span class="math">x = π/2+kπ</span> — đây là một nghiệm hợp lệ (khác với Bài 6.1, 6.2 nơi cos x = 0 bị loại).</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp <span class="math">cos x = √3 sin x</span> (với cos x ≠ 0 ở nhánh này): chia hai vế cho cos x được <span class="math">tan x = 1/√3 ⇒ x = π/6+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vế phải bằng 0, nên thay vì chia cho cos²x, có thể <b>đặt nhân tử chung cos x</b> ngay: <span class="math">$\cos x(\cos x - \sqrt{3} \sin x) = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trường hợp cos x = 0: <span class="math">$x = \pi /2+k\pi$</span> — đây là một nghiệm hợp lệ (khác với Bài 6.1, 6.2 nơi cos x = 0 bị loại).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp <span class="math">$\cos x = \sqrt{3} \sin x$</span> (với cos x ≠ 0 ở nhánh này): chia hai vế cho cos x được <span class="math">$\tan x = 1/\sqrt{3} \Rightarrow  x = \pi /6+k\pi$</span>.</p></div></div>
           <p class="answer hidden">x = π/2 + kπ hoặc x = π/6 + kπ, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg6-4" data-qid="Bài 6.4">
-        <div class="q"><span class="qid">Bài 6.4</span><div class="qtext"><p>Giải phương trình <span class="math">3sin²x + 4sin x cos x − cos²x = −1</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 6.4</span><div class="qtext"><p>Giải phương trình <span class="math">$3\sin^{2}x + 4\sin x \cos x - \cos^{2}x = -1$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -1002,10 +1003,10 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vế phải khác 0 nhưng là hằng số — thay <span class="math">−1 = −(sin²x+cos²x)</span> để đưa mọi số hạng về bậc 2 đồng nhất: <span class="math">3sin²x+4sinx cosx−cos²x + sin²x + cos²x = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Rút gọn: <span class="math">4sin²x + 4sin x cos x = 0</span>, tức <span class="math">4sin x(sin x + cos x) = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp sin x = 0: <span class="math">x = kπ</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p>Trường hợp <span class="math">sin x + cos x = 0 ⇒ tan x = −1 ⇒ x = −π/4+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vế phải khác 0 nhưng là hằng số — thay <span class="math">$-1 = -(\sin^{2}x+\cos^{2}x)$</span> để đưa mọi số hạng về bậc 2 đồng nhất: <span class="math">$3\sin^{2}x+4\sinx \cosx-\cos^{2}x + \sin^{2}x + \cos^{2}x = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Rút gọn: <span class="math">$4\sin^{2}x + 4\sin x \cos x = 0$</span>, tức <span class="math">$4\sin x(\sin x + \cos x) = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trường hợp sin x = 0: <span class="math">$x = k\pi$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Trường hợp <span class="math">$\sin x + \cos x = 0 \Rightarrow  \tan x = -1 \Rightarrow  x = -\pi /4+k\pi$</span>.</p></div></div>
           <p class="answer hidden">x = kπ hoặc x = −π/4 + kπ, k ∈ Z.</p>
         </div>
       </div>
@@ -1017,26 +1018,26 @@
         <span class="topic-num">Chủ đề 7</span>
         <h2 class="topic-title">Phương trình đối xứng đối với sin x và cos x</h2>
       </div>
-      <p class="topic-intro">Một phương trình gọi là <b>đối xứng</b> khi nó không đổi lúc hoán đổi vai trò sin x ↔ cos x, và chỉ chứa hai "khối" <span class="math">sin x + cos x</span> và <span class="math">sin x·cos x</span>. Vì hai khối này liên hệ với nhau qua một đẳng thức đại số quen thuộc, ta luôn đặt được ẩn phụ để đưa cả phương trình về bậc hai theo một biến duy nhất.</p>
+      <p class="topic-intro">Một phương trình gọi là <b>đối xứng</b> khi nó không đổi lúc hoán đổi vai trò sin x ↔ cos x, và chỉ chứa hai "khối" <span class="math">$\sin x + \cos x$</span> và <span class="math">$\sin x\cdot \cos x$</span>. Vì hai khối này liên hệ với nhau qua một đẳng thức đại số quen thuộc, ta luôn đặt được ẩn phụ để đưa cả phương trình về bậc hai theo một biến duy nhất.</p>
 
       <h3 class="sub"><span class="tag">Khái niệm</span>Đặt ẩn phụ t = sin x + cos x</h3>
       <div class="defcard">
         <div class="k">Công thức liên hệ và điều kiện của t</div>
-        <p>Đặt <span class="math">t = sin x + cos x = √2·sin(x + π/4)</span>. Vì sin luôn nằm trong [−1;1], ta có điều kiện bắt buộc <span class="math">t ∈ [−√2; √2]</span>. Bình phương hai vế: <span class="math">t² = 1 + 2sin x cos x</span>, suy ra:</p>
-        <p style="text-align:center"><span class="math">sin x·cos x = (t² − 1) / 2</span></p>
-        <p>Nếu đề bài dùng hiệu <span class="math">t = sin x − cos x = √2·sin(x − π/4)</span> (cũng t ∈ [−√2;√2]) thì tương tự, <span class="math">sin x·cos x = (1 − t²) / 2</span> (đổi dấu vì bình phương của hiệu trừ đi tích chéo).</p>
+        <p>Đặt <span class="math">$t = \sin x + \cos x = \sqrt{2}\cdot \sin(x + \pi /4)$</span>. Vì sin luôn nằm trong [−1;1], ta có điều kiện bắt buộc <span class="math">$t \in  [-\sqrt{2}; \sqrt{2}]$</span>. Bình phương hai vế: <span class="math">$t^{2} = 1 + 2\sin x \cos x$</span>, suy ra:</p>
+        <p style="text-align:center"><span class="math">$\sin x\cdot \cos x = (t^{2} - 1) / 2$</span></p>
+        <p>Nếu đề bài dùng hiệu <span class="math">$t = \sin x - \cos x = \sqrt{2}\cdot \sin(x - \pi /4)$</span> (cũng t ∈ [−√2;√2]) thì tương tự, <span class="math">$\sin x\cdot \cos x = (1 - t^{2}) / 2$</span> (đổi dấu vì bình phương của hiệu trừ đi tích chéo).</p>
       </div>
 
       <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Vì sao |t| không vượt quá √2</h3>
       <div class="callout diagram">
         <div class="label">Hình minh họa (mô tả bằng lời)</div>
-        <p>Trên đường tròn lượng giác, điểm <span class="math">M(cos x; sin x)</span> luôn cách gốc O đúng 1 đơn vị. Đại lượng <span class="math">t = sin x + cos x</span> chính là tổng hai tọa độ của M — về hình học, đó tỉ lệ với <b>hình chiếu của M lên đường phân giác góc phần tư thứ nhất</b> (đường thẳng y = x), nhân với hệ số √2. Vì M chạy trên đường tròn bán kính 1, hình chiếu đó dao động trong đoạn có độ dài tối đa bằng đường kính chiếu theo phương đó, nên <span class="math">|t| ≤ √2</span> — hai đầu mút ±√2 đạt được đúng khi M nằm trên chính đường phân giác đó.</p>
+        <p>Trên đường tròn lượng giác, điểm <span class="math">$M(\cos x; \sin x)$</span> luôn cách gốc O đúng 1 đơn vị. Đại lượng <span class="math">$t = \sin x + \cos x$</span> chính là tổng hai tọa độ của M — về hình học, đó tỉ lệ với <b>hình chiếu của M lên đường phân giác góc phần tư thứ nhất</b> (đường thẳng y = x), nhân với hệ số √2. Vì M chạy trên đường tròn bán kính 1, hình chiếu đó dao động trong đoạn có độ dài tối đa bằng đường kính chiếu theo phương đó, nên <span class="math">$|t| \le  \sqrt{2}$</span> — hai đầu mút ±√2 đạt được đúng khi M nằm trên chính đường phân giác đó.</p>
       </div>
 
       <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
 
       <div class="problem" data-pool="lg7-1" data-qid="Bài 7.1">
-        <div class="q"><span class="qid">Bài 7.1</span><div class="qtext"><p>Giải phương trình <span class="math">sin x + cos x + sin x cos x = 1</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 7.1</span><div class="qtext"><p>Giải phương trình <span class="math">$\sin x + \cos x + \sin x \cos x = 1$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -1044,16 +1045,16 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = sin x + cos x, t ∈ [−√2;√2]</span>, khi đó <span class="math">sin x cos x = (t²−1)/2</span>. Phương trình trở thành <span class="math">t + (t²−1)/2 = 1</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhân 2 hai vế: <span class="math">2t + t² − 1 = 2 ⇒ t² + 2t − 3 = 0 ⇒ (t+3)(t−1) = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>t = −3 bị loại (ngoài [−√2;√2]). Chỉ nhận <span class="math">t = 1</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">sin x + cos x = 1 ⇒ √2 sin(x+π/4) = 1 ⇒ sin(x+π/4) = √2/2</span>, cho <span class="math">x = k2π</span> hoặc <span class="math">x = π/2+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \sin x + \cos x, t \in  [-\sqrt{2};\sqrt{2}]$</span>, khi đó <span class="math">$\sin x \cos x = (t^{2}-1)/2$</span>. Phương trình trở thành <span class="math">$t + (t^{2}-1)/2 = 1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhân 2 hai vế: <span class="math">$2t + t^{2} - 1 = 2 \Rightarrow  t^{2} + 2t - 3 = 0 \Rightarrow  (t+3)(t-1) = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>t = −3 bị loại (ngoài [−√2;√2]). Chỉ nhận <span class="math">$t = 1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$\sin x + \cos x = 1 \Rightarrow  \sqrt{2} \sin(x+\pi /4) = 1 \Rightarrow  \sin(x+\pi /4) = \sqrt{2}/2$</span>, cho <span class="math">$x = k2\pi$</span> hoặc <span class="math">$x = \pi /2+k2\pi$</span>.</p></div></div>
           <p class="answer hidden">x = k2π hoặc x = π/2 + k2π, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg7-2" data-qid="Bài 7.2">
-        <div class="q"><span class="qid">Bài 7.2</span><div class="qtext"><p>Giải phương trình <span class="math">sin x − cos x + 2sin x cos x + 1 = 0</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 7.2</span><div class="qtext"><p>Giải phương trình <span class="math">$\sin x - \cos x + 2\sin x \cos x + 1 = 0$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -1061,16 +1062,16 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = sin x − cos x, t ∈ [−√2;√2]</span>, khi đó <span class="math">sin x cos x = (1−t²)/2</span>. Phương trình: <span class="math">t + 2·(1−t²)/2 + 1 = 0 ⇒ t + (1−t²) + 1 = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Rút gọn: <span class="math">−t²+t+2=0 ⇒ t²−t−2=0 ⇒ (t−2)(t+1)=0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>t = 2 bị loại. Chỉ nhận <span class="math">t = −1</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">sin x − cos x = −1 ⇒ √2 sin(x−π/4) = −1 ⇒ sin(x−π/4) = −√2/2</span>, cho <span class="math">x = k2π</span> hoặc <span class="math">x = 3π/2+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \sin x - \cos x, t \in  [-\sqrt{2};\sqrt{2}]$</span>, khi đó <span class="math">$\sin x \cos x = (1-t^{2})/2$</span>. Phương trình: <span class="math">$t + 2\cdot (1-t^{2})/2 + 1 = 0 \Rightarrow  t + (1-t^{2}) + 1 = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Rút gọn: <span class="math">$-t^{2}+t+2=0 \Rightarrow  t^{2}-t-2=0 \Rightarrow  (t-2)(t+1)=0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>t = 2 bị loại. Chỉ nhận <span class="math">$t = -1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$\sin x - \cos x = -1 \Rightarrow  \sqrt{2} \sin(x-\pi /4) = -1 \Rightarrow  \sin(x-\pi /4) = -\sqrt{2}/2$</span>, cho <span class="math">$x = k2\pi$</span> hoặc <span class="math">$x = 3\pi /2+k2\pi$</span>.</p></div></div>
           <p class="answer hidden">x = k2π hoặc x = 3π/2 + k2π, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg7-3" data-qid="Bài 7.3">
-        <div class="q"><span class="qid">Bài 7.3</span><div class="qtext"><p>Giải phương trình <span class="math">sin x + cos x + sin x cos x = −1</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 7.3</span><div class="qtext"><p>Giải phương trình <span class="math">$\sin x + \cos x + \sin x \cos x = -1$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -1078,16 +1079,16 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = sin x + cos x, t ∈ [−√2;√2]</span>. Phương trình: <span class="math">t + (t²−1)/2 = −1</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhân 2: <span class="math">2t + t² − 1 = −2 ⇒ t² + 2t + 1 = 0 ⇒ (t+1)² = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>Nghiệm kép <span class="math">t = −1</span>, thỏa điều kiện |t|≤√2.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">sin x + cos x = −1 ⇒ sin(x+π/4) = −√2/2</span>, cho <span class="math">x = −π/2+k2π</span> hoặc <span class="math">x = π+k2π</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \sin x + \cos x, t \in  [-\sqrt{2};\sqrt{2}]$</span>. Phương trình: <span class="math">$t + (t^{2}-1)/2 = -1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhân 2: <span class="math">$2t + t^{2} - 1 = -2 \Rightarrow  t^{2} + 2t + 1 = 0 \Rightarrow  (t+1)^{2} = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Nghiệm kép <span class="math">$t = -1$</span>, thỏa điều kiện |t|≤√2.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$\sin x + \cos x = -1 \Rightarrow  \sin(x+\pi /4) = -\sqrt{2}/2$</span>, cho <span class="math">$x = -\pi /2+k2\pi$</span> hoặc <span class="math">$x = \pi +k2\pi$</span>.</p></div></div>
           <p class="answer hidden">x = −π/2 + k2π hoặc x = π + k2π, k ∈ Z.</p>
         </div>
       </div>
 
       <div class="problem" data-pool="lg7-4" data-qid="Bài 7.4">
-        <div class="q"><span class="qid">Bài 7.4</span><div class="qtext"><p>Giải phương trình <span class="math">2sin x cos x + 2(sin x + cos x) = −1</span>.</p></div></div>
+        <div class="q"><span class="qid">Bài 7.4</span><div class="qtext"><p>Giải phương trình <span class="math">$2\sin x \cos x + 2(\sin x + \cos x) = -1$</span>.</p></div></div>
         <div class="controls">
           <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
           <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
@@ -1095,10 +1096,10 @@
           <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
         </div>
         <div class="sol-body">
-          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">t = sin x + cos x, t ∈ [−√2;√2]</span>, khi đó <span class="math">2sin x cos x = t²−1</span>. Phương trình: <span class="math">(t²−1) + 2t = −1</span>.</p></div></div>
-          <div class="step hidden"><span class="b">2</span><div class="t"><p>Rút gọn: <span class="math">t² + 2t = 0 ⇒ t(t+2) = 0 ⇒ t = 0</span> hoặc <span class="math">t = −2</span>.</p></div></div>
-          <div class="step hidden"><span class="b">3</span><div class="t"><p>t = −2 bị loại (ngoài [−√2;√2] vì √2≈1,41). Chỉ nhận <span class="math">t = 0</span>.</p></div></div>
-          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">sin x + cos x = 0 ⇒ tan x = −1 ⇒ x = −π/4+kπ</span>.</p></div></div>
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$t = \sin x + \cos x, t \in  [-\sqrt{2};\sqrt{2}]$</span>, khi đó <span class="math">$2\sin x \cos x = t^{2}-1$</span>. Phương trình: <span class="math">$(t^{2}-1) + 2t = -1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Rút gọn: <span class="math">$t^{2} + 2t = 0 \Rightarrow  t(t+2) = 0 \Rightarrow  t = 0$</span> hoặc <span class="math">$t = -2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>t = −2 bị loại (ngoài [−√2;√2] vì √2≈1,41). Chỉ nhận <span class="math">$t = 0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$\sin x + \cos x = 0 \Rightarrow  \tan x = -1 \Rightarrow  x = -\pi /4+k\pi$</span>.</p></div></div>
           <p class="answer hidden">x = −π/4 + kπ, k ∈ Z.</p>
         </div>
       </div>
@@ -1129,273 +1130,275 @@
   </main>
 </div>
 
+<script src="/vendor/katex/katex.min.js"></script>
+<script src="/vendor/katex/auto-render.min.js"></script>
 <script>
   window.VARIANTS = {
     'lg1-1': [{
-      qHtml: '<p>Tìm tập xác định của hàm số <span class="math">y = cot(3x + π/6)</span>.</p>',
+      qHtml: '<p>Tìm tập xác định của hàm số <span class="math">$y = \cot(3x + \pi /6)$</span>.</p>',
       steps: [
-        '<p>Hàm cot(u) xác định khi <span class="math">u ≠ kπ</span>. Ở đây <span class="math">u = 3x + π/6</span>.</p>',
-        '<p>Đặt điều kiện: <span class="math">3x + π/6 ≠ kπ</span>.</p>',
-        '<p><span class="math">3x ≠ −π/6 + kπ</span>, suy ra <span class="math">x ≠ −π/18 + kπ/3</span>.</p>'
+        '<p>Hàm cot(u) xác định khi <span class="math">$u \ne  k\pi$</span>. Ở đây <span class="math">$u = 3x + \pi /6$</span>.</p>',
+        '<p>Đặt điều kiện: <span class="math">$3x + \pi /6 \ne  k\pi$</span>.</p>',
+        '<p><span class="math">$3x \ne  -\pi /6 + k\pi$</span>, suy ra <span class="math">$x \ne  -\pi /18 + k\pi /3$</span>.</p>'
       ],
       answerHtml: 'D = R \\ {−π/18 + kπ/3, k ∈ Z}.'
     }],
     'lg1-2': [{
-      qHtml: '<p>Tìm tập xác định của hàm số <span class="math">y = cos x / (1 − sin x)</span>.</p>',
+      qHtml: '<p>Tìm tập xác định của hàm số <span class="math">$y = \cos x / (1 - \sin x)$</span>.</p>',
       steps: [
-        '<p>Tử số cos x xác định với mọi x, điều kiện chỉ đến từ mẫu: <span class="math">1 − sin x ≠ 0</span>.</p>',
-        '<p><span class="math">sin x ≠ 1</span>. Giá trị 1 đạt được đúng khi <span class="math">x = π/2 + k2π</span>.</p>'
+        '<p>Tử số cos x xác định với mọi x, điều kiện chỉ đến từ mẫu: <span class="math">$1 - \sin x \ne  0$</span>.</p>',
+        '<p><span class="math">$\sin x \ne  1$</span>. Giá trị 1 đạt được đúng khi <span class="math">$x = \pi /2 + k2\pi$</span>.</p>'
       ],
       answerHtml: 'D = R \\ {π/2 + k2π, k ∈ Z}.'
     }],
     'lg1-3': [{
-      qHtml: '<p>Tìm tập xác định của hàm số <span class="math">y = cot(x/2) / cos x</span>.</p>',
+      qHtml: '<p>Tìm tập xác định của hàm số <span class="math">$y = \cot(x/2) / \cos x$</span>.</p>',
       steps: [
-        '<p>Hai điều kiện độc lập: <span class="math">cot(x/2)</span> cần <span class="math">x/2 ≠ kπ</span>, tức <span class="math">x ≠ k2π</span>; mẫu cần <span class="math">cos x ≠ 0</span>, tức <span class="math">x ≠ π/2 + kπ</span>.</p>',
+        '<p>Hai điều kiện độc lập: <span class="math">$\cot(x/2)$</span> cần <span class="math">$x/2 \ne  k\pi$</span>, tức <span class="math">$x \ne  k2\pi$</span>; mẫu cần <span class="math">$\cos x \ne  0$</span>, tức <span class="math">$x \ne  \pi /2 + k\pi$</span>.</p>',
         '<p>Khác với bài gốc, lần này hai tập loại trừ <b>không</b> lồng vào nhau: {k2π} là bội chẵn của π, còn {π/2+kπ} là bội lẻ của π/2 — hai tập rời nhau, không thể gộp lại thành một biểu thức duy nhất.</p>',
         '<p>Vậy phải giữ nguyên cả hai điều kiện, hợp lại bằng dấu ∪.</p>'
       ],
       answerHtml: 'D = R \\ ({k2π} ∪ {π/2 + kπ}), k ∈ Z.'
     }],
     'lg1-4': [{
-      qHtml: '<p>Tìm tất cả các giá trị của tham số m để hàm số <span class="math">y = 1 / (m − 2sin x)</span> xác định với mọi x ∈ R.</p>',
+      qHtml: '<p>Tìm tất cả các giá trị của tham số m để hàm số <span class="math">$y = 1 / (m - 2\sin x)$</span> xác định với mọi x ∈ R.</p>',
       steps: [
-        '<p>Hàm xác định với mọi x khi <span class="math">m − 2sin x ≠ 0</span> với mọi x, tức <span class="math">m ≠ 2sin x</span> với mọi x.</p>',
-        '<p>Vì <span class="math">sin x ∈ [−1;1]</span>, nên <span class="math">2sin x ∈ [−2;2]</span> — m không được trùng bất kỳ giá trị nào trong đoạn đó.</p>',
+        '<p>Hàm xác định với mọi x khi <span class="math">$m - 2\sin x \ne  0$</span> với mọi x, tức <span class="math">$m \ne  2\sin x$</span> với mọi x.</p>',
+        '<p>Vì <span class="math">$\sin x \in  [-1;1]$</span>, nên <span class="math">$2\sin x \in  [-2;2]$</span> — m không được trùng bất kỳ giá trị nào trong đoạn đó.</p>',
         '<p>Vậy m phải nằm hẳn ngoài đoạn [−2;2].</p>'
       ],
       answerHtml: 'm &lt; −2 hoặc m &gt; 2.'
     }],
     'lg2-1': [{
-      qHtml: '<p>Xét tính chẵn – lẻ của hàm số <span class="math">y = x·sin x</span>.</p>',
+      qHtml: '<p>Xét tính chẵn – lẻ của hàm số <span class="math">$y = x\cdot \sin x$</span>.</p>',
       steps: [
-        '<p>Tập xác định R đối xứng qua 0. Tính <span class="math">f(−x) = (−x)·sin(−x)</span>.</p>',
-        '<p>Vì sin là hàm lẻ nên <span class="math">sin(−x) = −sin x</span>. Suy ra <span class="math">f(−x) = (−x)·(−sin x) = x·sin x = f(x)</span>.</p>'
+        '<p>Tập xác định R đối xứng qua 0. Tính <span class="math">$f(-x) = (-x)\cdot \sin(-x)$</span>.</p>',
+        '<p>Vì sin là hàm lẻ nên <span class="math">$\sin(-x) = -\sin x$</span>. Suy ra <span class="math">$f(-x) = (-x)\cdot (-\sin x) = x\cdot \sin x = f(x)$</span>.</p>'
       ],
       answerHtml: 'y = x·sin x là hàm số chẵn (khác với y = x·cos x ở bài gốc là hàm lẻ — vì lần này "lẻ × lẻ" cho kết quả chẵn).'
     }],
     'lg2-2': [{
-      qHtml: '<p>Tìm chu kỳ tuần hoàn của hàm số <span class="math">y = cos 2x + sin(x/3)</span>.</p>',
+      qHtml: '<p>Tìm chu kỳ tuần hoàn của hàm số <span class="math">$y = \cos 2x + \sin(x/3)$</span>.</p>',
       steps: [
-        '<p>Chu kỳ riêng: <span class="math">cos 2x</span> có T₁ = 2π/2 = π; <span class="math">sin(x/3)</span> có T₂ = 2π/(1/3) = 6π.</p>',
-        '<p>Cần <span class="math">T = k·π = m·6π</span>, suy ra <span class="math">k = 6m</span>, nhỏ nhất khi m=1, k=6.</p>',
-        '<p><span class="math">T = 6π</span>.</p>'
+        '<p>Chu kỳ riêng: <span class="math">$\cos 2x$</span> có T₁ = 2π/2 = π; <span class="math">$\sin(x/3)$</span> có T₂ = 2π/(1/3) = 6π.</p>',
+        '<p>Cần <span class="math">$T = k\cdot \pi  = m\cdot 6\pi$</span>, suy ra <span class="math">$k = 6m$</span>, nhỏ nhất khi m=1, k=6.</p>',
+        '<p><span class="math">$T = 6\pi$</span>.</p>'
       ],
       answerHtml: 'Chu kỳ T = 6π.'
     }],
     'lg2-3': [{
-      qHtml: '<p>Tìm giá trị lớn nhất và giá trị nhỏ nhất của hàm số <span class="math">y = 5 + 3cos x</span>.</p>',
+      qHtml: '<p>Tìm giá trị lớn nhất và giá trị nhỏ nhất của hàm số <span class="math">$y = 5 + 3\cos x$</span>.</p>',
       steps: [
-        '<p>Vì <span class="math">−1 ≤ cos x ≤ 1</span>, nhân với 3: <span class="math">−3 ≤ 3cos x ≤ 3</span>.</p>',
-        '<p>Cộng 5: <span class="math">2 ≤ 5 + 3cos x ≤ 8</span>.</p>',
+        '<p>Vì <span class="math">$-1 \le  \cos x \le  1$</span>, nhân với 3: <span class="math">$-3 \le  3\cos x \le  3$</span>.</p>',
+        '<p>Cộng 5: <span class="math">$2 \le  5 + 3\cos x \le  8$</span>.</p>',
         '<p>GTLN = 8 khi cos x = 1; GTNN = 2 khi cos x = −1.</p>'
       ],
       answerHtml: 'GTLN = 8, GTNN = 2.'
     }],
     'lg2-4': [{
-      qHtml: '<p>Tìm giá trị lớn nhất, giá trị nhỏ nhất của hàm số <span class="math">y = 6sin x − 8cos x</span>.</p>',
+      qHtml: '<p>Tìm giá trị lớn nhất, giá trị nhỏ nhất của hàm số <span class="math">$y = 6\sin x - 8\cos x$</span>.</p>',
       steps: [
-        '<p>Biên độ <span class="math">R = √(a²+b²) = √(36+64) = √100 = 10</span> với a=6, b=−8.</p>',
-        '<p>Suy ra <span class="math">−10 ≤ 6sin x − 8cos x ≤ 10</span>, hai biên đều đạt được.</p>'
+        '<p>Biên độ <span class="math">$R = \sqrt{a^{2}+b^{2}} = \sqrt{36+64} = \sqrt{100} = 10$</span> với a=6, b=−8.</p>',
+        '<p>Suy ra <span class="math">$-10 \le  6\sin x - 8\cos x \le  10$</span>, hai biên đều đạt được.</p>'
       ],
       answerHtml: 'GTLN = 10, GTNN = −10.'
     }],
     'lg2-5': [{
-      qHtml: '<p>Tìm m để giá trị lớn nhất của hàm số <span class="math">y = cos²x + 4cos x + m</span> bằng 10.</p>',
+      qHtml: '<p>Tìm m để giá trị lớn nhất của hàm số <span class="math">$y = \cos^{2}x + 4\cos x + m$</span> bằng 10.</p>',
       steps: [
-        '<p>Đặt <span class="math">t = cos x, t ∈ [−1;1]</span>. Viết lại: <span class="math">y = t² + 4t + m = (t+2)² + (m−4)</span>.</p>',
-        '<p>Trên [−1;1], <span class="math">t+2 ∈ [1;3]</span> (luôn dương), nên <span class="math">(t+2)²</span> lớn nhất khi t+2 lớn nhất, tức t=1: <span class="math">(t+2)² = 9</span>.</p>',
-        '<p>GTLN của y là <span class="math">9 + (m−4) = m+5</span>. Theo đề, <span class="math">m+5 = 10</span>.</p>'
+        '<p>Đặt <span class="math">$t = \cos x, t \in  [-1;1]$</span>. Viết lại: <span class="math">$y = t^{2} + 4t + m = (t+2)^{2} + (m-4)$</span>.</p>',
+        '<p>Trên [−1;1], <span class="math">$t+2 \in  [1;3]$</span> (luôn dương), nên <span class="math">$(t+2)^{2}$</span> lớn nhất khi t+2 lớn nhất, tức t=1: <span class="math">$(t+2)^{2} = 9$</span>.</p>',
+        '<p>GTLN của y là <span class="math">$9 + (m-4) = m+5$</span>. Theo đề, <span class="math">$m+5 = 10$</span>.</p>'
       ],
       answerHtml: 'm = 5.'
     }],
     'lg3-1': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin(3x + π/6) = √3/2</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin(3x + \pi /6) = \sqrt{3}/2$</span>.</p>',
       steps: [
-        '<p>Đưa √3/2 về dạng sin của góc đặc biệt: <span class="math">√3/2 = sin(π/3)</span>.</p>',
-        '<p><span class="math">3x+π/6 = π/3+k2π</span> hoặc <span class="math">3x+π/6 = 2π/3+k2π</span>.</p>',
-        '<p>Trường hợp 1: <span class="math">3x = π/6+k2π ⇒ x = π/18+k2π/3</span>.</p><p>Trường hợp 2: <span class="math">3x = π/2+k2π ⇒ x = π/6+k2π/3</span>.</p>'
+        '<p>Đưa √3/2 về dạng sin của góc đặc biệt: <span class="math">$\sqrt{3}/2 = \sin(\pi /3)$</span>.</p>',
+        '<p><span class="math">$3x+\pi /6 = \pi /3+k2\pi$</span> hoặc <span class="math">$3x+\pi /6 = 2\pi /3+k2\pi$</span>.</p>',
+        '<p>Trường hợp 1: <span class="math">$3x = \pi /6+k2\pi  \Rightarrow  x = \pi /18+k2\pi /3$</span>.</p><p>Trường hợp 2: <span class="math">$3x = \pi /2+k2\pi  \Rightarrow  x = \pi /6+k2\pi /3$</span>.</p>'
       ],
       answerHtml: 'x = π/18 + k2π/3 hoặc x = π/6 + k2π/3, k ∈ Z.'
     }],
     'lg3-2': [{
-      qHtml: '<p>Giải phương trình <span class="math">cos(2x − π/6) = 1/2</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\cos(2x - \pi /6) = 1/2$</span>.</p>',
       steps: [
-        '<p>Đưa 1/2 về dạng cos của góc đặc biệt: <span class="math">1/2 = cos(π/3)</span>.</p>',
-        '<p><span class="math">2x−π/6 = π/3+k2π</span> hoặc <span class="math">2x−π/6 = −π/3+k2π</span>.</p>',
-        '<p>Trường hợp 1: <span class="math">2x = π/2+k2π ⇒ x = π/4+kπ</span>.</p><p>Trường hợp 2: <span class="math">2x = −π/6+k2π ⇒ x = −π/12+kπ</span>.</p>'
+        '<p>Đưa 1/2 về dạng cos của góc đặc biệt: <span class="math">$1/2 = \cos(\pi /3)$</span>.</p>',
+        '<p><span class="math">$2x-\pi /6 = \pi /3+k2\pi$</span> hoặc <span class="math">$2x-\pi /6 = -\pi /3+k2\pi$</span>.</p>',
+        '<p>Trường hợp 1: <span class="math">$2x = \pi /2+k2\pi  \Rightarrow  x = \pi /4+k\pi$</span>.</p><p>Trường hợp 2: <span class="math">$2x = -\pi /6+k2\pi  \Rightarrow  x = -\pi /12+k\pi$</span>.</p>'
       ],
       answerHtml: 'x = π/4 + kπ hoặc x = −π/12 + kπ, k ∈ Z.'
     }],
     'lg3-3': [{
-      qHtml: '<p>Giải phương trình <span class="math">cot(3x + π/4) = −1</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\cot(3x + \pi /4) = -1$</span>.</p>',
       steps: [
-        '<p>Nhận ra <span class="math">−1 = cot(3π/4)</span>.</p>',
-        '<p><span class="math">3x+π/4 = 3π/4+kπ ⇒ 3x = π/2+kπ</span>.</p>',
-        '<p><span class="math">x = π/6+kπ/3</span>.</p>'
+        '<p>Nhận ra <span class="math">$-1 = \cot(3\pi /4)$</span>.</p>',
+        '<p><span class="math">$3x+\pi /4 = 3\pi /4+k\pi  \Rightarrow  3x = \pi /2+k\pi$</span>.</p>',
+        '<p><span class="math">$x = \pi /6+k\pi /3$</span>.</p>'
       ],
       answerHtml: 'x = π/6 + kπ/3, k ∈ Z.'
     }],
     'lg3-4': [{
-      qHtml: '<p>Tìm số nghiệm của phương trình <span class="math">2cos x + 1 = 0</span> trên đoạn <span class="math">[0; 2π]</span>.</p>',
+      qHtml: '<p>Tìm số nghiệm của phương trình <span class="math">$2\cos x + 1 = 0$</span> trên đoạn <span class="math">$[0; 2\pi ]$</span>.</p>',
       steps: [
-        '<p>Đưa về dạng cơ bản: <span class="math">cos x = −1/2</span>, cho hai họ nghiệm <span class="math">x = 2π/3+k2π</span> và <span class="math">x = 4π/3+k2π</span> (viết từ ±2π/3+k2π).</p>',
+        '<p>Đưa về dạng cơ bản: <span class="math">$\cos x = -1/2$</span>, cho hai họ nghiệm <span class="math">$x = 2\pi /3+k2\pi$</span> và <span class="math">$x = 4\pi /3+k2\pi$</span> (viết từ ±2π/3+k2π).</p>',
         '<p>Xét trong [0;2π]: 2π/3 (nhận), 4π/3 (nhận); các giá trị k khác đều cho x ngoài đoạn.</p>',
         '<p>Vậy có đúng 2 nghiệm.</p>'
       ],
       answerHtml: 'Có 2 nghiệm.'
     }],
     'lg4-1': [{
-      qHtml: '<p>Giải phương trình <span class="math">√3 sin x + cos x = 1</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sqrt{3} \sin x + \cos x = 1$</span>.</p>',
       steps: [
-        '<p>a=√3, b=1, <span class="math">R=√(3+1)=2</span>. Cần <span class="math">cos φ=√3/2, sin φ=1/2</span>, chọn <span class="math">φ=π/6</span>.</p>',
-        '<p>Vế trái: <span class="math">2 sin(x+π/6) = 1 ⇒ sin(x+π/6) = 1/2</span>.</p>',
-        '<p><span class="math">x+π/6 = π/6+k2π</span> hoặc <span class="math">x+π/6 = 5π/6+k2π</span>.</p>',
-        '<p>Trường hợp 1: <span class="math">x = k2π</span>. Trường hợp 2: <span class="math">x = 2π/3+k2π</span>.</p>'
+        '<p>a=√3, b=1, <span class="math">$R=\sqrt{3+1}=2$</span>. Cần <span class="math">$\cos \varphi =\sqrt{3}/2, \sin \varphi =1/2$</span>, chọn <span class="math">$\varphi =\pi /6$</span>.</p>',
+        '<p>Vế trái: <span class="math">$2 \sin(x+\pi /6) = 1 \Rightarrow  \sin(x+\pi /6) = 1/2$</span>.</p>',
+        '<p><span class="math">$x+\pi /6 = \pi /6+k2\pi$</span> hoặc <span class="math">$x+\pi /6 = 5\pi /6+k2\pi$</span>.</p>',
+        '<p>Trường hợp 1: <span class="math">$x = k2\pi$</span>. Trường hợp 2: <span class="math">$x = 2\pi /3+k2\pi$</span>.</p>'
       ],
       answerHtml: 'x = k2π hoặc x = 2π/3 + k2π, k ∈ Z.'
     }],
     'lg4-2': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin x − √3 cos x = 1</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin x - \sqrt{3} \cos x = 1$</span>.</p>',
       steps: [
-        '<p>a=1, b=−√3, <span class="math">R=√(1+3)=2</span>. Cần <span class="math">cos φ=1/2, sin φ=−√3/2</span>, chọn <span class="math">φ=−π/3</span>.</p>',
-        '<p>Vế trái: <span class="math">2 sin(x−π/3) = 1 ⇒ sin(x−π/3) = 1/2</span>.</p>',
-        '<p><span class="math">x−π/3 = π/6+k2π</span> hoặc <span class="math">x−π/3 = 5π/6+k2π</span>.</p>',
-        '<p>Trường hợp 1: <span class="math">x = π/2+k2π</span>. Trường hợp 2: <span class="math">x = 7π/6+k2π</span>.</p>'
+        '<p>a=1, b=−√3, <span class="math">$R=\sqrt{1+3}=2$</span>. Cần <span class="math">$\cos \varphi =1/2, \sin \varphi =-\sqrt{3}/2$</span>, chọn <span class="math">$\varphi =-\pi /3$</span>.</p>',
+        '<p>Vế trái: <span class="math">$2 \sin(x-\pi /3) = 1 \Rightarrow  \sin(x-\pi /3) = 1/2$</span>.</p>',
+        '<p><span class="math">$x-\pi /3 = \pi /6+k2\pi$</span> hoặc <span class="math">$x-\pi /3 = 5\pi /6+k2\pi$</span>.</p>',
+        '<p>Trường hợp 1: <span class="math">$x = \pi /2+k2\pi$</span>. Trường hợp 2: <span class="math">$x = 7\pi /6+k2\pi$</span>.</p>'
       ],
       answerHtml: 'x = π/2 + k2π hoặc x = 7π/6 + k2π, k ∈ Z.'
     }],
     'lg4-3': [{
-      qHtml: '<p>Tìm tất cả các giá trị của tham số m để phương trình <span class="math">m sin x + (m−2)cos x = m+1</span> có nghiệm.</p>',
+      qHtml: '<p>Tìm tất cả các giá trị của tham số m để phương trình <span class="math">$m \sin x + (m-2)\cos x = m+1$</span> có nghiệm.</p>',
       steps: [
-        '<p>a=m, b=m−2, c=m+1. Điều kiện có nghiệm: <span class="math">m² + (m−2)² ≥ (m+1)²</span>.</p>',
-        '<p>Khai triển: <span class="math">m² + m²−4m+4 ≥ m²+2m+1</span>.</p>',
-        '<p>Rút gọn: <span class="math">m² − 6m + 3 ≥ 0</span>.</p>',
-        '<p>Δ = 36−12 = 24, √Δ = 2√6, hai nghiệm <span class="math">m = 3±√6</span>. Vì hệ số bậc 2 dương, bất phương trình đúng ngoài khoảng hai nghiệm.</p>'
+        '<p>a=m, b=m−2, c=m+1. Điều kiện có nghiệm: <span class="math">$m^{2} + (m-2)^{2} \ge  (m+1)^{2}$</span>.</p>',
+        '<p>Khai triển: <span class="math">$m^{2} + m^{2}-4m+4 \ge  m^{2}+2m+1$</span>.</p>',
+        '<p>Rút gọn: <span class="math">$m^{2} - 6m + 3 \ge  0$</span>.</p>',
+        '<p>Δ = 36−12 = 24, √Δ = 2√6, hai nghiệm <span class="math">$m = 3\pm \sqrt{6}$</span>. Vì hệ số bậc 2 dương, bất phương trình đúng ngoài khoảng hai nghiệm.</p>'
       ],
       answerHtml: 'm ≤ 3 − √6 hoặc m ≥ 3 + √6.'
     }],
     'lg4-4': [{
-      qHtml: '<p>Cường độ dòng điện xoay chiều trong một mạch thí nghiệm được cho bởi <span class="math">i(t) = 5√3 sin(100πt) − 5cos(100πt)</span> (đơn vị ampe). Tìm thời điểm t &gt; 0 sớm nhất để i(t) = 5.</p>',
+      qHtml: '<p>Cường độ dòng điện xoay chiều trong một mạch thí nghiệm được cho bởi <span class="math">$i(t) = 5\sqrt{3} \sin(100\pi t) - 5\cos(100\pi t)$</span> (đơn vị ampe). Tìm thời điểm t &gt; 0 sớm nhất để i(t) = 5.</p>',
       steps: [
-        '<p>Đặt <span class="math">θ = 100πt</span>. Phương trình: <span class="math">5√3 sin θ − 5cos θ = 5 ⇒ √3 sin θ − cos θ = 1</span>.</p>',
-        '<p>a=√3, b=−1, <span class="math">R=√(3+1)=2</span>, chọn <span class="math">φ=−π/6</span>. Vế trái = <span class="math">2 sin(θ−π/6)</span>.</p>',
-        '<p><span class="math">2sin(θ−π/6)=1 ⇒ sin(θ−π/6)=1/2</span>, cho <span class="math">θ = π/3+k2π</span> hoặc <span class="math">θ = π+k2π</span>.</p>',
-        '<p>Với θ &gt; 0, giá trị nhỏ nhất là <span class="math">θ = π/3</span> (so với θ=π lớn hơn). Suy ra <span class="math">t = θ/(100π) = 1/300</span> giây.</p>'
+        '<p>Đặt <span class="math">$\theta  = 100\pi t$</span>. Phương trình: <span class="math">$5\sqrt{3} \sin \theta  - 5\cos \theta  = 5 \Rightarrow  \sqrt{3} \sin \theta  - \cos \theta  = 1$</span>.</p>',
+        '<p>a=√3, b=−1, <span class="math">$R=\sqrt{3+1}=2$</span>, chọn <span class="math">$\varphi =-\pi /6$</span>. Vế trái = <span class="math">$2 \sin(\theta -\pi /6)$</span>.</p>',
+        '<p><span class="math">$2\sin(\theta -\pi /6)=1 \Rightarrow  \sin(\theta -\pi /6)=1/2$</span>, cho <span class="math">$\theta  = \pi /3+k2\pi$</span> hoặc <span class="math">$\theta  = \pi +k2\pi$</span>.</p>',
+        '<p>Với θ &gt; 0, giá trị nhỏ nhất là <span class="math">$\theta  = \pi /3$</span> (so với θ=π lớn hơn). Suy ra <span class="math">$t = \theta /(100\pi ) = 1/300$</span> giây.</p>'
       ],
       answerHtml: 'Thời điểm sớm nhất: t = 1/300 giây.'
     }],
     'lg5-1': [{
-      qHtml: '<p>Giải phương trình <span class="math">2cos²x − 3cos x + 1 = 0</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$2\cos^{2}x - 3\cos x + 1 = 0$</span>.</p>',
       steps: [
-        '<p>Đặt <span class="math">t = cos x, t ∈ [−1;1]</span>. Được <span class="math">2t² − 3t + 1 = 0</span>.</p>',
-        '<p>Δ = 9−8 = 1. <span class="math">t = (3±1)/4</span>, tức t = 1 hoặc t = 1/2. Cả hai đều thỏa |t|≤1.</p>',
-        '<p><span class="math">cos x = 1 ⇒ x = k2π</span>.</p>',
-        '<p><span class="math">cos x = 1/2 ⇒ x = ±π/3+k2π</span>.</p>'
+        '<p>Đặt <span class="math">$t = \cos x, t \in  [-1;1]$</span>. Được <span class="math">$2t^{2} - 3t + 1 = 0$</span>.</p>',
+        '<p>Δ = 9−8 = 1. <span class="math">$t = (3\pm 1)/4$</span>, tức t = 1 hoặc t = 1/2. Cả hai đều thỏa |t|≤1.</p>',
+        '<p><span class="math">$\cos x = 1 \Rightarrow  x = k2\pi$</span>.</p>',
+        '<p><span class="math">$\cos x = 1/2 \Rightarrow  x = \pm \pi /3+k2\pi$</span>.</p>'
       ],
       answerHtml: 'x = k2π hoặc x = ±π/3 + k2π, k ∈ Z.'
     }],
     'lg5-2': [{
-      qHtml: '<p>Giải phương trình <span class="math">2sin²x + 3sin x + 1 = 0</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$2\sin^{2}x + 3\sin x + 1 = 0$</span>.</p>',
       steps: [
-        '<p>Đặt <span class="math">t = sin x, t ∈ [−1;1]</span>. Được <span class="math">2t² + 3t + 1 = 0</span>.</p>',
-        '<p>Δ = 9−8 = 1. <span class="math">t = (−3±1)/4</span>, tức t = −1/2 hoặc t = −1. Cả hai đều thỏa |t|≤1.</p>',
-        '<p><span class="math">sin x = −1/2 ⇒ x = −π/6+k2π</span> hoặc <span class="math">x = 7π/6+k2π</span>.</p>',
-        '<p><span class="math">sin x = −1 ⇒ x = −π/2+k2π</span>.</p>'
+        '<p>Đặt <span class="math">$t = \sin x, t \in  [-1;1]$</span>. Được <span class="math">$2t^{2} + 3t + 1 = 0$</span>.</p>',
+        '<p>Δ = 9−8 = 1. <span class="math">$t = (-3\pm 1)/4$</span>, tức t = −1/2 hoặc t = −1. Cả hai đều thỏa |t|≤1.</p>',
+        '<p><span class="math">$\sin x = -1/2 \Rightarrow  x = -\pi /6+k2\pi$</span> hoặc <span class="math">$x = 7\pi /6+k2\pi$</span>.</p>',
+        '<p><span class="math">$\sin x = -1 \Rightarrow  x = -\pi /2+k2\pi$</span>.</p>'
       ],
       answerHtml: 'x = −π/6+k2π, x = 7π/6+k2π, hoặc x = −π/2+k2π, k ∈ Z.'
     }],
     'lg5-3': [{
-      qHtml: '<p>Giải phương trình <span class="math">tan²x − (1+√2)tan x + √2 = 0</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\tan^{2}x - (1+\sqrt{2})\tan x + \sqrt{2} = 0$</span>.</p>',
       steps: [
-        '<p>Đặt <span class="math">t = tan x</span>. Phân tích: <span class="math">t² − (1+√2)t + √2 = (t−1)(t−√2)</span>.</p>',
-        '<p><span class="math">(t−1)(t−√2)=0 ⇒ t=1</span> hoặc <span class="math">t=√2</span>.</p>',
-        '<p><span class="math">tan x = 1 ⇒ x = π/4+kπ</span>. <span class="math">tan x = √2 ⇒ x = arctan(√2)+kπ</span>.</p>'
+        '<p>Đặt <span class="math">$t = \tan x$</span>. Phân tích: <span class="math">$t^{2} - (1+\sqrt{2})t + \sqrt{2} = (t-1)(t-\sqrt{2})$</span>.</p>',
+        '<p><span class="math">$(t-1)(t-\sqrt{2})=0 \Rightarrow  t=1$</span> hoặc <span class="math">$t=\sqrt{2}$</span>.</p>',
+        '<p><span class="math">$\tan x = 1 \Rightarrow  x = \pi /4+k\pi$</span>. <span class="math">$\tan x = \sqrt{2} \Rightarrow  x = \arctan(\sqrt{2})+k\pi$</span>.</p>'
       ],
       answerHtml: 'x = π/4 + kπ hoặc x = arctan(√2) + kπ, k ∈ Z.'
     }],
     'lg5-4': [{
-      qHtml: '<p>Giải phương trình <span class="math">cot²x − 3cot x + 2 = 0</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\cot^{2}x - 3\cot x + 2 = 0$</span>.</p>',
       steps: [
-        '<p>Đặt <span class="math">t = cot x</span>. Phân tích: <span class="math">t² − 3t + 2 = (t−1)(t−2) = 0 ⇒ t=1</span> hoặc <span class="math">t=2</span>.</p>',
-        '<p><span class="math">cot x = 1 ⇒ x = π/4+kπ</span>.</p>',
-        '<p><span class="math">cot x = 2 ⇒ x = arccot(2)+kπ</span>.</p>'
+        '<p>Đặt <span class="math">$t = \cot x$</span>. Phân tích: <span class="math">$t^{2} - 3t + 2 = (t-1)(t-2) = 0 \Rightarrow  t=1$</span> hoặc <span class="math">$t=2$</span>.</p>',
+        '<p><span class="math">$\cot x = 1 \Rightarrow  x = \pi /4+k\pi$</span>.</p>',
+        '<p><span class="math">$\cot x = 2 \Rightarrow  x = \operatorname{arccot}(2)+k\pi$</span>.</p>'
       ],
       answerHtml: 'x = π/4 + kπ hoặc x = arccot(2) + kπ, k ∈ Z.'
     }],
     'lg6-1': [{
-      qHtml: '<p>Giải phương trình <span class="math">2sin²x − sin x cos x − cos²x = 0</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$2\sin^{2}x - \sin x \cos x - \cos^{2}x = 0$</span>.</p>',
       steps: [
         '<p>Thử cos x=0: vế trái = 2(1)−0−0 = 2 ≠ 0, loại. Chia hai vế cho cos²x.</p>',
-        '<p><span class="math">2tan²x − tan x − 1 = 0</span>. Δ=1+8=9, √Δ=3.</p>',
-        '<p><span class="math">tan x = (1±3)/4</span>, tức tan x = 1 hoặc tan x = −1/2.</p>',
-        '<p><span class="math">tan x=1 ⇒ x=π/4+kπ</span>. <span class="math">tan x=−1/2 ⇒ x=−arctan(1/2)+kπ</span>.</p>'
+        '<p><span class="math">$2\tan^{2}x - \tan x - 1 = 0$</span>. Δ=1+8=9, √Δ=3.</p>',
+        '<p><span class="math">$\tan x = (1\pm 3)/4$</span>, tức tan x = 1 hoặc tan x = −1/2.</p>',
+        '<p><span class="math">$\tan x=1 \Rightarrow  x=\pi /4+k\pi$</span>. <span class="math">$\tan x=-1/2 \Rightarrow  x=-\arctan(1/2)+k\pi$</span>.</p>'
       ],
       answerHtml: 'x = π/4 + kπ hoặc x = −arctan(1/2) + kπ, k ∈ Z.'
     }],
     'lg6-2': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin²x + 3sin x cos x + 2cos²x = 0</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin^{2}x + 3\sin x \cos x + 2\cos^{2}x = 0$</span>.</p>',
       steps: [
         '<p>Thử cos x=0: vế trái = 1 ≠ 0, loại. Chia hai vế cho cos²x.</p>',
-        '<p><span class="math">tan²x + 3tan x + 2 = 0 ⇒ (tan x+1)(tan x+2) = 0</span>.</p>',
+        '<p><span class="math">$\tan^{2}x + 3\tan x + 2 = 0 \Rightarrow  (\tan x+1)(\tan x+2) = 0$</span>.</p>',
         '<p>tan x = −1 hoặc tan x = −2.</p>'
       ],
       answerHtml: 'x = −π/4 + kπ hoặc x = −arctan(2) + kπ, k ∈ Z.'
     }],
     'lg6-3': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin²x − √3 sin x cos x = 0</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin^{2}x - \sqrt{3} \sin x \cos x = 0$</span>.</p>',
       steps: [
-        '<p>Vế phải bằng 0, đặt nhân tử chung: <span class="math">sin x(sin x − √3cos x) = 0</span>.</p>',
-        '<p>Trường hợp sin x=0: <span class="math">x = kπ</span>.</p>',
-        '<p>Trường hợp <span class="math">sin x = √3 cos x</span> (cos x≠0 ở nhánh này): <span class="math">tan x = √3 ⇒ x = π/3+kπ</span>.</p>'
+        '<p>Vế phải bằng 0, đặt nhân tử chung: <span class="math">$\sin x(\sin x - \sqrt{3}\cos x) = 0$</span>.</p>',
+        '<p>Trường hợp sin x=0: <span class="math">$x = k\pi$</span>.</p>',
+        '<p>Trường hợp <span class="math">$\sin x = \sqrt{3} \cos x$</span> (cos x≠0 ở nhánh này): <span class="math">$\tan x = \sqrt{3} \Rightarrow  x = \pi /3+k\pi$</span>.</p>'
       ],
       answerHtml: 'x = kπ hoặc x = π/3 + kπ, k ∈ Z.'
     }],
     'lg6-4': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin²x + sin x cos x − 2cos²x = 1</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin^{2}x + \sin x \cos x - 2\cos^{2}x = 1$</span>.</p>',
       steps: [
-        '<p>Thay 1 = sin²x+cos²x: <span class="math">sin²x+sinx cosx−2cos²x − sin²x − cos²x = 0</span>.</p>',
-        '<p>Rút gọn (sin²x triệt tiêu): <span class="math">sin x cos x − 3cos²x = 0 ⇒ cos x(sin x − 3cos x) = 0</span>.</p>',
-        '<p>Trường hợp cos x=0: <span class="math">x=π/2+kπ</span>.</p>',
-        '<p>Trường hợp <span class="math">sin x = 3cos x ⇒ tan x=3 ⇒ x=arctan(3)+kπ</span>.</p>'
+        '<p>Thay 1 = sin²x+cos²x: <span class="math">$\sin^{2}x+\sinx \cosx-2\cos^{2}x - \sin^{2}x - \cos^{2}x = 0$</span>.</p>',
+        '<p>Rút gọn (sin²x triệt tiêu): <span class="math">$\sin x \cos x - 3\cos^{2}x = 0 \Rightarrow  \cos x(\sin x - 3\cos x) = 0$</span>.</p>',
+        '<p>Trường hợp cos x=0: <span class="math">$x=\pi /2+k\pi$</span>.</p>',
+        '<p>Trường hợp <span class="math">$\sin x = 3\cos x \Rightarrow  \tan x=3 \Rightarrow  x=\arctan(3)+k\pi$</span>.</p>'
       ],
       answerHtml: 'x = π/2 + kπ hoặc x = arctan(3) + kπ, k ∈ Z.'
     }],
     'lg7-1': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin x + cos x + 2sin x cos x = −1</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin x + \cos x + 2\sin x \cos x = -1$</span>.</p>',
       steps: [
-        '<p>Đặt <span class="math">t = sin x + cos x, t∈[−√2;√2]</span>, <span class="math">2sinx cosx = t²−1</span>. Phương trình: <span class="math">t + (t²−1) = −1</span>.</p>',
-        '<p>Rút gọn: <span class="math">t²+t = 0 ⇒ t(t+1) = 0 ⇒ t=0</span> hoặc <span class="math">t=−1</span> — cả hai đều hợp lệ.</p>',
-        '<p>Nhánh t=0: <span class="math">sinx+cosx=0 ⇒ tan x=−1 ⇒ x=−π/4+kπ</span>.</p>',
-        '<p>Nhánh t=−1: <span class="math">sinx+cosx=−1 ⇒ x=−π/2+k2π</span> hoặc <span class="math">x=π+k2π</span>.</p>'
+        '<p>Đặt <span class="math">$t = \sin x + \cos x, t\in [-\sqrt{2};\sqrt{2}]$</span>, <span class="math">$2\sinx \cosx = t^{2}-1$</span>. Phương trình: <span class="math">$t + (t^{2}-1) = -1$</span>.</p>',
+        '<p>Rút gọn: <span class="math">$t^{2}+t = 0 \Rightarrow  t(t+1) = 0 \Rightarrow  t=0$</span> hoặc <span class="math">$t=-1$</span> — cả hai đều hợp lệ.</p>',
+        '<p>Nhánh t=0: <span class="math">$\sinx+\cosx=0 \Rightarrow  \tan x=-1 \Rightarrow  x=-\pi /4+k\pi$</span>.</p>',
+        '<p>Nhánh t=−1: <span class="math">$\sinx+\cosx=-1 \Rightarrow  x=-\pi /2+k2\pi$</span> hoặc <span class="math">$x=\pi +k2\pi$</span>.</p>'
       ],
       answerHtml: 'x = −π/4+kπ, x = −π/2+k2π, hoặc x = π+k2π, k ∈ Z.'
     }],
     'lg7-2': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin x − cos x − 2sin x cos x = 1</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin x - \cos x - 2\sin x \cos x = 1$</span>.</p>',
       steps: [
-        '<p>Đặt <span class="math">t = sin x − cos x, t∈[−√2;√2]</span>, <span class="math">sinx cosx=(1−t²)/2</span>. Phương trình: <span class="math">t − 2·(1−t²)/2 = 1 ⇒ t − (1−t²) = 1</span>.</p>',
-        '<p>Rút gọn: <span class="math">t²+t−2=0 ⇒ (t+2)(t−1)=0</span>. t=−2 bị loại, nhận <span class="math">t=1</span>.</p>',
-        '<p><span class="math">sinx−cosx=1 ⇒ sin(x−π/4)=√2/2</span>, cho <span class="math">x=π/2+k2π</span> hoặc <span class="math">x=π+k2π</span>.</p>'
+        '<p>Đặt <span class="math">$t = \sin x - \cos x, t\in [-\sqrt{2};\sqrt{2}]$</span>, <span class="math">$\sinx \cosx=(1-t^{2})/2$</span>. Phương trình: <span class="math">$t - 2\cdot (1-t^{2})/2 = 1 \Rightarrow  t - (1-t^{2}) = 1$</span>.</p>',
+        '<p>Rút gọn: <span class="math">$t^{2}+t-2=0 \Rightarrow  (t+2)(t-1)=0$</span>. t=−2 bị loại, nhận <span class="math">$t=1$</span>.</p>',
+        '<p><span class="math">$\sinx-\cosx=1 \Rightarrow  \sin(x-\pi /4)=\sqrt{2}/2$</span>, cho <span class="math">$x=\pi /2+k2\pi$</span> hoặc <span class="math">$x=\pi +k2\pi$</span>.</p>'
       ],
       answerHtml: 'x = π/2 + k2π hoặc x = π + k2π, k ∈ Z.'
     }],
     'lg7-3': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin x cos x − sin x − cos x = −1</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin x \cos x - \sin x - \cos x = -1$</span>.</p>',
       steps: [
-        '<p>Đặt <span class="math">t = sin x + cos x, t∈[−√2;√2]</span>, <span class="math">sinx cosx=(t²−1)/2</span>. Phương trình: <span class="math">(t²−1)/2 − t = −1</span>.</p>',
-        '<p>Nhân 2: <span class="math">t²−1−2t=−2 ⇒ t²−2t+1=0 ⇒ (t−1)²=0</span>.</p>',
+        '<p>Đặt <span class="math">$t = \sin x + \cos x, t\in [-\sqrt{2};\sqrt{2}]$</span>, <span class="math">$\sinx \cosx=(t^{2}-1)/2$</span>. Phương trình: <span class="math">$(t^{2}-1)/2 - t = -1$</span>.</p>',
+        '<p>Nhân 2: <span class="math">$t^{2}-1-2t=-2 \Rightarrow  t^{2}-2t+1=0 \Rightarrow  (t-1)^{2}=0$</span>.</p>',
         '<p>Nghiệm kép t=1, thỏa điều kiện.</p>',
-        '<p><span class="math">sinx+cosx=1 ⇒ x=k2π</span> hoặc <span class="math">x=π/2+k2π</span>.</p>'
+        '<p><span class="math">$\sinx+\cosx=1 \Rightarrow  x=k2\pi$</span> hoặc <span class="math">$x=\pi /2+k2\pi$</span>.</p>'
       ],
       answerHtml: 'x = k2π hoặc x = π/2 + k2π, k ∈ Z.'
     }],
     'lg7-4': [{
-      qHtml: '<p>Giải phương trình <span class="math">sin x + cos x = −√2</span>.</p>',
+      qHtml: '<p>Giải phương trình <span class="math">$\sin x + \cos x = -\sqrt{2}$</span>.</p>',
       steps: [
-        '<p>Đây là trường hợp biên: viết vế trái theo biên độ, <span class="math">√2 sin(x+π/4) = −√2 ⇒ sin(x+π/4) = −1</span> — đúng giá trị nhỏ nhất có thể của sin.</p>',
-        '<p><span class="math">x+π/4 = −π/2+k2π</span> (chỉ một họ nghiệm vì −1 là giá trị biên, không có nhánh "π−v").</p>',
-        '<p><span class="math">x = −3π/4+k2π</span>.</p>'
+        '<p>Đây là trường hợp biên: viết vế trái theo biên độ, <span class="math">$\sqrt{2} \sin(x+\pi /4) = -\sqrt{2} \Rightarrow  \sin(x+\pi /4) = -1$</span> — đúng giá trị nhỏ nhất có thể của sin.</p>',
+        '<p><span class="math">$x+\pi /4 = -\pi /2+k2\pi$</span> (chỉ một họ nghiệm vì −1 là giá trị biên, không có nhánh "π−v").</p>',
+        '<p><span class="math">$x = -3\pi /4+k2\pi$</span>.</p>'
       ],
       answerHtml: 'x = −3π/4 + k2π, k ∈ Z.'
     }]
@@ -1403,6 +1406,15 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function renderMathIn(root) {
+      if (window.renderMathInElement) {
+        renderMathInElement(root, {
+          delimiters: [{ left: '$', right: '$', display: false }],
+          throwOnError: false
+        });
+      }
+    }
 
     function initProblem(el) {
       var qtext = el.querySelector('.qtext');
@@ -1469,6 +1481,7 @@
         if (qidEl) {
           qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
         }
+        renderMathIn(el);
       }
 
       if (btnHint) btnHint.addEventListener('click', function () {
@@ -1509,6 +1522,7 @@
     }
 
     document.querySelectorAll('.problem').forEach(initProblem);
+    renderMathIn(document.body);
   });
 </script>
 
