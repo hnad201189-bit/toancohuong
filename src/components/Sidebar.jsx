@@ -49,6 +49,11 @@ const ON_LUYEN_TOPICS_BY_GRADE = {
       name: '⚡ Siêu Cấp Trắc Nghiệm Lượng Giác',
       href: '/tai-lieu/sieu-cap-trac-nghiem-luong-giac.html',
     },
+    {
+      id: 'hoc-gioi-toan-11',
+      name: '🌱 Học Giỏi Toán 11',
+      href: '/tai-lieu/hoc-gioi-toan-11.html',
+    },
   ],
 }
 

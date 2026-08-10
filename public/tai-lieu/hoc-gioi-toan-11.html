@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Học Giỏi Toán 11 — Giới hạn &amp; Hàm số liên tục (bản soạn mới)</title>
+<link rel="stylesheet" href="/vendor/katex/katex.min.css">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4f7f5;
+    --bg-alt: #e8eee9;
+    --paper: #ffffff;
+    --ink: #182620;
+    --ink-soft: #4a5c52;
+    --ink-faint: #7c8f84;
+    --accent: #1f6b4a;
+    --accent-soft: #e1f0e6;
+    --accent-warm: #b5601f;
+    --accent-warm-soft: #f6e8d7;
+    --line: #dde6e0;
+    --line-strong: #b9c9bf;
+    --shadow: 0 1px 2px rgba(20, 40, 30, 0.06), 0 6px 20px rgba(20, 40, 30, 0.06);
+    --radius: 10px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #101915;
+    --bg-alt: #16211b;
+    --paper: #14201a;
+    --ink: #e6f0ea;
+    --ink-soft: #aec4b8;
+    --ink-faint: #7e9488;
+    --accent: #6fcf9e;
+    --accent-soft: #1c3327;
+    --accent-warm: #e0a35d;
+    --accent-warm-soft: #332417;
+    --line: #253830;
+    --line-strong: #35493f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101915;
+      --bg-alt: #16211b;
+      --paper: #14201a;
+      --ink: #e6f0ea;
+      --ink-soft: #aec4b8;
+      --ink-faint: #7e9488;
+      --accent: #6fcf9e;
+      --accent-soft: #1c3327;
+      --accent-warm: #e0a35d;
+      --accent-warm-soft: #332417;
+      --line: #253830;
+      --line-strong: #35493f;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 28px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.8px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n {
+    font-family: var(--mono);
+    color: var(--ink-faint);
+    margin-right: 8px;
+  }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-num {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--accent);
+    font-style: italic;
+  }
+  h2.topic-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    margin: 10px 0 30px;
+  }
+
+  h3.sub {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 18.5px;
+    margin: 34px 0 12px;
+    color: var(--ink);
+  }
+  h3.sub .tag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-style: normal;
+    margin-right: 10px;
+    vertical-align: 1px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 600; }
+
+  /* ---------- Definition card ---------- */
+  .defcard {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin: 18px 0 26px;
+    max-width: 740px;
+  }
+  .defcard .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .defcard p:last-child { margin-bottom: 0; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 760px;
+    border: 1px solid var(--line);
+  }
+  .callout.example {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.diagram {
+    background: var(--bg-alt);
+    font-size: 14.8px;
+  }
+  .callout.diagram .label { color: var(--ink-faint); }
+  .callout.note {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Properties table ---------- */
+  .tablewrap { overflow-x: auto; margin: 18px 0 28px; max-width: 780px; }
+  table.props {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 560px;
+    font-size: 14.8px;
+  }
+  table.props th, table.props td {
+    border: 1px solid var(--line);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.props thead th {
+    background: var(--bg-alt);
+    font-family: var(--serif);
+    font-weight: 600;
+    font-style: italic;
+  }
+  table.props tbody th { font-weight: 600; background: var(--bg-alt); white-space: nowrap; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+  }
+  .problem .q {
+    padding: 18px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 22px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 22px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  code { font-family: var(--mono); }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">Mục lục</div>
+    <ol>
+      <li><a href="#chu-de-1"><span class="n">1</span>Giới hạn của dãy số</a></li>
+      <li><a href="#chu-de-2"><span class="n">2</span>Giới hạn của hàm số</a></li>
+      <li><a href="#chu-de-3"><span class="n">3</span>Hàm số liên tục</a></li>
+      <li><a href="#phuong-phap"><span class="n">＋</span>Chiến thuật khử dạng vô định</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="callout note" style="max-width:760px; margin: 0 0 36px;">
+      <div class="label">Về tài liệu này</div>
+      <p><b>Học Giỏi Toán 11</b> sẽ được bổ sung dần theo từng chương — khởi đầu với <b>Chương Giới hạn và Hàm số liên tục</b>, phần kiến thức nền tảng cho toàn bộ Giải tích lớp 12 (đạo hàm, khảo sát hàm số đều dựa trên khái niệm giới hạn). Các chương khác (Đạo hàm, Quan hệ vuông góc trong không gian, Thống kê...) sẽ được thêm ở những lần cập nhật tiếp theo.</p>
+    </div>
+
+    <!-- ================= CHỦ ĐỀ 1 ================= -->
+    <section class="topic" id="chu-de-1">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 1</span>
+        <h2 class="topic-title">Giới hạn của dãy số</h2>
+      </div>
+      <p class="topic-intro">Trực giác về "giới hạn" rất đơn giản: một dãy số có giới hạn <span class="math">$a$</span> nếu các số hạng của nó tiến gần <span class="math">$a$</span> tuỳ ý khi chỉ số <span class="math">$n$</span> đủ lớn. Chủ đề này biến trực giác đó thành công cụ tính toán: các phép toán giới hạn, cách xử lý dạng vô định, và một ứng dụng đẹp — tổng của một chuỗi số vô hạn.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Giới hạn hữu hạn và các phép toán</h3>
+      <div class="defcard">
+        <div class="k">Giới hạn cơ bản</div>
+        <p><span class="math">$\lim\limits_{n\to+\infty} \dfrac{1}{n} = 0$</span>, tổng quát hơn <span class="math">$\lim\limits_{n\to+\infty} \dfrac{1}{n^{k}} = 0$</span> với <span class="math">$k$</span> nguyên dương, và <span class="math">$\lim\limits_{n\to+\infty} q^{n} = 0$</span> nếu <span class="math">$|q| < 1$</span>. Với dãy hằng, <span class="math">$\lim c = c$</span>.</p>
+        <p><b>Phép toán:</b> nếu <span class="math">$\lim u_n = L$</span> và <span class="math">$\lim v_n = M$</span> (cả hai hữu hạn) thì <span class="math">$\lim(u_n \pm v_n) = L \pm M$</span>, <span class="math">$\lim(u_n \cdot v_n) = L \cdot M$</span>, và <span class="math">$\lim \dfrac{u_n}{v_n} = \dfrac{L}{M}$</span> (nếu <span class="math">$M \ne 0$</span>).</p>
+        <p><b>Kỹ thuật với phân thức đa thức:</b> chia cả tử và mẫu cho luỹ thừa cao nhất của <span class="math">$n$</span> xuất hiện trong <b>mẫu</b> — mọi số hạng dạng <span class="math">$1/n^k$</span> sau đó tiến về 0, chỉ còn lại tỉ số các hệ số bậc cao nhất.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Giới hạn vô cực và tổng cấp số nhân lùi vô hạn</h3>
+      <div class="defcard">
+        <div class="k">Hai công cụ mở rộng</div>
+        <p><span class="math">$\lim u_n = +\infty$</span> nếu <span class="math">$u_n$</span> có thể lớn hơn một số dương tuỳ ý kể từ một số hạng nào đó trở đi. Khi bậc của tử lớn hơn bậc của mẫu trong một phân thức, giới hạn thường là <span class="math">$\pm\infty$</span> (xét thêm dấu để biết chính xác).</p>
+        <p>Một cấp số nhân với công bội <span class="math">$|q| < 1$</span> gọi là <span class="kw">lùi vô hạn</span>. Tổng của tất cả vô hạn số hạng của nó luôn hữu hạn:</p>
+        <p style="text-align:center"><span class="math">$$S = u_1 + u_1 q + u_1 q^2 + \cdots = \dfrac{u_1}{1-q}$$</span></p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Trực quan hoá giới hạn trên trục số</h3>
+      <div class="callout diagram">
+        <div class="label">Hình minh họa (mô tả bằng lời)</div>
+        <p>Vẽ một trục số nằm ngang, đánh dấu điểm <span class="math">$a$</span>. Với mỗi số hạng <span class="math">$u_1, u_2, u_3, \ldots$</span> của dãy, đặt một chấm trên trục số tại vị trí tương ứng. Nếu <span class="math">$\lim u_n = a$</span>, các chấm này — dù lúc đầu có thể "nhảy" khá xa — sẽ dần dần tụ lại quanh điểm <span class="math">$a$</span>, và với bất kỳ khoảng nhỏ nào quanh <span class="math">$a$</span> (dù hẹp đến đâu), luôn tồn tại một mốc chỉ số mà từ đó trở đi mọi chấm đều rơi vào bên trong khoảng đó. Đây chính là hình ảnh trực quan thay cho định nghĩa "tiến gần tuỳ ý" bằng lời.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một quả bóng cao su rơi rồi nảy lên nhiều lần, mỗi lần độ cao giảm đi một tỉ lệ cố định — quãng đường di chuyển thêm ở mỗi lần nảy tạo thành một cấp số nhân lùi vô hạn. Dù bóng nảy <i>vô số lần</i> (về mặt lý thuyết, bỏ qua ma sát), <b>tổng quãng đường vẫn là một số hữu hạn</b> — đúng là điều nghịch lý Zeno từng đặt ra (Achilles không bao giờ "bắt kịp" rùa sau vô hạn bước, nhưng quãng đường và thời gian để làm điều đó vẫn cộng lại thành một con số hữu hạn). Bài 1.5 dưới đây tính cụ thể một tình huống như vậy.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="gh1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext"><p>Tính <span class="math">$\lim\limits_{n\to+\infty} \dfrac{2n^2+3n-1}{3n^2+5}$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mẫu có bậc cao nhất là <span class="math">$n^2$</span>, chia cả tử và mẫu cho <span class="math">$n^2$</span>: <span class="math">$\dfrac{2+3/n-1/n^2}{3+5/n^2}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Khi <span class="math">$n\to+\infty$</span>, các số hạng <span class="math">$3/n,\ 1/n^2,\ 5/n^2$</span> đều tiến về 0.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giới hạn còn lại là tỉ số hai hệ số bậc cao nhất: <span class="math">$\dfrac{2+0-0}{3+0} = \dfrac{2}{3}$</span>.</p></div></div>
+          <p class="answer hidden">Giới hạn bằng 2/3.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext"><p>Tính <span class="math">$\lim\limits_{n\to+\infty} \dfrac{n^3-2n+1}{n^2+3n}$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bậc của tử (3) lớn hơn bậc của mẫu (2) — dấu hiệu giới hạn sẽ là vô cực, không phải một số hữu hạn.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đưa <span class="math">$n^3$</span> và <span class="math">$n^2$</span> ra ngoài: <span class="math">$\dfrac{n^3(1-2/n^2+1/n^3)}{n^2(1+3/n)} = n\cdot\dfrac{1-2/n^2+1/n^3}{1+3/n}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Phân thức còn lại tiến về <span class="math">$1/1 = 1$</span>, còn <span class="math">$n \to +\infty$</span>, nên tích tiến ra <span class="math">$+\infty$</span>.</p></div></div>
+          <p class="answer hidden">Giới hạn bằng +∞.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh1-3" data-qid="Bài 1.3">
+        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext"><p>Tính <span class="math">$\lim\limits_{n\to+\infty} \left(\sqrt{n^2+3n} - n\right)$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Dạng <span class="math">$\infty - \infty$</span>. Nhân và chia cho biểu thức liên hợp <span class="math">$\sqrt{n^2+3n}+n$</span>: <span class="math">$\dfrac{(n^2+3n)-n^2}{\sqrt{n^2+3n}+n} = \dfrac{3n}{\sqrt{n^2+3n}+n}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Chia cả tử và mẫu cho <span class="math">$n$</span> (lưu ý <span class="math">$\sqrt{n^2+3n} = n\sqrt{1+3/n}$</span> vì <span class="math">$n>0$</span>): <span class="math">$\dfrac{3}{\sqrt{1+3/n}+1}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Khi <span class="math">$n\to+\infty$</span>: <span class="math">$\dfrac{3}{\sqrt{1+0}+1} = \dfrac{3}{2}$</span>.</p></div></div>
+          <p class="answer hidden">Giới hạn bằng 3/2.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh1-4" data-qid="Bài 1.4">
+        <div class="q"><span class="qid">Bài 1.4</span><div class="qtext"><p>Tính tổng <span class="math">$S = 1 + \dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^n} + \cdots$</span></p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đây là tổng của một cấp số nhân lùi vô hạn với số hạng đầu <span class="math">$u_1 = 1$</span> và công bội <span class="math">$q = 1/2$</span> (thoả <span class="math">$|q|<1$</span>).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng <span class="math">$S = \dfrac{u_1}{1-q} = \dfrac{1}{1-1/2}$</span>.</p></div></div>
+          <p class="answer hidden">S = 2.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh1-5" data-qid="Bài 1.5">
+        <div class="q"><span class="qid">Bài 1.5</span><div class="qtext"><p>Một quả bóng cao su được thả rơi từ độ cao 4 m xuống mặt sàn. Mỗi lần chạm sàn, quả bóng nảy lên độ cao bằng một nửa độ cao của lần rơi ngay trước đó (giả sử quá trình lặp lại vô hạn lần, bỏ qua sức cản không khí). Tính tổng quãng đường quả bóng đã di chuyển.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chặng đầu tiên (rơi từ 4 m xuống) chỉ đi một chiều: quãng đường 4 m.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Từ lần nảy đầu tiên trở đi, mỗi lần bóng nảy lên rồi lại rơi xuống <b>đúng độ cao đó</b> — nghĩa là mỗi độ cao nảy đóng góp gấp <b>đôi</b> vào quãng đường (lên rồi xuống). Độ cao các lần nảy là <span class="math">$4\cdot\dfrac12,\ 4\cdot\dfrac12^2,\ 4\cdot\dfrac12^3,\ \ldots$</span></p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Quãng đường từ các lần nảy: <span class="math">$2\left(4\cdot\tfrac12 + 4\cdot\tfrac12^2 + \cdots\right)$</span> — đây là 2 lần tổng một cấp số nhân lùi vô hạn với <span class="math">$u_1 = 4\cdot\tfrac12 = 2$</span> và <span class="math">$q=\tfrac12$</span>: tổng <span class="math">$=\dfrac{2}{1-1/2}=4$</span>, nhân 2 được 8 m.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Tổng quãng đường <span class="math">$= 4 + 8 = 12$</span> (m).</p></div></div>
+          <p class="answer hidden">Tổng quãng đường: 12 m.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 2 ================= -->
+    <section class="topic" id="chu-de-2">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 2</span>
+        <h2 class="topic-title">Giới hạn của hàm số</h2>
+      </div>
+      <p class="topic-intro">Giới hạn của hàm số dùng lại đúng bộ phép toán của giới hạn dãy số, chỉ khác ở chỗ biến <span class="math">$x$</span> tiến tới một điểm hữu hạn <span class="math">$x_0$</span> (thay vì chỉ số <span class="math">$n$</span> tiến ra vô cực). Hai kỹ thuật khử dạng vô định trọng tâm: phân tích nhân tử (cho dạng <span class="math">$0/0$</span> đa thức) và nhân liên hợp (cho dạng <span class="math">$0/0$</span> có căn thức).</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Giới hạn tại một điểm, giới hạn một bên</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa và điều kiện tồn tại</div>
+        <p><span class="math">$\lim\limits_{x\to x_0} f(x) = L$</span> nếu <span class="math">$f(x)$</span> tiến gần <span class="math">$L$</span> tuỳ ý khi <span class="math">$x$</span> tiến gần <span class="math">$x_0$</span> (nhưng <span class="math">$x \ne x_0$</span>). <span class="kw">Giới hạn bên phải</span> <span class="math">$\lim\limits_{x\to x_0^+}$</span> chỉ xét <span class="math">$x > x_0$</span>; <span class="kw">giới hạn bên trái</span> <span class="math">$\lim\limits_{x\to x_0^-}$</span> chỉ xét <span class="math">$x < x_0$</span>.</p>
+        <p><b>Điều kiện tồn tại:</b> <span class="math">$\lim\limits_{x\to x_0} f(x)$</span> tồn tại (và hữu hạn) khi và chỉ khi hai giới hạn một bên cùng tồn tại và <b>bằng nhau</b>.</p>
+      </div>
+
+      <div class="tablewrap">
+        <table class="props">
+          <thead><tr><th>Dạng vô định</th><th>Dấu hiệu nhận biết</th><th>Cách xử lý</th></tr></thead>
+          <tbody>
+            <tr><th>0/0 (đa thức)</th><td>Thay <span class="math">$x_0$</span> vào tử và mẫu đều ra 0</td><td>Phân tích nhân tử, rút gọn <span class="math">$(x-x_0)$</span></td></tr>
+            <tr><th>0/0 (có căn)</th><td>Tương tự, nhưng có <span class="math">$\sqrt{\ }$</span></td><td>Nhân liên hợp để loại căn</td></tr>
+            <tr><th>∞/∞</th><td><span class="math">$x\to\pm\infty$</span>, tử và mẫu đều không bị chặn</td><td>Chia cho luỹ thừa cao nhất của <span class="math">$x$</span> ở mẫu</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Trong Thuyết tương đối hẹp của Einstein, khối lượng của một vật chuyển động với vận tốc <span class="math">$v$</span> được cho bởi <span class="math">$m = \dfrac{m_0}{\sqrt{1-v^2/c^2}}$</span>, trong đó <span class="math">$c$</span> là vận tốc ánh sáng. Khi <span class="math">$v$</span> tiến gần <span class="math">$c$</span> (tức <span class="math">$v \to c^-$</span>, giới hạn <b>bên trái</b> vì vận tốc vật luôn nhỏ hơn vận tốc ánh sáng), mẫu số <span class="math">$\sqrt{1-v^2/c^2}$</span> tiến về 0⁺, khiến <span class="math">$m \to +\infty$</span> — đây chính là lý do vật lý học khẳng định không vật nào có khối lượng khác 0 có thể đạt tới vận tốc ánh sáng: cần một lượng năng lượng vô hạn.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="gh2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext"><p>Tính <span class="math">$\lim\limits_{x\to 2} \dfrac{x^2-4}{x-2}$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thay <span class="math">$x=2$</span>: tử <span class="math">$=0$</span>, mẫu <span class="math">$=0$</span> — dạng <span class="math">$0/0$</span>, cần phân tích nhân tử.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$x^2-4 = (x-2)(x+2)$</span>, nên <span class="math">$\dfrac{x^2-4}{x-2} = x+2$</span> với mọi <span class="math">$x \ne 2$</span> (được phép rút gọn vì đang xét giới hạn, không xét tại chính <span class="math">$x=2$</span>).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$\lim\limits_{x\to 2}(x+2) = 2+2 = 4$</span>.</p></div></div>
+          <p class="answer hidden">Giới hạn bằng 4.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext"><p>Tính <span class="math">$\lim\limits_{x\to 1} \dfrac{\sqrt{x+3}-2}{x-1}$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thay <span class="math">$x=1$</span>: tử <span class="math">$=\sqrt4-2=0$</span>, mẫu <span class="math">$=0$</span> — dạng <span class="math">$0/0$</span> có căn, nhân liên hợp với <span class="math">$\sqrt{x+3}+2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tử trở thành <span class="math">$(x+3)-4 = x-1$</span>, nên biểu thức <span class="math">$= \dfrac{x-1}{(x-1)(\sqrt{x+3}+2)} = \dfrac{1}{\sqrt{x+3}+2}$</span> với <span class="math">$x\ne1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thay <span class="math">$x=1$</span>: <span class="math">$\dfrac{1}{\sqrt4+2} = \dfrac{1}{4}$</span>.</p></div></div>
+          <p class="answer hidden">Giới hạn bằng 1/4.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh2-3" data-qid="Bài 2.3">
+        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext"><p>Tính <span class="math">$\lim\limits_{x\to+\infty} \dfrac{3x^2-x+1}{2x^2+5}$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Dạng <span class="math">$\infty/\infty$</span>. Chia cả tử và mẫu cho <span class="math">$x^2$</span> (bậc cao nhất ở mẫu): <span class="math">$\dfrac{3-1/x+1/x^2}{2+5/x^2}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Khi <span class="math">$x\to+\infty$</span>, các số hạng <span class="math">$1/x,\ 1/x^2,\ 5/x^2$</span> đều tiến về 0.</p></div></div>
+          <p class="answer hidden">Giới hạn bằng 3/2.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh2-4" data-qid="Bài 2.4">
+        <div class="q"><span class="qid">Bài 2.4</span><div class="qtext"><p>Tính <span class="math">$\lim\limits_{x\to 2^+} \dfrac{1}{x-2}$</span> và <span class="math">$\lim\limits_{x\to 2^-} \dfrac{1}{x-2}$</span>. Từ đó cho biết <span class="math">$\lim\limits_{x\to 2} \dfrac{1}{x-2}$</span> có tồn tại hay không.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Khi <span class="math">$x\to2^+$</span> (tức <span class="math">$x>2$</span>, gần 2): <span class="math">$x-2 \to 0^+$</span> (số dương rất nhỏ), nên <span class="math">$\dfrac{1}{x-2} \to +\infty$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Khi <span class="math">$x\to2^-$</span> (tức <span class="math">$x<2$</span>, gần 2): <span class="math">$x-2 \to 0^-$</span> (số âm rất nhỏ), nên <span class="math">$\dfrac{1}{x-2} \to -\infty$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hai giới hạn một bên khác nhau (một tiến ra <span class="math">$+\infty$</span>, một tiến ra <span class="math">$-\infty$</span>) nên theo điều kiện tồn tại, giới hạn hai bên <b>không tồn tại</b>.</p></div></div>
+          <p class="answer hidden">lim(x→2⁺) = +∞, lim(x→2⁻) = −∞; giới hạn tại x=2 không tồn tại.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh2-5" data-qid="Bài 2.5">
+        <div class="q"><span class="qid">Bài 2.5</span><div class="qtext"><p>Tính <span class="math">$\lim\limits_{x\to 0} \dfrac{\sqrt{x+4}-2}{x}$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thay <span class="math">$x=0$</span>: tử <span class="math">$=\sqrt4-2=0$</span>, mẫu <span class="math">$=0$</span> — dạng <span class="math">$0/0$</span>, nhân liên hợp với <span class="math">$\sqrt{x+4}+2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tử trở thành <span class="math">$(x+4)-4=x$</span>, biểu thức <span class="math">$= \dfrac{x}{x(\sqrt{x+4}+2)} = \dfrac{1}{\sqrt{x+4}+2}$</span> với <span class="math">$x\ne0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thay <span class="math">$x=0$</span>: <span class="math">$\dfrac{1}{\sqrt4+2} = \dfrac14$</span>.</p></div></div>
+          <p class="answer hidden">Giới hạn bằng 1/4.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 3 ================= -->
+    <section class="topic" id="chu-de-3">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 3</span>
+        <h2 class="topic-title">Hàm số liên tục</h2>
+      </div>
+      <p class="topic-intro">Một hàm số "liên tục" tại một điểm đúng như tên gọi trực giác của nó: đồ thị không bị "đứt gãy" tại điểm đó. Về mặt tính toán, đây chỉ là sự kết hợp của hai điều đã học: tính giới hạn, và so sánh với giá trị hàm số.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Liên tục tại một điểm, trên khoảng/đoạn</h3>
+      <div class="defcard">
+        <div class="k">Ba điều kiện gộp thành một</div>
+        <p>Hàm số <span class="math">$f$</span> liên tục tại <span class="math">$x_0$</span> khi và chỉ khi đồng thời: (1) <span class="math">$f$</span> xác định tại <span class="math">$x_0$</span>; (2) <span class="math">$\lim\limits_{x\to x_0} f(x)$</span> tồn tại (hữu hạn); và (3) hai giá trị đó <b>bằng nhau</b>:</p>
+        <p style="text-align:center"><span class="math">$$\lim_{x\to x_0} f(x) = f(x_0)$$</span></p>
+        <p>Nếu thiếu bất kỳ điều nào trong ba điều trên, hàm số <span class="kw">gián đoạn</span> tại <span class="math">$x_0$</span>. Hàm số liên tục <b>trên một khoảng</b> nếu liên tục tại mọi điểm thuộc khoảng đó; liên tục <b>trên một đoạn</b> <span class="math">$[a;b]$</span> nếu liên tục trên <span class="math">$(a;b)$</span> và có thêm <span class="math">$\lim\limits_{x\to a^+}f(x)=f(a)$</span>, <span class="math">$\lim\limits_{x\to b^-}f(x)=f(b)$</span> (chỉ cần khớp từ phía trong đoạn tại hai đầu mút).</p>
+        <p>Hàm đa thức liên tục trên toàn <span class="math">$\mathbb{R}$</span>; hàm phân thức, căn thức, lượng giác liên tục trên tập xác định của chúng. Tổng, hiệu, tích, thương (mẫu khác 0) của các hàm liên tục cũng liên tục.</p>
+      </div>
+
+      <div class="defcard">
+        <div class="k">Ứng dụng: chứng minh phương trình có nghiệm</div>
+        <p>Nếu <span class="math">$f$</span> liên tục trên đoạn <span class="math">$[a;b]$</span> và <span class="math">$f(a)\cdot f(b) < 0$</span> (hai đầu mút trái dấu), thì phương trình <span class="math">$f(x)=0$</span> có <b>ít nhất một nghiệm</b> trong khoảng <span class="math">$(a;b)$</span>. Đây là công cụ mạnh để chứng minh sự tồn tại nghiệm mà không cần giải ra nghiệm cụ thể.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Mô tả hình vẽ</span>Đồ thị hàm số gián đoạn kiểu "bước nhảy"</h3>
+      <div class="callout diagram">
+        <div class="label">Hình minh họa (mô tả bằng lời)</div>
+        <p>Hình dung đồ thị của một hàm số cho bởi hai nhánh khác nhau, nối tại <span class="math">$x_0$</span>: nhánh bên trái là một đoạn đường cong đi lên, kết thúc (nhưng không chạm) tại một điểm có tung độ <span class="math">$y=2$</span> ngay phía trên <span class="math">$x_0$</span> — vẽ điểm đó bằng một <b>vòng tròn rỗng</b> (không tô, biểu thị "gần tới nhưng không đạt"). Nhánh bên phải bắt đầu tại một điểm có tung độ <span class="math">$y=5$</span>, vẽ bằng một <b>chấm đặc</b> (biểu thị giá trị hàm số thật sự tại đó), rồi tiếp tục đi lên. Khoảng trống thẳng đứng giữa vòng tròn rỗng (y=2) và chấm đặc (y=5) chính là "bước nhảy" — hình ảnh trực quan của gián đoạn: hai giới hạn một bên tồn tại nhưng không bằng nhau (và cũng không bằng giá trị hàm tại đó).</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="gh3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext"><p>Xét tính liên tục tại <span class="math">$x=1$</span> của hàm số <span class="math">$f(x)=\dfrac{x^2-1}{x-1}$</span> nếu <span class="math">$x\ne1$</span>, và <span class="math">$f(1)=3$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính <span class="math">$\lim\limits_{x\to1} f(x) = \lim\limits_{x\to1} \dfrac{x^2-1}{x-1} = \lim\limits_{x\to1}\dfrac{(x-1)(x+1)}{x-1} = \lim\limits_{x\to1}(x+1) = 2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>So sánh với giá trị hàm tại điểm đó: <span class="math">$f(1)=3$</span> (theo đề cho).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Vì <span class="math">$\lim\limits_{x\to1} f(x) = 2 \ne 3 = f(1)$</span>, hàm số <b>gián đoạn</b> tại <span class="math">$x=1$</span>.</p></div></div>
+          <p class="answer hidden">Hàm số gián đoạn tại x=1 (vì lim = 2 ≠ f(1) = 3).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext"><p>Tìm <span class="math">$m$</span> để hàm số <span class="math">$f(x)=\dfrac{x^2-9}{x-3}$</span> nếu <span class="math">$x\ne3$</span>, và <span class="math">$f(3)=m$</span>, liên tục tại <span class="math">$x=3$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính <span class="math">$\lim\limits_{x\to3} f(x) = \lim\limits_{x\to3}\dfrac{(x-3)(x+3)}{x-3} = \lim\limits_{x\to3}(x+3) = 6$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cần <span class="math">$f(3)=\lim\limits_{x\to3}f(x)$</span>, tức <span class="math">$m=6$</span>.</p></div></div>
+          <p class="answer hidden">m = 6.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh3-3" data-qid="Bài 3.3">
+        <div class="q"><span class="qid">Bài 3.3</span><div class="qtext"><p>Xét tính liên tục trên <span class="math">$\mathbb{R}$</span> của hàm số <span class="math">$f(x)=2x+1$</span> nếu <span class="math">$x\ge0$</span>, và <span class="math">$f(x)=1-x$</span> nếu <span class="math">$x<0$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Trên mỗi khoảng <span class="math">$(-\infty;0)$</span> và <span class="math">$(0;+\infty)$</span>, hàm số là đa thức nên chắc chắn liên tục — chỉ cần xét riêng tại điểm nối <span class="math">$x=0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$\lim\limits_{x\to0^+}f(x)=\lim\limits_{x\to0^+}(2x+1)=1$</span>; <span class="math">$\lim\limits_{x\to0^-}f(x)=\lim\limits_{x\to0^-}(1-x)=1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hai giới hạn một bên bằng nhau (đều bằng 1) nên <span class="math">$\lim\limits_{x\to0}f(x)=1$</span>. Mặt khác <span class="math">$f(0)=2(0)+1=1$</span> (dùng nhánh <span class="math">$x\ge0$</span>).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Vì <span class="math">$\lim\limits_{x\to0}f(x)=1=f(0)$</span>, hàm số liên tục tại <span class="math">$x=0$</span> — kết hợp với tính liên tục trên hai khoảng còn lại, hàm số liên tục trên toàn <span class="math">$\mathbb{R}$</span>.</p></div></div>
+          <p class="answer hidden">Hàm số liên tục trên toàn ℝ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh3-4" data-qid="Bài 3.4">
+        <div class="q"><span class="qid">Bài 3.4</span><div class="qtext"><p>Chứng minh phương trình <span class="math">$x^3-3x+1=0$</span> có ít nhất một nghiệm thuộc khoảng <span class="math">$(0;1)$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt <span class="math">$f(x)=x^3-3x+1$</span>. Đây là hàm đa thức nên liên tục trên toàn <span class="math">$\mathbb{R}$</span>, do đó liên tục trên đoạn <span class="math">$[0;1]$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính hai đầu mút: <span class="math">$f(0)=0-0+1=1>0$</span>; <span class="math">$f(1)=1-3+1=-1<0$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Vì <span class="math">$f(0)\cdot f(1)=1\cdot(-1)=-1<0$</span> (hai đầu mút trái dấu), theo định lí giá trị trung gian, tồn tại <span class="math">$c\in(0;1)$</span> sao cho <span class="math">$f(c)=0$</span>.</p></div></div>
+          <p class="answer hidden">Vậy phương trình có ít nhất một nghiệm thuộc (0;1) — đpcm.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="gh3-5" data-qid="Bài 3.5">
+        <div class="q"><span class="qid">Bài 3.5</span><div class="qtext"><p>Một hãng taxi tính cước phí như sau: 3 km đầu tiên giá 12 000 đồng; từ km thứ 3 đến km thứ 20, mỗi km tiếp theo giá 11 000 đồng; từ sau km thứ 20, mỗi km tiếp theo giá 9 000 đồng. Gọi <span class="math">$f(x)$</span> là số tiền phải trả (đồng) khi đi <span class="math">$x$</span> km. Xét tính liên tục của <span class="math">$f(x)$</span> tại <span class="math">$x=3$</span> và <span class="math">$x=20$</span>.</p></div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap" hidden>🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Viết hàm từng khúc: <span class="math">$f(x)=12\,000$</span> với <span class="math">$0\le x\le3$</span>; <span class="math">$f(x)=12\,000+(x-3)\cdot11\,000$</span> với <span class="math">$3<x\le20$</span>; <span class="math">$f(x)=199\,000+(x-20)\cdot9\,000$</span> với <span class="math">$x>20$</span> (vì <span class="math">$12\,000+17\cdot11\,000=199\,000$</span>).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Tại x=3:</b> <span class="math">$f(3)=12\,000$</span>. <span class="math">$\lim\limits_{x\to3^-}f(x)=12\,000$</span> (hàm hằng). <span class="math">$\lim\limits_{x\to3^+}f(x)=12\,000+0\cdot11\,000=12\,000$</span>. Ba giá trị bằng nhau ⇒ liên tục tại <span class="math">$x=3$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tại x=20:</b> <span class="math">$f(20)=12\,000+17\cdot11\,000=199\,000$</span>. <span class="math">$\lim\limits_{x\to20^-}f(x)=12\,000+17\cdot11\,000=199\,000$</span>. <span class="math">$\lim\limits_{x\to20^+}f(x)=199\,000+0\cdot9\,000=199\,000$</span>. Ba giá trị bằng nhau ⇒ liên tục tại <span class="math">$x=20$</span>.</p></div></div>
+          <p class="answer hidden">Hàm số liên tục tại cả x=3 và x=20 — giá cước không "nhảy vọt" tại các mốc chuyển giá.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="phuong-phap">
+      <div class="topic-head">
+        <span class="topic-num">Phụ lục</span>
+        <h2 class="topic-title">Chiến thuật khử dạng vô định, tóm tắt lại</h2>
+      </div>
+      <p class="topic-intro">Gần như mọi bài toán giới hạn ở chương này đều đi qua đúng 5 bước sau — nắm chắc khuôn mẫu này sẽ giải quyết được phần lớn các dạng bài.</p>
+
+      <div class="method-grid">
+        <div class="method-card"><span class="mnum">1</span><p><b>Thử thay trực tiếp trước.</b> Nếu thay <span class="math">$x_0$</span> (hoặc <span class="math">$n\to\infty$</span>) vào mà không ra dạng vô định, kết quả chính là giới hạn — không cần biến đổi gì thêm.</p></div>
+        <div class="method-card"><span class="mnum">2</span><p><b>Nhận diện đúng dạng vô định.</b> 0/0 đa thức → phân tích nhân tử; 0/0 có căn → nhân liên hợp; ∞/∞ → chia cho luỹ thừa cao nhất ở mẫu; ∞−∞ → nhân liên hợp rồi chia.</p></div>
+        <div class="method-card"><span class="mnum">3</span><p><b>Biến đổi để loại yếu tố gây vô định.</b> Rút gọn nhân tử chung, hoặc để phần "0/0" tự triệt tiêu sau khi nhân liên hợp.</p></div>
+        <div class="method-card"><span class="mnum">4</span><p><b>Thay lại giá trị giới hạn.</b> Sau khi đã ở dạng xác định (không còn 0/0 hay ∞/∞), thay <span class="math">$x_0$</span> hoặc lấy giới hạn từng số hạng như bình thường.</p></div>
+        <div class="method-card"><span class="mnum">5</span><p><b>Với bài liên tục: đối chiếu đủ 3 vế.</b> Luôn viết rõ cả ba: <span class="math">$f(x_0)$</span>, <span class="math">$\lim f(x)$</span> (qua hai giới hạn một bên nếu là hàm từng khúc), rồi kết luận bằng phép so sánh — đừng bỏ qua bước đối chiếu.</p></div>
+      </div>
+
+      <p>Khuôn mẫu 5 bước này áp dụng cho toàn bộ 15 bài ở trên — bấm "Gợi ý bước tiếp theo" để xem lại đúng theo trình tự đó.</p>
+    </section>
+
+    <footer>
+      Học Giỏi Toán 11 — tài liệu tự soạn, tham khảo cấu trúc chương trình từ giáo án "Toán 11 – Năng lực số" do người dùng cung cấp, khởi đầu với chương Giới hạn và Hàm số liên tục. Toàn bộ đề bài, số liệu và lời giải là nội dung tự soạn, không sao chép từ bất kỳ ấn phẩm đã xuất bản nào.
+    </footer>
+  </main>
+</div>
+
+<script src="/vendor/katex/katex.min.js"></script>
+<script src="/vendor/katex/auto-render.min.js"></script>
+<script>
+  window.VARIANTS = {
+    'gh1-1': [{
+      qHtml: '<p>Tính <span class="math">$\\lim\\limits_{n\\to+\\infty} \\dfrac{3n^2-2n+4}{5n^2+n}$</span>.</p>',
+      steps: [
+        '<p>Chia cả tử và mẫu cho <span class="math">$n^2$</span>: <span class="math">$\\dfrac{3-2/n+4/n^2}{5+1/n}$</span>.</p>',
+        '<p>Khi <span class="math">$n\\to+\\infty$</span>, các số hạng chứa <span class="math">$1/n,\\ 1/n^2$</span> tiến về 0.</p>',
+        '<p>Giới hạn còn lại: <span class="math">$\\dfrac{3}{5}$</span>.</p>'
+      ],
+      answerHtml: 'Giới hạn bằng 3/5.'
+    }],
+    'gh1-2': [{
+      qHtml: '<p>Tính <span class="math">$\\lim\\limits_{n\\to+\\infty} \\dfrac{2n^3+n}{n^2-5n}$</span>.</p>',
+      steps: [
+        '<p>Bậc tử (3) lớn hơn bậc mẫu (2) — giới hạn sẽ là vô cực.</p>',
+        '<p>Đưa <span class="math">$n^3,\\ n^2$</span> ra ngoài: <span class="math">$n\\cdot\\dfrac{2+1/n^2}{1-5/n}$</span>.</p>',
+        '<p>Phân thức tiến về <span class="math">$2/1=2>0$</span>, còn <span class="math">$n\\to+\\infty$</span>, nên tích tiến ra <span class="math">$+\\infty$</span>.</p>'
+      ],
+      answerHtml: 'Giới hạn bằng +∞.'
+    }],
+    'gh1-3': [{
+      qHtml: '<p>Tính <span class="math">$\\lim\\limits_{n\\to+\\infty} \\left(\\sqrt{n^2+5n} - n\\right)$</span>.</p>',
+      steps: [
+        '<p>Nhân liên hợp với <span class="math">$\\sqrt{n^2+5n}+n$</span>: <span class="math">$\\dfrac{5n}{\\sqrt{n^2+5n}+n}$</span>.</p>',
+        '<p>Chia tử và mẫu cho <span class="math">$n$</span>: <span class="math">$\\dfrac{5}{\\sqrt{1+5/n}+1}$</span>.</p>',
+        '<p>Khi <span class="math">$n\\to+\\infty$</span>: <span class="math">$\\dfrac{5}{\\sqrt1+1}=\\dfrac52$</span>.</p>'
+      ],
+      answerHtml: 'Giới hạn bằng 5/2.'
+    }],
+    'gh1-4': [{
+      qHtml: '<p>Tính tổng <span class="math">$S = 1 + \\dfrac13 + \\dfrac19 + \\cdots + \\dfrac{1}{3^n} + \\cdots$</span></p>',
+      steps: [
+        '<p>Cấp số nhân lùi vô hạn với <span class="math">$u_1=1$</span>, <span class="math">$q=1/3$</span>.</p>',
+        '<p><span class="math">$S=\\dfrac{u_1}{1-q}=\\dfrac{1}{1-1/3}=\\dfrac{1}{2/3}$</span>.</p>'
+      ],
+      answerHtml: 'S = 3/2.'
+    }],
+    'gh2-1': [{
+      qHtml: '<p>Tính <span class="math">$\\lim\\limits_{x\\to 3} \\dfrac{x^2-9}{x-3}$</span>.</p>',
+      steps: [
+        '<p>Dạng 0/0. Phân tích <span class="math">$x^2-9=(x-3)(x+3)$</span>.</p>',
+        '<p><span class="math">$\\dfrac{x^2-9}{x-3}=x+3$</span> với <span class="math">$x\\ne3$</span>.</p>',
+        '<p><span class="math">$\\lim\\limits_{x\\to3}(x+3)=6$</span>.</p>'
+      ],
+      answerHtml: 'Giới hạn bằng 6.'
+    }],
+    'gh2-2': [{
+      qHtml: '<p>Tính <span class="math">$\\lim\\limits_{x\\to 2} \\dfrac{\\sqrt{x+2}-2}{x-2}$</span>.</p>',
+      steps: [
+        '<p>Dạng 0/0 có căn, nhân liên hợp với <span class="math">$\\sqrt{x+2}+2$</span>.</p>',
+        '<p>Tử thành <span class="math">$(x+2)-4=x-2$</span>, biểu thức <span class="math">$=\\dfrac{1}{\\sqrt{x+2}+2}$</span> với <span class="math">$x\\ne2$</span>.</p>',
+        '<p>Thay <span class="math">$x=2$</span>: <span class="math">$\\dfrac{1}{\\sqrt4+2}=\\dfrac14$</span>.</p>'
+      ],
+      answerHtml: 'Giới hạn bằng 1/4.'
+    }],
+    'gh2-3': [{
+      qHtml: '<p>Tính <span class="math">$\\lim\\limits_{x\\to+\\infty} \\dfrac{5x^2+2x-1}{4x^2+3}$</span>.</p>',
+      steps: [
+        '<p>Chia cả tử và mẫu cho <span class="math">$x^2$</span>: <span class="math">$\\dfrac{5+2/x-1/x^2}{4+3/x^2}$</span>.</p>',
+        '<p>Khi <span class="math">$x\\to+\\infty$</span>, các số hạng chứa <span class="math">$1/x,\\ 1/x^2$</span> tiến về 0.</p>'
+      ],
+      answerHtml: 'Giới hạn bằng 5/4.'
+    }],
+    'gh2-5': [{
+      qHtml: '<p>Tính <span class="math">$\\lim\\limits_{x\\to 0} \\dfrac{\\sqrt{x+9}-3}{x}$</span>.</p>',
+      steps: [
+        '<p>Dạng 0/0, nhân liên hợp với <span class="math">$\\sqrt{x+9}+3$</span>.</p>',
+        '<p>Tử thành <span class="math">$(x+9)-9=x$</span>, biểu thức <span class="math">$=\\dfrac{1}{\\sqrt{x+9}+3}$</span> với <span class="math">$x\\ne0$</span>.</p>',
+        '<p>Thay <span class="math">$x=0$</span>: <span class="math">$\\dfrac{1}{\\sqrt9+3}=\\dfrac16$</span>.</p>'
+      ],
+      answerHtml: 'Giới hạn bằng 1/6.'
+    }],
+    'gh3-1': [{
+      qHtml: '<p>Xét tính liên tục tại <span class="math">$x=2$</span> của hàm số <span class="math">$f(x)=\\dfrac{x^2-4}{x-2}$</span> nếu <span class="math">$x\\ne2$</span>, và <span class="math">$f(2)=5$</span>.</p>',
+      steps: [
+        '<p><span class="math">$\\lim\\limits_{x\\to2}f(x)=\\lim\\limits_{x\\to2}\\dfrac{(x-2)(x+2)}{x-2}=\\lim\\limits_{x\\to2}(x+2)=4$</span>.</p>',
+        '<p>So với <span class="math">$f(2)=5$</span> (theo đề cho).</p>',
+        '<p>Vì <span class="math">$4\\ne5$</span>, hàm số gián đoạn tại <span class="math">$x=2$</span>.</p>'
+      ],
+      answerHtml: 'Hàm số gián đoạn tại x=2 (vì lim = 4 ≠ f(2) = 5).'
+    }],
+    'gh3-2': [{
+      qHtml: '<p>Tìm <span class="math">$m$</span> để hàm số <span class="math">$f(x)=\\dfrac{x^2-16}{x-4}$</span> nếu <span class="math">$x\\ne4$</span>, và <span class="math">$f(4)=m$</span>, liên tục tại <span class="math">$x=4$</span>.</p>',
+      steps: [
+        '<p><span class="math">$\\lim\\limits_{x\\to4}f(x)=\\lim\\limits_{x\\to4}\\dfrac{(x-4)(x+4)}{x-4}=\\lim\\limits_{x\\to4}(x+4)=8$</span>.</p>',
+        '<p>Cần <span class="math">$m=8$</span>.</p>'
+      ],
+      answerHtml: 'm = 8.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function renderMathIn(root) {
+      if (window.renderMathInElement) {
+        renderMathInElement(root, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+        renderMathIn(el);
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+    renderMathIn(document.body);
+  });
+</script>
+
+</body>
+</html>
