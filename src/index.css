@@ -2426,6 +2426,229 @@ table {
   color: var(--danger);
 }
 
+.dung-sai__options {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 320px;
+}
+
+/* Engine trắc nghiệm nhiều vòng dùng chung (so sánh số, chẵn lẻ, liền
+   trước-liền sau, lớn nhất-bé nhất, nhận diện hình, điền số thiếu) */
+.qgame__stage {
+  text-align: center;
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qgame__prompt {
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 22px;
+}
+
+.qgame__prompt--compare {
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.qgame__prompt--number {
+  font-size: 56px;
+  font-weight: 800;
+}
+
+.qgame__prompt--sequence {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.qgame__blank {
+  display: inline-block;
+  color: var(--primary);
+  min-width: 1em;
+}
+
+.qgame__options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.qgame__opt {
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-card-sm);
+  padding: 16px 8px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.qgame__opt:hover:not(:disabled) {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.qgame__opt:disabled {
+  cursor: default;
+}
+
+.qgame__opt.is-correct {
+  border-color: var(--success);
+  background: #e6f4ee;
+  color: var(--success);
+}
+
+.qgame__opt.is-wrong {
+  border-color: var(--danger);
+  background: #fbe9e7;
+  color: var(--danger);
+}
+
+/* Nhận diện hình khối — hình vẽ bằng CSS thuần, không dùng emoji */
+.qgame__shape-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  margin-bottom: 22px;
+}
+
+.shape-icon {
+  display: block;
+  background: var(--primary);
+}
+
+.shape-icon--tron {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+}
+
+.shape-icon--vuong {
+  width: 92px;
+  height: 92px;
+  border-radius: 6px;
+}
+
+.shape-icon--chu-nhat {
+  width: 130px;
+  height: 76px;
+  border-radius: 6px;
+}
+
+.shape-icon--tam-giac {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 92px solid var(--primary);
+}
+
+/* Xếp số theo thứ tự */
+.xep-so__stage {
+  text-align: center;
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.xep-so__hint {
+  color: var(--text-soft);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.xep-so__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.xep-so__chip {
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-card-sm);
+  min-width: 64px;
+  padding: 18px 10px;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.xep-so__chip:hover:not(:disabled) {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.xep-so__chip.is-done {
+  border-color: var(--success);
+  background: #e6f4ee;
+  color: var(--success);
+  opacity: 0.7;
+  cursor: default;
+}
+
+.xep-so__chip.is-wrong {
+  border-color: var(--danger);
+  background: #fbe9e7;
+  color: var(--danger);
+}
+
+/* Trí nhớ số */
+.tri-nho__stage {
+  padding: 28px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.tri-nho__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.tri-nho__card {
+  aspect-ratio: 1;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-card-sm);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.tri-nho__card:hover:not(:disabled) {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.tri-nho__card.is-flipped {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.tri-nho__card.is-matched {
+  border-color: var(--success);
+  background: #e6f4ee;
+  color: var(--success);
+  opacity: 0.6;
+  cursor: default;
+}
+
 /* Sidebar becomes a slide-in drawer below this width, opened via the
    hamburger button in .mobile-topbar. Applies to both the public sidebar
    and the admin sidebar (which also carries the .sidebar class). */
@@ -2553,7 +2776,8 @@ table {
   }
 
   .dem-hinh__options,
-  .ai-nhanh__options {
+  .ai-nhanh__options,
+  .qgame__options {
     grid-template-columns: repeat(2, 1fr);
   }
 }
