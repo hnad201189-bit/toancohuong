@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Học Kĩ Năng Giải Toán Theo Chương Trình Singapore — Ôn luyện Toán lớp 1</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #fff9f0;
+    --bg-alt: #fef1de;
+    --paper: #ffffff;
+    --ink: #33241a;
+    --ink-soft: #7a6455;
+    --ink-faint: #a89484;
+    --accent: #ff6f59;
+    --accent-soft: #ffe4de;
+    --accent-warm: #0f9b8e;
+    --accent-warm-soft: #dcf5f0;
+    --line: #f0e2d0;
+    --line-strong: #e0c9a8;
+    --shadow: 0 1px 2px rgba(90, 50, 20, 0.06), 0 6px 20px rgba(90, 50, 20, 0.07);
+    --radius: 16px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1c1512;
+    --bg-alt: #241b16;
+    --paper: #221a15;
+    --ink: #f5e9dd;
+    --ink-soft: #cbb6a3;
+    --ink-faint: #96806e;
+    --accent: #ff8a76;
+    --accent-soft: #3a241d;
+    --accent-warm: #4fd6c4;
+    --accent-warm-soft: #173330;
+    --line: #3a2c22;
+    --line-strong: #4d3b2d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1c1512;
+      --bg-alt: #241b16;
+      --paper: #221a15;
+      --ink: #f5e9dd;
+      --ink-soft: #cbb6a3;
+      --ink-faint: #96806e;
+      --accent: #ff8a76;
+      --accent-soft: #3a241d;
+      --accent-warm: #4fd6c4;
+      --accent-warm-soft: #173330;
+      --line: #3a2c22;
+      --line-strong: #4d3b2d;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 48px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 28px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n {
+    margin-right: 8px;
+  }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(21px, 2.4vw, 26px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 760px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .problem .qtext .concrete { font-size: 22px; letter-spacing: 3px; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">8 Kỹ năng tư duy</div>
+    <ol>
+      <li><a href="#ky-nang-1"><span class="n">🧩</span>Bộ phận – Toàn thể</a></li>
+      <li><a href="#ky-nang-2"><span class="n">⚖️</span>So sánh</a></li>
+      <li><a href="#ky-nang-3"><span class="n">🗂️</span>Phân loại</a></li>
+      <li><a href="#ky-nang-4"><span class="n">🧱</span>Hình dung không gian</a></li>
+      <li><a href="#ky-nang-5"><span class="n">🔎</span>Suy luận</a></li>
+      <li><a href="#ky-nang-6"><span class="n">🔁</span>Thiết lập quy luật</a></li>
+      <li><a href="#ky-nang-7"><span class="n">🔗</span>Xác định mối liên hệ</a></li>
+      <li><a href="#ky-nang-8"><span class="n">➕</span>Cộng và trừ</a></li>
+      <li><a href="#meo-cho-ba-me"><span class="n">💛</span>Mẹo cho ba mẹ</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="callout note" style="max-width:760px; margin: 0 0 36px;">
+      <div class="label">Về tài liệu này</div>
+      <p><b>Học Kĩ Năng Giải Toán Theo Chương Trình Singapore</b> giới thiệu 8 kỹ năng tư duy nền tảng mà các chương trình Toán tư duy chuẩn Singapore thường rèn cho trẻ trước và trong giai đoạn vào lớp 1: Bộ phận – Toàn thể, So sánh, Phân loại, Hình dung không gian, Suy luận, Thiết lập quy luật, Xác định mối liên hệ, và Cộng – trừ. Toàn bộ bài tập trong tài liệu này do đội ngũ tự biên soạn mới hoàn toàn (số liệu, tình huống, lời giải), lấy cảm hứng về cấu trúc kỹ năng từ phương pháp Singapore Math, không sao chép nội dung từ bất kỳ đầu sách cụ thể nào.</p>
+    </div>
+
+    <!-- ================= KỸ NĂNG 1 ================= -->
+    <section class="topic" id="ky-nang-1">
+      <div class="topic-head">
+        <span class="topic-badge">🧩</span>
+        <h2 class="topic-title"><span class="topic-num">Kỹ năng 1</span>Bộ phận – Toàn thể</h2>
+      </div>
+      <p class="topic-intro">Kỹ năng "bộ phận – toàn thể" giúp con hiểu rằng một số lớn có thể được <span class="kw">tách</span> ra thành các phần nhỏ hơn, và ngược lại, các phần nhỏ <span class="kw">gộp</span> lại tạo thành một số lớn hơn. Đây chính là nền tảng tự nhiên nhất của phép cộng và phép trừ — trước khi học các con số trừu tượng, trẻ cần "nhìn thấy" sự tách — gộp bằng đồ vật thật (kẹo, đồ chơi, quả bóng...).</p>
+
+      <div class="problem" data-pool="kn1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Bạn Bo có 3 quả táo đỏ và 4 quả táo xanh trong giỏ.</p>
+          <p class="concrete">🍎🍎🍎 🍏🍏🍏🍏</p>
+          <p>Hỏi giỏ của Bo có tất cả bao nhiêu quả táo?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm số táo đỏ trước: 🍎🍎🍎 — có 3 quả.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm tiếp số táo xanh: 🍏🍏🍏🍏 — có 4 quả.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Gộp hai phần lại bằng cách đếm tiếp: 3, rồi đếm thêm 4 quả nữa — 4, 5, 6, 7.</p></div></div>
+          <p class="answer hidden">Giỏ của Bo có tất cả 7 quả táo (3 + 4 = 7).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="kn1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Có 8 chiếc bánh quy trên đĩa: 🍪🍪🍪🍪🍪🍪🍪🍪. Bạn An ăn hết một phần, đĩa chỉ còn lại 3 chiếc.</p>
+          <p>Hỏi An đã ăn mấy chiếc bánh?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Toàn bộ đĩa lúc đầu có 8 chiếc bánh — đó là "cả một khối".</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Bây giờ đĩa chỉ còn 3 chiếc — đó là phần CÒN LẠI.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm từ 3 lên 8 xem phải đếm thêm mấy bước: 4, 5, 6, 7, 8 — đếm thêm 5 bước.</p></div></div>
+          <p class="answer hidden">An đã ăn 5 chiếc bánh (vì 3 + 5 = 8).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KỸ NĂNG 2 ================= -->
+    <section class="topic" id="ky-nang-2">
+      <div class="topic-head">
+        <span class="topic-badge">⚖️</span>
+        <h2 class="topic-title"><span class="topic-num">Kỹ năng 2</span>So sánh</h2>
+      </div>
+      <p class="topic-intro">Kỹ năng so sánh dạy con nhận ra sự khác biệt về <span class="kw">số lượng</span> hoặc <span class="kw">kích thước</span> giữa hai nhóm — nhiều hơn/ít hơn, cao hơn/thấp hơn. Cách luyện tốt nhất là luôn cho con <b>đếm cả hai nhóm</b> trước khi so sánh, thay vì đoán bằng mắt.</p>
+
+      <div class="problem" data-pool="kn2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Chuồng A có 6 con thỏ: 🐰🐰🐰🐰🐰🐰. Chuồng B có 4 con thỏ: 🐰🐰🐰🐰.</p>
+          <p>Chuồng nào có NHIỀU thỏ hơn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm số thỏ ở chuồng A: 🐰🐰🐰🐰🐰🐰 — 6 con.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm số thỏ ở chuồng B: 🐰🐰🐰🐰 — 4 con.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>So sánh 6 và 4: 6 lớn hơn 4.</p></div></div>
+          <p class="answer hidden">Chuồng A có nhiều thỏ hơn (6 > 4).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="kn2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Hai bạn Tí và Tin thi xếp tháp bằng khối gỗ. Tí xếp được tháp cao 9 tầng. Tin xếp được tháp cao 7 tầng.</p>
+          <p>Ai xếp được tháp CAO hơn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>So sánh hai số 9 và 7.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vẽ 9 vạch và 7 vạch để đếm, sẽ thấy 9 vạch dài hơn.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>9 lớn hơn 7 (9 > 7).</p></div></div>
+          <p class="answer hidden">Bạn Tí xếp được tháp cao hơn.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KỸ NĂNG 3 ================= -->
+    <section class="topic" id="ky-nang-3">
+      <div class="topic-head">
+        <span class="topic-badge">🗂️</span>
+        <h2 class="topic-title"><span class="topic-num">Kỹ năng 3</span>Phân loại</h2>
+      </div>
+      <p class="topic-intro">Phân loại là khả năng nhận ra đặc điểm <span class="kw">chung</span> của một nhóm đồ vật (cùng màu, cùng loại, cùng hình dạng...) và phát hiện ra vật nào không thuộc về nhóm đó. Kỹ năng này rèn tư duy logic và là bước đệm trước khi học khái niệm tập hợp ở lớp lớn hơn.</p>
+
+      <div class="problem" data-pool="kn3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p class="concrete">🐶 🐱 🐰 🍎</p>
+          <p>Trong nhóm trên, hình nào KHÔNG cùng loại với 3 hình còn lại?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>🐶, 🐱, 🐰 đều là ĐỘNG VẬT.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>🍎 là TRÁI CÂY, không phải động vật — khác nhóm với 3 hình còn lại.</p></div></div>
+          <p class="answer hidden">🍎 (quả táo) không cùng loại — vì đó không phải là con vật.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="kn3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p class="concrete">🔴 🔵 🔴 🔵 🔴</p>
+          <p>Xếp các hình trên vào 2 nhóm theo màu sắc. Hỏi nhóm màu ĐỎ có mấy hình?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tìm tất cả hình màu đỏ 🔴 trong dãy.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm số hình đỏ tìm được: 🔴, 🔴, 🔴.</p></div></div>
+          <p class="answer hidden">Nhóm màu đỏ có 3 hình.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KỸ NĂNG 4 ================= -->
+    <section class="topic" id="ky-nang-4">
+      <div class="topic-head">
+        <span class="topic-badge">🧱</span>
+        <h2 class="topic-title"><span class="topic-num">Kỹ năng 4</span>Hình dung không gian</h2>
+      </div>
+      <p class="topic-intro">Hình dung không gian giúp con nhận biết hình dạng và tưởng tượng cách các khối xếp chồng lên nhau — nền tảng cho hình học sau này. Trẻ ở độ tuổi này học tốt nhất qua việc tự tay xếp hình khối thật, không chỉ nhìn tranh.</p>
+
+      <div class="problem" data-pool="kn4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p class="concrete">⚪ ◼️ 🔺</p>
+          <p>Hình nào ở trên là HÌNH TRÒN?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hình tròn là hình không có góc, đường viền cong đều — giống mặt trời, quả bóng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhìn 3 hình: ⚪ (tròn, không góc), ◼️ (có 4 góc vuông), 🔺 (có 3 góc).</p></div></div>
+          <p class="answer hidden">⚪ là hình tròn.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="kn4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Bạn Bi xếp gạch thành 2 hàng chồng lên nhau, mỗi hàng 4 viên.</p>
+          <p class="concrete">🧱🧱🧱🧱<br>🧱🧱🧱🧱</p>
+          <p>Hỏi Bi đã dùng tất cả bao nhiêu viên gạch?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hàng dưới có 4 viên: 🧱🧱🧱🧱.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hàng trên cũng có 4 viên xếp chồng lên: 🧱🧱🧱🧱.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm tất cả bằng cách cộng hai hàng: 4 + 4.</p></div></div>
+          <p class="answer hidden">Bi đã dùng 8 viên gạch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KỸ NĂNG 5 ================= -->
+    <section class="topic" id="ky-nang-5">
+      <div class="topic-head">
+        <span class="topic-badge">🔎</span>
+        <h2 class="topic-title"><span class="topic-num">Kỹ năng 5</span>Suy luận</h2>
+      </div>
+      <p class="topic-intro">Suy luận là khả năng từ một quy tắc chung (mọi con mèo đều có 4 chân) áp dụng vào một trường hợp cụ thể (Mimi là mèo), hoặc sắp xếp các mối quan hệ hơn — kém liên tiếp nhau để tìm ra thứ tự đúng. Đây là bước khởi đầu của tư duy logic.</p>
+
+      <div class="problem" data-pool="kn5-1" data-qid="Bài 5.1">
+        <div class="q"><span class="qid">Bài 5.1</span><div class="qtext">
+          <p>Mọi con mèo 🐱 đều có 4 chân. Mimi là một con mèo.</p>
+          <p>Hỏi Mimi có mấy chân?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đề bài cho biết: TẤT CẢ mèo đều có 4 chân.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mimi cũng là một con mèo, nên Mimi cũng có đặc điểm đó.</p></div></div>
+          <p class="answer hidden">Mimi có 4 chân.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="kn5-2" data-qid="Bài 5.2">
+        <div class="q"><span class="qid">Bài 5.2</span><div class="qtext">
+          <p>An cao hơn Bình. Bình cao hơn Chi.</p>
+          <p>Hỏi trong 3 bạn, ai THẤP nhất?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>An cao hơn Bình, viết gọn: An > Bình.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Bình cao hơn Chi, viết gọn: Bình > Chi.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Ghép lại theo đúng thứ tự: An > Bình > Chi.</p></div></div>
+          <p class="answer hidden">Bạn Chi thấp nhất.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KỸ NĂNG 6 ================= -->
+    <section class="topic" id="ky-nang-6">
+      <div class="topic-head">
+        <span class="topic-badge">🔁</span>
+        <h2 class="topic-title"><span class="topic-num">Kỹ năng 6</span>Thiết lập quy luật</h2>
+      </div>
+      <p class="topic-intro">Thiết lập quy luật là khả năng nhận ra một khuôn mẫu lặp lại (màu sắc, hình dạng, con số) và dự đoán được điều gì sẽ xảy ra tiếp theo. Đây là kỹ năng nền tảng cho đại số sau này — nhận diện quy luật của dãy số.</p>
+
+      <div class="problem" data-pool="kn6-1" data-qid="Bài 6.1">
+        <div class="q"><span class="qid">Bài 6.1</span><div class="qtext">
+          <p class="concrete">🔴 🔵 🔴 🔵 🔴 ❓</p>
+          <p>Hình tiếp theo trong dãy trên là hình gì?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Quan sát: hình lặp lại theo chu kỳ đỏ — xanh — đỏ — xanh...</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Sau mỗi 🔴 luôn là 🔵.</p></div></div>
+          <p class="answer hidden">Hình tiếp theo là 🔵 (màu xanh dương).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="kn6-2" data-qid="Bài 6.2">
+        <div class="q"><span class="qid">Bài 6.2</span><div class="qtext">
+          <p>Dãy số: 2, 4, 6, 8, ?</p>
+          <p>Số tiếp theo là số nào?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhận xét: mỗi số sau hơn số trước 2 đơn vị (2 → 4 hơn 2, 4 → 6 hơn 2...).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vậy sau 8, cộng thêm 2: 8 + 2.</p></div></div>
+          <p class="answer hidden">Số tiếp theo là 10.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KỸ NĂNG 7 ================= -->
+    <section class="topic" id="ky-nang-7">
+      <div class="topic-head">
+        <span class="topic-badge">🔗</span>
+        <h2 class="topic-title"><span class="topic-num">Kỹ năng 7</span>Xác định mối liên hệ</h2>
+      </div>
+      <p class="topic-intro">Xác định mối liên hệ là khả năng nhận ra hai sự vật có quan hệ với nhau như thế nào (con vật và nơi ở, đồ vật và số lượng bộ phận của nó), rồi áp dụng đúng mối quan hệ đó cho một trường hợp mới tương tự.</p>
+
+      <div class="problem" data-pool="kn7-1" data-qid="Bài 7.1">
+        <div class="q"><span class="qid">Bài 7.1</span><div class="qtext">
+          <p>Chó 🐶 thường sống trong Nhà/Chuồng 🏠. Vậy Chim 🐦 thường sống trong...?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Suy nghĩ xem mỗi con vật thường "ở" đâu.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Chó ở trong nhà/chuồng — đó là NƠI Ở quen thuộc của nó.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Chim thường làm tổ trên cây để ở — đó là NƠI Ở của chim.</p></div></div>
+          <p class="answer hidden">Chim thường sống trong Tổ 🪺.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="kn7-2" data-qid="Bài 7.2">
+        <div class="q"><span class="qid">Bài 7.2</span><div class="qtext">
+          <p>Một bàn tay có 5 ngón.</p>
+          <p>Hỏi HAI bàn tay có tất cả bao nhiêu ngón?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Một bàn tay: 5 ngón.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hai bàn tay nghĩa là 5 ngón cộng thêm 5 ngón nữa.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm tiếp từ 5: 6, 7, 8, 9, 10.</p></div></div>
+          <p class="answer hidden">Hai bàn tay có tất cả 10 ngón.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KỸ NĂNG 8 ================= -->
+    <section class="topic" id="ky-nang-8">
+      <div class="topic-head">
+        <span class="topic-badge">➕</span>
+        <h2 class="topic-title"><span class="topic-num">Kỹ năng 8</span>Cộng và trừ</h2>
+      </div>
+      <p class="topic-intro">Đây là kỹ năng quen thuộc nhất: cộng để gộp thêm, trừ để bớt đi. Với trẻ chuẩn bị vào lớp 1, điều quan trọng nhất là luôn gắn phép tính với một <span class="kw">tình huống có thật</span> (bóng bay bay mất, thêm bạn vào chơi cùng...) thay vì học thuộc lòng bảng cộng trừ khô khan.</p>
+
+      <div class="problem" data-pool="kn8-1" data-qid="Bài 8.1">
+        <div class="q"><span class="qid">Bài 8.1</span><div class="qtext">
+          <p>Trên trời có 6 quả bóng bay: 🎈🎈🎈🎈🎈🎈. Gió thổi bay mất 2 quả.</p>
+          <p>Hỏi còn lại bao nhiêu quả bóng bay?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Lúc đầu có 6 quả bóng: 🎈🎈🎈🎈🎈🎈.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Bay mất 2 quả nghĩa là bớt đi 2.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm lùi từ 6: bớt 1 còn 5, bớt tiếp 1 còn 4.</p></div></div>
+          <p class="answer hidden">Còn lại 4 quả bóng bay (6 − 2 = 4).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="kn8-2" data-qid="Bài 8.2">
+        <div class="q"><span class="qid">Bài 8.2</span><div class="qtext">
+          <p>Có 5 bạn đang chơi đá bóng, sau đó có thêm 3 bạn nữa vào chơi cùng.</p>
+          <p>Hỏi lúc này có tất cả bao nhiêu bạn đang chơi?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Lúc đầu có 5 bạn đang chơi.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thêm 3 bạn nữa vào — nghĩa là CỘNG thêm 3.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm tiếp từ 5: 6, 7, 8.</p></div></div>
+          <p class="answer hidden">Có tất cả 8 bạn đang chơi (5 + 3 = 8).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-cho-ba-me">
+      <div class="topic-head">
+        <span class="topic-badge">💛</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo cùng con học tại nhà</h2>
+      </div>
+      <p class="topic-intro">5 nguyên tắc ngắn gọn khi đồng hành cùng con luyện 8 kỹ năng tư duy trên, dựa trên tinh thần phương pháp Toán tư duy Singapore (đi từ Cụ thể → Hình ảnh → Trừu tượng).</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Luôn dùng đồ vật thật.</b> Trước khi hỏi con những con số trừu tượng, hãy để con đếm bằng ngón tay, kẹo, đồ chơi thật rồi mới chuyển sang hình vẽ, cuối cùng mới là con số.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Không vội chê sai.</b> Khi con trả lời sai, hỏi lại "Con đếm lại xem nào?" thay vì sửa ngay, để con tự phát hiện lỗi của mình.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Luyện lại bằng bài tương tự.</b> Dùng nút "Đổi bài tương tự" để luyện lại đúng kỹ năng đó với số liệu khác, tránh con học thuộc đáp số thay vì hiểu cách làm.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Không ép tốc độ.</b> Ở tuổi chuẩn bị vào lớp 1, hiểu đúng quan trọng hơn làm nhanh. Cho con đủ thời gian suy nghĩ trước khi bấm "Xem đáp số".</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">5</span>
+          <p><b>Kết nối với đời sống.</b> Mỗi tuần chọn một tình huống thật (đi siêu thị, dọn đồ chơi, chia bánh kẹo) để cùng con đếm, so sánh, cộng trừ ngoài đời.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 1. Cấu trúc 8 kỹ năng tư duy lấy cảm hứng từ phương pháp Toán tư duy chuẩn Singapore, toàn bộ bài tập và lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu sách nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'kn1-1': [{
+      qHtml: '<p>Bạn Na có 2 quả bóng bay màu vàng và 5 quả bóng bay màu hồng.</p><p class="concrete">🟡🟡 🌸🌸🌸🌸🌸</p><p>Hỏi Na có tất cả bao nhiêu quả bóng bay?</p>',
+      steps: [
+        '<p>Đếm số bóng vàng trước: 🟡🟡 — có 2 quả.</p>',
+        '<p>Đếm tiếp số bóng hồng: 🌸🌸🌸🌸🌸 — có 5 quả.</p>',
+        '<p>Gộp hai phần lại: đếm 2, rồi đếm thêm 5 nữa — 3, 4, 5, 6, 7.</p>'
+      ],
+      answerHtml: 'Na có tất cả 7 quả bóng bay (2 + 5 = 7).'
+    }],
+    'kn1-2': [{
+      qHtml: '<p>Có 10 quả bóng: 🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈. Sau khi tặng bạn, còn lại 6 quả.</p><p>Hỏi đã tặng bao nhiêu quả bóng?</p>',
+      steps: [
+        '<p>Toàn bộ lúc đầu có 10 quả — đó là "cả một khối".</p>',
+        '<p>Bây giờ còn lại 6 quả — đó là phần CÒN LẠI.</p>',
+        '<p>Đếm từ 6 lên 10: 7, 8, 9, 10 — đếm thêm 4 bước.</p>'
+      ],
+      answerHtml: 'Đã tặng bạn 4 quả bóng (vì 6 + 4 = 10).'
+    }],
+    'kn2-1': [{
+      qHtml: '<p>Bể cá X có 5 con cá: 🐟🐟🐟🐟🐟. Bể cá Y có 8 con cá: 🐟🐟🐟🐟🐟🐟🐟🐟.</p><p>Bể nào có ÍT cá hơn?</p>',
+      steps: [
+        '<p>Đếm số cá ở bể X: 🐟🐟🐟🐟🐟 — 5 con.</p>',
+        '<p>Đếm số cá ở bể Y: 🐟🐟🐟🐟🐟🐟🐟🐟 — 8 con.</p>',
+        '<p>So sánh 5 và 8: 5 nhỏ hơn 8.</p>'
+      ],
+      answerHtml: 'Bể cá X có ít cá hơn (5 < 8).'
+    }],
+    'kn2-2': [{
+      qHtml: '<p>Bạn Mai đi bộ được 4 bước. Bạn Bin đi bộ được 6 bước.</p><p>Ai đi được ÍT bước hơn?</p>',
+      steps: [
+        '<p>So sánh hai số 4 và 6.</p>',
+        '<p>Vẽ 4 vạch và 6 vạch để đếm, sẽ thấy 4 vạch ngắn hơn.</p>',
+        '<p>4 nhỏ hơn 6 (4 < 6).</p>'
+      ],
+      answerHtml: 'Bạn Mai đi được ít bước hơn.'
+    }],
+    'kn3-1': [{
+      qHtml: '<p class="concrete">🚗 🚌 🚲 🐟</p><p>Trong nhóm trên, hình nào KHÔNG cùng loại với 3 hình còn lại?</p>',
+      steps: [
+        '<p>🚗, 🚌, 🚲 đều là PHƯƠNG TIỆN ĐI LẠI.</p>',
+        '<p>🐟 là CON VẬT, không phải phương tiện đi lại — khác nhóm với 3 hình còn lại.</p>'
+      ],
+      answerHtml: '🐟 (con cá) không cùng loại — vì đó không phải là phương tiện đi lại.'
+    }],
+    'kn3-2': [{
+      qHtml: '<p class="concrete">🟡🟢🟡🟢🟡🟢🟡</p><p>Xếp các hình trên vào 2 nhóm theo màu sắc. Hỏi nhóm màu VÀNG có mấy hình?</p>',
+      steps: [
+        '<p>Tìm tất cả hình màu vàng 🟡 trong dãy.</p>',
+        '<p>Đếm số hình vàng tìm được: 🟡, 🟡, 🟡, 🟡.</p>'
+      ],
+      answerHtml: 'Nhóm màu vàng có 4 hình.'
+    }],
+    'kn4-1': [{
+      qHtml: '<p class="concrete">🔺 ⚪ ◼️</p><p>Hình nào ở trên là HÌNH VUÔNG?</p>',
+      steps: [
+        '<p>Hình vuông có 4 cạnh bằng nhau và 4 góc vuông.</p>',
+        '<p>Nhìn 3 hình: 🔺 (3 góc), ⚪ (không góc, tròn), ◼️ (4 góc vuông).</p>'
+      ],
+      answerHtml: '◼️ là hình vuông.'
+    }],
+    'kn4-2': [{
+      qHtml: '<p>Bạn Su xếp gạch thành 3 hàng chồng lên nhau, mỗi hàng 3 viên.</p><p class="concrete">🧱🧱🧱<br>🧱🧱🧱<br>🧱🧱🧱</p><p>Hỏi Su đã dùng tất cả bao nhiêu viên gạch?</p>',
+      steps: [
+        '<p>Mỗi hàng có 3 viên, có tất cả 3 hàng.</p>',
+        '<p>Đếm tất cả bằng cách cộng ba hàng: 3 + 3 + 3.</p>'
+      ],
+      answerHtml: 'Su đã dùng 9 viên gạch.'
+    }],
+    'kn5-1': [{
+      qHtml: '<p>Mọi con chim 🐦 đều có 2 cánh. Chích Bông là một con chim.</p><p>Hỏi Chích Bông có mấy cánh?</p>',
+      steps: [
+        '<p>Đề bài cho biết: TẤT CẢ chim đều có 2 cánh.</p>',
+        '<p>Chích Bông cũng là một con chim, nên cũng có đặc điểm đó.</p>'
+      ],
+      answerHtml: 'Chích Bông có 2 cánh.'
+    }],
+    'kn5-2': [{
+      qHtml: '<p>Hộp A nặng hơn hộp B. Hộp B nặng hơn hộp C.</p><p>Hỏi hộp nào NHẸ nhất?</p>',
+      steps: [
+        '<p>Hộp A nặng hơn hộp B, viết gọn: A > B.</p>',
+        '<p>Hộp B nặng hơn hộp C, viết gọn: B > C.</p>',
+        '<p>Ghép lại theo đúng thứ tự: A > B > C.</p>'
+      ],
+      answerHtml: 'Hộp C nhẹ nhất.'
+    }],
+    'kn6-1': [{
+      qHtml: '<p class="concrete">🟡🟡🟢 🟡🟡🟢 🟡🟡 ❓</p><p>Hình tiếp theo trong dãy trên là hình gì?</p>',
+      steps: [
+        '<p>Quan sát: dãy lặp lại theo nhóm 3 hình "vàng — vàng — xanh lá".</p>',
+        '<p>Sau "🟡🟡" trong mỗi nhóm luôn là 🟢.</p>'
+      ],
+      answerHtml: 'Hình tiếp theo là 🟢 (màu xanh lá).'
+    }],
+    'kn6-2': [{
+      qHtml: '<p>Dãy số: 1, 3, 5, 7, ?</p><p>Số tiếp theo là số nào?</p>',
+      steps: [
+        '<p>Nhận xét: mỗi số sau hơn số trước 2 đơn vị (1 → 3 hơn 2, 3 → 5 hơn 2...).</p>',
+        '<p>Vậy sau 7, cộng thêm 2: 7 + 2.</p>'
+      ],
+      answerHtml: 'Số tiếp theo là 9.'
+    }],
+    'kn7-1': [{
+      qHtml: '<p>Cá 🐟 thường sống dưới Nước/Ao 💧. Vậy Ong 🐝 thường sống ở...?</p>',
+      steps: [
+        '<p>Suy nghĩ xem mỗi con vật thường "ở" đâu.</p>',
+        '<p>Cá sống dưới nước — đó là NƠI Ở quen thuộc của nó.</p>',
+        '<p>Ong sống và làm mật trong tổ ong.</p>'
+      ],
+      answerHtml: 'Ong thường sống trong Tổ ong 🍯.'
+    }],
+    'kn7-2': [{
+      qHtml: '<p>Một chiếc xe đạp có 2 bánh.</p><p>Hỏi 3 chiếc xe đạp có tất cả bao nhiêu bánh?</p>',
+      steps: [
+        '<p>Một chiếc xe đạp: 2 bánh.</p>',
+        '<p>Ba chiếc xe đạp nghĩa là 2 bánh, cộng thêm 2 bánh, cộng thêm 2 bánh nữa.</p>',
+        '<p>Đếm: 2, rồi đếm thêm 2 — 4, rồi đếm thêm 2 nữa — 6.</p>'
+      ],
+      answerHtml: 'Ba chiếc xe đạp có tất cả 6 bánh.'
+    }],
+    'kn8-1': [{
+      qHtml: '<p>Có 9 con chim đậu trên cành: 🐦🐦🐦🐦🐦🐦🐦🐦🐦. Có 3 con bay đi.</p><p>Hỏi còn lại mấy con?</p>',
+      steps: [
+        '<p>Lúc đầu có 9 con chim.</p>',
+        '<p>Bay đi 3 con nghĩa là bớt đi 3.</p>',
+        '<p>Đếm lùi từ 9: bớt 1 còn 8, bớt 1 còn 7, bớt 1 còn 6.</p>'
+      ],
+      answerHtml: 'Còn lại 6 con chim (9 − 3 = 6).'
+    }],
+    'kn8-2': [{
+      qHtml: '<p>Ao có 4 con vịt đang bơi: 🦆🦆🦆🦆. Có thêm 5 con nữa bơi tới.</p><p>Hỏi ao có tất cả bao nhiêu con vịt?</p>',
+      steps: [
+        '<p>Lúc đầu có 4 con vịt.</p>',
+        '<p>Thêm 5 con nữa — nghĩa là CỘNG thêm 5.</p>',
+        '<p>Đếm tiếp từ 4: 5, 6, 7, 8, 9.</p>'
+      ],
+      answerHtml: 'Ao có tất cả 9 con vịt (4 + 5 = 9).'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
