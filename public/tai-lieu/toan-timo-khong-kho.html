@@ -1,0 +1,1712 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán TIMO Không Khó — Ôn luyện Toán lớp 1</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f2f5fb;
+    --bg-alt: #e6ecf7;
+    --paper: #ffffff;
+    --ink: #172033;
+    --ink-soft: #55617a;
+    --ink-faint: #8894ac;
+    --accent: #2455c9;
+    --accent-soft: #e4ebfb;
+    --accent-warm: #e08a1e;
+    --accent-warm-soft: #fbeed9;
+    --line: #dde4f0;
+    --line-strong: #c3cee3;
+    --shadow: 0 1px 2px rgba(20, 35, 70, 0.06), 0 6px 20px rgba(20, 35, 70, 0.07);
+    --radius: 12px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1522;
+    --bg-alt: #141b2c;
+    --paper: #131a29;
+    --ink: #e8edf8;
+    --ink-soft: #b0bcd4;
+    --ink-faint: #7c8aa8;
+    --accent: #7ea6ff;
+    --accent-soft: #1c2740;
+    --accent-warm: #f0ad4e;
+    --accent-warm-soft: #332510;
+    --line: #253048;
+    --line-strong: #33405c;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1522;
+      --bg-alt: #141b2c;
+      --paper: #131a29;
+      --ink: #e8edf8;
+      --ink-soft: #b0bcd4;
+      --ink-faint: #7c8aa8;
+      --accent: #7ea6ff;
+      --accent-soft: #1c2740;
+      --accent-warm: #f0ad4e;
+      --accent-warm-soft: #332510;
+      --line: #253048;
+      --line-strong: #33405c;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 28px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.8px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { font-family: var(--mono); color: var(--ink-faint); margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  section.topic { padding-top: 54px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .topic-num { font-family: var(--serif); font-size: 15px; color: var(--accent); font-style: italic; }
+  h2.topic-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 10px 0 30px; }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 600; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks (MCQ) ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q { padding: 18px 22px; display: flex; gap: 14px; align-items: baseline; border-bottom: 1px solid var(--line); }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); white-space: nowrap; padding-top: 1px; }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .mcq-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 18px;
+    margin: 10px 0 2px;
+    font-size: 15px;
+  }
+  .mcq-opts span b { color: var(--accent); margin-right: 4px; }
+  @media (max-width: 480px) {
+    .mcq-opts { grid-template-columns: 1fr; }
+  }
+
+  .geo-figure {
+    display: flex;
+    justify-content: center;
+    padding: 14px 0 6px;
+  }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 4px 12px; margin-bottom: 12px; }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  .appendix { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 22px 0; }
+  .method-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; background: var(--paper); }
+  .method-card .mnum { font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 22px; margin-bottom: 6px; display: block; }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">5 Dạng TIMO lớp 1</div>
+    <ol>
+      <li><a href="#dang-1"><span class="n">1</span>Tư duy lô-gic</a></li>
+      <li><a href="#dang-2"><span class="n">2</span>Số học</a></li>
+      <li><a href="#dang-3"><span class="n">3</span>Lý thuyết số</a></li>
+      <li><a href="#dang-4"><span class="n">4</span>Hình học</a></li>
+      <li><a href="#dang-5"><span class="n">5</span>Tổ hợp</a></li>
+      <li><a href="#meo-lam-bai"><span class="n">＋</span>Mẹo làm bài thi TIMO</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">Về tài liệu này</div>
+      <p><b>Toán TIMO Không Khó</b> tổng hợp cấu trúc từ 5 đề Vòng loại quốc gia TIMO lớp 1 (Preliminary Round) mà ba mẹ cung cấp: mỗi đề luôn gồm đúng <b>5 dạng bài</b> — Tư duy lô-gic, Số học, Lý thuyết số, Hình học, Tổ hợp — mỗi dạng 5 câu. Toàn bộ 100 bài tập trong tài liệu này (5 dạng × 5 kiểu câu × 4 biến thể) là <b>bài tự soạn mới hoàn toàn</b>: đề bài, số liệu, hình vẽ và lời giải đều do đội ngũ biên soạn lại, chỉ tham khảo cấu trúc/kiểu bài của TIMO chứ không sao chép nguyên văn. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để luyện lại đúng kiểu bài với số liệu khác, tránh học thuộc đáp số.</p>
+    </div>
+
+    <!-- ================= DẠNG 1: TƯ DUY LÔ-GIC ================= -->
+    <section class="topic" id="dang-1">
+      <div class="topic-head">
+        <span class="topic-num">Dạng 1</span>
+        <h2 class="topic-title">Tư duy lô-gic</h2>
+      </div>
+      <p class="topic-intro">Dạng bài không đòi hỏi tính toán phức tạp mà cần suy luận từng bước: so sánh cân nặng gián tiếp, đếm người/vị trí, tính theo lịch, nhận ra quy luật, và bài toán tuổi. Bí quyết chung: viết lại dữ kiện đề bài thành các phép so sánh hoặc phép tính đơn giản trước khi trả lời.</p>
+
+      <div class="problem" data-pool="d1-1" data-qid="Câu 1.1">
+        <div class="q"><span class="qid">Câu 1.1</span><div class="qtext">
+          <p>Cho hai chiếc cân thăng bằng sau, hãy tìm loại quả <b>nặng nhất</b> trong 3 loại quả: Chuối 🍌, Nho 🍇, Đào 🍑.</p>
+          <p>Cân 1: 🍌 = 🍇 + 🍇 &nbsp; · &nbsp; Cân 2: 🍑 = 🍌 + 🍇</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> Chuối</span><span><b>B.</b> Nho</span>
+            <span><b>C.</b> Đào</span><span><b>D.</b> Không xác định được</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Cân 1 cho biết: 1 quả chuối nặng bằng 2 quả nho.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cân 2 cho biết: 1 quả đào = 1 chuối + 1 nho = (2 nho) + 1 nho = 3 quả nho.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>So sánh theo đơn vị "nho": chuối = 2 nho, đào = 3 nho, nho = 1 nho. Đào nặng nhất.</p></div></div>
+          <p class="answer hidden">Đáp án: C — Đào.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d1-2" data-qid="Câu 1.2">
+        <div class="q"><span class="qid">Câu 1.2</span><div class="qtext">
+          <p>Mai có tất cả 4 anh chị em. Hỏi mẹ Mai có bao nhiêu người con?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 3</span><span><b>B.</b> 4</span>
+            <span><b>C.</b> 5</span><span><b>D.</b> 6</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tổng số con của mẹ = Mai + số anh chị em của Mai.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>1 (Mai) + 4 = 5.</p></div></div>
+          <p class="answer hidden">Đáp án: C — 5 người con.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d1-3" data-qid="Câu 1.3">
+        <div class="q"><span class="qid">Câu 1.3</span><div class="qtext">
+          <p>Hôm nay là thứ Hai. Hỏi 4 ngày nữa là thứ mấy?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> Thứ Năm</span><span><b>B.</b> Thứ Sáu</span>
+            <span><b>C.</b> Thứ Tư</span><span><b>D.</b> Thứ Bảy</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm từng ngày kể từ thứ Hai: +1 → thứ Ba, +2 → thứ Tư, +3 → thứ Năm, +4 → thứ Sáu.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Thứ Sáu.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d1-4" data-qid="Câu 1.4">
+        <div class="q"><span class="qid">Câu 1.4</span><div class="qtext">
+          <p>Quan sát quy luật, tìm số thích hợp điền vào dấu "?": 1, 4, 7, 10, 13, ?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 14</span><span><b>B.</b> 15</span>
+            <span><b>C.</b> 16</span><span><b>D.</b> 17</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi số sau hơn số liền trước 3 đơn vị (1→4→7→10→13, mỗi lần +3).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số tiếp theo: 13 + 3 = 16.</p></div></div>
+          <p class="answer hidden">Đáp án: C — 16.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d1-5" data-qid="Câu 1.5">
+        <div class="q"><span class="qid">Câu 1.5</span><div class="qtext">
+          <p>Bin năm nay 8 tuổi. Hỏi 3 năm nữa Bin bao nhiêu tuổi?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 10</span><span><b>B.</b> 11</span>
+            <span><b>C.</b> 12</span><span><b>D.</b> 9</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tuổi sau 3 năm = tuổi hiện tại + 3.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>8 + 3 = 11.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 11 tuổi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DẠNG 2: SỐ HỌC ================= -->
+    <section class="topic" id="dang-2">
+      <div class="topic-head">
+        <span class="topic-num">Dạng 2</span>
+        <h2 class="topic-title">Số học</h2>
+      </div>
+      <p class="topic-intro">Trọng tâm là tính nhanh bằng cách <span class="kw">nhóm số hợp lý</span> (ghép 2 số cho tổng tròn chục, gộp các nhóm giống nhau lặp lại) thay vì cộng trừ tuần tự từng bước — đây chính là "mẹo" giúp làm bài nhanh hơn khi thi TIMO.</p>
+
+      <div class="problem" data-pool="d2-1" data-qid="Câu 2.1">
+        <div class="q"><span class="qid">Câu 2.1</span><div class="qtext">
+          <p>Tính giá trị của 2 + 8 + 4 + 6 + 3.</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 22</span><span><b>B.</b> 23</span>
+            <span><b>C.</b> 24</span><span><b>D.</b> 21</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Ghép cặp cho tổng tròn chục: (2 + 8) + (4 + 6) + 3.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>= 10 + 10 + 3 = 23.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 23.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d2-2" data-qid="Câu 2.2">
+        <div class="q"><span class="qid">Câu 2.2</span><div class="qtext">
+          <p>Tính giá trị của 18 − 9 − 8.</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 0</span><span><b>B.</b> 1</span>
+            <span><b>C.</b> 2</span><span><b>D.</b> 3</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đổi chỗ nhóm lại cho tròn chục: (18 − 8) − 9.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>= 10 − 9 = 1.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 1.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d2-3" data-qid="Câu 2.3">
+        <div class="q"><span class="qid">Câu 2.3</span><div class="qtext">
+          <p>Số nào đang bị che (▢) để được phép tính đúng: 17 − ▢ = 9?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 7</span><span><b>B.</b> 8</span>
+            <span><b>C.</b> 9</span><span><b>D.</b> 6</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số bị che = số bị trừ − hiệu = 17 − 9.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>17 − 9 = 8. Thử lại: 17 − 8 = 9 ✓.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 8.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d2-4" data-qid="Câu 2.4">
+        <div class="q"><span class="qid">Câu 2.4</span><div class="qtext">
+          <p>Tính giá trị của 4 + 1 − 2 + 4 + 1 − 2 + 4 + 1 − 2.</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 6</span><span><b>B.</b> 9</span>
+            <span><b>C.</b> 12</span><span><b>D.</b> 8</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhóm mỗi 3 số một: (4 + 1 − 2) = 3.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Có đúng 3 nhóm giống hệt nhau: 3 × 3 = 9.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 9.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d2-5" data-qid="Câu 2.5">
+        <div class="q"><span class="qid">Câu 2.5</span><div class="qtext">
+          <p>Tìm giá trị của K để phép tính sau đúng: 7 + K = 9 − 4 + 12.</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 9</span><span><b>B.</b> 10</span>
+            <span><b>C.</b> 11</span><span><b>D.</b> 12</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính vế phải trước: 9 − 4 + 12 = 17.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>7 + K = 17, vậy K = 17 − 7 = 10.</p></div></div>
+          <p class="answer hidden">Đáp án: B — K = 10.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DẠNG 3: LÝ THUYẾT SỐ ================= -->
+    <section class="topic" id="dang-3">
+      <div class="topic-head">
+        <span class="topic-num">Dạng 3</span>
+        <h2 class="topic-title">Lý thuyết số</h2>
+      </div>
+      <p class="topic-intro">Nhóm bài xoay quanh <span class="kw">tính chất của số</span>: chẵn/lẻ, dãy cách đều, điền dấu +/− để được phép tính đúng, và các bài toán "cho — nhận" để hai đại lượng bằng nhau. Cách làm nhanh nhất thường là <b>thử từng phương án</b> khi đề đã cho sẵn 4 lựa chọn.</p>
+
+      <div class="problem" data-pool="d3-1" data-qid="Câu 3.1">
+        <div class="q"><span class="qid">Câu 3.1</span><div class="qtext">
+          <p>Trong dãy số 45, 12, 33, 8, 21, 16, số nào là số <b>chẵn nhỏ nhất</b>?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 12</span><span><b>B.</b> 8</span>
+            <span><b>C.</b> 16</span><span><b>D.</b> 21</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Lọc ra các số chẵn trong dãy: 12, 8, 16.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số nhỏ nhất trong 3 số đó là 8.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 8.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d3-2" data-qid="Câu 3.2">
+        <div class="q"><span class="qid">Câu 3.2</span><div class="qtext">
+          <p>Dãy số cách đều: 5, 9, 13, 17, ... Tìm số thứ 8 trong dãy.</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 29</span><span><b>B.</b> 33</span>
+            <span><b>C.</b> 37</span><span><b>D.</b> 31</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi số sau hơn số liền trước 4 đơn vị.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Từ số thứ 1 đến số thứ 8 phải cộng thêm 4 đúng 7 lần: 5 + 7 × 4 = 33.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 33.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d3-3" data-qid="Câu 3.3">
+        <div class="q"><span class="qid">Câu 3.3</span><div class="qtext">
+          <p>Điền dấu + hoặc − vào 2 chỗ trống để được phép tính đúng: 9 ▢ 5 ▢ 2 = 12</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> +, +</span><span><b>B.</b> +, −</span>
+            <span><b>C.</b> −, +</span><span><b>D.</b> −, −</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thử phương án +, +: 9 + 5 + 2 = 16 (sai, quá lớn).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thử phương án +, −: 9 + 5 − 2 = 12 (đúng!).</p></div></div>
+          <p class="answer hidden">Đáp án: B — +, −.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d3-4" data-qid="Câu 3.4">
+        <div class="q"><span class="qid">Câu 3.4</span><div class="qtext">
+          <p>An có 19 viên bi, Bình có 7 viên bi. Hỏi An cần cho Bình mấy viên để hai bạn có số bi bằng nhau?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 5</span><span><b>B.</b> 6</span>
+            <span><b>C.</b> 7</span><span><b>D.</b> 8</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hiệu số bi giữa hai bạn: 19 − 7 = 12.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>An cho Bình đúng một nửa của hiệu đó để hai bên bằng nhau: 12 : 2 = 6.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thử lại: An còn 19 − 6 = 13, Bình có 7 + 6 = 13. Bằng nhau ✓.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 6 viên bi.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d3-5" data-qid="Câu 3.5">
+        <div class="q"><span class="qid">Câu 3.5</span><div class="qtext">
+          <p>Tổng 1 + 3 + 5 + 7 + 9 là số chẵn hay số lẻ?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> Số chẵn</span><span><b>B.</b> Số lẻ</span>
+            <span><b>C.</b> Vừa chẵn vừa lẻ</span><span><b>D.</b> Không xác định được</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính tổng: 1 + 3 + 5 + 7 + 9 = 25.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>25 không chia hết cho 2, nên là số lẻ.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Số lẻ.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DẠNG 4: HÌNH HỌC ================= -->
+    <section class="topic" id="dang-4">
+      <div class="topic-head">
+        <span class="topic-num">Dạng 4</span>
+        <h2 class="topic-title">Hình học</h2>
+      </div>
+      <p class="topic-intro">Dạng bài rèn <span class="kw">quan sát và đếm có hệ thống</span>: đếm hình vuông (kể cả hình vuông lớn ghép từ các ô nhỏ), đếm khối lập phương, nhận ra quy luật hình lặp lại, và đếm cạnh/góc/đoạn thẳng. Mẹo: luôn đếm hình nhỏ nhất trước, rồi mới tìm các hình lớn hơn ẩn bên trong.</p>
+
+      <div class="problem" data-pool="d4-1" data-qid="Câu 4.1">
+        <div class="q"><span class="qid">Câu 4.1</span><div class="qtext">
+          <p>Hỏi có bao nhiêu hình vuông trong hình dưới đây?</p>
+          <div class="geo-figure"><svg viewBox="0 0 96 96" width="150" height="150">
+            <rect x="0" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="32" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="32" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="32" y="64" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="64" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 4</span><span><b>B.</b> 5</span>
+            <span><b>C.</b> 6</span><span><b>D.</b> 7</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm từng ô vuông nhỏ (kích thước 1×1) trong hình: có 5 ô.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hình dạng chữ thập mỏng này không có 4 ô nào ghép được thành hình vuông lớn hơn.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 5 hình vuông.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d4-2" data-qid="Câu 4.2">
+        <div class="q"><span class="qid">Câu 4.2</span><div class="qtext">
+          <p>Đếm tổng số khối lập phương đã dùng để xếp thành hình dưới đây (mỗi cột là một chồng khối).</p>
+          <div class="geo-figure"><svg viewBox="0 0 164 84" width="220" height="112">
+            <rect x="0" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="0" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="34" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="34" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="68" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="102" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="102" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="102" y="0" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="136" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <rect x="136" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 8</span><span><b>B.</b> 9</span>
+            <span><b>C.</b> 10</span><span><b>D.</b> 11</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm số khối ở mỗi cột từ trái sang phải: 2, 2, 1, 3, 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng lại: 2 + 2 + 1 + 3 + 2 = 10.</p></div></div>
+          <p class="answer hidden">Đáp án: C — 10 khối lập phương.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d4-3" data-qid="Câu 4.3">
+        <div class="q"><span class="qid">Câu 4.3</span><div class="qtext">
+          <p>Quan sát quy luật, tìm hình tiếp theo trong dãy: 🔴,🔺,🟦,🔴,🔺,🟦,🔴,?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 🔴</span><span><b>B.</b> 🔺</span>
+            <span><b>C.</b> 🟦</span><span><b>D.</b> ⬛</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Quy luật lặp lại theo chu kỳ 3 hình: đỏ, tam giác, vuông xanh.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Sau hình 🔴 (vị trí thứ 7, đầu một chu kỳ mới) sẽ đến 🔺.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 🔺.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d4-4" data-qid="Câu 4.4">
+        <div class="q"><span class="qid">Câu 4.4</span><div class="qtext">
+          <p>Hình mũi tên dưới đây có bao nhiêu cạnh (và cũng là bấy nhiêu góc trong)?</p>
+          <div class="geo-figure"><svg viewBox="0 0 120 105" width="170" height="149">
+            <polygon points="10,45 70,45 70,25 110,60 70,95 70,75 10,75" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 6</span><span><b>B.</b> 7</span>
+            <span><b>C.</b> 8</span><span><b>D.</b> 9</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm từng cạnh của hình mũi tên theo đường viền, đi hết một vòng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Có 7 cạnh, nên hình cũng có 7 góc trong (mỗi cạnh gặp cạnh kế tiếp tạo thành 1 góc).</p></div></div>
+          <p class="answer hidden">Đáp án: B — 7 cạnh.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d4-5" data-qid="Câu 4.5">
+        <div class="q"><span class="qid">Câu 4.5</span><div class="qtext">
+          <p>Có bao nhiêu hình tròn trong hình dưới đây?</p>
+          <div class="geo-figure"><svg viewBox="0 0 270 60" width="270" height="60">
+            <circle cx="30" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+            <circle cx="72" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+            <circle cx="114" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+            <circle cx="156" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+            <circle cx="198" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+            <circle cx="240" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 4</span><span><b>B.</b> 5</span>
+            <span><b>C.</b> 6</span><span><b>D.</b> 7</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm từng hình tròn chồng lên nhau, lần lượt từ trái sang phải.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Có tất cả 6 hình tròn.</p></div></div>
+          <p class="answer hidden">Đáp án: C — 6 hình tròn.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DẠNG 5: TỔ HỢP ================= -->
+    <section class="topic" id="dang-5">
+      <div class="topic-head">
+        <span class="topic-num">Dạng 5</span>
+        <h2 class="topic-title">Tổ hợp</h2>
+      </div>
+      <p class="topic-intro">Nhóm bài về <span class="kw">so sánh, đếm, và chia phần</span>: so sánh số nhiều chữ số, đếm số chẵn/lẻ trong danh sách, lập số mới từ các chữ số cho trước, và chia một tổng thành các phần khác nhau theo điều kiện.</p>
+
+      <div class="problem" data-pool="d5-1" data-qid="Câu 5.1">
+        <div class="q"><span class="qid">Câu 5.1</span><div class="qtext">
+          <p>Số nào dưới đây là số <b>lớn nhất</b>: 30521840, 30519876, 30520999, 30521799?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 30519876</span><span><b>B.</b> 30521840</span>
+            <span><b>C.</b> 30520999</span><span><b>D.</b> 30521799</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Cả 4 số đều có 8 chữ số, so sánh lần lượt từ chữ số hàng cao nhất: đều bắt đầu "305".</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Xét tiếp: 3052<u>1</u>840 và 3052<u>1</u>799 đều có chữ số thứ 5 là 1 (lớn hơn 30520999 và 30519876). So 2 số còn lại: 30521840 > 30521799.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 30521840.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d5-2" data-qid="Câu 5.2">
+        <div class="q"><span class="qid">Câu 5.2</span><div class="qtext">
+          <p>Trong dãy số 12, 7, 25, 8, 31, 14, 9, 20, có bao nhiêu số chẵn?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 3</span><span><b>B.</b> 4</span>
+            <span><b>C.</b> 5</span><span><b>D.</b> 6</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Lọc các số chẵn trong dãy: 12, 8, 14, 20.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm được 4 số chẵn.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 4 số chẵn.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d5-3" data-qid="Câu 5.3">
+        <div class="q"><span class="qid">Câu 5.3</span><div class="qtext">
+          <p>Chọn 2 chữ số khác nhau từ 0, 2, 5, 7 để lập số chẵn có 2 chữ số. Hỏi lập được bao nhiêu số?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 4</span><span><b>B.</b> 5</span>
+            <span><b>C.</b> 6</span><span><b>D.</b> 7</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số chẵn nên chữ số hàng đơn vị phải là 0 hoặc 2. Chữ số hàng chục không được là 0 (vì là số có 2 chữ số).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Liệt kê: 20, 50, 52, 70, 72.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 5 số.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d5-4" data-qid="Câu 5.4">
+        <div class="q"><span class="qid">Câu 5.4</span><div class="qtext">
+          <p>An, Bình, Chi góp được 15 quyển sách. Mỗi bạn góp ít nhất 1 quyển và số sách của mỗi bạn khác nhau. An góp nhiều nhất. Hỏi An góp nhiều nhất bao nhiêu quyển?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 10</span><span><b>B.</b> 11</span>
+            <span><b>C.</b> 12</span><span><b>D.</b> 13</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Để An góp được nhiều nhất, 2 bạn còn lại nên góp ít nhất có thể, và phải khác nhau: 1 và 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>An góp: 15 − 1 − 2 = 12.</p></div></div>
+          <p class="answer hidden">Đáp án: C — 12 quyển.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="d5-5" data-qid="Câu 5.5">
+        <div class="q"><span class="qid">Câu 5.5</span><div class="qtext">
+          <p>Chia đều 18 viên bi vào 3 hộp bằng nhau. Hỏi mỗi hộp có bao nhiêu viên bi?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 5</span><span><b>B.</b> 6</span>
+            <span><b>C.</b> 7</span><span><b>D.</b> 9</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chia đều nghĩa là lấy tổng số bi chia cho số hộp: 18 : 3.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>18 : 3 = 6.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 6 viên bi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-lam-bai">
+      <div class="topic-head">
+        <span class="topic-num">Phụ lục</span>
+        <h2 class="topic-title">Mẹo làm bài thi TIMO</h2>
+      </div>
+      <p class="topic-intro">5 mẹo ngắn gọn giúp con làm bài nhanh và chính xác hơn khi luyện các dạng trên.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Nhóm số cho tròn chục.</b> Với dãy cộng trừ nhiều số, luôn tìm 2 số cộng/trừ ra 10 trước — tính nhanh và ít sai hơn cộng lần lượt.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Thử từng phương án (Dạng 3).</b> Với bài điền dấu +/−, thử lần lượt 4 phương án đã cho thay vì tự tìm — nhanh hơn vì đề đã giới hạn 4 lựa chọn.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Đếm hình nhỏ trước (Dạng 4).</b> Khi đếm hình vuông/hình tròn, luôn đếm hình kích thước nhỏ nhất trước, rồi mới tìm hình lớn hơn ẩn bên trong.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Viết lại đề bằng phép tính.</b> Với bài tuổi, gia đình, cho — nhận (Dạng 1, 3), hãy viết ngay các dữ kiện thành phép cộng/trừ trước khi suy luận tiếp.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">5</span>
+          <p><b>Luyện lại bằng bài tương tự.</b> Dùng nút "Đổi bài tương tự" để luyện đúng dạng đó với số liệu khác, tránh nhớ đáp số thay vì hiểu cách làm.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 1. Cấu trúc 5 dạng bài tổng hợp từ 5 đề Vòng loại quốc gia TIMO lớp 1 (Preliminary Round) do phụ huynh cung cấp; toàn bộ đề bài, số liệu, hình vẽ và lời giải trong tài liệu này là nội dung tự soạn mới, không sao chép từ đề gốc.</footer>
+
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  'd1-1': [
+    {
+      qHtml: '<p>Cho hai chiếc cân thăng bằng sau, hãy tìm loại quả <b>nặng nhất</b> trong 3 loại quả: Dưa hấu 🍉, Anh đào 🍒, Dứa 🍍.</p><p>Cân 1: 🍉 = 🍒 + 🍒 &nbsp; · &nbsp; Cân 2: 🍍 = 🍉 + 🍒</p><div class="mcq-opts"><span><b>A.</b> Dứa</span><span><b>B.</b> Dưa hấu</span><span><b>C.</b> Anh đào</span><span><b>D.</b> Không xác định được</span></div>',
+      steps: [
+        '<p>Cân 1 cho biết: 1 quả dưa hấu nặng bằng 2 quả anh đào.</p>',
+        '<p>Cân 2 cho biết: 1 quả dứa = 1 dưa hấu + 1 anh đào = (2 anh đào) + 1 anh đào = 3 quả anh đào.</p>',
+        '<p>So sánh theo đơn vị "anh đào": dưa hấu = 2, dứa = 3, anh đào = 1. Dứa nặng nhất.</p>'
+      ],
+      answerHtml: 'Đáp án: A — Dứa.'
+    },
+    {
+      qHtml: '<p>Cho hai chiếc cân thăng bằng sau, hãy tìm loại quả <b>nặng nhất</b> trong 3 loại quả: Kiwi 🥝, Dâu 🍓, Dưa lê 🍈.</p><p>Cân 1: 🥝 = 🍓 + 🍓 &nbsp; · &nbsp; Cân 2: 🍈 = 🥝 + 🍓</p><div class="mcq-opts"><span><b>A.</b> Dâu</span><span><b>B.</b> Dưa lê</span><span><b>C.</b> Kiwi</span><span><b>D.</b> Không xác định được</span></div>',
+      steps: [
+        '<p>Cân 1 cho biết: 1 quả kiwi nặng bằng 2 quả dâu.</p>',
+        '<p>Cân 2 cho biết: 1 quả dưa lê = 1 kiwi + 1 dâu = (2 dâu) + 1 dâu = 3 quả dâu.</p>',
+        '<p>So sánh theo đơn vị "dâu": kiwi = 2, dưa lê = 3, dâu = 1. Dưa lê nặng nhất.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Dưa lê.'
+    },
+    {
+      qHtml: '<p>Cho hai chiếc cân thăng bằng sau, hãy tìm loại quả <b>nặng nhất</b> trong 3 loại quả: Xoài 🥭, Chanh 🍋, Cam 🍊.</p><p>Cân 1: 🥭 = 🍋 + 🍋 &nbsp; · &nbsp; Cân 2: 🍊 = 🥭 + 🍋</p><div class="mcq-opts"><span><b>A.</b> Xoài</span><span><b>B.</b> Chanh</span><span><b>C.</b> Cam</span><span><b>D.</b> Không xác định được</span></div>',
+      steps: [
+        '<p>Cân 1 cho biết: 1 quả xoài nặng bằng 2 quả chanh.</p>',
+        '<p>Cân 2 cho biết: 1 quả cam = 1 xoài + 1 chanh = (2 chanh) + 1 chanh = 3 quả chanh.</p>',
+        '<p>So sánh theo đơn vị "chanh": xoài = 2, cam = 3, chanh = 1. Cam nặng nhất.</p>'
+      ],
+      answerHtml: 'Đáp án: C — Cam.'
+    }
+  ],
+  'd1-2': [
+    {
+      qHtml: '<p>Trong hàng xếp, Long thấy có 6 bạn phía trước và 4 bạn phía sau mình. Hỏi hàng có bao nhiêu bạn?</p><div class="mcq-opts"><span><b>A.</b> 10</span><span><b>B.</b> 11</span><span><b>C.</b> 12</span><span><b>D.</b> 9</span></div>',
+      steps: [
+        '<p>Tổng số bạn = số bạn phía trước + Long + số bạn phía sau.</p>',
+        '<p>6 + 1 (Long) + 4 = 11.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 11 bạn.'
+    },
+    {
+      qHtml: '<p>Hoa có 2 anh trai và 3 chị gái. Hỏi bố Hoa có bao nhiêu người con?</p><div class="mcq-opts"><span><b>A.</b> 5</span><span><b>B.</b> 6</span><span><b>C.</b> 7</span><span><b>D.</b> 4</span></div>',
+      steps: [
+        '<p>Tổng số con = Hoa + số anh trai + số chị gái.</p>',
+        '<p>1 (Hoa) + 2 + 3 = 6.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 6 người con.'
+    },
+    {
+      qHtml: '<p>Học sinh xếp hàng dọc, Nam đứng thứ 7 tính từ đầu hàng, phía sau Nam còn 5 bạn. Hỏi hàng có bao nhiêu bạn?</p><div class="mcq-opts"><span><b>A.</b> 11</span><span><b>B.</b> 12</span><span><b>C.</b> 13</span><span><b>D.</b> 10</span></div>',
+      steps: [
+        '<p>Nam đứng thứ 7 nghĩa là đã có 7 bạn (tính cả Nam) từ đầu hàng đến vị trí của Nam.</p>',
+        '<p>Cộng thêm 5 bạn phía sau: 7 + 5 = 12.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 12 bạn.'
+    }
+  ],
+  'd1-3': [
+    {
+      qHtml: '<p>Sinh nhật của Lan là 3 ngày sau hôm nay, và đúng vào thứ Bảy. Hỏi hôm nay là thứ mấy?</p><div class="mcq-opts"><span><b>A.</b> Thứ Ba</span><span><b>B.</b> Thứ Tư</span><span><b>C.</b> Thứ Năm</span><span><b>D.</b> Thứ Hai</span></div>',
+      steps: [
+        '<p>Lùi ngược lại từ thứ Bảy 3 ngày: −1 → thứ Sáu, −2 → thứ Năm, −3 → thứ Tư.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Thứ Tư.'
+    },
+    {
+      qHtml: '<p>Nếu hôm qua là thứ Ba, hỏi 5 ngày nữa (tính từ hôm nay) là thứ mấy?</p><div class="mcq-opts"><span><b>A.</b> Chủ Nhật</span><span><b>B.</b> Thứ Bảy</span><span><b>C.</b> Thứ Hai</span><span><b>D.</b> Thứ Ba</span></div>',
+      steps: [
+        '<p>Hôm qua là thứ Ba, vậy hôm nay là thứ Tư.</p>',
+        '<p>Từ thứ Tư đếm thêm 5 ngày: +1 → thứ Năm, +2 → thứ Sáu, +3 → thứ Bảy, +4 → Chủ Nhật, +5 → thứ Hai.</p>'
+      ],
+      answerHtml: 'Đáp án: C — Thứ Hai.'
+    },
+    {
+      qHtml: '<p>Ngày mai là thứ Năm. Hỏi 6 ngày trước hôm nay là thứ mấy?</p><div class="mcq-opts"><span><b>A.</b> Thứ Sáu</span><span><b>B.</b> Thứ Năm</span><span><b>C.</b> Thứ Tư</span><span><b>D.</b> Thứ Ba</span></div>',
+      steps: [
+        '<p>Ngày mai là thứ Năm, vậy hôm nay là thứ Tư.</p>',
+        '<p>Lùi lại 6 ngày kể từ thứ Tư: −1 → thứ Ba, −2 → thứ Hai, −3 → Chủ Nhật, −4 → thứ Bảy, −5 → thứ Sáu, −6 → thứ Năm.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Thứ Năm.'
+    }
+  ],
+  'd1-4': [
+    {
+      qHtml: '<p>Quan sát quy luật, tìm số thích hợp điền vào dấu "?": 50, 40, 30, 20, ?</p><div class="mcq-opts"><span><b>A.</b> 15</span><span><b>B.</b> 10</span><span><b>C.</b> 5</span><span><b>D.</b> 0</span></div>',
+      steps: [
+        '<p>Mỗi số sau kém số liền trước 10 đơn vị (50 → 40 → 30 → 20, mỗi lần −10).</p>',
+        '<p>Số tiếp theo: 20 − 10 = 10.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 10.'
+    },
+    {
+      qHtml: '<p>Quan sát quy luật các chữ cái, tìm chữ thích hợp điền vào dấu "?": B, D, F, H, ?</p><div class="mcq-opts"><span><b>A.</b> I</span><span><b>B.</b> J</span><span><b>C.</b> K</span><span><b>D.</b> L</span></div>',
+      steps: [
+        '<p>Mỗi chữ cách chữ liền trước 2 vị trí trong bảng chữ cái: B, D, F, H — mỗi lần cách 2.</p>',
+        '<p>Sau H (cách 2): I, J. Chữ tiếp theo là J.</p>'
+      ],
+      answerHtml: 'Đáp án: B — J.'
+    },
+    {
+      qHtml: '<p>Quan sát quy luật, tìm số thích hợp điền vào dấu "?": 2, 6, 10, 14, ?</p><div class="mcq-opts"><span><b>A.</b> 16</span><span><b>B.</b> 17</span><span><b>C.</b> 18</span><span><b>D.</b> 20</span></div>',
+      steps: [
+        '<p>Mỗi số sau hơn số liền trước 4 đơn vị (2 → 6 → 10 → 14, mỗi lần +4).</p>',
+        '<p>Số tiếp theo: 14 + 4 = 18.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 18.'
+    }
+  ],
+  'd1-5': [
+    {
+      qHtml: '<p>Mai hơn em trai 6 tuổi. Em trai Mai năm nay 4 tuổi. Hỏi Mai bao nhiêu tuổi?</p><div class="mcq-opts"><span><b>A.</b> 9</span><span><b>B.</b> 10</span><span><b>C.</b> 11</span><span><b>D.</b> 8</span></div>',
+      steps: [
+        '<p>Tuổi Mai = tuổi em trai + 6.</p>',
+        '<p>4 + 6 = 10.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 10 tuổi.'
+    },
+    {
+      qHtml: '<p>5 năm nữa, Kim sẽ 14 tuổi. Bố Kim hơn Kim 25 tuổi. Hỏi bố Kim hiện nay bao nhiêu tuổi?</p><div class="mcq-opts"><span><b>A.</b> 34</span><span><b>B.</b> 39</span><span><b>C.</b> 29</span><span><b>D.</b> 30</span></div>',
+      steps: [
+        '<p>Tuổi Kim hiện nay = 14 − 5 = 9.</p>',
+        '<p>Tuổi bố Kim hiện nay = 9 + 25 = 34.</p>'
+      ],
+      answerHtml: 'Đáp án: A — 34 tuổi.'
+    },
+    {
+      qHtml: '<p>Hà năm nay 12 tuổi, em gái ít hơn Hà 4 tuổi. Hỏi 2 năm nữa em gái Hà bao nhiêu tuổi?</p><div class="mcq-opts"><span><b>A.</b> 8</span><span><b>B.</b> 9</span><span><b>C.</b> 10</span><span><b>D.</b> 11</span></div>',
+      steps: [
+        '<p>Tuổi em gái hiện nay = 12 − 4 = 8.</p>',
+        '<p>2 năm nữa: 8 + 2 = 10.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 10 tuổi.'
+    }
+  ],
+  'd2-1': [
+    {
+      qHtml: '<p>Tính giá trị của 1 + 9 + 5 + 5 + 4.</p><div class="mcq-opts"><span><b>A.</b> 23</span><span><b>B.</b> 25</span><span><b>C.</b> 24</span><span><b>D.</b> 22</span></div>',
+      steps: [
+        '<p>Ghép cặp cho tổng tròn chục: (1 + 9) + (5 + 5) + 4.</p>',
+        '<p>= 10 + 10 + 4 = 24.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 24.'
+    },
+    {
+      qHtml: '<p>Tính giá trị của 3 + 7 + 2 + 8 + 6.</p><div class="mcq-opts"><span><b>A.</b> 25</span><span><b>B.</b> 26</span><span><b>C.</b> 27</span><span><b>D.</b> 24</span></div>',
+      steps: [
+        '<p>Ghép cặp cho tổng tròn chục: (3 + 7) + (2 + 8) + 6.</p>',
+        '<p>= 10 + 10 + 6 = 26.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 26.'
+    },
+    {
+      qHtml: '<p>Tính giá trị của 4 + 6 + 1 + 9 + 7.</p><div class="mcq-opts"><span><b>A.</b> 26</span><span><b>B.</b> 28</span><span><b>C.</b> 27</span><span><b>D.</b> 25</span></div>',
+      steps: [
+        '<p>Ghép cặp cho tổng tròn chục: (4 + 6) + (1 + 9) + 7.</p>',
+        '<p>= 10 + 10 + 7 = 27.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 27.'
+    }
+  ],
+  'd2-2': [
+    {
+      qHtml: '<p>Tính giá trị của 15 − 6 − 5.</p><div class="mcq-opts"><span><b>A.</b> 3</span><span><b>B.</b> 5</span><span><b>C.</b> 4</span><span><b>D.</b> 6</span></div>',
+      steps: [
+        '<p>Nhóm lại cho tròn chục: (15 − 5) − 6.</p>',
+        '<p>= 10 − 6 = 4.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 4.'
+    },
+    {
+      qHtml: '<p>Tính giá trị của 17 − 8 − 7.</p><div class="mcq-opts"><span><b>A.</b> 1</span><span><b>B.</b> 3</span><span><b>C.</b> 2</span><span><b>D.</b> 4</span></div>',
+      steps: [
+        '<p>Nhóm lại cho tròn chục: (17 − 7) − 8.</p>',
+        '<p>= 10 − 8 = 2.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 2.'
+    },
+    {
+      qHtml: '<p>Tính giá trị của 14 − 5 − 4.</p><div class="mcq-opts"><span><b>A.</b> 4</span><span><b>B.</b> 6</span><span><b>C.</b> 7</span><span><b>D.</b> 5</span></div>',
+      steps: [
+        '<p>Nhóm lại cho tròn chục: (14 − 4) − 5.</p>',
+        '<p>= 10 − 5 = 5.</p>'
+      ],
+      answerHtml: 'Đáp án: D — 5.'
+    }
+  ],
+  'd2-3': [
+    {
+      qHtml: '<p>Số nào đang bị che (▢) để được phép tính đúng: 20 − ▢ = 13?</p><div class="mcq-opts"><span><b>A.</b> 6</span><span><b>B.</b> 8</span><span><b>C.</b> 7</span><span><b>D.</b> 9</span></div>',
+      steps: [
+        '<p>Số bị che = số bị trừ − hiệu = 20 − 13.</p>',
+        '<p>20 − 13 = 7. Thử lại: 20 − 7 = 13 ✓.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 7.'
+    },
+    {
+      qHtml: '<p>Số nào đang bị che (▢) để được phép tính đúng: 14 − ▢ = 6?</p><div class="mcq-opts"><span><b>A.</b> 9</span><span><b>B.</b> 7</span><span><b>C.</b> 8</span><span><b>D.</b> 6</span></div>',
+      steps: [
+        '<p>Số bị che = 14 − 6.</p>',
+        '<p>14 − 6 = 8. Thử lại: 14 − 8 = 6 ✓.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 8.'
+    },
+    {
+      qHtml: '<p>Số nào đang bị che (▢) để được phép tính đúng: 19 − ▢ = 9?</p><div class="mcq-opts"><span><b>A.</b> 9</span><span><b>B.</b> 10</span><span><b>C.</b> 11</span><span><b>D.</b> 8</span></div>',
+      steps: [
+        '<p>Số bị che = 19 − 9.</p>',
+        '<p>19 − 9 = 10. Thử lại: 19 − 10 = 9 ✓.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 10.'
+    }
+  ],
+  'd2-4': [
+    {
+      qHtml: '<p>Tính giá trị của 5 + 2 − 3 + 5 + 2 − 3 + 5 + 2 − 3.</p><div class="mcq-opts"><span><b>A.</b> 10</span><span><b>B.</b> 11</span><span><b>C.</b> 12</span><span><b>D.</b> 13</span></div>',
+      steps: [
+        '<p>Nhóm mỗi 3 số một: (5 + 2 − 3) = 4.</p>',
+        '<p>Có 3 nhóm giống hệt nhau: 4 × 3 = 12.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 12.'
+    },
+    {
+      qHtml: '<p>Tính giá trị của 6 + 1 − 4 + 6 + 1 − 4 + 6 + 1 − 4 + 6 + 1 − 4.</p><div class="mcq-opts"><span><b>A.</b> 9</span><span><b>B.</b> 12</span><span><b>C.</b> 15</span><span><b>D.</b> 10</span></div>',
+      steps: [
+        '<p>Nhóm mỗi 3 số một: (6 + 1 − 4) = 3.</p>',
+        '<p>Có 4 nhóm giống hệt nhau: 3 × 4 = 12.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 12.'
+    },
+    {
+      qHtml: '<p>Tính giá trị của 3 + 4 − 2 + 3 + 4 − 2 + 3 + 4 − 2.</p><div class="mcq-opts"><span><b>A.</b> 12</span><span><b>B.</b> 15</span><span><b>C.</b> 18</span><span><b>D.</b> 13</span></div>',
+      steps: [
+        '<p>Nhóm mỗi 3 số một: (3 + 4 − 2) = 5.</p>',
+        '<p>Có 3 nhóm giống hệt nhau: 5 × 3 = 15.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 15.'
+    }
+  ],
+  'd2-5': [
+    {
+      qHtml: '<p>Tìm giá trị của K để phép tính sau đúng: 5 + K = 6 − 2 + 13.</p><div class="mcq-opts"><span><b>A.</b> 11</span><span><b>B.</b> 13</span><span><b>C.</b> 12</span><span><b>D.</b> 10</span></div>',
+      steps: [
+        '<p>Tính vế phải trước: 6 − 2 + 13 = 17.</p>',
+        '<p>5 + K = 17, vậy K = 17 − 5 = 12.</p>'
+      ],
+      answerHtml: 'Đáp án: C — K = 12.'
+    },
+    {
+      qHtml: '<p>Tìm giá trị của K để phép tính sau đúng: 8 + K = 10 − 3 + 9.</p><div class="mcq-opts"><span><b>A.</b> 7</span><span><b>B.</b> 8</span><span><b>C.</b> 9</span><span><b>D.</b> 6</span></div>',
+      steps: [
+        '<p>Tính vế phải trước: 10 − 3 + 9 = 16.</p>',
+        '<p>8 + K = 16, vậy K = 16 − 8 = 8.</p>'
+      ],
+      answerHtml: 'Đáp án: B — K = 8.'
+    },
+    {
+      qHtml: '<p>Tìm giá trị của K để phép tính sau đúng: 4 + K = 7 − 5 + 14.</p><div class="mcq-opts"><span><b>A.</b> 10</span><span><b>B.</b> 11</span><span><b>C.</b> 13</span><span><b>D.</b> 12</span></div>',
+      steps: [
+        '<p>Tính vế phải trước: 7 − 5 + 14 = 16.</p>',
+        '<p>4 + K = 16, vậy K = 16 − 4 = 12.</p>'
+      ],
+      answerHtml: 'Đáp án: D — K = 12.'
+    }
+  ],
+  'd3-1': [
+    {
+      qHtml: '<p>Trong dãy số 17, 24, 9, 36, 41, 18, số nào là số <b>chẵn lớn nhất</b>?</p><div class="mcq-opts"><span><b>A.</b> 24</span><span><b>B.</b> 18</span><span><b>C.</b> 36</span><span><b>D.</b> 41</span></div>',
+      steps: [
+        '<p>Lọc ra các số chẵn trong dãy: 24, 36, 18.</p>',
+        '<p>Số lớn nhất trong 3 số đó là 36.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 36.'
+    },
+    {
+      qHtml: '<p>Trong dãy số 22, 35, 11, 44, 19, 27, số nào là số <b>lẻ nhỏ nhất</b>?</p><div class="mcq-opts"><span><b>A.</b> 19</span><span><b>B.</b> 27</span><span><b>C.</b> 35</span><span><b>D.</b> 11</span></div>',
+      steps: [
+        '<p>Lọc ra các số lẻ trong dãy: 35, 11, 19, 27.</p>',
+        '<p>Số nhỏ nhất trong 4 số đó là 11.</p>'
+      ],
+      answerHtml: 'Đáp án: D — 11.'
+    },
+    {
+      qHtml: '<p>Trong dãy số 13, 28, 45, 6, 31, 52, số nào là số <b>lẻ lớn nhất</b>?</p><div class="mcq-opts"><span><b>A.</b> 31</span><span><b>B.</b> 13</span><span><b>C.</b> 45</span><span><b>D.</b> 6</span></div>',
+      steps: [
+        '<p>Lọc ra các số lẻ trong dãy: 13, 45, 31.</p>',
+        '<p>Số lớn nhất trong 3 số đó là 45.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 45.'
+    }
+  ],
+  'd3-2': [
+    {
+      qHtml: '<p>Dãy số cách đều: 50, 45, 40, 35, ... Tìm số thứ 7 trong dãy.</p><div class="mcq-opts"><span><b>A.</b> 25</span><span><b>B.</b> 15</span><span><b>C.</b> 20</span><span><b>D.</b> 10</span></div>',
+      steps: [
+        '<p>Mỗi số sau kém số liền trước 5 đơn vị.</p>',
+        '<p>Từ số thứ 1 đến số thứ 7 phải trừ 5 đúng 6 lần: 50 − 6 × 5 = 20.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 20.'
+    },
+    {
+      qHtml: '<p>Dãy số cách đều: 4, 10, 16, 22, ... Tìm số thứ 6 trong dãy.</p><div class="mcq-opts"><span><b>A.</b> 28</span><span><b>B.</b> 34</span><span><b>C.</b> 32</span><span><b>D.</b> 30</span></div>',
+      steps: [
+        '<p>Mỗi số sau hơn số liền trước 6 đơn vị.</p>',
+        '<p>Từ số thứ 1 đến số thứ 6 phải cộng 6 đúng 5 lần: 4 + 5 × 6 = 34.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 34.'
+    },
+    {
+      qHtml: '<p>Dãy số cách đều: 60, 54, 48, 42, ... Tìm số thứ 5 trong dãy.</p><div class="mcq-opts"><span><b>A.</b> 40</span><span><b>B.</b> 30</span><span><b>C.</b> 36</span><span><b>D.</b> 38</span></div>',
+      steps: [
+        '<p>Mỗi số sau kém số liền trước 6 đơn vị.</p>',
+        '<p>Từ số thứ 1 đến số thứ 5 phải trừ 6 đúng 4 lần: 60 − 4 × 6 = 36.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 36.'
+    }
+  ],
+  'd3-3': [
+    {
+      qHtml: '<p>Điền dấu + hoặc − vào 2 chỗ trống để được phép tính đúng: 8 ▢ 6 ▢ 3 = 11</p><div class="mcq-opts"><span><b>A.</b> −, +</span><span><b>B.</b> +, +</span><span><b>C.</b> +, −</span><span><b>D.</b> −, −</span></div>',
+      steps: [
+        '<p>Thử phương án +, +: 8 + 6 + 3 = 17 (sai, quá lớn).</p>',
+        '<p>Thử phương án +, −: 8 + 6 − 3 = 11 (đúng!).</p>'
+      ],
+      answerHtml: 'Đáp án: C — +, −.'
+    },
+    {
+      qHtml: '<p>Điền dấu + hoặc − vào 2 chỗ trống để được phép tính đúng: 12 ▢ 5 ▢ 4 = 3</p><div class="mcq-opts"><span><b>A.</b> −, −</span><span><b>B.</b> +, −</span><span><b>C.</b> −, +</span><span><b>D.</b> +, +</span></div>',
+      steps: [
+        '<p>Thử phương án +, −: 12 + 5 − 4 = 13 (sai, quá lớn).</p>',
+        '<p>Thử phương án −, −: 12 − 5 − 4 = 3 (đúng!).</p>'
+      ],
+      answerHtml: 'Đáp án: A — −, −.'
+    },
+    {
+      qHtml: '<p>Điền dấu + hoặc − vào 2 chỗ trống để được phép tính đúng: 10 ▢ 7 ▢ 2 = 5</p><div class="mcq-opts"><span><b>A.</b> +, −</span><span><b>B.</b> −, −</span><span><b>C.</b> −, +</span><span><b>D.</b> +, +</span></div>',
+      steps: [
+        '<p>Thử phương án −, −: 10 − 7 − 2 = 1 (sai, quá nhỏ).</p>',
+        '<p>Thử phương án −, +: 10 − 7 + 2 = 5 (đúng!).</p>'
+      ],
+      answerHtml: 'Đáp án: C — −, +.'
+    }
+  ],
+  'd3-4': [
+    {
+      qHtml: '<p>Cường có 23 quyển vở, Dũng có 9 quyển vở. Hỏi Cường cần cho Dũng mấy quyển để hai bạn có số vở bằng nhau?</p><div class="mcq-opts"><span><b>A.</b> 6</span><span><b>B.</b> 8</span><span><b>C.</b> 7</span><span><b>D.</b> 9</span></div>',
+      steps: [
+        '<p>Hiệu số vở: 23 − 9 = 14.</p>',
+        '<p>Cường cho Dũng một nửa của hiệu: 14 : 2 = 7.</p>',
+        '<p>Thử lại: Cường còn 23 − 7 = 16, Dũng có 9 + 7 = 16. Bằng nhau ✓.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 7 quyển vở.'
+    },
+    {
+      qHtml: '<p>Hà có 18 cái kẹo, Lan có 4 cái kẹo. Hỏi Hà cần cho Lan mấy cái để hai bạn có số kẹo bằng nhau?</p><div class="mcq-opts"><span><b>A.</b> 6</span><span><b>B.</b> 8</span><span><b>C.</b> 9</span><span><b>D.</b> 7</span></div>',
+      steps: [
+        '<p>Hiệu số kẹo: 18 − 4 = 14.</p>',
+        '<p>Hà cho Lan một nửa của hiệu: 14 : 2 = 7.</p>',
+        '<p>Thử lại: Hà còn 18 − 7 = 11, Lan có 4 + 7 = 11. Bằng nhau ✓.</p>'
+      ],
+      answerHtml: 'Đáp án: D — 7 cái kẹo.'
+    },
+    {
+      qHtml: '<p>Minh có 27 cây bút, Huy có 11 cây bút. Hỏi Minh cần cho Huy mấy cây để hai bạn có số bút bằng nhau?</p><div class="mcq-opts"><span><b>A.</b> 7</span><span><b>B.</b> 9</span><span><b>C.</b> 8</span><span><b>D.</b> 10</span></div>',
+      steps: [
+        '<p>Hiệu số bút: 27 − 11 = 16.</p>',
+        '<p>Minh cho Huy một nửa của hiệu: 16 : 2 = 8.</p>',
+        '<p>Thử lại: Minh còn 27 − 8 = 19, Huy có 11 + 8 = 19. Bằng nhau ✓.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 8 cây bút.'
+    }
+  ],
+  'd3-5': [
+    {
+      qHtml: '<p>Tổng 2 + 4 + 6 + 8 là số chẵn hay số lẻ?</p><div class="mcq-opts"><span><b>A.</b> Số lẻ</span><span><b>B.</b> Vừa chẵn vừa lẻ</span><span><b>C.</b> Số chẵn</span><span><b>D.</b> Không xác định được</span></div>',
+      steps: [
+        '<p>Tính tổng: 2 + 4 + 6 + 8 = 20.</p>',
+        '<p>20 chia hết cho 2, nên là số chẵn.</p>'
+      ],
+      answerHtml: 'Đáp án: C — Số chẵn.'
+    },
+    {
+      qHtml: '<p>Có bao nhiêu số chẵn tính từ 11 đến 25?</p><div class="mcq-opts"><span><b>A.</b> 6</span><span><b>B.</b> 7</span><span><b>C.</b> 8</span><span><b>D.</b> 15</span></div>',
+      steps: [
+        '<p>Liệt kê các số chẵn trong khoảng: 12, 14, 16, 18, 20, 22, 24.</p>',
+        '<p>Đếm được 7 số.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 7 số.'
+    },
+    {
+      qHtml: '<p>Có bao nhiêu số lẻ tính từ 8 đến 30?</p><div class="mcq-opts"><span><b>A.</b> 10</span><span><b>B.</b> 12</span><span><b>C.</b> 11</span><span><b>D.</b> 23</span></div>',
+      steps: [
+        '<p>Liệt kê các số lẻ trong khoảng: 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29.</p>',
+        '<p>Đếm được 11 số.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 11 số.'
+    }
+  ],
+  'd4-1': [
+    {
+      qHtml: '<p>Hỏi có bao nhiêu hình vuông trong hình dưới đây?</p><div class="geo-figure"><svg viewBox="0 0 96 64" width="150" height="100"><rect x="0" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="0" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="32" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="32" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="64" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/></svg></div><div class="mcq-opts"><span><b>A.</b> 5</span><span><b>B.</b> 6</span><span><b>C.</b> 7</span><span><b>D.</b> 4</span></div>',
+      steps: [
+        '<p>Đếm từng ô vuông nhỏ (1×1) trong hình: có 5 ô.</p>',
+        '<p>4 ô ở góc trái tạo thành 1 khối 2×2, ghép thêm được 1 hình vuông lớn hơn.</p>',
+        '<p>Tổng: 5 + 1 = 6.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 6 hình vuông.'
+    },
+    {
+      qHtml: '<p>Hỏi có bao nhiêu hình vuông trong hình dưới đây?</p><div class="geo-figure"><svg viewBox="0 0 128 128" width="180" height="180"><rect x="0" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="0" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="0" y="64" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="0" y="96" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="32" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="32" y="64" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="64" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="64" y="64" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="96" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="96" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="96" y="64" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="96" y="96" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/></svg></div><div class="mcq-opts"><span><b>A.</b> 12</span><span><b>B.</b> 13</span><span><b>C.</b> 14</span><span><b>D.</b> 15</span></div>',
+      steps: [
+        '<p>Đếm từng ô vuông nhỏ (1×1) trong hình: có 12 ô.</p>',
+        '<p>Ở giữa hình có 3 khối 2×2 ẩn (mỗi khối ghép từ 4 ô nhỏ), tạo thêm 3 hình vuông lớn hơn.</p>',
+        '<p>Tổng: 12 + 3 = 15.</p>'
+      ],
+      answerHtml: 'Đáp án: D — 15 hình vuông.'
+    },
+    {
+      qHtml: '<p>Hỏi có bao nhiêu hình vuông trong hình dưới đây?</p><div class="geo-figure"><svg viewBox="0 0 96 64" width="150" height="100"><rect x="0" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="0" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="32" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="32" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="64" y="0" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><rect x="64" y="32" width="32" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/></svg></div><div class="mcq-opts"><span><b>A.</b> 6</span><span><b>B.</b> 7</span><span><b>C.</b> 8</span><span><b>D.</b> 9</span></div>',
+      steps: [
+        '<p>Đếm từng ô vuông nhỏ (1×1) trong hình chữ nhật 3×2: có 6 ô.</p>',
+        '<p>Trong hình còn ghép được 2 hình vuông lớn hơn (kích thước 2×2).</p>',
+        '<p>Tổng: 6 + 2 = 8.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 8 hình vuông.'
+    }
+  ],
+  'd4-2': [
+    {
+      qHtml: '<p>Đếm tổng số khối lập phương đã dùng để xếp thành hình dưới đây (mỗi cột là một chồng khối).</p><div class="geo-figure"><svg viewBox="0 0 130 84" width="180" height="116"><rect x="0" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="34" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="34" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="34" y="0" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="68" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="68" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="68" y="0" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="102" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="102" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/></svg></div><div class="mcq-opts"><span><b>A.</b> 8</span><span><b>B.</b> 9</span><span><b>C.</b> 10</span><span><b>D.</b> 7</span></div>',
+      steps: [
+        '<p>Đếm số khối ở mỗi cột từ trái sang phải: 1, 3, 3, 2.</p>',
+        '<p>Cộng lại: 1 + 3 + 3 + 2 = 9.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 9 khối lập phương.'
+    },
+    {
+      qHtml: '<p>Đếm tổng số khối lập phương đã dùng để xếp thành hình dưới đây (mỗi cột là một chồng khối).</p><div class="geo-figure"><svg viewBox="0 0 198 84" width="230" height="98"><rect x="0" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="0" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="0" y="0" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="34" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="68" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="68" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="102" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="102" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="136" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="136" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="136" y="0" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="170" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/></svg></div><div class="mcq-opts"><span><b>A.</b> 11</span><span><b>B.</b> 12</span><span><b>C.</b> 13</span><span><b>D.</b> 10</span></div>',
+      steps: [
+        '<p>Đếm số khối ở mỗi cột từ trái sang phải: 3, 1, 2, 2, 3, 1.</p>',
+        '<p>Cộng lại: 3 + 1 + 2 + 2 + 3 + 1 = 12.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 12 khối lập phương.'
+    },
+    {
+      qHtml: '<p>Đếm tổng số khối lập phương đã dùng để xếp thành hình dưới đây (mỗi cột là một chồng khối).</p><div class="geo-figure"><svg viewBox="0 0 130 112" width="170" height="146"><rect x="0" y="84" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="0" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="34" y="84" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="34" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="34" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="34" y="0" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="68" y="84" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="68" y="56" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="68" y="28" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><rect x="102" y="84" width="28" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/></svg></div><div class="mcq-opts"><span><b>A.</b> 9</span><span><b>B.</b> 11</span><span><b>C.</b> 10</span><span><b>D.</b> 12</span></div>',
+      steps: [
+        '<p>Đếm số khối ở mỗi cột từ trái sang phải: 2, 4, 3, 1.</p>',
+        '<p>Cộng lại: 2 + 4 + 3 + 1 = 10.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 10 khối lập phương.'
+    }
+  ],
+  'd4-3': [
+    {
+      qHtml: '<p>Quan sát quy luật, tìm hình tiếp theo trong dãy: ⚪,⚫,⚪,⚫,⚪,⚫,⚪,?</p><div class="mcq-opts"><span><b>A.</b> ⚪</span><span><b>B.</b> ⚫</span><span><b>C.</b> 🔺</span><span><b>D.</b> 🟦</span></div>',
+      steps: [
+        '<p>Quy luật lặp lại xen kẽ 2 hình: trắng, đen.</p>',
+        '<p>Sau ⚪ (vị trí thứ 7) sẽ đến ⚫.</p>'
+      ],
+      answerHtml: 'Đáp án: B — ⚫.'
+    },
+    {
+      qHtml: '<p>Quan sát quy luật, tìm hình tiếp theo trong dãy: 🟢,🟡,🔵,🟢,🟡,🔵,🟢,🟡,?</p><div class="mcq-opts"><span><b>A.</b> 🟢</span><span><b>B.</b> 🟡</span><span><b>C.</b> 🔵</span><span><b>D.</b> ⚪</span></div>',
+      steps: [
+        '<p>Quy luật lặp lại theo chu kỳ 3 màu: xanh lá, vàng, xanh dương.</p>',
+        '<p>Sau 🟡 (vị trí thứ 8) sẽ đến 🔵.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 🔵.'
+    },
+    {
+      qHtml: '<p>Quan sát quy luật, tìm hình tiếp theo trong dãy: 🔺,🔺,🔵,🔺,🔺,🔵,🔺,?</p><div class="mcq-opts"><span><b>A.</b> 🔵</span><span><b>B.</b> 🔺</span><span><b>C.</b> 🟡</span><span><b>D.</b> ⚪</span></div>',
+      steps: [
+        '<p>Quy luật lặp lại theo chu kỳ 3 hình: tam giác, tam giác, tròn xanh.</p>',
+        '<p>Sau 🔺 (vị trí thứ 7, hình đầu của chu kỳ mới) sẽ đến 🔺 (hình thứ hai trong chu kỳ).</p>'
+      ],
+      answerHtml: 'Đáp án: B — 🔺.'
+    }
+  ],
+  'd4-4': [
+    {
+      qHtml: '<p>Hình ngôi sao dưới đây có bao nhiêu cạnh (và cũng là bấy nhiêu góc)?</p><div class="geo-figure"><svg viewBox="0 0 120 120" width="160" height="160"><polygon points="60.0,10.0 71.8,43.8 107.6,44.5 79.0,66.2 89.4,100.5 60.0,80.0 30.6,100.5 41.0,66.2 12.4,44.5 48.2,43.8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/></svg></div><div class="mcq-opts"><span><b>A.</b> 8</span><span><b>B.</b> 9</span><span><b>C.</b> 10</span><span><b>D.</b> 12</span></div>',
+      steps: [
+        '<p>Ngôi sao 5 cánh có 5 đỉnh nhọn nhô ra ngoài và 5 đỉnh lõm vào trong.</p>',
+        '<p>Tổng cộng: 5 + 5 = 10 cạnh.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 10 cạnh.'
+    },
+    {
+      qHtml: '<p>Hình chữ thập (dấu cộng) dưới đây có bao nhiêu cạnh (và cũng là bấy nhiêu góc)?</p><div class="geo-figure"><svg viewBox="0 0 120 120" width="160" height="160"><polygon points="50.0,15.0 70.0,15.0 70.0,50.0 105.0,50.0 105.0,70.0 70.0,70.0 70.0,105.0 50.0,105.0 50.0,70.0 15.0,70.0 15.0,50.0 50.0,50.0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/></svg></div><div class="mcq-opts"><span><b>A.</b> 10</span><span><b>B.</b> 11</span><span><b>C.</b> 12</span><span><b>D.</b> 8</span></div>',
+      steps: [
+        '<p>Đếm từng cạnh của hình chữ thập theo đường viền, đi hết một vòng.</p>',
+        '<p>Có 12 cạnh.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 12 cạnh.'
+    },
+    {
+      qHtml: '<p>Hình mũi tên hai chiều dưới đây có bao nhiêu cạnh (và cũng là bấy nhiêu góc)?</p><div class="geo-figure"><svg viewBox="0 0 120 100" width="170" height="142"><polygon points="10,60 35,35 35,50 85,50 85,35 110,60 85,85 85,70 35,70 35,85" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/></svg></div><div class="mcq-opts"><span><b>A.</b> 8</span><span><b>B.</b> 10</span><span><b>C.</b> 12</span><span><b>D.</b> 9</span></div>',
+      steps: [
+        '<p>Đếm từng cạnh của hình mũi tên hai đầu theo đường viền, đi hết một vòng.</p>',
+        '<p>Có 10 cạnh.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 10 cạnh.'
+    }
+  ],
+  'd4-5': [
+    {
+      qHtml: '<p>Có bao nhiêu hình tròn trong hình dưới đây?</p><div class="geo-figure"><svg viewBox="0 0 186 60" width="186" height="60"><circle cx="30" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/><circle cx="72" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/><circle cx="114" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/><circle cx="156" cy="30" r="30" fill="none" stroke="var(--accent)" stroke-width="2.5"/></svg></div><div class="mcq-opts"><span><b>A.</b> 3</span><span><b>B.</b> 4</span><span><b>C.</b> 5</span><span><b>D.</b> 6</span></div>',
+      steps: [
+        '<p>Đếm từng hình tròn chồng lên nhau, lần lượt từ trái sang phải.</p>',
+        '<p>Có tất cả 4 hình tròn.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 4 hình tròn.'
+    },
+    {
+      qHtml: '<p>Có bao nhiêu đoạn thẳng trong hình dưới đây?</p><div class="geo-figure"><svg viewBox="0 0 120 130" width="140" height="152"><line x1="60" y1="10" x2="30" y2="50" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="60" y1="10" x2="90" y2="50" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="30" y1="50" x2="60" y2="50" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="90" y1="50" x2="60" y2="50" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="60" y1="50" x2="60" y2="90" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="30" y1="50" x2="10" y2="90" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="90" y1="50" x2="110" y2="90" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="60" y1="90" x2="40" y2="120" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="60" y1="90" x2="80" y2="120" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="mcq-opts"><span><b>A.</b> 7</span><span><b>B.</b> 8</span><span><b>C.</b> 9</span><span><b>D.</b> 10</span></div>',
+      steps: [
+        '<p>Đếm từng đoạn thẳng nối các điểm trong hình.</p>',
+        '<p>Có tất cả 9 đoạn thẳng.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 9 đoạn thẳng.'
+    },
+    {
+      qHtml: '<p>Có bao nhiêu đoạn thẳng trong đường gấp khúc dưới đây?</p><div class="geo-figure"><svg viewBox="0 0 170 80" width="220" height="104"><line x1="10" y1="60" x2="35" y2="20" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="35" y1="20" x2="60" y2="60" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="60" y1="60" x2="85" y2="20" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="85" y1="20" x2="110" y2="60" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="110" y1="60" x2="135" y2="20" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><line x1="135" y1="20" x2="160" y2="60" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="mcq-opts"><span><b>A.</b> 5</span><span><b>B.</b> 6</span><span><b>C.</b> 7</span><span><b>D.</b> 8</span></div>',
+      steps: [
+        '<p>Đếm từng đoạn thẳng trong đường gấp khúc, từ trái sang phải.</p>',
+        '<p>Có tất cả 6 đoạn thẳng.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 6 đoạn thẳng.'
+    }
+  ],
+  'd5-1': [
+    {
+      qHtml: '<p>Số nào dưới đây là số <b>nhỏ nhất</b>: 48213067, 48209988, 48210500, 48213052?</p><div class="mcq-opts"><span><b>A.</b> 48210500</span><span><b>B.</b> 48213067</span><span><b>C.</b> 48209988</span><span><b>D.</b> 48213052</span></div>',
+      steps: [
+        '<p>Cả 4 số đều có 8 chữ số, so sánh từ chữ số hàng cao nhất: đều bắt đầu "482".</p>',
+        '<p>Xét tiếp chữ số thứ 4: 4820... nhỏ hơn 4821... — vậy 48209988 nhỏ nhất.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 48209988.'
+    },
+    {
+      qHtml: '<p>Số nào dưới đây là số <b>lớn nhất</b>: 71048203, 71050119, 71049876, 71048999?</p><div class="mcq-opts"><span><b>A.</b> 71048203</span><span><b>B.</b> 71048999</span><span><b>C.</b> 71049876</span><span><b>D.</b> 71050119</span></div>',
+      steps: [
+        '<p>Cả 4 số đều có 8 chữ số, so sánh từ chữ số hàng cao nhất: đều bắt đầu "710".</p>',
+        '<p>Xét tiếp chữ số thứ 4: 7105... lớn hơn 7104... — vậy 71050119 lớn nhất.</p>'
+      ],
+      answerHtml: 'Đáp án: D — 71050119.'
+    },
+    {
+      qHtml: '<p>Số nào dưới đây là số <b>nhỏ nhất</b>: 19384205, 19384199, 19383999, 19384250?</p><div class="mcq-opts"><span><b>A.</b> 19384250</span><span><b>B.</b> 19384205</span><span><b>C.</b> 19383999</span><span><b>D.</b> 19384199</span></div>',
+      steps: [
+        '<p>Cả 4 số đều có 8 chữ số, so sánh từ chữ số hàng cao nhất: đều bắt đầu "1938".</p>',
+        '<p>Xét tiếp chữ số thứ 5: 19383... nhỏ hơn 19384... — vậy 19383999 nhỏ nhất.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 19383999.'
+    }
+  ],
+  'd5-2': [
+    {
+      qHtml: '<p>Trong dãy số 15, 22, 33, 40, 51, 18, 27, 64, có bao nhiêu số lẻ?</p><div class="mcq-opts"><span><b>A.</b> 5</span><span><b>B.</b> 3</span><span><b>C.</b> 4</span><span><b>D.</b> 6</span></div>',
+      steps: [
+        '<p>Lọc các số lẻ trong dãy: 15, 33, 51, 27.</p>',
+        '<p>Đếm được 4 số lẻ.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 4 số lẻ.'
+    },
+    {
+      qHtml: '<p>Trong dãy số 9, 14, 21, 36, 45, 50, 63, 72, có bao nhiêu số chẵn?</p><div class="mcq-opts"><span><b>A.</b> 3</span><span><b>B.</b> 5</span><span><b>C.</b> 4</span><span><b>D.</b> 6</span></div>',
+      steps: [
+        '<p>Lọc các số chẵn trong dãy: 14, 36, 50, 72.</p>',
+        '<p>Đếm được 4 số chẵn.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 4 số chẵn.'
+    },
+    {
+      qHtml: '<p>Trong dãy số 5, 9, 13, 17, 21, 8, 16, 24, hiệu giữa số lượng số lẻ và số lượng số chẵn là bao nhiêu?</p><div class="mcq-opts"><span><b>A.</b> 0</span><span><b>B.</b> 1</span><span><b>C.</b> 2</span><span><b>D.</b> 3</span></div>',
+      steps: [
+        '<p>Số lẻ trong dãy: 5, 9, 13, 17, 21 — có 5 số.</p>',
+        '<p>Số chẵn trong dãy: 8, 16, 24 — có 3 số.</p>',
+        '<p>Hiệu: 5 − 3 = 2.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 2.'
+    }
+  ],
+  'd5-3': [
+    {
+      qHtml: '<p>Chọn 2 chữ số khác nhau từ 1, 3, 4, 6, 8 để lập số lẻ có 2 chữ số. Hỏi lập được bao nhiêu số?</p><div class="mcq-opts"><span><b>A.</b> 6</span><span><b>B.</b> 7</span><span><b>C.</b> 8</span><span><b>D.</b> 9</span></div>',
+      steps: [
+        '<p>Số lẻ nên chữ số hàng đơn vị phải là 1 hoặc 3.</p>',
+        '<p>Liệt kê: 13, 31, 41, 43, 61, 63, 81, 83.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 8 số.'
+    },
+    {
+      qHtml: '<p>Từ các chữ số 0, 1, 4, 9 (được lặp lại), lập số chẵn có 2 chữ số. Hỏi lập được bao nhiêu số?</p><div class="mcq-opts"><span><b>A.</b> 5</span><span><b>B.</b> 6</span><span><b>C.</b> 7</span><span><b>D.</b> 8</span></div>',
+      steps: [
+        '<p>Số chẵn nên chữ số hàng đơn vị phải là 0 hoặc 4. Chữ số hàng chục không được là 0, chữ số có thể lặp lại.</p>',
+        '<p>Liệt kê: 10, 14, 40, 44, 90, 94.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 6 số.'
+    },
+    {
+      qHtml: '<p>Chọn 2 chữ số khác nhau từ 2, 5, 6, 8 để lập số chẵn có 2 chữ số. Hỏi lập được bao nhiêu số?</p><div class="mcq-opts"><span><b>A.</b> 8</span><span><b>B.</b> 9</span><span><b>C.</b> 10</span><span><b>D.</b> 7</span></div>',
+      steps: [
+        '<p>Số chẵn nên chữ số hàng đơn vị phải là 2, 6 hoặc 8.</p>',
+        '<p>Liệt kê: 26, 28, 52, 56, 58, 62, 68, 82, 86.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 9 số.'
+    }
+  ],
+  'd5-4': [
+    {
+      qHtml: '<p>4 bạn góp được 24 chiếc mũ. Mỗi bạn góp ít nhất 2 chiếc và số mũ của mỗi bạn khác nhau. Hỏi bạn góp nhiều nhất có thể góp bao nhiêu chiếc?</p><div class="mcq-opts"><span><b>A.</b> 13</span><span><b>B.</b> 14</span><span><b>C.</b> 16</span><span><b>D.</b> 15</span></div>',
+      steps: [
+        '<p>Để 1 bạn góp được nhiều nhất, 3 bạn còn lại nên góp ít nhất có thể, và phải khác nhau: 2, 3, 4.</p>',
+        '<p>Bạn góp nhiều nhất: 24 − 2 − 3 − 4 = 15.</p>'
+      ],
+      answerHtml: 'Đáp án: D — 15 chiếc.'
+    },
+    {
+      qHtml: '<p>An, Bình, Chi góp được 20 chiếc bút. Mỗi bạn góp ít nhất 3 chiếc và số bút của mỗi bạn khác nhau. Hỏi bạn góp nhiều nhất có thể góp bao nhiêu chiếc?</p><div class="mcq-opts"><span><b>A.</b> 12</span><span><b>B.</b> 13</span><span><b>C.</b> 14</span><span><b>D.</b> 11</span></div>',
+      steps: [
+        '<p>Để 1 bạn góp được nhiều nhất, 2 bạn còn lại nên góp ít nhất có thể, và phải khác nhau: 3, 4.</p>',
+        '<p>Bạn góp nhiều nhất: 20 − 3 − 4 = 13.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 13 chiếc.'
+    },
+    {
+      qHtml: '<p>4 bạn góp được 30 chiếc áo. Mỗi bạn góp ít nhất 1 chiếc và số áo của mỗi bạn khác nhau. Hỏi bạn góp nhiều nhất có thể góp bao nhiêu chiếc?</p><div class="mcq-opts"><span><b>A.</b> 22</span><span><b>B.</b> 23</span><span><b>C.</b> 24</span><span><b>D.</b> 25</span></div>',
+      steps: [
+        '<p>Để 1 bạn góp được nhiều nhất, 3 bạn còn lại nên góp ít nhất có thể, và phải khác nhau: 1, 2, 3.</p>',
+        '<p>Bạn góp nhiều nhất: 30 − 1 − 2 − 3 = 24.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 24 chiếc.'
+    }
+  ],
+  'd5-5': [
+    {
+      qHtml: '<p>Chia đều 24 cái kẹo cho 4 bạn bằng nhau. Hỏi mỗi bạn có bao nhiêu cái kẹo?</p><div class="mcq-opts"><span><b>A.</b> 5</span><span><b>B.</b> 8</span><span><b>C.</b> 6</span><span><b>D.</b> 7</span></div>',
+      steps: [
+        '<p>Chia đều nghĩa là lấy tổng số kẹo chia cho số bạn: 24 : 4.</p>',
+        '<p>24 : 4 = 6.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 6 cái kẹo.'
+    },
+    {
+      qHtml: '<p>An có một đồng xu 1 đô, một đồng xu 3 đô và một đồng xu 6 đô. Hỏi An mua được nhiều nhất bao nhiêu quyển vở, biết mỗi quyển giá 2 đô?</p><div class="mcq-opts"><span><b>A.</b> 4</span><span><b>B.</b> 5</span><span><b>C.</b> 6</span><span><b>D.</b> 3</span></div>',
+      steps: [
+        '<p>Tổng số tiền An có: 1 + 3 + 6 = 10 đô.</p>',
+        '<p>Số quyển vở mua được: 10 : 2 = 5.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 5 quyển vở.'
+    },
+    {
+      qHtml: '<p>Chia đều 21 quyển vở vào 3 túi bằng nhau. Hỏi mỗi túi có bao nhiêu quyển vở?</p><div class="mcq-opts"><span><b>A.</b> 6</span><span><b>B.</b> 8</span><span><b>C.</b> 7</span><span><b>D.</b> 9</span></div>',
+      steps: [
+        '<p>Chia đều nghĩa là lấy tổng số vở chia cho số túi: 21 : 3.</p>',
+        '<p>21 : 3 = 7.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 7 quyển vở.'
+    }
+  ]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initProblem(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    var qidEl = el.querySelector('.qid');
+    var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+    var original = {
+      qHtml: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+        return s.querySelector('.t').innerHTML;
+      }),
+      answerHtml: (function () {
+        var a = solBody.querySelector('.answer');
+        return a ? a.innerHTML : '';
+      })()
+    };
+    var poolKey = el.dataset.pool;
+    var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+    var pool = [original].concat(extra);
+
+    var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+
+    if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var totalSteps = solBody.querySelectorAll('.step').length;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= totalSteps;
+        btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) {
+        if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+        else btnReset.setAttribute('hidden', '');
+      }
+    }
+
+    function renderVariant(idx) {
+      var v = pool[idx];
+      qtext.innerHTML = v.qHtml;
+      var steps = solBody.querySelectorAll('.step');
+      if (steps.length !== v.steps.length) {
+        var html = v.steps.map(function (stepHtml, i) {
+          return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+        }).join('');
+        html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+        solBody.innerHTML = html;
+      } else {
+        steps.forEach(function (stepEl, i) {
+          stepEl.querySelector('.t').innerHTML = v.steps[i];
+          stepEl.classList.add('hidden');
+        });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+      }
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+      if (qidEl) {
+        qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+      }
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.classList.remove('hidden');
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.classList.remove('hidden');
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.variantIndex = (state.variantIndex + 1) % pool.length;
+      renderVariant(state.variantIndex);
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.classList.add('hidden');
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+</body>
+</html>

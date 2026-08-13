@@ -27,6 +27,11 @@ const ON_LUYEN_TOPICS_BY_GRADE = {
       name: '🧠 Học Kĩ Năng Giải Toán Singapore',
       href: '/tai-lieu/hoc-ky-nang-toan-singapore.html',
     },
+    {
+      id: 'toan-timo-khong-kho',
+      name: '🏆 Toán Timo Không Khó',
+      href: '/tai-lieu/toan-timo-khong-kho.html',
+    },
   ],
   6: [
     {
