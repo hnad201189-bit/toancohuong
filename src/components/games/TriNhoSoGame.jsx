@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { randInt, shuffle } from './gameUtils'
+import { recordSession } from './progress'
 
 const PAIR_COUNT = 6
 const BEST_KEY = 'toan-l1-game-tri-nho-best-time'
@@ -35,6 +36,7 @@ export default function TriNhoSoGame({ onExit }) {
   useEffect(() => {
     if (finished) {
       setRunning(false)
+      recordSession('tri-nho-so')
       if (best === null || seconds < best) {
         setBest(seconds)
         localStorage.setItem(BEST_KEY, String(seconds))

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { recordSession } from './progress'
 
 const EMOJI_POOL = ['🍎', '🍌', '🐱', '🐶', '⭐', '🎈', '🍇', '🐟', '🌸', '🚗']
 const ROUNDS = 8
@@ -17,12 +18,14 @@ function shuffle(arr) {
   return a
 }
 
-function makeRound() {
+function makeRound(round) {
+  // Vòng đầu đếm ít (1-5), càng chơi càng đếm nhiều hơn (1-12) cho khó hơn.
+  const max = round >= 6 ? 12 : round >= 3 ? 10 : 5
   const emoji = EMOJI_POOL[randInt(0, EMOJI_POOL.length - 1)]
-  const count = randInt(1, 10)
+  const count = randInt(1, max)
   const wrongPool = new Set()
   while (wrongPool.size < 3) {
-    const candidate = randInt(1, 10)
+    const candidate = randInt(1, max)
     if (candidate !== count) wrongPool.add(candidate)
   }
   const options = shuffle([count, ...wrongPool])
@@ -31,11 +34,15 @@ function makeRound() {
 
 export default function DemHinhGame({ onExit }) {
   const [round, setRound] = useState(0)
-  const [current, setCurrent] = useState(makeRound)
+  const [current, setCurrent] = useState(() => makeRound(0))
   const [score, setScore] = useState(0)
   const [picked, setPicked] = useState(null)
   const [finished, setFinished] = useState(false)
   const [best, setBest] = useState(() => Number(localStorage.getItem(BEST_KEY)) || 0)
+
+  useEffect(() => {
+    if (finished) recordSession('dem-hinh')
+  }, [finished])
 
   function pick(option) {
     if (picked !== null) return
@@ -56,14 +63,15 @@ export default function DemHinhGame({ onExit }) {
   }
 
   function next() {
-    setRound((r) => r + 1)
-    setCurrent(makeRound())
+    const nextRound = round + 1
+    setRound(nextRound)
+    setCurrent(makeRound(nextRound))
     setPicked(null)
   }
 
   function playAgain() {
     setRound(0)
-    setCurrent(makeRound())
+    setCurrent(makeRound(0))
     setScore(0)
     setPicked(null)
     setFinished(false)

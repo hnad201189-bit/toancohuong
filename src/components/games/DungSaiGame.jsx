@@ -1,18 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 import { randInt } from './gameUtils'
+import { recordSession } from './progress'
 
 const GAME_SECONDS = 30
 const BEST_KEY = 'toan-l1-game-dung-sai-best'
 
-function makeQuestion() {
+function makeQuestion(score) {
+  // Điểm càng cao, phạm vi số càng lớn — độ khó tự tăng theo tiến trình ván chơi.
+  const max = score >= 10 ? 20 : score >= 5 ? 15 : 10
   const isAddition = Math.random() < 0.5
   let a, b, correctAnswer
   if (isAddition) {
-    a = randInt(0, 10)
-    b = randInt(0, 10 - a)
+    a = randInt(0, max)
+    b = randInt(0, max - a)
     correctAnswer = a + b
   } else {
-    a = randInt(0, 10)
+    a = randInt(0, max)
     b = randInt(0, a)
     correctAnswer = a - b
   }
@@ -25,7 +28,7 @@ function makeQuestion() {
       const delta = randInt(-3, 3) || 1
       shown = correctAnswer + delta
       attempts++
-    } while ((shown === correctAnswer || shown < 0 || shown > 20) && attempts < 20)
+    } while ((shown === correctAnswer || shown < 0 || shown > max) && attempts < 20)
   }
 
   return {
@@ -40,7 +43,7 @@ const OPTIONS = [
 ]
 
 export default function DungSaiGame({ onExit }) {
-  const [question, setQuestion] = useState(makeQuestion)
+  const [question, setQuestion] = useState(() => makeQuestion(0))
   const [score, setScore] = useState(0)
   const [secondsLeft, setSecondsLeft] = useState(GAME_SECONDS)
   const [running, setRunning] = useState(true)
@@ -66,6 +69,7 @@ export default function DungSaiGame({ onExit }) {
   useEffect(() => {
     if (secondsLeft !== 0 || !running) return
     setRunning(false)
+    recordSession('dung-sai')
     if (score > best) {
       setBest(score)
       localStorage.setItem(BEST_KEY, String(score))
@@ -75,18 +79,19 @@ export default function DungSaiGame({ onExit }) {
   function answer(opt) {
     if (!running || flash) return
     const isCorrect = opt.value === question.answer
+    const nextScore = isCorrect ? score + 1 : score
     setPickedOpt(opt.value)
     setFlash(isCorrect ? 'correct' : 'wrong')
-    if (isCorrect) setScore((s) => s + 1)
+    if (isCorrect) setScore(nextScore)
     setTimeout(() => {
       setFlash(null)
       setPickedOpt(null)
-      setQuestion(makeQuestion())
+      setQuestion(makeQuestion(nextScore))
     }, 500)
   }
 
   function playAgain() {
-    setQuestion(makeQuestion())
+    setQuestion(makeQuestion(0))
     setScore(0)
     setSecondsLeft(GAME_SECONDS)
     setRunning(true)

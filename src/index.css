@@ -2196,6 +2196,7 @@ table {
 /* ---------- Trò chơi (Lớp 1) ---------- */
 
 .game-card {
+  position: relative;
   align-items: flex-start;
   text-align: left;
 }
@@ -2203,6 +2204,88 @@ table {
 .game-card__icon {
   font-size: 34px;
   line-height: 1;
+}
+
+.game-card__check {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--success);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Tiến trình chung (streak + huy hiệu) ---------- */
+.progress-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-banner__streak {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.progress-banner__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.badge__icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.badge.is-earned {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.badge.is-locked {
+  color: var(--text-soft);
+  opacity: 0.55;
+  filter: grayscale(1);
+}
+
+.badge-toast {
+  background: #e6f4ee;
+  border: 1px solid var(--success);
+  color: var(--success);
+  border-radius: var(--radius-card-sm);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .game-hud {
@@ -2549,6 +2632,13 @@ table {
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
   border-bottom: 92px solid var(--primary);
+}
+
+.shape-icon--thoi {
+  width: 66px;
+  height: 66px;
+  border-radius: 6px;
+  transform: rotate(45deg);
 }
 
 /* Xếp số theo thứ tự */

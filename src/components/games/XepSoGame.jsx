@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { randInt, shuffle } from './gameUtils'
+import { recordSession } from './progress'
 
 const ROUNDS = 6
 const CHIPS_PER_ROUND = 5
@@ -38,6 +39,7 @@ export default function XepSoGame({ onExit }) {
   function finishGame() {
     setRunning(false)
     setFinished(true)
+    recordSession('xep-so')
     if (best === null || seconds < best) {
       setBest(seconds)
       localStorage.setItem(BEST_KEY, String(seconds))

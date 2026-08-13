@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { recordSession } from './progress'
 
 // Mỗi phép tính cho một kết quả khác nhau (1..10) để không bao giờ có 2 thẻ
 // kết quả trùng nhau trong cùng một ván — tránh ghép nhầm cặp không mong muốn.
@@ -59,6 +60,7 @@ export default function GhepSoGame({ onExit }) {
   useEffect(() => {
     if (finished) {
       setRunning(false)
+      recordSession('ghep-so')
       if (best === null || seconds < best) {
         setBest(seconds)
         localStorage.setItem(BEST_KEY, String(seconds))

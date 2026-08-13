@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { shuffle } from './gameUtils'
+import { recordSession } from './progress'
 
 const WORD_POOL = [
   { result: 1, word: 'Một' },
@@ -49,6 +50,7 @@ export default function GhepChuSoGame({ onExit }) {
   useEffect(() => {
     if (finished) {
       setRunning(false)
+      recordSession('ghep-chu-so')
       if (best === null || seconds < best) {
         setBest(seconds)
         localStorage.setItem(BEST_KEY, String(seconds))

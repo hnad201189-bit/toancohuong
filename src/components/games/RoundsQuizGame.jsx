@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { recordSession } from './progress'
 
 // Engine dùng chung cho các trò chơi trắc nghiệm nhiều vòng có số vòng cố
 // định: mỗi vòng hỏi 1 câu, chọn xong hiện đúng/sai rồi bấm "Câu tiếp theo".
-// Nội dung câu hỏi (đề bài + lựa chọn) do từng trò chơi tự sinh qua makeRound.
+// Nội dung câu hỏi (đề bài + lựa chọn) do từng trò chơi tự sinh qua makeRound,
+// nhận vào chỉ số vòng hiện tại để tự tăng độ khó theo tiến trình ván chơi.
 export default function RoundsQuizGame({
   onExit,
+  gameId,
   icon,
   title,
   subtitle,
@@ -14,11 +17,15 @@ export default function RoundsQuizGame({
   renderPrompt,
 }) {
   const [round, setRound] = useState(0)
-  const [current, setCurrent] = useState(makeRound)
+  const [current, setCurrent] = useState(() => makeRound(0))
   const [score, setScore] = useState(0)
   const [picked, setPicked] = useState(null)
   const [finished, setFinished] = useState(false)
   const [best, setBest] = useState(() => Number(localStorage.getItem(bestKey)) || 0)
+
+  useEffect(() => {
+    if (finished) recordSession(gameId)
+  }, [finished, gameId])
 
   function pick(opt) {
     if (picked !== null) return
@@ -39,14 +46,15 @@ export default function RoundsQuizGame({
   }
 
   function next() {
-    setRound((r) => r + 1)
-    setCurrent(makeRound())
+    const nextRound = round + 1
+    setRound(nextRound)
+    setCurrent(makeRound(nextRound))
     setPicked(null)
   }
 
   function playAgain() {
     setRound(0)
-    setCurrent(makeRound())
+    setCurrent(makeRound(0))
     setScore(0)
     setPicked(null)
     setFinished(false)

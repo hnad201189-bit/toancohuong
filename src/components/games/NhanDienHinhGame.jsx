@@ -10,10 +10,13 @@ const SHAPES = [
   { key: 'tam-giac', name: 'Hình tam giác' },
   { key: 'chu-nhat', name: 'Hình chữ nhật' },
 ]
+// Từ vòng 4 trở đi thêm hình thoi vào nhóm lựa chọn — nhiều phương án hơn, khó hơn.
+const SHAPES_HARDER = [...SHAPES, { key: 'thoi', name: 'Hình thoi' }]
 
-function makeRound() {
-  const answerShape = SHAPES[Math.floor(Math.random() * SHAPES.length)]
-  const options = shuffle(SHAPES).map((s) => ({ label: s.name, value: s.key }))
+function makeRound(round) {
+  const pool = round >= 3 ? SHAPES_HARDER : SHAPES
+  const answerShape = pool[Math.floor(Math.random() * pool.length)]
+  const options = shuffle(pool).map((s) => ({ label: s.name, value: s.key }))
   return { shapeKey: answerShape.key, answer: answerShape.key, options }
 }
 
@@ -29,6 +32,7 @@ export default function NhanDienHinhGame({ onExit }) {
   return (
     <RoundsQuizGame
       onExit={onExit}
+      gameId="nhan-dien-hinh"
       icon="🔺"
       title="Nhận diện hình khối"
       subtitle="Nhìn hình và chọn đúng tên của hình đó."
