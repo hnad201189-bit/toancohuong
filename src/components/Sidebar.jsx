@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const GRADES = [1, 6, 7, 8, 9, 10, 11, 12]
+const GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 const BASE_MOCK_EXAMS = [
   { id: 'giua-ky-1', name: 'Thi giữa kì I' },

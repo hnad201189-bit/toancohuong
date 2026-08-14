@@ -1,9 +1,4 @@
-const GRADES = [1, 6, 7, 8, 9, 10, 11, 12]
-
-// Grades that currently have real lesson content. Kept as a plain hardcoded
-// list (mirroring Sidebar's own GRADES list) rather than derived from an API
-// call, since the gate must render instantly before any data fetch starts.
-const GRADES_WITH_CONTENT = new Set([6, 11, 12])
+const GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 export default function GradeGate({ selectedGrade, onSelect }) {
   return (
@@ -15,20 +10,16 @@ export default function GradeGate({ selectedGrade, onSelect }) {
         </p>
 
         <div className="grade-gate__grid">
-          {GRADES.map((g) => {
-            const hasContent = GRADES_WITH_CONTENT.has(g)
-            return (
-              <button
-                key={g}
-                className={`grade-gate__card ${g === selectedGrade ? 'is-active' : ''}`}
-                onClick={() => onSelect(g)}
-              >
-                <span className="grade-gate__card-num">{g}</span>
-                <span className="grade-gate__card-label">Lớp {g}</span>
-                {!hasContent && <span className="grade-gate__card-badge">Đang biên soạn</span>}
-              </button>
-            )
-          })}
+          {GRADES.map((g) => (
+            <button
+              key={g}
+              className={`grade-gate__card ${g === selectedGrade ? 'is-active' : ''}`}
+              onClick={() => onSelect(g)}
+            >
+              <span className="grade-gate__card-num">{g}</span>
+              <span className="grade-gate__card-label">Lớp {g}</span>
+            </button>
+          ))}
         </div>
       </div>
     </div>

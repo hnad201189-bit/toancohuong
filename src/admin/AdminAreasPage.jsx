@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { getAreas, createArea, updateArea, deleteArea } from '../api/client'
 
 const BLANK = { name: '', description: '', progress: 0 }
-const GRADES = [6, 11, 12]
+const GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 export default function AdminAreasPage() {
   const [grade, setGrade] = useState(11)

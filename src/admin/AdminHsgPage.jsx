@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { getHsgTopics, createHsgTopic, updateHsgTopic, deleteHsgTopic, deleteLesson } from '../api/client'
 
 const BLANK = { name: '', progress: 0 }
-const GRADES = [6, 11, 12]
+const GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 export default function AdminHsgPage() {
   const [grade, setGrade] = useState(11)
