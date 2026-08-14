@@ -88,6 +88,7 @@ export default function Sidebar({
   onGoOnLuyenTopic,
   onGoGames,
   onGoPhotoSolve,
+  onGoMyResults,
   onGoTutorFinder,
   open,
   onClose,
@@ -160,6 +161,12 @@ export default function Sidebar({
           onClick={() => go(onGoTutorFinder)}
         >
           🎓 Tìm gia sư
+        </button>
+        <button
+          className={`sidebar__item sidebar__item--overview ${view.screen === 'my-results' ? 'is-active' : ''}`}
+          onClick={() => go(onGoMyResults)}
+        >
+          📊 Kết quả của tôi
         </button>
 
         <button

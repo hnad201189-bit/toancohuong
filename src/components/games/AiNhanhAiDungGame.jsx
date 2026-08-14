@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { recordSession } from './progress'
+import { submitAttempt } from '../../api/client'
 
 const GAME_SECONDS = 30
 const BEST_KEY = 'toan-l1-game-ai-nhanh-best'
@@ -75,6 +76,7 @@ export default function AiNhanhAiDungGame({ onExit }) {
     if (secondsLeft !== 0 || !running) return
     setRunning(false)
     recordSession('ai-nhanh')
+    submitAttempt({ kind: 'game', itemId: 'ai-nhanh', itemLabel: 'Ai nhanh ai đúng', score, maxScore: null }).catch(() => {})
     if (score > best) {
       setBest(score)
       localStorage.setItem(BEST_KEY, String(score))

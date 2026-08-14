@@ -1799,6 +1799,51 @@ table {
   color: var(--text-soft);
 }
 
+/* ---------- Kết quả của tôi ---------- */
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.results-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+}
+
+.results-row__main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.results-row__icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.results-row__label {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.results-row__date {
+  font-size: 12.5px;
+  color: var(--text-soft);
+  margin-top: 2px;
+}
+
+.results-row__score {
+  font-weight: 800;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
 /* ---------- Tutor finder ---------- */
 
 .tutor-browse {

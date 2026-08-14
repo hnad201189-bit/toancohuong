@@ -13,6 +13,7 @@ import { solveRouter } from './routes/solve.js'
 import { tutorsRouter } from './routes/tutors.js'
 import { contactRequestsRouter } from './routes/contactRequests.js'
 import { studentsRouter } from './routes/students.js'
+import { attemptsRouter } from './routes/attempts.js'
 import { login, logout, checkAuth, requireAuth } from './auth.js'
 import { attachStudent } from './studentAuth.js'
 
@@ -39,6 +40,7 @@ app.use('/api/solve-image', solveRouter)
 app.use('/api/tutors', tutorsRouter)
 app.use('/api/contact-requests', contactRequestsRouter)
 app.use('/api/students', studentsRouter)
+app.use('/api/attempts', attemptsRouter)
 
 // Serve the built frontend (production) — dist/ only exists after `npm run build`.
 if (fs.existsSync(distPath)) {

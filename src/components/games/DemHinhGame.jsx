@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { recordSession } from './progress'
+import { submitAttempt } from '../../api/client'
 
 const EMOJI_POOL = ['🍎', '🍌', '🐱', '🐶', '⭐', '🎈', '🍇', '🐟', '🌸', '🚗']
 const ROUNDS = 8
@@ -41,7 +42,11 @@ export default function DemHinhGame({ onExit }) {
   const [best, setBest] = useState(() => Number(localStorage.getItem(BEST_KEY)) || 0)
 
   useEffect(() => {
-    if (finished) recordSession('dem-hinh')
+    if (finished) {
+      recordSession('dem-hinh')
+      submitAttempt({ kind: 'game', itemId: 'dem-hinh', itemLabel: 'Đếm hình vui', score, maxScore: ROUNDS }).catch(() => {})
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finished])
 
   function pick(option) {

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { getProgress, getEarnedBadgeIds, BADGES } from './progress'
+import { useStudentAuth } from '../../hooks/useStudentAuth'
+import AccountPanel from '../AccountPanel'
 import DemHinhGame from './DemHinhGame'
 import GhepSoGame from './GhepSoGame'
 import AiNhanhAiDungGame from './AiNhanhAiDungGame'
@@ -31,6 +33,7 @@ const GAME_LIST = [
 ]
 
 export default function Games({ onBack }) {
+  const { student, loading, register, login, logout } = useStudentAuth()
   const [active, setActive] = useState(null)
   const [progress, setProgress] = useState(() => getProgress())
   const [newBadges, setNewBadges] = useState([])
@@ -49,6 +52,32 @@ export default function Games({ onBack }) {
       setNewBadges(justUnlocked)
       setTimeout(() => setNewBadges([]), 4500)
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="screen">
+        <button className="breadcrumb" onClick={onBack}>
+          ← Tổng quan
+        </button>
+        <p>Đang tải…</p>
+      </div>
+    )
+  }
+
+  if (!student) {
+    return (
+      <div className="screen">
+        <button className="breadcrumb" onClick={onBack}>
+          ← Tổng quan
+        </button>
+        <header className="screen__header">
+          <h1>🎮 Trò chơi Toán lớp 1</h1>
+          <p className="screen__subtitle">Đăng nhập để chơi và lưu lại kết quả, streak, huy hiệu của con.</p>
+        </header>
+        <AccountPanel student={student} onRegister={register} onLogin={login} onLogout={logout} />
+      </div>
+    )
   }
 
   if (active === 'dem-hinh') return <DemHinhGame onExit={exitGame} />

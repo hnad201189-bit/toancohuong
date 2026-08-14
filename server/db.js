@@ -89,6 +89,18 @@ db.exec(`
     count INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (identity_key, usage_date)
   );
+
+  CREATE TABLE IF NOT EXISTS attempts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_id INTEGER NOT NULL REFERENCES students(id) ON DELETE CASCADE,
+    kind TEXT NOT NULL,
+    item_id TEXT NOT NULL,
+    item_label TEXT NOT NULL DEFAULT '',
+    is_correct INTEGER,
+    score INTEGER,
+    max_score INTEGER,
+    created_at TEXT NOT NULL
+  );
 `)
 
 // Migration: older databases may already have a "tutors" table without the

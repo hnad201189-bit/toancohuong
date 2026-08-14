@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard'
 import TopicDetail from './components/TopicDetail'
 import Lesson from './components/lesson/Lesson'
 import PhotoSolve from './components/PhotoSolve'
+import MyResults from './components/MyResults'
 import TutorFinder from './components/tutor/TutorFinder'
 import GradeGate from './components/GradeGate'
 import Games from './components/games/Games'
@@ -72,6 +73,10 @@ export default function MainSite() {
 
   function goPhotoSolve() {
     setView({ screen: 'photo-solve' })
+  }
+
+  function goMyResults() {
+    setView({ screen: 'my-results' })
   }
 
   function goTutorFinder() {
@@ -152,6 +157,7 @@ export default function MainSite() {
         onGoOnLuyenTopic={goOnLuyenTopic}
         onGoGames={goGames}
         onGoPhotoSolve={goPhotoSolve}
+        onGoMyResults={goMyResults}
         onGoTutorFinder={goTutorFinder}
         open={navOpen}
         onClose={() => setNavOpen(false)}
@@ -208,7 +214,12 @@ export default function MainSite() {
         )}
 
         {view.screen === 'lesson' && lesson && (
-          <Lesson lesson={lesson} areaName={view.back?.label ?? 'Tổng quan'} onBack={view.back?.onBack ?? goDashboard} />
+          <Lesson
+            lesson={lesson}
+            topicId={view.topicId}
+            areaName={view.back?.label ?? 'Tổng quan'}
+            onBack={view.back?.onBack ?? goDashboard}
+          />
         )}
 
         {view.screen === 'mock-exam' && (
@@ -238,6 +249,8 @@ export default function MainSite() {
         {view.screen === 'games' && <Games onBack={goDashboard} />}
 
         {view.screen === 'photo-solve' && <PhotoSolve onBack={goDashboard} />}
+
+        {view.screen === 'my-results' && <MyResults onBack={goDashboard} />}
 
         {view.screen === 'tutor-finder' && <TutorFinder onBack={goDashboard} />}
 

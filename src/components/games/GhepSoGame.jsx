@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { recordSession } from './progress'
+import { submitAttempt } from '../../api/client'
 
 // Mỗi phép tính cho một kết quả khác nhau (1..10) để không bao giờ có 2 thẻ
 // kết quả trùng nhau trong cùng một ván — tránh ghép nhầm cặp không mong muốn.
@@ -61,6 +62,7 @@ export default function GhepSoGame({ onExit }) {
     if (finished) {
       setRunning(false)
       recordSession('ghep-so')
+      submitAttempt({ kind: 'game', itemId: 'ghep-so', itemLabel: 'Ghép số', score: PAIR_COUNT, maxScore: PAIR_COUNT }).catch(() => {})
       if (best === null || seconds < best) {
         setBest(seconds)
         localStorage.setItem(BEST_KEY, String(seconds))

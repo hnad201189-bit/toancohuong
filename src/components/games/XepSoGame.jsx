@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { randInt, shuffle } from './gameUtils'
 import { recordSession } from './progress'
+import { submitAttempt } from '../../api/client'
 
 const ROUNDS = 6
 const CHIPS_PER_ROUND = 5
@@ -40,6 +41,7 @@ export default function XepSoGame({ onExit }) {
     setRunning(false)
     setFinished(true)
     recordSession('xep-so')
+    submitAttempt({ kind: 'game', itemId: 'xep-so', itemLabel: 'Xếp số theo thứ tự', score: ROUNDS, maxScore: ROUNDS }).catch(() => {})
     if (best === null || seconds < best) {
       setBest(seconds)
       localStorage.setItem(BEST_KEY, String(seconds))

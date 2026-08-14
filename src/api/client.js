@@ -108,6 +108,10 @@ export const loginStudent = (data) => request('/students/login', { method: 'POST
 export const logoutStudent = () => request('/students/logout', { method: 'POST', studentAuth: true })
 export const getStudentMe = () => request('/students/me', { studentAuth: true })
 
+// ---- Kết quả làm bài (game + trắc nghiệm) của học sinh đang đăng nhập ----
+export const submitAttempt = (data) => request('/attempts', { method: 'POST', body: data, studentAuth: true })
+export const getMyAttempts = () => request('/attempts/me', { studentAuth: true })
+
 // ---- Admin: quản lý tài khoản học sinh ----
 export const getAllStudentsAdmin = () => request('/students/all', { auth: true })
 export const updateStudent = (id, data) => request(`/students/${id}`, { method: 'PUT', body: data, auth: true })

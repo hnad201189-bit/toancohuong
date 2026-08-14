@@ -17,7 +17,7 @@ const TABS = [
   { id: 'de-kiem-tra', label: 'Đề kiểm tra' },
 ]
 
-export default function Lesson({ lesson, areaName, onBack }) {
+export default function Lesson({ lesson, topicId, areaName, onBack }) {
   const [tab, setTab] = useState('ly-thuyet')
   const hasPracticeBank = lesson.practiceBank?.length > 0
   const visibleTabs = TABS.filter((t) => t.id !== 'luyen-tap' || hasPracticeBank)
@@ -48,7 +48,9 @@ export default function Lesson({ lesson, areaName, onBack }) {
       <div className="lesson__content">
         {tab === 'ly-thuyet' && <LyThuyet theory={lesson.theory} />}
         {tab === 'video' && <Video video={lesson.video} />}
-        {tab === 'trac-nghiem' && <TracNghiem quiz={lesson.quiz} />}
+        {tab === 'trac-nghiem' && (
+          <TracNghiem quiz={lesson.quiz} topicId={topicId} lessonTitle={lesson.title} />
+        )}
         {tab === 'tu-luan' && <TuLuan essays={lesson.essays} />}
         {tab === 'luyen-tap' && hasPracticeBank && <PracticeBank items={lesson.practiceBank} />}
         {tab === 'flashcard' && <Flashcard cards={lesson.flashcards} />}

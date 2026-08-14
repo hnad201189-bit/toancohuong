@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { randInt, shuffle } from './gameUtils'
 import { recordSession } from './progress'
+import { submitAttempt } from '../../api/client'
 
 const PAIR_COUNT = 6
 const BEST_KEY = 'toan-l1-game-tri-nho-best-time'
@@ -37,6 +38,7 @@ export default function TriNhoSoGame({ onExit }) {
     if (finished) {
       setRunning(false)
       recordSession('tri-nho-so')
+      submitAttempt({ kind: 'game', itemId: 'tri-nho-so', itemLabel: 'Trí nhớ số', score: PAIR_COUNT, maxScore: PAIR_COUNT }).catch(() => {})
       if (best === null || seconds < best) {
         setBest(seconds)
         localStorage.setItem(BEST_KEY, String(seconds))

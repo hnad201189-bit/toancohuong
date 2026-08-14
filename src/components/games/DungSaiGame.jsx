@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { randInt } from './gameUtils'
 import { recordSession } from './progress'
+import { submitAttempt } from '../../api/client'
 
 const GAME_SECONDS = 30
 const BEST_KEY = 'toan-l1-game-dung-sai-best'
@@ -70,6 +71,7 @@ export default function DungSaiGame({ onExit }) {
     if (secondsLeft !== 0 || !running) return
     setRunning(false)
     recordSession('dung-sai')
+    submitAttempt({ kind: 'game', itemId: 'dung-sai', itemLabel: 'Đúng hay sai?', score, maxScore: null }).catch(() => {})
     if (score > best) {
       setBest(score)
       localStorage.setItem(BEST_KEY, String(score))

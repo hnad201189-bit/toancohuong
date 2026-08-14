@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { recordSession } from './progress'
+import { submitAttempt } from '../../api/client'
 
 // Engine dùng chung cho các trò chơi trắc nghiệm nhiều vòng có số vòng cố
 // định: mỗi vòng hỏi 1 câu, chọn xong hiện đúng/sai rồi bấm "Câu tiếp theo".
@@ -24,7 +25,11 @@ export default function RoundsQuizGame({
   const [best, setBest] = useState(() => Number(localStorage.getItem(bestKey)) || 0)
 
   useEffect(() => {
-    if (finished) recordSession(gameId)
+    if (finished) {
+      recordSession(gameId)
+      submitAttempt({ kind: 'game', itemId: gameId, itemLabel: title, score, maxScore: rounds }).catch(() => {})
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finished, gameId])
 
   function pick(opt) {
