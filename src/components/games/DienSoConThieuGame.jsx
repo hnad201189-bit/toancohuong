@@ -12,15 +12,17 @@ function makeRound(round) {
   const sequence = [start, start + step, start + 2 * step, start + 3 * step, start + 4 * step]
   const missingIndex = randInt(1, 3)
   const answer = sequence[missingIndex]
-  const ceiling = start + 4 * step + 3
 
-  const wrongPool = new Set()
-  while (wrongPool.size < 3) {
-    const candidate = answer + randInt(-3, 3)
-    if (candidate !== answer && candidate >= 0 && candidate <= ceiling && !sequence.includes(candidate)) {
-      wrongPool.add(candidate)
-    }
+  // Liệt kê sẵn toàn bộ số nhiễu hợp lệ quanh đáp án (không nằm trong dãy,
+  // không âm) rồi lấy ngẫu nhiên 3 số — tránh vòng lặp "thử-sai" có thể
+  // không bao giờ tìm đủ 3 số khi đáp án nằm sát đầu/cuối dãy.
+  const candidatePool = []
+  for (let delta = -8; delta <= 8; delta++) {
+    if (delta === 0) continue
+    const candidate = answer + delta
+    if (candidate >= 0 && !sequence.includes(candidate)) candidatePool.push(candidate)
   }
+  const wrongPool = shuffle(candidatePool).slice(0, 3)
   const options = shuffle([answer, ...wrongPool]).map((v) => ({ label: String(v), value: v }))
   return { sequence, missingIndex, answer, options }
 }
