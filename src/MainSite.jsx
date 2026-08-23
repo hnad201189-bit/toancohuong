@@ -36,68 +36,106 @@ export default function MainSite() {
 
   useEffect(loadData, [grade])
 
+  // Mọi điều hướng trong app đi qua đây để đồng bộ với lịch sử trình duyệt —
+  // nhờ đó nút "quay lại" trên điện thoại/PC chỉ lùi một bước trong app thay
+  // vì thoát thẳng ra ngoài (không có pushState nào thì "back" nhảy khỏi SPA).
+  function navigate(nextView, { replace = false } = {}) {
+    // Nếu đích đến giống hệt màn hình hiện tại (vd. bấm lại "Tổng quan" khi
+    // đang ở dashboard), ghi đè thay vì chồng thêm một bước lịch sử giống hệt
+    // — tránh việc bấm "quay lại" một lần mà không thấy gì đổi. Chỉ so sánh
+    // khi đã qua màn chọn lớp: lúc chưa xác nhận lớp, `view` vẫn giữ giá trị
+    // mặc định {screen:'dashboard'} dù chưa hề hiển thị — nếu so cả lúc đó,
+    // bước điều hướng xác nhận-lớp-đầu-tiên sẽ bị hiểu nhầm là trùng và ghi
+    // đè mất bước lịch sử "chưa chọn lớp".
+    const isSameView = gateConfirmed && JSON.stringify(nextView) === JSON.stringify(view)
+    setView(nextView)
+    const state = { gateConfirmed: true, view: nextView }
+    window.history[replace || isSameView ? 'replaceState' : 'pushState'](state, '')
+  }
+
+  useEffect(() => {
+    window.history.replaceState({ gateConfirmed: false, view: null }, '')
+    function onPopState(e) {
+      const state = e.state
+      setGateConfirmed(!!state?.gateConfirmed)
+      setView(state?.view ?? { screen: 'dashboard' })
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
+
   // Switching grade invalidates whatever area/topic was open — go back to
   // that grade's dashboard rather than showing a stale/mismatched screen.
   function setGrade(nextGrade) {
     if (nextGrade === grade) return
     setAreas(null)
     setGradeRaw(nextGrade)
-    setView({ screen: 'dashboard' })
+    navigate({ screen: 'dashboard' })
   }
 
   function selectGradeFromGate(nextGrade) {
-    setGrade(nextGrade)
     setGateConfirmed(true)
+    if (nextGrade === grade) {
+      window.history.pushState({ gateConfirmed: true, view: { screen: 'dashboard' } }, '')
+    } else {
+      setGrade(nextGrade)
+    }
   }
 
   function goDashboard() {
     loadData()
-    setView({ screen: 'dashboard' })
+    navigate({ screen: 'dashboard' })
   }
 
   function goArea(areaId) {
-    setView({ screen: 'topic', areaId })
+    navigate({ screen: 'topic', areaId })
   }
 
-  // back: { label, onBack } — where the lesson's breadcrumb should return to
+  // back: { label, areaId } — where the lesson's breadcrumb should return to
+  // (areaId undefined/null means "về Tổng quan"). Chỉ lưu dữ liệu thuần, vì
+  // history.pushState không thể lưu function (back.onBack kiểu cũ).
+  function resolveBack(back) {
+    return back?.areaId != null ? () => goArea(back.areaId) : goDashboard
+  }
+
   async function goLesson(topicId, back, areaId) {
     setView({ screen: 'lesson-loading', back, areaId })
     try {
       const data = await getLesson(topicId)
       setLesson(data)
-      setView({ screen: 'lesson', back, areaId, topicId })
+      navigate({ screen: 'lesson', back, areaId, topicId })
     } catch {
-      setView({ screen: 'lesson-locked', back, areaId })
+      navigate({ screen: 'lesson-locked', back, areaId })
     }
   }
 
   function goPhotoSolve() {
-    setView({ screen: 'photo-solve' })
+    navigate({ screen: 'photo-solve' })
   }
 
   function goMyResults() {
-    setView({ screen: 'my-results' })
+    navigate({ screen: 'my-results' })
   }
 
   function goTutorFinder() {
-    setView({ screen: 'tutor-finder' })
+    navigate({ screen: 'tutor-finder' })
   }
 
   function goHsgTopic(topicId) {
     if (!hsgMode) return
-    goLesson(topicId, { label: 'Tổng quan', onBack: goDashboard })
+    goLesson(topicId, { label: 'Tổng quan' })
   }
 
   function goMockExam(exam) {
-    setView({ screen: 'mock-exam', examId: exam.id, examName: exam.name })
+    navigate({ screen: 'mock-exam', examId: exam.id, examName: exam.name })
   }
 
   function goOnLuyenTopic(topic) {
-    setView({ screen: 'on-luyen', topicId: topic.id, topicName: topic.name })
+    navigate({ screen: 'on-luyen', topicId: topic.id, topicName: topic.name })
   }
 
   function goGames() {
-    setView({ screen: 'games' })
+    navigate({ screen: 'games' })
   }
 
   if (!gateConfirmed) {
@@ -188,7 +226,7 @@ export default function MainSite() {
                 continueTarget.topicId,
                 {
                   label: areas.find((a) => a.id === continueTarget.areaId)?.name ?? 'Tổng quan',
-                  onBack: () => goArea(continueTarget.areaId),
+                  areaId: continueTarget.areaId,
                 },
                 continueTarget.areaId
               )
@@ -202,7 +240,7 @@ export default function MainSite() {
             area={activeArea}
             onBack={goDashboard}
             onOpenLesson={(topicId) =>
-              goLesson(topicId, { label: activeArea.name, onBack: () => goArea(activeArea.id) }, activeArea.id)
+              goLesson(topicId, { label: activeArea.name, areaId: activeArea.id }, activeArea.id)
             }
           />
         )}
@@ -218,7 +256,7 @@ export default function MainSite() {
             lesson={lesson}
             topicId={view.topicId}
             areaName={view.back?.label ?? 'Tổng quan'}
-            onBack={view.back?.onBack ?? goDashboard}
+            onBack={resolveBack(view.back)}
           />
         )}
 
@@ -256,7 +294,7 @@ export default function MainSite() {
 
         {view.screen === 'lesson-locked' && (
           <div className="screen">
-            <button className="breadcrumb" onClick={view.back?.onBack ?? goDashboard}>
+            <button className="breadcrumb" onClick={resolveBack(view.back)}>
               ← {view.back?.label ?? 'Tổng quan'}
             </button>
             <div className="card empty-state">
