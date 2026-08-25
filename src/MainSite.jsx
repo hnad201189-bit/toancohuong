@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
+import { getOnLuyenTopics } from './data/onLuyen'
 import Dashboard from './components/Dashboard'
 import TopicDetail from './components/TopicDetail'
 import Lesson from './components/lesson/Lesson'
@@ -8,6 +9,7 @@ import MyResults from './components/MyResults'
 import TutorFinder from './components/tutor/TutorFinder'
 import GradeGate from './components/GradeGate'
 import Games from './components/games/Games'
+import OnLuyen from './components/OnLuyen'
 import { getAreas, getHsgTopics, getLesson } from './api/client'
 import { useLocalStorage } from './hooks/useLocalStorage'
 
@@ -130,8 +132,15 @@ export default function MainSite() {
     navigate({ screen: 'mock-exam', examId: exam.id, examName: exam.name })
   }
 
+  function goOnLuyen() {
+    navigate({ screen: 'on-luyen' })
+  }
+
+  // Chỉ dùng cho các mục Ôn luyện chưa có tài liệu (không có href) — hiện tại
+  // mọi mục đều có href và mở thẳng tài liệu tĩnh, nhánh này giữ chỗ cho các
+  // mục nội bộ trong tương lai.
   function goOnLuyenTopic(topic) {
-    navigate({ screen: 'on-luyen', topicId: topic.id, topicName: topic.name })
+    navigate({ screen: 'on-luyen-detail', topicId: topic.id, topicName: topic.name })
   }
 
   function goGames() {
@@ -192,7 +201,7 @@ export default function MainSite() {
         onGoArea={goArea}
         onGoHsgTopic={goHsgTopic}
         onGoMockExam={goMockExam}
-        onGoOnLuyenTopic={goOnLuyenTopic}
+        onGoOnLuyen={goOnLuyen}
         onGoGames={goGames}
         onGoPhotoSolve={goPhotoSolve}
         onGoMyResults={goMyResults}
@@ -273,9 +282,13 @@ export default function MainSite() {
         )}
 
         {view.screen === 'on-luyen' && (
+          <OnLuyen grade={grade} topics={getOnLuyenTopics(grade)} onBack={goDashboard} onSelectTopic={goOnLuyenTopic} />
+        )}
+
+        {view.screen === 'on-luyen-detail' && (
           <div className="screen">
-            <button className="breadcrumb" onClick={goDashboard}>
-              ← Tổng quan
+            <button className="breadcrumb" onClick={goOnLuyen}>
+              ← Ôn luyện
             </button>
             <div className="card empty-state">
               <h2>{view.topicName}</h2>

@@ -17,67 +17,6 @@ function getMockExams(grade) {
   return list
 }
 
-// Sẽ tiếp tục được biên soạn dựa trên các file PDF người dùng cung cấp — mỗi
-// mục trỏ tới một tài liệu tĩnh tự soạn trong public/tai-lieu (xem skill
-// tomtatsach), mở ở tab mới vì không phải chuyên đề trong hệ thống lesson.
-const ON_LUYEN_TOPICS_BY_GRADE = {
-  1: [
-    {
-      id: 'hoc-ky-nang-toan-singapore',
-      name: '🧠 Học Kĩ Năng Giải Toán Singapore',
-      href: '/tai-lieu/hoc-ky-nang-toan-singapore.html',
-    },
-    {
-      id: 'toan-timo-khong-kho',
-      name: '🏆 Toán Timo Không Khó',
-      href: '/tai-lieu/toan-timo-khong-kho.html',
-    },
-  ],
-  6: [
-    {
-      id: 'chinh-phuc-diem-10',
-      name: '⭐ Chinh Phục Điểm 10 Toán 6',
-      href: '/tai-lieu/chuong-1-tap-hop-so-tu-nhien.html',
-    },
-    {
-      id: 'timo-lop-5-6',
-      name: '🏆 Khung Ôn Luyện TIMO Lớp 5-6',
-      href: '/tai-lieu/timo-lop-5-6.html',
-    },
-  ],
-  11: [
-    {
-      id: 'giai-ma-luong-giac',
-      name: '📐 Giải Mã Lượng Giác',
-      href: '/tai-lieu/giai-ma-luong-giac.html',
-    },
-    {
-      id: '10-diem-to-hop-xac-suat',
-      name: '🎲 10 Điểm Tổ Hợp Xác Suất',
-      href: '/tai-lieu/10-diem-to-hop-xac-suat.html',
-    },
-    {
-      id: '10-diem-thi-hoc-ki-1',
-      name: '📝 10 Điểm Thi Học Kì I',
-      href: '/tai-lieu/10-diem-thi-hoc-ki-1.html',
-    },
-    {
-      id: 'sieu-cap-trac-nghiem-luong-giac',
-      name: '⚡ Siêu Cấp Trắc Nghiệm Lượng Giác',
-      href: '/tai-lieu/sieu-cap-trac-nghiem-luong-giac.html',
-    },
-    {
-      id: 'hoc-gioi-toan-11',
-      name: '🌱 Học Giỏi Toán 11',
-      href: '/tai-lieu/hoc-gioi-toan-11.html',
-    },
-  ],
-}
-
-function getOnLuyenTopics(grade) {
-  return ON_LUYEN_TOPICS_BY_GRADE[grade] || []
-}
-
 export default function Sidebar({
   grade,
   setGrade,
@@ -90,7 +29,7 @@ export default function Sidebar({
   onGoArea,
   onGoHsgTopic,
   onGoMockExam,
-  onGoOnLuyenTopic,
+  onGoOnLuyen,
   onGoGames,
   onGoPhotoSolve,
   onGoMyResults,
@@ -99,11 +38,9 @@ export default function Sidebar({
   onClose,
 }) {
   const [coBanOpen, setCoBanOpen] = useState(false)
-  const [onLuyenOpen, setOnLuyenOpen] = useState(false)
   const [thiThuOpen, setThiThuOpen] = useState(false)
   const [hsgOpen, setHsgOpen] = useState(false)
   const mockExams = getMockExams(grade)
-  const onLuyenTopics = getOnLuyenTopics(grade)
   // Lớp 1 không có thi giữa/cuối kì hay thi HSG như bậc phổ thông, nhưng vẫn
   // có tài liệu Ôn luyện riêng (vd. Học kĩ năng giải toán Singapore).
   const showThiThu = grade !== 1
@@ -153,6 +90,12 @@ export default function Sidebar({
         >
           📷 Chụp ảnh giải bài
         </button>
+        <button
+          className={`sidebar__item sidebar__item--overview ${view.screen === 'on-luyen' ? 'is-active' : ''}`}
+          onClick={() => go(onGoOnLuyen)}
+        >
+          📚 Ôn luyện
+        </button>
         {grade === 1 && (
           <button
             className={`sidebar__item sidebar__item--overview ${view.screen === 'games' ? 'is-active' : ''}`}
@@ -198,43 +141,6 @@ export default function Sidebar({
               </li>
             ))}
           </ul>
-        )}
-
-        <button
-          type="button"
-          className="sidebar__group-label sidebar__group-label--toggle"
-          aria-expanded={onLuyenOpen}
-          onClick={() => setOnLuyenOpen((v) => !v)}
-        >
-          ÔN LUYỆN
-          <span className="sidebar__group-caret">{onLuyenOpen ? '▾' : '▸'}</span>
-        </button>
-        {onLuyenOpen && (
-          onLuyenTopics.length > 0 ? (
-            <ul className="sidebar__list">
-              {onLuyenTopics.map((topic) =>
-                topic.href ? (
-                  <li key={topic.id}>
-                    <a className="sidebar__item" href={topic.href} target="_blank" rel="noopener noreferrer" onClick={onClose}>
-                      <span className="sidebar__item-name">{topic.name}</span>
-                      <span className="sidebar__item-external">↗</span>
-                    </a>
-                  </li>
-                ) : (
-                  <li key={topic.id}>
-                    <button
-                      className={`sidebar__item ${view.screen === 'on-luyen' && view.topicId === topic.id ? 'is-active' : ''}`}
-                      onClick={() => go(onGoOnLuyenTopic, topic)}
-                    >
-                      <span className="sidebar__item-name">{topic.name}</span>
-                    </button>
-                  </li>
-                )
-              )}
-            </ul>
-          ) : (
-            <p className="sidebar__group-empty">Chưa có chuyên đề, sẽ sớm được bổ sung.</p>
-          )
         )}
 
         {showThiThu && (
