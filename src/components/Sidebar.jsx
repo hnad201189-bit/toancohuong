@@ -39,6 +39,11 @@ const ON_LUYEN_TOPICS_BY_GRADE = {
       name: '⭐ Chinh Phục Điểm 10 Toán 6',
       href: '/tai-lieu/chuong-1-tap-hop-so-tu-nhien.html',
     },
+    {
+      id: 'timo-lop-5-6',
+      name: '🏆 Khung Ôn Luyện TIMO Lớp 5-6',
+      href: '/tai-lieu/timo-lop-5-6.html',
+    },
   ],
   11: [
     {
