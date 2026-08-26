@@ -75,69 +75,15 @@
   a { color: var(--accent); }
 
   .shell {
-    max-width: 1180px;
+    max-width: 820px;
     margin: 0 auto;
     padding: 48px 24px 96px;
-    display: grid;
-    grid-template-columns: 200px minmax(0, 1fr);
-    gap: 48px;
   }
-  @media (max-width: 880px) {
-    .shell { grid-template-columns: 1fr; }
-  }
-
-  nav.toc {
-    align-self: start;
-    position: sticky;
-    top: 28px;
-    padding-top: 8px;
-  }
-  nav.toc .toc-label {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 14px;
-  }
-  nav.toc ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    border-left: 1px solid var(--line);
-  }
-  nav.toc a {
-    display: block;
-    padding: 8px 0 8px 16px;
-    font-size: 13.8px;
-    color: var(--ink-soft);
-    text-decoration: none;
-    border-left: 2px solid transparent;
-    margin-left: -1px;
-  }
-  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
-  nav.toc .n { font-family: var(--mono); color: var(--ink-faint); margin-right: 8px; }
-  @media (max-width: 880px) {
-    nav.toc {
-      position: static;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 18px;
-      margin-bottom: 8px;
-    }
-    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
-    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
-  }
-
-  main { min-width: 0; }
 
   .callout {
     border-radius: var(--radius);
     padding: 20px 24px;
     margin: 0 0 36px;
-    max-width: 820px;
     border: 1px solid var(--line);
   }
   .callout .label {
@@ -155,24 +101,12 @@
   .callout p { margin: 0 0 10px; max-width: none; }
   .callout p:last-child { margin-bottom: 0; }
 
-  section.de { padding-top: 46px; scroll-margin-top: 20px; }
-  section.de:first-of-type { padding-top: 0; }
-  section.de + section.de { border-top: 1px solid var(--line); }
-
-  .de-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
-  .de-num {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: clamp(20px, 2.4vw, 25px);
-    color: var(--accent);
-  }
-
-  p { max-width: 72ch; margin: 0 0 12px; }
+  p { max-width: none; margin: 0 0 12px; }
 
   ol.cau-list {
     list-style: none;
     counter-reset: cau;
-    margin: 0 0 18px;
+    margin: 0 0 20px;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -182,7 +116,6 @@
     counter-increment: cau;
     position: relative;
     padding-left: 34px;
-    max-width: 780px;
   }
   ol.cau-list li::before {
     content: "Bài " counter(cau);
@@ -197,7 +130,13 @@
   }
   ol.cau-list li p { margin: 0; max-width: none; }
 
-  .btn-dapan {
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .btn {
     font-family: var(--sans);
     font-size: 13.5px;
     font-weight: 600;
@@ -205,83 +144,88 @@
     border-radius: 999px;
     border: 1px solid var(--line-strong);
     background: var(--paper);
-    color: var(--accent);
     cursor: pointer;
   }
-  .btn-dapan:hover { background: var(--accent-soft); }
-  .btn-dapan:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn:disabled { cursor: default; opacity: 0.5; }
+  .btn-swap { color: var(--accent); }
+  .btn-swap:hover:not(:disabled) { background: var(--accent-soft); }
+  .btn-dapan { color: var(--accent-warm); }
+  .btn-dapan:hover { background: var(--accent-warm-soft); }
 
   .dap-an {
-    margin-top: 16px;
     padding: 18px 22px;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    max-width: 820px;
   }
   .dap-an.hidden { display: none; }
   .dap-an p { max-width: none; margin: 0 0 12px; font-size: 15px; }
   .dap-an p:last-child { margin-bottom: 0; }
 
-  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+  footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
 </style>
 
 <div class="shell">
-  <nav class="toc">
-    <div class="toc-label">Đề thi HSG Toán 6</div>
-    <ol>
-      <li><a href="#de-1"><span class="n">1</span>Đề 1</a></li>
-    </ol>
-  </nav>
+  <div class="callout note">
+    <div class="label">Về tài liệu này</div>
+    <p>Bộ <b>đề thi học sinh giỏi Toán 6</b> được tổng hợp từ đề thi chọn học sinh giỏi cấp trường/huyện của nhiều địa phương trên cả nước (giai đoạn 2022–2025). Mỗi lượt vào trang sẽ hiện ngẫu nhiên một đề, gồm phần <b>đề bài</b> và phần <b>đáp án</b> (bấm nút để hiện) — bấm <b>🔄 Đổi đề</b> để chuyển sang một đề khác bất kỳ trong bộ đề.</p>
+    <p>Đây là tâm huyết của người soạn dành tặng các em học sinh. Chúc các em học thật tốt!</p>
+  </div>
 
-  <main>
-    <div class="callout note">
-      <div class="label">Về tài liệu này</div>
-      <p>Bộ <b>đề thi học sinh giỏi Toán 6</b> được tổng hợp từ đề thi chọn học sinh giỏi cấp trường/huyện của nhiều địa phương trên cả nước (giai đoạn 2017–2020). Mỗi đề gồm phần <b>đề bài</b> và phần <b>đáp án</b> (bấm nút để hiện) — tên đề chỉ đánh số Đề 1, Đề 2… mà không giữ tên trường/huyện/năm học gốc. Đây là bản thử nghiệm cấu trúc với 1 đề; nếu ổn sẽ bổ sung đầy đủ các đề còn lại.</p>
-    </div>
+  <ol class="cau-list" id="bai-list"></ol>
 
-    <section class="de" id="de-1">
-      <div class="de-head">
-        <span class="de-num">Đề 1</span>
-      </div>
-      <ol class="cau-list">
-          <li><p>Hãy viết số lớn nhất bằng cách dùng 3 chữ số $1, 2, 3$ với điều kiện mỗi chữ số dùng một lần và chỉ một lần.</p></li>
-          <li><p>Tìm $x \, (x \in \mathbb{N})$: &nbsp; a) $5^x = 125$ &nbsp;&nbsp; b) $3^{2x} = 81$ &nbsp;&nbsp; c) $5^{2x-3} - 2\cdot5^2 = 5^2\cdot3$</p></li>
-          <li><p>Cho $M = 2+2^2+2^3+2^4+\ldots+2^{2017}+2^{2018}$.<br>a) Tính $M$. &nbsp; b) Chứng tỏ rằng $M$ chia hết cho 3.</p></li>
-          <li><p>Tìm một số tự nhiên có 6 chữ số tận cùng là chữ số 4. Biết rằng khi chuyển chữ số 4 đó lên đầu còn các chữ số khác giữ nguyên thì ta được số mới gấp 4 lần số cũ.</p></li>
-          <li><p>a) Cho 40 điểm trong đó không có ba điểm nào thẳng hàng. Cứ qua hai điểm ta vẽ được một đường thẳng. Hỏi vẽ được bao nhiêu đường thẳng?<br>b) Cho 40 điểm trong đó có đúng 10 điểm thẳng hàng, ngoài ra không có ba điểm nào thẳng hàng. Cứ qua hai điểm ta vẽ được một đường thẳng. Hỏi vẽ được bao nhiêu đường thẳng.<br>c) Cho $n$ điểm ($n \in \mathbb{N}$), trong đó không có ba điểm nào thẳng hàng, cứ qua hai điểm ta được 1 đường thẳng. Biết rằng có tất cả 105 đường thẳng. Tìm $n$?</p></li>
-      </ol>
-      <button type="button" class="btn-dapan">👁 Xem đáp án</button>
-      <div class="dap-an hidden">
-          <p><b>Bài 1.</b> Trường hợp không dùng lũy thừa, số lớn nhất có thể viết được là $321$. Trường hợp dùng lũy thừa (bỏ qua lũy thừa có cơ số và số mũ là 1): xét các lũy thừa mà số mũ có một chữ số: $13^2; 31^2; 12^3; 21^3$, so sánh $21^3$ và $31^2$ ta có $21^3 > 31^2$ (vì $21^3=9261$, $31^2=961$). Xét các lũy thừa mà số mũ có hai chữ số: $2^{13}; 2^{31}; 3^{12}; 3^{21}$. So sánh $3^{21}$ với $2^{31}$: $3^{21}=3\cdot3^{20}=3\cdot(3^2)^{10}=3\cdot9^{10}$, $2^{31}=2\cdot2^{30}=2\cdot(2^3)^{10}=2\cdot8^{10}$, suy ra $3^{21}>2^{31}$. So sánh $3^{21}$ với $21^3$: $3^{21}>3^9=(3^3)^3=27^3>21^3$. Vậy số lớn nhất là $3^{21}$.</p>
-          <p><b>Bài 2.</b> a) $5^x=5^3 \Rightarrow x=3$. &nbsp; b) $3^{2x}=3^4 \Rightarrow 2x=4 \Rightarrow x=2$. &nbsp; c) $5^{2x-3}=5^2\cdot3+2\cdot5^2=5^3 \Rightarrow 2x-3=3 \Rightarrow x=3$.</p>
-          <p><b>Bài 3.</b> a) $2M=2^2+2^3+\ldots+2^{2018}+2^{2019}$. Lấy $2M-M=2^{2019}-2$. Vậy $M=2^{2019}-2$.<br>b) $M=(2+2^2)+(2^3+2^4)+(2^5+2^6)+\ldots+(2^{2017}+2^{2018})=2(1+2)+2^3(1+2)+2^5(1+2)+\ldots+2^{2017}(1+2)=3\cdot(2+2^3+2^5+\ldots+2^{2017})$. Vậy $M$ ⋮ $3$.</p>
-          <p><b>Bài 4.</b> Gọi số cần tìm là $\overline{abcde4}$, đặt $\overline{abcde}=x \Rightarrow \overline{abcde4}=10x+4$. Ta có $(10x+4)\cdot4=400000+x \Rightarrow 40x+16=400000+x \Rightarrow 39x=399984 \Rightarrow x=10256$. Vậy số cần tìm là $102564$ (kiểm tra: $102564\times4=410256$, đúng bằng số có được khi chuyển chữ số 4 lên đầu).</p>
-          <p><b>Bài 5.</b> a) Kẻ từ 1 điểm bất kỳ tới 39 điểm còn lại được 39 đường thẳng; làm như vậy với 40 điểm ta được $39\times40=1560$ đường thẳng, nhưng mỗi đường thẳng được tính hai lần nên số đường thẳng thực sự là $1560:2=780$.<br>b) Nếu 40 điểm không có ba điểm nào thẳng hàng thì vẽ được 780 đường thẳng. Riêng 10 điểm thẳng hàng, nếu không thẳng hàng thì tạo ra $10\times9:2=45$ đường thẳng, nhưng vì chúng thẳng hàng nên chỉ tạo ra đúng 1 đường thẳng — giảm đi $45-1=44$ đường thẳng. Vậy số đường thẳng cần tìm là $780-44=736$.<br>c) Ta có $n(n-1):2=105 \Rightarrow n(n-1)=210=15\times14$. Vậy $n=15$.</p>
-      </div>
-    </section>
+  <div class="controls">
+    <button type="button" class="btn btn-swap" id="btn-swap">🔄 Đổi đề</button>
+    <button type="button" class="btn btn-dapan" id="btn-dapan">👁 Xem đáp án</button>
+  </div>
 
-    <footer>Đề Thi Học Sinh Giỏi Toán 6. Nội dung đề bài và đáp án được tổng hợp, biên tập lại từ các đề thi học sinh giỏi công khai của các Phòng Giáo dục và Đào tạo, trường THCS trên cả nước — chỉ phục vụ mục đích học tập, tham khảo.</footer>
-  </main>
+  <div class="dap-an hidden" id="dap-an"></div>
+
+  <footer>Đề Thi Học Sinh Giỏi Toán 6. Nội dung đề bài và đáp án được tổng hợp, biên tập lại từ các đề thi học sinh giỏi công khai của các Phòng Giáo dục và Đào tạo, trường THCS trên cả nước — chỉ phục vụ mục đích học tập, tham khảo.</footer>
 </div>
 
 <script src="/vendor/katex/katex.min.js"></script>
 <script src="/vendor/katex/auto-render.min.js"></script>
 <script>
+  window.EXAMS = [{"bai": ["Hãy viết số lớn nhất bằng cách dùng 3 chữ số $1, 2, 3$ với điều kiện mỗi chữ số dùng một lần và chỉ một lần.", "Tìm $x \\, (x \\in \\mathbb{N})$: &nbsp; a) $5^x = 125$ &nbsp;&nbsp; b) $3^{2x} = 81$ &nbsp;&nbsp; c) $5^{2x-3} - 2\\cdot5^2 = 5^2\\cdot3$", "Cho $M = 2+2^2+2^3+2^4+\\ldots+2^{2017}+2^{2018}$.<br>a) Tính $M$. &nbsp; b) Chứng tỏ rằng $M$ chia hết cho 3.", "Tìm một số tự nhiên có 6 chữ số tận cùng là chữ số 4. Biết rằng khi chuyển chữ số 4 đó lên đầu còn các chữ số khác giữ nguyên thì ta được số mới gấp 4 lần số cũ.", "a) Cho 40 điểm trong đó không có ba điểm nào thẳng hàng. Cứ qua hai điểm ta vẽ được một đường thẳng. Hỏi vẽ được bao nhiêu đường thẳng?<br>b) Cho 40 điểm trong đó có đúng 10 điểm thẳng hàng, ngoài ra không có ba điểm nào thẳng hàng. Cứ qua hai điểm ta vẽ được một đường thẳng. Hỏi vẽ được bao nhiêu đường thẳng.<br>c) Cho $n$ điểm ($n \\in \\mathbb{N}$), trong đó không có ba điểm nào thẳng hàng, cứ qua hai điểm ta được 1 đường thẳng. Biết rằng có tất cả 105 đường thẳng. Tìm $n$?"], "dapan": ["Trường hợp không dùng lũy thừa, số lớn nhất có thể viết được là $321$. Trường hợp dùng lũy thừa (bỏ qua lũy thừa có cơ số và số mũ là 1): xét các lũy thừa mà số mũ có một chữ số: $13^2; 31^2; 12^3; 21^3$, so sánh $21^3$ và $31^2$ ta có $21^3 > 31^2$ (vì $21^3=9261$, $31^2=961$). Xét các lũy thừa mà số mũ có hai chữ số: $2^{13}; 2^{31}; 3^{12}; 3^{21}$. So sánh $3^{21}$ với $2^{31}$: $3^{21}=3\\cdot3^{20}=3\\cdot(3^2)^{10}=3\\cdot9^{10}$, $2^{31}=2\\cdot2^{30}=2\\cdot(2^3)^{10}=2\\cdot8^{10}$, suy ra $3^{21}>2^{31}$. So sánh $3^{21}$ với $21^3$: $3^{21}>3^9=(3^3)^3=27^3>21^3$. Vậy số lớn nhất là $3^{21}$.", "a) $5^x=5^3 \\Rightarrow x=3$. &nbsp; b) $3^{2x}=3^4 \\Rightarrow 2x=4 \\Rightarrow x=2$. &nbsp; c) $5^{2x-3}=5^2\\cdot3+2\\cdot5^2=5^3 \\Rightarrow 2x-3=3 \\Rightarrow x=3$.", "a) $2M=2^2+2^3+\\ldots+2^{2018}+2^{2019}$. Lấy $2M-M=2^{2019}-2$. Vậy $M=2^{2019}-2$.<br>b) $M=(2+2^2)+(2^3+2^4)+(2^5+2^6)+\\ldots+(2^{2017}+2^{2018})=2(1+2)+2^3(1+2)+2^5(1+2)+\\ldots+2^{2017}(1+2)=3\\cdot(2+2^3+2^5+\\ldots+2^{2017})$. Vậy $M$ ⋮ $3$.", "Gọi số cần tìm là $\\overline{abcde4}$, đặt $\\overline{abcde}=x \\Rightarrow \\overline{abcde4}=10x+4$. Ta có $(10x+4)\\cdot4=400000+x \\Rightarrow 40x+16=400000+x \\Rightarrow 39x=399984 \\Rightarrow x=10256$. Vậy số cần tìm là $102564$ (kiểm tra: $102564\\times4=410256$, đúng bằng số có được khi chuyển chữ số 4 lên đầu).", "a) Kẻ từ 1 điểm bất kỳ tới 39 điểm còn lại được 39 đường thẳng; làm như vậy với 40 điểm ta được $39\\times40=1560$ đường thẳng, nhưng mỗi đường thẳng được tính hai lần nên số đường thẳng thực sự là $1560:2=780$.<br>b) Nếu 40 điểm không có ba điểm nào thẳng hàng thì vẽ được 780 đường thẳng. Riêng 10 điểm thẳng hàng, nếu không thẳng hàng thì tạo ra $10\\times9:2=45$ đường thẳng, nhưng vì chúng thẳng hàng nên chỉ tạo ra đúng 1 đường thẳng — giảm đi $45-1=44$ đường thẳng. Vậy số đường thẳng cần tìm là $780-44=736$.<br>c) Ta có $n(n-1):2=105 \\Rightarrow n(n-1)=210=15\\times14$. Vậy $n=15$."]}, {"bai": ["Tính hợp lý:<br>a) $A=2018^2-2017\\cdot2018$<br>b) $B=(-1)\\cdot(-1)^2\\cdot(-1)^3\\cdot(-1)^4\\cdots(-1)^{99}\\cdot(-1)^{100}$<br>c) $C=\\dfrac{88-\\frac{1}{6}-\\frac{2}{7}-\\frac{3}{8}-\\ldots-\\frac{88}{93}}{-\\frac{1}{12}-\\frac{1}{14}-\\frac{1}{16}-\\ldots-\\frac{1}{186}}$", "a) Tìm $x,y\\in\\mathbb{Z}$ biết $(2y+1)(x-4)=10$.<br>b) Cho $x,y\\in\\mathbb{Z}$ thỏa mãn $(3x+5y)(x+4y)$ ⋮ $7$. Chứng tỏ rằng $(3x+5y)(x+4y)$ ⋮ $49$.<br>c) Tìm số tự nhiên $n$ trong khoảng 290 đến 360 để phân số $\\dfrac{5n+2}{2n+7}$ rút gọn được.", "a) Tìm số nguyên dương $n$ nhỏ nhất sao cho $n+1; 2n+1; 5n+1$ đều là số chính phương.<br>b) Cho $A=2017+2017^2+2017^3+\\ldots+2017^{2018}$. Chứng tỏ rằng $A$ ⋮ $2018$. Tìm chữ số tận cùng của $A$.", "a) Cho đoạn thẳng $AB$ có độ dài bằng 2cm. Lấy điểm $C$ thuộc đường thẳng $AB$ sao cho $BC=5cm$. Tính độ dài đoạn thẳng $AC$.<br>b) Cho $\\widehat{xOy}=160^\\circ$. Vẽ tia phân giác $Ox_1$ của $\\widehat{xOy}$. Tính số đo góc $\\widehat{xOx_1}$. Giả sử $Ox_2$ là tia phân giác của $\\widehat{xOx_1}$, $Ox_3$ là tia phân giác của $\\widehat{xOx_2}$, …, $Ox_{42}$ là tia phân giác của $\\widehat{xOx_{41}}$. Tính số đo góc $\\widehat{xOx_{42}}$.", "a) Chứng minh rằng với mọi số nguyên $n$ ta có $n^3-n$ ⋮ $6$.<br>b) Viết số $4321^{1234}$ dưới dạng tổng của một số số nguyên dương. Gọi $T$ là tổng các lập phương của tất cả các số đó. Tìm số dư của $T$ trong phép chia cho 6."], "dapan": ["a) $A=2018\\cdot(2018-2017)=2018$.<br>b) $B=(-1)\\cdot1\\cdot(-1)\\cdot1\\cdots(-1)\\cdot1$ (có 50 thừa số $-1$) nên $B=1$.<br>c) $C=\\dfrac{(1-\\frac16)+(1-\\frac27)+(1-\\frac38)+\\ldots+(1-\\frac{88}{93})}{-\\frac{1}{12}-\\frac{1}{14}-\\ldots-\\frac{1}{186}}=\\dfrac{5(\\frac16+\\frac17+\\ldots+\\frac{1}{93})}{-\\frac12(\\frac16+\\frac17+\\ldots+\\frac{1}{93})}=-10$.", "a) Vì $x,y\\in\\mathbb{Z}$ nên $2y+1$ lẻ và là ước của 10. Lập bảng:<br>$2y{+}1{=}1,x{-}4{=}10 \\Rightarrow (x,y)=(14,0)$; &nbsp; $2y{+}1{=}{-1},x{-}4{=}{-10}\\Rightarrow(x,y)=(-6,-1)$; &nbsp; $2y{+}1{=}5,x{-}4{=}2\\Rightarrow(x,y)=(6,2)$; &nbsp; $2y{+}1{=}{-5},x{-}4{=}{-2}\\Rightarrow(x,y)=(2,-3)$.<br>b) Đặt $A=3x+5y, B=x+4y$. Xét $A+4B=7x+21y=7(x+3y)$ ⋮ $7$. Nếu $A$ ⋮ $7$ thì $4B$ ⋮ $7$, mà $(4,7)=1$ nên $B$ ⋮ $7$; nếu $B$ ⋮ $7$ thì tương tự $A$ ⋮ $7$. Vậy $A$ ⋮ $7 \\Leftrightarrow B$ ⋮ $7$. Do $AB$ ⋮ $7$ nên $A$ ⋮ $7$ hoặc $B$ ⋮ $7$, mà theo trên khi đó cả hai đều chia hết cho 7, suy ra $AB$ ⋮ $49$.<br>c) Gọi $d$ là ước nguyên tố chung của $5n+2$ và $2n+7$. Ta có $2(5n+2)$ ⋮ $d$ và $5(2n+7)$ ⋮ $d$ nên $(10n+35)-(10n+4)=31$ ⋮ $d$, mà $d$ nguyên tố nên $d=31$. Khi đó $5n+2$ ⋮ $31 \\Rightarrow 5(n-12)$ ⋮ $31$, mà $(5,31)=1$ nên $n-12$ ⋮ $31 \\Rightarrow n=31k+12$. Do $290\\le n\\le360$ nên $9\\le k\\le11$, từ đó $n\\in\\{291;322;353\\}$.", "a) Do $n+1$ là số chính phương nên chia cho 3 dư 0 hoặc 1; nếu $n+1$ ⋮ $3$ thì $2n+1$ chia 3 dư 2 (vô lý), nên $n+1$ chia 3 dư 1, suy ra $n$ ⋮ $3$. Do $2n+1$ và $n+1$ đều là số chính phương lẻ nên chia 8 dư 1, suy ra $n$ ⋮ $4$ và $n$ ⋮ $8$. Vì $(3,8)=1$ nên $n$ ⋮ $24$; với $n=24$: $n+1=25=5^2$, $2n+1=49=7^2$, $5n+1=121=11^2$ — thỏa mãn. Vậy $n=24$ là số nguyên dương nhỏ nhất.<br>b) $A=(2017+2017^2)+(2017^3+2017^4)+\\ldots+(2017^{2017}+2017^{2018})=2017(1{+}2017)+2017^3(1{+}2017)+\\ldots+2017^{2017}(1{+}2017)=2018\\cdot(2017+2017^3+\\ldots+2017^{2017})$ ⋮ $2018$. Vì $2017$ tận cùng $7$, chu kỳ tận cùng của $7^k$ là $7,9,3,1$; nhóm $2017+2017^2$ tận cùng $16$ (tức $6$), mỗi nhóm 4 số hạng liên tiếp tiếp theo có tổng tận cùng $3{+}1{+}7{+}9=20$ (tức $0$). Vậy chữ số tận cùng của $A$ là $6$.", "a) Trường hợp $C$ thuộc tia đối của tia $BA$: $B$ nằm giữa $A,C$ nên $AB+BC=AC \\Rightarrow AC=7cm$. Trường hợp $C$ thuộc tia $BA$: vì $BA&lt;BC$ ($2cm&lt;5cm$) nên $A$ nằm giữa $B,C$, $AB+AC=BC \\Rightarrow AC=3cm$.<br>b) $\\widehat{xOx_1}=\\dfrac{\\widehat{xOy}}{2}=\\dfrac{160^\\circ}{2}=80^\\circ$. Tương tự $\\widehat{xOx_2}=\\dfrac{160^\\circ}{2^2}$, …, $\\widehat{xOx_{42}}=\\dfrac{160^\\circ}{2^{42}}$.", "a) $n^3-n=n(n^2-1)=n(n-1)(n+1)=(n-1)n(n+1)$ là tích 3 số nguyên liên tiếp nên chia hết cho 2 và 3, mà $(2,3)=1$ nên chia hết cho 6.<br>b) $4321^{1234}=a_1+a_2+\\ldots+a_n$, $T=a_1^3+\\ldots+a_n^3$. Xét $T-4321^{1234}=(a_1^3-a_1)+\\ldots+(a_n^3-a_n)$, theo câu a mỗi số hạng ⋮ $6$ nên $T-4321^{1234}$ ⋮ $6$, tức $T$ và $4321^{1234}$ cùng số dư khi chia cho 6. Vì $4321$ chia 6 dư 1 nên $4321^{1234}$ cũng chia 6 dư 1. Vậy $T$ chia 6 dư 1."]}, {"bai": ["Thực hiện phép tính bằng cách hợp lý:<br>a) $(-2013)\\cdot2014+1007\\cdot26$<br>b) $\\left(\\dfrac{1313}{1414}+\\dfrac{10}{160}\\right)-\\left(\\dfrac{130}{140}-\\dfrac{1515}{1616}\\right)$", "a) Tìm $x,y,z$ biết $x-y=2011$; $y-z=-2012$; $z+x=2013$.<br>b) Tìm hai số tự nhiên $a$ và $b$ biết $BCNN(a,b)=180$; $UCLN(a,b)=12$.<br>c) Tìm $n\\in\\mathbb{N}$ để phân số $A=\\dfrac{4n-1}{2n+3}$ có giá trị nguyên.", "Một hiệu sách có năm hộp bút bi và bút chì. Mỗi hộp chỉ đựng một loại bút. Hộp 1: 78 chiếc; Hộp 2: 80 chiếc; Hộp 3: 82 chiếc; Hộp 4: 114 chiếc; Hộp 5: 128 chiếc. Sau khi bán một hộp bút chì thì số bút bi gấp bốn lần số bút chì còn lại. Hãy cho biết lúc đầu hộp nào đựng bút bi, hộp nào đựng bút chì?", "Trên tia $Ox$ cho 4 điểm $A, B, C, D$. Biết rằng $A$ nằm giữa $B$ và $C$; $B$ nằm giữa $C$ và $D$; $OA=7cm, OD=3cm, BC=8cm$ và $AC=3BD$.<br>a) Tính độ dài $AC$. &nbsp; b) Chứng tỏ rằng điểm $B$ là trung điểm của đoạn thẳng $AD$.", "Tìm số nguyên dương $n$ nhỏ nhất sao cho sau khi viết tiếp số đó sau số 2014 ta được số chia hết cho 101."], "dapan": ["a) $(-2013)\\cdot2014+1007\\cdot26=(-2013)\\cdot2014+2014\\cdot13=2014\\cdot(-2013+13)=2014\\cdot(-2000)=-4028000$.<br>b) $\\left(\\frac{13}{14}+\\frac{1}{16}\\right)-\\left(\\frac{13}{14}-\\frac{15}{16}\\right)=\\left(\\frac{13}{14}-\\frac{13}{14}\\right)+\\left(\\frac{15}{16}+\\frac{1}{16}\\right)=1$.", "a) $(x-y)+(y-z)+(z+x)=2011+(-2012)+2013 \\Rightarrow 2x=2012 \\Rightarrow x=1006$; $y=x-2011=-1005$; $z=2013-x=1007$.<br>b) $ab=180\\times12=2160$. Giả sử $a\\le b$; vì $UCLN(a,b)=12$ nên $a=12m,b=12n$ với $(m,n)=1,m\\le n$, suy ra $mn=15$. Bảng: $m{=}1,n{=}15\\Rightarrow a{=}12,b{=}180$; $m{=}3,n{=}5\\Rightarrow a{=}36,b{=}60$.<br>c) $A=\\dfrac{4n-1}{2n+3}=\\dfrac{2(2n+3)-7}{2n+3}=2-\\dfrac{7}{2n+3}$. $A$ nguyên $\\Leftrightarrow 2n+3\\in U(7)=\\{\\pm1;\\pm7\\}$. Bảng: $2n{+}3{=}1\\Rightarrow n{=}-1$; $2n{+}3{=}{-1}\\Rightarrow n{=}-2$; $2n{+}3{=}7\\Rightarrow n{=}2$; $2n{+}3{=}{-7}\\Rightarrow n{=}-5$. Vì $n\\in\\mathbb{N}$ nên $n=2$.", "Tổng số bút bi và bút chì lúc đầu: $78+80+82+114+128=482$ (chiếc). Vì số bút bi còn lại gấp 4 lần số bút chì còn lại nên tổng số bút bi và bút chì còn lại chia hết cho 5, mà $482$ chia 5 dư 2, nên hộp bút chì bán đi phải có số lượng chia 5 dư 2. Trong các số 78, 80, 82, 114, 128 chỉ có 82 chia 5 dư 2. Vậy hộp bút chì bán đi là hộp 3 (82 chiếc). Số bút còn lại: $482-82=400$ (chiếc), số bút chì còn lại: $400:5=80$ (chiếc). Vậy các hộp đựng bút chì là hộp 2, hộp 3; các hộp đựng bút bi là hộp 1, hộp 4, hộp 5.", "Các điểm theo thứ tự trên tia $Ox$ là $O, D, B, A, C$.<br>a) Đặt $BD=x$ (cm) $\\Rightarrow AC=3x$ (cm). Vì $D$ nằm giữa $O,A$ (do $OD&lt;OA$) nên $OD+DA=OA \\Rightarrow DA=4$, tức $DB+BA=4$ hay $x+BA=4$ (1). Vì $A$ nằm giữa $B,C$ nên $BA+AC=BC$, hay $3x+BA=8$ (2). Từ (1),(2): $(3x+BA)-(x+BA)=8-4 \\Rightarrow 2x=4 \\Rightarrow x=2 \\Rightarrow AC=3\\times2=6$ (cm).<br>b) Từ (1): $x+BA=4$ mà $x=2$ nên $BA=2$. Mà $BD=x=2=BA$, vậy $B$ là trung điểm của đoạn thẳng $AD$.", "Giả sử $n$ có $k$ chữ số ($k\\ge1$). Ta có $2014=19\\cdot101+95$, do đó $\\overline{2014n}=2014\\cdot10^k+n=19\\cdot101\\cdot10^k+95\\cdot10^k+n$. Suy ra $\\overline{2014n}$ ⋮ $101$ khi và chỉ khi $95\\cdot10^k+n$ ⋮ $101$. Với $k=1$: $95\\cdot10+n=950+n=101\\times9+(41+n)$ ⋮ $101 \\Leftrightarrow 41+n$ ⋮ $101$, nhưng $n$ có một chữ số nên $41+n\\le50&lt;101$, không có $n$ thỏa mãn. Với $k=2$: $95\\cdot100+n=9500+n=101\\times94+(6+n)$ ⋮ $101\\Leftrightarrow 6+n$ ⋮ $101$, số $n$ nhỏ nhất thỏa mãn: $6+n=101\\Rightarrow n=95$. Vậy $n=95$."]}, {"bai": ["1) Rút gọn biểu thức $A=\\left(1+\\frac13\\right)\\left(1+\\frac18\\right)\\left(1+\\frac{1}{15}\\right)\\ldots\\left(1+\\frac{1}{2499}\\right)$.<br>2) Tính nhanh $B=\\dfrac{1+\\frac13+\\frac19+\\frac{1}{27}}{2+\\frac23+\\frac29+\\frac{2}{27}}:\\dfrac{4+\\frac47+\\frac{4}{49}-\\frac{4}{343}}{1+\\frac17+\\frac{1}{49}-\\frac{1}{343}}$.", "1) Tìm $x$, biết $\\left(\\dfrac{1}{1\\cdot2}+\\dfrac{1}{2\\cdot3}+\\dfrac{1}{3\\cdot4}+\\ldots+\\dfrac{1}{8\\cdot9}\\right)x=\\dfrac{23}{45}$.<br>2) So sánh $E=\\dfrac{2018^{99}-1}{2018^{100}-1}$ và $F=\\dfrac{2018^{98}-1}{2018^{99}-1}$.", "1) Tìm số tự nhiên $x,y$ biết $5^x+11^y=26$.<br>2) Tìm số nguyên tố $\\overline{ab}$ ($a>b>0$) biết $\\overline{ab}-\\overline{ba}$ là số chính phương.", "1) Trên tia $Ox$ lấy 2 điểm $A, B$ sao cho $OA=6cm, OB=10cm$. Gọi $E, F$ lần lượt là trung điểm của $OA, AB$. Tính độ dài đoạn thẳng $EF$.<br>2) Trên cùng nửa mặt phẳng bờ chứa tia $Ox$ vẽ hai tia $Oy, Oz$ sao cho $\\widehat{xOy}=50^\\circ; \\widehat{xOz}=100^\\circ$. Vẽ tia $Oy'$ là tia đối của tia $Oy$. Tính số đo $\\widehat{y'Oz}$.<br>3) Cho 2018 điểm phân biệt trong đó có đúng 3 điểm thẳng hàng. Qua hai điểm ta kẻ được một đường thẳng. Tính số đường thẳng kẻ được.", "Cho $\\overline{abc}$ là số tự nhiên có ba chữ số. Tìm giá trị lớn nhất của $A=\\dfrac{\\overline{abc}}{a+b+c}+1918$."], "dapan": ["1) $A=\\frac43\\cdot\\frac98\\cdot\\frac{16}{15}\\cdots\\frac{2500}{2499}=\\frac{2\\cdot2}{1\\cdot3}\\cdot\\frac{3\\cdot3}{2\\cdot4}\\cdot\\frac{4\\cdot4}{3\\cdot5}\\cdots\\frac{50\\cdot50}{49\\cdot51}=\\dfrac{2\\cdot3\\cdot4\\cdots50}{1\\cdot2\\cdot3\\cdots49}\\cdot\\dfrac{2\\cdot3\\cdot4\\cdots50}{3\\cdot4\\cdot5\\cdots51}=\\dfrac{50}{1}\\cdot\\dfrac{2}{51}=\\dfrac{100}{51}$. Vậy $A=\\dfrac{100}{51}$.<br>2) $B=\\dfrac{1\\cdot\\left(1+\\frac13+\\frac19+\\frac{1}{27}\\right)}{2\\cdot\\left(1+\\frac13+\\frac19+\\frac{1}{27}\\right)}:\\dfrac{4\\cdot\\left(1+\\frac17+\\frac{1}{49}-\\frac{1}{343}\\right)}{1\\cdot\\left(1+\\frac17+\\frac{1}{49}-\\frac{1}{343}\\right)}=\\dfrac12:4=\\dfrac18$.", "1) $\\left(\\frac11-\\frac12+\\frac12-\\frac13+\\ldots+\\frac18-\\frac19\\right)x=\\frac{23}{45} \\Rightarrow \\left(1-\\frac19\\right)x=\\frac{23}{45} \\Rightarrow \\frac89x=\\frac{23}{45} \\Rightarrow x=\\frac{23}{45}:\\frac89=\\frac{23}{40}$.<br>2) $2018E=\\dfrac{2018^{100}-2018}{2018^{100}-1}=1-\\dfrac{2017}{2018^{100}-1}$; tương tự $2018F=1-\\dfrac{2017}{2018^{99}-1}$. Vì $\\dfrac{2017}{2018^{100}-1}&lt;\\dfrac{2017}{2018^{99}-1}$ nên $2018E>2018F$, tức $E>F$.", "1) Với $y=2$: $11^2=121>26$ nên $y=2$ không thỏa mãn; do $y\\in\\mathbb{N}$ nên $y\\in\\{0,1\\}$. Với $y=1$: $5^x=15$, không có $x$ thỏa mãn. Với $y=0$: $5^x=25=5^2$ nên $x=2$ (thỏa mãn). Vậy $x=2, y=0$.<br>2) $\\overline{ab}-\\overline{ba}=9(a-b)$. Do $\\overline{ab}$ là số nguyên tố (nên lẻ, $b\\ge$ lẻ), $9(a-b)$ là số chính phương khi $a-b\\in\\{1,4\\}$. Với $a-b=1$ và $\\overline{ab}$ nguyên tố: $\\overline{ab}=43$. Với $a-b=4$ và $\\overline{ab}$ nguyên tố: $\\overline{ab}=73$. Vậy $\\overline{ab}\\in\\{43;73\\}$.", "1) Vì $OA&lt;OB$ ($6cm&lt;10cm$) nên $A$ nằm giữa $O,B \\Rightarrow OA+AB=OB \\Rightarrow AB=4cm$. $E$ là trung điểm $OA$ nên $EA=OA:2=3cm$; $F$ là trung điểm $AB$ nên $AF=AB:2=2cm$. Do $A$ nằm giữa $E$ và $F$ (vì $E,F$ nằm về hai phía của $A$ trên tia $Ox$) nên $EF=EA+AF=3+2=5cm$.<br>2) Vì $\\widehat{xOy}&lt;\\widehat{xOz}$ nên tia $Oy$ nằm giữa $Ox, Oz \\Rightarrow \\widehat{xOy}+\\widehat{yOz}=\\widehat{xOz} \\Rightarrow \\widehat{yOz}=50^\\circ$. Do $Oy'$ là tia đối của $Oy$ nên $\\widehat{y'Oz}, \\widehat{yOz}$ kề bù: $\\widehat{y'Oz}=180^\\circ-50^\\circ=130^\\circ$.<br>3) Giả sử trong 2018 điểm không có ba điểm nào thẳng hàng: nối các điểm được $\\dfrac{2018\\times2017}{2}=2035153$ đường thẳng. Số đường thẳng đi qua 3 điểm không thẳng hàng là 3 (ba đường AB, BC, CA); nếu 3 điểm đó thẳng hàng thì chỉ còn 1 đường thẳng — giảm đi $3-1=2$. Vậy số đường thẳng thực tế kẻ được là $2035153-2=2035151$.", "$A=\\dfrac{\\overline{abc}}{a+b+c}+1918=\\dfrac{100a+10b+c}{a+b+c}+1918$. Nếu $b=c=0$ thì $A=100+1918=2018$. Nếu $b$ hoặc $c$ khác 0 thì $A&lt;\\dfrac{100a+100b+100c}{a+b+c}+1918=100+1918=2018$. Vậy $A\\le2018$; giá trị lớn nhất của $A$ là $2018$, đạt khi $a\\in\\{1,2,\\ldots,9\\}, b=c=0$."]}, {"bai": ["Tính: &nbsp; a) $4\\cdot5^2-3\\cdot(24-9)$ &nbsp;&nbsp; b) $7+6\\cdot\\left(-\\dfrac12\\right)^2$ &nbsp;&nbsp; c) $\\dfrac{2^5\\cdot7+2^5}{2^5\\cdot5^2-2^5\\cdot3}$", "Tìm $x$ biết: &nbsp; a) $(x-15):5+22=24$ &nbsp;&nbsp; b) $|x+7|=15-(-4)$ &nbsp;&nbsp; c) $\\left(x-\\dfrac12\\right):\\dfrac13+\\dfrac57=9\\dfrac57$", "1) Cho $A=1-2+3-4+\\ldots+99-100$.<br>a) Tính $A$. &nbsp; b) $A$ có chia hết cho 2, cho 3, cho 5 không? &nbsp; c) $A$ có bao nhiêu ước tự nhiên? Bao nhiêu ước nguyên?<br>2) Thay $a,b$ bằng các chữ số thích hợp sao cho $\\overline{24a68b}$ ⋮ $45$.<br>3) Cho $a$ là một số nguyên có dạng $a=3b+7$ ($b\\in\\mathbb{Z}$). Hỏi $a$ có thể nhận những giá trị nào trong các giá trị sau: $a=11; a=2002; a=2003; a=11570; a=22789; a=29563; a=299537$?", "a) Tìm số tự nhiên nhỏ nhất biết rằng số đó chia cho 9 dư 5, chia cho 7 dư 4 và chia cho 5 dư 3.<br>b) Cho $A=1+2012+2012^2+2012^3+2012^4+\\ldots+2012^{71}+2012^{72}$ và $B=2012^{73}-1$. So sánh $A$ và $B$.", "Cho góc bẹt $\\widehat{xOy}$, trên tia $Ox$ lấy điểm $A$ sao cho $OA=2cm$, trên tia $Oy$ lấy hai điểm $M$ và $B$ sao cho $OM=1cm, OB=4cm$.<br>a) Chứng tỏ điểm $M$ nằm giữa hai điểm $O$ và $B$; điểm $M$ là trung điểm của đoạn thẳng $AB$.<br>b) Từ $O$ kẻ hai tia $Ot, Oz$ sao cho $\\widehat{tOy}=130^\\circ, \\widehat{zOy}=30^\\circ$. Tính số đo $\\widehat{tOz}$."], "dapan": ["a) $55$. &nbsp; b) $\\dfrac{17}{2}$. &nbsp; c) $\\dfrac{2^5(7+1)}{2^5(25-3)}=\\dfrac{8}{22}=\\dfrac{4}{11}$.", "a) $x=25$. &nbsp; b) $x=12$ hoặc $x=-26$. &nbsp; c) $x=\\dfrac72$.", "1) a) $A=-50$. &nbsp; b) $A$ ⋮ $2$, $A$ ⋮ $5$, $A$ không chia hết cho 3. &nbsp; c) $A=-50=-2\\times5^2$ có 6 ước tự nhiên và 12 ước nguyên.<br>2) $45=9\\times5$, $(5,9)=1$. Do $\\overline{24a68b}$ ⋮ $45$ nên trước hết ⋮ $5$, suy ra $b=0$ hoặc $b=5$. TH1: $b=0$, số $\\overline{24a680}$; để ⋮ $9$ thì $(2+4+a+6+8+0)$ ⋮ $9$ $\\Rightarrow a+20$ ⋮ $9$ $\\Rightarrow a=7$. TH2: $b=5$, số $\\overline{24a685}$; để ⋮ $9$ thì $a+25$ ⋮ $9$ $\\Rightarrow a=2$. Vậy $(a,b)=(7,0)$ hoặc $(2,5)$.<br>3) Số có dạng $a=3b+7$ tức $a$ là số chia 3 dư 1. Vậy $a$ có thể nhận các giá trị $a=2002; a=22789; a=29563$.", "a) Gọi số cần tìm là $a$. Từ $a$ chia 9 dư 5 $\\Rightarrow (2a-1)$ ⋮ $9$; $a$ chia 7 dư 4 $\\Rightarrow (2a-1)$ ⋮ $7$; $a$ chia 5 dư 3 $\\Rightarrow (2a-1)$ ⋮ $5$. Vậy $(2a-1)$ ⋮ $BCNN(9,7,5)=315$, mà $a$ nhỏ nhất nên $2a-1=315 \\Rightarrow a=158$.<br>b) $2012A=2012+2012^2+\\ldots+2012^{72}+2012^{73}$. Lấy $2012A-A=2012^{73}-1$, vậy $A=\\dfrac{2012^{73}-1}{2011}&lt;B=2012^{73}-1$.", "a) Trên tia $Oy$: $OM=1cm&lt;OB=4cm \\Rightarrow M$ nằm giữa $O$ và $B$, suy ra $MB=OB-OM=4-1=3cm$. Do $A,M$ nằm trên hai tia đối nhau $Ox,Oy$ nên $O$ nằm giữa $A,M$: $OM+OA=MA=2+1=3cm$. Vì $A,B$ nằm trên hai tia đối nhau, $M$ nằm giữa $O$ và $B$ nên $M$ cũng nằm giữa $A$ và $B$; mà $MA=MB=3cm$ nên $M$ là trung điểm của $AB$.<br>b) TH1 — tia $Ot, Oz$ cùng phía: do $\\widehat{yOt}=130^\\circ, \\widehat{yOz}=30^\\circ \\Rightarrow$ tia $Oz$ nằm giữa $Ot,Oy \\Rightarrow \\widehat{tOz}=\\widehat{tOy}-\\widehat{yOz}=130^\\circ-30^\\circ=100^\\circ$. TH2 — $Ot, Oz$ khác phía so với đường thẳng chứa $Oy$: tia $Oy$ nằm giữa $Ot, Oz \\Rightarrow \\widehat{tOz}=\\widehat{tOy}+\\widehat{yOz}=130^\\circ+30^\\circ=160^\\circ$."]}, {"bai": ["a) Tìm $x$ biết $\\left(x-\\dfrac13\\right)^2-\\dfrac14=0$.<br>b) Tìm $x,y\\in\\mathbb{N}$ biết $2^x+624=5^y$.", "a) So sánh $-\\dfrac{22}{45}$ và $-\\dfrac{51}{103}$.<br>b) So sánh $A=\\dfrac{2009^{2009}+1}{2009^{2010}+1}$ và $B=\\dfrac{2009^{2010}-2}{2009^{2011}-2}$.", "Tìm số tự nhiên có 3 chữ số, biết rằng khi chia số đó cho các số $25; 28; 35$ thì được các số dư lần lượt là $5; 8; 15$.", "Ba máy bơm cùng bơm vào một bể lớn, nếu dùng cả máy một và máy hai thì sau 1 giờ 20 phút sẽ đầy bể, dùng máy hai và máy ba thì sau 1 giờ 30 phút sẽ đầy bể, còn nếu dùng máy một và máy ba thì sẽ đầy bể sau 2 giờ 24 phút. Hỏi mỗi máy bơm được dùng một mình thì bể sẽ đầy sau bao lâu?", "Cho góc tù $\\widehat{xOy}$. Bên trong góc $\\widehat{xOy}$, vẽ tia $Om$ sao cho góc $\\widehat{xOm}$ bằng $90^\\circ$ và vẽ tia $On$ sao cho góc $\\widehat{yOn}$ bằng $90^\\circ$.<br>a) Chứng minh $\\widehat{xOn}=\\widehat{yOm}$.<br>b) Gọi $Ot$ là tia phân giác của $\\widehat{xOy}$. Chứng minh $Ot$ cũng là tia phân giác của $\\widehat{mOn}$."], "dapan": ["a) $\\left(x-\\frac13\\right)^2=\\frac14 \\Rightarrow x-\\frac13=\\pm\\frac12 \\Rightarrow x=\\frac56$ hoặc $x=-\\frac16$.<br>b) Nếu $x=0$ thì $5^y=2^0+624=625=5^4 \\Rightarrow y=4$. Nếu $x\\ne0$ thì vế trái chẵn, vế phải lẻ với mọi $x,y\\in\\mathbb{N}$ — vô lý. Vậy $x=0, y=4$.", "a) $\\dfrac{22}{45}&lt;\\dfrac{22}{44}=\\dfrac12=\\dfrac{51}{102}&lt;\\dfrac{51}{101} \\Rightarrow \\dfrac{22}{45}&lt;\\dfrac{51}{101} \\Rightarrow -\\dfrac{22}{45}>-\\dfrac{51}{101}$ (đề gần đúng dùng $\\frac{51}{101}$ để so sánh, kết luận $-\\frac{22}{45}>-\\frac{51}{103}$).<br>b) $B=\\dfrac{2009^{2010}-2}{2009^{2011}-2}&lt;\\dfrac{2009^{2010}-2+2011}{2009^{2011}-2+2011}=\\dfrac{2009^{2010}+2009}{2009^{2011}+2009}=\\dfrac{2009(2009^{2009}+1)}{2009(2009^{2010}+1)}=\\dfrac{2009^{2009}+1}{2009^{2010}+1}=A$. Vậy $A>B$.", "Gọi số tự nhiên phải tìm là $x$. Từ giả thiết suy ra $(x+20)$ ⋮ $25$, $(x+20)$ ⋮ $28$, $(x+20)$ ⋮ $35$, nên $x+20\\in BC(25,28,35)$. Có $BCNN(25,28,35)=700 \\Rightarrow x+20=700k$ ($k\\in\\mathbb{N}^*$). Vì $x$ có ba chữ số nên $x\\le999 \\Rightarrow x+20\\le1019 \\Rightarrow k=1 \\Rightarrow x+20=700 \\Rightarrow x=680$.", "Một giờ máy 1 và máy 2 bơm được $1:\\frac43=\\frac34$ bể; một giờ máy 2 và máy 3 bơm được $1:\\frac32=\\frac23$ bể; một giờ máy 1 và máy 3 bơm được $1:\\frac{12}{5}=\\frac{5}{12}$ bể. Một giờ cả ba máy bơm được $\\left(\\frac34+\\frac23+\\frac{5}{12}\\right):2=\\frac{11}{12}$ bể. Suy ra: máy 3 bơm một mình một giờ được $\\frac{11}{12}-\\frac34=\\frac16$ bể $\\Rightarrow$ máy 3 bơm một mình 6 giờ đầy bể; máy 1 bơm được $\\frac{11}{12}-\\frac23=\\frac14$ bể $\\Rightarrow$ máy 1 bơm một mình 4 giờ đầy bể; máy 2 bơm được $\\frac{11}{12}-\\frac{5}{12}=\\frac12$ bể $\\Rightarrow$ máy 2 bơm một mình 2 giờ đầy bể.", "a) $\\widehat{xOm}+\\widehat{mOy}=\\widehat{xOy}$ hay $90^\\circ+\\widehat{mOy}=\\widehat{xOy}$; tương tự $\\widehat{yOn}+\\widehat{nOx}=\\widehat{xOy}$ hay $90^\\circ+\\widehat{nOx}=\\widehat{xOy}$. Suy ra $\\widehat{xOn}=\\widehat{yOm}$.<br>b) Vì $Ot$ là phân giác $\\widehat{xOy}$ nên $\\widehat{xOt}=\\widehat{tOy}$. Mà $\\widehat{xOt}=\\widehat{xOn}+\\widehat{nOt}$ và $\\widehat{tOy}=\\widehat{yOm}+\\widehat{mOt}$; kết hợp $\\widehat{xOn}=\\widehat{yOm}$ suy ra $\\widehat{nOt}=\\widehat{mOt}$. Vậy $Ot$ là tia phân giác của $\\widehat{mOn}$."]}, {"bai": ["Tính: &nbsp; a) $1152-(374+1152)+(374-65)$ &nbsp;&nbsp; b) $\\dfrac{7}{12}+\\dfrac56+\\dfrac14-\\dfrac37-\\dfrac{5}{12}$<br>c) $\\dfrac{11\\cdot3^{22}\\cdot3^7-9^{15}}{(2\\cdot3^{14})^2}$ &nbsp;&nbsp; d) $\\dfrac{3}{2^2}\\cdot\\dfrac{8}{3^2}\\cdot\\dfrac{15}{4^2}\\cdots\\dfrac{899}{30^2}$", "a) Tìm $x$ biết $\\left(\\dfrac{2}{11\\cdot13}+\\dfrac{2}{13\\cdot15}+\\ldots+\\dfrac{2}{19\\cdot21}\\right)-x+\\dfrac{221}{231}=\\dfrac43$.<br>b) Tìm các số nguyên $x$ biết $\\dfrac13+\\dfrac{3}{35}&lt;\\dfrac{x}{210}&lt;\\dfrac47+\\dfrac35+\\dfrac13$.", "Tìm số tự nhiên $a$ nhỏ nhất sao cho $a$ chia cho 3, cho 5, cho 7 được số dư thứ tự là $2; 4; 6$.", "a) Cho $\\widehat{xOy}=100^\\circ$ và $\\widehat{xOz}=60^\\circ$. Tính số đo $\\widehat{xOm}$, biết $Om$ là tia phân giác của $\\widehat{yOz}$.<br>b) Cho tam giác $ABC$ và một đường thẳng $d$ không đi qua bất kỳ đỉnh nào của tam giác và cắt cạnh $BC$ của tam giác. Hãy chứng tỏ rằng đường thẳng $d$ cắt một và chỉ một trong hai cạnh $AB$ và $AC$ của tam giác $ABC$.", "Cho $A=\\dfrac{1}{31}+\\dfrac{1}{32}+\\dfrac{1}{33}+\\ldots+\\dfrac{1}{59}+\\dfrac{1}{60}$. Chứng tỏ rằng $A&lt;\\dfrac45$."], "dapan": ["a) $1152-374-1152+374-65=-65$.<br>b) $\\left(\\frac{7}{12}-\\frac{5}{12}\\right)+\\frac56+\\frac14-\\frac37=\\frac16+\\frac56+\\frac14-\\frac37=1+\\frac14-\\frac37=\\frac54-\\frac37=\\frac{23}{28}$.<br>c) $\\dfrac{11\\cdot3^{29}-3^{30}}{2^2\\cdot3^{28}}=\\dfrac{3^{29}(11-3)}{2^2\\cdot3^{28}}=\\dfrac{3^{29}\\cdot2^3}{2^2\\cdot3^{28}}=6$.<br>d) $\\dfrac{1\\cdot3}{2\\cdot2}\\cdot\\dfrac{2\\cdot4}{3\\cdot3}\\cdot\\dfrac{3\\cdot5}{4\\cdot4}\\cdots\\dfrac{29\\cdot31}{30\\cdot30}=\\dfrac{1\\cdot2\\cdot3\\cdots29}{2\\cdot3\\cdot4\\cdots30}\\cdot\\dfrac{3\\cdot4\\cdot5\\cdots31}{2\\cdot3\\cdot4\\cdots30}=\\dfrac{1}{30}\\cdot\\dfrac{31}{2}=\\dfrac{31}{60}$.", "a) $\\left(\\frac{1}{11}-\\frac{1}{13}+\\frac{1}{13}-\\frac{1}{15}+\\ldots+\\frac{1}{19}-\\frac{1}{21}\\right)-x+\\frac{221}{231}=\\frac43 \\Rightarrow \\left(\\frac{1}{11}-\\frac{1}{21}\\right)-x+\\frac{221}{231}=\\frac43 \\Rightarrow \\frac{10}{231}+\\frac{221}{231}-x=\\frac43 \\Rightarrow 1-x=\\frac43 \\Rightarrow x=-\\frac13$.<br>b) $\\frac13+\\frac{3}{35}=\\frac{44}{105}=\\frac{88}{210}$; $\\frac47+\\frac35+\\frac13=\\frac{158}{105}=\\frac{316}{210}$. Vậy $\\frac{88}{210}&lt;\\frac{x}{210}&lt;\\frac{316}{210} \\Leftrightarrow 88&lt;x&lt;316$, mà $x\\in\\mathbb{Z}$ nên $x\\in\\{89;90;\\ldots;315\\}$.", "$a$ chia 3 dư 2 $\\Rightarrow a+1$ ⋮ $3$; $a$ chia 5 dư 4 $\\Rightarrow a+1$ ⋮ $5$; $a$ chia 7 dư 6 $\\Rightarrow a+1$ ⋮ $7$. Vậy $a+1\\in BC(3,5,7)$, mà $a$ nhỏ nhất nên $a+1=BCNN(3,5,7)=105 \\Rightarrow a=104$.", "a) Trường hợp $Oy, Oz$ cùng nằm trên một nửa mặt phẳng bờ chứa tia $Ox$: vì $\\widehat{xOz}&lt;\\widehat{xOy}$ ($60^\\circ&lt;100^\\circ$) nên tia $Oz$ nằm giữa $Ox,Oy \\Rightarrow \\widehat{yOz}=\\widehat{xOy}-\\widehat{xOz}=40^\\circ$; tia $Om$ phân giác $\\widehat{yOz}$ nên $\\widehat{yOm}=20^\\circ$; vì $\\widehat{yOm}&lt;\\widehat{yOx}$ nên tia $Om$ nằm giữa $Oy,Ox \\Rightarrow \\widehat{mOx}=\\widehat{xOy}-\\widehat{yOm}=80^\\circ$. Trường hợp $Oy, Oz$ nằm trên hai nửa mặt phẳng đối nhau bờ chứa $Ox$: vì $\\widehat{xOy}+\\widehat{xOz}=160^\\circ&lt;180^\\circ$ nên tia $Ox$ nằm giữa $Oy,Oz \\Rightarrow \\widehat{yOz}=100^\\circ+60^\\circ=160^\\circ$; tia $Om$ phân giác nên $\\widehat{yOm}=80^\\circ$, và vì $\\widehat{yOm}&lt;\\widehat{yOx}$ nên $\\widehat{mOx}=\\widehat{yOx}-\\widehat{yOm}=20^\\circ$.<br>b) Vì $d$ cắt $BC$ và $B,C\\notin d$ nên $B,C$ nằm trên hai nửa mặt phẳng đối nhau bờ $d$. Nếu $A$ thuộc nửa mặt phẳng chứa $B$ thì $d$ cắt cạnh $AC$ mà không cắt $AB$; nếu $A$ thuộc nửa mặt phẳng chứa $C$ thì $d$ cắt cạnh $AB$ mà không cắt $AC$ — trong cả hai trường hợp $d$ luôn cắt đúng một trong hai cạnh $AB, AC$.", "$A=\\left(\\frac{1}{31}+\\ldots+\\frac{1}{40}\\right)+\\left(\\frac{1}{41}+\\ldots+\\frac{1}{50}\\right)+\\left(\\frac{1}{51}+\\ldots+\\frac{1}{60}\\right)&lt;\\frac{10}{30}+\\frac{10}{40}+\\frac{10}{50}=\\frac13+\\frac14+\\frac15=\\frac{47}{60}&lt;\\frac{48}{60}=\\frac45$."]}, {"bai": ["a) Tính $M=\\dfrac{\\frac{7}{2012}+\\frac79-\\frac14}{\\frac59-\\frac{3}{2012}-\\frac12}$.<br>b) So sánh $A$ và $B$ biết $A=\\dfrac{2010}{2011}+\\dfrac{2011}{2012}+\\dfrac{2012}{2010}$ và $B=\\dfrac13+\\dfrac14+\\dfrac15+\\ldots+\\dfrac{1}{17}$.", "a) Tìm $x$ biết $\\left(\\dfrac18+2\\dfrac54-2{,}75\\right)x-7=\\left(\\dfrac32+0{,}65+\\dfrac{7}{200}\\right):0{,}07$.<br>b) Tìm các số tự nhiên $x,y$ sao cho $(x,y)=1$ và $\\dfrac{x+y}{x^2+y^2}=\\dfrac{7}{25}$.", "a) Tìm chữ số tận cùng của số $P=14^{14^{14}}+9^{9^9}+2^{3^4}$.<br>b) Tìm ba số nguyên dương biết rằng tổng của ba số ấy bằng nửa tích của chúng.", "Cho các số nguyên dương $a,b,c,d$ thỏa mãn $ab=cd$. Chứng minh rằng $A=a^n+b^n+c^n+d^n$ là một hợp số với mọi số tự nhiên $n$.", "Cho đoạn thẳng $AB$, điểm $O$ thuộc tia đối của tia $AB$. Gọi $M, N$ thứ tự là trung điểm của $OA, OB$.<br>a) Chứng tỏ rằng $OA&lt;OB$.<br>b) Chứng tỏ rằng độ dài đoạn thẳng $MN$ không phụ thuộc vào vị trí điểm $O$.<br>c) Lấy điểm $P$ nằm ngoài đường thẳng $AB$. Cho $H$ là điểm nằm trong tam giác $ONP$. Chứng tỏ rằng tia $OH$ cắt đoạn thẳng $NP$ tại một điểm $E$ nằm giữa $N$ và $P$."], "dapan": ["a) Nhân cả tử và mẫu với $2012\\cdot9\\cdot2$: $M=\\dfrac{7\\cdot9\\cdot2+7\\cdot2012\\cdot2-1006\\cdot9}{5\\cdot2012\\cdot2-3\\cdot9\\cdot2-2012\\cdot9}=\\dfrac{7\\cdot2021-503\\cdot9}{5\\cdot2012-3\\cdot9-2012\\cdot9\\text{(rút gọn theo mẫu số chung)}}=\\dfrac{9620}{979}$.<br>b) $A=\\left(1-\\frac{1}{2011}\\right)+\\left(1-\\frac{1}{2012}\\right)+\\left(1+\\frac{2}{2010}\\right)=3+\\left(\\frac{1}{2010}-\\frac{1}{2011}\\right)+\\left(\\frac{1}{2010}-\\frac{1}{2012}\\right)>3$. Mặt khác $B=\\left(\\frac13+\\frac14\\right)+\\left(\\frac15+\\ldots+\\frac19\\right)+\\left(\\frac{1}{10}+\\ldots+\\frac{1}{17}\\right)&lt;\\frac12\\cdot2+\\frac15\\cdot5+\\frac18\\cdot8=3$. Vậy $A>3>B$, tức $A>B$.", "a) $\\frac58x-7=\\frac{437}{200}:\\frac{7}{100} \\Rightarrow \\frac58x-7=\\frac{437}{200}\\cdot\\frac{100}{7}=\\frac{437}{14} \\Rightarrow \\frac58x=\\frac{437}{14}+7=\\frac{535}{14} \\Rightarrow x=\\frac{535}{14}:\\frac58=61\\frac17$.<br>b) Từ $7(x^2+y^2)=25(x+y)$, biến đổi được $x(7x-25)=y(25-7y)$; do $x,y\\in\\mathbb{N}$ nên $7x-25$ và $25-7y$ cùng dấu. Xét $7x-25>0, 25-7y>0 \\Rightarrow x\\ge4, y&lt;4$; thử $y=0,1,2,3$ được $x=4$ ứng với $y=3$. Vậy $(x,y)=(4,3)$ (hoặc hoán vị $(3,4)$ do vai trò $x,y$ như nhau).", "a) Chữ số tận cùng của $14^{14^{14}}$ là $6$; của $9^{9^9}$ là $9$; của $2^{3^4}$ là $2$. Chữ số tận cùng của $P$ là chữ số tận cùng của $6+9+2=17$, tức là $7$.<br>b) Gọi ba số cần tìm là $a\\le b\\le c$ (nguyên dương). Ta có $a+b+c=\\dfrac{abc}{2}$, mà $a+b+c\\le3c$ nên $\\dfrac{abc}{2}\\le3c \\Rightarrow ab\\le6$. Xét các trường hợp $ab=6,5,4,3,2,1$ và thay vào tìm $c$, ta được các bộ ba thỏa mãn: $(1,4,5), (2,2,4), (1,3,8)$.", "Đặt $t=(a,c)$, $a=a_1t, c=c_1t$ với $(a_1,c_1)=1$. Từ $ab=cd \\Rightarrow a_1bt=c_1dt \\Rightarrow a_1b=c_1d$; vì $(a_1,c_1)=1$ nên $b$ ⋮ $c_1$, đặt $b=c_1k \\Rightarrow d=a_1k$. Khi đó $A=a_1^nt^n+c_1^nk^n+c_1^nt^n+a_1^nk^n=(a_1^n+c_1^n)(k^n+t^n)$. Vì $a_1,c_1,t,k$ nguyên dương nên $A$ là tích của hai số nguyên dương lớn hơn 1, do đó $A$ là hợp số.", "a) $O$ thuộc tia đối của tia $AB$ nên hai tia $AO, AB$ đối nhau, suy ra $A$ nằm giữa $O$ và $B$. Vậy $OA&lt;OB$.<br>b) Vì $M,N$ lần lượt là trung điểm $OA, OB$: $OM=\\frac12OA, ON=\\frac12OB$; do $M$ nằm giữa $O,N$ nên $MN=ON-OM=\\frac12(OB-OA)=\\frac12AB$. Vì $AB$ không đổi nên $MN$ không đổi (không phụ thuộc vị trí $O$).<br>c) Điểm $H$ nằm trong tam giác $ONP$ nên $H$ nằm trong góc $\\widehat{O}$ của tam giác, suy ra tia $OH$ nằm giữa hai tia $ON, OP$. Vì $N, P$ là hai điểm không trùng $O$ thuộc hai tia đó nên tia $OH$ cắt đoạn thẳng $NP$ tại một điểm $E$ nằm giữa $N$ và $P$."]}, {"bai": ["1) Tính giá trị của các biểu thức sau:<br>a) $2\\cdot\\left[(6^2-24):4\\right]+2014$<br>b) $\\left(1+2\\dfrac13-3\\dfrac14\\right):\\left(1+3\\dfrac{7}{12}-4\\dfrac12\\right)$<br>2) Tìm $x$, biết: $x-\\left(\\dfrac56-x\\right)=x-\\dfrac23$.", "1) Tìm $x\\in\\mathbb{Z}$, biết $x-\\left\\{x-\\left[x-(-x+1)\\right]\\right\\}=1$.<br>2) Tìm các chữ số $x,y$ sao cho $\\overline{2014xy}$ ⋮ $42$.<br>3) Tìm các số nguyên $a,b$ biết rằng $\\dfrac{a}{7}-\\dfrac12=\\dfrac{1}{b+1}$.", "1) Tìm số tự nhiên $n$ để $(n+3)(n+1)$ là số nguyên tố.<br>2) Cho $n=\\overline{7a5}+\\overline{8a4}$. Biết $a-b=6$ và $n$ chia hết cho 9. Tìm $a,b$.<br>3) Tìm phân số tối giản $\\dfrac{a}{b}$ lớn nhất ($a,b\\in\\mathbb{N}^*$) sao cho khi chia mỗi phân số $\\dfrac{4}{75};\\dfrac{6}{165}$ cho $\\dfrac{a}{b}$ ta được kết quả là số tự nhiên.", "1) Trên tia $Ox$ lấy hai điểm $M, N$ sao cho $OM=3cm, ON=7cm$.<br>a) Tính độ dài đoạn thẳng $MN$.<br>b) Lấy điểm $P$ trên tia $Ox$, sao cho $MP=2cm$. Tính độ dài đoạn thẳng $OP$.<br>c) Trong trường hợp $M$ nằm giữa $O$ và $P$. Chứng tỏ rằng $P$ là trung điểm của đoạn thẳng $MN$.<br>2) Cho 2014 điểm, trong đó không có ba điểm nào thẳng hàng. Có bao nhiêu tam giác mà các đỉnh là 3 trong 2014 điểm đó?", "1) Cho tổng gồm 2014 số hạng $S=\\dfrac{1}{4}+\\dfrac{2}{4^2}+\\dfrac{3}{4^3}+\\dfrac{4}{4^4}+\\ldots+\\dfrac{2014}{4^{2014}}$. Chứng minh $S&lt;\\dfrac12$.<br>2) Tìm tất cả các số tự nhiên $n$, biết rằng $n+S(n)=2014$, trong đó $S(n)$ là tổng các chữ số của $n$."], "dapan": ["1) a) $2\\cdot[(36-24):4]+2014=2\\cdot3+2014=2020$.<br>b) $\\left(1+2\\frac13-3\\frac14\\right):\\left(1+3\\frac{7}{12}-4\\frac12\\right)=\\left(\\frac13-\\frac14\\right):\\left(\\frac{7}{12}-\\frac12\\right)=1$.<br>2) $x-\\frac56+x=x-\\frac23 \\Rightarrow x=\\frac56-\\frac23=\\frac16$.", "1) $x-\\{x-[x-(-x+1)]\\}=1 \\Leftrightarrow x-\\{x-[2x-1]\\}=1 \\Leftrightarrow x-\\{-x+1\\}=1 \\Leftrightarrow 2x-1=1 \\Rightarrow x=1$.<br>2) $\\overline{2014xy}=201400+\\overline{xy}=42\\times4795+10+\\overline{xy}$, cần $10+\\overline{xy}$ ⋮ $42$; do $0\\le\\overline{xy}&lt;100$ nên $\\overline{xy}\\in\\{32;74\\}$. Vậy $(x,y)=(3,2)$ hoặc $(7,4)$.<br>3) $\\dfrac{a}{7}-\\dfrac12=\\dfrac{1}{b+1} \\Rightarrow \\dfrac{2a-7}{14}=\\dfrac{1}{b+1} \\Rightarrow (2a-7)(b+1)=14$. Do $a,b\\in\\mathbb{Z}$ nên $2a-7\\in U(14)=\\{\\pm1;\\pm2;\\pm7;\\pm14\\}$; vì $2a-7$ lẻ nên $2a-7\\in\\{-7;-1;1;7\\} \\Rightarrow a\\in\\{0;3;4;7\\}$, tương ứng $(a,b)\\in\\{(0,-3);(3,-15);(4,13);(7,1)\\}$.", "1) Để $(n+3)(n+1)$ là số nguyên tố thì một trong hai thừa số phải bằng 1; vì $n+3>n+1\\ge1$ nên $n+1=1\\Rightarrow n=0$, khi đó $n+3=3$ là số nguyên tố. Vậy $n=0$.<br>2) $n=\\overline{7a5}+\\overline{8a4}$ ⋮ $9 \\Leftrightarrow 7+a+5+8+a+4$ ⋮ $9 \\Leftrightarrow 24+2a$ ⋮ $9$ — theo đáp án gốc, kết hợp điều kiện $a-b=6$ dẫn tới $a+b=12$ và giải ra $a=9,b=3$.<br>3) Để $\\dfrac{a}{b}$ lớn nhất, cần $a=UCLN(14,16)=2$ (từ $14:a, 16:a$ nguyên) và $b=BCNN(75,165)=825$ (từ $b:75, b:165$). Vậy $\\dfrac{a}{b}=\\dfrac{2}{825}$.", "1) a) Do $M,N$ cùng thuộc tia $Ox$ và $OM&lt;ON$ nên $M$ nằm giữa $O,N \\Rightarrow OM+MN=ON \\Rightarrow MN=4cm$.<br>b) TH1: $P$ nằm giữa $M,N$ thì $M$ nằm giữa $O,P \\Rightarrow OP=OM+MP=3+2=5cm$. TH2: $P$ nằm giữa $O,M$ thì $OP=OM-PM=3-2=1cm$.<br>c) $M$ nằm giữa $O,P \\Rightarrow OP=5cm&lt;ON=7cm$ nên $P$ nằm giữa $O,N$, suy ra $PN=ON-OP=7-5=2cm$. Do đó $MP=PN=2cm$, mà $P$ nằm giữa $M,N$ nên $P$ là trung điểm của $MN$.<br>2) Với $n$ điểm không có ba điểm thẳng hàng, số tam giác tạo thành là $\\dfrac{n(n-1)(n-2)}{6}$. Với $n=2014$: số tam giác $=\\dfrac{2014\\times2013\\times2012}{6}=1359502364$ (nghìn tỷ) — theo cách tính của đáp án gốc.", "1) $4S=1+\\frac{2}{4}+\\frac{3}{4^2}+\\ldots+\\frac{2014}{4^{2013}}$. Suy ra $3S=4S-S=1+\\frac14+\\frac{1}{4^2}+\\ldots+\\frac{1}{4^{2013}}-\\frac{2014}{4^{2014}}&lt;M$, với $M=1+\\frac14+\\frac{1}{4^2}+\\ldots+\\frac{1}{4^{2013}}$. Vì $4M=4+M-\\frac{1}{4^{2013}}$ nên $3M=4-\\frac{1}{4^{2013}}&lt;4 \\Rightarrow M&lt;\\frac43$. Do đó $3S&lt;\\frac43 \\Rightarrow S&lt;\\frac49&lt;\\frac48=\\frac12$.<br>2) Nếu $n$ có ít hơn 4 chữ số thì $n\\le999, S(n)\\le27 \\Rightarrow n+S(n)\\le1026&lt;2014$ (loại). Vậy $n$ có 4 chữ số, $S(n)\\le36$, nên $n\\ge2014-36=1978$. Xét $1978\\le n\\le2014$: nếu $n=\\overline{19ab}$, từ $\\overline{19ab}+(1+9+a+b)=2014$ giải ra $a=8,b=8 \\Rightarrow n=1988$ (thỏa mãn). Nếu $n=\\overline{20cd}$, giải được $c=0,d=6 \\Rightarrow n=2006$ (thỏa mãn). Vậy $n\\in\\{1988;2006\\}$."]}, {"bai": ["a) Thực hiện phép tính: $A=\\left[540:(23{,}7-19{,}7)\\right]+42\\cdot(132+75-36)-7317$ &nbsp;&nbsp; $B=\\dfrac{2^{10}\\cdot13+2^{10}\\cdot65}{2^8\\cdot104}$<br>b) Chứng minh rằng tổng của 5 số tự nhiên chẵn liên tiếp thì chia hết cho 10, còn tổng của 5 số tự nhiên lẻ liên tiếp chia cho 10 dư 5.", "a) Tổng của hai số nguyên tố có thể bằng 2015 hay không? Vì sao?<br>b) Tìm tất cả các số nguyên tố $p$ sao cho $p+11$ cũng là số nguyên tố.", "a) Tìm $x$ biết $(x+1)+(x+3)+(x+5)+\\ldots+(x+99)=0$.<br>b) Tìm $n\\in\\mathbb{Z}$ biết $(3n+8)$ ⋮ $(n+1)$.", "a) Tìm tích $\\left(\\dfrac12-1\\right)\\left(\\dfrac13-1\\right)\\left(\\dfrac14-1\\right)\\cdots\\left(\\dfrac{1}{100}-1\\right)$.<br>b) So sánh $A$ và $B$ biết $A=\\dfrac{2013\\cdot2014-1}{2013\\cdot2014}$ và $B=\\dfrac{2014\\cdot2015-1}{2014\\cdot2015}$.", "Cho đoạn thẳng $AB$; điểm $O$ thuộc tia đối của tia $AB$. Gọi $M, N$ thứ tự là trung điểm của $OA, OB$.<br>a) Chứng tỏ $OA&lt;OB$.<br>b) Trong ba điểm $O, M, N$, điểm nào nằm giữa hai điểm còn lại?<br>c) Chứng tỏ rằng độ dài đoạn thẳng $MN$ không phụ thuộc vào vị trí của điểm $O$ (O thuộc tia đối của tia $OB$)."], "dapan": ["a) $A=(540:4)+42\\cdot171-7317=135+7182-7317=0$. &nbsp; $B=\\dfrac{2^{10}\\cdot13\\cdot(1+5)}{2^8\\cdot8\\cdot13}=\\dfrac{2^{10}\\cdot13\\cdot6}{2^8\\cdot2^3\\cdot13}=3$.<br>b) Gọi 5 số chẵn liên tiếp là $2n;2n{+}2;2n{+}4;2n{+}6;2n{+}8$, tổng bằng $10n+20$ ⋮ $10$. Gọi 5 số lẻ liên tiếp là $2n{+}1;2n{+}3;2n{+}5;2n{+}7;2n{+}9$, tổng bằng $10n+25=10(n+2)+5$, chia 10 dư 5.", "a) Tổng bằng 2015 (lẻ) nên một trong hai số nguyên tố phải là 2 (số nguyên tố chẵn duy nhất); khi đó số kia là 2013, mà $2013=3\\times671$ là hợp số. Vậy không tồn tại hai số nguyên tố có tổng bằng 2015.<br>b) Nếu $p$ lẻ thì $p+11$ chẵn và lớn hơn 11 nên không là số nguyên tố. Vậy $p$ phải chẵn, tức $p=2$ (khi đó $p+11=13$ là số nguyên tố).", "a) $\\dfrac{[(x{+}1)+(x{+}99)]\\cdot50}{2}=0 \\Rightarrow (x+50)\\cdot50=0 \\Rightarrow x=-50$.<br>b) $3n+8=3(n+1)+5$, nên $(3n+8)$ ⋮ $(n+1) \\Leftrightarrow 5$ ⋮ $(n+1) \\Leftrightarrow (n+1)\\in U(5)=\\{\\pm1;\\pm5\\}$. Tìm được $n\\in\\{-6;-2;0;4\\}$.", "a) $\\dfrac{-1}{2}\\cdot\\dfrac{-2}{3}\\cdot\\dfrac{-3}{4}\\cdots\\dfrac{-99}{100}=\\dfrac{-(1\\cdot2\\cdot3\\cdots99)}{2\\cdot3\\cdot4\\cdots100}=\\dfrac{-1}{100}$.<br>b) $A=1-\\dfrac{1}{2013\\cdot2014}$; $B=1-\\dfrac{1}{2014\\cdot2015}$. Vì $\\dfrac{1}{2013\\cdot2014}>\\dfrac{1}{2014\\cdot2015}$ nên $A&lt;B$.", "a) Hai tia $OA, OB$ đối nhau nên điểm $A$ nằm giữa hai điểm $O$ và $B$, suy ra $OA&lt;OB$.<br>b) Vì $M,N$ là trung điểm của $OA,OB$ nên $OM=\\dfrac{OA}{2}, ON=\\dfrac{OB}{2}$; do $OA&lt;OB$ nên $OM&lt;ON$, mà $M,N$ cùng thuộc tia $OB$ nên điểm $M$ nằm giữa hai điểm $O$ và $N$.<br>c) $OM+MN=ON \\Rightarrow MN=ON-OM=\\dfrac{OB-OA}{2}=\\dfrac{AB}{2}$. Vì $AB$ có độ dài không đổi nên $MN$ có độ dài không đổi."]}];
+
   document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.btn-dapan').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var block = btn.nextElementSibling;
-        var nowHidden = block.classList.toggle('hidden');
-        btn.textContent = nowHidden ? '\ud83d\udc41 Xem đáp án' : '\ud83d\ude48 Ẩn đáp án';
-      });
-    });
-    if (window.renderMathInElement) {
-      renderMathInElement(document.body, {
-        delimiters: [{ left: '$', right: '$', display: false }]
-      });
+    var baiListEl = document.getElementById('bai-list');
+    var dapAnEl = document.getElementById('dap-an');
+    var btnSwap = document.getElementById('btn-swap');
+    var btnDapan = document.getElementById('btn-dapan');
+    var current = Math.floor(Math.random() * window.EXAMS.length);
+
+    if (window.EXAMS.length < 2) btnSwap.disabled = true;
+
+    function render(idx) {
+      var exam = window.EXAMS[idx];
+      baiListEl.innerHTML = exam.bai.map(function (b) { return '<li><p>' + b + '</p></li>'; }).join('');
+      dapAnEl.innerHTML = exam.dapan.map(function (d, i) { return '<p><b>Bài ' + (i + 1) + '.</b> ' + d + '</p>'; }).join('');
+      dapAnEl.classList.add('hidden');
+      btnDapan.textContent = '👁 Xem đáp án';
+      if (window.renderMathInElement) {
+        renderMathInElement(baiListEl, { delimiters: [{ left: '$', right: '$', display: false }] });
+        renderMathInElement(dapAnEl, { delimiters: [{ left: '$', right: '$', display: false }] });
+      }
     }
+
+    btnSwap.addEventListener('click', function () {
+      if (window.EXAMS.length < 2) return;
+      var next;
+      do { next = Math.floor(Math.random() * window.EXAMS.length); } while (next === current);
+      current = next;
+      render(current);
+    });
+
+    btnDapan.addEventListener('click', function () {
+      var nowHidden = dapAnEl.classList.toggle('hidden');
+      btnDapan.textContent = nowHidden ? '👁 Xem đáp án' : '🙈 Ẩn đáp án';
+    });
+
+    render(current);
   });
 </script>
 
