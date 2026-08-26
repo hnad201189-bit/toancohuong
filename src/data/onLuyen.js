@@ -34,6 +34,13 @@ export const ON_LUYEN_TOPICS_BY_GRADE = {
       desc: '7 dạng bài tư duy theo cấu trúc đề thi TIMO và SASMO, có gợi ý từng bước và bài luyện tương tự.',
       href: '/tai-lieu/chinh-phuc-toan-tu-duy.html',
     },
+    {
+      id: 'de-thi-hsg-toan-6',
+      icon: '🏅',
+      name: 'Đề Thi Học Sinh Giỏi Toán 6',
+      desc: 'Đề thi HSG Toán 6 (đề bài + đáp án) tổng hợp từ nhiều địa phương.',
+      href: '/tai-lieu/de-thi-hsg-toan-6.html',
+    },
   ],
   11: [
     {
