@@ -78,6 +78,13 @@ export const ON_LUYEN_TOPICS_BY_GRADE = {
       desc: 'Lộ trình ôn luyện toàn diện chương trình Toán 11.',
       href: '/tai-lieu/hoc-gioi-toan-11.html',
     },
+    {
+      id: 'luyen-toc-do-to-hop-xac-suat',
+      icon: '⏱️',
+      name: 'Luyện Tốc Độ Tổ Hợp – Xác Suất',
+      desc: '18 câu trắc nghiệm tốc độ (kèm biến thể) theo phong cách đề luyện thi THPTQG, có gợi ý từng bước.',
+      href: '/tai-lieu/luyen-toc-do-to-hop-xac-suat.html',
+    },
   ],
 }
 
