@@ -4,7 +4,6 @@ import { getOnLuyenTopics } from './data/onLuyen'
 import Dashboard from './components/Dashboard'
 import TopicDetail from './components/TopicDetail'
 import Lesson from './components/lesson/Lesson'
-import PhotoSolve from './components/PhotoSolve'
 import MyResults from './components/MyResults'
 import TutorFinder from './components/tutor/TutorFinder'
 import GradeGate from './components/GradeGate'
@@ -111,10 +110,6 @@ export default function MainSite() {
     }
   }
 
-  function goPhotoSolve() {
-    navigate({ screen: 'photo-solve' })
-  }
-
   function goMyResults() {
     navigate({ screen: 'my-results' })
   }
@@ -203,7 +198,6 @@ export default function MainSite() {
         onGoMockExam={goMockExam}
         onGoOnLuyen={goOnLuyen}
         onGoGames={goGames}
-        onGoPhotoSolve={goPhotoSolve}
         onGoMyResults={goMyResults}
         onGoTutorFinder={goTutorFinder}
         open={navOpen}
@@ -298,8 +292,6 @@ export default function MainSite() {
         )}
 
         {view.screen === 'games' && <Games onBack={goDashboard} />}
-
-        {view.screen === 'photo-solve' && <PhotoSolve onBack={goDashboard} />}
 
         {view.screen === 'my-results' && <MyResults onBack={goDashboard} />}
 

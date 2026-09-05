@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
-const GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+import { GRADES, GRADE_ICONS } from '../data/grades'
 
 const BASE_MOCK_EXAMS = [
   { id: 'giua-ky-1', name: 'Thi giữa kì I' },
@@ -31,7 +30,6 @@ export default function Sidebar({
   onGoMockExam,
   onGoOnLuyen,
   onGoGames,
-  onGoPhotoSolve,
   onGoMyResults,
   onGoTutorFinder,
   open,
@@ -72,7 +70,8 @@ export default function Sidebar({
             onClick={() => go(setGrade, g)}
             title={`Lớp ${g}`}
           >
-            {g}
+            <span className="sidebar__grade-btn-icon">{GRADE_ICONS[g]}</span>
+            <span className="sidebar__grade-btn-num">{g}</span>
           </button>
         ))}
       </div>
@@ -83,12 +82,6 @@ export default function Sidebar({
           onClick={() => go(onGoDashboard)}
         >
           Tổng quan
-        </button>
-        <button
-          className={`sidebar__item sidebar__item--overview ${view.screen === 'photo-solve' ? 'is-active' : ''}`}
-          onClick={() => go(onGoPhotoSolve)}
-        >
-          📷 Chụp ảnh giải bài
         </button>
         <button
           className={`sidebar__item sidebar__item--overview ${view.screen === 'on-luyen' ? 'is-active' : ''}`}

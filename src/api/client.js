@@ -53,28 +53,6 @@ async function request(path, { method = 'GET', body, auth = false, studentAuth =
   return data
 }
 
-// ---- Photo solve (image upload, not JSON) ----
-export async function solveImage(file) {
-  const formData = new FormData()
-  formData.append('image', file)
-
-  const headers = {}
-  const token = getStudentToken()
-  if (token) headers['Authorization'] = `Bearer ${token}`
-
-  const res = await fetch('/api/solve-image', { method: 'POST', headers, body: formData })
-  const data = await res.json().catch(() => null)
-  if (!res.ok) {
-    const err = new Error(data?.error || `Lỗi máy chủ (${res.status})`)
-    err.status = res.status
-    err.data = data
-    throw err
-  }
-  return data
-}
-
-export const getSolveQuota = () => request('/solve-image/quota', { studentAuth: true })
-
 // ---- Public reads ----
 export const getAreas = (grade = 11) => request(`/areas?grade=${grade}`)
 export const getArea = (id) => request(`/areas/${id}`)

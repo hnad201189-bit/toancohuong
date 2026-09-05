@@ -1,4 +1,4 @@
-const GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+import { GRADES, GRADE_ICONS } from '../data/grades'
 
 export default function GradeGate({ selectedGrade, onSelect }) {
   return (
@@ -16,6 +16,7 @@ export default function GradeGate({ selectedGrade, onSelect }) {
               className={`grade-gate__card ${g === selectedGrade ? 'is-active' : ''}`}
               onClick={() => onSelect(g)}
             >
+              <span className="grade-gate__card-icon">{GRADE_ICONS[g]}</span>
               <span className="grade-gate__card-num">{g}</span>
               <span className="grade-gate__card-label">Lớp {g}</span>
             </button>
