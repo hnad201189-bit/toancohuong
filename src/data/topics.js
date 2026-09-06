@@ -315,13 +315,12 @@ export const GRADE12_AREAS = [
   },
 ]
 
-export const HSG_TOPICS = [
-  { id: 'hsg-pt-luong-giac-tham-so', name: 'PT lượng giác chứa tham số', progress: 10 },
-  { id: 'hsg-day-so-truy-hoi', name: 'Dãy số truy hồi & giới hạn nâng cao', progress: 5 },
-  { id: 'hsg-cuc-tri-hinh-khong-gian', name: 'Cực trị hình học không gian', progress: 0 },
-  { id: 'hsg-xac-suat-nang-cao', name: 'Xác suất nâng cao (biến ngẫu nhiên, kỳ vọng)', progress: 0 },
-  { id: 'hsg-he-thuc-luong-nang-cao', name: 'Hệ thức lượng nâng cao, góc — khoảng cách khó', progress: 0 },
-]
+// Rỗng theo yêu cầu: nội dung chuyên đề HSG lớp 11 cũ (5 mục) đã bị xoá —
+// người dùng sẽ tự úp đề thi HSG/chuyên dưới dạng đề thi (giống mục "Thi
+// thử") thay vì chuyên đề có bài học đầy đủ như trước. Xem
+// pruneRemovedHsgTopics trong server/seed.js — nó tự dọn các hsg_topics đã
+// seed trước đó (và lesson đi kèm) khỏi DB khi mảng này không còn chứa id đó.
+export const HSG_TOPICS = []
 
 // ---- Chuyên đề Ôn thi HSG lớp 6 ----
 export const GRADE6_HSG_TOPICS = [

@@ -5,7 +5,6 @@ import { HAM_SO_GIOI_HAN } from './content/hamSoGioiHan.mjs'
 import { HINH_HOC_KHONG_GIAN } from './content/hinhHocKhongGian.mjs'
 import { THONG_KE_XAC_SUAT } from './content/thongKeXacSuat.mjs'
 import { TOAN_UNG_DUNG } from './content/toanUngDung.mjs'
-import { HSG } from './content/hsg.mjs'
 import { LOP1_SO_PHAM_VI_10 } from './content/lop1SoPhamVi10.mjs'
 import { LOP1_SO_PHAM_VI_100 } from './content/lop1SoPhamVi100.mjs'
 import { LOP1_HINH_HOC_DO_LUONG } from './content/lop1HinhHocDoLuong.mjs'
@@ -56,7 +55,6 @@ const ALL_REGULAR = {
 }
 
 const ALL_HSG = {
-  ...HSG,
   ...LOP6_HSG,
 }
 

@@ -48,6 +48,23 @@ function seedHsgIfMissing(grade, topics) {
   })
 }
 
+// Ngược lại với seedHsgIfMissing: xoá khỏi DB những hsg_topic đã seed từ
+// trước nhưng giờ không còn trong danh sách nguồn (topics.js) nữa — vd. toàn
+// bộ chuyên đề HSG lớp 11 cũ bị bỏ để thay bằng đề thi tự úp sau này. Seed
+// script vốn chỉ cộng thêm nên nếu không có bước này, các dòng cũ sẽ "mồ
+// côi" mãi mãi trong DB (kể cả DB thật trên Render, sẽ được dọn ở lần deploy
+// kế tiếp). Chạy mỗi lần khởi động, an toàn vì là no-op khi không có gì lệch.
+function pruneRemovedHsgTopics(grade, currentTopics) {
+  const currentIds = new Set(currentTopics.map((t) => t.id))
+  const existing = db.prepare('SELECT id, name FROM hsg_topics WHERE grade = ?').all(grade)
+  for (const row of existing) {
+    if (currentIds.has(row.id)) continue
+    db.prepare('DELETE FROM lessons WHERE topic_id = ?').run(row.id)
+    db.prepare('DELETE FROM hsg_topics WHERE id = ?').run(row.id)
+    console.log(`Removed HSG topic "${row.name}" (grade ${grade}) — no longer in source data.`)
+  }
+}
+
 export function seedIfEmpty() {
   const isFirstBoot = db.prepare('SELECT COUNT(*) AS n FROM areas').get().n === 0
 
@@ -66,6 +83,8 @@ export function seedIfEmpty() {
   seedGradeIfMissing(12, GRADE12_AREAS)
   seedHsgIfMissing(11, HSG_TOPICS)
   seedHsgIfMissing(6, GRADE6_HSG_TOPICS)
+  pruneRemovedHsgTopics(11, HSG_TOPICS)
+  pruneRemovedHsgTopics(6, GRADE6_HSG_TOPICS)
 
   if (isFirstBoot) seedFullContent()
   seedMissingLessons()
