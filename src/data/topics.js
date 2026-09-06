@@ -81,6 +81,27 @@ export const KNOWLEDGE_AREAS = [
       { id: 'tu-duy-logic', name: 'Tư duy logic — suy luận', progress: 20, hasLesson: false },
     ],
   },
+  {
+    // Trước đây là danh sách "hsg_topics" riêng, chỉ hiện khi bật "Chế độ ôn
+    // thi HSG" — giờ gộp thành một mảng kiến thức bình thường ở Tổng quan,
+    // chắt lọc các chủ đề nâng cao/mở rộng chưa xuất hiện ở 6 mảng cơ bản
+    // trên (không trùng: PT lượng giác *chứa tham số*, dãy số *truy hồi*,
+    // *cực trị* hình không gian, xác suất *biến ngẫu nhiên — kỳ vọng*, hệ
+    // thức lượng *nâng cao*). Giữ nguyên id cũ vì lesson content
+    // (server/content/hsg.mjs) đã khoá theo các id này.
+    id: 'chuyen-de-nang-cao',
+    order: 7,
+    name: 'Chuyên đề nâng cao',
+    description: 'Mở rộng nâng cao từ các mảng trên — dành cho học sinh giỏi và ôn thi chuyên',
+    progress: 3,
+    topics: [
+      { id: 'hsg-pt-luong-giac-tham-so', name: 'PT lượng giác chứa tham số', progress: 10, hasLesson: true },
+      { id: 'hsg-day-so-truy-hoi', name: 'Dãy số truy hồi & giới hạn nâng cao', progress: 5, hasLesson: true },
+      { id: 'hsg-cuc-tri-hinh-khong-gian', name: 'Cực trị hình học không gian', progress: 0, hasLesson: true },
+      { id: 'hsg-xac-suat-nang-cao', name: 'Xác suất nâng cao (biến ngẫu nhiên, kỳ vọng)', progress: 0, hasLesson: true },
+      { id: 'hsg-he-thuc-luong-nang-cao', name: 'Hệ thức lượng nâng cao, góc — khoảng cách khó', progress: 0, hasLesson: true },
+    ],
+  },
 ]
 
 // ---- Lớp 6 (khung sườn — chưa có nội dung bài học chi tiết) ----
@@ -315,9 +336,11 @@ export const GRADE12_AREAS = [
   },
 ]
 
-// Rỗng theo yêu cầu: nội dung chuyên đề HSG lớp 11 cũ (5 mục) đã bị xoá —
-// người dùng sẽ tự úp đề thi HSG/chuyên dưới dạng đề thi (giống mục "Thi
-// thử") thay vì chuyên đề có bài học đầy đủ như trước. Xem
+// Rỗng có chủ đích: 5 chuyên đề HSG lớp 11 trước đây nằm ở đây (danh sách
+// "hsg_topics" riêng, khoá sau "Chế độ ôn thi HSG") đã được chuyển thành
+// mảng kiến thức "Chuyên đề nâng cao" bình thường trong KNOWLEDGE_AREAS ở
+// trên — hiện ngay ở Tổng quan, không cần mở khoá. Mục "Thi thử" sẽ dùng
+// cho đề thi HSG/chuyên tự úp sau này thay vì dùng lại danh sách này. Xem
 // pruneRemovedHsgTopics trong server/seed.js — nó tự dọn các hsg_topics đã
 // seed trước đó (và lesson đi kèm) khỏi DB khi mảng này không còn chứa id đó.
 export const HSG_TOPICS = []
