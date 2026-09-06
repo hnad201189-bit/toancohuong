@@ -39,9 +39,11 @@
   --shadow-primary: 0 6px 16px rgba(79, 70, 229, 0.24);
 
   /* Lưới chấm mảnh làm nền trang trí ở vài điểm nhấn (sidebar, hero) —
-     gợi lưới toạ độ/giấy ô ly nhưng cực nhẹ, không gây rối mắt. */
+     gợi lưới toạ độ/giấy ô ly nhưng cực nhẹ, không gây rối mắt. Cường độ và
+     hình dạng hoạ tiết này đổi theo [data-grade-band] (xem cuối file). */
   --grid-dots-light: radial-gradient(rgba(79, 70, 229, 0.14) 1px, transparent 1px);
   --grid-dots-dark: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  --grid-size: 16px;
 
   --sans: 'Be Vietnam Pro', system-ui, sans-serif;
   --heading: 'Bricolage Grotesque', 'Be Vietnam Pro', system-ui, sans-serif;
@@ -54,6 +56,59 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Phong cách theo cấp học ----------
+   [data-grade-band] được MainSite đặt trên .app-shell dựa theo khối lớp
+   đang chọn (xem getGradeBand trong src/data/grades.js). Mỗi nhóm chỉ đổi
+   bảng màu accent + hoạ tiết trang trí + độ bo góc — giữ nguyên layout,
+   font chữ và mọi class hiện có, nên toàn bộ CSS phía dưới không cần biết
+   gì về khối lớp. Không có [data-grade-band] (trang chọn lớp, /admin) thì
+   dùng nguyên token mặc định ở :root, tương đương nhóm THPT. */
+
+/* Tiểu học (lớp 1-5): hồng/tím rực rỡ, bo tròn nhiều, hoạ tiết "confetti"
+   ngôi sao + chấm tròn nhiều màu — vui tươi nhí nhảnh. */
+[data-grade-band='tieu-hoc'] {
+  --primary: #db2777;
+  --primary-hover: #be185d;
+  --primary-soft: #fce7f3;
+  --primary-soft-strong: #fbcfe8;
+  --shadow-primary: 0 6px 16px rgba(219, 39, 119, 0.28);
+
+  --sidebar-bg: #2b1338;
+
+  --radius-card: 22px;
+  --radius-card-sm: 18px;
+  --radius-btn: 999px;
+
+  --grid-size: 44px;
+  --grid-dots-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='8' cy='10' r='3' fill='%23DB2777' fill-opacity='0.16'/%3E%3Ccircle cx='33' cy='31' r='2.5' fill='%2306D6A0' fill-opacity='0.16'/%3E%3Cpath d='M24 4l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z' fill='%23FFB703' fill-opacity='0.18'/%3E%3C/svg%3E");
+  --grid-dots-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='8' cy='10' r='3' fill='%23FFD166' fill-opacity='0.55'/%3E%3Ccircle cx='33' cy='31' r='2.5' fill='%2306D6A0' fill-opacity='0.5'/%3E%3Cpath d='M24 4l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z' fill='%23FF8FAB' fill-opacity='0.5'/%3E%3C/svg%3E");
+}
+
+[data-grade-band='tieu-hoc'] .area-card:hover,
+[data-grade-band='tieu-hoc'] .grade-gate__card:hover {
+  transform: translateY(-3px) rotate(-1deg);
+}
+
+/* THCS (lớp 6-9): xanh ngọc tươi sáng, gọn gàng hơn tiểu học — chuyển tiếp
+   giữa "vui" và "nghiêm túc". */
+[data-grade-band='thcs'] {
+  --primary: #0f9b8e;
+  --primary-hover: #0c7d73;
+  --primary-soft: #e2f7f4;
+  --primary-soft-strong: #c9f0ea;
+  --shadow-primary: 0 6px 16px rgba(15, 155, 142, 0.26);
+
+  --sidebar-bg: #0d211f;
+
+  --radius-card: 16px;
+  --radius-card-sm: 13px;
+  --radius-btn: 12px;
+
+  --grid-size: 15px;
+  --grid-dots-light: radial-gradient(rgba(15, 155, 142, 0.16) 1px, transparent 1px);
+  --grid-dots-dark: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
 }
 
 * {
@@ -210,16 +265,6 @@ table {
   background: var(--primary-soft-strong);
 }
 
-.btn--hsg {
-  background: var(--hsg);
-  color: #3a2b06;
-}
-
-.btn--hsg:hover {
-  background: var(--hsg-dark);
-  color: #fff;
-}
-
 .breadcrumb {
   align-self: flex-start;
   background: none;
@@ -284,7 +329,7 @@ table {
   background:
     var(--grid-dots-dark),
     var(--sidebar-bg);
-  background-size: 16px 16px, auto;
+  background-size: var(--grid-size) var(--grid-size), auto;
   color: var(--sidebar-text);
   display: flex;
   flex-direction: column;
@@ -398,56 +443,6 @@ table {
   overflow-y: auto;
 }
 
-.sidebar__group-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--sidebar-text-soft);
-  padding: 16px 12px 6px;
-}
-
-.sidebar__group-label--hsg {
-  color: var(--hsg);
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 12.5px;
-}
-
-.sidebar__group-label--toggle {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: none;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.sidebar__group-label--toggle:hover {
-  color: var(--sidebar-text);
-}
-
-.sidebar__group-caret {
-  font-size: 10px;
-}
-
-.sidebar__group-empty {
-  font-size: 13px;
-  padding: 4px 12px 10px;
-  color: var(--sidebar-text-soft);
-}
-
-.sidebar__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
 .sidebar__item {
   width: 100%;
   display: flex;
@@ -465,12 +460,6 @@ table {
   cursor: pointer;
 }
 
-.sidebar__item-external {
-  margin-left: auto;
-  color: var(--sidebar-text-soft);
-  font-size: 12px;
-}
-
 .sidebar__item:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.06);
 }
@@ -484,53 +473,6 @@ table {
 .sidebar__item--overview {
   font-weight: 700;
   margin-bottom: 6px;
-}
-
-.sidebar__item-order {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  font-size: 11px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.sidebar__item.is-active .sidebar__item-order {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.sidebar__item-name {
-  flex: 1;
-}
-
-.sidebar__item-pct {
-  font-size: 11px;
-  color: var(--sidebar-text-soft);
-  font-weight: 700;
-}
-
-.sidebar__item.is-active .sidebar__item-pct {
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.sidebar__hsg-group.is-locked .sidebar__item--hsg {
-  opacity: 0.45;
-}
-
-.sidebar__item--hsg {
-  font-size: 13px;
-}
-
-.sidebar__item--hsg:disabled {
-  cursor: not-allowed;
-}
-
-.sidebar__lock {
-  font-size: 12px;
 }
 
 .sidebar__footer {
@@ -577,6 +519,10 @@ table {
   transform: translateX(18px);
 }
 
+.hsg-toggle--light .hsg-toggle__switch {
+  background: var(--border-strong);
+}
+
 /* ---------- Dashboard ---------- */
 
 .card--hero {
@@ -585,7 +531,7 @@ table {
   justify-content: space-between;
   gap: 24px;
   background-image: var(--grid-dots-light);
-  background-size: 18px 18px;
+  background-size: var(--grid-size) var(--grid-size);
   background-position: right -20px top -20px;
 }
 
@@ -628,17 +574,9 @@ table {
   justify-content: space-between;
 }
 
-.area-card__order {
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
-  background: var(--primary-soft);
-  color: var(--primary);
-  font-weight: 700;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.area-card__icon {
+  font-size: 28px;
+  line-height: 1;
 }
 
 .area-card__count {
@@ -656,14 +594,6 @@ table {
   margin-bottom: 4px;
 }
 
-.area-card--hsg {
-  border-color: var(--hsg-border);
-}
-
-.area-card--hsg:hover {
-  border-color: var(--hsg);
-}
-
 .hsg-section {
   background: var(--hsg-bg);
   border: 1px solid var(--hsg-border);
@@ -676,11 +606,6 @@ table {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 6px;
-}
-
-.hsg-section__hint {
-  font-size: 14px;
-  color: var(--hsg-dark);
 }
 
 /* ---------- Grade gate ---------- */
@@ -780,15 +705,12 @@ table {
   gap: 16px;
 }
 
-.topic-detail__order {
+.topic-detail__icon {
   width: 44px;
   height: 44px;
   border-radius: 12px;
   background: var(--primary-soft);
-  color: var(--primary);
-  font-family: var(--heading);
-  font-weight: 800;
-  font-size: 18px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2214,6 +2136,12 @@ table {
   right: 16px;
   font-size: 14px;
   color: var(--text-soft);
+}
+
+.on-luyen-card.is-locked {
+  opacity: 0.55;
+  filter: grayscale(0.6);
+  cursor: not-allowed;
 }
 
 /* ---------- Trò chơi (Lớp 1) ---------- */

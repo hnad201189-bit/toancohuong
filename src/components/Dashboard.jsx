@@ -1,17 +1,7 @@
 import ProgressBar from './ProgressBar'
+import { getAreaIcon } from '../data/areaIcons'
 
-export default function Dashboard({
-  grade,
-  areas,
-  hsgTopics,
-  overallProgress,
-  canContinue,
-  hsgMode,
-  setHsgMode,
-  onOpenArea,
-  onContinueLesson,
-  onOpenHsgTopic,
-}) {
+export default function Dashboard({ grade, areas, overallProgress, canContinue, onOpenArea, onContinueLesson }) {
   return (
     <div className="screen dashboard">
       <header className="screen__header">
@@ -36,7 +26,7 @@ export default function Dashboard({
             {areas.map((area) => (
               <button key={area.id} className="area-card" onClick={() => onOpenArea(area.id)}>
                 <div className="area-card__top">
-                  <span className="area-card__order">{area.order}</span>
+                  <span className="area-card__icon">{getAreaIcon(area.name)}</span>
                   <span className="area-card__count">{area.topics.length} chuyên đề</span>
                 </div>
                 <h3 className="area-card__name">{area.name}</h3>
@@ -51,34 +41,6 @@ export default function Dashboard({
           <h2>Chương trình Toán {grade} đang được biên soạn</h2>
           <p>Nội dung chuyên đề cho khối lớp này sẽ sớm được cập nhật. Bạn có thể chọn lớp khác ở thanh bên.</p>
         </div>
-      )}
-
-      {hsgTopics.length > 0 && (
-        <section className="hsg-section">
-          <div className="hsg-section__header">
-            <h2 className="section-title section-title--hsg">▲ Ôn thi HSG / chuyên</h2>
-            {!hsgMode && (
-              <button className="btn btn--hsg" onClick={() => setHsgMode(true)}>
-                🔒 Mở chế độ HSG
-              </button>
-            )}
-          </div>
-
-          {hsgMode ? (
-            <div className="grid-areas">
-              {hsgTopics.map((topic) => (
-                <button key={topic.id} className="area-card area-card--hsg" onClick={() => onOpenHsgTopic(topic.id)}>
-                  <h3 className="area-card__name">{topic.name}</h3>
-                  <ProgressBar value={topic.progress} tone="hsg" size="sm" />
-                </button>
-              ))}
-            </div>
-          ) : (
-            <p className="hsg-section__hint">
-              Mở chế độ ôn thi HSG để truy cập {hsgTopics.length} chuyên đề nâng cao dành cho học sinh giỏi / chuyên.
-            </p>
-          )}
-        </section>
       )}
     </div>
   )

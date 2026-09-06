@@ -9,8 +9,11 @@ import TutorFinder from './components/tutor/TutorFinder'
 import GradeGate from './components/GradeGate'
 import Games from './components/games/Games'
 import OnLuyen from './components/OnLuyen'
+import ThiThu from './components/ThiThu'
 import { getAreas, getHsgTopics, getLesson } from './api/client'
 import { useLocalStorage } from './hooks/useLocalStorage'
+import { getGradeBand } from './data/grades'
+import { getMockExams } from './data/exams'
 
 export default function MainSite() {
   const [grade, setGradeRaw] = useLocalStorage('toan-grade', 11)
@@ -92,11 +95,14 @@ export default function MainSite() {
     navigate({ screen: 'topic', areaId })
   }
 
-  // back: { label, areaId } — where the lesson's breadcrumb should return to
-  // (areaId undefined/null means "về Tổng quan"). Chỉ lưu dữ liệu thuần, vì
-  // history.pushState không thể lưu function (back.onBack kiểu cũ).
+  // back: { label, areaId | screen } — where the lesson's breadcrumb should
+  // return to (không có areaId/screen nghĩa là "về Tổng quan"). Chỉ lưu dữ
+  // liệu thuần, vì history.pushState không thể lưu function (back.onBack
+  // kiểu cũ).
   function resolveBack(back) {
-    return back?.areaId != null ? () => goArea(back.areaId) : goDashboard
+    if (back?.areaId != null) return () => goArea(back.areaId)
+    if (back?.screen === 'thi-thu') return goThiThu
+    return goDashboard
   }
 
   async function goLesson(topicId, back, areaId) {
@@ -120,7 +126,7 @@ export default function MainSite() {
 
   function goHsgTopic(topicId) {
     if (!hsgMode) return
-    goLesson(topicId, { label: 'Tổng quan' })
+    goLesson(topicId, { label: 'Thi thử', screen: 'thi-thu' })
   }
 
   function goMockExam(exam) {
@@ -129,6 +135,10 @@ export default function MainSite() {
 
   function goOnLuyen() {
     navigate({ screen: 'on-luyen' })
+  }
+
+  function goThiThu() {
+    navigate({ screen: 'thi-thu' })
   }
 
   // Chỉ dùng cho các mục Ôn luyện chưa có tài liệu (không có href) — hiện tại
@@ -183,20 +193,14 @@ export default function MainSite() {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-grade-band={getGradeBand(grade)}>
       <Sidebar
         grade={grade}
         setGrade={setGrade}
-        areas={areas}
-        hsgTopics={hsgTopics}
         view={view}
-        hsgMode={hsgMode}
-        setHsgMode={setHsgMode}
         onGoDashboard={goDashboard}
-        onGoArea={goArea}
-        onGoHsgTopic={goHsgTopic}
-        onGoMockExam={goMockExam}
         onGoOnLuyen={goOnLuyen}
+        onGoThiThu={goThiThu}
         onGoGames={goGames}
         onGoMyResults={goMyResults}
         onGoTutorFinder={goTutorFinder}
@@ -217,11 +221,8 @@ export default function MainSite() {
           <Dashboard
             grade={grade}
             areas={areas}
-            hsgTopics={hsgTopics}
             overallProgress={overallProgress}
             canContinue={!!continueTarget}
-            hsgMode={hsgMode}
-            setHsgMode={setHsgMode}
             onOpenArea={goArea}
             onContinueLesson={() =>
               continueTarget &&
@@ -234,7 +235,6 @@ export default function MainSite() {
                 continueTarget.areaId
               )
             }
-            onOpenHsgTopic={goHsgTopic}
           />
         )}
 
@@ -265,8 +265,8 @@ export default function MainSite() {
 
         {view.screen === 'mock-exam' && (
           <div className="screen">
-            <button className="breadcrumb" onClick={goDashboard}>
-              ← Tổng quan
+            <button className="breadcrumb" onClick={goThiThu}>
+              ← Thi thử
             </button>
             <div className="card empty-state">
               <h2>{view.examName}</h2>
@@ -277,6 +277,19 @@ export default function MainSite() {
 
         {view.screen === 'on-luyen' && (
           <OnLuyen grade={grade} topics={getOnLuyenTopics(grade)} onBack={goDashboard} onSelectTopic={goOnLuyenTopic} />
+        )}
+
+        {view.screen === 'thi-thu' && (
+          <ThiThu
+            grade={grade}
+            exams={getMockExams(grade)}
+            hsgTopics={hsgTopics}
+            hsgMode={hsgMode}
+            setHsgMode={setHsgMode}
+            onBack={goDashboard}
+            onSelectExam={goMockExam}
+            onSelectHsgTopic={goHsgTopic}
+          />
         )}
 
         {view.screen === 'on-luyen-detail' && (

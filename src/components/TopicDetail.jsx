@@ -1,4 +1,5 @@
 import ProgressBar from './ProgressBar'
+import { getAreaIcon } from '../data/areaIcons'
 
 export default function TopicDetail({ area, onBack, onOpenLesson }) {
   return (
@@ -8,7 +9,7 @@ export default function TopicDetail({ area, onBack, onOpenLesson }) {
       </button>
 
       <header className="topic-detail__header">
-        <span className="topic-detail__order">{area.order}</span>
+        <span className="topic-detail__icon">{getAreaIcon(area.name)}</span>
         <div>
           <h1>{area.name}</h1>
           <p className="screen__subtitle">{area.description}</p>
