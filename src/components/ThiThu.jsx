@@ -1,6 +1,18 @@
 import { EXAM_ICONS } from '../data/exams'
+import { getAreaIcon } from '../data/areaIcons'
 
-export default function ThiThu({ grade, exams, hsgTopics, hsgMode, setHsgMode, onBack, onSelectExam, onSelectHsgTopic }) {
+export default function ThiThu({
+  grade,
+  areas,
+  exams,
+  hsgTopics,
+  hsgMode,
+  setHsgMode,
+  onBack,
+  onSelectExam,
+  onSelectChapterTest,
+  onSelectHsgTopic,
+}) {
   return (
     <div className="screen">
       <button className="breadcrumb" onClick={onBack}>
@@ -20,6 +32,20 @@ export default function ThiThu({ grade, exams, hsgTopics, hsgMode, setHsgMode, o
           </button>
         ))}
       </div>
+
+      {areas.length > 0 && (
+        <section>
+          <h2 className="section-title">📖 Kiểm tra cuối chương</h2>
+          <div className="grid-areas">
+            {areas.map((area) => (
+              <button key={area.id} className="area-card on-luyen-card" onClick={() => onSelectChapterTest(area)}>
+                <span className="on-luyen-card__icon">{getAreaIcon(area.name)}</span>
+                <h3 className="area-card__name">{area.name}</h3>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       {hsgTopics.length > 0 && (
         <section className="hsg-section">

@@ -6,6 +6,8 @@ const BASE_MOCK_EXAMS = [
   { id: 'het-ky-1', name: 'Thi hết kì I' },
   { id: 'giua-ky-2', name: 'Thi giữa kì II' },
   { id: 'het-ky-2', name: 'Thi hết kì II' },
+  { id: 'hsg', name: 'Thi học sinh giỏi (HSG)' },
+  { id: 'khao-sat-cuoi-nam', name: 'Khảo sát chất lượng cuối năm' },
 ]
 
 export function getMockExams(grade) {
@@ -20,6 +22,8 @@ export const EXAM_ICONS = {
   'het-ky-1': '📋',
   'giua-ky-2': '📄',
   'het-ky-2': '📋',
+  hsg: '🏅',
+  'khao-sat-cuoi-nam': '📊',
   'vao-10': '🎯',
   'dai-hoc': '🎓',
 }

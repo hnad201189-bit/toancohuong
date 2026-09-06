@@ -133,6 +133,10 @@ export default function MainSite() {
     navigate({ screen: 'mock-exam', examId: exam.id, examName: exam.name })
   }
 
+  function goChapterTest(area) {
+    goMockExam({ id: `chuong-${area.id}`, name: `Kiểm tra cuối chương: ${area.name}` })
+  }
+
   function goOnLuyen() {
     navigate({ screen: 'on-luyen' })
   }
@@ -282,12 +286,14 @@ export default function MainSite() {
         {view.screen === 'thi-thu' && (
           <ThiThu
             grade={grade}
+            areas={areas}
             exams={getMockExams(grade)}
             hsgTopics={hsgTopics}
             hsgMode={hsgMode}
             setHsgMode={setHsgMode}
             onBack={goDashboard}
             onSelectExam={goMockExam}
+            onSelectChapterTest={goChapterTest}
             onSelectHsgTopic={goHsgTopic}
           />
         )}
