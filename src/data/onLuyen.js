@@ -85,6 +85,34 @@ export const ON_LUYEN_TOPICS_BY_GRADE = {
       desc: '18 câu trắc nghiệm tốc độ (kèm biến thể) theo phong cách đề luyện thi THPTQG, có gợi ý từng bước.',
       href: '/tai-lieu/luyen-toc-do-to-hop-xac-suat.html',
     },
+    {
+      id: 'giai-ma-phep-dem',
+      icon: '🧮',
+      name: 'Giải Mã Phép Đếm',
+      desc: 'Phân biệt quy tắc cộng, quy tắc nhân, hoán vị, chỉnh hợp, tổ hợp — nền tảng trước khi học xác suất.',
+      href: '/tai-lieu/giai-ma-phep-dem.html',
+    },
+    {
+      id: 'ham-so-luong-giac-tu-a-den-z',
+      icon: '📈',
+      name: 'Hàm Số Lượng Giác Từ A–Z',
+      desc: 'Tập xác định, chẵn-lẻ, chu kỳ, GTLN-GTNN và tính đơn điệu — hiểu hàm số trước khi giải phương trình.',
+      href: '/tai-lieu/ham-so-luong-giac-tu-a-den-z.html',
+    },
+    {
+      id: 'xac-suat-van-dung-cao',
+      icon: '🎯',
+      name: 'Xác Suất Vận Dụng Cao',
+      desc: 'Biến cố đối, chọn nhóm có ràng buộc, công thức cộng/nhân xác suất, bài toán kiểm định thực tế.',
+      href: '/tai-lieu/xac-suat-van-dung-cao.html',
+    },
+    {
+      id: 'bay-thuong-gap-phuong-trinh-luong-giac',
+      icon: '⚠️',
+      name: 'Bẫy Thường Gặp Phương Trình Lượng Giác',
+      desc: '5 lỗi sai điển hình: quên điều kiện, sai chu kỳ, đếm nghiệm sai, sai dấu cung liên kết, mất nghiệm khi biến đổi.',
+      href: '/tai-lieu/bay-thuong-gap-phuong-trinh-luong-giac.html',
+    },
   ],
 }
 

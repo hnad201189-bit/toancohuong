@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giải Mã Phép Đếm — Quy tắc đếm, Hoán vị, Chỉnh hợp, Tổ hợp (Toán 11, bản soạn mới)</title>
+<link rel="stylesheet" href="/vendor/katex/katex.min.css">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #fbf6ec;
+    --bg-alt: #f2ead9;
+    --paper: #ffffff;
+    --ink: #2b2313;
+    --ink-soft: #5b4f34;
+    --ink-faint: #8c7f5f;
+    --accent: #8a5a00;
+    --accent-soft: #f0e0bd;
+    --accent-warm: #9a3324;
+    --accent-warm-soft: #f5ddd6;
+    --line: #e3d7ba;
+    --line-strong: #cdbd94;
+    --shadow: 0 1px 2px rgba(50, 38, 5, 0.07), 0 6px 20px rgba(50, 38, 5, 0.06);
+    --radius: 10px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1508;
+    --bg-alt: #241d0e;
+    --paper: #201907;
+    --ink: #f2e9d3;
+    --ink-soft: #c9b98c;
+    --ink-faint: #93875f;
+    --accent: #e0ac47;
+    --accent-soft: #3a2c0c;
+    --accent-warm: #e08a72;
+    --accent-warm-soft: #3a221a;
+    --line: #3a3018;
+    --line-strong: #504322;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1508;
+      --bg-alt: #241d0e;
+      --paper: #201907;
+      --ink: #f2e9d3;
+      --ink-soft: #c9b98c;
+      --ink-faint: #93875f;
+      --accent: #e0ac47;
+      --accent-soft: #3a2c0c;
+      --accent-warm: #e08a72;
+      --accent-warm-soft: #3a221a;
+      --line: #3a3018;
+      --line-strong: #504322;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+  }
+  @media (max-width: 880px) { .shell { grid-template-columns: 1fr; } }
+
+  header.masthead {
+    grid-column: 1 / -1;
+    padding: 56px 0 34px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.11em;
+    text-transform: uppercase; color: var(--accent);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent); display: inline-block; }
+  h1.title {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4.4vw, 44px);
+    line-height: 1.14; margin: 0 0 14px; text-wrap: balance; color: var(--ink);
+  }
+  p.dek { font-size: 17.5px; color: var(--ink-soft); max-width: 660px; margin: 0 0 22px; }
+  .provenance { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 13.5px; color: var(--ink-faint); }
+  .provenance strong { color: var(--ink-soft); font-weight: 600; }
+  .provenance .div { color: var(--line-strong); }
+
+  .notice {
+    grid-column: 1 / -1; background: var(--accent-soft); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); border-radius: var(--radius);
+    padding: 16px 20px; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 8px;
+  }
+  .notice b { color: var(--ink); }
+
+  nav.toc { align-self: start; position: sticky; top: 28px; padding-top: 8px; }
+  nav.toc .toc-label {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px;
+  }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; border-left: 1px solid var(--line); }
+  nav.toc a {
+    display: block; padding: 9px 0 9px 16px; font-size: 13.8px; color: var(--ink-soft);
+    text-decoration: none; border-left: 2px solid transparent; margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { font-family: var(--mono); color: var(--ink-faint); margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 8px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+  section.topic { padding-top: 54px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .topic-num { font-family: var(--serif); font-size: 15px; color: var(--accent); font-style: italic; }
+  h2.topic-title { font-family: var(--serif); font-weight: 600; font-size: clamp(22px, 2.6vw, 28px); margin: 0; text-wrap: balance; color: var(--ink); }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 10px 0 30px; }
+
+  h3.sub { font-family: var(--serif); font-weight: 600; font-size: 18.5px; margin: 34px 0 12px; color: var(--ink); }
+  h3.sub .tag {
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); text-transform: uppercase;
+    letter-spacing: 0.08em; font-style: normal; margin-right: 10px; vertical-align: 1px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 600; }
+
+  .defcard {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 20px 24px; margin: 18px 0 26px; max-width: 720px;
+  }
+  .defcard .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .defcard p:last-child { margin-bottom: 0; }
+
+  .callout { border-radius: var(--radius); padding: 20px 24px; margin: 22px 0 28px; max-width: 760px; border: 1px solid var(--line); }
+  .callout.example { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout .label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--accent-warm); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .problem {
+    border: 1px solid var(--line); border-radius: var(--radius); margin: 18px 0; overflow: hidden;
+    background: var(--paper); max-width: 780px;
+  }
+  .problem .q { padding: 18px 22px 6px; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); white-space: nowrap; padding-top: 1px; }
+  .difficulty {
+    font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 2px 9px; border-radius: 999px; font-weight: 600;
+  }
+  .difficulty.nb { background: var(--accent-soft); color: var(--accent); }
+  .difficulty.th { background: var(--accent-warm-soft); color: var(--accent-warm); }
+  .difficulty.vd { background: var(--line); color: var(--ink-soft); }
+  .problem .qtext { color: var(--ink); padding: 0 22px; }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 10px; }
+
+  .options { padding: 0 22px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+  .opt {
+    font-size: 14.5px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 7px;
+    background: var(--bg-alt); color: var(--ink-soft);
+  }
+  .opt b { font-family: var(--mono); color: var(--ink-faint); margin-right: 7px; }
+  .opt.revealed-correct { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); font-weight: 600; }
+  @media (max-width: 480px) { .options { grid-template-columns: 1fr; } }
+
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 22px;
+    background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans); font-size: 13.3px; font-weight: 600; line-height: 1; padding: 9px 14px;
+    border-radius: 999px; border: 1px solid var(--line-strong); background: var(--paper);
+    color: var(--ink-soft); cursor: pointer; white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden], .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body .step { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 4px 12px; margin-bottom: 12px; }
+  .sol-body .step .b {
+    font-family: var(--mono); font-size: 12.5px; color: var(--paper); background: var(--accent);
+    width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  .sol-body .answer { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-strong); font-weight: 600; color: var(--accent); }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+
+  .appendix { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 22px 0; }
+  .method-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; background: var(--paper); }
+  .method-card .mnum { font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 22px; margin-bottom: 6px; display: block; }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+  code { font-family: var(--mono); }
+  .katex { font-size: 1.02em; }
+</style>
+
+<div class="shell">
+  <header class="masthead">
+    <div class="eyebrow">Toán 11 · Chuyên đề Phép đếm · bản soạn mới, không sao chép nguyên bản</div>
+    <h1 class="title">Giải Mã Phép Đếm</h1>
+    <p class="dek">Sáu kỹ năng nền tảng của chương Tổ hợp – Xác suất: quy tắc cộng, quy tắc nhân, hoán vị, chỉnh hợp, tổ hợp, và cách phân biệt ba khái niệm cuối — điều học sinh hay nhầm lẫn nhất. Mỗi chủ đề có ví dụ đời sống, câu hỏi trắc nghiệm 4 đáp án tự soạn kèm lời giải gợi ý từng bước.</p>
+    <div class="provenance">
+      <span><strong>Phạm vi tham khảo:</strong> cấu trúc dạng bài của một tài liệu luyện thi Phép đếm THPT phổ biến</span>
+      <span class="div">·</span>
+      <span><strong>Đề bài &amp; lời giải:</strong> tự soạn hoàn toàn mới</span>
+      <span class="div">·</span>
+      <span><strong>Định dạng:</strong> trắc nghiệm 4 đáp án, độ khó tăng dần</span>
+    </div>
+  </header>
+
+  <div class="notice">
+    <b>Vì sao không chép nguyên văn?</b> Cuốn tài liệu nguồn là ấn phẩm luyện thi đã lưu hành. Trang này chỉ dùng phạm vi chủ đề (quy tắc đếm → hoán vị → chỉnh hợp → tổ hợp) và định dạng trắc nghiệm quen thuộc để tự soạn câu hỏi, số liệu và lời giải hoàn toàn mới, không lấy lại đề bài hay đáp án gốc.
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Mục lục</div>
+    <ol>
+      <li><a href="#chu-de-1"><span class="n">1</span>Quy tắc cộng</a></li>
+      <li><a href="#chu-de-2"><span class="n">2</span>Quy tắc nhân</a></li>
+      <li><a href="#chu-de-3"><span class="n">3</span>Hoán vị</a></li>
+      <li><a href="#chu-de-4"><span class="n">4</span>Chỉnh hợp</a></li>
+      <li><a href="#chu-de-5"><span class="n">5</span>Tổ hợp</a></li>
+      <li><a href="#chu-de-6"><span class="n">6</span>Phân biệt &amp; tổng hợp</a></li>
+      <li><a href="#phuong-phap"><span class="n">＋</span>Cách trình bày lời giải</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ================= CHỦ ĐỀ 1: QUY TẮC CỘNG ================= -->
+    <section class="topic" id="chu-de-1">
+      <div class="topic-head"><span class="topic-num">Chủ đề 1</span><h2 class="topic-title">Quy tắc cộng</h2></div>
+      <p class="topic-intro">Bước đầu tiên của "đếm" là nhận ra khi nào một công việc tách thành các phương án <i>rời nhau</i> — làm phương án này thì chắc chắn không làm phương án kia.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Quy tắc cộng</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa</div>
+        <p>Nếu một công việc có thể hoàn thành bởi một trong <span class="math">$k$</span> phương án <span class="math">$A_1, A_2, \ldots, A_k$</span>, các phương án <span class="kw">đôi một không thể xảy ra đồng thời</span>, và phương án <span class="math">$A_i$</span> có <span class="math">$n_i$</span> cách thực hiện, thì tổng số cách hoàn thành công việc là:</p>
+        <p style="text-align:center"><span class="math">$$n_1 + n_2 + \cdots + n_k$$</span></p>
+        <p>Dấu hiệu nhận biết: đề bài thường có từ "<i>hoặc</i>", và các phương án không thể chọn cùng lúc.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một quán cà phê có 5 loại cà phê pha máy và 3 loại trà pha thủ công. Khách chỉ gọi <i>đúng một</i> loại đồ uống — cà phê <b>hoặc</b> trà, không kết hợp cả hai. Vì hai phương án "chọn cà phê" và "chọn trà" không thể xảy ra đồng thời, số cách chọn đồ uống là <span class="math">$5 + 3 = 8$</span>.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="pd1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><span class="difficulty nb">Nhận biết</span></div>
+        <div class="qtext"><p>Một hộp có 6 viên bi đỏ, 5 viên bi xanh và 4 viên bi vàng (các viên cùng màu giống hệt nhau). Hỏi có bao nhiêu cách lấy ra đúng 1 viên bi bất kỳ từ hộp?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 120</div>
+          <div class="opt" data-correct="true"><b>B.</b> 15</div>
+          <div class="opt"><b>C.</b> 11</div>
+          <div class="opt"><b>D.</b> 9</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Việc "lấy 1 viên bi" có 3 phương án tách biệt: lấy bi đỏ, lấy bi xanh, hoặc lấy bi vàng — chỉ xảy ra đúng một trong ba, không thể vừa lấy đỏ vừa lấy xanh trong 1 viên.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì các phương án rời nhau, áp dụng quy tắc cộng: <span class="math">$6 + 5 + 4$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$6+5+4=15$</span>. (Phương án A = 120 là kết quả nếu nhầm sang quy tắc nhân — sai vì đây không phải 3 giai đoạn nối tiếp mà là 3 phương án loại trừ nhau.)</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 15</b> cách.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="pd1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><span class="difficulty nb">Nhận biết</span></div>
+        <div class="qtext"><p>Một trường THPT tổ chức cho học sinh đăng ký đúng 1 câu lạc bộ ngoại khóa: có 4 CLB thể thao, 6 CLB nghệ thuật, 2 CLB khoa học (mỗi học sinh chỉ được chọn 1 CLB duy nhất). Hỏi một học sinh có bao nhiêu cách chọn?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 48</div>
+          <div class="opt" data-correct="true"><b>B.</b> 12</div>
+          <div class="opt"><b>C.</b> 8</div>
+          <div class="opt"><b>D.</b> 6</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Học sinh chỉ được đăng ký 1 CLB duy nhất, nên "chọn CLB thể thao", "chọn CLB nghệ thuật", "chọn CLB khoa học" là 3 phương án không thể đồng thời xảy ra.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng quy tắc cộng: <span class="math">$4 + 6 + 2$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$4+6+2=12$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 12</b> cách.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 2: QUY TẮC NHÂN ================= -->
+    <section class="topic" id="chu-de-2">
+      <div class="topic-head"><span class="topic-num">Chủ đề 2</span><h2 class="topic-title">Quy tắc nhân</h2></div>
+      <p class="topic-intro">Ngược với quy tắc cộng: khi công việc phải trải qua nhiều giai đoạn <i>nối tiếp</i>, mỗi giai đoạn độc lập với các giai đoạn còn lại, ta nhân số cách của từng giai đoạn.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Quy tắc nhân</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa</div>
+        <p>Nếu một công việc được hoàn thành qua <span class="math">$k$</span> giai đoạn liên tiếp, giai đoạn thứ <span class="math">$i$</span> có <span class="math">$n_i$</span> cách thực hiện <span class="kw">độc lập</span> với các giai đoạn khác, thì tổng số cách hoàn thành công việc là:</p>
+        <p style="text-align:center"><span class="math">$$n_1 \times n_2 \times \cdots \times n_k$$</span></p>
+        <p>Dấu hiệu nhận biết: công việc có nhiều "bước"/"vị trí" phải làm <i>đủ tất cả</i>, không phải chọn 1 trong các phương án.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một mã khóa vali gồm đúng 3 chữ số, mỗi chữ số từ 0 đến 9 (được phép lặp lại). Có 3 giai đoạn nối tiếp (chọn chữ số thứ nhất, thứ hai, thứ ba), mỗi giai đoạn có 10 lựa chọn độc lập, nên số mã khóa có thể tạo ra là <span class="math">$10 \times 10 \times 10 = 1000$</span>.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="pd2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><span class="difficulty nb">Nhận biết</span></div>
+        <div class="qtext"><p>Một quán ăn có thực đơn gồm 4 món khai vị, 5 món chính và 3 món tráng miệng. Một suất ăn trọn gói gồm đúng 1 món khai vị, 1 món chính và 1 món tráng miệng. Hỏi có bao nhiêu cách chọn một suất ăn trọn gói?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 12</div>
+          <div class="opt"><b>B.</b> 20</div>
+          <div class="opt" data-correct="true"><b>C.</b> 60</div>
+          <div class="opt"><b>D.</b> 15</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Suất ăn trọn gói cần chọn <i>đủ cả ba</i> món — đây là 3 giai đoạn nối tiếp, không phải chọn 1 trong 3 loại món.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mỗi giai đoạn độc lập với hai giai đoạn kia (chọn khai vị nào không ảnh hưởng số lựa chọn món chính). Áp dụng quy tắc nhân: <span class="math">$4 \times 5 \times 3$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$4\times5\times3=60$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>C. 60</b> cách.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="pd2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><span class="difficulty th">Thông hiểu</span></div>
+        <div class="qtext"><p>Từ các chữ số 1, 2, 3, 4, 5 (mỗi chữ số dùng không quá một lần), lập được bao nhiêu số tự nhiên có 3 chữ số đôi một khác nhau?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 125</div>
+          <div class="opt" data-correct="true"><b>B.</b> 60</div>
+          <div class="opt"><b>C.</b> 15</div>
+          <div class="opt"><b>D.</b> 20</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số có 3 chữ số gồm 3 vị trí nối tiếp: hàng trăm, hàng chục, hàng đơn vị — mỗi vị trí là một giai đoạn chọn chữ số.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hàng trăm: chọn 1 trong 5 chữ số → 5 cách. Vì không lặp chữ số, hàng chục chỉ còn 4 chữ số → 4 cách. Hàng đơn vị còn lại 3 chữ số → 3 cách.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Áp dụng quy tắc nhân cho 3 giai đoạn: <span class="math">$5\times4\times3=60$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 60</b> số.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 3: HOÁN VỊ ================= -->
+    <section class="topic" id="chu-de-3">
+      <div class="topic-head"><span class="topic-num">Chủ đề 3</span><h2 class="topic-title">Hoán vị</h2></div>
+      <p class="topic-intro">Khi cần xếp thứ tự <i>toàn bộ</i> một tập hợp phần tử, ta có một trường hợp đặc biệt và rất phổ biến của quy tắc nhân: hoán vị.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Hoán vị của n phần tử</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa &amp; công thức</div>
+        <p>Một <span class="kw">hoán vị</span> của <span class="math">$n$</span> phần tử là một cách sắp xếp <i>có thứ tự</i> toàn bộ <span class="math">$n$</span> phần tử đó. Số hoán vị của <span class="math">$n$</span> phần tử:</p>
+        <p style="text-align:center"><span class="math">$$P_n = n! = n\times(n-1)\times\cdots\times2\times1$$</span></p>
+        <p><i>Mẹo xếp có điều kiện:</i> nếu yêu cầu 2 phần tử cụ thể luôn đứng cạnh nhau, ta "buộc" 2 phần tử đó thành 1 khối, xếp khối này cùng các phần tử còn lại (còn <span class="math">$n-1$</span> đối tượng, có <span class="math">$(n-1)!$</span> cách xếp), rồi nhân thêm 2 cách hoán đổi vị trí trong khối.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một kệ sách có đúng 5 chỗ trống, cần xếp 5 cuốn sách khác nhau vào đủ 5 chỗ đó. Số cách xếp là <span class="math">$P_5=5!=120$</span> — vì đây là sắp xếp có thứ tự toàn bộ 5 cuốn sách.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="pd3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><span class="difficulty nb">Nhận biết</span></div>
+        <div class="qtext"><p>Có bao nhiêu cách xếp 4 bạn học sinh A, B, C, D thành một hàng dọc để chụp ảnh?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 16</div>
+          <div class="opt" data-correct="true"><b>B.</b> 24</div>
+          <div class="opt"><b>C.</b> 12</div>
+          <div class="opt"><b>D.</b> 4</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Xếp cả 4 bạn thành một hàng dọc là sắp xếp có thứ tự toàn bộ 4 phần tử — đúng định nghĩa hoán vị.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$P_4 = 4! = 4\times3\times2\times1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$4!=24$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 24</b> cách.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="pd3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><span class="difficulty vd">Vận dụng</span></div>
+        <div class="qtext"><p>Xếp 5 bạn học sinh (trong đó có X và Y) thành một hàng ngang sao cho X và Y luôn đứng cạnh nhau. Hỏi có bao nhiêu cách xếp?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 120</div>
+          <div class="opt" data-correct="true"><b>B.</b> 48</div>
+          <div class="opt"><b>C.</b> 24</div>
+          <div class="opt"><b>D.</b> 60</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vì X, Y luôn đứng cạnh nhau, "buộc" hai bạn này thành một khối duy nhất. Khi đó ta có 4 đối tượng để xếp: khối (XY) và 3 bạn còn lại.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Xếp 4 đối tượng này thành hàng: <span class="math">$4!=24$</span> cách.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trong mỗi cách xếp đó, khối (XY) còn có thể hoán đổi thành (YX) — thêm 2 cách. Theo quy tắc nhân: <span class="math">$4! \times 2 = 24\times2=48$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 48</b> cách.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 4: CHỈNH HỢP ================= -->
+    <section class="topic" id="chu-de-4">
+      <div class="topic-head"><span class="topic-num">Chủ đề 4</span><h2 class="topic-title">Chỉnh hợp</h2></div>
+      <p class="topic-intro">Hoán vị xếp <i>toàn bộ</i> n phần tử. Nhưng nếu chỉ cần chọn ra và xếp thứ tự <i>một phần</i> trong n phần tử, ta cần một công cụ mới: chỉnh hợp.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Chỉnh hợp chập k của n phần tử</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa &amp; công thức</div>
+        <p>Một <span class="kw">chỉnh hợp</span> chập <span class="math">$k$</span> của <span class="math">$n$</span> phần tử <span class="math">$(1\le k\le n)$</span> là một cách <i>chọn ra</i> <span class="math">$k$</span> phần tử từ <span class="math">$n$</span> phần tử <b>và sắp xếp chúng có thứ tự</b>. Số chỉnh hợp:</p>
+        <p style="text-align:center"><span class="math">$$A_n^k = \dfrac{n!}{(n-k)!} = n(n-1)\cdots(n-k+1)$$</span></p>
+        <p>Dấu hiệu nhận biết: đề bài chọn ra một nhóm nhỏ <i>và</i> các phần tử trong nhóm giữ vai trò/vị trí khác nhau (ví dụ: giải Nhất – Nhì – Ba, các chức vụ khác nhau).</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một cuộc thi có 10 thí sinh, ban tổ chức cần trao 3 giải Nhất, Nhì, Ba (ba vai trò khác nhau, có thứ tự). Số cách trao giải là <span class="math">$A_{10}^3 = 10\times9\times8=720$</span> — vì đổi vị trí Nhất-Nhì-Ba giữa hai người khác nhau tạo ra một cách trao giải khác.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="pd4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><span class="difficulty th">Thông hiểu</span></div>
+        <div class="qtext"><p>Một lớp có 8 học sinh giỏi Toán. Giáo viên cần chọn ra 3 bạn để lần lượt giữ 3 vai trò khác nhau: Đội trưởng, Đội phó, Thư ký. Hỏi có bao nhiêu cách chọn?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 56</div>
+          <div class="opt" data-correct="true"><b>B.</b> 336</div>
+          <div class="opt"><b>C.</b> 512</div>
+          <div class="opt"><b>D.</b> 24</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Ba vai trò Đội trưởng/Đội phó/Thư ký là ba vị trí <i>khác nhau</i> — chọn 3 người từ 8 người và phân biệt vai trò → đúng dạng chỉnh hợp, không phải tổ hợp.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$A_8^3 = 8\times7\times6$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$8\times7\times6=336$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 336</b> cách.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="pd4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><span class="difficulty vd">Vận dụng</span></div>
+        <div class="qtext"><p>Từ tập hợp các chữ số <span class="math">$\{0,1,2,3,4,5\}$</span>, lập được bao nhiêu số tự nhiên có 4 chữ số đôi một khác nhau (chữ số hàng nghìn khác 0)?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 360</div>
+          <div class="opt" data-correct="true"><b>B.</b> 300</div>
+          <div class="opt"><b>C.</b> 120</div>
+          <div class="opt"><b>D.</b> 600</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nếu không có ràng buộc "khác 0", số các chỉnh hợp chập 4 của 6 chữ số là <span class="math">$A_6^4 = 6\times5\times4\times3=360$</span> — nhưng đây tính luôn cả những số có chữ số đầu là 0 (thực chất chỉ có 3 chữ số), nên cần trừ đi.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm riêng các số có chữ số hàng nghìn <i>bằng</i> 0: 3 vị trí còn lại chọn từ 5 chữ số còn lại, có thứ tự: <span class="math">$A_5^3=5\times4\times3=60$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số cần tìm: <span class="math">$A_6^4 - A_5^3 = 360-60=300$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 300</b> số.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 5: TỔ HỢP ================= -->
+    <section class="topic" id="chu-de-5">
+      <div class="topic-head"><span class="topic-num">Chủ đề 5</span><h2 class="topic-title">Tổ hợp</h2></div>
+      <p class="topic-intro">Khi chỉ cần <i>chọn ra</i> một nhóm phần tử mà không quan tâm thứ tự hay vai trò của từng phần tử trong nhóm, ta dùng tổ hợp.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Tổ hợp chập k của n phần tử</h3>
+      <div class="defcard">
+        <div class="k">Định nghĩa &amp; công thức</div>
+        <p>Một <span class="kw">tổ hợp</span> chập <span class="math">$k$</span> của <span class="math">$n$</span> phần tử là một cách chọn ra <span class="math">$k$</span> phần tử từ <span class="math">$n$</span> phần tử, <b>không phân biệt thứ tự</b>. Số tổ hợp:</p>
+        <p style="text-align:center"><span class="math">$$C_n^k = \dfrac{n!}{k!(n-k)!} = \dfrac{A_n^k}{k!}$$</span></p>
+        <p>Dấu hiệu nhận biết: các phần tử được chọn có <i>vai trò như nhau</i> (một nhóm, một đội, một tổ — không phân vị trí Nhất/Nhì hay chức vụ khác nhau).</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Đội tuyển học sinh giỏi có 12 bạn, cần chọn ra 5 bạn đi thi đấu giao lưu (5 bạn này vai trò như nhau, không phân biệt ai là "trưởng đoàn"). Số cách chọn là <span class="math">$C_{12}^5 = 792$</span> — nếu đổi thứ tự chọn thì vẫn ra cùng một nhóm 5 bạn, nên không nhân thêm với số cách sắp xếp.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="pd5-1" data-qid="Bài 5.1">
+        <div class="q"><span class="qid">Bài 5.1</span><span class="difficulty th">Thông hiểu</span></div>
+        <div class="qtext"><p>Một tổ có 6 bạn nam và 4 bạn nữ (10 bạn). Cần chọn ra một nhóm 3 bạn bất kỳ đi trực nhật (3 bạn vai trò như nhau). Hỏi có bao nhiêu cách chọn?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 720</div>
+          <div class="opt" data-correct="true"><b>B.</b> 120</div>
+          <div class="opt"><b>C.</b> 30</div>
+          <div class="opt"><b>D.</b> 210</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Cần chọn 3 bạn "đi trực nhật" — không có vai trò riêng biệt giữa 3 bạn này, chỉ cần biết ai được chọn → đúng dạng tổ hợp, tổng số bạn là <span class="math">$6+4=10$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$C_{10}^3 = \dfrac{10\times9\times8}{3!}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$\dfrac{10\times9\times8}{6} = \dfrac{720}{6}=120$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 120</b> cách.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="pd5-2" data-qid="Bài 5.2">
+        <div class="q"><span class="qid">Bài 5.2</span><span class="difficulty vd">Vận dụng</span></div>
+        <div class="qtext"><p>Một tổ có 6 bạn nam và 4 bạn nữ. Chọn một nhóm 3 bạn sao cho có <b>đúng 2 nam và 1 nữ</b>. Hỏi có bao nhiêu cách chọn?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 24</div>
+          <div class="opt" data-correct="true"><b>B.</b> 60</div>
+          <div class="opt"><b>C.</b> 120</div>
+          <div class="opt"><b>D.</b> 15</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tách công việc thành 2 giai đoạn độc lập: chọn 2 nam trong 6 nam, và chọn 1 nữ trong 4 nữ. Mỗi giai đoạn không quan tâm thứ tự → dùng tổ hợp cho từng giai đoạn.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Chọn 2 nam: <span class="math">$C_6^2 = \dfrac{6\times5}{2}=15$</span>. Chọn 1 nữ: <span class="math">$C_4^1=4$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hai giai đoạn nối tiếp, độc lập → áp dụng quy tắc nhân: <span class="math">$15\times4=60$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 60</b> cách.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHỦ ĐỀ 6: PHÂN BIỆT & TỔNG HỢP ================= -->
+    <section class="topic" id="chu-de-6">
+      <div class="topic-head"><span class="topic-num">Chủ đề 6</span><h2 class="topic-title">Phân biệt và bài toán tổng hợp</h2></div>
+      <p class="topic-intro">Đây là chủ đề học sinh mất điểm nhiều nhất: không phải vì không thuộc công thức, mà vì chọn nhầm công cụ. Hai câu hỏi sau sẽ luôn giúp chọn đúng.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Hai câu hỏi để chọn đúng công cụ</h3>
+      <div class="defcard">
+        <div class="k">Sơ đồ quyết định</div>
+        <p><b>Câu hỏi 1 — "Có dùng hết phần tử không?"</b> Nếu xếp <i>toàn bộ</i> n phần tử → <span class="kw">hoán vị</span> (<span class="math">$P_n=n!$</span>). Nếu chỉ chọn ra k trong n phần tử (k &lt; n) → hỏi tiếp câu 2.</p>
+        <p><b>Câu hỏi 2 — "Có phân biệt vai trò/thứ tự giữa các phần tử được chọn không?"</b> Có phân biệt (giải thưởng, chức vụ, vị trí) → <span class="kw">chỉnh hợp</span> (<span class="math">$A_n^k$</span>). Không phân biệt (một nhóm, một đội) → <span class="kw">tổ hợp</span> (<span class="math">$C_n^k$</span>).</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng — cùng một tập hợp, ba câu hỏi khác nhau</div>
+        <p>Một giải cờ vua có 8 kỳ thủ. (1) Xếp toàn bộ 8 người vào lịch thi đấu 8 vòng theo thứ tự bốc thăm → hoán vị, <span class="math">$8!$</span>. (2) Trao 3 giải Vàng–Bạc–Đồng (phân biệt) → chỉnh hợp, <span class="math">$A_8^3$</span>. (3) Chọn 3 người đại diện đi giao lưu (vai trò như nhau) → tổ hợp, <span class="math">$C_8^3$</span>. Cùng một con số 8 và 3, nhưng ba câu hỏi khác nhau cho ba kết quả khác nhau.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="pd6-1" data-qid="Bài 6.1">
+        <div class="q"><span class="qid">Bài 6.1</span><span class="difficulty vd">Vận dụng cao</span></div>
+        <div class="qtext"><p>Một đội bóng có 11 cầu thủ. Huấn luyện viên chọn ra 5 cầu thủ để đá chính (vai trò như nhau), sau đó trong 5 người vừa chọn, chỉ định tiếp 1 người làm đội trưởng. Hỏi có tất cả bao nhiêu cách thực hiện (chọn 5 người rồi chỉ định đội trưởng)?</p></div>
+        <div class="options">
+          <div class="opt"><b>A.</b> 462</div>
+          <div class="opt" data-correct="true"><b>B.</b> 2310</div>
+          <div class="opt"><b>C.</b> 55440</div>
+          <div class="opt"><b>D.</b> 2520</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tách thành 2 giai đoạn nối tiếp. Giai đoạn 1 — chọn 5 cầu thủ đá chính trong 11 người, vai trò như nhau (chưa phân đội trưởng) → tổ hợp: <span class="math">$C_{11}^5$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$C_{11}^5 = \dfrac{11\times10\times9\times8\times7}{5!} = \dfrac{55440}{120}=462$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giai đoạn 2 — trong 5 người đã chọn, chỉ định 1 người làm đội trưởng: có 5 cách (đây là một vai trò riêng biệt, không phải chọn thêm một nhóm).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Hai giai đoạn nối tiếp, độc lập → quy tắc nhân: <span class="math">$462\times5=2310$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>B. 2310</b> cách.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= APPENDIX ================= -->
+    <section class="appendix" id="phuong-phap">
+      <div class="topic-head"><span class="topic-num">Phụ lục</span><h2 class="topic-title">Cách trình bày một lời giải, tóm tắt lại</h2></div>
+      <p class="topic-intro">Khuôn 5 bước lặp lại xuyên suốt các lời giải mẫu ở trên — dùng khuôn này để tự trình bày bài làm của mình rõ ràng, có căn cứ.</p>
+      <div class="method-grid">
+        <div class="method-card"><span class="mnum">1</span><p><b>Xác định đối tượng và số lượng.</b> Công việc cần đếm là gì, có bao nhiêu phần tử tham gia.</p></div>
+        <div class="method-card"><span class="mnum">2</span><p><b>Trả lời 2 câu hỏi phân loại.</b> Dùng hết phần tử hay chỉ chọn một phần? Có phân biệt vai trò/thứ tự không?</p></div>
+        <div class="method-card"><span class="mnum">3</span><p><b>Chọn đúng công cụ.</b> Quy tắc cộng/nhân cho các giai đoạn hoặc phương án; hoán vị/chỉnh hợp/tổ hợp cho việc chọn-xếp.</p></div>
+        <div class="method-card"><span class="mnum">4</span><p><b>Tính toán và đối chiếu.</b> Kiểm tra kết quả có hợp lý về độ lớn không (ví dụ có phân biệt thứ tự luôn cho số lớn hơn không phân biệt).</p></div>
+        <div class="method-card"><span class="mnum">5</span><p><b>Kết luận rõ ràng.</b> Nêu đáp số cuối cùng, đối chiếu với 4 phương án trắc nghiệm.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      Bản soạn mới cho chuyên đề Phép đếm, Toán 11. Toàn bộ đề bài, số liệu và lời giải trong tài liệu này là nội dung tự soạn, không sao chép từ bất kỳ ấn phẩm đã xuất bản nào.
+    </footer>
+  </main>
+</div>
+
+<script src="/vendor/katex/katex.min.js"></script>
+<script src="/vendor/katex/auto-render.min.js"></script>
+<script>
+  window.VARIANTS = {
+    'pd1-1': [{
+      qHtml: '<p>Một hộp có 7 viên bi đỏ, 8 viên bi xanh và 3 viên bi vàng (các viên cùng màu giống hệt nhau). Hỏi có bao nhiêu cách lấy ra đúng 1 viên bi bất kỳ từ hộp?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 168</div><div class="opt" data-correct="true"><b>B.</b> 18</div><div class="opt"><b>C.</b> 15</div><div class="opt"><b>D.</b> 11</div>',
+      steps: [
+        '<p>Việc "lấy 1 viên bi" có 3 phương án tách biệt: lấy bi đỏ, lấy bi xanh, hoặc lấy bi vàng.</p>',
+        '<p>Các phương án rời nhau → quy tắc cộng: <span class="math">$7+8+3$</span>.</p>',
+        '<p><span class="math">$7+8+3=18$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 18</b> cách.'
+    }],
+    'pd1-2': [{
+      qHtml: '<p>Một trường THPT cho học sinh đăng ký đúng 1 câu lạc bộ: có 5 CLB thể thao, 7 CLB nghệ thuật, 3 CLB khoa học. Hỏi một học sinh có bao nhiêu cách chọn?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 105</div><div class="opt" data-correct="true"><b>B.</b> 15</div><div class="opt"><b>C.</b> 10</div><div class="opt"><b>D.</b> 12</div>',
+      steps: [
+        '<p>3 phương án không thể đồng thời (chỉ đăng ký 1 CLB).</p>',
+        '<p>Quy tắc cộng: <span class="math">$5+7+3$</span>.</p>',
+        '<p><span class="math">$5+7+3=15$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 15</b> cách.'
+    }],
+    'pd2-1': [{
+      qHtml: '<p>Một quán ăn có thực đơn gồm 6 món khai vị, 4 món chính và 5 món tráng miệng. Một suất trọn gói gồm đúng 1 món mỗi loại. Hỏi có bao nhiêu cách chọn một suất trọn gói?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 15</div><div class="opt"><b>B.</b> 20</div><div class="opt" data-correct="true"><b>C.</b> 120</div><div class="opt"><b>D.</b> 24</div>',
+      steps: [
+        '<p>Suất trọn gói cần đủ cả 3 món — 3 giai đoạn nối tiếp, độc lập.</p>',
+        '<p>Quy tắc nhân: <span class="math">$6\\times4\\times5$</span>.</p>',
+        '<p><span class="math">$6\\times4\\times5=120$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>C. 120</b> cách.'
+    }],
+    'pd2-2': [{
+      qHtml: '<p>Từ các chữ số 1, 2, 3, 4, 5, 6 (mỗi chữ số dùng không quá một lần), lập được bao nhiêu số tự nhiên có 3 chữ số đôi một khác nhau?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 216</div><div class="opt" data-correct="true"><b>B.</b> 120</div><div class="opt"><b>C.</b> 20</div><div class="opt"><b>D.</b> 18</div>',
+      steps: [
+        '<p>3 vị trí nối tiếp: hàng trăm, hàng chục, hàng đơn vị.</p>',
+        '<p>Hàng trăm: 6 cách. Hàng chục (không lặp): 5 cách. Hàng đơn vị: 4 cách.</p>',
+        '<p>Quy tắc nhân: <span class="math">$6\\times5\\times4=120$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 120</b> số.'
+    }],
+    'pd3-1': [{
+      qHtml: '<p>Có bao nhiêu cách xếp 5 bạn học sinh A, B, C, D, E thành một hàng dọc để chụp ảnh?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 25</div><div class="opt" data-correct="true"><b>B.</b> 120</div><div class="opt"><b>C.</b> 20</div><div class="opt"><b>D.</b> 60</div>',
+      steps: [
+        '<p>Xếp toàn bộ 5 bạn có thứ tự → hoán vị.</p>',
+        '<p><span class="math">$P_5=5!=5\\times4\\times3\\times2\\times1$</span>.</p>',
+        '<p><span class="math">$5!=120$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 120</b> cách.'
+    }],
+    'pd3-2': [{
+      qHtml: '<p>Xếp 6 bạn học sinh (trong đó có X và Y) thành một hàng ngang sao cho X và Y luôn đứng cạnh nhau. Hỏi có bao nhiêu cách xếp?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 720</div><div class="opt" data-correct="true"><b>B.</b> 240</div><div class="opt"><b>C.</b> 120</div><div class="opt"><b>D.</b> 360</div>',
+      steps: [
+        '<p>"Buộc" X, Y thành 1 khối → còn 5 đối tượng (khối + 4 bạn còn lại).</p>',
+        '<p>Xếp 5 đối tượng: <span class="math">$5!=120$</span> cách.</p>',
+        '<p>Khối (XY) có thêm 2 cách hoán đổi trong: <span class="math">$5!\\times2=120\\times2=240$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 240</b> cách.'
+    }],
+    'pd4-1': [{
+      qHtml: '<p>Một lớp có 10 học sinh giỏi Toán. Giáo viên chọn 3 bạn để lần lượt giữ 3 vai trò khác nhau: Đội trưởng, Đội phó, Thư ký. Hỏi có bao nhiêu cách chọn?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 120</div><div class="opt" data-correct="true"><b>B.</b> 720</div><div class="opt"><b>C.</b> 1000</div><div class="opt"><b>D.</b> 30</div>',
+      steps: [
+        '<p>3 vai trò khác nhau, chọn 3 trong 10 người → chỉnh hợp.</p>',
+        '<p><span class="math">$A_{10}^3=10\\times9\\times8$</span>.</p>',
+        '<p><span class="math">$10\\times9\\times8=720$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 720</b> cách.'
+    }],
+    'pd4-2': [{
+      qHtml: '<p>Từ tập hợp các chữ số <span class="math">$\\{0,1,2,3,4,5,6\\}$</span>, lập được bao nhiêu số tự nhiên có 4 chữ số đôi một khác nhau (chữ số hàng nghìn khác 0)?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 840</div><div class="opt" data-correct="true"><b>B.</b> 720</div><div class="opt"><b>C.</b> 120</div><div class="opt"><b>D.</b> 480</div>',
+      steps: [
+        '<p>Không ràng buộc: <span class="math">$A_7^4=7\\times6\\times5\\times4=840$</span>.</p>',
+        '<p>Trừ các số có chữ số đầu bằng 0: 3 vị trí còn lại chọn có thứ tự từ 6 chữ số còn lại: <span class="math">$A_6^3=6\\times5\\times4=120$</span>.</p>',
+        '<p><span class="math">$840-120=720$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 720</b> số.'
+    }],
+    'pd5-1': [{
+      qHtml: '<p>Một tổ có 8 bạn nam và 5 bạn nữ (13 bạn). Cần chọn ra một nhóm 4 bạn bất kỳ đi trực nhật. Hỏi có bao nhiêu cách chọn?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 17160</div><div class="opt" data-correct="true"><b>B.</b> 715</div><div class="opt"><b>C.</b> 52</div><div class="opt"><b>D.</b> 1716</div>',
+      steps: [
+        '<p>Chọn 4 bạn vai trò như nhau trong 13 bạn → tổ hợp.</p>',
+        '<p><span class="math">$C_{13}^4=\\dfrac{13\\times12\\times11\\times10}{4!}$</span>.</p>',
+        '<p><span class="math">$\\dfrac{17160}{24}=715$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 715</b> cách.'
+    }],
+    'pd5-2': [{
+      qHtml: '<p>Một tổ có 7 bạn nam và 5 bạn nữ. Chọn một nhóm 4 bạn sao cho có đúng 2 nam và 2 nữ. Hỏi có bao nhiêu cách chọn?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 35</div><div class="opt"><b>B.</b> 42</div><div class="opt" data-correct="true"><b>C.</b> 210</div><div class="opt"><b>D.</b> 462</div>',
+      steps: [
+        '<p>Tách 2 giai đoạn: chọn 2 nam trong 7, chọn 2 nữ trong 5.</p>',
+        '<p><span class="math">$C_7^2=21$</span>, <span class="math">$C_5^2=10$</span>.</p>',
+        '<p>Quy tắc nhân: <span class="math">$21\\times10=210$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>C. 210</b> cách.'
+    }],
+    'pd6-1': [{
+      qHtml: '<p>Một đội bóng có 12 cầu thủ. HLV chọn ra 6 cầu thủ để đá chính, sau đó trong 6 người vừa chọn, chỉ định tiếp 1 người làm đội trưởng. Hỏi có tất cả bao nhiêu cách thực hiện?</p>',
+      optsHtml: '<div class="opt"><b>A.</b> 924</div><div class="opt" data-correct="true"><b>B.</b> 5544</div><div class="opt"><b>C.</b> 665280</div><div class="opt"><b>D.</b> 7392</div>',
+      steps: [
+        '<p>Giai đoạn 1 — chọn 6 người trong 12, vai trò như nhau → tổ hợp: <span class="math">$C_{12}^6$</span>.</p>',
+        '<p><span class="math">$C_{12}^6=\\dfrac{12\\times11\\times10\\times9\\times8\\times7}{6!}=\\dfrac{665280}{720}=924$</span>.</p>',
+        '<p>Giai đoạn 2 — chỉ định 1 đội trưởng trong 6 người: 6 cách.</p>',
+        '<p>Quy tắc nhân: <span class="math">$924\\times6=5544$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>B. 5544</b> cách.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function renderMathIn(root) {
+      if (window.renderMathInElement) {
+        renderMathInElement(root, {
+          delimiters: [{ left: '$', right: '$', display: false }],
+          throwOnError: false
+        });
+      }
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var optionsEl = el.querySelector('.options');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        optsHtml: optionsEl ? optionsEl.innerHTML : '',
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+      function clearOptionHighlight() {
+        if (!optionsEl) return;
+        Array.prototype.forEach.call(optionsEl.querySelectorAll('.opt'), function (o) {
+          o.classList.remove('revealed-correct');
+        });
+      }
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        if (optionsEl) optionsEl.innerHTML = v.optsHtml || '';
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+        renderMathIn(el);
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+        if (optionsEl) {
+          var correct = optionsEl.querySelector('.opt[data-correct="true"]');
+          if (correct) correct.classList.add('revealed-correct');
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        clearOptionHighlight();
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        clearOptionHighlight();
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+    renderMathIn(document.body);
+  });
+</script>
+</body>
+</html>

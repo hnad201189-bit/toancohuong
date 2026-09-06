@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xác Suất Vận Dụng Cao — Biến cố đối, ràng buộc nhóm, cộng &amp; nhân xác suất (Toán 11, bản soạn mới)</title>
+<link rel="stylesheet" href="/vendor/katex/katex.min.css">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f7f2fa; --bg-alt: #ede2f2; --paper: #ffffff;
+    --ink: #281b30; --ink-soft: #5c4d68; --ink-faint: #8d7d99;
+    --accent: #5c2a6e; --accent-soft: #ecdcf2;
+    --accent-warm: #a8531f; --accent-warm-soft: #f6e5d8;
+    --line: #e3d3ea; --line-strong: #cbb3d6;
+    --shadow: 0 1px 2px rgba(45, 20, 55, 0.07), 0 6px 20px rgba(45, 20, 55, 0.06);
+    --radius: 10px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1220; --bg-alt: #241830; --paper: #1f1428;
+    --ink: #f0e6f5; --ink-soft: #c4aed0; --ink-faint: #937f9d;
+    --accent: #cf95e0; --accent-soft: #362042;
+    --accent-warm: #e3a179; --accent-warm-soft: #33241a;
+    --line: #362840; --line-strong: #4a3a55;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1220; --bg-alt: #241830; --paper: #1f1428;
+      --ink: #f0e6f5; --ink-soft: #c4aed0; --ink-faint: #937f9d;
+      --accent: #cf95e0; --accent-soft: #362042;
+      --accent-warm: #e3a179; --accent-warm-soft: #33241a;
+      --line: #362840; --line-strong: #4a3a55;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16.5px; line-height: 1.65; margin: 0; padding: 0; }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell { max-width: 1180px; margin: 0 auto; padding: 0 24px 96px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+  @media (max-width: 880px) { .shell { grid-template-columns: 1fr; } }
+
+  header.masthead { grid-column: 1 / -1; padding: 56px 0 34px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+  .eyebrow { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent); display: inline-block; }
+  h1.title { font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4.4vw, 44px); line-height: 1.14; margin: 0 0 14px; text-wrap: balance; color: var(--ink); }
+  p.dek { font-size: 17.5px; color: var(--ink-soft); max-width: 660px; margin: 0 0 22px; }
+  .provenance { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 13.5px; color: var(--ink-faint); }
+  .provenance strong { color: var(--ink-soft); font-weight: 600; }
+  .provenance .div { color: var(--line-strong); }
+
+  .notice { grid-column: 1 / -1; background: var(--accent-soft); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 16px 20px; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 8px; }
+  .notice b { color: var(--ink); }
+
+  nav.toc { align-self: start; position: sticky; top: 28px; padding-top: 8px; }
+  nav.toc .toc-label { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; border-left: 1px solid var(--line); }
+  nav.toc a { display: block; padding: 9px 0 9px 16px; font-size: 13.8px; color: var(--ink-soft); text-decoration: none; border-left: 2px solid transparent; margin-left: -1px; }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { font-family: var(--mono); color: var(--ink-faint); margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 8px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+  section.topic { padding-top: 54px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+  .topic-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .topic-num { font-family: var(--serif); font-size: 15px; color: var(--accent); font-style: italic; }
+  h2.topic-title { font-family: var(--serif); font-weight: 600; font-size: clamp(22px, 2.6vw, 28px); margin: 0; text-wrap: balance; color: var(--ink); }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 10px 0 30px; }
+  h3.sub { font-family: var(--serif); font-weight: 600; font-size: 18.5px; margin: 34px 0 12px; color: var(--ink); }
+  h3.sub .tag { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; font-style: normal; margin-right: 10px; vertical-align: 1px; }
+  p { max-width: 68ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 600; }
+
+  .defcard { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 24px; margin: 18px 0 26px; max-width: 720px; }
+  .defcard .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .defcard p:last-child { margin-bottom: 0; }
+
+  .callout { border-radius: var(--radius); padding: 20px 24px; margin: 22px 0 28px; max-width: 760px; border: 1px solid var(--line); }
+  .callout.example { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .problem { border: 1px solid var(--line); border-radius: var(--radius); margin: 18px 0; overflow: hidden; background: var(--paper); max-width: 780px; }
+  .problem .q { padding: 18px 22px 6px; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); white-space: nowrap; padding-top: 1px; }
+  .difficulty { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 9px; border-radius: 999px; font-weight: 600; }
+  .difficulty.nb { background: var(--accent-soft); color: var(--accent); }
+  .difficulty.th { background: var(--accent-warm-soft); color: var(--accent-warm); }
+  .difficulty.vd { background: var(--line); color: var(--ink-soft); }
+  .problem .qtext { color: var(--ink); padding: 0 22px; }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 10px; }
+
+  .options { padding: 0 22px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+  .opt { font-size: 14.5px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg-alt); color: var(--ink-soft); }
+  .opt b { font-family: var(--mono); color: var(--ink-faint); margin-right: 7px; }
+  .opt.revealed-correct { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); font-weight: 600; }
+  @media (max-width: 480px) { .options { grid-template-columns: 1fr; } }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 22px; background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .controls .btn { font-family: var(--sans); font-size: 13.3px; font-weight: 600; line-height: 1; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink-soft); cursor: pointer; white-space: nowrap; }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden], .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body .step { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 4px 12px; margin-bottom: 12px; }
+  .sol-body .step .b { font-family: var(--mono); font-size: 12.5px; color: var(--paper); background: var(--accent); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  .sol-body .answer { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-strong); font-weight: 600; color: var(--accent); }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+
+  .appendix { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 22px 0; }
+  .method-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; background: var(--paper); }
+  .method-card .mnum { font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 22px; margin-bottom: 6px; display: block; }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+  code { font-family: var(--mono); }
+  .katex { font-size: 1.02em; }
+</style>
+
+<div class="shell">
+  <header class="masthead">
+    <div class="eyebrow">Toán 11 · Chuyên đề Xác suất vận dụng cao · bản soạn mới, không sao chép nguyên bản</div>
+    <h1 class="title">Xác Suất Vận Dụng Cao</h1>
+    <p class="dek">Khi bài toán tổ hợp và xác suất trộn lẫn ràng buộc phức tạp: biến cố đối cho "ít nhất", chọn nhóm có điều kiện, công thức cộng cho biến cố không xung khắc, công thức nhân cho nhiều giai đoạn độc lập, và bài toán kiểm định chất lượng thực tế. Đây là mức vận dụng cao, khác các tài liệu luyện dạng thường gặp và luyện tốc độ đã có.</p>
+    <div class="provenance">
+      <span><strong>Phạm vi tham khảo:</strong> phần bài toán tổ hợp-xác suất có ràng buộc phức tạp của một tài liệu luyện thi phổ biến</span>
+      <span class="div">·</span>
+      <span><strong>Đề bài &amp; lời giải:</strong> tự soạn hoàn toàn mới</span>
+      <span class="div">·</span>
+      <span><strong>Định dạng:</strong> trắc nghiệm 4 đáp án, mức vận dụng — vận dụng cao</span>
+    </div>
+  </header>
+
+  <div class="notice">
+    <b>Vì sao không chép nguyên văn?</b> Tài liệu nguồn là ấn phẩm luyện thi đã lưu hành. Trang này chỉ dùng phạm vi các dạng bài (biến cố đối, ràng buộc nhóm, cộng/nhân xác suất) để tự soạn câu hỏi, số liệu và lời giải hoàn toàn mới.
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Mục lục</div>
+    <ol>
+      <li><a href="#chu-de-1"><span class="n">1</span>Biến cố đối</a></li>
+      <li><a href="#chu-de-2"><span class="n">2</span>Chọn nhóm có ràng buộc</a></li>
+      <li><a href="#chu-de-3"><span class="n">3</span>Công thức cộng xác suất</a></li>
+      <li><a href="#chu-de-4"><span class="n">4</span>Công thức nhân xác suất</a></li>
+      <li><a href="#chu-de-5"><span class="n">5</span>Bài toán thực tế tổng hợp</a></li>
+      <li><a href="#phuong-phap"><span class="n">＋</span>Cách trình bày lời giải</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section class="topic" id="chu-de-1">
+      <div class="topic-head"><span class="topic-num">Chủ đề 1</span><h2 class="topic-title">Biến cố đối — kỹ thuật "1 trừ đi"</h2></div>
+      <p class="topic-intro">Khi biến cố "có ít nhất..." phải cộng nhiều trường hợp con rời rạc, hãy thử tính phần bù — thường chỉ có đúng một trường hợp.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Biến cố đối</h3>
+      <div class="defcard">
+        <div class="k">Công thức</div>
+        <p>Với biến cố <span class="math">$A$</span>, biến cố đối <span class="math">$\overline{A}$</span> ("không xảy ra A") thỏa:</p>
+        <p style="text-align:center"><span class="math">$$P(A) = 1 - P(\overline{A})$$</span></p>
+        <p>Dấu hiệu dùng biến cố đối: đề bài có cụm "<i>ít nhất</i>", trong khi phần bù ("không có cái nào") chỉ là <b>một</b> trường hợp duy nhất, dễ đếm hơn hẳn.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một dây đèn trang trí có 8 bóng mắc song song, xác suất mỗi bóng hỏng trong 1 năm là như nhau. Muốn tính xác suất "dây đèn còn sáng được" (ít nhất 1 bóng còn hoạt động), cách nhanh nhất không phải liệt kê "còn đúng 1 bóng", "còn đúng 2 bóng"... mà tính biến cố đối "cả 8 bóng đều hỏng" rồi lấy 1 trừ đi.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="xs1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><span class="difficulty th">Thông hiểu</span></div>
+        <div class="qtext"><p>Một hộp có 10 quả cầu, trong đó có 3 quả màu đỏ và 7 quả màu xanh. Lấy ngẫu nhiên đồng thời 3 quả. Tính xác suất để trong 3 quả lấy ra có ít nhất 1 quả màu đỏ.</p></div>
+        <div class="options">
+          <div class="opt" data-correct="true"><b>A.</b> <span class="math">$\frac{17}{24}$</span></div>
+          <div class="opt"><b>B.</b> <span class="math">$\frac{7}{24}$</span></div>
+          <div class="opt"><b>C.</b> <span class="math">$\frac{1}{24}$</span></div>
+          <div class="opt"><b>D.</b> <span class="math">$\frac{7}{40}$</span></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Không gian mẫu: <span class="math">$n(\Omega)=C_{10}^3=120$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>"Ít nhất 1 đỏ" có 3 trường hợp con (1 đỏ, 2 đỏ, 3 đỏ) — thay vào đó, xét biến cố đối "không có quả đỏ nào", tức cả 3 quả đều xanh: <span class="math">$C_7^3=35$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$P(\overline{A})=\dfrac{35}{120}=\dfrac{7}{24}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$P(A)=1-\dfrac{7}{24}=\dfrac{17}{24}$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>A.</b> <span class="math">$\frac{17}{24}$</span>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic" id="chu-de-2">
+      <div class="topic-head"><span class="topic-num">Chủ đề 2</span><h2 class="topic-title">Chọn nhóm có ràng buộc</h2></div>
+      <p class="topic-intro">Khi biến cố đối cũng phức tạp không kém (ví dụ ràng buộc "ít nhất 2 trong 4 loại"), buộc phải cộng trực tiếp các trường hợp con — nhưng có hệ thống, không sót không trùng.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Đếm theo từng trường hợp con rồi cộng</h3>
+      <div class="defcard">
+        <div class="k">Quy trình</div>
+        <p>Liệt kê tất cả các cách phân bổ số lượng thỏa ràng buộc (ví dụ "ít nhất 2 nữ trong nhóm 4 người" → có thể là 2 nữ + 2 nam, 3 nữ + 1 nam, hoặc 4 nữ + 0 nam). Với mỗi trường hợp, nhân số cách chọn từng nhóm con (tổ hợp), rồi <span class="kw">cộng</span> kết quả các trường hợp lại — vì chúng rời nhau (không thể vừa "đúng 2 nữ" vừa "đúng 3 nữ" trong cùng một lần chọn).</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Một ban tổ chức sự kiện cần lập đoàn 4 người phiên dịch từ 6 người biết tiếng Anh và 4 người biết tiếng Nhật, yêu cầu đoàn phải có ít nhất 2 người biết tiếng Nhật để đảm bảo giao tiếp với đối tác. Vì chỉ có 4 người tiếng Nhật, "ít nhất 2" tách thành 3 trường hợp cụ thể (2, 3 hoặc 4 người Nhật) — đếm riêng từng trường hợp rồi cộng lại vẫn nhanh hơn liệt kê toàn bộ.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="xs2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><span class="difficulty vd">Vận dụng</span></div>
+        <div class="qtext"><p>Một tổ có 6 bạn nam và 4 bạn nữ. Chọn ngẫu nhiên 4 bạn. Tính xác suất để trong 4 bạn được chọn có ít nhất 2 bạn nữ.</p></div>
+        <div class="options">
+          <div class="opt" data-correct="true"><b>A.</b> <span class="math">$\frac{23}{42}$</span></div>
+          <div class="opt"><b>B.</b> <span class="math">$\frac{19}{42}$</span></div>
+          <div class="opt"><b>C.</b> <span class="math">$\frac{2}{3}$</span></div>
+          <div class="opt"><b>D.</b> <span class="math">$\frac{11}{21}$</span></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tổng 10 người, chọn 4: <span class="math">$n(\Omega)=C_{10}^4=210$</span>. Vì chỉ có 4 nữ, "ít nhất 2 nữ" tách thành 3 trường hợp: đúng 2, đúng 3, đúng 4 nữ.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đúng 2 nữ + 2 nam: <span class="math">$C_4^2 C_6^2=6\times15=90$</span>. Đúng 3 nữ + 1 nam: <span class="math">$C_4^3 C_6^1=4\times6=24$</span>. Đúng 4 nữ: <span class="math">$C_4^4=1$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng ba trường hợp rời nhau: <span class="math">$90+24+1=115$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$P=\dfrac{115}{210}=\dfrac{23}{42}$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>A.</b> <span class="math">$\frac{23}{42}$</span>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic" id="chu-de-3">
+      <div class="topic-head"><span class="topic-num">Chủ đề 3</span><h2 class="topic-title">Công thức cộng xác suất</h2></div>
+      <p class="topic-intro">Khi hai biến cố có thể xảy ra đồng thời, cộng trực tiếp hai xác suất sẽ đếm trùng phần giao — cần trừ lại phần đó.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Công thức cộng tổng quát</h3>
+      <div class="defcard">
+        <div class="k">Công thức</div>
+        <p style="text-align:center"><span class="math">$$P(A\cup B) = P(A) + P(B) - P(A\cap B)$$</span></p>
+        <p>Nếu <span class="math">$A$</span>, <span class="math">$B$</span> <span class="kw">xung khắc</span> (không thể đồng thời xảy ra, <span class="math">$A\cap B=\varnothing$</span>) thì <span class="math">$P(A\cap B)=0$</span>, công thức rút gọn thành <span class="math">$P(A\cup B)=P(A)+P(B)$</span>.</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Trong một khu phố, xác suất một hộ có nuôi chó là 0,4, có nuôi mèo là 0,3, và có nuôi cả hai là 0,1. Xác suất một hộ nuôi ít nhất một trong hai loại thú cưng không phải là <span class="math">$0{,}4+0{,}3=0{,}7$</span> (vì đã đếm trùng nhóm nuôi cả hai), mà là <span class="math">$0{,}4+0{,}3-0{,}1=0{,}6$</span>.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="xs3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><span class="difficulty th">Thông hiểu</span></div>
+        <div class="qtext"><p>Một hộp có các thẻ đánh số từ 1 đến 20. Rút ngẫu nhiên 1 thẻ. Tính xác suất để số ghi trên thẻ chia hết cho 2 hoặc chia hết cho 5.</p></div>
+        <div class="options">
+          <div class="opt" data-correct="true"><b>A.</b> <span class="math">$\frac{3}{5}$</span></div>
+          <div class="opt"><b>B.</b> <span class="math">$\frac{7}{10}$</span></div>
+          <div class="opt"><b>C.</b> <span class="math">$\frac{1}{2}$</span></div>
+          <div class="opt"><b>D.</b> <span class="math">$\frac{2}{5}$</span></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Gọi A: "chia hết cho 2", B: "chia hết cho 5". Từ 1–20: <span class="math">$|A|=10$</span> (các bội của 2), <span class="math">$|B|=4$</span> (các bội của 5).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><span class="math">$A\cap B$</span>: chia hết cho cả 2 và 5, tức chia hết cho 10: <span class="math">$|A\cap B|=2$</span> (là 10, 20) — hai biến cố <b>không</b> xung khắc.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$P(A)=\frac{10}{20}, P(B)=\frac{4}{20}, P(A\cap B)=\frac{2}{20}$</span>. Áp dụng công thức cộng: <span class="math">$P(A\cup B)=\frac{10}{20}+\frac{4}{20}-\frac{2}{20}=\frac{12}{20}$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Rút gọn: <span class="math">$\frac{12}{20}=\frac{3}{5}$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>A.</b> <span class="math">$\frac{3}{5}$</span>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic" id="chu-de-4">
+      <div class="topic-head"><span class="topic-num">Chủ đề 4</span><h2 class="topic-title">Công thức nhân xác suất</h2></div>
+      <p class="topic-intro">Khi phép thử trải qua nhiều giai đoạn độc lập (kết quả giai đoạn này không ảnh hưởng giai đoạn kia), xác suất của toàn bộ chuỗi bằng tích các xác suất thành phần.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Biến cố độc lập</h3>
+      <div class="defcard">
+        <div class="k">Công thức</div>
+        <p>Nếu <span class="math">$A$</span>, <span class="math">$B$</span> độc lập (việc <span class="math">$A$</span> xảy ra không ảnh hưởng khả năng <span class="math">$B$</span> xảy ra):</p>
+        <p style="text-align:center"><span class="math">$$P(A\cap B) = P(A)\times P(B)$$</span></p>
+        <p>Kết hợp với biến cố đối: xác suất "ít nhất một trong nhiều lần thử thành công" = <span class="math">$1 - $</span> xác suất "tất cả đều thất bại" (tích các xác suất thất bại từng lần).</p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Hai hệ thống báo cháy độc lập được lắp trong cùng một tòa nhà, xác suất mỗi hệ thống hoạt động đúng khi có cháy lần lượt là 0,95 và 0,9. Xác suất <i>cả hai</i> cùng hoạt động là <span class="math">$0{,}95\times0{,}9=0{,}855$</span>; nhưng xác suất <i>ít nhất một</i> hệ thống hoạt động (đây mới là điều thực sự quan trọng để báo cháy kịp thời) phải tính qua biến cố đối "cả hai đều hỏng": <span class="math">$1-0{,}05\times0{,}1=0{,}995$</span> — cao hơn hẳn từng hệ thống riêng lẻ, đó là lý do người ta lắp nhiều lớp bảo vệ độc lập.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="xs4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><span class="difficulty nb">Nhận biết</span></div>
+        <div class="qtext"><p>Một xạ thủ bắn 2 phát đạn độc lập vào bia. Xác suất bắn trúng của mỗi phát lần lượt là 0,7 và 0,8. Tính xác suất để xạ thủ bắn trúng cả hai phát.</p></div>
+        <div class="options">
+          <div class="opt" data-correct="true"><b>A.</b> 0,56</div>
+          <div class="opt"><b>B.</b> 1,5</div>
+          <div class="opt"><b>C.</b> 0,14</div>
+          <div class="opt"><b>D.</b> 0,24</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hai phát bắn độc lập nhau — kết quả phát này không ảnh hưởng phát kia.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Áp dụng công thức nhân: <span class="math">$P=0{,}7\times0{,}8$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$0{,}7\times0{,}8=0{,}56$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>A. 0,56.</b></p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="xs4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><span class="difficulty vd">Vận dụng</span></div>
+        <div class="qtext"><p>Với xác suất bắn trúng mỗi phát của xạ thủ ở Bài 4.1 lần lượt là 0,7 và 0,8 (độc lập), tính xác suất xạ thủ bắn trúng <b>ít nhất 1</b> trong 2 phát.</p></div>
+        <div class="options">
+          <div class="opt" data-correct="true"><b>A.</b> 0,94</div>
+          <div class="opt"><b>B.</b> 0,5</div>
+          <div class="opt"><b>C.</b> 0,56</div>
+          <div class="opt"><b>D.</b> 0,06</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>"Ít nhất 1 trúng" có biến cố đối gọn hơn nhiều: "cả hai đều trượt".</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Xác suất trượt mỗi phát: <span class="math">$1-0{,}7=0{,}3$</span> và <span class="math">$1-0{,}8=0{,}2$</span>. Hai phát độc lập nên nhân lại: <span class="math">$0{,}3\times0{,}2=0{,}06$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$P(\text{ít nhất 1 trúng})=1-0{,}06=0{,}94$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>A. 0,94.</b></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic" id="chu-de-5">
+      <div class="topic-head"><span class="topic-num">Chủ đề 5</span><h2 class="topic-title">Bài toán thực tế tổng hợp</h2></div>
+      <p class="topic-intro">Bài toán kiểm định chất lượng — dạng quen thuộc trong đề thi vận dụng cao, phối hợp tổ hợp để đếm và biến cố đối để tính nhanh.</p>
+
+      <h3 class="sub"><span class="tag">Khái niệm</span>Mẫu bài toán kiểm định lô hàng</h3>
+      <div class="defcard">
+        <div class="k">Khuôn giải chung</div>
+        <p>Lô hàng có <span class="math">$N$</span> sản phẩm, trong đó <span class="math">$d$</span> sản phẩm lỗi. Lấy ngẫu nhiên <span class="math">$k$</span> sản phẩm. Xác suất "có ít nhất 1 lỗi" luôn tính qua biến cố đối "cả <span class="math">$k$</span> sản phẩm đều tốt":</p>
+        <p style="text-align:center"><span class="math">$$P(\text{ít nhất 1 lỗi}) = 1 - \dfrac{C_{N-d}^{k}}{C_N^{k}}$$</span></p>
+      </div>
+
+      <div class="callout example">
+        <div class="label">Ví dụ đời sống mở rộng</div>
+        <p>Trước khi xuất xưởng, bộ phận QC không kiểm tra toàn bộ lô hàng (tốn thời gian) mà lấy mẫu ngẫu nhiên. Công thức trên cho biết ngay xác suất "phát hiện được ít nhất 1 lỗi" trong mẫu — nếu xác suất này thấp, QC cần tăng cỡ mẫu kiểm tra để yên tâm hơn về chất lượng lô hàng.</p>
+      </div>
+
+      <h3 class="sub"><span class="tag">Bài tập</span>Tự luyện có lời giải mẫu</h3>
+
+      <div class="problem" data-pool="xs5-1" data-qid="Bài 5.1">
+        <div class="q"><span class="qid">Bài 5.1</span><span class="difficulty vd">Vận dụng cao</span></div>
+        <div class="qtext"><p>Một lô hàng có 50 sản phẩm, trong đó có 5 sản phẩm lỗi. Lấy ngẫu nhiên 3 sản phẩm để kiểm tra. Tính xác suất để trong 3 sản phẩm lấy ra có ít nhất 1 sản phẩm lỗi (làm tròn đến 3 chữ số thập phân).</p></div>
+        <div class="options">
+          <div class="opt" data-correct="true"><b>A.</b> 0,276</div>
+          <div class="opt"><b>B.</b> 0,724</div>
+          <div class="opt"><b>C.</b> 0,100</div>
+          <div class="opt"><b>D.</b> 0,300</div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Không gian mẫu: <span class="math">$n(\Omega)=C_{50}^3=19600$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Biến cố đối "cả 3 đều tốt": chọn 3 trong <span class="math">$50-5=45$</span> sản phẩm tốt: <span class="math">$C_{45}^3=14190$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><span class="math">$P(\overline{A})=\dfrac{14190}{19600}\approx0{,}724$</span>.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><span class="math">$P(A)=1-0{,}724=0{,}276$</span>.</p></div></div>
+          <p class="answer hidden">Đáp án đúng: <b>A. 0,276.</b></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="appendix" id="phuong-phap">
+      <div class="topic-head"><span class="topic-num">Phụ lục</span><h2 class="topic-title">Cách trình bày một lời giải, tóm tắt lại</h2></div>
+      <p class="topic-intro">Khuôn lặp lại trong mọi lời giải mẫu ở trên.</p>
+      <div class="method-grid">
+        <div class="method-card"><span class="mnum">1</span><p><b>Xác định không gian mẫu.</b> Tổng số kết quả có thể xảy ra, <span class="math">$n(\Omega)$</span>.</p></div>
+        <div class="method-card"><span class="mnum">2</span><p><b>Nhận diện dạng biến cố.</b> "Ít nhất" khó đếm trực tiếp → thử biến cố đối; ràng buộc nhiều mức → tách trường hợp con rồi cộng; nhiều biến cố cùng lúc → xét xung khắc hay không; nhiều giai đoạn độc lập → nhân.</p></div>
+        <div class="method-card"><span class="mnum">3</span><p><b>Đếm/tính từng phần.</b> Dùng đúng công thức tổ hợp, cộng hoặc nhân xác suất tương ứng.</p></div>
+        <div class="method-card"><span class="mnum">4</span><p><b>Ghép lại theo công thức đã chọn.</b> Trừ đi biến cố đối, hoặc cộng/nhân các phần đã tính.</p></div>
+        <div class="method-card"><span class="mnum">5</span><p><b>Kết luận và làm tròn nếu cần.</b> Đối chiếu 4 phương án, chú ý đơn vị phần trăm/phân số/số thập phân.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      Bản soạn mới cho chuyên đề Xác suất vận dụng cao, Toán 11. Toàn bộ đề bài, số liệu và lời giải trong tài liệu này là nội dung tự soạn, không sao chép từ bất kỳ ấn phẩm đã xuất bản nào.
+    </footer>
+  </main>
+</div>
+
+<script src="/vendor/katex/katex.min.js"></script>
+<script src="/vendor/katex/auto-render.min.js"></script>
+<script>
+  window.VARIANTS = {
+    'xs1-1': [{
+      qHtml: '<p>Một hộp có 12 quả cầu, trong đó có 4 quả màu đỏ và 8 quả màu xanh. Lấy ngẫu nhiên đồng thời 3 quả. Tính xác suất để trong 3 quả lấy ra có ít nhất 1 quả màu đỏ.</p>',
+      optsHtml: '<div class="opt" data-correct="true"><b>A.</b> <span class="math">$\\frac{41}{55}$</span></div><div class="opt"><b>B.</b> <span class="math">$\\frac{14}{55}$</span></div><div class="opt"><b>C.</b> <span class="math">$\\frac{4}{55}$</span></div><div class="opt"><b>D.</b> <span class="math">$\\frac{1}{3}$</span></div>',
+      steps: [
+        '<p><span class="math">$n(\\Omega)=C_{12}^3=220$</span>.</p>',
+        '<p>Biến cố đối (cả 3 xanh trong 8 quả): <span class="math">$C_8^3=56$</span>. <span class="math">$P(\\overline A)=\\dfrac{56}{220}=\\dfrac{14}{55}$</span>.</p>',
+        '<p><span class="math">$P(A)=1-\\dfrac{14}{55}=\\dfrac{41}{55}$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>A.</b> <span class="math">$\\frac{41}{55}$</span>.'
+    }],
+    'xs2-1': [{
+      qHtml: '<p>Một tổ có 5 bạn nam và 5 bạn nữ. Chọn ngẫu nhiên 4 bạn. Tính xác suất để trong 4 bạn được chọn có ít nhất 3 bạn nữ.</p>',
+      optsHtml: '<div class="opt" data-correct="true"><b>A.</b> <span class="math">$\\frac{11}{42}$</span></div><div class="opt"><b>B.</b> <span class="math">$\\frac{23}{42}$</span></div><div class="opt"><b>C.</b> <span class="math">$\\frac{5}{21}$</span></div><div class="opt"><b>D.</b> <span class="math">$\\frac{1}{2}$</span></div>',
+      steps: [
+        '<p><span class="math">$n(\\Omega)=C_{10}^4=210$</span>. Tách 2 trường hợp: đúng 3 nữ, hoặc đúng 4 nữ.</p>',
+        '<p>Đúng 3 nữ + 1 nam: <span class="math">$C_5^3 C_5^1=10\\times5=50$</span>. Đúng 4 nữ: <span class="math">$C_5^4=5$</span>.</p>',
+        '<p>Tổng: <span class="math">$50+5=55$</span>. <span class="math">$P=\\dfrac{55}{210}=\\dfrac{11}{42}$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>A.</b> <span class="math">$\\frac{11}{42}$</span>.'
+    }],
+    'xs3-1': [{
+      qHtml: '<p>Một hộp có các thẻ đánh số từ 1 đến 30. Rút ngẫu nhiên 1 thẻ. Tính xác suất để số ghi trên thẻ chia hết cho 3 hoặc chia hết cho 4.</p>',
+      optsHtml: '<div class="opt" data-correct="true"><b>A.</b> <span class="math">$\\frac{1}{2}$</span></div><div class="opt"><b>B.</b> <span class="math">$\\frac{17}{30}$</span></div><div class="opt"><b>C.</b> <span class="math">$\\frac{1}{3}$</span></div><div class="opt"><b>D.</b> <span class="math">$\\frac{7}{30}$</span></div>',
+      steps: [
+        '<p>A: chia hết 3, <span class="math">$|A|=10$</span>. B: chia hết 4, <span class="math">$|B|=7$</span>.</p>',
+        '<p><span class="math">$A\\cap B$</span>: chia hết 12, <span class="math">$|A\\cap B|=2$</span> — không xung khắc.</p>',
+        '<p><span class="math">$P=\\frac{10}{30}+\\frac{7}{30}-\\frac{2}{30}=\\frac{15}{30}=\\frac{1}{2}$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>A.</b> <span class="math">$\\frac{1}{2}$</span>.'
+    }],
+    'xs4-1': [{
+      qHtml: '<p>Một xạ thủ bắn 2 phát đạn độc lập vào bia. Xác suất bắn trúng của mỗi phát lần lượt là 0,6 và 0,9. Tính xác suất để xạ thủ bắn trúng cả hai phát.</p>',
+      optsHtml: '<div class="opt" data-correct="true"><b>A.</b> 0,54</div><div class="opt"><b>B.</b> 1,5</div><div class="opt"><b>C.</b> 0,06</div><div class="opt"><b>D.</b> 0,15</div>',
+      steps: [
+        '<p>Hai phát độc lập: nhân xác suất.</p>',
+        '<p><span class="math">$0{,}6\\times0{,}9=0{,}54$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>A. 0,54.</b>'
+    }],
+    'xs4-2': [{
+      qHtml: '<p>Với xác suất bắn trúng mỗi phát lần lượt là 0,6 và 0,9 (độc lập), tính xác suất xạ thủ bắn trúng ít nhất 1 trong 2 phát.</p>',
+      optsHtml: '<div class="opt" data-correct="true"><b>A.</b> 0,96</div><div class="opt"><b>B.</b> 0,5</div><div class="opt"><b>C.</b> 0,54</div><div class="opt"><b>D.</b> 0,04</div>',
+      steps: [
+        '<p>Biến cố đối: cả hai đều trượt.</p>',
+        '<p>Xác suất trượt: <span class="math">$(1-0{,}6)\\times(1-0{,}9)=0{,}4\\times0{,}1=0{,}04$</span>.</p>',
+        '<p><span class="math">$P(\\text{ít nhất 1})=1-0{,}04=0{,}96$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>A. 0,96.</b>'
+    }],
+    'xs5-1': [{
+      qHtml: '<p>Một lô hàng có 40 sản phẩm, trong đó có 4 sản phẩm lỗi. Lấy ngẫu nhiên 3 sản phẩm để kiểm tra. Tính xác suất để có ít nhất 1 sản phẩm lỗi trong 3 sản phẩm lấy ra (làm tròn đến 3 chữ số thập phân).</p>',
+      optsHtml: '<div class="opt" data-correct="true"><b>A.</b> 0,277</div><div class="opt"><b>B.</b> 0,723</div><div class="opt"><b>C.</b> 0,100</div><div class="opt"><b>D.</b> 0,300</div>',
+      steps: [
+        '<p><span class="math">$n(\\Omega)=C_{40}^3=9880$</span>.</p>',
+        '<p>Biến cố đối (cả 3 tốt trong <span class="math">$40-4=36$</span>): <span class="math">$C_{36}^3=7140$</span>. <span class="math">$P(\\overline A)=\\dfrac{7140}{9880}\\approx0{,}723$</span>.</p>',
+        '<p><span class="math">$P(A)=1-0{,}723=0{,}277$</span>.</p>'
+      ],
+      answerHtml: 'Đáp án đúng: <b>A. 0,277.</b>'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function renderMathIn(root) {
+      if (window.renderMathInElement) {
+        renderMathInElement(root, { delimiters: [{ left: '$', right: '$', display: false }], throwOnError: false });
+      }
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var optionsEl = el.querySelector('.options');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        optsHtml: optionsEl ? optionsEl.innerHTML : '',
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) { return s.querySelector('.t').innerHTML; }),
+        answerHtml: (function () { var a = solBody.querySelector('.answer'); return a ? a.innerHTML : ''; })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+      if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+      function clearOptionHighlight() {
+        if (!optionsEl) return;
+        Array.prototype.forEach.call(optionsEl.querySelectorAll('.opt'), function (o) { o.classList.remove('revealed-correct'); });
+      }
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        if (optionsEl) optionsEl.innerHTML = v.optsHtml || '';
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        renderMathIn(el);
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) { ansEl.classList.remove('hidden'); state.answerShown = true; updateButtons(); ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' }); }
+        if (optionsEl) { var correct = optionsEl.querySelector('.opt[data-correct="true"]'); if (correct) correct.classList.add('revealed-correct'); }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        clearOptionHighlight();
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        clearOptionHighlight();
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+    renderMathIn(document.body);
+  });
+</script>
+</body>
+</html>
