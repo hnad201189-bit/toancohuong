@@ -1,0 +1,3313 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán Quốc Tế TIMO – HKIMO Lớp 6</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Noto+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#f2f6f5;
+    --paper-alt:#e7eeec;
+    --surface:#ffffff;
+    --border:#dbe4e2;
+    --border-strong:#b9c9c6;
+    --ink:#0e2a2c;
+    --ink-soft:#4c6467;
+    --ink-faint:#7f9294;
+
+    --accent:#0a7373;
+    --accent-hover:#075c5c;
+    --accent-soft:#e1f2f1;
+    --accent-soft-strong:#c7e6e4;
+
+    --gold:#b8862c;
+    --gold-soft:#f8ecd4;
+    --gold-border:#e6cd94;
+
+    --danger:#b0402f;
+    --danger-soft:#f7e6e2;
+
+    --shadow-xs:0 1px 2px rgba(14,42,44,.06);
+    --shadow-sm:0 2px 10px rgba(14,42,44,.07);
+    --shadow-md:0 10px 26px rgba(14,42,44,.10);
+
+    --font-display:'Archivo',system-ui,sans-serif;
+    --font-body:'Noto Serif',Georgia,'Times New Roman',serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,'Consolas',monospace;
+  }
+  *{box-sizing:border-box;}
+  html{color-scheme:light;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-body); line-height:1.62; font-size:16.5px;
+  }
+  ::selection{background:var(--accent-soft);}
+  a{color:var(--accent);}
+  sup,sub{font-family:var(--font-mono); font-size:.7em;}
+  .frac{display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; margin:0 .15em; line-height:1.15; font-family:var(--font-mono);}
+  .frac .n{padding:0 .2em .05em;}
+  .frac .d{padding:0 .2em; border-top:1.4px solid currentColor;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;}
+
+  header.hero{max-width:900px; margin:0 auto; padding:3.2rem 1.5rem 2rem;}
+  .eyebrow{
+    font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.12em;
+    font-size:.78rem; color:var(--accent); font-weight:600;
+  }
+  h1{
+    font-family:var(--font-display); font-weight:900; font-size:clamp(2rem,4.6vw,2.9rem);
+    line-height:1.06; margin:.5rem 0 .9rem; text-wrap:balance; letter-spacing:-.01em;
+  }
+  .hero p.lede{max-width:64ch; color:var(--ink-soft); font-size:1.06rem;}
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:.5rem 1.4rem; margin-top:1.5rem;
+    font-family:var(--font-mono); font-size:.8rem; color:var(--ink-faint);
+  }
+  .hero-meta strong{color:var(--ink);}
+
+  .copyright-note{max-width:900px; margin:0 auto 2.2rem; padding:0 1.5rem;}
+  .copyright-note .box{
+    background:var(--gold-soft); border:1px solid var(--gold-border); border-radius:6px;
+    padding:.9rem 1.1rem; font-size:.92rem; color:var(--ink-soft);
+  }
+  .copyright-note .box b{color:var(--ink);}
+
+  .layout{max-width:900px; margin:0 auto; padding:0 1.5rem 5rem; display:grid; grid-template-columns:180px 1fr; gap:2.2rem;}
+  nav.toc{position:sticky; top:1.5rem; align-self:start; font-family:var(--font-mono); font-size:.78rem;}
+  nav.toc .toc-h{text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-size:.7rem; margin-bottom:.6rem;}
+  nav.toc a{display:block; padding:.3rem 0 .3rem .7rem; border-left:2px solid var(--border); color:var(--ink-soft); text-decoration:none;}
+  nav.toc a.sub{padding-left:1.3rem; font-size:.9em; color:var(--ink-faint);}
+  nav.toc a:hover, nav.toc a:focus-visible{color:var(--accent); border-left-color:var(--accent);}
+
+  main{min-width:0;}
+  section.topic{margin-bottom:2.6rem;}
+  .topic-head{display:flex; align-items:baseline; gap:.6rem; margin-bottom:.2rem;}
+  .topic-num{font-family:var(--font-mono); color:var(--accent); font-weight:600; font-size:.85rem;}
+  h2{font-family:var(--font-display); font-weight:800; font-size:1.55rem; margin:0; letter-spacing:-.005em;}
+  .topic-sub{font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.06em; font-size:.72rem; color:var(--ink-faint); margin:.2rem 0 1.1rem;}
+
+  .lesson{margin-bottom:2rem; padding-top:.4rem;}
+  .lesson h3{font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin:0 0 .6rem; color:var(--ink);}
+  .lesson-en{font-family:var(--font-mono); font-size:.78rem; color:var(--ink-faint); margin:-.5rem 0 .9rem;}
+  .concept{font-size:.98rem; color:var(--ink-soft); margin-bottom:1rem;}
+
+  .vocab{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.3rem;}
+  .vocab-chip{
+    display:flex; align-items:baseline; gap:.4rem; background:var(--surface); border:1px solid var(--border);
+    border-radius:999px; padding:.35rem .8rem; font-size:.82rem; box-shadow:var(--shadow-xs);
+  }
+  .vocab-chip .en{font-family:var(--font-mono); font-weight:600; color:var(--accent);}
+  .vocab-chip .vn{color:var(--ink-soft);}
+
+  .problem{
+    background:var(--surface); border:1px solid var(--border); border-radius:12px;
+    padding:1.15rem 1.3rem 1.3rem; margin-bottom:.9rem; box-shadow:var(--shadow-xs);
+  }
+  .qhead{display:flex; align-items:center; gap:.55rem; margin-bottom:.55rem; flex-wrap:wrap;}
+  .qtag{
+    font-family:var(--font-mono); font-weight:600; background:var(--paper-alt);
+    border:1px solid var(--border); border-radius:4px; padding:.14rem .5rem; font-size:.78rem;
+  }
+  .round-badge{
+    font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em;
+    padding:.15rem .5rem; border-radius:99px; font-weight:600;
+  }
+  .round-badge.heat{background:var(--accent-soft); color:var(--accent-hover);}
+  .round-badge.final{background:var(--gold-soft); color:var(--gold);}
+  .qtext{margin-bottom:.9rem;}
+
+  .controls{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.15rem;}
+  .controls button{
+    font-family:var(--font-mono); font-size:.77rem; font-weight:500;
+    background:var(--paper-alt); color:var(--ink); border:1px solid var(--border-strong);
+    border-radius:6px; padding:.4rem .68rem; cursor:pointer;
+  }
+  .controls button:hover{border-color:var(--accent); color:var(--accent-hover);}
+  .controls button:disabled{opacity:.45; cursor:not-allowed; color:var(--ink-faint); border-color:var(--border);}
+  .controls button.btn-reset{border-color:var(--danger); color:var(--danger);}
+  .controls button.btn-reset:hover{background:var(--danger-soft);}
+
+  .sol-body{margin-top:.75rem;}
+  .step{
+    font-size:.93rem; color:var(--ink-soft); padding:.5rem .65rem .5rem 1.9rem;
+    position:relative; border-left:2px solid var(--border); margin-bottom:.15rem;
+  }
+  .step::before{
+    content:attr(data-n); position:absolute; left:-.6rem; top:.45rem;
+    width:1.1rem; height:1.1rem; border-radius:50%; background:var(--accent);
+    color:#fff; font-family:var(--font-mono); font-size:.66rem; font-weight:600;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .answer{
+    margin-top:.5rem; padding:.6rem .8rem; background:var(--accent-soft); color:var(--ink);
+    border-radius:6px; font-size:.94rem; border:1px solid var(--accent-soft-strong);
+  }
+  .answer b{color:var(--accent-hover);}
+  [hidden]{display:none!important;}
+
+  footer{max-width:900px; margin:0 auto; padding:2rem 1.5rem 4rem; color:var(--ink-faint); font-size:.85rem;}
+  footer a{color:var(--ink-faint); text-decoration:underline;}
+
+  @media (max-width:720px){
+    .layout{grid-template-columns:1fr;}
+    nav.toc{position:static; display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="eyebrow">Ôn luyện · Toán 6 · Toán quốc tế</span>
+  <h1>Toán Quốc Tế TIMO – HKIMO Lớp 6</h1>
+  <p class="lede">
+    Đủ 23 bài học song ngữ Anh–Việt theo đúng khuôn của các chuyên đề luyện thi TIMO/HKIMO quen thuộc:
+    khái niệm → từ vựng Toán tiếng Anh → ví dụ kinh điển → luyện tập phân hoá → một câu phỏng theo
+    phong cách đề thi thật (vòng Sơ loại/Chung kết). Toàn bộ đề bài dưới đây do Claude biên soạn mới,
+    chỉ mượn cấu trúc 5 chuyên đề và "nhịp độ" khó dần của thể loại tài liệu TIMO/HKIMO/SASMO khối 6.
+  </p>
+  <div class="hero-meta">
+    <span><strong>5</strong> chuyên đề</span>
+    <span><strong>23</strong> bài học</span>
+    <span><strong>92</strong> câu gốc</span>
+    <span><strong>92</strong> biến thể</span>
+  </div>
+</header>
+
+<div class="copyright-note">
+  <div class="box">
+    <b>Về nguồn tham khảo:</b> nội dung này lấy cảm hứng cấu trúc từ các tài liệu ôn thi Olympic Toán
+    quốc tế khối 6 (TIMO, HKIMO, SASMO) — 5 chuyên đề, mỗi bài gồm từ vựng, ví dụ mẫu, luyện tập phân
+    hoá và một câu phỏng theo phong cách đề thi thật. Đề bài, số liệu, cách diễn đạt và lời giải đều
+    là nội dung gốc do Claude biên soạn, không sao chép nguyên văn từ bất kỳ đề thi hay tài liệu đã
+    xuất bản nào.
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="toc">
+    <div class="toc-h">5 chuyên đề</div>
+    <a href="#cd1">1 · Tư duy logic</a>
+    <a href="#cd1-b1" class="sub">1. Dãy số quy luật</a>
+    <a href="#cd1-b2" class="sub">2. Dãy hình quy luật</a>
+    <a href="#cd1-b3" class="sub">3. Lập phương trình</a>
+    <a href="#cd1-b4" class="sub">4. Thứ ngày tháng</a>
+    <a href="#cd1-b5" class="sub">5. Bài toán năng suất</a>
+    <a href="#cd1-b6" class="sub">6. Bắt tay – trồng cây</a>
+    <a href="#cd2">2 · Số học</a>
+    <a href="#cd2-b1" class="sub">1. Tổng dãy cách đều</a>
+    <a href="#cd2-b2" class="sub">2. Tổng cấp số nhân</a>
+    <a href="#cd2-b3" class="sub">3. Phương pháp sai phân</a>
+    <a href="#cd2-b4" class="sub">4. Liên phân số</a>
+    <a href="#cd3">3 · Lý thuyết số</a>
+    <a href="#cd3-b1" class="sub">1. Ký hiệu phép toán</a>
+    <a href="#cd3-b2" class="sub">2. Bài toán chia hết</a>
+    <a href="#cd3-b3" class="sub">3. Chữ số tận cùng</a>
+    <a href="#cd3-b4" class="sub">4. Thừa số nguyên tố</a>
+    <a href="#cd3-b5" class="sub">5. Số ước – tổng ước</a>
+    <a href="#cd4">4 · Hình học</a>
+    <a href="#cd4-b1" class="sub">1. Góc trong đa giác</a>
+    <a href="#cd4-b2" class="sub">2. Chu vi – diện tích</a>
+    <a href="#cd4-b3" class="sub">3. Định lý Py-ta-go</a>
+    <a href="#cd4-b4" class="sub">4. Thể tích khối 3D</a>
+    <a href="#cd5">5 · Tổ hợp</a>
+    <a href="#cd5-b1" class="sub">1. Quy tắc cộng – nhân</a>
+    <a href="#cd5-b2" class="sub">2. Nguyên lý Dirichlet</a>
+    <a href="#cd5-b3" class="sub">3. Bài toán cầu thang</a>
+    <a href="#cd5-b4" class="sub">4. Bài toán đường đi</a>
+  </nav>
+
+  <main>
+    <!-- ============ CHUYÊN ĐỀ 1: TƯ DUY LOGIC ============ -->
+    <section class="topic" id="cd1">
+      <div class="topic-head"><span class="topic-num">Chuyên đề 1</span><h2>Tư duy logic</h2></div>
+      <p class="topic-sub">Topic 1 · Logical Thinking</p>
+
+      <div class="lesson" id="cd1-b1">
+        <h3>Bài 1 · Dãy số có quy luật</h3>
+        <p class="lesson-en">Lesson 1 · Number sequence with pattern</p>
+        <p class="concept">
+          Một dãy số có quy luật là dãy mà mỗi số hạng được tạo ra theo một quy tắc cố định. Hai dạng quen
+          thuộc: <b>dãy cách đều</b> (số hạng sau hơn số hạng trước một lượng d không đổi, công thức
+          u<sub>n</sub> = u<sub>1</sub> + (n−1)d) và <b>dãy theo quy luật bậc hai/hình vẽ</b> (mỗi số hạng
+          liên hệ với bình phương vị trí của nó, cần quan sát vài số hạng đầu để đoán quy tắc trước khi
+          kiểm chứng).
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">sequence</span><span class="vn">dãy số</span></span>
+          <span class="vocab-chip"><span class="en">term</span><span class="vn">số hạng</span></span>
+          <span class="vocab-chip"><span class="en">pattern</span><span class="vn">quy luật</span></span>
+          <span class="vocab-chip"><span class="en">common difference</span><span class="vn">công sai</span></span>
+          <span class="vocab-chip"><span class="en">n<sup>th</sup> term</span><span class="vn">số hạng thứ n</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd1b1-ex" data-qid="1.1">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Tìm số hạng thứ 25 của dãy số: 5, 11, 17, 23, 29, ...</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Nhận diện dãy cách đều: công sai d = 11 − 5 = 6, số hạng đầu u<sub>1</sub> = 5.</div>
+            <div class="step" data-n="2" hidden>Viết công thức tổng quát: u<sub>n</sub> = u<sub>1</sub> + (n−1)d.</div>
+            <div class="step" data-n="3" hidden>Thay n = 25: u<sub>25</sub> = 5 + 24×6 = 5 + 144 = 149.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: u<sub>2</sub> = 5+6 = 11, khớp đúng số hạng thứ 2 đã cho trong đề — công thức dùng đúng.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 149.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b1-p1" data-qid="1.2">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Một dãy hình que diêm: Hình 1 có 4 que, mỗi hình sau thêm 3 que so với hình trước. Hỏi hình thứ 15 có bao nhiêu que diêm?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Đây là dãy cách đều với công sai d = 3 (mỗi hình thêm 3 que).</div>
+            <div class="step" data-n="2" hidden>u<sub>n</sub> = u<sub>1</sub> + (n−1)d, với u<sub>1</sub> = 4.</div>
+            <div class="step" data-n="3" hidden>Thay n = 15: u<sub>15</sub> = 4 + 14×3 = 4 + 42 = 46.</div>
+            <div class="step" data-n="4" hidden>Kiểm tra: hình 2 phải có 4+3=7 que, hợp lý với quy luật "thêm 3 que mỗi hình".</div>
+            <div class="answer" hidden><b>Đáp án:</b> 46 que diêm.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b1-p2" data-qid="1.3">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Cho dãy số: 2, 5, 10, 17, 26, ... Tìm số hạng thứ 12.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Đây không phải dãy cách đều (2→5 hơn 3, 5→10 hơn 5, 10→17 hơn 7 — hiệu tăng dần), nên thử liên hệ với bình phương vị trí.</div>
+            <div class="step" data-n="2" hidden>So sánh: 1²+1=2, 2²+1=5, 3²+1=10, 4²+1=17 — đúng cả 4 số hạng đầu! Vậy quy luật là u<sub>n</sub> = n² + 1.</div>
+            <div class="step" data-n="3" hidden>Kiểm tra thêm số hạng thứ 5: 5²+1 = 26, khớp với đề bài — quy luật chắc chắn đúng.</div>
+            <div class="step" data-n="4" hidden>Thay n = 12: u<sub>12</sub> = 12² + 1 = 144 + 1 = 145.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 145.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b1-exam" data-qid="1.4">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Tìm số hạng thứ 40 của dãy số cách đều: 7, 13, 19, 25, ...</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Công sai d = 13−7 = 6, số hạng đầu u<sub>1</sub>=7.</div>
+            <div class="step" data-n="2" hidden>Công thức: u<sub>n</sub> = u<sub>1</sub> + (n−1)d.</div>
+            <div class="step" data-n="3" hidden>Thay n=40: u<sub>40</sub> = 7 + 39×6 = 7 + 234 = 241.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: u<sub>3</sub>=7+2×6=19, khớp đề bài.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 241.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd1-b2">
+        <h3>Bài 2 · Dãy hình có quy luật</h3>
+        <p class="lesson-en">Lesson 2 · Figure sequence with pattern</p>
+        <p class="concept">
+          Dãy hình thường liên quan đến đếm số đối tượng (que diêm, hình vuông, chấm tròn...) tăng theo
+          quy luật ở mỗi hình. Tính số đối tượng thêm vào giữa các hình liên tiếp: nếu <b>không đổi</b> —
+          dùng công thức dãy cách đều; nếu <b>hiệu tăng đều</b> (tăng thêm cùng một lượng mỗi lần) — quy
+          luật thường có dạng bậc hai theo n, cần thử và kiểm chứng bằng vài số hạng đầu.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">figure</span><span class="vn">hình</span></span>
+          <span class="vocab-chip"><span class="en">toothpick</span><span class="vn">que diêm</span></span>
+          <span class="vocab-chip"><span class="en">consecutive</span><span class="vn">liên tiếp</span></span>
+          <span class="vocab-chip"><span class="en">quadratic pattern</span><span class="vn">quy luật bậc hai</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd1b2-ex" data-qid="1.9">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Hình 1 gồm 1 hình vuông (4 que diêm). Mỗi hình sau ghép thêm 1 hình vuông dùng chung 1 cạnh với hình trước (chỉ cần thêm 3 que mới). Hỏi Hình 12 có bao nhiêu que diêm?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Hình 1 có 4 que (1 hình vuông đơn).</div>
+            <div class="step" data-n="2" hidden>Từ hình 2 trở đi, mỗi hình vuông mới dùng chung 1 cạnh với hình trước nên chỉ cần thêm 3 que — đây là dãy cách đều với d=3.</div>
+            <div class="step" data-n="3" hidden>Công thức: u<sub>n</sub> = 4 + (n−1)×3.</div>
+            <div class="step" data-n="4" hidden>Thay n=12: 4 + 11×3 = 4+33 = 37.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 37 que diêm.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b2-p1" data-qid="1.10">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Hình 1 có 1 chấm tròn, Hình 2 có 4 chấm (xếp vuông 2×2), Hình 3 có 9 chấm (xếp vuông 3×3)... Hỏi Hình 9 có bao nhiêu chấm tròn?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Hình n là hình vuông cạnh n chấm, nên số chấm = n×n = n².</div>
+            <div class="step" data-n="2" hidden>Kiểm tra: hình 2 có 2²=4 chấm ✓, hình 3 có 3²=9 chấm ✓.</div>
+            <div class="step" data-n="3" hidden>Thay n=9: 9²=81.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 81 chấm tròn.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b2-p2" data-qid="1.11">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Hình 1 có 1 chấm, Hình 2 có 3 chấm (tam giác cạnh 2), Hình 3 có 6 chấm (tam giác cạnh 3), Hình 4 có 10 chấm... Hỏi Hình 20 có bao nhiêu chấm tròn?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Đây là dãy "số tam giác": mỗi hình thêm một hàng có số chấm bằng vị trí hàng đó (hình n = tổng 1+2+...+n).</div>
+            <div class="step" data-n="2" hidden>Kiểm tra: hình 3 = 1+2+3=6 ✓, hình 4=1+2+3+4=10 ✓.</div>
+            <div class="step" data-n="3" hidden>Công thức tổng quát: số chấm hình n = n(n+1)/2.</div>
+            <div class="step" data-n="4" hidden>Thay n=20: 20×21/2=210.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 210 chấm tròn.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b2-exam" data-qid="1.12">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Hình 1 có 5 que diêm (1 ngũ giác). Mỗi hình sau ghép thêm 1 ngũ giác dùng chung 1 cạnh (thêm 4 que mới). Hỏi Hình 10 có bao nhiêu que diêm?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Hình 1 có 5 que, mỗi hình sau thêm 4 que (dùng chung 1 cạnh).</div>
+            <div class="step" data-n="2" hidden>Đây là dãy cách đều d=4, u<sub>1</sub>=5.</div>
+            <div class="step" data-n="3" hidden>Công thức: u<sub>n</sub>=5+(n−1)×4.</div>
+            <div class="step" data-n="4" hidden>Thay n=10: 5+9×4=5+36=41.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 41 que diêm.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd1-b3">
+        <h3>Bài 3 · Giải bài toán bằng cách lập phương trình</h3>
+        <p class="lesson-en">Lesson 3 · Equation formation</p>
+        <p class="concept">
+          Nhiều bài toán đố (tuổi, gà–thỏ, vòi nước, năng suất...) giải được bằng cách gọi ẩn cho đại lượng
+          cần tìm rồi lập một đẳng thức từ dữ kiện đề bài. Ở lớp 6, có thể thay việc "đặt ẩn x" bằng
+          <b>phương pháp giả thiết tạm</b>: giả sử một tình huống đơn giản hoá, tính chênh lệch với thực tế,
+          rồi suy ra đáp số.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">unknown</span><span class="vn">ẩn số</span></span>
+          <span class="vocab-chip"><span class="en">equation</span><span class="vn">phương trình</span></span>
+          <span class="vocab-chip"><span class="en">assume</span><span class="vn">giả sử</span></span>
+          <span class="vocab-chip"><span class="en">rate</span><span class="vn">năng suất/tốc độ</span></span>
+          <span class="vocab-chip"><span class="en">work together</span><span class="vn">cùng làm việc</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd1b3-ex" data-qid="1.5">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Trong sân có gà và thỏ tổng cộng 40 con, tổng số chân là 106. Hỏi có bao nhiêu con gà, bao nhiêu con thỏ?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Giả sử tất cả 40 con đều là gà (2 chân): tổng chân giả định = 40×2 = 80.</div>
+            <div class="step" data-n="2" hidden>So với thực tế 106 chân, còn thiếu 106−80 = 26 chân.</div>
+            <div class="step" data-n="3" hidden>Mỗi lần đổi 1 "gà giả định" thành 1 con thỏ thật, số chân tăng thêm 4−2=2. Vậy số thỏ = 26÷2 = 13.</div>
+            <div class="step" data-n="4" hidden>Số gà = 40−13 = 27. Thử lại: 27×2 + 13×4 = 54+52 = 106 ✓.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 27 con gà, 13 con thỏ.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b3-p1" data-qid="1.6">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Hiện nay tuổi cha gấp 4 lần tuổi con. Sau 5 năm nữa, tuổi cha gấp 3 lần tuổi con. Tính tuổi hiện nay của mỗi người.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Gọi tuổi con hiện nay là a, thì tuổi cha hiện nay là 4a.</div>
+            <div class="step" data-n="2" hidden>Sau 5 năm: con là a+5, cha là 4a+5; theo đề, cha lúc đó gấp 3 lần con: 4a+5 = 3(a+5).</div>
+            <div class="step" data-n="3" hidden>Giải: 4a+5 = 3a+15 → a = 10.</div>
+            <div class="step" data-n="4" hidden>Thử lại: cha hiện nay 40 tuổi, sau 5 năm cha 45, con 15, và 45 = 3×15 ✓.</div>
+            <div class="answer" hidden><b>Đáp án:</b> con 10 tuổi, cha 40 tuổi.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b3-p2" data-qid="1.7">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Vòi A chảy một mình đầy bể trong 4 giờ, vòi B chảy một mình đầy bể trong 6 giờ. Nếu mở cả hai vòi cùng lúc thì sau bao lâu đầy bể?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Năng suất từng vòi: A = 1/4 bể mỗi giờ, B = 1/6 bể mỗi giờ.</div>
+            <div class="step" data-n="2" hidden>Năng suất chung = 1/4 + 1/6. Quy đồng mẫu 12: 3/12 + 2/12 = 5/12 bể/giờ.</div>
+            <div class="step" data-n="3" hidden>Thời gian đầy bể = 1 ÷ (5/12) = 12/5 giờ = 2,4 giờ.</div>
+            <div class="step" data-n="4" hidden>Đổi ra giờ–phút: 2 giờ 24 phút — hợp lý vì nhanh hơn cả hai vòi chảy riêng.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 12/5 giờ = 2 giờ 24 phút.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b3-exam" data-qid="1.8">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Một đội gồm 8 công nhân hoàn thành một đoạn đường trong 12 ngày. Hỏi cần bao nhiêu công nhân để hoàn thành đoạn đường đó trong 6 ngày (năng suất mỗi người như nhau)?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tính tổng "khối lượng công việc" theo đơn vị người-ngày: 8×12 = 96.</div>
+            <div class="step" data-n="2" hidden>Khối lượng công việc không đổi, chỉ đổi số ngày còn 6.</div>
+            <div class="step" data-n="3" hidden>Số công nhân cần = 96 ÷ 6 = 16.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: 16 người đông gấp đôi 8 người nên thời gian giảm còn một nửa (12→6), hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 16 công nhân.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd1-b4">
+        <h3>Bài 4 · Dạng toán thứ ngày tháng</h3>
+        <p class="lesson-en">Lesson 4 · Date problem</p>
+        <p class="concept">
+          Bài toán "hôm nay là thứ mấy sau N ngày" giải bằng cách lấy N chia dư cho 7 (vì tuần có 7 ngày
+          lặp lại), rồi đếm từ thứ hiện tại theo số dư đó. Với năm nhuận, tháng 2 có 29 ngày thay vì 28
+          (năm nhuận là năm chia hết cho 4, trừ các năm tròn thế kỷ không chia hết cho 400).
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">day of the week</span><span class="vn">thứ trong tuần</span></span>
+          <span class="vocab-chip"><span class="en">leap year</span><span class="vn">năm nhuận</span></span>
+          <span class="vocab-chip"><span class="en">remainder</span><span class="vn">số dư</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd1b4-ex" data-qid="1.13">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Hôm nay là thứ Tư. Hỏi sau 100 ngày nữa là thứ mấy?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Vì tuần lặp lại mỗi 7 ngày, chỉ cần quan tâm số dư khi chia 100 cho 7.</div>
+            <div class="step" data-n="2" hidden>100 = 7×14 + 2, dư 2.</div>
+            <div class="step" data-n="3" hidden>Đếm từ thứ Tư, tiến thêm 2 ngày: thứ Tư → thứ Năm → thứ Sáu.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: dư 0 thì giữ nguyên thứ ban đầu; ở đây dư 2 nên tiến đúng 2 bước.</div>
+            <div class="answer" hidden><b>Đáp án:</b> thứ Sáu.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b4-p1" data-qid="1.14">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Nếu ngày 1 tháng 5 là thứ Ba thì ngày 25 tháng 5 cùng năm đó là thứ mấy?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Số ngày trôi qua từ 1/5 đến 25/5 là 25−1=24 ngày.</div>
+            <div class="step" data-n="2" hidden>24 = 7×3 + 3, dư 3.</div>
+            <div class="step" data-n="3" hidden>Đếm từ thứ Ba tiến 3 ngày: Ba→Tư→Năm→Sáu.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> thứ Sáu.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b4-p2" data-qid="1.15">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Biết ngày 1 tháng 1 năm 2024 là thứ Hai (2024 là năm nhuận). Hỏi ngày 1 tháng 1 năm 2025 là thứ mấy?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Năm 2024 là năm nhuận (chia hết cho 4), nên có 366 ngày thay vì 365.</div>
+            <div class="step" data-n="2" hidden>366 = 7×52 + 2, dư 2.</div>
+            <div class="step" data-n="3" hidden>Đếm từ thứ Hai tiến 2 ngày: Hai→Ba→Tư.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: nếu là năm thường (365 ngày, dư 1) thì chỉ tiến 1 ngày — ở đây có thêm ngày nhuận nên tiến 2 ngày.</div>
+            <div class="answer" hidden><b>Đáp án:</b> thứ Tư.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b4-exam" data-qid="1.16">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Hôm nay là thứ Sáu. Hỏi 200 ngày nữa là thứ mấy?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>200 chia cho 7: 200 = 7×28 + 4, dư 4.</div>
+            <div class="step" data-n="2" hidden>Đếm từ thứ Sáu tiến 4 ngày.</div>
+            <div class="step" data-n="3" hidden>Sáu→Bảy→CN→Hai→Ba.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> thứ Ba.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd1-b5">
+        <h3>Bài 5 · Bài toán năng suất</h3>
+        <p class="lesson-en">Lesson 5 · Construction problem</p>
+        <p class="concept">
+          Năng suất là khối lượng công việc hoàn thành trong một đơn vị thời gian. Với nhiều người/máy
+          cùng làm, <b>năng suất chung bằng tổng năng suất riêng</b>. Khi so sánh 2 phương án hoàn thành
+          cùng 1 việc, thời gian và số lượng người/máy luôn <b>tỉ lệ nghịch</b>.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">productivity/rate</span><span class="vn">năng suất</span></span>
+          <span class="vocab-chip"><span class="en">output</span><span class="vn">sản lượng</span></span>
+          <span class="vocab-chip"><span class="en">combined rate</span><span class="vn">năng suất kết hợp</span></span>
+          <span class="vocab-chip"><span class="en">inversely proportional</span><span class="vn">tỉ lệ nghịch</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd1b5-ex" data-qid="1.17">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Một máy in có thể in 300 tờ trong 15 phút. Hỏi với năng suất không đổi, máy đó in được bao nhiêu tờ trong 50 phút?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tính năng suất: 300÷15=20 tờ/phút.</div>
+            <div class="step" data-n="2" hidden>Năng suất không đổi nên số tờ tỉ lệ thuận với thời gian.</div>
+            <div class="step" data-n="3" hidden>Trong 50 phút: 20×50=1000 tờ.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý (50 phút gấp hơn 3 lần 15 phút nên số tờ cũng tăng tương ứng).</div>
+            <div class="answer" hidden><b>Đáp án:</b> 1000 tờ.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b5-p1" data-qid="1.18">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Người thợ A làm xong một sản phẩm trong 8 phút. Người thợ B làm xong sản phẩm đó trong 6 phút. Trong 60 phút, ai làm được nhiều sản phẩm hơn và nhiều hơn bao nhiêu?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Số sản phẩm A làm trong 60 phút: 60÷8=7,5 sản phẩm.</div>
+            <div class="step" data-n="2" hidden>Số sản phẩm B làm trong 60 phút: 60÷6=10 sản phẩm.</div>
+            <div class="step" data-n="3" hidden>So sánh: B làm nhiều hơn A.</div>
+            <div class="step" data-n="4" hidden>Chênh lệch: 10−7,5=2,5 sản phẩm.</div>
+            <div class="answer" hidden><b>Đáp án:</b> B làm nhiều hơn A 2,5 sản phẩm.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b5-p2" data-qid="1.19">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Ba máy A, B, C cùng sản xuất một loại linh kiện. Máy A một mình làm xong lô hàng trong 12 giờ, máy B trong 15 giờ, máy C trong 20 giờ. Nếu cả ba máy cùng chạy thì sau bao lâu xong lô hàng?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Năng suất riêng: A=1/12, B=1/15, C=1/20 (lô hàng/giờ).</div>
+            <div class="step" data-n="2" hidden>Quy đồng mẫu số chung (60): 5/60+4/60+3/60.</div>
+            <div class="step" data-n="3" hidden>Năng suất chung = 12/60 = 1/5 lô hàng/giờ.</div>
+            <div class="step" data-n="4" hidden>Thời gian hoàn thành = 1÷(1/5) = 5 giờ.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 5 giờ.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b5-exam" data-qid="1.20">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Một đội 5 công nhân làm xong công việc trong 8 ngày. Hỏi 10 công nhân (năng suất như nhau) làm xong công việc đó trong bao nhiêu ngày?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tổng khối lượng công việc: 5×8=40 (người-ngày).</div>
+            <div class="step" data-n="2" hidden>Khối lượng công việc không đổi, đổi số người thành 10.</div>
+            <div class="step" data-n="3" hidden>Số ngày = 40÷10.</div>
+            <div class="step" data-n="4" hidden>Tính: 40÷10=4 ngày.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 4 ngày.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd1-b6">
+        <h3>Bài 6 · Một số bài toán khác (logic suy luận, bắt tay, trồng cây)</h3>
+        <p class="lesson-en">Lesson 6 · Some other problems</p>
+        <p class="concept">
+          Nhóm công thức đếm nhanh quen thuộc: <b>bắt tay/đấu vòng tròn</b> — n người/đội gặp nhau đôi một
+          đúng 1 lần → số lần = C(n,2) = n(n−1)/2; <b>trồng cây trên đường thẳng</b> — trồng cả hai đầu với
+          khoảng cách d trên đoạn dài L → số cây = L/d + 1; <b>trồng cây theo vòng tròn</b> khép kín → số
+          cây = chu vi/d (không cộng 1 vì điểm đầu và cuối trùng nhau).
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">shake hands</span><span class="vn">bắt tay</span></span>
+          <span class="vocab-chip"><span class="en">pairwise</span><span class="vn">từng đôi một</span></span>
+          <span class="vocab-chip"><span class="en">plant trees</span><span class="vn">trồng cây</span></span>
+          <span class="vocab-chip"><span class="en">circular</span><span class="vn">dạng vòng tròn</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd1b6-ex" data-qid="1.21">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Trong một buổi họp lớp có 15 người, mỗi người bắt tay với tất cả những người khác đúng 1 lần. Hỏi có tất cả bao nhiêu cái bắt tay?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Mỗi cặp 2 người bắt tay đúng 1 lần, nên số lần bắt tay = số cách chọn 2 người trong 15 người = C(15,2).</div>
+            <div class="step" data-n="2" hidden>C(15,2) = 15×14/2.</div>
+            <div class="step" data-n="3" hidden>Tính: 15×14=210, chia 2 = 105.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý (số cặp luôn nhỏ hơn tích số người).</div>
+            <div class="answer" hidden><b>Đáp án:</b> 105 cái bắt tay.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b6-p1" data-qid="1.22">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Một con đường thẳng dài 180m. Người ta trồng cây ở cả hai đầu đường, khoảng cách giữa 2 cây liên tiếp là 6m. Hỏi trồng được tất cả bao nhiêu cây?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Số khoảng cách trên đường = 180÷6 = 30 khoảng.</div>
+            <div class="step" data-n="2" hidden>Vì trồng cả hai đầu, số cây = số khoảng + 1.</div>
+            <div class="step" data-n="3" hidden>Số cây = 30+1 = 31.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: hình dung đường có 30 đoạn thì có 31 điểm chia (kể cả 2 đầu mút).</div>
+            <div class="answer" hidden><b>Đáp án:</b> 31 cây.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b6-p2" data-qid="1.23">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Người ta trồng cây xung quanh một hồ nước hình tròn có chu vi 240m, khoảng cách giữa 2 cây liên tiếp là 8m. Hỏi trồng được tất cả bao nhiêu cây?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Vì trồng quanh vòng tròn khép kín, số khoảng cách bằng đúng số cây (không có "đầu thừa").</div>
+            <div class="step" data-n="2" hidden>Số cây = chu vi ÷ khoảng cách = 240÷8.</div>
+            <div class="step" data-n="3" hidden>Tính: 240÷8=30.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: khác với trồng trên đường thẳng (phải cộng 1), vì ở đây điểm đầu và điểm cuối trùng nhau.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 30 cây.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd1b6-exam" data-qid="1.24">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Trong một giải đấu cờ vua có 12 kỳ thủ, mỗi 2 kỳ thủ đấu với nhau đúng 1 ván. Hỏi có tất cả bao nhiêu ván đấu?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Số ván đấu = số cách chọn 2 kỳ thủ trong 12 người = C(12,2).</div>
+            <div class="step" data-n="2" hidden>C(12,2) = 12×11/2.</div>
+            <div class="step" data-n="3" hidden>Tính: 12×11=132, chia 2=66.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 66 ván đấu.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHUYÊN ĐỀ 2: SỐ HỌC ============ -->
+    <section class="topic" id="cd2">
+      <div class="topic-head"><span class="topic-num">Chuyên đề 2</span><h2>Số học</h2></div>
+      <p class="topic-sub">Topic 2 · Arithmetic</p>
+
+      <div class="lesson" id="cd2-b1">
+        <h3>Bài 1 · Tìm tổng của một dãy số cách đều</h3>
+        <p class="lesson-en">Lesson 1 · Sum of an arithmetic sequence</p>
+        <p class="concept">
+          Với dãy số cách đều có số hạng đầu u<sub>1</sub>, công sai d, số hạng cuối u<sub>n</sub>: số lượng
+          số hạng n = (u<sub>n</sub>−u<sub>1</sub>)/d + 1, và tổng S = n×(u<sub>1</sub>+u<sub>n</sub>)/2 —
+          "số số hạng nhân trung bình cộng số đầu và số cuối".
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">sum</span><span class="vn">tổng</span></span>
+          <span class="vocab-chip"><span class="en">arithmetic sequence</span><span class="vn">dãy số cách đều</span></span>
+          <span class="vocab-chip"><span class="en">number of terms</span><span class="vn">số số hạng</span></span>
+          <span class="vocab-chip"><span class="en">telescoping</span><span class="vn">rút gọn kính viễn vọng</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd2b1-ex" data-qid="2.1">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Tính tổng: 3 + 7 + 11 + 15 + ... + 199.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Công sai d = 7−3 = 4.</div>
+            <div class="step" data-n="2" hidden>Số số hạng n = (199−3)/4 + 1 = 49+1 = 50.</div>
+            <div class="step" data-n="3" hidden>Tổng S = n×(u<sub>1</sub>+u<sub>n</sub>)/2 = 50×(3+199)/2 = 50×101 = 5050.</div>
+            <div class="step" data-n="4" hidden>Kiểm tra nhanh: 3+7+11=21, tăng dần hợp lý theo xu hướng của cả dãy.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 5050.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b1-p1" data-qid="2.2">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Tính tổng các số lẻ từ 1 đến 99.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Đây là dãy cách đều d=2, u<sub>1</sub>=1, u<sub>n</sub>=99.</div>
+            <div class="step" data-n="2" hidden>Số số hạng n = (99−1)/2 + 1 = 50.</div>
+            <div class="step" data-n="3" hidden>Tổng S = 50×(1+99)/2 = 50×50 = 2500.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: tổng k số lẻ đầu tiên luôn bằng k² — ở đây k=50, 50²=2500, khớp.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 2500.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b1-p2" data-qid="2.3">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Tính tổng các số chia hết cho 3 trong khoảng từ 100 đến 300 (tính cả hai đầu nếu thoả).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Số chia hết cho 3 nhỏ nhất ≥100 là 102 (vì 100, 101 không chia hết).</div>
+            <div class="step" data-n="2" hidden>Số chia hết cho 3 lớn nhất ≤300 là 300.</div>
+            <div class="step" data-n="3" hidden>Số số hạng n = (300−102)/3 + 1 = 66+1 = 67; Tổng S = 67×(102+300)/2 = 67×201 = 13467.</div>
+            <div class="step" data-n="4" hidden>Kiểm tra hợp lý: trung bình mỗi số ≈201, nhân 67 số ≈13467, khớp.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 13467.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b1-exam" data-qid="2.4">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Tính giá trị của: <span class="frac"><span class="n">1</span><span class="d">3×5</span></span> + <span class="frac"><span class="n">1</span><span class="d">5×7</span></span> + <span class="frac"><span class="n">1</span><span class="d">7×9</span></span> + ... + <span class="frac"><span class="n">1</span><span class="d">19×21</span></span>.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Mỗi số hạng có dạng 1/(a(a+2)) với a = 3, 5, 7, ..., 19 (cách đều 2).</div>
+            <div class="step" data-n="2" hidden>Áp dụng kỹ thuật "tổng kính viễn vọng": 1/(a(a+2)) = (1/2)×(1/a − 1/(a+2)).</div>
+            <div class="step" data-n="3" hidden>Khi cộng dồn, các số hạng giữa triệt tiêu theo cặp, chỉ còn lại: (1/2)×(1/3 − 1/21).</div>
+            <div class="step" data-n="4" hidden>Tính: 1/3−1/21 = 7/21−1/21 = 6/21 = 2/7. Nhân 1/2 được 1/7.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 1/7.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd2-b2">
+        <h3>Bài 2 · Tìm tổng của một cấp số nhân</h3>
+        <p class="lesson-en">Lesson 2 · Sum of a geometric sequence</p>
+        <p class="concept">
+          Cấp số nhân có số hạng đầu u<sub>1</sub>, công bội q (mỗi số hạng sau bằng số hạng trước nhân q).
+          Tổng n số hạng đầu: S<sub>n</sub> = u<sub>1</sub>×(q<sup>n</sup>−1)/(q−1) (với q≠1). Với q=2, công
+          thức đơn giản còn S<sub>n</sub> = u<sub>1</sub>×(2<sup>n</sup>−1).
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">geometric sequence</span><span class="vn">cấp số nhân</span></span>
+          <span class="vocab-chip"><span class="en">common ratio</span><span class="vn">công bội</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd2b2-ex" data-qid="2.9">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Tính tổng: 3 + 6 + 12 + 24 + ... + 3×2⁹ (10 số hạng).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Nhận diện cấp số nhân: công bội q=6/3=2, số hạng đầu u<sub>1</sub>=3.</div>
+            <div class="step" data-n="2" hidden>Công thức tổng: S<sub>n</sub>=u<sub>1</sub>×(q<sup>n</sup>−1)/(q−1).</div>
+            <div class="step" data-n="3" hidden>Với q=2, n=10: S=3×(2¹⁰−1)=3×1023.</div>
+            <div class="step" data-n="4" hidden>Tính: 3×1023=3069.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 3069.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b2-p1" data-qid="2.10">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Tính tổng: 2 + 6 + 18 + 54 + ... + 2×3⁶ (7 số hạng).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Công bội q=6/2=3, số hạng đầu u<sub>1</sub>=2, có n=7 số hạng.</div>
+            <div class="step" data-n="2" hidden>Công thức: S=u<sub>1</sub>×(q<sup>n</sup>−1)/(q−1)=2×(3⁷−1)/2.</div>
+            <div class="step" data-n="3" hidden>Tính 3⁷=2187, nên S=2×(2187−1)/2=2186.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý (tổng lớn hơn số hạng cuối một chút vì các số hạng đầu nhỏ hơn nhiều so với số hạng cuối).</div>
+            <div class="answer" hidden><b>Đáp án:</b> 2186.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b2-p2" data-qid="2.11">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Cho cấp số nhân có số hạng đầu 5, công bội 2. Tổng của n số hạng đầu tiên bằng 635. Tìm n.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Áp dụng công thức S=u<sub>1</sub>×(2ⁿ−1) với u<sub>1</sub>=5: 5×(2ⁿ−1)=635.</div>
+            <div class="step" data-n="2" hidden>Chia 2 vế cho 5: 2ⁿ−1=127.</div>
+            <div class="step" data-n="3" hidden>Suy ra 2ⁿ=128.</div>
+            <div class="step" data-n="4" hidden>Nhận ra 128=2⁷, vậy n=7.</div>
+            <div class="answer" hidden><b>Đáp án:</b> n=7.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b2-exam" data-qid="2.12">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Tính tổng: 1+2+4+8+...+512 (các luỹ thừa của 2 từ 2⁰ đến 2⁹).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Đây là cấp số nhân q=2, u<sub>1</sub>=1, 10 số hạng (2⁰ đến 2⁹).</div>
+            <div class="step" data-n="2" hidden>S=1×(2¹⁰−1)/(2−1)=2¹⁰−1.</div>
+            <div class="step" data-n="3" hidden>2¹⁰=1024.</div>
+            <div class="step" data-n="4" hidden>S=1024−1=1023.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 1023.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd2-b3">
+        <h3>Bài 3 · Sử dụng phương pháp tổng trừ (phương pháp sai phân)</h3>
+        <p class="lesson-en">Lesson 3 · Use difference method to find the sum of a sequence</p>
+        <p class="concept">
+          Với tổng có dạng phức tạp (tích các số liên tiếp, hoặc phân số), ta tìm một hàm f(n) sao cho số
+          hạng cần cộng chính là f(n)−f(n−1), rồi tổng sẽ "rút gọn kính viễn vọng" chỉ còn 2 đầu. Ví dụ:
+          n(n+1) = [n(n+1)(n+2) − (n−1)n(n+1)]/3, dùng để tính nhanh tổng 1×2+2×3+3×4+...
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">difference method</span><span class="vn">phương pháp sai phân</span></span>
+          <span class="vocab-chip"><span class="en">telescoping</span><span class="vn">rút gọn kính viễn vọng</span></span>
+          <span class="vocab-chip"><span class="en">consecutive product</span><span class="vn">tích các số liên tiếp</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd2b3-ex" data-qid="2.13">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Tính tổng: S = 1×2 + 2×3 + 3×4 + ... + 10×11.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Nhận ra mỗi số hạng có dạng n(n+1) với n=1,...,10.</div>
+            <div class="step" data-n="2" hidden>Áp dụng đẳng thức: n(n+1) = [n(n+1)(n+2) − (n−1)n(n+1)] / 3.</div>
+            <div class="step" data-n="3" hidden>Khi cộng dồn, các số hạng giữa triệt tiêu theo cặp, chỉ còn lại [10×11×12 − 0×1×2]/3.</div>
+            <div class="step" data-n="4" hidden>Tính: 10×11×12=1320, chia 3 = 440.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 440.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b3-p1" data-qid="2.14">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Tính tổng: S = 1×2×3 + 2×3×4 + 3×4×5 + ... + 8×9×10.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Mỗi số hạng có dạng n(n+1)(n+2) với n=1,...,8.</div>
+            <div class="step" data-n="2" hidden>Áp dụng đẳng thức mở rộng: n(n+1)(n+2)=[n(n+1)(n+2)(n+3)−(n−1)n(n+1)(n+2)]/4.</div>
+            <div class="step" data-n="3" hidden>Cộng dồn, rút gọn còn [8×9×10×11−0]/4.</div>
+            <div class="step" data-n="4" hidden>Tính: 8×9×10×11=7920, chia 4=1980.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 1980.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b3-p2" data-qid="2.15">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Tính tổng: S = 1×4 + 4×7 + 7×10 + ... + 28×31 (các thừa số cách đều 3).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Mỗi số hạng có dạng a(a+3) với a=1,4,7,...,28 (10 số hạng, bước 3).</div>
+            <div class="step" data-n="2" hidden>Tìm hàm f(a)=a(a+3)(a+6)/9 sao cho f(a)−f(a−3)=a(a+3) (kiểm tra bằng khai triển: hiệu = a(a+3)[(a+6)−(a−3)]/9 = a(a+3)×9/9 = a(a+3) ✓).</div>
+            <div class="step" data-n="3" hidden>Tổng S = f(28) − f(1−3) = f(28) − f(−2) = 28×31×34/9 − (−2)(1)(4)/9 = 29512/9 + 8/9 = 29520/9.</div>
+            <div class="step" data-n="4" hidden>Tính: 29520÷9 = 3280.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 3280.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b3-exam" data-qid="2.16">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Tính tổng: S = 1/(1×2×3) + 1/(2×3×4) + 1/(3×4×5) + ... + 1/(18×19×20).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Mỗi số hạng có dạng 1/(n(n+1)(n+2)) với n=1,...,18.</div>
+            <div class="step" data-n="2" hidden>Áp dụng đẳng thức: 1/(n(n+1)(n+2)) = (1/2)[1/(n(n+1)) − 1/((n+1)(n+2))].</div>
+            <div class="step" data-n="3" hidden>Cộng dồn, các số hạng giữa triệt tiêu, chỉ còn (1/2)[1/(1×2) − 1/(19×20)].</div>
+            <div class="step" data-n="4" hidden>Tính: 1/2−1/380 = 190/380−1/380=189/380; nhân 1/2 được 189/760.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 189/760 (≈0,249).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd2-b4">
+        <h3>Bài 4 · Liên phân số</h3>
+        <p class="lesson-en">Lesson 4 · Continued fraction</p>
+        <p class="concept">
+          Liên phân số (phân số nhiều tầng) có dạng a ± 1/(b ± 1/(c ± 1/d)). Cách tính: rút gọn từ tầng
+          <b>trong cùng</b> ra ngoài — tính xong một tầng thành một phân số duy nhất, thay ngược lên tầng
+          trên, lặp lại đến khi ra kết quả cuối cùng.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">continued fraction</span><span class="vn">liên phân số</span></span>
+          <span class="vocab-chip"><span class="en">numerator/denominator</span><span class="vn">tử số/mẫu số</span></span>
+          <span class="vocab-chip"><span class="en">simplify</span><span class="vn">rút gọn</span></span>
+          <span class="vocab-chip"><span class="en">innermost</span><span class="vn">trong cùng</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd2b4-ex" data-qid="2.5">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Tính giá trị của: 2 − 1/(3 + 1/(2 − 1/4)).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tính tầng trong cùng trước: 2 − 1/4 = 8/4 − 1/4 = 7/4.</div>
+            <div class="step" data-n="2" hidden>Thay vào tầng giữa: 3 + 1÷(7/4) = 3 + 4/7 = 21/7 + 4/7 = 25/7 (chia thành nhân nghịch đảo).</div>
+            <div class="step" data-n="3" hidden>Thay vào tầng ngoài: 2 − 1÷(25/7) = 2 − 7/25 = 50/25 − 7/25 = 43/25.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: 43/25 = 1,72 — hợp lý, gần 2 vì phần trừ đi khá nhỏ.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 43/25.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b4-p1" data-qid="2.6">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Tính giá trị của: 1/(2 + 1/3).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tính mẫu số trước: 2 + 1/3 = 7/3.</div>
+            <div class="step" data-n="2" hidden>Lấy nghịch đảo: 1 ÷ (7/3) = 3/7.</div>
+            <div class="step" data-n="3" hidden>Kết quả là 3/7.</div>
+            <div class="step" data-n="4" hidden>Kiểm tra: 3/7 ≈ 0,43, hợp lý vì 1/(hơn 2) phải nhỏ hơn 1/2.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 3/7.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b4-p2" data-qid="2.7">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Tìm giá trị dương x thoả mãn x = 2 + 1/x, biết đây chính là giá trị của liên phân số vô hạn tuần hoàn 2 + 1/(2 + 1/(2 + 1/(2 + ...))).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Vì liên phân số lặp lại vô hạn, phần "2 + 1/(2 + 1/(...))" bên trong chính là x, nên x = 2 + 1/x.</div>
+            <div class="step" data-n="2" hidden>Nhân hai vế với x: x² = 2x + 1, tức x² − 2x − 1 = 0.</div>
+            <div class="step" data-n="3" hidden>Giải phương trình bậc hai: x = (2 ± √8)/2 = 1 ± √2.</div>
+            <div class="step" data-n="4" hidden>Vì x dương, chọn x = 1 + √2 (loại nghiệm âm 1 − √2).</div>
+            <div class="answer" hidden><b>Đáp án:</b> x = 1 + √2 ≈ 2,414.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd2b4-exam" data-qid="2.8">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Tính giá trị của: 8 − 2/(6 + 3/(4 − 1/5)).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tầng trong cùng: 4 − 1/5 = 19/5.</div>
+            <div class="step" data-n="2" hidden>Tầng giữa: 6 + 3÷(19/5) = 6 + 15/19 = 114/19 + 15/19 = 129/19.</div>
+            <div class="step" data-n="3" hidden>Tầng ngoài: 8 − 2÷(129/19) = 8 − 38/129 = 1032/129 − 38/129 = 994/129.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: 994/129 ≈ 7,71 — hợp lý, gần 8 vì phần trừ đi khá nhỏ.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 994/129.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHUYÊN ĐỀ 3: LÝ THUYẾT SỐ ============ -->
+    <section class="topic" id="cd3">
+      <div class="topic-head"><span class="topic-num">Chuyên đề 3</span><h2>Lý thuyết số</h2></div>
+      <p class="topic-sub">Topic 3 · Number Theory</p>
+
+      <div class="lesson" id="cd3-b1">
+        <h3>Bài 1 · Ký hiệu phép toán</h3>
+        <p class="lesson-en">Lesson 1 · Operation symbol</p>
+        <p class="concept">
+          Đề bài "định nghĩa" một phép toán mới bằng ký hiệu lạ (★, ◆, ⊕...) thông qua một công thức cụ
+          thể. Nhiệm vụ là đọc kỹ quy tắc, thay đúng thứ tự các số vào công thức, và tính toán như một phép
+          tính bình thường sau khi đã "giải mã" ký hiệu.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">defined operation</span><span class="vn">phép toán quy ước</span></span>
+          <span class="vocab-chip"><span class="en">rule</span><span class="vn">quy tắc</span></span>
+          <span class="vocab-chip"><span class="en">substitute</span><span class="vn">thay số</span></span>
+          <span class="vocab-chip"><span class="en">apply</span><span class="vn">áp dụng</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd3b1-ex" data-qid="3.1">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Cho phép toán ★ được định nghĩa: a★b = a×b + a − b. Tính giá trị của 5★3.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Xác định quy tắc: a★b = a×b + a − b.</div>
+            <div class="step" data-n="2" hidden>Thay a=5, b=3: 5×3 = 15.</div>
+            <div class="step" data-n="3" hidden>Cộng trừ tiếp: 15 + 5 − 3 = 17.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: kết quả nguyên dương hợp lý với số liệu đầu vào.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 17.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b1-p1" data-qid="3.2">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Cho phép toán ◆ định nghĩa: a◆b = 2a + 3b. Tính (3◆4)◆2.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tính phần trong ngoặc trước: 3◆4 = 2×3 + 3×4 = 6+12 = 18.</div>
+            <div class="step" data-n="2" hidden>Thay kết quả vào biểu thức ngoài: 18◆2.</div>
+            <div class="step" data-n="3" hidden>Áp dụng quy tắc: 18◆2 = 2×18 + 3×2 = 36+6 = 42.</div>
+            <div class="step" data-n="4" hidden>Kiểm tra: đã tính đúng thứ tự từ trong ngoặc ra ngoài.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 42.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b1-p2" data-qid="3.3">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Biết quy tắc a⊕b = (a²−b²)/(a−b) (với a≠b). Tính giá trị của (4⊕1)×(9⊕3).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Nhận ra a²−b² = (a−b)(a+b) là hằng đẳng thức hiệu hai bình phương.</div>
+            <div class="step" data-n="2" hidden>Vậy a⊕b = (a−b)(a+b)/(a−b) = a+b — rút gọn được thành một phép cộng đơn giản.</div>
+            <div class="step" data-n="3" hidden>Tính 4⊕1 = 4+1 = 5, và 9⊕3 = 9+3 = 12.</div>
+            <div class="step" data-n="4" hidden>Nhân hai kết quả: 5×12 = 60.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 60.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b1-exam" data-qid="3.4">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Cho phép toán ▲ định nghĩa: a▲b = a² − 2b. Tính giá trị của 6▲4.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Xác định quy tắc: a▲b = a² − 2b.</div>
+            <div class="step" data-n="2" hidden>Thay a=6, b=4: 6² = 36.</div>
+            <div class="step" data-n="3" hidden>Tính tiếp: 36 − 2×4 = 36 − 8 = 28.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 28.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd3-b2">
+        <h3>Bài 2 · Bài toán chia hết</h3>
+        <p class="lesson-en">Lesson 2 · Divisibility</p>
+        <p class="concept">
+          Nhắc lại dấu hiệu chia hết: cho 2 (tận cùng chẵn), cho 5 (tận cùng 0 hoặc 5), cho 3 và 9 (tổng
+          các chữ số chia hết cho 3/9), cho 4 (2 chữ số cuối chia hết cho 4), cho 11 (tổng đan dấu các chữ
+          số — bắt đầu từ hàng đơn vị +,−,+,−... — chia hết cho 11, kể cả bằng 0). Với bài "tìm chữ số x"
+          hoặc "chia hết cho nhiều số cùng lúc", cần kết hợp nhiều dấu hiệu.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">divisible</span><span class="vn">chia hết</span></span>
+          <span class="vocab-chip"><span class="en">digit sum</span><span class="vn">tổng các chữ số</span></span>
+          <span class="vocab-chip"><span class="en">divisibility rule</span><span class="vn">dấu hiệu chia hết</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd3b2-ex" data-qid="3.9">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Tìm chữ số x để số <b>34x56</b> chia hết cho 9.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Dấu hiệu chia hết cho 9: tổng các chữ số phải chia hết cho 9.</div>
+            <div class="step" data-n="2" hidden>Tổng các chữ số: 3+4+x+5+6=18+x.</div>
+            <div class="step" data-n="3" hidden>Vì x là 1 chữ số (0–9), 18+x nằm trong khoảng 18 đến 27; giá trị chia hết cho 9 trong khoảng đó là 18 và 27.</div>
+            <div class="step" data-n="4" hidden>Giải: 18+x=18→x=0, hoặc 18+x=27→x=9.</div>
+            <div class="answer" hidden><b>Đáp án:</b> x=0 hoặc x=9.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b2-p1" data-qid="3.10">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Tìm chữ số x để số <b>4x572</b> chia hết cho 11.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Dấu hiệu chia hết cho 11: tổng đan dấu các chữ số (bắt đầu từ hàng đơn vị, +,−,+,−...) phải chia hết cho 11 (kể cả bằng 0).</div>
+            <div class="step" data-n="2" hidden>Với số 4x572, tính tổng đan dấu từ phải sang: 2−7+5−x+4 = 4−x.</div>
+            <div class="step" data-n="3" hidden>Vì x là 1 chữ số (0–9), giá trị 4−x chỉ có thể bằng 0 để chia hết cho 11 (không thể đạt ±11).</div>
+            <div class="step" data-n="4" hidden>Giải: 4−x=0 → x=4.</div>
+            <div class="answer" hidden><b>Đáp án:</b> x=4.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b2-p2" data-qid="3.11">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Tìm số tự nhiên nhỏ nhất có 4 chữ số khác nhau đôi một, chia hết cho cả 4 và 9.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chia hết cho cả 4 và 9 tương đương chia hết cho 36 (vì 4 và 9 nguyên tố cùng nhau, BCNN(4,9)=36).</div>
+            <div class="step" data-n="2" hidden>Số có 4 chữ số nhỏ nhất là 1000; 1000÷36≈27,8 nên bội của 36 đầu tiên ≥1000 là 36×28=1008.</div>
+            <div class="step" data-n="3" hidden>Kiểm tra lần lượt các bội tiếp theo xem chữ số có khác nhau đôi một không: 1008(loại), 1044(loại), 1080(loại), 1116(loại), 1152(loại), 1188(loại), 1224(loại), 1260 — có 4 chữ số 1,2,6,0 đều khác nhau!</div>
+            <div class="step" data-n="4" hidden>Kiểm tra lại: 1260÷36=35 đúng; tổng chữ số 1+2+6+0=9 chia hết cho 9 đúng.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 1260.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b2-exam" data-qid="3.12">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Tìm chữ số x để số <b>12x</b> chia hết cho 6.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chia hết cho 6 = chia hết cho cả 2 và 3.</div>
+            <div class="step" data-n="2" hidden>Chia hết cho 2: x phải chẵn (0,2,4,6,8).</div>
+            <div class="step" data-n="3" hidden>Chia hết cho 3: 1+2+x=3+x chia hết cho 3, nghĩa là x chia hết cho 3: x∈{0,3,6,9}.</div>
+            <div class="step" data-n="4" hidden>Kết hợp cả 2 điều kiện (x vừa chẵn vừa chia hết cho 3): x∈{0,6}.</div>
+            <div class="answer" hidden><b>Đáp án:</b> x=0 hoặc x=6.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd3-b3">
+        <h3>Bài 3 · Chữ số tận cùng</h3>
+        <p class="lesson-en">Lesson 3 · Last digit</p>
+        <p class="concept">
+          Chữ số tận cùng của một tích chỉ phụ thuộc vào chữ số tận cùng của các thừa số. Với luỹ thừa
+          a<sup>n</sup>, chữ số tận cùng lặp lại theo <b>chu kỳ</b> (0,1,5,6 có chu kỳ 1; các cơ số khác có
+          chu kỳ 2 hoặc 4). Cách làm: tìm chu kỳ, lấy số mũ chia dư cho độ dài chu kỳ để suy ra vị trí.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">last digit</span><span class="vn">chữ số tận cùng</span></span>
+          <span class="vocab-chip"><span class="en">power</span><span class="vn">luỹ thừa</span></span>
+          <span class="vocab-chip"><span class="en">cycle</span><span class="vn">chu kỳ</span></span>
+          <span class="vocab-chip"><span class="en">remainder</span><span class="vn">số dư</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd3b3-ex" data-qid="3.5">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Tìm chữ số tận cùng của 7<sup>2023</sup>.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Liệt kê chữ số tận cùng của 7¹, 7², 7³, 7⁴: 7, 9, 3, 1 — lặp lại theo chu kỳ 4.</div>
+            <div class="step" data-n="2" hidden>Lấy số mũ 2023 chia cho 4: 2023 = 4×505 + 3, dư 3.</div>
+            <div class="step" data-n="3" hidden>Số dư 3 tương ứng vị trí thứ 3 trong chu kỳ (7, 9, <u>3</u>, 1).</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: nếu dư 0 thì lấy chữ số ở vị trí cuối chu kỳ; ở đây dư 3 nên lấy đúng vị trí 3.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 3.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b3-p1" data-qid="3.6">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Tìm chữ số tận cùng của tích: 23 × 34 × 47 × 58.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chỉ cần chữ số tận cùng từng thừa số: 3, 4, 7, 8.</div>
+            <div class="step" data-n="2" hidden>Nhân dần, mỗi lần chỉ giữ chữ số tận cùng: 3×4=12 → tận cùng 2.</div>
+            <div class="step" data-n="3" hidden>2×7=14 → tận cùng 4.</div>
+            <div class="step" data-n="4" hidden>4×8=32 → tận cùng 2 — đây là chữ số tận cùng của cả tích.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 2.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b3-p2" data-qid="3.7">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Tìm chữ số tận cùng của A = 4<sup>2023</sup> + 6<sup>2023</sup>.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chu kỳ tận cùng của 4<sup>n</sup> là 4, 6 (n lẻ → 4, n chẵn → 6). Vì 2023 lẻ, 4<sup>2023</sup> tận cùng là 4.</div>
+            <div class="step" data-n="2" hidden>6<sup>n</sup> luôn có chữ số tận cùng là 6 với mọi n ≥ 1.</div>
+            <div class="step" data-n="3" hidden>Cộng hai chữ số tận cùng: 4 + 6 = 10.</div>
+            <div class="step" data-n="4" hidden>Lấy chữ số tận cùng của tổng: 10 → tận cùng là 0.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 0.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b3-exam" data-qid="3.8">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Tìm chữ số tận cùng của 9<sup>99</sup>.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chu kỳ tận cùng của 9<sup>n</sup> là 9, 1 (chu kỳ 2).</div>
+            <div class="step" data-n="2" hidden>99 chia 2 dư 1 (99 là số lẻ).</div>
+            <div class="step" data-n="3" hidden>Số dư 1 tương ứng vị trí đầu tiên trong chu kỳ: chữ số 9.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: 9¹=9, 9²=81 (tận cùng 1), 9³=729 (tận cùng 9) — đúng quy luật lặp 9,1.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 9.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd3-b4">
+        <h3>Bài 4 · Phân tích một số thành tích các thừa số nguyên tố</h3>
+        <p class="lesson-en">Lesson 4 · Factorize a number into the product of prime numbers</p>
+        <p class="concept">
+          Mọi số tự nhiên lớn hơn 1 đều phân tích DUY NHẤT thành tích các thừa số nguyên tố (Định lý cơ
+          bản của số học). Cách làm: chia lần lượt cho các số nguyên tố nhỏ nhất (2, 3, 5, 7, ...) đến khi
+          thương bằng 1. Với luỹ thừa lớn (n!), số mũ của số nguyên tố p trong phân tích tính bằng công
+          thức Legendre: ⌊n/p⌋+⌊n/p²⌋+⌊n/p³⌋+...
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">prime factorization</span><span class="vn">phân tích thừa số nguyên tố</span></span>
+          <span class="vocab-chip"><span class="en">prime number</span><span class="vn">số nguyên tố</span></span>
+          <span class="vocab-chip"><span class="en">exponent</span><span class="vn">số mũ</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd3b4-ex" data-qid="3.13">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Phân tích số 360 thành tích các thừa số nguyên tố.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chia 360 cho 2 (số nguyên tố nhỏ nhất): 360÷2=180, 180÷2=90, 90÷2=45 (45 không chia hết cho 2 nữa) — vậy có 2³.</div>
+            <div class="step" data-n="2" hidden>Chia 45 cho 3: 45÷3=15, 15÷3=5 (5 không chia hết cho 3) — vậy có 3².</div>
+            <div class="step" data-n="3" hidden>Còn lại 5 là số nguyên tố, dừng lại.</div>
+            <div class="step" data-n="4" hidden>Kết quả: 360=2³×3²×5. Kiểm tra: 8×9×5=360 ✓.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 360 = 2³×3²×5.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b4-p1" data-qid="3.14">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Phân tích số 252 thành tích các thừa số nguyên tố.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chia 252 cho 2: 252÷2=126, 126÷2=63 (63 lẻ, dừng) — có 2².</div>
+            <div class="step" data-n="2" hidden>Chia 63 cho 3: 63÷3=21, 21÷3=7 (7 không chia hết cho 3) — có 3².</div>
+            <div class="step" data-n="3" hidden>7 là số nguyên tố, dừng lại.</div>
+            <div class="step" data-n="4" hidden>Kết quả: 252=2²×3²×7; kiểm tra 4×9×7=252 ✓.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 252=2²×3²×7.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b4-p2" data-qid="3.15">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Tìm số mũ của thừa số nguyên tố 5 trong phân tích của 100! (100 giai thừa) ra thừa số nguyên tố.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Dùng công thức Legendre: số mũ của số nguyên tố p trong n! bằng ⌊n/p⌋+⌊n/p²⌋+⌊n/p³⌋+... (cộng đến khi p^k vượt quá n thì dừng).</div>
+            <div class="step" data-n="2" hidden>Với n=100, p=5: ⌊100/5⌋=20 (số bội của 5 từ 1 đến 100).</div>
+            <div class="step" data-n="3" hidden>⌊100/25⌋=4 (số bội của 25, mỗi số này góp thêm 1 thừa số 5 nữa). ⌊100/125⌋=0 (125>100, dừng).</div>
+            <div class="step" data-n="4" hidden>Tổng số mũ = 20+4+0=24.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 24.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b4-exam" data-qid="3.16">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Phân tích số 96 thành tích các thừa số nguyên tố.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chia 96 cho 2 liên tiếp: 96÷2=48,÷2=24,÷2=12,÷2=6,÷2=3 (3 lẻ, dừng) — có 2⁵.</div>
+            <div class="step" data-n="2" hidden>Còn lại 3 là số nguyên tố, dừng lại.</div>
+            <div class="step" data-n="3" hidden>Kết quả: 96=2⁵×3.</div>
+            <div class="step" data-n="4" hidden>Kiểm tra: 32×3=96 ✓.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 96 = 2⁵×3.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd3-b5">
+        <h3>Bài 5 · Tìm số ước và tổng các ước của một số</h3>
+        <p class="lesson-en">Lesson 5 · Find the number of factors and sum of factors</p>
+        <p class="concept">
+          Nếu N = p<sub>1</sub><sup>a1</sup>×p<sub>2</sub><sup>a2</sup>×...×p<sub>k</sub><sup>ak</sup> (đã
+          phân tích ra thừa số nguyên tố), thì: <b>số lượng ước số</b> của N = (a1+1)(a2+1)...(ak+1); <b>tổng
+          các ước số</b> của N = (1+p<sub>1</sub>+p<sub>1</sub>²+...+p<sub>1</sub><sup>a1</sup>)×(1+p<sub>2</sub>+...+p<sub>2</sub><sup>a2</sup>)×...
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">divisor/factor</span><span class="vn">ước số</span></span>
+          <span class="vocab-chip"><span class="en">number of divisors</span><span class="vn">số lượng ước</span></span>
+          <span class="vocab-chip"><span class="en">sum of divisors</span><span class="vn">tổng các ước</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd3b5-ex" data-qid="3.17">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Số A = 2³×3²×5 (đã phân tích thành thừa số nguyên tố). Hỏi A có bao nhiêu ước số tự nhiên?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Với N=p1^a1×p2^a2×...: số ước = (a1+1)(a2+1)(a3+1)...</div>
+            <div class="step" data-n="2" hidden>Ở đây A=2³×3²×5¹, các số mũ là 3, 2, 1.</div>
+            <div class="step" data-n="3" hidden>Số ước = (3+1)×(2+1)×(1+1).</div>
+            <div class="step" data-n="4" hidden>Tính: 4×3×2=24.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 24 ước số.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b5-p1" data-qid="3.18">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Tìm số lượng ước số tự nhiên của 84.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Phân tích 84 ra thừa số nguyên tố: 84=2²×3×7.</div>
+            <div class="step" data-n="2" hidden>Số mũ lần lượt là 2, 1, 1.</div>
+            <div class="step" data-n="3" hidden>Số ước = (2+1)(1+1)(1+1)=3×2×2.</div>
+            <div class="step" data-n="4" hidden>Tính: 3×2×2=12.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 12 ước số.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b5-p2" data-qid="3.19">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Tính tổng các ước số tự nhiên của 60.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Phân tích 60=2²×3×5.</div>
+            <div class="step" data-n="2" hidden>Tổng các ước = (1+2+2²)×(1+3)×(1+5) — mỗi ngoặc là tổng các luỹ thừa của từng thừa số nguyên tố từ 0 đến số mũ tối đa.</div>
+            <div class="step" data-n="3" hidden>Tính từng ngoặc: 1+2+4=7; 1+3=4; 1+5=6.</div>
+            <div class="step" data-n="4" hidden>Nhân lại: 7×4×6=168.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 168.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd3b5-exam" data-qid="3.20">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Tìm số tự nhiên nhỏ nhất có đúng 12 ước số tự nhiên.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Số lượng ước = tích các (số mũ+1) trong phân tích nguyên tố. Cần tích các thừa số này bằng 12.</div>
+            <div class="step" data-n="2" hidden>Liệt kê các cách viết 12 thành tích các thừa số ≥2: 12; 6×2; 4×3; 3×2×2.</div>
+            <div class="step" data-n="3" hidden>Với mỗi cách, gán số mũ lớn nhất cho thừa số nguyên tố nhỏ nhất (2) để N nhỏ nhất: {11}→2¹¹=2048; {5,1}→2⁵×3=96; {3,2}→2³×3²=72; {2,1,1}→2²×3×5=60.</div>
+            <div class="step" data-n="4" hidden>So sánh 4 giá trị: 2048, 96, 72, 60 — nhỏ nhất là 60.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 60.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHUYÊN ĐỀ 4: HÌNH HỌC ============ -->
+    <section class="topic" id="cd4">
+      <div class="topic-head"><span class="topic-num">Chuyên đề 4</span><h2>Hình học</h2></div>
+      <p class="topic-sub">Topic 4 · Geometry</p>
+
+      <div class="lesson" id="cd4-b1">
+        <h3>Bài 1 · Góc trong đa giác</h3>
+        <p class="lesson-en">Lesson 1 · Angles in a polygon</p>
+        <p class="concept">
+          Tổng số đo các góc trong của một đa giác n cạnh = (n−2)×180°. Với đa giác ĐỀU (các cạnh và góc
+          bằng nhau), mỗi góc trong = (n−2)×180°/n. Góc ngoài tại một đỉnh và góc trong bù nhau (tổng
+          180°); với mọi đa giác lồi, <b>tổng các góc ngoài luôn bằng 360°</b> dù đa giác có bao nhiêu cạnh.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">polygon</span><span class="vn">đa giác</span></span>
+          <span class="vocab-chip"><span class="en">interior angle</span><span class="vn">góc trong</span></span>
+          <span class="vocab-chip"><span class="en">exterior angle</span><span class="vn">góc ngoài</span></span>
+          <span class="vocab-chip"><span class="en">regular polygon</span><span class="vn">đa giác đều</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd4b1-ex" data-qid="4.9">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Tính tổng số đo các góc trong của một lục giác (hình 6 cạnh).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Công thức tổng góc trong đa giác n cạnh: (n−2)×180°.</div>
+            <div class="step" data-n="2" hidden>Lục giác có n=6.</div>
+            <div class="step" data-n="3" hidden>Thay số: (6−2)×180=4×180.</div>
+            <div class="step" data-n="4" hidden>Tính: 4×180=720°.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 720°.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b1-p1" data-qid="4.10">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Tính số đo mỗi góc trong của một ngũ giác đều (5 cạnh bằng nhau, góc bằng nhau).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tổng góc trong ngũ giác: (5−2)×180=540°.</div>
+            <div class="step" data-n="2" hidden>Vì là đa giác ĐỀU nên 5 góc bằng nhau.</div>
+            <div class="step" data-n="3" hidden>Mỗi góc = 540÷5.</div>
+            <div class="step" data-n="4" hidden>Tính: 540÷5=108°.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 108°.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b1-p2" data-qid="4.11">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Một đa giác đều có mỗi góc trong bằng 156°. Hỏi đa giác đó có bao nhiêu cạnh?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Góc ngoài và góc trong tại một đỉnh luôn bù nhau (tổng 180°): góc ngoài=180−156=24°.</div>
+            <div class="step" data-n="2" hidden>Với đa giác đều, tổng tất cả các góc ngoài luôn bằng 360° (dù đa giác có bao nhiêu cạnh).</div>
+            <div class="step" data-n="3" hidden>Số cạnh = 360÷24.</div>
+            <div class="step" data-n="4" hidden>Tính: 360÷24=15.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 15 cạnh.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b1-exam" data-qid="4.12">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Tính tổng góc trong của một thập giác (10 cạnh).</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Công thức: (n−2)×180° với n=10.</div>
+            <div class="step" data-n="2" hidden>(10−2)×180=8×180.</div>
+            <div class="step" data-n="3" hidden>Tính: 8×180=1440°.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 1440°.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd4-b2">
+        <h3>Bài 2 · Chu vi và diện tích của hình 2D</h3>
+        <p class="lesson-en">Lesson 2 · Perimeter and area of 2D figures</p>
+        <p class="concept">
+          Với hình ghép/hình phức tạp, thường tách thành các hình cơ bản (chữ nhật, tam giác, hình thang)
+          rồi <b>cộng hoặc trừ diện tích</b> từng phần. Với chu vi hình ghép, cần chú ý các cạnh chung bị
+          "ẩn vào trong" khi hai hình gắn liền — cạnh đó không còn là cạnh ngoài nên không tính vào chu vi.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">perimeter</span><span class="vn">chu vi</span></span>
+          <span class="vocab-chip"><span class="en">area</span><span class="vn">diện tích</span></span>
+          <span class="vocab-chip"><span class="en">composite figure</span><span class="vn">hình ghép</span></span>
+          <span class="vocab-chip"><span class="en">shared edge</span><span class="vn">cạnh chung</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd4b2-ex" data-qid="4.1">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Một mảnh đất hình chữ nhật có chiều dài 18m, chiều rộng 12m. Người ta đào một hồ nước hình vuông cạnh 6m bên trong. Tính diện tích phần đất còn lại.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Diện tích cả mảnh đất: 18×12 = 216 m².</div>
+            <div class="step" data-n="2" hidden>Diện tích hồ vuông: 6×6 = 36 m².</div>
+            <div class="step" data-n="3" hidden>Diện tích còn lại = diện tích đất − diện tích hồ = 216 − 36 = 180 m².</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: 180 < 216, hợp lý vì đã bớt đi phần hồ.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 180 m².</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b2-p1" data-qid="4.2">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Một hình chữ L được tạo từ một hình chữ nhật 10m×8m bằng cách khoét đi một góc hình chữ nhật 4m×3m. Tính diện tích hình chữ L.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Diện tích hình chữ nhật lớn ban đầu (chưa khoét): 10×8 = 80 m².</div>
+            <div class="step" data-n="2" hidden>Diện tích phần bị khoét: 4×3 = 12 m².</div>
+            <div class="step" data-n="3" hidden>Diện tích hình chữ L = 80 − 12 = 68 m².</div>
+            <div class="step" data-n="4" hidden>Kiểm tra hợp lý vì 68 < 80.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 68 m².</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b2-p2" data-qid="4.3">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Một hình vuông cạnh 6cm và một hình vuông cạnh 4cm được ghép sát nhau (cạnh của hình vuông nhỏ nằm hoàn toàn trên một cạnh của hình vuông lớn) tạo thành một hình bậc thang. Tính chu vi của hình ghép đó.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chu vi từng hình riêng: hình vuông 6cm có chu vi 4×6=24cm; hình vuông 4cm có chu vi 4×4=16cm.</div>
+            <div class="step" data-n="2" hidden>Khi ghép, cạnh chung (dài 4cm, đúng bằng cạnh hình vuông nhỏ) bị ẩn vào bên trong, không còn là cạnh ngoài của cả hai hình nữa.</div>
+            <div class="step" data-n="3" hidden>Chu vi hình ghép = 24 + 16 − 2×4 = 40 − 8 = 32cm (trừ 2 lần vì cạnh đó từng được tính trong cả hai chu vi riêng).</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: 32 < 40, hợp lý vì phần cạnh chung không còn lộ ra ngoài.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 32 cm.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b2-exam" data-qid="4.4">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Một hình thang có đáy lớn 20cm, đáy nhỏ bằng 3/5 đáy lớn, chiều cao 12cm. Tính diện tích hình thang.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tính đáy nhỏ: 20 × 3/5 = 12cm.</div>
+            <div class="step" data-n="2" hidden>Công thức diện tích hình thang: (đáy lớn + đáy nhỏ) × chiều cao ÷ 2.</div>
+            <div class="step" data-n="3" hidden>Thay số: (20+12) × 12 ÷ 2 = 32×6 = 192.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý về đơn vị (cm²).</div>
+            <div class="answer" hidden><b>Đáp án:</b> 192 cm².</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd4-b3">
+        <h3>Bài 3 · Định lý Py-ta-go</h3>
+        <p class="lesson-en">Lesson 3 · Pythagorean theorem</p>
+        <p class="concept">
+          Trong tam giác vuông có hai cạnh góc vuông a, b và cạnh huyền c: a²+b²=c². Dùng để tính cạnh còn
+          thiếu khi biết 2 cạnh, hoặc để kiểm tra một tam giác có vuông hay không (nếu a²+b²=c² thì tam
+          giác vuông tại góc đối diện cạnh c).
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">right triangle</span><span class="vn">tam giác vuông</span></span>
+          <span class="vocab-chip"><span class="en">hypotenuse</span><span class="vn">cạnh huyền</span></span>
+          <span class="vocab-chip"><span class="en">legs</span><span class="vn">cạnh góc vuông</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd4b3-ex" data-qid="4.13">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Một tam giác vuông có hai cạnh góc vuông lần lượt là 9cm và 12cm. Tính cạnh huyền.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Áp dụng định lý Py-ta-go: c²=a²+b².</div>
+            <div class="step" data-n="2" hidden>Thay số: c²=9²+12²=81+144.</div>
+            <div class="step" data-n="3" hidden>Tính: 81+144=225.</div>
+            <div class="step" data-n="4" hidden>c=√225=15cm.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 15 cm.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b3-p1" data-qid="4.14">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Một tam giác vuông có cạnh huyền 13cm và một cạnh góc vuông 5cm. Tính cạnh góc vuông còn lại.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Từ định lý Py-ta-go: b²=c²−a².</div>
+            <div class="step" data-n="2" hidden>Thay số: b²=13²−5²=169−25.</div>
+            <div class="step" data-n="3" hidden>Tính: 169−25=144.</div>
+            <div class="step" data-n="4" hidden>b=√144=12cm.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 12 cm.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b3-p2" data-qid="4.15">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Một chiếc thang dài 10m được dựa vào tường sao cho chân thang cách chân tường 6m. Hỏi thang chạm vào tường ở độ cao bao nhiêu mét?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Thang, tường và mặt đất tạo thành một tam giác vuông, trong đó thang là cạnh huyền (10m), khoảng cách chân thang–chân tường là 1 cạnh góc vuông (6m).</div>
+            <div class="step" data-n="2" hidden>Áp dụng Py-ta-go: chiều cao²=10²−6²=100−36.</div>
+            <div class="step" data-n="3" hidden>Tính: 100−36=64.</div>
+            <div class="step" data-n="4" hidden>Chiều cao=√64=8m.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 8 m.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b3-exam" data-qid="4.16">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Một tam giác vuông có cạnh huyền 25cm và diện tích 150cm². Tính chu vi tam giác đó.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Gọi 2 cạnh góc vuông là a, b. Từ Py-ta-go: a²+b²=25²=625.</div>
+            <div class="step" data-n="2" hidden>Từ diện tích: (1/2)ab=150 → ab=300.</div>
+            <div class="step" data-n="3" hidden>Tính (a+b)²=a²+2ab+b²=625+600=1225 → a+b=35. Tính (a−b)²=a²−2ab+b²=625−600=25 → a−b=5.</div>
+            <div class="step" data-n="4" hidden>Giải hệ: a=20, b=15 (hoặc ngược lại). Chu vi=20+15+25=60cm.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 60 cm.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd4-b4">
+        <h3>Bài 4 · Diện tích toàn phần và thể tích khối 3D</h3>
+        <p class="lesson-en">Lesson 4 · Surface area and volume of 3D figures</p>
+        <p class="concept">
+          Hình hộp chữ nhật kích thước a×b×c: thể tích V = a×b×c; diện tích toàn phần (tất cả các mặt)
+          = 2(ab+bc+ca). Hình lập phương cạnh a: V = a³, diện tích toàn phần = 6a². Khi khoét/ghép khối,
+          cần cộng trừ đúng phần thể tích hoặc diện tích mặt bị thay đổi.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">volume</span><span class="vn">thể tích</span></span>
+          <span class="vocab-chip"><span class="en">surface area</span><span class="vn">diện tích toàn phần</span></span>
+          <span class="vocab-chip"><span class="en">cube</span><span class="vn">hình lập phương</span></span>
+          <span class="vocab-chip"><span class="en">cuboid</span><span class="vn">hình hộp chữ nhật</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd4b4-ex" data-qid="4.5">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Một hình hộp chữ nhật có chiều dài 8cm, chiều rộng 5cm, chiều cao 4cm. Tính thể tích và diện tích toàn phần.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Thể tích = dài×rộng×cao = 8×5×4 = 160cm³.</div>
+            <div class="step" data-n="2" hidden>Diện tích 3 cặp mặt: 8×5=40, 5×4=20, 4×8=32.</div>
+            <div class="step" data-n="3" hidden>Tổng 3 mặt = 40+20+32 = 92, nhân đôi (mỗi mặt có 1 mặt đối diện bằng nhau): 92×2 = 184cm².</div>
+            <div class="step" data-n="4" hidden>Kiểm tra đơn vị: thể tích cm³, diện tích cm² — hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> V = 160cm³, diện tích toàn phần = 184cm².</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b4-p1" data-qid="4.6">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Một khối lập phương có cạnh 7cm. Tính thể tích và diện tích toàn phần.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Công thức thể tích lập phương: V = cạnh³.</div>
+            <div class="step" data-n="2" hidden>Thay số: V = 7³ = 343cm³.</div>
+            <div class="step" data-n="3" hidden>Công thức diện tích toàn phần: 6×cạnh² = 6×49 = 294cm².</div>
+            <div class="step" data-n="4" hidden>Đối chiếu số liệu hợp lý theo công thức chuẩn.</div>
+            <div class="answer" hidden><b>Đáp án:</b> V = 343cm³, diện tích toàn phần = 294cm².</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b4-p2" data-qid="4.7">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Một khối gỗ hình hộp chữ nhật kích thước 6cm×5cm×4cm. Người ta khoét một lỗ tiết diện vuông cạnh 2cm, xuyên suốt theo chiều dài 6cm. Tính thể tích khối gỗ còn lại.</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Thể tích khối hộp ban đầu: 6×5×4 = 120cm³.</div>
+            <div class="step" data-n="2" hidden>Lỗ khoét là "đường hầm" tiết diện vuông 2×2cm, xuyên suốt chiều dài 6cm.</div>
+            <div class="step" data-n="3" hidden>Thể tích phần khoét = 2×2×6 = 24cm³.</div>
+            <div class="step" data-n="4" hidden>Thể tích còn lại = 120 − 24 = 96cm³.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 96 cm³.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd4b4-exam" data-qid="4.8">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Một bể nước hình hộp chữ nhật đáy 30cm×20cm, mực nước cao 15cm. Thả chìm hoàn toàn một khối lập phương cạnh 10cm vào bể. Hỏi mực nước dâng lên bao nhiêu cm?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Thể tích khối lập phương chìm hoàn toàn = 10³ = 1000cm³ — đây chính là thể tích nước bị "chiếm chỗ", làm mực nước dâng lên.</div>
+            <div class="step" data-n="2" hidden>Diện tích đáy bể = 30×20 = 600cm².</div>
+            <div class="step" data-n="3" hidden>Mực nước dâng = thể tích chiếm chỗ ÷ diện tích đáy = 1000÷600 = 5/3 cm.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: 5/3 ≈ 1,67cm, hợp lý và nhỏ hơn nhiều so với cạnh khối (10cm) vì đáy bể khá rộng.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 5/3 cm (≈1,67cm).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHUYÊN ĐỀ 5: TỔ HỢP ============ -->
+    <section class="topic" id="cd5">
+      <div class="topic-head"><span class="topic-num">Chuyên đề 5</span><h2>Tổ hợp</h2></div>
+      <p class="topic-sub">Topic 5 · Combinatorics</p>
+
+      <div class="lesson" id="cd5-b1">
+        <h3>Bài 1 · Quy tắc cộng và quy tắc nhân</h3>
+        <p class="lesson-en">Lesson 1 · Addition rule and multiplication rule</p>
+        <p class="concept">
+          Quy tắc <b>CỘNG</b>: nếu công việc có thể hoàn thành theo nhiều phương án TÁCH BIỆT (không trùng
+          nhau), số cách = tổng số cách của từng phương án. Quy tắc <b>NHÂN</b>: nếu công việc gồm nhiều
+          giai đoạn NỐI TIẾP, độc lập với nhau, số cách = tích số cách của mỗi giai đoạn.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">addition rule</span><span class="vn">quy tắc cộng</span></span>
+          <span class="vocab-chip"><span class="en">multiplication rule</span><span class="vn">quy tắc nhân</span></span>
+          <span class="vocab-chip"><span class="en">independent stages</span><span class="vn">giai đoạn độc lập</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd5b1-ex" data-qid="5.9">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Một hộp có 5 viên bi đỏ và 4 viên bi xanh. Hỏi có bao nhiêu cách chọn 1 viên bi bất kỳ từ hộp?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chọn 1 viên bi đỏ HOẶC 1 viên bi xanh là 2 phương án tách biệt (không thể vừa đỏ vừa xanh cùng lúc).</div>
+            <div class="step" data-n="2" hidden>Áp dụng quy tắc cộng: số cách = số cách chọn đỏ + số cách chọn xanh.</div>
+            <div class="step" data-n="3" hidden>Thay số: 5+4.</div>
+            <div class="step" data-n="4" hidden>Tính: 5+4=9.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 9 cách.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b1-p1" data-qid="5.10">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Một bạn học sinh có 4 chiếc áo và 3 chiếc quần khác nhau. Hỏi có bao nhiêu cách chọn 1 bộ (1 áo + 1 quần) để mặc?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Chọn trang phục gồm 2 giai đoạn nối tiếp: chọn áo, rồi chọn quần — đây là quy tắc NHÂN.</div>
+            <div class="step" data-n="2" hidden>Số cách chọn áo: 4. Số cách chọn quần: 3 (độc lập với việc chọn áo).</div>
+            <div class="step" data-n="3" hidden>Áp dụng: số cách = 4×3.</div>
+            <div class="step" data-n="4" hidden>Tính: 4×3=12.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 12 cách.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b1-p2" data-qid="5.11">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Một thực đơn có 3 món khai vị, 4 món chính. Khách có thể chọn (1 khai vị + 1 chính) HOẶC chỉ chọn riêng 1 trong 2 món tráng miệng có sẵn. Hỏi khách có bao nhiêu cách chọn bữa ăn?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Có 2 phương án tách biệt: (a) chọn khai vị+chính, hoặc (b) chỉ chọn tráng miệng.</div>
+            <div class="step" data-n="2" hidden>Phương án (a) dùng quy tắc nhân (2 giai đoạn): 3×4=12 cách.</div>
+            <div class="step" data-n="3" hidden>Phương án (b): 2 cách.</div>
+            <div class="step" data-n="4" hidden>Vì 2 phương án tách biệt, áp dụng quy tắc cộng: 12+2=14.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 14 cách.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b1-exam" data-qid="5.12">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Từ thành phố A đến B có 3 con đường, từ B đến C có 4 con đường. Hỏi có bao nhiêu cách đi từ A đến C qua B?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Đi từ A đến C qua B gồm 2 giai đoạn nối tiếp: A→B rồi B→C.</div>
+            <div class="step" data-n="2" hidden>Áp dụng quy tắc nhân: số cách = 3×4.</div>
+            <div class="step" data-n="3" hidden>Tính: 3×4=12.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu hợp lý.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 12 cách.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd5-b2">
+        <h3>Bài 2 · Nguyên lý Dirichlet (Pigeonhole)</h3>
+        <p class="lesson-en">Lesson 2 · Worst case scenario problem</p>
+        <p class="concept">
+          Nếu nhốt nhiều hơn n vật vào n nhóm, chắc chắn có ít nhất một nhóm chứa từ 2 vật trở lên. Bài
+          toán "trường hợp xấu nhất" thường hỏi <b>cần ít nhất bao nhiêu vật để CHẮC CHẮN</b> xảy ra điều
+          gì đó — cách làm: giả sử tình huống xấu nhất (điều cần chưa xảy ra) kéo dài tối đa, rồi cộng
+          thêm 1.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">pigeonhole principle</span><span class="vn">nguyên lý Dirichlet</span></span>
+          <span class="vocab-chip"><span class="en">guarantee</span><span class="vn">đảm bảo chắc chắn</span></span>
+          <span class="vocab-chip"><span class="en">worst case</span><span class="vn">trường hợp xấu nhất</span></span>
+          <span class="vocab-chip"><span class="en">at least</span><span class="vn">ít nhất</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd5b2-ex" data-qid="5.1">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Trong một hộp có các viên bi 4 màu: đỏ, xanh, vàng, trắng (đủ số lượng mỗi màu). Hỏi cần lấy ra ít nhất bao nhiêu viên bi để chắc chắn có 3 viên cùng màu?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Xác định "trường hợp xấu nhất": lấy nhiều nhất có thể mà vẫn chưa có 3 viên cùng màu — tối đa 2 viên mỗi màu.</div>
+            <div class="step" data-n="2" hidden>Với 4 màu, số viên tối đa trong trường hợp xấu nhất = 2×4 = 8 viên.</div>
+            <div class="step" data-n="3" hidden>Lấy thêm đúng 1 viên nữa (viên thứ 9) thì chắc chắn có màu nào đó đạt 3 viên.</div>
+            <div class="step" data-n="4" hidden>Vậy cần lấy ít nhất 8+1 = 9 viên.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 9 viên.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b2-p1" data-qid="5.2">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Một lớp học có 40 học sinh. Chắc chắn có ít nhất bao nhiêu học sinh sinh cùng tháng (1 năm có 12 tháng)?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Có 12 "chuồng" (tháng) và 40 "vật" (học sinh).</div>
+            <div class="step" data-n="2" hidden>Nếu mỗi tháng chỉ có tối đa 3 học sinh thì tổng tối đa chỉ là 12×3=36 < 40 — vô lý vì có 40 học sinh.</div>
+            <div class="step" data-n="3" hidden>Vậy phải có ít nhất một tháng có nhiều hơn 3, tức là từ 4 học sinh trở lên.</div>
+            <div class="step" data-n="4" hidden>Đây chính là công thức làm tròn lên ⌈40/12⌉ = 4.</div>
+            <div class="answer" hidden><b>Đáp án:</b> ít nhất 4 học sinh.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b2-p2" data-qid="5.3">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Chọn ngẫu nhiên các số từ tập hợp 40 số nguyên liên tiếp từ 21 đến 60. Cần chọn ít nhất bao nhiêu số để chắc chắn có 2 số có tổng bằng 81?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Ghép các số từ 21–60 thành các cặp có tổng bằng 81: (21,60), (22,59), ..., (40,41) — tất cả 40 số chia đúng thành 20 cặp, không dư số nào (vì 81 lẻ nên không số nào tự ghép với chính nó).</div>
+            <div class="step" data-n="2" hidden>Trường hợp xấu nhất: chọn 1 số từ mỗi cặp, được tối đa 20 số mà chưa có cặp nào đủ 2 số.</div>
+            <div class="step" data-n="3" hidden>Chọn thêm 1 số nữa (số thứ 21) chắc chắn trùng vào một cặp đã chọn 1 số, tạo thành tổng 81.</div>
+            <div class="step" data-n="4" hidden>Vậy cần ít nhất 20+1 = 21 số.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 21 số.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b2-exam" data-qid="5.4">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Trong một hộp có 20 viên bi đỏ, 15 viên bi xanh, 10 viên bi vàng và 25 viên bi trắng. Cần lấy ra ít nhất bao nhiêu viên để chắc chắn có đủ: 6 viên đỏ, 4 viên xanh và 3 viên vàng (không quan tâm số bi trắng)?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Trường hợp xấu nhất: lấy hết 25 viên trắng (không tính vào yêu cầu), và lấy "vừa thiếu 1" so với yêu cầu ở 3 màu còn lại: đỏ lấy 5 (thiếu 1 so với 6), xanh lấy 3 (thiếu 1 so với 4), vàng lấy 2 (thiếu 1 so với 3).</div>
+            <div class="step" data-n="2" hidden>Tổng xấu nhất = 25+5+3+2 = 35 viên mà vẫn chưa đủ yêu cầu ở bất kỳ màu nào.</div>
+            <div class="step" data-n="3" hidden>Vì cả 3 màu đỏ/xanh/vàng đều còn dư (chưa lấy hết kho), viên thứ 36 bắt buộc thuộc 1 trong 3 màu đó, làm màu đó đủ yêu cầu.</div>
+            <div class="step" data-n="4" hidden>Vậy cần lấy ít nhất 35+1 = 36 viên.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 36 viên.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd5-b3">
+        <h3>Bài 3 · Bài toán cầu thang (mô hình Fibonacci)</h3>
+        <p class="lesson-en">Lesson 3 · Stair-case problem</p>
+        <p class="concept">
+          Đếm số cách lên n bậc thang khi mỗi bước đi 1 hoặc 2 bậc tuân theo quy luật Fibonacci:
+          f(n) = f(n−1) + f(n−2) (vì bước cuối cùng hoặc là 1 bậc từ bậc n−1, hoặc là 2 bậc từ bậc n−2).
+          Nếu cho phép bước 1, 2 hoặc 3 bậc thì f(n) = f(n−1)+f(n−2)+f(n−3) (dãy Tribonacci). Nếu có bậc
+          "bị hỏng" không được đặt chân, quy ước số cách dừng ở bậc đó bằng 0 rồi tính tiếp bình thường.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">staircase</span><span class="vn">cầu thang</span></span>
+          <span class="vocab-chip"><span class="en">step</span><span class="vn">bậc thang/bước đi</span></span>
+          <span class="vocab-chip"><span class="en">recurrence</span><span class="vn">công thức truy hồi</span></span>
+          <span class="vocab-chip"><span class="en">forbidden</span><span class="vn">bị cấm/hỏng</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd5b3-ex" data-qid="5.5">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Một cầu thang có 6 bậc. Một người có thể bước lên 1 bậc hoặc 2 bậc mỗi lần. Hỏi có bao nhiêu cách để người đó lên hết 6 bậc?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Gọi f(n) là số cách lên n bậc. Bước cuối để đến bậc n là 1 bậc (từ bậc n−1) hoặc 2 bậc (từ bậc n−2), nên f(n) = f(n−1) + f(n−2).</div>
+            <div class="step" data-n="2" hidden>Giá trị khởi đầu: f(1)=1 (chỉ 1 cách), f(2)=2 (1+1 hoặc 2).</div>
+            <div class="step" data-n="3" hidden>Tính dần: f(3)=f(2)+f(1)=3, f(4)=5, f(5)=8, f(6)=13.</div>
+            <div class="step" data-n="4" hidden>Đây chính là dãy Fibonacci quen thuộc (1, 2, 3, 5, 8, 13, ...).</div>
+            <div class="answer" hidden><b>Đáp án:</b> 13 cách.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b3-p1" data-qid="5.6">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Một cầu thang có 5 bậc. Người đó có thể bước 1, 2 hoặc 3 bậc mỗi lần. Hỏi có bao nhiêu cách lên hết 5 bậc?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Với bước 1, 2 hoặc 3 bậc, công thức truy hồi là g(n) = g(n−1)+g(n−2)+g(n−3).</div>
+            <div class="step" data-n="2" hidden>Giá trị khởi đầu: g(0)=1 (quy ước đứng tại chân thang), g(1)=1, g(2)=2.</div>
+            <div class="step" data-n="3" hidden>Tính dần: g(3)=g(2)+g(1)+g(0)=2+1+1=4; g(4)=4+2+1=7; g(5)=7+4+2=13.</div>
+            <div class="step" data-n="4" hidden>Kiểm tra g(3)=4 bằng cách liệt kê: (1,1,1), (1,2), (2,1), (3) — đúng 4 cách.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 13 cách.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b3-p2" data-qid="5.7">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Một cầu thang có 10 bậc, mỗi lần bước 1 hoặc 2 bậc. Bậc thứ 5 bị hỏng, không được đặt chân lên. Hỏi có bao nhiêu cách lên hết 10 bậc?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tách hành trình thành 3 đoạn: (a) từ chân thang đến bậc 4, (b) bắt buộc bước 2 bậc từ bậc 4 thẳng lên bậc 6 (vì không được đặt chân ở bậc 5), (c) từ bậc 6 đến bậc 10.</div>
+            <div class="step" data-n="2" hidden>Đoạn (a): số cách đến bậc 4 bình thường = f(4) = 5 (theo Fibonacci: f(1)=1, f(2)=2, f(3)=3, f(4)=5).</div>
+            <div class="step" data-n="3" hidden>Đoạn (b) chỉ có đúng 1 cách (bước 2 bậc bắt buộc). Đoạn (c): từ bậc 6 lên bậc 10 là quãng 4 bậc, số cách cũng bằng f(4)=5 (cấu trúc giống hệt leo 4 bậc từ đầu).</div>
+            <div class="step" data-n="4" hidden>Nhân 3 đoạn: 5×1×5 = 25.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 25 cách.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b3-exam" data-qid="5.8">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge heat">Vòng Sơ loại</span></div>
+          <div class="qtext">Cầu thang có 8 bậc, mỗi lần bước 1 hoặc 2 bậc. Có bao nhiêu cách lên hết?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Áp dụng công thức Fibonacci f(n)=f(n−1)+f(n−2), f(1)=1, f(2)=2.</div>
+            <div class="step" data-n="2" hidden>f(3)=3, f(4)=5, f(5)=8, f(6)=13.</div>
+            <div class="step" data-n="3" hidden>f(7)=f(6)+f(5)=13+8=21.</div>
+            <div class="step" data-n="4" hidden>f(8)=f(7)+f(6)=21+13=34.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 34 cách.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson" id="cd5-b4">
+        <h3>Bài 4 · Bài toán đường đi (quy tắc lưới ô vuông và tam giác Pascal)</h3>
+        <p class="lesson-en">Lesson 4 · Routing problem</p>
+        <p class="concept">
+          Trên lưới ô vuông, chỉ được đi sang phải hoặc đi lên: nếu điểm B cách điểm A m bước phải và n
+          bước lên, số đường đi ngắn nhất từ A đến B = C(m+n, m) (chọn vị trí cho m bước "phải" trong tổng
+          m+n bước — đây chính là các số trong tam giác Pascal). Khi đường đi phải qua/tránh một điểm M
+          trung gian, tách thành các đoạn độc lập rồi dùng quy tắc nhân/phần bù.
+        </p>
+        <div class="vocab">
+          <span class="vocab-chip"><span class="en">grid</span><span class="vn">lưới ô vuông</span></span>
+          <span class="vocab-chip"><span class="en">shortest path</span><span class="vn">đường đi ngắn nhất</span></span>
+          <span class="vocab-chip"><span class="en">Pascal's triangle</span><span class="vn">tam giác Pascal</span></span>
+        </div>
+
+        <div class="problem" data-pool="cd5b4-ex" data-qid="5.21">
+          <div class="qhead"><span class="qtag">Ví dụ mẫu</span></div>
+          <div class="qtext">Trên lưới ô vuông, điểm B cách điểm A 4 bước sang phải và 3 bước lên trên. Hỏi có bao nhiêu đường đi ngắn nhất từ A đến B (chỉ được đi sang phải hoặc đi lên)?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Mỗi đường đi ngắn nhất là một dãy gồm 4 bước "phải" (P) và 3 bước "lên" (L), tổng cộng 7 bước.</div>
+            <div class="step" data-n="2" hidden>Số đường đi = số cách chọn vị trí cho 4 bước P (hoặc 3 bước L) trong 7 vị trí.</div>
+            <div class="step" data-n="3" hidden>Đây chính là C(7,4) (hoặc C(7,3), hai giá trị bằng nhau).</div>
+            <div class="step" data-n="4" hidden>Tính: C(7,4)=7!/(4!×3!)=35.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 35 đường đi.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b4-p1" data-qid="5.22">
+          <div class="qhead"><span class="qtag">Luyện tập · Cơ bản</span></div>
+          <div class="qtext">Trên lưới ô vuông, điểm B cách A 3 bước phải và 3 bước lên. Có bao nhiêu đường đi ngắn nhất từ A đến B?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Mỗi đường đi có 3 bước phải và 3 bước lên, tổng 6 bước.</div>
+            <div class="step" data-n="2" hidden>Số đường đi = C(6,3) (chọn vị trí cho 3 bước phải trong 6 bước).</div>
+            <div class="step" data-n="3" hidden>C(6,3)=6!/(3!×3!).</div>
+            <div class="step" data-n="4" hidden>Tính: C(6,3)=20.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 20 đường đi.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b4-p2" data-qid="5.23">
+          <div class="qhead"><span class="qtag">Luyện tập · Nâng cao</span></div>
+          <div class="qtext">Trên lưới ô vuông, điểm B cách A 6 bước phải và 4 bước lên. Đường đi bắt buộc phải qua điểm M, biết M cách A 2 bước phải và 2 bước lên. Hỏi có bao nhiêu đường đi ngắn nhất từ A đến B đi qua M?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tách hành trình A→B thành 2 đoạn độc lập: A→M và M→B (đường đi ngắn nhất qua M luôn tách được như vậy).</div>
+            <div class="step" data-n="2" hidden>Đoạn A→M: cách 2 phải, 2 lên, tổng 4 bước → số đường = C(4,2)=6.</div>
+            <div class="step" data-n="3" hidden>Đoạn M→B: B cách A 6 phải 4 lên, mà M đã đi 2 phải 2 lên, nên M→B còn lại 4 phải, 2 lên, tổng 6 bước → số đường = C(6,2)=15.</div>
+            <div class="step" data-n="4" hidden>Áp dụng quy tắc nhân (2 giai đoạn nối tiếp): 6×15=90.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 90 đường đi.</div>
+          </div>
+        </div>
+
+        <div class="problem" data-pool="cd5b4-exam" data-qid="5.24">
+          <div class="qhead"><span class="qtag">Luyện đề</span><span class="round-badge final">Vòng Chung kết</span></div>
+          <div class="qtext">Trên lưới ô vuông, B cách A 5 bước phải và 3 bước lên. Đường đi KHÔNG được phép đi qua điểm M (M cách A 2 bước phải, 1 bước lên). Hỏi có bao nhiêu đường đi ngắn nhất từ A đến B không qua M?</div>
+          <div class="controls">
+            <button class="btn-hint">💡 Gợi ý bước tiếp theo</button>
+            <button class="btn-answer">👁 Xem đáp số ngay</button>
+            <button class="btn-variant">🔄 Đổi bài tương tự</button>
+            <button class="btn-reset" hidden>↺ Làm lại</button>
+          </div>
+          <div class="sol-body">
+            <div class="step" data-n="1" hidden>Tổng số đường đi không ràng buộc từ A đến B (5 phải, 3 lên, tổng 8 bước): C(8,3)=56.</div>
+            <div class="step" data-n="2" hidden>Tính số đường đi CÓ đi qua M: đoạn A→M (2 phải,1 lên,tổng3): C(3,1)=3; đoạn M→B (còn lại 3 phải,2 lên,tổng5): C(5,2)=10; nhân lại: 3×10=30.</div>
+            <div class="step" data-n="3" hidden>Số đường đi không qua M = tổng số đường trừ đi số đường có qua M: 56−30=26.</div>
+            <div class="step" data-n="4" hidden>Đối chiếu: 26<56 hợp lý vì đã loại bỏ các đường vi phạm.</div>
+            <div class="answer" hidden><b>Đáp án:</b> 26 đường đi.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  Tài liệu tự soạn cho mục Ôn luyện — Toán 6 · Toán Quốc Tế TIMO – HKIMO. Đề bài và lời giải là nội
+  dung gốc, chỉ tham khảo cấu trúc 5 chuyên đề/23 bài học của thể loại tài liệu ôn thi Olympic Toán
+  quốc tế khối 6 quen thuộc.
+  <a href="/">‹ Quay lại trang chủ</a>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var prefersReducedMotion = false;
+  try { prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+
+  var VARIANTS = {
+    'cd1b1-ex': [{
+      qtext: 'Tìm số hạng thứ 30 của dãy số: 8, 15, 22, 29, ...',
+      steps: [
+        'Nhận diện dãy cách đều: công sai d = 15 − 8 = 7, số hạng đầu u<sub>1</sub> = 8.',
+        'Viết công thức tổng quát: u<sub>n</sub> = u<sub>1</sub> + (n−1)d.',
+        'Thay n = 30: u<sub>30</sub> = 8 + 29×7 = 8 + 203 = 211.',
+        'Đối chiếu: u<sub>2</sub> = 8+7 = 15, khớp đề bài.'
+      ],
+      answer: '<b>Đáp án:</b> 211.'
+    }],
+    'cd1b1-p1': [{
+      qtext: 'Một dãy hình que diêm: Hình 1 có 6 que, mỗi hình sau thêm 4 que so với hình trước. Hỏi hình thứ 20 có bao nhiêu que diêm?',
+      steps: [
+        'Đây là dãy cách đều với công sai d = 4.',
+        'u<sub>n</sub> = u<sub>1</sub> + (n−1)d, với u<sub>1</sub> = 6.',
+        'Thay n = 20: u<sub>20</sub> = 6 + 19×4 = 6 + 76 = 82.',
+        'Kiểm tra: hình 2 phải có 6+4=10 que, hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 82 que diêm.'
+    }],
+    'cd1b1-p2': [{
+      qtext: 'Cho dãy số: 3, 6, 11, 18, 27, ... Tìm số hạng thứ 10.',
+      steps: [
+        'Hiệu giữa các số hạng tăng dần (3,5,7,9,...) nên thử liên hệ bình phương vị trí.',
+        'So sánh: 1²+2=3, 2²+2=6, 3²+2=11, 4²+2=18 — đúng cả 4 số hạng đầu! Quy luật u<sub>n</sub> = n²+2.',
+        'Kiểm tra thêm số hạng thứ 5: 5²+2=27, khớp đề bài.',
+        'Thay n=10: u<sub>10</sub> = 10²+2 = 102.'
+      ],
+      answer: '<b>Đáp án:</b> 102.'
+    }],
+    'cd1b1-exam': [{
+      qtext: 'Dãy số: 9, 16, 25, 36, 49, ... Tìm số hạng thứ 15.',
+      steps: [
+        'Nhận ra: 9=3², 16=4², 25=5², 36=6² — mỗi số hạng là bình phương của (vị trí+2).',
+        'Kiểm tra: n=1→3²=9 ✓, n=2→4²=16 ✓, n=3→5²=25 ✓. Quy luật u<sub>n</sub>=(n+2)².',
+        'Thay n=15: u<sub>15</sub> = (15+2)² = 17².',
+        '17² = 289.'
+      ],
+      answer: '<b>Đáp án:</b> 289.'
+    }],
+
+    'cd1b3-ex': [{
+      qtext: 'Sân có gà và thỏ tổng cộng 50 con, tổng số chân là 140. Tính số con mỗi loại.',
+      steps: [
+        'Giả sử tất cả 50 con đều là gà (2 chân): tổng chân giả định = 50×2 = 100.',
+        'So với thực tế 140 chân, còn thiếu 140−100 = 40 chân.',
+        'Mỗi lần đổi 1 gà thành 1 thỏ, chân tăng thêm 2. Số thỏ = 40÷2 = 20.',
+        'Số gà = 50−20 = 30. Thử lại: 30×2+20×4 = 60+80 = 140 ✓.'
+      ],
+      answer: '<b>Đáp án:</b> 30 gà, 20 thỏ.'
+    }],
+    'cd1b3-p1': [{
+      qtext: 'Hiện nay tuổi mẹ gấp 5 lần tuổi con. Sau 6 năm nữa, tuổi mẹ gấp 3 lần tuổi con. Tính tuổi hiện nay của mỗi người.',
+      steps: [
+        'Gọi tuổi con hiện nay là a, tuổi mẹ hiện nay là 5a.',
+        'Sau 6 năm: 5a+6 = 3(a+6).',
+        'Giải: 5a+6=3a+18 → 2a=12 → a=6.',
+        'Thử lại: mẹ hiện 30, sau 6 năm mẹ 36, con 12, và 36=3×12 ✓.'
+      ],
+      answer: '<b>Đáp án:</b> con 6 tuổi, mẹ 30 tuổi.'
+    }],
+    'cd1b3-p2': [{
+      qtext: 'Vòi A chảy một mình đầy bể trong 3 giờ, vòi B chảy một mình đầy bể trong 5 giờ. Cùng chảy thì sau bao lâu đầy bể?',
+      steps: [
+        'Năng suất: A=1/3 bể/giờ, B=1/5 bể/giờ.',
+        'Năng suất chung = 1/3+1/5 = 5/15+3/15 = 8/15 bể/giờ.',
+        'Thời gian đầy bể = 1÷(8/15) = 15/8 giờ.',
+        '15/8 = 1,875 giờ ≈ 1 giờ 52 phút 30 giây.'
+      ],
+      answer: '<b>Đáp án:</b> 15/8 giờ (≈1 giờ 52,5 phút).'
+    }],
+    'cd1b3-exam': [{
+      qtext: '12 công nhân dự kiến làm xong công việc trong 10 ngày. Sau khi làm được 4 ngày thì có thêm 8 công nhân cùng năng suất tham gia. Hỏi công việc hoàn thành sớm hơn dự kiến bao nhiêu ngày?',
+      steps: [
+        'Tổng khối lượng công việc = 12×10 = 120 người-ngày.',
+        'Sau 4 ngày đầu (12 người), hoàn thành 12×4=48 người-ngày, còn lại 120−48=72.',
+        'Từ ngày 5, có 12+8=20 người, số ngày cần = 72÷20 = 3,6 ngày → tổng thời gian thực tế = 4+3,6 = 7,6 ngày.',
+        'So với dự kiến 10 ngày: hoàn thành sớm hơn 10−7,6 = 2,4 ngày.'
+      ],
+      answer: '<b>Đáp án:</b> sớm hơn 2,4 ngày.'
+    }],
+
+    'cd2b1-ex': [{
+      qtext: 'Tính tổng: 5 + 9 + 13 + ... + 205.',
+      steps: [
+        'Công sai d = 9−5 = 4.',
+        'Số số hạng n = (205−5)/4 + 1 = 50+1 = 51.',
+        'Tổng S = 51×(5+205)/2 = 51×105 = 5355.',
+        'Kiểm tra hợp lý theo xu hướng tăng dần của dãy.'
+      ],
+      answer: '<b>Đáp án:</b> 5355.'
+    }],
+    'cd2b1-p1': [{
+      qtext: 'Tính tổng các số chẵn từ 2 đến 100.',
+      steps: [
+        'Dãy cách đều d=2, u<sub>1</sub>=2, u<sub>n</sub>=100.',
+        'Số số hạng n = (100−2)/2+1 = 50.',
+        'Tổng S = 50×(2+100)/2 = 50×51 = 2550.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 2550.'
+    }],
+    'cd2b1-p2': [{
+      qtext: 'Tính tổng các số chia hết cho 4 trong khoảng từ 100 đến 400 (tính cả hai đầu).',
+      steps: [
+        'Số chia hết cho 4 nhỏ nhất ≥100 là 100; lớn nhất ≤400 là 400.',
+        'Số số hạng n = (400−100)/4+1 = 75+1 = 76.',
+        'Tổng S = 76×(100+400)/2 = 76×250 = 19000.',
+        'Kiểm tra hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 19000.'
+    }],
+    'cd2b1-exam': [{
+      qtext: 'Tính giá trị của: 1/(4×6) + 1/(6×8) + 1/(8×10) + ... + 1/(18×20).',
+      steps: [
+        'Mỗi số hạng có dạng 1/(a(a+2)) với a=4,6,8,...,18 (cách đều 2).',
+        'Áp dụng: 1/(a(a+2)) = (1/2)(1/a − 1/(a+2)).',
+        'Cộng dồn, các số hạng giữa triệt tiêu, còn lại (1/2)(1/4 − 1/20).',
+        '1/4−1/20 = 5/20−1/20 = 4/20 = 1/5. Nhân 1/2 được 1/10.'
+      ],
+      answer: '<b>Đáp án:</b> 1/10.'
+    }],
+
+    'cd2b4-ex': [{
+      qtext: 'Tính giá trị của: 3 − 1/(2 + 1/(3 − 1/5)).',
+      steps: [
+        'Tầng trong cùng: 3 − 1/5 = 14/5.',
+        'Tầng giữa: 2 + 1÷(14/5) = 2 + 5/14 = 28/14+5/14 = 33/14.',
+        'Tầng ngoài: 3 − 1÷(33/14) = 3 − 14/33 = 99/33 − 14/33 = 85/33.',
+        'Đối chiếu: 85/33 ≈ 2,58, hợp lý gần 3.'
+      ],
+      answer: '<b>Đáp án:</b> 85/33.'
+    }],
+    'cd2b4-p1': [{
+      qtext: 'Tính giá trị của: 1/(3 + 1/4).',
+      steps: [
+        'Tính mẫu số trước: 3+1/4 = 13/4.',
+        'Lấy nghịch đảo: 1÷(13/4) = 4/13.',
+        'Kết quả là 4/13.',
+        'Kiểm tra: 4/13≈0,31, hợp lý vì 1/(hơn 3) phải nhỏ hơn 1/3.'
+      ],
+      answer: '<b>Đáp án:</b> 4/13.'
+    }],
+    'cd2b4-p2': [{
+      qtext: 'Tìm giá trị dương x thoả mãn x = 3 + 1/x (liên phân số vô hạn với số 3 lặp lại).',
+      steps: [
+        'Vì lặp lại vô hạn, x = 3 + 1/x.',
+        'Nhân hai vế với x: x² = 3x+1, tức x²−3x−1=0.',
+        'Giải phương trình bậc hai: x = (3±√13)/2.',
+        'Chọn nghiệm dương: x = (3+√13)/2 ≈ 3,30.'
+      ],
+      answer: '<b>Đáp án:</b> x = (3+√13)/2 ≈ 3,30.'
+    }],
+    'cd2b4-exam': [{
+      qtext: 'Tính giá trị của: 5 − 1/(2 + 1/3).',
+      steps: [
+        'Tầng trong: 2 + 1/3 = 7/3.',
+        'Tầng ngoài: 5 − 1÷(7/3) = 5 − 3/7 = 35/7−3/7 = 32/7.',
+        'Kết quả 32/7.',
+        'Đối chiếu: 32/7≈4,57, hợp lý gần 5.'
+      ],
+      answer: '<b>Đáp án:</b> 32/7.'
+    }],
+
+    'cd3b1-ex': [{
+      qtext: 'Cho phép toán ★ được định nghĩa: a★b = a×b − a + b. Tính giá trị của 4★6.',
+      steps: [
+        'Xác định quy tắc: a★b = a×b − a + b.',
+        'Thay a=4, b=6: 4×6 = 24.',
+        'Tính tiếp: 24 − 4 + 6 = 26.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 26.'
+    }],
+    'cd3b1-p1': [{
+      qtext: 'Cho phép toán ◆ định nghĩa: a◆b = 3a + 2b. Tính (2◆5)◆1.',
+      steps: [
+        'Tính phần trong ngoặc trước: 2◆5 = 3×2+2×5 = 6+10 = 16.',
+        'Thay vào biểu thức ngoài: 16◆1.',
+        'Áp dụng quy tắc: 16◆1 = 3×16+2×1 = 48+2 = 50.',
+        'Kiểm tra thứ tự tính đúng.'
+      ],
+      answer: '<b>Đáp án:</b> 50.'
+    }],
+    'cd3b1-p2': [{
+      qtext: 'Với quy tắc a⊕b = (a²−b²)/(a−b) (= a+b), tính (7⊕2)×(10⊕5).',
+      steps: [
+        'Nhắc lại: a⊕b = a+b (rút gọn bằng hằng đẳng thức hiệu hai bình phương).',
+        'Tính 7⊕2 = 7+2 = 9.',
+        'Tính 10⊕5 = 10+5 = 15.',
+        'Nhân hai kết quả: 9×15 = 135.'
+      ],
+      answer: '<b>Đáp án:</b> 135.'
+    }],
+    'cd3b1-exam': [{
+      qtext: 'Cho a▲b = a²−2b. Tính giá trị của (3▲2)▲(5▲1).',
+      steps: [
+        'Tính 3▲2 = 3²−2×2 = 9−4 = 5.',
+        'Tính 5▲1 = 5²−2×1 = 25−2 = 23.',
+        'Tính 5▲23 = 5²−2×23 = 25−46 = −21.',
+        'Đối chiếu: kết quả âm hợp lý vì 2×23 lớn hơn 5².'
+      ],
+      answer: '<b>Đáp án:</b> −21.'
+    }],
+
+    'cd3b3-ex': [{
+      qtext: 'Tìm chữ số tận cùng của 3<sup>2024</sup>.',
+      steps: [
+        'Chữ số tận cùng của 3<sup>n</sup> lặp chu kỳ 4: 3, 9, 7, 1.',
+        'Lấy 2024 chia cho 4: 2024 = 4×506 + 0, dư 0.',
+        'Dư 0 nghĩa là lấy chữ số ở vị trí cuối chu kỳ (vị trí 4): chữ số 1.',
+        'Đối chiếu: 3⁴=81 tận cùng 1, khớp quy luật.'
+      ],
+      answer: '<b>Đáp án:</b> 1.'
+    }],
+    'cd3b3-p1': [{
+      qtext: 'Tìm chữ số tận cùng của tích: 17 × 29 × 36 × 44.',
+      steps: [
+        'Chữ số tận cùng từng thừa số: 7, 9, 6, 4.',
+        '7×9=63 → tận cùng 3.',
+        '3×6=18 → tận cùng 8.',
+        '8×4=32 → tận cùng 2.'
+      ],
+      answer: '<b>Đáp án:</b> 2.'
+    }],
+    'cd3b3-p2': [{
+      qtext: 'Tìm chữ số tận cùng của B = 2<sup>2024</sup> + 8<sup>2024</sup>.',
+      steps: [
+        'Chu kỳ tận cùng của 2<sup>n</sup>: 2,4,8,6. 2024 chia 4 dư 0 → lấy vị trí cuối chu kỳ: 6.',
+        'Chu kỳ tận cùng của 8<sup>n</sup>: 8,4,2,6. 2024 chia 4 dư 0 → lấy vị trí cuối chu kỳ: 6.',
+        'Cộng hai chữ số tận cùng: 6+6=12.',
+        'Lấy chữ số tận cùng của tổng: 2.'
+      ],
+      answer: '<b>Đáp án:</b> 2.'
+    }],
+    'cd3b3-exam': [{
+      qtext: 'Tìm chữ số tận cùng của tích P = 3<sup>15</sup> × 7<sup>20</sup> × 9<sup>9</sup>.',
+      steps: [
+        'Tận cùng 3<sup>15</sup>: chu kỳ (3,9,7,1), 15 chia 4 dư 3 → vị trí 3 = 7.',
+        'Tận cùng 7<sup>20</sup>: chu kỳ (7,9,3,1), 20 chia 4 dư 0 → vị trí 4 = 1.',
+        'Tận cùng 9<sup>9</sup>: chu kỳ (9,1), 9 lẻ → 9.',
+        'Nhân 3 chữ số tận cùng: 7×1×9=63 → tận cùng 3.'
+      ],
+      answer: '<b>Đáp án:</b> 3.'
+    }],
+
+    'cd4b2-ex': [{
+      qtext: 'Một mảnh đất hình chữ nhật 20m×15m. Người ta đào một hồ vuông cạnh 8m bên trong. Tính diện tích còn lại.',
+      steps: [
+        'Diện tích cả mảnh đất: 20×15 = 300 m².',
+        'Diện tích hồ vuông: 8×8 = 64 m².',
+        'Diện tích còn lại = 300−64 = 236 m².',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 236 m².'
+    }],
+    'cd4b2-p1': [{
+      qtext: 'Một hình chữ L tạo từ hình chữ nhật 12m×9m, khoét một góc 5m×4m. Tính diện tích hình chữ L.',
+      steps: [
+        'Diện tích hình chữ nhật ban đầu: 12×9=108 m².',
+        'Diện tích phần khoét: 5×4=20 m².',
+        'Diện tích hình chữ L = 108−20 = 88 m².',
+        'Kiểm tra hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 88 m².'
+    }],
+    'cd4b2-p2': [{
+      qtext: 'Hình vuông cạnh 10cm và hình vuông cạnh 6cm ghép sát nhau tương tự ví dụ mẫu. Tính chu vi hình ghép.',
+      steps: [
+        'Chu vi riêng: hình vuông 10cm là 4×10=40cm; hình vuông 6cm là 4×6=24cm.',
+        'Cạnh chung dài 6cm bị ẩn vào trong.',
+        'Chu vi hình ghép = 40+24−2×6 = 64−12 = 52cm.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 52 cm.'
+    }],
+    'cd4b2-exam': [{
+      qtext: 'Một hình tam giác có đáy 14cm và chiều cao 9cm. Tính diện tích tam giác đó.',
+      steps: [
+        'Công thức diện tích tam giác: đáy × chiều cao ÷ 2.',
+        'Thay số: 14×9 = 126.',
+        '126÷2 = 63.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 63 cm².'
+    }],
+
+    'cd4b4-ex': [{
+      qtext: 'Một hình hộp chữ nhật có chiều dài 10cm, chiều rộng 6cm, chiều cao 3cm. Tính thể tích và diện tích toàn phần.',
+      steps: [
+        'Thể tích = 10×6×3 = 180cm³.',
+        'Diện tích 3 cặp mặt: 10×6=60, 6×3=18, 3×10=30.',
+        'Tổng 3 mặt = 60+18+30=108, nhân đôi: 216cm².',
+        'Kiểm tra hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> V=180cm³, diện tích toàn phần=216cm².'
+    }],
+    'cd4b4-p1': [{
+      qtext: 'Một khối lập phương có cạnh 9cm. Tính thể tích và diện tích toàn phần.',
+      steps: [
+        'Công thức thể tích lập phương: V = cạnh³.',
+        'Thay số: V = 9³ = 729cm³.',
+        'Công thức diện tích toàn phần: 6×cạnh² = 6×81 = 486cm².',
+        'Đối chiếu hợp lý theo công thức chuẩn.'
+      ],
+      answer: '<b>Đáp án:</b> V=729cm³, diện tích toàn phần=486cm².'
+    }],
+    'cd4b4-p2': [{
+      qtext: 'Một khối gỗ hình hộp chữ nhật 8cm×6cm×5cm. Khoét một lỗ tiết diện vuông cạnh 3cm, xuyên suốt theo chiều dài 8cm. Tính thể tích còn lại.',
+      steps: [
+        'Thể tích khối ban đầu: 8×6×5 = 240cm³.',
+        'Lỗ khoét tiết diện 3×3cm, xuyên suốt 8cm.',
+        'Thể tích phần khoét = 3×3×8 = 72cm³.',
+        'Thể tích còn lại = 240−72 = 168cm³.'
+      ],
+      answer: '<b>Đáp án:</b> 168 cm³.'
+    }],
+    'cd4b4-exam': [{
+      qtext: 'Một bể cá hình hộp chữ nhật đáy 40cm×25cm, cao 30cm, đang chứa nước cao 18cm. Hỏi cần đổ thêm bao nhiêu lít nước để đầy bể? (1 lít = 1000cm³)',
+      steps: [
+        'Chiều cao nước cần thêm: 30−18 = 12cm.',
+        'Thể tích nước cần thêm = 40×25×12 = 12000cm³.',
+        'Đổi ra lít: 12000÷1000 = 12 lít.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 12 lít.'
+    }],
+
+    'cd5b2-ex': [{
+      qtext: 'Trong hộp có bi 5 màu (đủ số lượng mỗi màu). Cần lấy ít nhất bao nhiêu viên để chắc chắn có 4 viên cùng màu?',
+      steps: [
+        'Trường hợp xấu nhất: lấy tối đa 3 viên mỗi màu mà chưa có 4 viên cùng màu nào.',
+        'Với 5 màu, tối đa = 3×5 = 15 viên.',
+        'Lấy thêm 1 viên nữa (viên thứ 16) chắc chắn có màu đạt 4 viên.',
+        'Vậy cần ít nhất 16 viên.'
+      ],
+      answer: '<b>Đáp án:</b> 16 viên.'
+    }],
+    'cd5b2-p1': [{
+      qtext: 'Một trường có 100 học sinh. Chắc chắn có ít nhất bao nhiêu học sinh sinh cùng tháng?',
+      steps: [
+        'Có 12 tháng và 100 học sinh.',
+        'Nếu mỗi tháng tối đa 8 học sinh thì tổng tối đa 12×8=96<100 — vô lý.',
+        'Vậy phải có ít nhất 1 tháng có từ 9 học sinh trở lên.',
+        'Đây là ⌈100/12⌉=9.'
+      ],
+      answer: '<b>Đáp án:</b> ít nhất 9 học sinh.'
+    }],
+    'cd5b2-p2': [{
+      qtext: 'Chọn số từ tập 50 số nguyên liên tiếp từ 11 đến 60. Cần chọn ít nhất bao nhiêu số để chắc chắn có 2 số có tổng bằng 71?',
+      steps: [
+        'Ghép cặp có tổng 71: (11,60),(12,59),...,(35,36) — 50 số chia đúng thành 25 cặp (71 lẻ nên không số nào tự ghép với chính nó).',
+        'Trường hợp xấu nhất: chọn 1 số mỗi cặp, được tối đa 25 số.',
+        'Chọn thêm 1 số nữa chắc chắn tạo thành 1 cặp đủ tổng 71.',
+        'Vậy cần ít nhất 25+1=26 số.'
+      ],
+      answer: '<b>Đáp án:</b> 26 số.'
+    }],
+    'cd5b2-exam': [{
+      qtext: 'Một túi có các viên kẹo 3 vị: cam, dâu, nho (đủ số lượng). Cần lấy ít nhất bao nhiêu viên để chắc chắn có 5 viên cùng vị?',
+      steps: [
+        'Trường hợp xấu nhất: lấy tối đa 4 viên mỗi vị mà chưa đủ 5 viên cùng vị nào.',
+        'Với 3 vị, tối đa = 4×3 = 12 viên.',
+        'Lấy thêm 1 viên nữa (viên thứ 13) chắc chắn có vị đạt 5 viên.',
+        'Vậy cần ít nhất 13 viên.'
+      ],
+      answer: '<b>Đáp án:</b> 13 viên.'
+    }],
+
+    'cd5b3-ex': [{
+      qtext: 'Một cầu thang có 7 bậc, mỗi lần bước 1 hoặc 2 bậc. Có bao nhiêu cách lên hết 7 bậc?',
+      steps: [
+        'f(n)=f(n−1)+f(n−2), f(1)=1, f(2)=2.',
+        'f(3)=3, f(4)=5, f(5)=8, f(6)=13.',
+        'f(7)=f(6)+f(5)=13+8=21.',
+        'Đây là dãy Fibonacci quen thuộc.'
+      ],
+      answer: '<b>Đáp án:</b> 21 cách.'
+    }],
+    'cd5b3-p1': [{
+      qtext: 'Một cầu thang có 6 bậc, bước 1, 2 hoặc 3 bậc mỗi lần. Có bao nhiêu cách lên hết?',
+      steps: [
+        'g(n)=g(n−1)+g(n−2)+g(n−3), g(0)=1,g(1)=1,g(2)=2.',
+        'g(3)=g(2)+g(1)+g(0)=2+1+1=4.',
+        'g(4)=g(3)+g(2)+g(1)=4+2+1=7.',
+        'g(5)=g(4)+g(3)+g(2)=7+4+2=13; g(6)=g(5)+g(4)+g(3)=13+7+4=24.'
+      ],
+      answer: '<b>Đáp án:</b> 24 cách.'
+    }],
+    'cd5b3-p2': [{
+      qtext: 'Cầu thang 12 bậc, bước 1 hoặc 2 bậc mỗi lần, bậc thứ 7 bị hỏng. Hỏi có bao nhiêu cách lên hết 12 bậc?',
+      steps: [
+        'Tách hành trình: (a) đến bậc 6, (b) nhảy vọt bậc 6→8 (bắt buộc, 1 cách), (c) từ bậc 8 đến bậc 12 (4 bậc).',
+        'Đoạn (a): f(6)=13 (Fibonacci: f1=1,f2=2,f3=3,f4=5,f5=8,f6=13).',
+        'Đoạn (c): quãng 4 bậc, số cách = f(4) = 5.',
+        'Nhân 3 đoạn: 13×1×5 = 65.'
+      ],
+      answer: '<b>Đáp án:</b> 65 cách.'
+    }],
+    'cd5b3-exam': [{
+      qtext: 'Cầu thang 13 bậc, bước 1, 2 hoặc 3 bậc mỗi lần, bậc thứ 9 bị hỏng. Hỏi có bao nhiêu cách lên hết 13 bậc?',
+      steps: [
+        'Vì bước 1,2,3 bậc, dùng công thức h(n)=h(n−1)+h(n−2)+h(n−3), nhưng quy ước h(9)=0 (bậc cấm).',
+        'Tính dần từ h0=1: h1=1,h2=2,h3=4,h4=7,h5=13,h6=24,h7=44,h8=81.',
+        'Đặt h9=0 (cấm), rồi tính tiếp: h10=h9+h8+h7=0+81+44=125; h11=h10+h9+h8=125+0+81=206; h12=h11+h10+h9=206+125+0=331.',
+        'h13=h12+h11+h10=331+206+125=662.'
+      ],
+      answer: '<b>Đáp án:</b> 662 cách.'
+    }],
+
+    'cd1b2-ex': [{
+      qtext: 'Hình 1 gồm 1 tam giác (3 que diêm). Mỗi hình sau ghép thêm 1 tam giác dùng chung 1 cạnh với hình trước (thêm 2 que mới). Hỏi Hình 15 có bao nhiêu que diêm?',
+      steps: [
+        'Hình 1 có 3 que (1 tam giác đơn).',
+        'Từ hình 2 trở đi, mỗi tam giác mới dùng chung 1 cạnh nên chỉ cần thêm 2 que — dãy cách đều d=2.',
+        'Công thức: u<sub>n</sub> = 3 + (n−1)×2.',
+        'Thay n=15: 3 + 14×2 = 3+28 = 31.'
+      ],
+      answer: '<b>Đáp án:</b> 31 que diêm.'
+    }],
+    'cd1b2-p1': [{
+      qtext: 'Hình n có n² chấm tròn (xếp thành hình vuông cạnh n). Hỏi Hình 14 có bao nhiêu chấm?',
+      steps: [
+        'Quy luật: số chấm hình n = n².',
+        'Kiểm tra với vài hình đầu đã cho trong đề gốc là hợp lý.',
+        'Thay n=14: 14²=196.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 196 chấm tròn.'
+    }],
+    'cd1b2-p2': [{
+      qtext: 'Hình n theo quy luật "số tam giác": số chấm hình n = n(n+1)/2. Hỏi Hình 25 có bao nhiêu chấm tròn?',
+      steps: [
+        'Công thức số tam giác: T<sub>n</sub> = n(n+1)/2.',
+        'Thay n=25: 25×26/2.',
+        'Tính: 25×26=650, chia 2=325.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 325 chấm tròn.'
+    }],
+    'cd1b2-exam': [{
+      qtext: 'Một dãy hình ghép từ que diêm có số que ở Hình n tuân theo quy luật u<sub>n</sub>=n²+3n (kiểm tra: Hình 1 có 4 que, Hình 2 có 10 que, Hình 3 có 18 que, Hình 4 có 28 que). Tìm số que diêm của Hình 8.',
+      steps: [
+        'Hiệu giữa các số hạng liên tiếp: 10−4=6, 18−10=8, 28−18=10 — hiệu tăng đều thêm 2 mỗi lần, dấu hiệu của quy luật bậc hai.',
+        'Kiểm tra công thức u<sub>n</sub>=n²+3n: n=1→4 ✓, n=2→10 ✓, n=3→18 ✓, n=4→28 ✓.',
+        'Thay n=8: u<sub>8</sub>=8²+3×8=64+24.',
+        'Tính: 64+24=88.'
+      ],
+      answer: '<b>Đáp án:</b> 88 que diêm.'
+    }],
+
+    'cd1b4-ex': [{
+      qtext: 'Hôm nay là thứ Hai. Hỏi sau 45 ngày nữa là thứ mấy?',
+      steps: [
+        'Vì tuần lặp lại mỗi 7 ngày, chỉ cần quan tâm số dư khi chia 45 cho 7.',
+        '45 = 7×6 + 3, dư 3.',
+        'Đếm từ thứ Hai, tiến thêm 3 ngày: Hai→Ba→Tư→Năm.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> thứ Năm.'
+    }],
+    'cd1b4-p1': [{
+      qtext: 'Nếu ngày 3 tháng 6 là thứ Năm thì ngày 30 tháng 6 cùng năm là thứ mấy?',
+      steps: [
+        'Số ngày trôi qua từ 3/6 đến 30/6 là 30−3=27 ngày.',
+        '27 = 7×3 + 6, dư 6.',
+        'Đếm từ thứ Năm tiến 6 ngày: Năm→Sáu→Bảy→CN→Hai→Ba→Tư.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> thứ Tư.'
+    }],
+    'cd1b4-p2': [{
+      qtext: 'Biết ngày 1 tháng 1 năm 2023 là thứ Chủ Nhật (2023 không phải năm nhuận). Hỏi ngày 1 tháng 1 năm 2024 là thứ mấy?',
+      steps: [
+        'Năm 2023 không phải năm nhuận (không chia hết cho 4), nên có 365 ngày.',
+        '365 = 7×52 + 1, dư 1.',
+        'Đếm từ Chủ Nhật tiến 1 ngày: CN→Hai.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> thứ Hai.'
+    }],
+    'cd1b4-exam': [{
+      qtext: 'Biết ngày 1 tháng 3 năm 2024 là thứ Sáu. Hỏi ngày 1 tháng 3 năm 2025 là thứ mấy? (Lưu ý: khoảng thời gian này đi qua tháng 2 của năm nào?)',
+      steps: [
+        'Khoảng thời gian từ 1/3/2024 đến 1/3/2025 đi qua tháng 2/2025 — năm 2025 KHÔNG phải năm nhuận (2025 không chia hết cho 4), nên tháng 2/2025 chỉ có 28 ngày, và tổng số ngày trong cả khoảng là 365 (năm thường).',
+        '365 = 7×52 + 1, dư 1.',
+        'Đếm từ thứ Sáu tiến 1 ngày: Sáu→Bảy.',
+        'Đối chiếu: cần chú ý khoảng "từ tháng 3 năm nhuận đến tháng 3 năm sau" không đi qua tháng 2 của chính năm nhuận đó, nên vẫn tính đủ 365 ngày như năm thường — một điểm dễ nhầm.'
+      ],
+      answer: '<b>Đáp án:</b> thứ Bảy.'
+    }],
+
+    'cd1b5-ex': [{
+      qtext: 'Một máy đóng gói đóng được 480 hộp trong 20 phút. Hỏi trong 45 phút đóng được bao nhiêu hộp?',
+      steps: [
+        'Tính năng suất: 480÷20=24 hộp/phút.',
+        'Năng suất không đổi nên số hộp tỉ lệ thuận với thời gian.',
+        'Trong 45 phút: 24×45.',
+        'Tính: 24×45=1080 hộp.'
+      ],
+      answer: '<b>Đáp án:</b> 1080 hộp.'
+    }],
+    'cd1b5-p1': [{
+      qtext: 'Người thợ C làm xong 1 sản phẩm trong 9 phút, thợ D làm xong trong 5 phút. Trong 90 phút, ai làm nhiều hơn và nhiều hơn bao nhiêu?',
+      steps: [
+        'Số sản phẩm C làm trong 90 phút: 90÷9=10.',
+        'Số sản phẩm D làm trong 90 phút: 90÷5=18.',
+        'So sánh: D làm nhiều hơn C.',
+        'Chênh lệch: 18−10=8 sản phẩm.'
+      ],
+      answer: '<b>Đáp án:</b> D làm nhiều hơn C 8 sản phẩm.'
+    }],
+    'cd1b5-p2': [{
+      qtext: 'Ba máy A, B, C làm xong lô hàng riêng lẻ trong 6 giờ, 10 giờ, 15 giờ. Nếu cùng chạy thì sau bao lâu xong?',
+      steps: [
+        'Năng suất riêng: A=1/6, B=1/10, C=1/15 (lô hàng/giờ).',
+        'Quy đồng mẫu số chung (30): 5/30+3/30+2/30.',
+        'Năng suất chung = 10/30 = 1/3 lô hàng/giờ.',
+        'Thời gian hoàn thành = 1÷(1/3) = 3 giờ.'
+      ],
+      answer: '<b>Đáp án:</b> 3 giờ.'
+    }],
+    'cd1b5-exam': [{
+      qtext: 'Một nhóm gồm 4 người thợ có năng suất bằng nhau, dự kiến hoàn thành công việc trong 18 ngày. Sau khi làm được 6 ngày, có 2 người phải nghỉ, chỉ còn 2 người tiếp tục làm hết phần việc còn lại. Hỏi công việc hoàn thành trễ hơn dự kiến bao nhiêu ngày?',
+      steps: [
+        'Tổng khối lượng công việc = 4×18=72 người-ngày.',
+        'Sau 6 ngày đầu (4 người), hoàn thành 4×6=24 người-ngày, còn lại 72−24=48.',
+        'Từ ngày 7, chỉ còn 2 người, số ngày cần = 48÷2=24 ngày → tổng thời gian thực tế = 6+24=30 ngày.',
+        'So với dự kiến 18 ngày: trễ hơn 30−18=12 ngày.'
+      ],
+      answer: '<b>Đáp án:</b> trễ hơn 12 ngày.'
+    }],
+
+    'cd1b6-ex': [{
+      qtext: '20 đội bóng đấu vòng tròn 1 lượt (mỗi 2 đội gặp nhau đúng 1 trận). Có tất cả bao nhiêu trận đấu?',
+      steps: [
+        'Số trận = số cách chọn 2 đội trong 20 đội = C(20,2).',
+        'C(20,2)=20×19/2.',
+        'Tính: 20×19=380, chia 2=190.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 190 trận đấu.'
+    }],
+    'cd1b6-p1': [{
+      qtext: 'Một con đường thẳng dài 250m. Trồng cây ở cả hai đầu đường, khoảng cách giữa 2 cây liên tiếp là 5m. Hỏi trồng được tất cả bao nhiêu cây?',
+      steps: [
+        'Số khoảng cách trên đường = 250÷5 = 50 khoảng.',
+        'Vì trồng cả hai đầu, số cây = số khoảng + 1.',
+        'Số cây = 50+1 = 51.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 51 cây.'
+    }],
+    'cd1b6-p2': [{
+      qtext: 'Trồng cây quanh một hồ nước hình tròn có chu vi 360m, khoảng cách giữa 2 cây liên tiếp là 9m. Hỏi trồng được tất cả bao nhiêu cây?',
+      steps: [
+        'Vì trồng quanh vòng tròn khép kín, số cây = chu vi ÷ khoảng cách (không cộng 1).',
+        'Số cây = 360÷9.',
+        'Tính: 360÷9=40.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 40 cây.'
+    }],
+    'cd1b6-exam': [{
+      qtext: 'Trong một buổi tiệc có 18 người, gồm 3 cặp vợ chồng không bắt tay với vợ/chồng của chính mình (vì đã quá quen), còn lại mọi người đều bắt tay đôi một với tất cả người khác đúng 1 lần. Hỏi có tất cả bao nhiêu cái bắt tay?',
+      steps: [
+        'Nếu không có ràng buộc gì, tổng số bắt tay giữa 18 người là C(18,2)=18×17/2=153.',
+        'Có đúng 3 cặp vợ chồng không bắt tay với nhau — mỗi cặp làm giảm đi đúng 1 cái bắt tay.',
+        'Số bắt tay thực tế = 153−3.',
+        'Tính: 153−3=150.'
+      ],
+      answer: '<b>Đáp án:</b> 150 cái bắt tay.'
+    }],
+
+    'cd2b2-ex': [{
+      qtext: 'Tính tổng: 5 + 10 + 20 + 40 + ... + 5×2⁸ (9 số hạng).',
+      steps: [
+        'Công bội q=10/5=2, số hạng đầu u<sub>1</sub>=5, n=9.',
+        'Công thức: S=u<sub>1</sub>×(2ⁿ−1).',
+        'Tính 2⁹=512, nên S=5×(512−1)=5×511.',
+        'Tính: 5×511=2555.'
+      ],
+      answer: '<b>Đáp án:</b> 2555.'
+    }],
+    'cd2b2-p1': [{
+      qtext: 'Tính tổng: 4 + 12 + 36 + 108 + ... + 4×3⁵ (6 số hạng).',
+      steps: [
+        'Công bội q=12/4=3, số hạng đầu u<sub>1</sub>=4, n=6.',
+        'Công thức: S=4×(3⁶−1)/(3−1).',
+        'Tính 3⁶=729, nên S=4×(729−1)/2=4×364.',
+        'Tính: 4×364=1456.'
+      ],
+      answer: '<b>Đáp án:</b> 1456.'
+    }],
+    'cd2b2-p2': [{
+      qtext: 'Cho cấp số nhân có số hạng đầu 4, công bội 2. Tổng của n số hạng đầu tiên bằng 252. Tìm n.',
+      steps: [
+        'Áp dụng công thức S=4×(2ⁿ−1): 4×(2ⁿ−1)=252.',
+        'Chia 2 vế cho 4: 2ⁿ−1=63.',
+        'Suy ra 2ⁿ=64.',
+        'Nhận ra 64=2⁶, vậy n=6.'
+      ],
+      answer: '<b>Đáp án:</b> n=6.'
+    }],
+    'cd2b2-exam': [{
+      qtext: 'Tính tổng: 81 + 27 + 9 + 3 + 1 + 1/3 (6 số hạng, công bội 1/3).',
+      steps: [
+        'Công bội q=27/81=1/3 (giảm dần), số hạng đầu u<sub>1</sub>=81, n=6.',
+        'Công thức: S=u<sub>1</sub>×(1−qⁿ)/(1−q).',
+        'Tính q⁶=(1/3)⁶=1/729, nên S=81×(728/729)/(2/3)=81×(728/729)×(3/2)=364/3.',
+        'Kiểm tra bằng cách cộng trực tiếp: 81+27+9+3+1+1/3=121+1/3=364/3 ✓, khớp.'
+      ],
+      answer: '<b>Đáp án:</b> 364/3 (≈121,33).'
+    }],
+
+    'cd2b3-ex': [{
+      qtext: 'Tính tổng: S = 1×2 + 2×3 + 3×4 + ... + 15×16.',
+      steps: [
+        'Mỗi số hạng có dạng n(n+1) với n=1,...,15.',
+        'Áp dụng đẳng thức: n(n+1) = [n(n+1)(n+2) − (n−1)n(n+1)] / 3.',
+        'Cộng dồn, rút gọn còn [15×16×17 − 0]/3.',
+        'Tính: 15×16×17=4080, chia 3=1360.'
+      ],
+      answer: '<b>Đáp án:</b> 1360.'
+    }],
+    'cd2b3-p1': [{
+      qtext: 'Tính tổng: S = 1×2×3 + 2×3×4 + 3×4×5 + ... + 6×7×8.',
+      steps: [
+        'Mỗi số hạng có dạng n(n+1)(n+2) với n=1,...,6.',
+        'Áp dụng: n(n+1)(n+2)=[n(n+1)(n+2)(n+3)−(n−1)n(n+1)(n+2)]/4.',
+        'Cộng dồn, rút gọn còn [6×7×8×9−0]/4.',
+        'Tính: 6×7×8×9=3024, chia 4=756.'
+      ],
+      answer: '<b>Đáp án:</b> 756.'
+    }],
+    'cd2b3-p2': [{
+      qtext: 'Tính tổng: S = 2×5 + 5×8 + 8×11 + ... + 26×29 (bước 3, từ a=2 đến a=26).',
+      steps: [
+        'Mỗi số hạng có dạng a(a+3) với a=2,5,8,...,26 (9 số hạng, bước 3).',
+        'Dùng hàm f(a)=a(a+3)(a+6)/9 sao cho f(a)−f(a−3)=a(a+3).',
+        'Tổng S = f(26) − f(2−3) = f(26) − f(−1) = 26×29×32/9 − (−1)(2)(5)/9 = 24128/9 + 10/9 = 24138/9.',
+        'Tính: 24138÷9 = 2682.'
+      ],
+      answer: '<b>Đáp án:</b> 2682.'
+    }],
+    'cd2b3-exam': [{
+      qtext: 'Tính tổng: S = 1/(2×3×4) + 1/(3×4×5) + 1/(4×5×6) + ... + 1/(19×20×21).',
+      steps: [
+        'Mỗi số hạng có dạng 1/(n(n+1)(n+2)) với n=2,...,19.',
+        'Áp dụng: 1/(n(n+1)(n+2)) = (1/2)[1/(n(n+1)) − 1/((n+1)(n+2))].',
+        'Cộng dồn, chỉ còn (1/2)[1/(2×3) − 1/(20×21)].',
+        'Tính: 1/6−1/420 = 70/420−1/420=69/420=23/140; nhân 1/2 được 23/280.'
+      ],
+      answer: '<b>Đáp án:</b> 23/280 (≈0,082).'
+    }],
+
+    'cd3b2-ex': [{
+      qtext: 'Tìm chữ số x để số 5x246 chia hết cho 3.',
+      steps: [
+        'Dấu hiệu chia hết cho 3: tổng các chữ số phải chia hết cho 3.',
+        'Tổng các chữ số: 5+x+2+4+6=17+x.',
+        'Vì x∈[0,9], 17+x nằm trong khoảng 17–26; giá trị chia hết cho 3 là 18, 21, 24.',
+        'Giải: 17+x=18→x=1; 17+x=21→x=4; 17+x=24→x=7.'
+      ],
+      answer: '<b>Đáp án:</b> x=1, x=4 hoặc x=7.'
+    }],
+    'cd3b2-p1': [{
+      qtext: 'Tìm chữ số x để số 7x231 chia hết cho 11.',
+      steps: [
+        'Dấu hiệu chia hết cho 11: tổng đan dấu các chữ số (từ hàng đơn vị, +,−,+,−...) phải chia hết cho 11.',
+        'Với số 7x231, tính từ phải sang: 1−3+2−x+7 = 7−x.',
+        'Vì x∈[0,9], giá trị 7−x chỉ có thể bằng 0 để chia hết cho 11.',
+        'Giải: 7−x=0 → x=7.'
+      ],
+      answer: '<b>Đáp án:</b> x=7.'
+    }],
+    'cd3b2-p2': [{
+      qtext: 'Tìm số tự nhiên nhỏ nhất có 4 chữ số khác nhau đôi một, chia hết cho cả 5 và 8.',
+      steps: [
+        'Chia hết cho cả 5 và 8 tương đương chia hết cho 40 (vì 5 và 8 nguyên tố cùng nhau).',
+        'Số có 4 chữ số nhỏ nhất là 1000, và 1000 chính là bội đầu tiên của 40 (40×25=1000), nhưng digit lặp (1,0,0,0).',
+        'Kiểm tra các bội tiếp theo: 1040(loại), 1080(loại), 1120(loại), 1160(loại), 1200(loại), 1240 — có 4 chữ số 1,2,4,0 đều khác nhau!',
+        'Kiểm tra lại: 1240÷40=31 đúng; 1240÷5=248 đúng (tận cùng 0); 1240÷8=155 đúng.'
+      ],
+      answer: '<b>Đáp án:</b> 1240.'
+    }],
+    'cd3b2-exam': [{
+      qtext: 'Tìm số tự nhiên nhỏ nhất lớn hơn 500 chia hết cho cả 7 và 11.',
+      steps: [
+        '7 và 11 là hai số nguyên tố cùng nhau, nên BCNN(7,11)=7×11=77.',
+        'Cần tìm bội của 77 nhỏ nhất lớn hơn 500.',
+        '500÷77≈6,49, nên thử k=7: 77×7=539.',
+        'Kiểm tra: 539>500 ✓, và k=6 cho 77×6=462<500 (không thoả), vậy 539 là đáp số đúng.'
+      ],
+      answer: '<b>Đáp án:</b> 539.'
+    }],
+
+    'cd3b4-ex': [{
+      qtext: 'Phân tích số 504 thành tích các thừa số nguyên tố.',
+      steps: [
+        'Chia 504 cho 2: 504÷2=252, ÷2=126, ÷2=63 (63 lẻ, dừng) — có 2³.',
+        'Chia 63 cho 3: 63÷3=21, ÷3=7 (7 không chia hết cho 3) — có 3².',
+        'Còn lại 7 là số nguyên tố, dừng lại.',
+        'Kết quả: 504=2³×3²×7. Kiểm tra: 8×9×7=504 ✓.'
+      ],
+      answer: '<b>Đáp án:</b> 504 = 2³×3²×7.'
+    }],
+    'cd3b4-p1': [{
+      qtext: 'Phân tích số 180 thành tích các thừa số nguyên tố.',
+      steps: [
+        'Chia 180 cho 2: 180÷2=90, ÷2=45 (45 lẻ, dừng) — có 2².',
+        'Chia 45 cho 3: 45÷3=15, ÷3=5 (5 không chia hết cho 3) — có 3².',
+        '5 là số nguyên tố, dừng lại.',
+        'Kết quả: 180=2²×3²×5; kiểm tra 4×9×5=180 ✓.'
+      ],
+      answer: '<b>Đáp án:</b> 180=2²×3²×5.'
+    }],
+    'cd3b4-p2': [{
+      qtext: 'Tìm số mũ của thừa số nguyên tố 2 trong phân tích của 50! (50 giai thừa) ra thừa số nguyên tố.',
+      steps: [
+        'Dùng công thức Legendre với n=50, p=2: cộng ⌊50/2ᵏ⌋ với k=1,2,3,...',
+        '⌊50/2⌋=25, ⌊50/4⌋=12, ⌊50/8⌋=6, ⌊50/16⌋=3, ⌊50/32⌋=1.',
+        '⌊50/64⌋=0 (64>50, dừng).',
+        'Tổng số mũ = 25+12+6+3+1=47.'
+      ],
+      answer: '<b>Đáp án:</b> 47.'
+    }],
+    'cd3b4-exam': [{
+      qtext: 'Tìm số mũ của thừa số nguyên tố 3 trong phân tích của 30! (30 giai thừa) ra thừa số nguyên tố.',
+      steps: [
+        'Dùng công thức Legendre với n=30, p=3.',
+        '⌊30/3⌋=10, ⌊30/9⌋=3, ⌊30/27⌋=1.',
+        '⌊30/81⌋=0 (81>30, dừng).',
+        'Tổng số mũ = 10+3+1=14.'
+      ],
+      answer: '<b>Đáp án:</b> 14.'
+    }],
+
+    'cd3b5-ex': [{
+      qtext: 'Số B = 2⁴×5²×11 (đã phân tích thành thừa số nguyên tố). Hỏi B có bao nhiêu ước số tự nhiên?',
+      steps: [
+        'Với N=p1^a1×p2^a2×...: số ước = (a1+1)(a2+1)(a3+1)...',
+        'Ở đây B=2⁴×5²×11¹, các số mũ là 4, 2, 1.',
+        'Số ước = (4+1)×(2+1)×(1+1).',
+        'Tính: 5×3×2=30.'
+      ],
+      answer: '<b>Đáp án:</b> 30 ước số.'
+    }],
+    'cd3b5-p1': [{
+      qtext: 'Tìm số lượng ước số tự nhiên của 120.',
+      steps: [
+        'Phân tích 120 ra thừa số nguyên tố: 120=2³×3×5.',
+        'Số mũ lần lượt là 3, 1, 1.',
+        'Số ước = (3+1)(1+1)(1+1)=4×2×2.',
+        'Tính: 4×2×2=16.'
+      ],
+      answer: '<b>Đáp án:</b> 16 ước số.'
+    }],
+    'cd3b5-p2': [{
+      qtext: 'Tính tổng các ước số tự nhiên của 45.',
+      steps: [
+        'Phân tích 45=3²×5.',
+        'Tổng các ước = (1+3+3²)×(1+5).',
+        'Tính từng ngoặc: 1+3+9=13; 1+5=6.',
+        'Nhân lại: 13×6=78.'
+      ],
+      answer: '<b>Đáp án:</b> 78.'
+    }],
+    'cd3b5-exam': [{
+      qtext: 'Tìm số lượng ước số tự nhiên của 72.',
+      steps: [
+        'Phân tích 72=2³×3².',
+        'Số mũ lần lượt là 3, 2.',
+        'Số ước = (3+1)(2+1).',
+        'Tính: 4×3=12.'
+      ],
+      answer: '<b>Đáp án:</b> 12 ước số.'
+    }],
+
+    'cd4b1-ex': [{
+      qtext: 'Tính tổng số đo các góc trong của một hình bát giác (8 cạnh).',
+      steps: [
+        'Công thức tổng góc trong đa giác n cạnh: (n−2)×180°.',
+        'Bát giác có n=8.',
+        'Thay số: (8−2)×180=6×180.',
+        'Tính: 6×180=1080°.'
+      ],
+      answer: '<b>Đáp án:</b> 1080°.'
+    }],
+    'cd4b1-p1': [{
+      qtext: 'Tính số đo mỗi góc trong của một lục giác đều (6 cạnh bằng nhau).',
+      steps: [
+        'Tổng góc trong lục giác: (6−2)×180=720°.',
+        'Vì là đa giác ĐỀU nên 6 góc bằng nhau.',
+        'Mỗi góc = 720÷6.',
+        'Tính: 720÷6=120°.'
+      ],
+      answer: '<b>Đáp án:</b> 120°.'
+    }],
+    'cd4b1-p2': [{
+      qtext: 'Một đa giác đều có mỗi góc trong bằng 150°. Hỏi đa giác đó có bao nhiêu cạnh?',
+      steps: [
+        'Góc ngoài = 180−150=30°.',
+        'Tổng các góc ngoài của đa giác đều luôn bằng 360°.',
+        'Số cạnh = 360÷30.',
+        'Tính: 360÷30=12.'
+      ],
+      answer: '<b>Đáp án:</b> 12 cạnh.'
+    }],
+    'cd4b1-exam': [{
+      qtext: 'Một tứ giác ABCD có 3 góc A, B, C lần lượt bằng 85°, 95°, 110°. Tính góc D.',
+      steps: [
+        'Tổng 4 góc trong tứ giác = (4−2)×180=360°.',
+        'Tổng 3 góc đã biết: 85+95+110=290°.',
+        'Góc D = 360−290.',
+        'Tính: 360−290=70°.'
+      ],
+      answer: '<b>Đáp án:</b> 70°.'
+    }],
+
+    'cd4b3-ex': [{
+      qtext: 'Một tam giác vuông có hai cạnh góc vuông lần lượt là 6cm và 8cm. Tính cạnh huyền.',
+      steps: [
+        'Áp dụng định lý Py-ta-go: c²=a²+b².',
+        'Thay số: c²=6²+8²=36+64.',
+        'Tính: 36+64=100.',
+        'c=√100=10cm.'
+      ],
+      answer: '<b>Đáp án:</b> 10 cm.'
+    }],
+    'cd4b3-p1': [{
+      qtext: 'Một tam giác vuông có cạnh huyền 17cm và một cạnh góc vuông 8cm. Tính cạnh góc vuông còn lại.',
+      steps: [
+        'Từ định lý Py-ta-go: b²=c²−a².',
+        'Thay số: b²=17²−8²=289−64.',
+        'Tính: 289−64=225.',
+        'b=√225=15cm.'
+      ],
+      answer: '<b>Đáp án:</b> 15 cm.'
+    }],
+    'cd4b3-p2': [{
+      qtext: 'Thang dài 13m, chân thang cách chân tường 5m. Thang chạm tường ở độ cao bao nhiêu?',
+      steps: [
+        'Chiều cao²=13²−5²=169−25.',
+        'Tính: 169−25=144.',
+        'Chiều cao=√144=12m.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 12 m.'
+    }],
+    'cd4b3-exam': [{
+      qtext: 'Một tam giác vuông có cạnh huyền 25cm và diện tích 84cm². Tính chu vi tam giác đó.',
+      steps: [
+        'Gọi 2 cạnh góc vuông là a,b. Từ Py-ta-go: a²+b²=25²=625.',
+        'Từ diện tích: (1/2)ab=84→ab=168.',
+        'Tính (a+b)²=625+336=961→a+b=31. Tính (a−b)²=625−336=289→a−b=17.',
+        'Giải hệ: a=24,b=7. Chu vi=24+7+25=56cm.'
+      ],
+      answer: '<b>Đáp án:</b> 56 cm.'
+    }],
+
+    'cd5b1-ex': [{
+      qtext: 'Một hộp có 6 viên bi vàng, 3 viên bi trắng và 2 viên bi tím. Hỏi có bao nhiêu cách chọn 1 viên bất kỳ?',
+      steps: [
+        'Chọn 1 trong 3 màu là các phương án tách biệt.',
+        'Áp dụng quy tắc cộng: số cách = 6+3+2.',
+        'Tính: 6+3+2=11.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 11 cách.'
+    }],
+    'cd5b1-p1': [{
+      qtext: 'Có 5 chiếc áo, 4 chiếc quần và 2 đôi giày khác nhau. Hỏi có bao nhiêu cách chọn 1 bộ (áo+quần+giày)?',
+      steps: [
+        'Chọn trang phục gồm 3 giai đoạn nối tiếp, độc lập: áo, quần, giày.',
+        'Áp dụng quy tắc nhân: số cách = 5×4×2.',
+        'Tính: 5×4=20, 20×2=40.',
+        'Đối chiếu hợp lý.'
+      ],
+      answer: '<b>Đáp án:</b> 40 cách.'
+    }],
+    'cd5b1-p2': [{
+      qtext: 'Thực đơn có 2 khai vị, 5 món chính. Khách có thể chọn (1 khai vị + 1 chính) HOẶC chỉ chọn riêng 1 trong 3 món tráng miệng. Hỏi có bao nhiêu cách chọn?',
+      steps: [
+        'Phương án (a) chọn khai vị+chính: quy tắc nhân, 2×5=10 cách.',
+        'Phương án (b) chỉ tráng miệng: 3 cách.',
+        'Hai phương án tách biệt, áp dụng quy tắc cộng.',
+        'Tổng: 10+3=13.'
+      ],
+      answer: '<b>Đáp án:</b> 13 cách.'
+    }],
+    'cd5b1-exam': [{
+      qtext: 'Từ thành phố A đến B có 3 con đường, từ B đến C có 4 con đường. Ngoài ra còn có 2 con đường đi thẳng từ A đến C (không qua B). Hỏi có tất cả bao nhiêu cách đi từ A đến C?',
+      steps: [
+        'Đi qua B: dùng quy tắc nhân, 3×4=12 cách.',
+        'Đi thẳng A→C (không qua B): 2 cách.',
+        'Hai phương án tách biệt (đi qua B hoặc đi thẳng), áp dụng quy tắc cộng.',
+        'Tổng: 12+2=14 cách.'
+      ],
+      answer: '<b>Đáp án:</b> 14 cách.'
+    }],
+
+    'cd5b4-ex': [{
+      qtext: 'Trên lưới ô vuông, điểm B cách A 5 bước phải và 2 bước lên. Có bao nhiêu đường đi ngắn nhất?',
+      steps: [
+        'Mỗi đường đi có 5 bước phải và 2 bước lên, tổng 7 bước.',
+        'Số đường = C(7,2) (chọn vị trí cho 2 bước lên trong 7 bước).',
+        'C(7,2)=7!/(2!×5!).',
+        'Tính: C(7,2)=21.'
+      ],
+      answer: '<b>Đáp án:</b> 21 đường đi.'
+    }],
+    'cd5b4-p1': [{
+      qtext: 'Trên lưới ô vuông, điểm B cách A 4 bước phải và 4 bước lên. Có bao nhiêu đường đi ngắn nhất?',
+      steps: [
+        'Mỗi đường đi có 4 bước phải và 4 bước lên, tổng 8 bước.',
+        'Số đường = C(8,4).',
+        'C(8,4)=8!/(4!×4!).',
+        'Tính: C(8,4)=70.'
+      ],
+      answer: '<b>Đáp án:</b> 70 đường đi.'
+    }],
+    'cd5b4-p2': [{
+      qtext: 'Trên lưới ô vuông, điểm B cách A 5 bước phải và 5 bước lên. Đường đi bắt buộc qua điểm M cách A 2 bước phải và 3 bước lên. Hỏi có bao nhiêu đường đi ngắn nhất từ A đến B qua M?',
+      steps: [
+        'Đoạn A→M: cách 2 phải, 3 lên, tổng 5 bước → số đường = C(5,2)=10.',
+        'Đoạn M→B: B cách A 5 phải 5 lên, M đã đi 2 phải 3 lên, còn lại 3 phải, 2 lên, tổng 5 bước → số đường = C(5,2)=10.',
+        'Áp dụng quy tắc nhân (2 đoạn nối tiếp): 10×10.',
+        'Tính: 10×10=100.'
+      ],
+      answer: '<b>Đáp án:</b> 100 đường đi.'
+    }],
+    'cd5b4-exam': [{
+      qtext: 'Trên lưới ô vuông, B cách A 4 bước phải và 2 bước lên. Có bao nhiêu đường đi ngắn nhất từ A đến B?',
+      steps: [
+        'Mỗi đường đi có 4 bước phải, 2 bước lên, tổng 6 bước.',
+        'Số đường = C(6,2).',
+        'C(6,2)=6!/(2!×4!).',
+        'Tính: C(6,2)=15.'
+      ],
+      answer: '<b>Đáp án:</b> 15 đường đi.'
+    }]
+  };
+
+  function buildOriginal(el){
+    var qtext = el.querySelector('.qtext').innerHTML;
+    var steps = Array.prototype.map.call(el.querySelectorAll('.step'), function(s){ return s.innerHTML; });
+    var answer = el.querySelector('.answer').innerHTML;
+    return { qtext: qtext, steps: steps, answer: answer };
+  }
+
+  function render(el, item){
+    el.querySelector('.qtext').innerHTML = item.qtext;
+    var stepEls = el.querySelectorAll('.step');
+    item.steps.forEach(function(txt, i){
+      if (stepEls[i]) { stepEls[i].innerHTML = txt; stepEls[i].hidden = true; }
+    });
+    el.querySelector('.answer').innerHTML = item.answer;
+    el.querySelector('.answer').hidden = true;
+    var hintBtn = el.querySelector('.btn-hint');
+    hintBtn.disabled = false;
+    el.querySelector('.btn-reset').hidden = true;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.problem'), function(el){
+    var poolId = el.getAttribute('data-pool');
+    var pool = [buildOriginal(el)].concat(VARIANTS[poolId] || []);
+    var state = { index: 0, revealed: 0, answerShown: false };
+
+    var hintBtn = el.querySelector('.btn-hint');
+    var answerBtn = el.querySelector('.btn-answer');
+    var variantBtn = el.querySelector('.btn-variant');
+    var resetBtn = el.querySelector('.btn-reset');
+    var stepEls = function(){ return el.querySelectorAll('.step'); };
+
+    if (pool.length <= 1) { variantBtn.hidden = true; }
+
+    function anyRevealed(){ return state.revealed > 0 || state.answerShown; }
+    function updateResetVisibility(){ resetBtn.hidden = !anyRevealed(); }
+
+    hintBtn.addEventListener('click', function(){
+      var steps = stepEls();
+      if (state.revealed >= steps.length) return;
+      steps[state.revealed].hidden = false;
+      if (!prefersReducedMotion) {
+        try { steps[state.revealed].scrollIntoView({behavior:'smooth', block:'nearest'}); } catch(e){}
+      }
+      state.revealed++;
+      if (state.revealed >= steps.length) hintBtn.disabled = true;
+      updateResetVisibility();
+    });
+
+    answerBtn.addEventListener('click', function(){
+      el.querySelector('.answer').hidden = false;
+      state.answerShown = true;
+      updateResetVisibility();
+    });
+
+    variantBtn.addEventListener('click', function(){
+      state.index = (state.index + 1) % pool.length;
+      state.revealed = 0;
+      state.answerShown = false;
+      render(el, pool[state.index]);
+      updateResetVisibility();
+    });
+
+    resetBtn.addEventListener('click', function(){
+      var steps = stepEls();
+      Array.prototype.forEach.call(steps, function(s){ s.hidden = true; });
+      el.querySelector('.answer').hidden = true;
+      state.revealed = 0;
+      state.answerShown = false;
+      hintBtn.disabled = false;
+      updateResetVisibility();
+    });
+  });
+})();
+</script>
+</body>
+</html>

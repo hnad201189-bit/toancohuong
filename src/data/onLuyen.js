@@ -41,6 +41,13 @@ export const ON_LUYEN_TOPICS_BY_GRADE = {
       desc: 'Đề thi HSG Toán 6 (đề bài + đáp án) tổng hợp từ nhiều địa phương.',
       href: '/tai-lieu/de-thi-hsg-toan-6.html',
     },
+    {
+      id: 'timo-hkimo-lop-6',
+      icon: '🌐',
+      name: 'Toán Quốc Tế TIMO – HKIMO',
+      desc: 'Đủ 23 bài học song ngữ Anh–Việt theo khuôn 5 chuyên đề TIMO/HKIMO: từ vựng, ví dụ mẫu, luyện tập phân hoá và câu luyện đề phong cách thi thật.',
+      href: '/tai-lieu/timo-hkimo-lop-6.html',
+    },
   ],
   11: [
     {
