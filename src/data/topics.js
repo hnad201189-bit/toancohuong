@@ -161,6 +161,226 @@ export const GRADE1_AREAS = [
   },
 ]
 
+export const GRADE2_AREAS = [
+  {
+    id: 'l2-so-pham-vi-1000',
+    order: 1,
+    name: 'Số và phép tính trong phạm vi 1000',
+    description: 'Đọc viết số đến 1000, cộng trừ có nhớ trong phạm vi 100 và cộng trừ trong phạm vi 1000',
+    progress: 0,
+    topics: [
+      { id: 'l2-cac-so-den-1000', name: 'Các số đến 1000, đọc viết và cấu tạo số', progress: 0, hasLesson: false },
+      { id: 'l2-cong-co-nho-100', name: 'Phép cộng có nhớ trong phạm vi 100', progress: 0, hasLesson: false },
+      { id: 'l2-tru-co-nho-100', name: 'Phép trừ có nhớ trong phạm vi 100', progress: 0, hasLesson: false },
+      { id: 'l2-cong-tru-1000', name: 'Phép cộng, phép trừ trong phạm vi 1000', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l2-nhan-chia',
+    order: 2,
+    name: 'Phép nhân, phép chia',
+    description: 'Khái niệm nhân — chia và các bảng nhân, bảng chia 2, 3, 4, 5',
+    progress: 0,
+    topics: [
+      { id: 'l2-khai-niem-nhan', name: 'Khái niệm phép nhân, bảng nhân 2, 3, 4, 5', progress: 0, hasLesson: false },
+      { id: 'l2-khai-niem-chia', name: 'Khái niệm phép chia, bảng chia 2, 3, 4, 5', progress: 0, hasLesson: false },
+      { id: 'l2-thua-so-tich', name: 'Thừa số, tích và mối liên hệ nhân — chia', progress: 0, hasLesson: false },
+      { id: 'l2-bai-toan-nhan-chia', name: 'Giải bài toán có lời văn bằng phép nhân, phép chia', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l2-hinh-hoc-do-luong',
+    order: 3,
+    name: 'Hình học và đo lường',
+    description: 'Hình tứ giác, khối trụ, khối cầu; đơn vị đo độ dài, khối lượng, thời gian và tiền Việt Nam',
+    progress: 0,
+    topics: [
+      { id: 'l2-hinh-tu-giac', name: 'Đường gấp khúc, hình tứ giác, hình chữ nhật', progress: 0, hasLesson: false },
+      { id: 'l2-khoi-tru-khoi-cau', name: 'Khối trụ, khối cầu', progress: 0, hasLesson: false },
+      { id: 'l2-do-do-dai-khoi-luong', name: 'Đơn vị đo độ dài (m, dm, cm) và khối lượng (kg)', progress: 0, hasLesson: false },
+      { id: 'l2-thoi-gian-tien-viet-nam', name: 'Xem giờ, xem lịch và tiền Việt Nam', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l2-thong-ke-xac-suat',
+    order: 4,
+    name: 'Một số yếu tố thống kê — xác suất',
+    description: 'Thu thập, kiểm đếm số liệu và làm quen với khả năng xảy ra của sự kiện',
+    progress: 0,
+    topics: [
+      { id: 'l2-thu-thap-kiem-dem', name: 'Thu thập, kiểm đếm, biểu đồ tranh', progress: 0, hasLesson: false },
+      { id: 'l2-doc-bieu-do-tranh', name: 'Đọc và phân tích biểu đồ tranh đơn giản', progress: 0, hasLesson: false },
+      { id: 'l2-nhieu-kha-nang', name: 'Nhiều khả năng — chắc chắn, có thể, không thể', progress: 0, hasLesson: false },
+      { id: 'l2-luyen-tap-tong-hop', name: 'Luyện tập tổng hợp Toán 2', progress: 0, hasLesson: false },
+    ],
+  },
+]
+
+export const GRADE3_AREAS = [
+  {
+    id: 'l3-so-den-100000',
+    order: 1,
+    name: 'Số và phép tính trong phạm vi 100 000',
+    description: 'Đọc viết số đến 100 000, cộng trừ có nhớ, làm tròn số và ước lượng',
+    progress: 0,
+    topics: [
+      { id: 'l3-cac-so-den-10000', name: 'Các số đến 10 000', progress: 0, hasLesson: false },
+      { id: 'l3-cac-so-den-100000', name: 'Các số đến 100 000', progress: 0, hasLesson: false },
+      { id: 'l3-cong-tru-co-nho', name: 'Phép cộng, phép trừ có nhớ trong phạm vi 100 000', progress: 0, hasLesson: false },
+      { id: 'l3-uoc-luong-lam-tron', name: 'Làm tròn số, ước lượng kết quả tính', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l3-nhan-chia-nang-cao',
+    order: 2,
+    name: 'Phép nhân, phép chia số có nhiều chữ số',
+    description: 'Mở rộng bảng nhân — chia đến 9, nhân chia số có nhiều chữ số và biểu thức số',
+    progress: 0,
+    topics: [
+      { id: 'l3-bang-nhan-chia-den-9', name: 'Bảng nhân, bảng chia đến 9 (ôn tập và mở rộng)', progress: 0, hasLesson: false },
+      { id: 'l3-nhan-so-co-nhieu-chu-so', name: 'Nhân số có 2, 3, 4 chữ số với số có 1 chữ số', progress: 0, hasLesson: false },
+      { id: 'l3-chia-het-chia-co-du', name: 'Chia hết, chia có dư — chia số có nhiều chữ số cho số có 1 chữ số', progress: 0, hasLesson: false },
+      { id: 'l3-bieu-thuc-thu-tu-tinh', name: 'Biểu thức số và thứ tự thực hiện phép tính', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l3-hinh-hoc-do-luong',
+    order: 3,
+    name: 'Hình học và đo lường',
+    description: 'Góc, hình tam giác — tứ giác, chu vi — diện tích hình chữ nhật, hình vuông và các đơn vị đo',
+    progress: 0,
+    topics: [
+      { id: 'l3-goc-hinh-tam-giac', name: 'Góc vuông, góc không vuông; hình tam giác, hình tứ giác', progress: 0, hasLesson: false },
+      { id: 'l3-chu-vi-hcn-hv', name: 'Chu vi hình chữ nhật, hình vuông', progress: 0, hasLesson: false },
+      { id: 'l3-dien-tich-hcn-hv', name: 'Diện tích hình chữ nhật, hình vuông', progress: 0, hasLesson: false },
+      { id: 'l3-don-vi-do-tien-thoi-gian', name: 'Đơn vị đo độ dài, khối lượng, thời gian và tiền Việt Nam', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l3-thong-ke-xac-suat',
+    order: 4,
+    name: 'Một số yếu tố thống kê — xác suất',
+    description: 'Bảng số liệu, biểu đồ cột và khả năng xảy ra của một sự kiện',
+    progress: 0,
+    topics: [
+      { id: 'l3-bang-so-lieu', name: 'Thu thập, phân loại và trình bày bảng số liệu', progress: 0, hasLesson: false },
+      { id: 'l3-bieu-do-cot', name: 'Đọc và phân tích biểu đồ cột', progress: 0, hasLesson: false },
+      { id: 'l3-kha-nang-xay-ra', name: 'Khả năng xảy ra của một sự kiện', progress: 0, hasLesson: false },
+      { id: 'l3-luyen-tap-tong-hop', name: 'Luyện tập tổng hợp Toán 3', progress: 0, hasLesson: false },
+    ],
+  },
+]
+
+export const GRADE4_AREAS = [
+  {
+    id: 'l4-so-tu-nhien-lon',
+    order: 1,
+    name: 'Số tự nhiên lớn và bốn phép tính',
+    description: 'Lớp triệu, cộng trừ nhân chia số tự nhiên có nhiều chữ số',
+    progress: 0,
+    topics: [
+      { id: 'l4-lop-trieu', name: 'Các số trong lớp triệu, hàng và lớp', progress: 0, hasLesson: false },
+      { id: 'l4-cong-tru-nhieu-chu-so', name: 'Phép cộng, phép trừ số có nhiều chữ số', progress: 0, hasLesson: false },
+      { id: 'l4-nhan-nhieu-chu-so', name: 'Phép nhân số có nhiều chữ số', progress: 0, hasLesson: false },
+      { id: 'l4-chia-cho-so-co-2-3-chu-so', name: 'Phép chia cho số có hai, ba chữ số', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l4-phan-so',
+    order: 2,
+    name: 'Phân số',
+    description: 'Khái niệm, rút gọn, quy đồng, so sánh và bốn phép tính với phân số',
+    progress: 0,
+    topics: [
+      { id: 'l4-khai-niem-phan-so', name: 'Khái niệm phân số, phân số bằng nhau', progress: 0, hasLesson: false },
+      { id: 'l4-rut-gon-quy-dong', name: 'Rút gọn phân số, quy đồng mẫu số', progress: 0, hasLesson: false },
+      { id: 'l4-so-sanh-phan-so', name: 'So sánh hai phân số', progress: 0, hasLesson: false },
+      { id: 'l4-phep-tinh-phan-so', name: 'Cộng, trừ, nhân, chia phân số', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l4-hinh-hoc-do-luong',
+    order: 3,
+    name: 'Hình học và đo lường',
+    description: 'Góc, hai đường thẳng vuông góc — song song, hình bình hành, hình thoi và đơn vị đo diện tích',
+    progress: 0,
+    topics: [
+      { id: 'l4-goc-hai-duong-thang', name: 'Góc nhọn, góc tù, góc bẹt; hai đường thẳng vuông góc, song song', progress: 0, hasLesson: false },
+      { id: 'l4-hinh-binh-hanh-hinh-thoi', name: 'Hình bình hành, hình thoi', progress: 0, hasLesson: false },
+      { id: 'l4-dien-tich-binh-hanh-thoi', name: 'Diện tích hình bình hành, hình thoi', progress: 0, hasLesson: false },
+      { id: 'l4-don-vi-do-dien-tich', name: 'Đơn vị đo diện tích (dm², m², km²) và đổi đơn vị', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l4-thong-ke-xac-suat',
+    order: 4,
+    name: 'Một số yếu tố thống kê — xác suất',
+    description: 'Biểu đồ cột, số trung bình cộng và khả năng xảy ra của một biến cố',
+    progress: 0,
+    topics: [
+      { id: 'l4-bieu-do-cot-nang-cao', name: 'Biểu đồ cột — đọc và nhận xét số liệu', progress: 0, hasLesson: false },
+      { id: 'l4-so-trung-binh-cong', name: 'Số trung bình cộng', progress: 0, hasLesson: false },
+      { id: 'l4-kha-nang-xay-ra-nang-cao', name: 'Khả năng xảy ra của một biến cố', progress: 0, hasLesson: false },
+      { id: 'l4-luyen-tap-tong-hop', name: 'Luyện tập tổng hợp Toán 4', progress: 0, hasLesson: false },
+    ],
+  },
+]
+
+export const GRADE5_AREAS = [
+  {
+    id: 'l5-on-tap-so-tu-nhien-phan-so',
+    order: 1,
+    name: 'Ôn tập số tự nhiên và phân số',
+    description: 'Ôn tập số tự nhiên, hỗn số, bốn phép tính phân số và bài toán tỉ lệ',
+    progress: 0,
+    topics: [
+      { id: 'l5-on-tap-so-tu-nhien', name: 'Ôn tập số tự nhiên và bốn phép tính', progress: 0, hasLesson: false },
+      { id: 'l5-hon-so', name: 'Hỗn số và cách đọc, viết, chuyển đổi', progress: 0, hasLesson: false },
+      { id: 'l5-phep-tinh-phan-so-nang-cao', name: 'Ôn tập bốn phép tính với phân số', progress: 0, hasLesson: false },
+      { id: 'l5-bai-toan-ti-le', name: 'Bài toán liên quan đến tỉ lệ', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l5-so-thap-phan',
+    order: 2,
+    name: 'Số thập phân',
+    description: 'Khái niệm, so sánh, bốn phép tính và tỉ số phần trăm của số thập phân',
+    progress: 0,
+    topics: [
+      { id: 'l5-khai-niem-so-thap-phan', name: 'Khái niệm số thập phân, hàng của số thập phân', progress: 0, hasLesson: false },
+      { id: 'l5-so-sanh-so-thap-phan', name: 'So sánh số thập phân', progress: 0, hasLesson: false },
+      { id: 'l5-phep-tinh-so-thap-phan', name: 'Cộng, trừ, nhân, chia số thập phân', progress: 0, hasLesson: false },
+      { id: 'l5-ti-so-phan-tram', name: 'Tỉ số phần trăm và các bài toán về tỉ số phần trăm', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l5-hinh-hoc-do-luong',
+    order: 3,
+    name: 'Hình học và đo lường',
+    description: 'Diện tích hình thang, hình tròn, hình hộp chữ nhật — hình lập phương và đơn vị đo thể tích',
+    progress: 0,
+    topics: [
+      { id: 'l5-dien-tich-hinh-thang', name: 'Diện tích hình thang', progress: 0, hasLesson: false },
+      { id: 'l5-hinh-tron-chu-vi-dien-tich', name: 'Hình tròn: chu vi và diện tích', progress: 0, hasLesson: false },
+      { id: 'l5-hinh-hop-chu-nhat-lap-phuong', name: 'Hình hộp chữ nhật, hình lập phương', progress: 0, hasLesson: false },
+      { id: 'l5-the-tich-don-vi-do-the-tich', name: 'Thể tích hình hộp chữ nhật, hình lập phương; đơn vị đo thể tích', progress: 0, hasLesson: false },
+    ],
+  },
+  {
+    id: 'l5-thong-ke-xac-suat',
+    order: 4,
+    name: 'Một số yếu tố thống kê — xác suất',
+    description: 'Biểu đồ hình quạt, số trung bình cộng và khả năng xảy ra của một biến cố',
+    progress: 0,
+    topics: [
+      { id: 'l5-bieu-do-hinh-quat', name: 'Biểu đồ hình quạt — đọc và phân tích số liệu', progress: 0, hasLesson: false },
+      { id: 'l5-so-trung-binh-cong-nang-cao', name: 'Số trung bình cộng của nhiều số', progress: 0, hasLesson: false },
+      { id: 'l5-kha-nang-xay-ra-cua-bien-co', name: 'Khả năng xảy ra của một biến cố, tỉ lệ phần trăm khả năng', progress: 0, hasLesson: false },
+      { id: 'l5-luyen-tap-tong-hop', name: 'Luyện tập tổng hợp Toán 5, chuẩn bị vào lớp 6', progress: 0, hasLesson: false },
+    ],
+  },
+]
+
 export const GRADE6_AREAS = [
   {
     id: 'l6-so-tu-nhien',

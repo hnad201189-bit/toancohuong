@@ -2,6 +2,10 @@ import { db } from './db.js'
 import {
   KNOWLEDGE_AREAS,
   GRADE1_AREAS,
+  GRADE2_AREAS,
+  GRADE3_AREAS,
+  GRADE4_AREAS,
+  GRADE5_AREAS,
   GRADE6_AREAS,
   GRADE12_AREAS,
   HSG_TOPICS,
@@ -79,6 +83,10 @@ export function seedIfEmpty() {
   // backfills a grade that didn't exist yet into an already-running database.
   seedGradeIfMissing(11, KNOWLEDGE_AREAS)
   seedGradeIfMissing(1, GRADE1_AREAS)
+  seedGradeIfMissing(2, GRADE2_AREAS)
+  seedGradeIfMissing(3, GRADE3_AREAS)
+  seedGradeIfMissing(4, GRADE4_AREAS)
+  seedGradeIfMissing(5, GRADE5_AREAS)
   seedGradeIfMissing(6, GRADE6_AREAS)
   seedGradeIfMissing(12, GRADE12_AREAS)
   seedHsgIfMissing(11, HSG_TOPICS)

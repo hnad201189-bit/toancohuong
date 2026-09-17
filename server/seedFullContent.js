@@ -10,6 +10,22 @@ import { LOP1_SO_PHAM_VI_10 } from './content/lop1SoPhamVi10.mjs'
 import { LOP1_SO_PHAM_VI_100 } from './content/lop1SoPhamVi100.mjs'
 import { LOP1_HINH_HOC_DO_LUONG } from './content/lop1HinhHocDoLuong.mjs'
 import { LOP1_THONG_KE_XAC_SUAT } from './content/lop1ThongKeXacSuat.mjs'
+import { LOP2_SO_PHAM_VI_1000 } from './content/lop2SoPhamVi1000.mjs'
+import { LOP2_NHAN_CHIA } from './content/lop2NhanChia.mjs'
+import { LOP2_HINH_HOC_DO_LUONG } from './content/lop2HinhHocDoLuong.mjs'
+import { LOP2_THONG_KE_XAC_SUAT } from './content/lop2ThongKeXacSuat.mjs'
+import { LOP3_SO_DEN_100000 } from './content/lop3SoDen100000.mjs'
+import { LOP3_NHAN_CHIA_NANG_CAO } from './content/lop3NhanChiaNangCao.mjs'
+import { LOP3_HINH_HOC_DO_LUONG } from './content/lop3HinhHocDoLuong.mjs'
+import { LOP3_THONG_KE_XAC_SUAT } from './content/lop3ThongKeXacSuat.mjs'
+import { LOP4_SO_TU_NHIEN_LON } from './content/lop4SoTuNhienLon.mjs'
+import { LOP4_PHAN_SO } from './content/lop4PhanSo.mjs'
+import { LOP4_HINH_HOC_DO_LUONG } from './content/lop4HinhHocDoLuong.mjs'
+import { LOP4_THONG_KE_XAC_SUAT } from './content/lop4ThongKeXacSuat.mjs'
+import { LOP5_ON_TAP_SO_TU_NHIEN_PHAN_SO } from './content/lop5OnTapSoTuNhienPhanSo.mjs'
+import { LOP5_SO_THAP_PHAN } from './content/lop5SoThapPhan.mjs'
+import { LOP5_HINH_HOC_DO_LUONG } from './content/lop5HinhHocDoLuong.mjs'
+import { LOP5_THONG_KE_XAC_SUAT } from './content/lop5ThongKeXacSuat.mjs'
 import { LOP6_SO_TU_NHIEN } from './content/lop6SoTuNhien.mjs'
 import { LOP6_SO_NGUYEN } from './content/lop6SoNguyen.mjs'
 import { LOP6_PHAN_SO_THAP_PHAN } from './content/lop6PhanSoThapPhan.mjs'
@@ -40,6 +56,22 @@ const ALL_REGULAR = {
   ...LOP1_SO_PHAM_VI_100,
   ...LOP1_HINH_HOC_DO_LUONG,
   ...LOP1_THONG_KE_XAC_SUAT,
+  ...LOP2_SO_PHAM_VI_1000,
+  ...LOP2_NHAN_CHIA,
+  ...LOP2_HINH_HOC_DO_LUONG,
+  ...LOP2_THONG_KE_XAC_SUAT,
+  ...LOP3_SO_DEN_100000,
+  ...LOP3_NHAN_CHIA_NANG_CAO,
+  ...LOP3_HINH_HOC_DO_LUONG,
+  ...LOP3_THONG_KE_XAC_SUAT,
+  ...LOP4_SO_TU_NHIEN_LON,
+  ...LOP4_PHAN_SO,
+  ...LOP4_HINH_HOC_DO_LUONG,
+  ...LOP4_THONG_KE_XAC_SUAT,
+  ...LOP5_ON_TAP_SO_TU_NHIEN_PHAN_SO,
+  ...LOP5_SO_THAP_PHAN,
+  ...LOP5_HINH_HOC_DO_LUONG,
+  ...LOP5_THONG_KE_XAC_SUAT,
   ...LOP6_SO_TU_NHIEN,
   ...LOP6_SO_NGUYEN,
   ...LOP6_PHAN_SO_THAP_PHAN,
