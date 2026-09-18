@@ -4,7 +4,7 @@ import { submitAttempt } from '../../api/client'
 
 // Mỗi phép tính cho một kết quả khác nhau (1..10) để không bao giờ có 2 thẻ
 // kết quả trùng nhau trong cùng một ván — tránh ghép nhầm cặp không mong muốn.
-const FACT_POOL = [
+const FACT_POOL_L1 = [
   { expr: '5 − 4', result: 1 },
   { expr: '1 + 1', result: 2 },
   { expr: '6 − 3', result: 3 },
@@ -16,8 +16,23 @@ const FACT_POOL = [
   { expr: '4 + 5', result: 9 },
   { expr: '6 + 4', result: 10 },
 ]
+// Lớp 2: cộng trừ có nhớ trong phạm vi 100 + bảng nhân, bảng chia 2-5 — mỗi
+// phép tính vẫn cho một kết quả khác nhau để không có 2 thẻ trùng kết quả.
+const FACT_POOL_L2 = [
+  { expr: '15 + 8', result: 23 },
+  { expr: '34 + 19', result: 53 },
+  { expr: '60 − 25', result: 35 },
+  { expr: '100 − 46', result: 54 },
+  { expr: '3 × 6', result: 18 },
+  { expr: '4 × 5', result: 20 },
+  { expr: '27 ÷ 3', result: 9 },
+  { expr: '40 ÷ 5', result: 8 },
+  { expr: '5 × 8', result: 40 },
+  { expr: '24 ÷ 2', result: 12 },
+  { expr: '2 × 7', result: 14 },
+  { expr: '48 − 19', result: 29 },
+]
 const PAIR_COUNT = 6
-const BEST_KEY = 'toan-l1-game-ghep-so-best-time'
 
 function shuffle(arr) {
   const a = [...arr]
@@ -28,15 +43,17 @@ function shuffle(arr) {
   return a
 }
 
-function makeBoard() {
-  const facts = shuffle(FACT_POOL).slice(0, PAIR_COUNT)
+function makeBoard(grade = 1) {
+  const pool = grade >= 2 ? FACT_POOL_L2 : FACT_POOL_L1
+  const facts = shuffle(pool).slice(0, PAIR_COUNT)
   const exprCards = shuffle(facts.map((f) => ({ id: `e${f.result}`, label: f.expr, result: f.result })))
   const resultCards = shuffle(facts.map((f) => ({ id: `r${f.result}`, label: String(f.result), result: f.result })))
   return { exprCards, resultCards }
 }
 
-export default function GhepSoGame({ onExit }) {
-  const [board, setBoard] = useState(makeBoard)
+export default function GhepSoGame({ onExit, grade = 1 }) {
+  const bestKey = `toan-l${grade}-game-ghep-so-best-time`
+  const [board, setBoard] = useState(() => makeBoard(grade))
   const [selectedExpr, setSelectedExpr] = useState(null)
   const [selectedResult, setSelectedResult] = useState(null)
   const [solved, setSolved] = useState(new Set())
@@ -45,7 +62,7 @@ export default function GhepSoGame({ onExit }) {
   const [seconds, setSeconds] = useState(0)
   const [running, setRunning] = useState(true)
   const [best, setBest] = useState(() => {
-    const v = localStorage.getItem(BEST_KEY)
+    const v = localStorage.getItem(bestKey)
     return v ? Number(v) : null
   })
   const timerRef = useRef(null)
@@ -65,7 +82,7 @@ export default function GhepSoGame({ onExit }) {
       submitAttempt({ kind: 'game', itemId: 'ghep-so', itemLabel: 'Ghép số', score: PAIR_COUNT, maxScore: PAIR_COUNT }).catch(() => {})
       if (best === null || seconds < best) {
         setBest(seconds)
-        localStorage.setItem(BEST_KEY, String(seconds))
+        localStorage.setItem(bestKey, String(seconds))
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,7 +117,7 @@ export default function GhepSoGame({ onExit }) {
   }
 
   function playAgain() {
-    setBoard(makeBoard())
+    setBoard(makeBoard(grade))
     setSelectedExpr(null)
     setSelectedResult(null)
     setSolved(new Set())

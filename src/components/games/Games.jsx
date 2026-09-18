@@ -16,23 +16,46 @@ import GhepChuSoGame from './GhepChuSoGame'
 import XepSoGame from './XepSoGame'
 import TriNhoSoGame from './TriNhoSoGame'
 
-const GAME_LIST = [
-  { id: 'dem-hinh', icon: '🔢', name: 'Đếm hình vui', desc: 'Đếm số hình rồi chọn đúng đáp số.' },
-  { id: 'ghep-so', icon: '🔗', name: 'Ghép số', desc: 'Ghép phép tính với kết quả đúng của nó.' },
-  { id: 'ai-nhanh', icon: '⏱', name: 'Ai nhanh ai đúng', desc: 'Trả lời thật nhanh phép cộng, trừ trong 30 giây.' },
-  { id: 'so-sanh-so', icon: '⚖️', name: 'So sánh số', desc: 'Chọn đúng dấu >, < hoặc = giữa hai số.' },
-  { id: 'chan-le', icon: '🔵', name: 'Chẵn hay lẻ?', desc: 'Đoán xem số đó là số chẵn hay số lẻ.' },
-  { id: 'lien-truoc-lien-sau', icon: '🔁', name: 'Số liền trước – liền sau', desc: 'Tìm đúng số liền trước hoặc liền sau.' },
-  { id: 'lon-be-nhat', icon: '🏆', name: 'Số lớn nhất – số bé nhất', desc: 'Chọn số lớn nhất hoặc bé nhất trong nhóm 4 số.' },
-  { id: 'nhan-dien-hinh', icon: '🔺', name: 'Nhận diện hình khối', desc: 'Nhìn hình và chọn đúng tên của hình đó.' },
-  { id: 'dien-so-thieu', icon: '🧩', name: 'Điền số còn thiếu', desc: 'Tìm đúng số còn thiếu trong dãy số đếm.' },
-  { id: 'dung-sai', icon: '✅', name: 'Đúng hay sai?', desc: 'Phép tính đúng hay sai? Trả lời thật nhanh trong 30 giây.' },
-  { id: 'ghep-chu-so', icon: '🔤', name: 'Ghép số với chữ số', desc: 'Ghép chữ số với tên gọi bằng chữ của nó.' },
-  { id: 'xep-so', icon: '🪜', name: 'Xếp số theo thứ tự', desc: 'Chạm vào các số theo thứ tự từ bé đến lớn.' },
-  { id: 'tri-nho-so', icon: '🧠', name: 'Trí nhớ số', desc: 'Lật 2 thẻ để tìm cặp số giống nhau.' },
-]
+function getGameList(grade) {
+  return [
+    { id: 'dem-hinh', icon: '🔢', name: 'Đếm hình vui', desc: 'Đếm số hình rồi chọn đúng đáp số.' },
+    { id: 'ghep-so', icon: '🔗', name: 'Ghép số', desc: 'Ghép phép tính với kết quả đúng của nó.' },
+    {
+      id: 'ai-nhanh',
+      icon: '⏱',
+      name: 'Ai nhanh ai đúng',
+      desc:
+        grade >= 2
+          ? 'Trả lời thật nhanh phép cộng, trừ, nhân, chia trong 30 giây.'
+          : 'Trả lời thật nhanh phép cộng, trừ trong 30 giây.',
+    },
+    { id: 'so-sanh-so', icon: '⚖️', name: 'So sánh số', desc: 'Chọn đúng dấu >, < hoặc = giữa hai số.' },
+    { id: 'chan-le', icon: '🔵', name: 'Chẵn hay lẻ?', desc: 'Đoán xem số đó là số chẵn hay số lẻ.' },
+    { id: 'lien-truoc-lien-sau', icon: '🔁', name: 'Số liền trước – liền sau', desc: 'Tìm đúng số liền trước hoặc liền sau.' },
+    {
+      id: 'lon-be-nhat',
+      icon: '🏆',
+      name: 'Số lớn nhất – số bé nhất',
+      desc: `Chọn số lớn nhất hoặc bé nhất trong nhóm ${grade >= 2 ? '4-6' : '4'} số.`,
+    },
+    { id: 'nhan-dien-hinh', icon: '🔺', name: 'Nhận diện hình khối', desc: 'Nhìn hình và chọn đúng tên của hình đó.' },
+    { id: 'dien-so-thieu', icon: '🧩', name: 'Điền số còn thiếu', desc: 'Tìm đúng số còn thiếu trong dãy số đếm.' },
+    {
+      id: 'dung-sai',
+      icon: '✅',
+      name: 'Đúng hay sai?',
+      desc:
+        grade >= 2
+          ? 'Phép cộng, trừ, nhân, chia đúng hay sai? Trả lời thật nhanh trong 30 giây.'
+          : 'Phép tính đúng hay sai? Trả lời thật nhanh trong 30 giây.',
+    },
+    { id: 'ghep-chu-so', icon: '🔤', name: 'Ghép số với chữ số', desc: 'Ghép chữ số với tên gọi bằng chữ của nó.' },
+    { id: 'xep-so', icon: '🪜', name: 'Xếp số theo thứ tự', desc: 'Chạm vào các số theo thứ tự từ bé đến lớn.' },
+    { id: 'tri-nho-so', icon: '🧠', name: 'Trí nhớ số', desc: 'Lật 2 thẻ để tìm cặp số giống nhau.' },
+  ]
+}
 
-export default function Games({ onBack }) {
+export default function Games({ onBack, grade = 1 }) {
   const { student, loading, register, login, logout } = useStudentAuth()
   const [active, setActive] = useState(null)
   const [progress, setProgress] = useState(() => getProgress())
@@ -72,7 +95,7 @@ export default function Games({ onBack }) {
           ← Tổng quan
         </button>
         <header className="screen__header">
-          <h1>🎮 Trò chơi Toán lớp 1</h1>
+          <h1>🎮 Trò chơi Toán lớp {grade}</h1>
           <p className="screen__subtitle">Đăng nhập để chơi và lưu lại kết quả, streak, huy hiệu của con.</p>
         </header>
         <AccountPanel student={student} onRegister={register} onLogin={login} onLogout={logout} />
@@ -80,19 +103,19 @@ export default function Games({ onBack }) {
     )
   }
 
-  if (active === 'dem-hinh') return <DemHinhGame onExit={exitGame} />
-  if (active === 'ghep-so') return <GhepSoGame onExit={exitGame} />
-  if (active === 'ai-nhanh') return <AiNhanhAiDungGame onExit={exitGame} />
-  if (active === 'so-sanh-so') return <SoSanhSoGame onExit={exitGame} />
-  if (active === 'chan-le') return <ChanLeGame onExit={exitGame} />
-  if (active === 'lien-truoc-lien-sau') return <LienTruocLienSauGame onExit={exitGame} />
-  if (active === 'lon-be-nhat') return <LonNhatBeNhatGame onExit={exitGame} />
-  if (active === 'nhan-dien-hinh') return <NhanDienHinhGame onExit={exitGame} />
-  if (active === 'dien-so-thieu') return <DienSoConThieuGame onExit={exitGame} />
-  if (active === 'dung-sai') return <DungSaiGame onExit={exitGame} />
-  if (active === 'ghep-chu-so') return <GhepChuSoGame onExit={exitGame} />
-  if (active === 'xep-so') return <XepSoGame onExit={exitGame} />
-  if (active === 'tri-nho-so') return <TriNhoSoGame onExit={exitGame} />
+  if (active === 'dem-hinh') return <DemHinhGame onExit={exitGame} grade={grade} />
+  if (active === 'ghep-so') return <GhepSoGame onExit={exitGame} grade={grade} />
+  if (active === 'ai-nhanh') return <AiNhanhAiDungGame onExit={exitGame} grade={grade} />
+  if (active === 'so-sanh-so') return <SoSanhSoGame onExit={exitGame} grade={grade} />
+  if (active === 'chan-le') return <ChanLeGame onExit={exitGame} grade={grade} />
+  if (active === 'lien-truoc-lien-sau') return <LienTruocLienSauGame onExit={exitGame} grade={grade} />
+  if (active === 'lon-be-nhat') return <LonNhatBeNhatGame onExit={exitGame} grade={grade} />
+  if (active === 'nhan-dien-hinh') return <NhanDienHinhGame onExit={exitGame} grade={grade} />
+  if (active === 'dien-so-thieu') return <DienSoConThieuGame onExit={exitGame} grade={grade} />
+  if (active === 'dung-sai') return <DungSaiGame onExit={exitGame} grade={grade} />
+  if (active === 'ghep-chu-so') return <GhepChuSoGame onExit={exitGame} grade={grade} />
+  if (active === 'xep-so') return <XepSoGame onExit={exitGame} grade={grade} />
+  if (active === 'tri-nho-so') return <TriNhoSoGame onExit={exitGame} grade={grade} />
 
   const earnedIds = getEarnedBadgeIds(progress)
 
@@ -102,8 +125,12 @@ export default function Games({ onBack }) {
         ← Tổng quan
       </button>
       <header className="screen__header">
-        <h1>🎮 Trò chơi Toán lớp 1</h1>
-        <p className="screen__subtitle">Vừa chơi vừa luyện đếm, cộng, trừ trong phạm vi 10.</p>
+        <h1>🎮 Trò chơi Toán lớp {grade}</h1>
+        <p className="screen__subtitle">
+          {grade >= 2
+            ? 'Vừa chơi vừa luyện cộng, trừ, nhân, chia trong phạm vi 1000.'
+            : 'Vừa chơi vừa luyện đếm, cộng, trừ trong phạm vi 10.'}
+        </p>
       </header>
 
       {newBadges.length > 0 && (
@@ -137,7 +164,7 @@ export default function Games({ onBack }) {
       </div>
 
       <div className="grid-areas">
-        {GAME_LIST.map((g) => (
+        {getGameList(grade).map((g) => (
           <button key={g.id} className="area-card game-card" onClick={() => setActive(g.id)}>
             {progress.completedGames.includes(g.id) && <span className="game-card__check">✓</span>}
             <span className="game-card__icon">{g.icon}</span>

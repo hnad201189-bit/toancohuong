@@ -4,23 +4,28 @@ import { recordSession } from './progress'
 import { submitAttempt } from '../../api/client'
 
 const PAIR_COUNT = 6
-const BEST_KEY = 'toan-l1-game-tri-nho-best-time'
 
-function makeBoard() {
+function makeBoard(grade = 1) {
   const values = new Set()
-  while (values.size < PAIR_COUNT) values.add(randInt(1, 10))
+  // Lớp 1: số có 1 chữ số (1-10). Lớp 2: số có 2 chữ số (10-99).
+  if (grade >= 2) {
+    while (values.size < PAIR_COUNT) values.add(randInt(10, 99))
+  } else {
+    while (values.size < PAIR_COUNT) values.add(randInt(1, 10))
+  }
   const pairValues = [...values, ...values]
   return shuffle(pairValues.map((value, i) => ({ id: i, value, matched: false })))
 }
 
-export default function TriNhoSoGame({ onExit }) {
-  const [cards, setCards] = useState(makeBoard)
+export default function TriNhoSoGame({ onExit, grade = 1 }) {
+  const bestKey = `toan-l${grade}-game-tri-nho-best-time`
+  const [cards, setCards] = useState(() => makeBoard(grade))
   const [flippedIds, setFlippedIds] = useState([])
   const [moves, setMoves] = useState(0)
   const [seconds, setSeconds] = useState(0)
   const [running, setRunning] = useState(true)
   const [best, setBest] = useState(() => {
-    const v = localStorage.getItem(BEST_KEY)
+    const v = localStorage.getItem(bestKey)
     return v ? Number(v) : null
   })
   const timerRef = useRef(null)
@@ -41,7 +46,7 @@ export default function TriNhoSoGame({ onExit }) {
       submitAttempt({ kind: 'game', itemId: 'tri-nho-so', itemLabel: 'Trí nhớ số', score: PAIR_COUNT, maxScore: PAIR_COUNT }).catch(() => {})
       if (best === null || seconds < best) {
         setBest(seconds)
-        localStorage.setItem(BEST_KEY, String(seconds))
+        localStorage.setItem(bestKey, String(seconds))
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +74,7 @@ export default function TriNhoSoGame({ onExit }) {
   }
 
   function playAgain() {
-    setCards(makeBoard())
+    setCards(makeBoard(grade))
     setFlippedIds([])
     setMoves(0)
     setSeconds(0)

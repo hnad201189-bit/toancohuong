@@ -16,9 +16,10 @@ export default function RoundsQuizGame({
   bestKey,
   makeRound,
   renderPrompt,
+  grade = 1,
 }) {
   const [round, setRound] = useState(0)
-  const [current, setCurrent] = useState(() => makeRound(0))
+  const [current, setCurrent] = useState(() => makeRound(0, grade))
   const [score, setScore] = useState(0)
   const [picked, setPicked] = useState(null)
   const [finished, setFinished] = useState(false)
@@ -53,13 +54,13 @@ export default function RoundsQuizGame({
   function next() {
     const nextRound = round + 1
     setRound(nextRound)
-    setCurrent(makeRound(nextRound))
+    setCurrent(makeRound(nextRound, grade))
     setPicked(null)
   }
 
   function playAgain() {
     setRound(0)
-    setCurrent(makeRound(0))
+    setCurrent(makeRound(0, grade))
     setScore(0)
     setPicked(null)
     setFinished(false)

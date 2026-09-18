@@ -2,11 +2,10 @@ import RoundsQuizGame from './RoundsQuizGame'
 import { randInt, shuffle } from './gameUtils'
 
 const ROUNDS = 8
-const BEST_KEY = 'toan-l1-game-so-sanh-best'
 
-function makeRound(round) {
-  // Vòng đầu số nhỏ (0-10), càng chơi số càng lớn (0-20) cho khó hơn.
-  const max = round >= 3 ? 20 : 10
+function makeRound(round, grade = 1) {
+  // Lớp 1: số nhỏ (0-10 rồi 0-20). Lớp 2: phạm vi 1000 (0-200 rồi 0-1000).
+  const max = grade >= 2 ? (round >= 3 ? 1000 : 200) : round >= 3 ? 20 : 10
   const a = randInt(0, max)
   // Cho ra dấu "=" khoảng 1/4 số vòng, còn lại so sánh 2 số khác nhau.
   const b = Math.random() < 0.25 ? a : randInt(0, max)
@@ -27,7 +26,7 @@ function renderPrompt(current) {
   )
 }
 
-export default function SoSanhSoGame({ onExit }) {
+export default function SoSanhSoGame({ onExit, grade = 1 }) {
   return (
     <RoundsQuizGame
       onExit={onExit}
@@ -36,9 +35,10 @@ export default function SoSanhSoGame({ onExit }) {
       title="So sánh số"
       subtitle="Chọn đúng dấu >, < hoặc = giữa hai số."
       rounds={ROUNDS}
-      bestKey={BEST_KEY}
+      bestKey={`toan-l${grade}-game-so-sanh-best`}
       makeRound={makeRound}
       renderPrompt={renderPrompt}
+      grade={grade}
     />
   )
 }

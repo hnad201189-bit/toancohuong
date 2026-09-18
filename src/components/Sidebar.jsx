@@ -72,7 +72,7 @@ export default function Sidebar({
             📝 Thi thử
           </button>
         )}
-        {grade === 1 && (
+        {(grade === 1 || grade === 2) && (
           <button
             className={`sidebar__item sidebar__item--overview ${view.screen === 'games' ? 'is-active' : ''}`}
             onClick={() => go(onGoGames)}

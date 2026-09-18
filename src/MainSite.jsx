@@ -310,7 +310,7 @@ export default function MainSite() {
           </div>
         )}
 
-        {view.screen === 'games' && <Games onBack={goDashboard} />}
+        {view.screen === 'games' && <Games onBack={goDashboard} grade={grade} />}
 
         {view.screen === 'my-results' && <MyResults onBack={goDashboard} />}
 

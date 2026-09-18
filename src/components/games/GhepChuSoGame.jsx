@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { shuffle } from './gameUtils'
+import { shuffle, numberToVietnameseWords } from './gameUtils'
 import { recordSession } from './progress'
 import { submitAttempt } from '../../api/client'
 
-const WORD_POOL = [
+const WORD_POOL_L1 = [
   { result: 1, word: 'Một' },
   { result: 2, word: 'Hai' },
   { result: 3, word: 'Ba' },
@@ -15,18 +15,25 @@ const WORD_POOL = [
   { result: 9, word: 'Chín' },
   { result: 10, word: 'Mười' },
 ]
+// Lớp 2: số có 2-3 chữ số, đủ các trường hợp đọc đặc biệt (mốt/tư/lăm/linh)
+// theo đúng cách đọc số dạy ở tiểu học — xem numberToVietnameseWords.
+const WORD_POOL_L2 = [12, 15, 21, 24, 30, 45, 50, 68, 71, 84, 99, 100, 105, 250].map((n) => ({
+  result: n,
+  word: numberToVietnameseWords(n),
+}))
 const PAIR_COUNT = 6
-const BEST_KEY = 'toan-l1-game-ghep-chu-so-best-time'
 
-function makeBoard() {
-  const facts = shuffle(WORD_POOL).slice(0, PAIR_COUNT)
+function makeBoard(grade = 1) {
+  const pool = grade >= 2 ? WORD_POOL_L2 : WORD_POOL_L1
+  const facts = shuffle(pool).slice(0, PAIR_COUNT)
   const digitCards = shuffle(facts.map((f) => ({ id: `d${f.result}`, label: String(f.result), result: f.result })))
   const wordCards = shuffle(facts.map((f) => ({ id: `w${f.result}`, label: f.word, result: f.result })))
   return { digitCards, wordCards }
 }
 
-export default function GhepChuSoGame({ onExit }) {
-  const [board, setBoard] = useState(makeBoard)
+export default function GhepChuSoGame({ onExit, grade = 1 }) {
+  const bestKey = `toan-l${grade}-game-ghep-chu-so-best-time`
+  const [board, setBoard] = useState(() => makeBoard(grade))
   const [selectedDigit, setSelectedDigit] = useState(null)
   const [selectedWord, setSelectedWord] = useState(null)
   const [solved, setSolved] = useState(new Set())
@@ -35,7 +42,7 @@ export default function GhepChuSoGame({ onExit }) {
   const [seconds, setSeconds] = useState(0)
   const [running, setRunning] = useState(true)
   const [best, setBest] = useState(() => {
-    const v = localStorage.getItem(BEST_KEY)
+    const v = localStorage.getItem(bestKey)
     return v ? Number(v) : null
   })
   const timerRef = useRef(null)
@@ -55,7 +62,7 @@ export default function GhepChuSoGame({ onExit }) {
       submitAttempt({ kind: 'game', itemId: 'ghep-chu-so', itemLabel: 'Ghép số với chữ số', score: PAIR_COUNT, maxScore: PAIR_COUNT }).catch(() => {})
       if (best === null || seconds < best) {
         setBest(seconds)
-        localStorage.setItem(BEST_KEY, String(seconds))
+        localStorage.setItem(bestKey, String(seconds))
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,7 +97,7 @@ export default function GhepChuSoGame({ onExit }) {
   }
 
   function playAgain() {
-    setBoard(makeBoard())
+    setBoard(makeBoard(grade))
     setSelectedDigit(null)
     setSelectedWord(null)
     setSolved(new Set())

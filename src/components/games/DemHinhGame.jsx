@@ -4,7 +4,6 @@ import { submitAttempt } from '../../api/client'
 
 const EMOJI_POOL = ['🍎', '🍌', '🐱', '🐶', '⭐', '🎈', '🍇', '🐟', '🌸', '🚗']
 const ROUNDS = 8
-const BEST_KEY = 'toan-l1-game-dem-hinh-best'
 
 function randInt(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1))
@@ -19,9 +18,10 @@ function shuffle(arr) {
   return a
 }
 
-function makeRound(round) {
-  // Vòng đầu đếm ít (1-5), càng chơi càng đếm nhiều hơn (1-12) cho khó hơn.
-  const max = round >= 6 ? 12 : round >= 3 ? 10 : 5
+function makeRound(round, grade = 1) {
+  // Vòng đầu đếm ít, càng chơi càng đếm nhiều hơn cho khó hơn. Lớp 2 đếm tới
+  // 20 (khớp mạch "đếm — kiểm đếm số liệu" của chương trình lớp 2).
+  const max = grade >= 2 ? (round >= 6 ? 20 : round >= 3 ? 16 : 8) : round >= 6 ? 12 : round >= 3 ? 10 : 5
   const emoji = EMOJI_POOL[randInt(0, EMOJI_POOL.length - 1)]
   const count = randInt(1, max)
   const wrongPool = new Set()
@@ -33,13 +33,14 @@ function makeRound(round) {
   return { emoji, count, options }
 }
 
-export default function DemHinhGame({ onExit }) {
+export default function DemHinhGame({ onExit, grade = 1 }) {
+  const bestKey = `toan-l${grade}-game-dem-hinh-best`
   const [round, setRound] = useState(0)
-  const [current, setCurrent] = useState(() => makeRound(0))
+  const [current, setCurrent] = useState(() => makeRound(0, grade))
   const [score, setScore] = useState(0)
   const [picked, setPicked] = useState(null)
   const [finished, setFinished] = useState(false)
-  const [best, setBest] = useState(() => Number(localStorage.getItem(BEST_KEY)) || 0)
+  const [best, setBest] = useState(() => Number(localStorage.getItem(bestKey)) || 0)
 
   useEffect(() => {
     if (finished) {
@@ -61,7 +62,7 @@ export default function DemHinhGame({ onExit }) {
         setFinished(true)
         if (nextScore > best) {
           setBest(nextScore)
-          localStorage.setItem(BEST_KEY, String(nextScore))
+          localStorage.setItem(bestKey, String(nextScore))
         }
       }, 700)
     }
@@ -70,13 +71,13 @@ export default function DemHinhGame({ onExit }) {
   function next() {
     const nextRound = round + 1
     setRound(nextRound)
-    setCurrent(makeRound(nextRound))
+    setCurrent(makeRound(nextRound, grade))
     setPicked(null)
   }
 
   function playAgain() {
     setRound(0)
-    setCurrent(makeRound(0))
+    setCurrent(makeRound(0, grade))
     setScore(0)
     setPicked(null)
     setFinished(false)

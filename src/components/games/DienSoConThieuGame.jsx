@@ -2,22 +2,16 @@ import RoundsQuizGame from './RoundsQuizGame'
 import { randInt, shuffle } from './gameUtils'
 
 const ROUNDS = 8
-const BEST_KEY = 'toan-l1-game-dien-so-thieu-best'
 
-function makeRound(round) {
-  // Vòng đầu đếm cách 1 (0-19), càng chơi càng đếm cách quãng 2 cho khó hơn.
-  const step = round >= 3 ? 2 : 1
-  const maxStart = step === 2 ? 10 : 15
-  const start = randInt(0, maxStart)
+// Dựng 1 vòng chơi từ điểm bắt đầu + bước nhảy: sinh dãy 5 số, giấu 1 số ở
+// giữa, rồi chọn 3 số nhiễu hợp lệ quanh đáp án (không trùng dãy, không âm).
+function buildRound(start, step, wrongSpread) {
   const sequence = [start, start + step, start + 2 * step, start + 3 * step, start + 4 * step]
   const missingIndex = randInt(1, 3)
   const answer = sequence[missingIndex]
 
-  // Liệt kê sẵn toàn bộ số nhiễu hợp lệ quanh đáp án (không nằm trong dãy,
-  // không âm) rồi lấy ngẫu nhiên 3 số — tránh vòng lặp "thử-sai" có thể
-  // không bao giờ tìm đủ 3 số khi đáp án nằm sát đầu/cuối dãy.
   const candidatePool = []
-  for (let delta = -8; delta <= 8; delta++) {
+  for (let delta = -wrongSpread; delta <= wrongSpread; delta++) {
     if (delta === 0) continue
     const candidate = answer + delta
     if (candidate >= 0 && !sequence.includes(candidate)) candidatePool.push(candidate)
@@ -25,6 +19,31 @@ function makeRound(round) {
   const wrongPool = shuffle(candidatePool).slice(0, 3)
   const options = shuffle([answer, ...wrongPool]).map((v) => ({ label: String(v), value: v }))
   return { sequence, missingIndex, answer, options }
+}
+
+function makeRoundL1(round) {
+  // Vòng đầu đếm cách 1 (0-19), càng chơi càng đếm cách quãng 2 cho khó hơn.
+  const step = round >= 3 ? 2 : 1
+  const maxStart = step === 2 ? 10 : 15
+  const start = randInt(0, maxStart)
+  return buildRound(start, step, 8)
+}
+
+function makeRoundL2(round) {
+  // Đếm cách theo các bước hay gặp ở lớp 2 (1, 2, 5, 10), phạm vi tới 1000 —
+  // vòng đầu bước nhỏ/phạm vi nhỏ, càng chơi bước càng lớn/phạm vi càng rộng.
+  const steps = round >= 5 ? [2, 5, 10] : round >= 2 ? [1, 2, 5] : [1, 2]
+  const step = steps[randInt(0, steps.length - 1)]
+  const maxStart = round >= 5 ? 900 : round >= 2 ? 300 : 50
+  const start = randInt(0, maxStart)
+  // Làm tròn điểm bắt đầu về bội số của step để dãy vẫn "đẹp" (ví dụ bước 10
+  // luôn rơi vào các chục tròn: 120, 130, 140...).
+  const roundedStart = start - (start % step)
+  return buildRound(roundedStart, step, Math.max(8, step * 3))
+}
+
+function makeRound(round, grade = 1) {
+  return grade >= 2 ? makeRoundL2(round) : makeRoundL1(round)
 }
 
 function renderPrompt(current) {
@@ -40,7 +59,7 @@ function renderPrompt(current) {
   )
 }
 
-export default function DienSoConThieuGame({ onExit }) {
+export default function DienSoConThieuGame({ onExit, grade = 1 }) {
   return (
     <RoundsQuizGame
       onExit={onExit}
@@ -49,9 +68,10 @@ export default function DienSoConThieuGame({ onExit }) {
       title="Điền số còn thiếu"
       subtitle="Tìm đúng số còn thiếu trong dãy số đếm."
       rounds={ROUNDS}
-      bestKey={BEST_KEY}
+      bestKey={`toan-l${grade}-game-dien-so-thieu-best`}
       makeRound={makeRound}
       renderPrompt={renderPrompt}
+      grade={grade}
     />
   )
 }

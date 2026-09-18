@@ -1,26 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
-import { randInt } from './gameUtils'
+import { randInt, makeArithmeticQuestion } from './gameUtils'
 import { recordSession } from './progress'
 import { submitAttempt } from '../../api/client'
 
 const GAME_SECONDS = 30
-const BEST_KEY = 'toan-l1-game-dung-sai-best'
 
-function makeQuestion(score) {
-  // Điểm càng cao, phạm vi số càng lớn — độ khó tự tăng theo tiến trình ván chơi.
-  const max = score >= 10 ? 20 : score >= 5 ? 15 : 10
-  const isAddition = Math.random() < 0.5
-  let a, b, correctAnswer
-  if (isAddition) {
-    a = randInt(0, max)
-    b = randInt(0, max - a)
-    correctAnswer = a + b
-  } else {
-    a = randInt(0, max)
-    b = randInt(0, a)
-    correctAnswer = a - b
-  }
+function makeQuestion(score, grade = 1) {
+  // Điểm càng cao, độ khó (phạm vi số / tỉ lệ ra nhân-chia) càng tăng.
+  const level = score >= 10 ? 2 : score >= 5 ? 1 : 0
+  const { a, b, op, answer: correctAnswer } = makeArithmeticQuestion(level, grade)
 
+  const optionCeiling = Math.max(correctAnswer + 10, 10)
   const showCorrect = Math.random() < 0.5
   let shown = correctAnswer
   if (!showCorrect) {
@@ -29,11 +19,11 @@ function makeQuestion(score) {
       const delta = randInt(-3, 3) || 1
       shown = correctAnswer + delta
       attempts++
-    } while ((shown === correctAnswer || shown < 0 || shown > max) && attempts < 20)
+    } while ((shown === correctAnswer || shown < 0 || shown > optionCeiling) && attempts < 20)
   }
 
   return {
-    text: `${a} ${isAddition ? '+' : '−'} ${b} = ${shown}`,
+    text: `${a} ${op} ${b} = ${shown}`,
     answer: shown === correctAnswer ? 'dung' : 'sai',
   }
 }
@@ -43,14 +33,15 @@ const OPTIONS = [
   { label: 'Sai ❌', value: 'sai' },
 ]
 
-export default function DungSaiGame({ onExit }) {
-  const [question, setQuestion] = useState(() => makeQuestion(0))
+export default function DungSaiGame({ onExit, grade = 1 }) {
+  const bestKey = `toan-l${grade}-game-dung-sai-best`
+  const [question, setQuestion] = useState(() => makeQuestion(0, grade))
   const [score, setScore] = useState(0)
   const [secondsLeft, setSecondsLeft] = useState(GAME_SECONDS)
   const [running, setRunning] = useState(true)
   const [flash, setFlash] = useState(null)
   const [pickedOpt, setPickedOpt] = useState(null)
-  const [best, setBest] = useState(() => Number(localStorage.getItem(BEST_KEY)) || 0)
+  const [best, setBest] = useState(() => Number(localStorage.getItem(bestKey)) || 0)
   const intervalRef = useRef(null)
 
   useEffect(() => {
@@ -74,9 +65,9 @@ export default function DungSaiGame({ onExit }) {
     submitAttempt({ kind: 'game', itemId: 'dung-sai', itemLabel: 'Đúng hay sai?', score, maxScore: null }).catch(() => {})
     if (score > best) {
       setBest(score)
-      localStorage.setItem(BEST_KEY, String(score))
+      localStorage.setItem(bestKey, String(score))
     }
-  }, [secondsLeft, running, score, best])
+  }, [secondsLeft, running, score, best, bestKey])
 
   function answer(opt) {
     if (!running || flash) return
@@ -88,12 +79,12 @@ export default function DungSaiGame({ onExit }) {
     setTimeout(() => {
       setFlash(null)
       setPickedOpt(null)
-      setQuestion(makeQuestion(nextScore))
+      setQuestion(makeQuestion(nextScore, grade))
     }, 500)
   }
 
   function playAgain() {
-    setQuestion(makeQuestion(0))
+    setQuestion(makeQuestion(0, grade))
     setScore(0)
     setSecondsLeft(GAME_SECONDS)
     setRunning(true)
@@ -133,7 +124,11 @@ export default function DungSaiGame({ onExit }) {
       </button>
       <header className="screen__header">
         <h1>✅ Đúng hay sai?</h1>
-        <p className="screen__subtitle">Phép tính đúng hay sai? Trả lời thật nhanh trong 30 giây!</p>
+        <p className="screen__subtitle">
+          {grade >= 2
+            ? 'Phép cộng, trừ, nhân, chia đúng hay sai? Trả lời thật nhanh trong 30 giây!'
+            : 'Phép tính đúng hay sai? Trả lời thật nhanh trong 30 giây!'}
+        </p>
       </header>
 
       <div className="game-hud">

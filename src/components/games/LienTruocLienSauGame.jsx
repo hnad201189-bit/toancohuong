@@ -2,11 +2,10 @@ import RoundsQuizGame from './RoundsQuizGame'
 import { randInt, shuffle } from './gameUtils'
 
 const ROUNDS = 8
-const BEST_KEY = 'toan-l1-game-lien-truoc-sau-best'
 
-function makeRound(round) {
-  // Vòng đầu số nhỏ (1-19), càng chơi số càng lớn (1-39) cho khó hơn.
-  const max = round >= 3 ? 39 : 19
+function makeRound(round, grade = 1) {
+  // Lớp 1: số nhỏ (1-19 rồi 1-39). Lớp 2: phạm vi 1000 (1-199 rồi 1-998).
+  const max = grade >= 2 ? (round >= 3 ? 998 : 199) : round >= 3 ? 39 : 19
   const n = randInt(1, max)
   const isBefore = Math.random() < 0.5
   const answer = isBefore ? n - 1 : n + 1
@@ -25,7 +24,7 @@ function renderPrompt(current) {
   return <p className="qgame__prompt">{current.prompt}</p>
 }
 
-export default function LienTruocLienSauGame({ onExit }) {
+export default function LienTruocLienSauGame({ onExit, grade = 1 }) {
   return (
     <RoundsQuizGame
       onExit={onExit}
@@ -34,9 +33,10 @@ export default function LienTruocLienSauGame({ onExit }) {
       title="Số liền trước – liền sau"
       subtitle="Tìm đúng số liền trước hoặc liền sau của một số cho trước."
       rounds={ROUNDS}
-      bestKey={BEST_KEY}
+      bestKey={`toan-l${grade}-game-lien-truoc-sau-best`}
       makeRound={makeRound}
       renderPrompt={renderPrompt}
+      grade={grade}
     />
   )
 }

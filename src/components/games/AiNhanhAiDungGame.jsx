@@ -1,61 +1,41 @@
 import { useEffect, useRef, useState } from 'react'
+import { randInt, shuffle, makeArithmeticQuestion } from './gameUtils'
 import { recordSession } from './progress'
 import { submitAttempt } from '../../api/client'
 
 const GAME_SECONDS = 30
-const BEST_KEY = 'toan-l1-game-ai-nhanh-best'
 
-function randInt(min, max) {
-  return min + Math.floor(Math.random() * (max - min + 1))
-}
+function makeQuestion(score, grade = 1) {
+  // Điểm càng cao, độ khó (phạm vi số / tỉ lệ ra nhân-chia) càng tăng.
+  const level = score >= 10 ? 2 : score >= 5 ? 1 : 0
+  const { a, b, op, answer } = makeArithmeticQuestion(level, grade)
 
-function shuffle(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
-
-function makeQuestion(score) {
-  // Điểm càng cao, phạm vi số càng lớn — độ khó tự tăng theo tiến trình ván chơi.
-  const max = score >= 10 ? 20 : score >= 5 ? 15 : 10
-  const isAddition = Math.random() < 0.5
-  let a, b, answer
-  if (isAddition) {
-    a = randInt(0, max)
-    b = randInt(0, max - a)
-    answer = a + b
-  } else {
-    a = randInt(0, max)
-    b = randInt(0, a)
-    answer = a - b
-  }
+  const optionCeiling = Math.max(answer + 10, 10)
   const wrongPool = new Set()
   while (wrongPool.size < 3) {
     const delta = randInt(-3, 3)
     const candidate = answer + delta
-    if (candidate !== answer && candidate >= 0 && candidate <= max) wrongPool.add(candidate)
+    if (candidate !== answer && candidate >= 0 && candidate <= optionCeiling) wrongPool.add(candidate)
   }
-  // Bù thêm nếu answer ở sát biên (0 hoặc max) khiến vòng lặp trên khó đủ 3 lựa chọn sai.
+  // Bù thêm nếu answer ở sát biên khiến vòng lặp trên khó đủ 3 lựa chọn sai.
   let filler = 0
-  while (wrongPool.size < 3 && filler <= max) {
+  while (wrongPool.size < 3 && filler <= optionCeiling) {
     if (filler !== answer) wrongPool.add(filler)
     filler++
   }
   const options = shuffle([answer, ...[...wrongPool].slice(0, 3)])
-  return { text: `${a} ${isAddition ? '+' : '−'} ${b} = ?`, answer, options }
+  return { text: `${a} ${op} ${b} = ?`, answer, options }
 }
 
-export default function AiNhanhAiDungGame({ onExit }) {
-  const [question, setQuestion] = useState(() => makeQuestion(0))
+export default function AiNhanhAiDungGame({ onExit, grade = 1 }) {
+  const bestKey = `toan-l${grade}-game-ai-nhanh-best`
+  const [question, setQuestion] = useState(() => makeQuestion(0, grade))
   const [score, setScore] = useState(0)
   const [secondsLeft, setSecondsLeft] = useState(GAME_SECONDS)
   const [running, setRunning] = useState(true)
   const [flash, setFlash] = useState(null) // 'correct' | 'wrong' | null
   const [pickedOpt, setPickedOpt] = useState(null)
-  const [best, setBest] = useState(() => Number(localStorage.getItem(BEST_KEY)) || 0)
+  const [best, setBest] = useState(() => Number(localStorage.getItem(bestKey)) || 0)
   const intervalRef = useRef(null)
 
   useEffect(() => {
@@ -79,9 +59,9 @@ export default function AiNhanhAiDungGame({ onExit }) {
     submitAttempt({ kind: 'game', itemId: 'ai-nhanh', itemLabel: 'Ai nhanh ai đúng', score, maxScore: null }).catch(() => {})
     if (score > best) {
       setBest(score)
-      localStorage.setItem(BEST_KEY, String(score))
+      localStorage.setItem(bestKey, String(score))
     }
-  }, [secondsLeft, running, score, best])
+  }, [secondsLeft, running, score, best, bestKey])
 
   function answer(opt) {
     if (!running || flash) return
@@ -93,12 +73,12 @@ export default function AiNhanhAiDungGame({ onExit }) {
     setTimeout(() => {
       setFlash(null)
       setPickedOpt(null)
-      setQuestion(makeQuestion(nextScore))
+      setQuestion(makeQuestion(nextScore, grade))
     }, 500)
   }
 
   function playAgain() {
-    setQuestion(makeQuestion(0))
+    setQuestion(makeQuestion(0, grade))
     setScore(0)
     setSecondsLeft(GAME_SECONDS)
     setRunning(true)
@@ -138,7 +118,11 @@ export default function AiNhanhAiDungGame({ onExit }) {
       </button>
       <header className="screen__header">
         <h1>⏱ Ai nhanh ai đúng</h1>
-        <p className="screen__subtitle">Trả lời thật nhanh các phép cộng, trừ trong phạm vi 10!</p>
+        <p className="screen__subtitle">
+          {grade >= 2
+            ? 'Trả lời thật nhanh các phép cộng, trừ, nhân, chia trong 30 giây!'
+            : 'Trả lời thật nhanh các phép cộng, trừ trong phạm vi 10!'}
+        </p>
       </header>
 
       <div className="game-hud">

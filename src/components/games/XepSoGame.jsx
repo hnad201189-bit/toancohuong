@@ -5,20 +5,21 @@ import { submitAttempt } from '../../api/client'
 
 const ROUNDS = 6
 const CHIPS_PER_ROUND = 5
-const BEST_KEY = 'toan-l1-game-xep-so-best-time'
 
-function makeRound() {
+function makeRound(grade = 1) {
+  const max = grade >= 2 ? 999 : 20
   const nums = new Set()
-  while (nums.size < CHIPS_PER_ROUND) nums.add(randInt(0, 20))
+  while (nums.size < CHIPS_PER_ROUND) nums.add(randInt(0, max))
   const arr = [...nums]
   const sorted = [...arr].sort((a, b) => a - b)
   const chips = shuffle(arr.map((v, i) => ({ id: i, value: v })))
   return { chips, sorted }
 }
 
-export default function XepSoGame({ onExit }) {
+export default function XepSoGame({ onExit, grade = 1 }) {
+  const bestKey = `toan-l${grade}-game-xep-so-best-time`
   const [roundNum, setRoundNum] = useState(0)
-  const [roundData, setRoundData] = useState(makeRound)
+  const [roundData, setRoundData] = useState(() => makeRound(grade))
   const [doneValues, setDoneValues] = useState(new Set())
   const [wrongFlashId, setWrongFlashId] = useState(null)
   const [mistakes, setMistakes] = useState(0)
@@ -26,7 +27,7 @@ export default function XepSoGame({ onExit }) {
   const [running, setRunning] = useState(true)
   const [finished, setFinished] = useState(false)
   const [best, setBest] = useState(() => {
-    const v = localStorage.getItem(BEST_KEY)
+    const v = localStorage.getItem(bestKey)
     return v ? Number(v) : null
   })
   const timerRef = useRef(null)
@@ -44,7 +45,7 @@ export default function XepSoGame({ onExit }) {
     submitAttempt({ kind: 'game', itemId: 'xep-so', itemLabel: 'Xếp số theo thứ tự', score: ROUNDS, maxScore: ROUNDS }).catch(() => {})
     if (best === null || seconds < best) {
       setBest(seconds)
-      localStorage.setItem(BEST_KEY, String(seconds))
+      localStorage.setItem(bestKey, String(seconds))
     }
   }
 
@@ -61,7 +62,7 @@ export default function XepSoGame({ onExit }) {
         } else {
           setTimeout(() => {
             setRoundNum((r) => r + 1)
-            setRoundData(makeRound())
+            setRoundData(makeRound(grade))
             setDoneValues(new Set())
           }, 500)
         }
@@ -75,7 +76,7 @@ export default function XepSoGame({ onExit }) {
 
   function playAgain() {
     setRoundNum(0)
-    setRoundData(makeRound())
+    setRoundData(makeRound(grade))
     setDoneValues(new Set())
     setWrongFlashId(null)
     setMistakes(0)
