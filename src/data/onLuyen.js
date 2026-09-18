@@ -19,6 +19,29 @@ export const ON_LUYEN_TOPICS_BY_GRADE = {
       href: '/tai-lieu/toan-timo-khong-kho.html',
     },
   ],
+  2: [
+    {
+      id: 'chinh-phuc-diem-10-toan-2',
+      icon: '⭐',
+      name: 'Chinh Phục Điểm 10 Toán 2',
+      desc: 'Ôn tập trọng tâm 4 mảng kiến thức Toán 2, từ cơ bản đến nâng cao, có gợi ý từng bước.',
+      href: '/tai-lieu/chinh-phuc-diem-10-toan-2.html',
+    },
+    {
+      id: 'toan-nang-cao-lop-2',
+      icon: '🚀',
+      name: 'Toán Nâng Cao Lớp 2',
+      desc: 'Bài toán bồi dưỡng học sinh giỏi: tổng-hiệu, hình học tư duy, toán đố suy luận nhiều bước.',
+      href: '/tai-lieu/toan-nang-cao-lop-2.html',
+    },
+    {
+      id: 'toan-tu-duy-lop-2',
+      icon: '🧩',
+      name: 'Toán Tư Duy Lớp 2 (Violympic)',
+      desc: 'Quy luật dãy số, đếm hình, suy luận logic và toán đố vui phong cách Violympic, Toán Tuổi Thơ.',
+      href: '/tai-lieu/toan-tu-duy-lop-2.html',
+    },
+  ],
   6: [
     {
       id: 'chinh-phuc-diem-10',

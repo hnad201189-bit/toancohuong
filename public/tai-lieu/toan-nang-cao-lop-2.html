@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán Nâng Cao Lớp 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4f5fc;
+    --bg-alt: #eceefb;
+    --paper: #ffffff;
+    --ink: #221f3b;
+    --ink-soft: #5b5a7d;
+    --ink-faint: #8f8cae;
+    --accent: #5b4bda;
+    --accent-hover: #4636bf;
+    --accent-soft: #ece9fd;
+    --accent-soft-strong: #d9d3fa;
+    --teal: #0f9d8a;
+    --teal-soft: #dcf4ef;
+    --amber: #c47a1f;
+    --amber-soft: #fbedd8;
+    --line: #e1e2f2;
+    --line-strong: #cbccec;
+    --shadow: 0 1px 2px rgba(30, 22, 90, 0.06), 0 8px 22px rgba(30, 22, 90, 0.08);
+    --radius: 16px;
+    --sans: "Inter", "Segoe UI", "Be Vietnam Pro", Calibri, Arial, sans-serif;
+    --display: "Baloo 2", "Inter", "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #14132a;
+    --bg-alt: #1a1934;
+    --paper: #1c1b38;
+    --ink: #ece9fb;
+    --ink-soft: #b6b2d8;
+    --ink-faint: #7f7ba6;
+    --accent: #8b7bff;
+    --accent-hover: #a394ff;
+    --accent-soft: #2a2657;
+    --accent-soft-strong: #383163;
+    --teal: #4bd8bf;
+    --teal-soft: #173832;
+    --amber: #e3a94d;
+    --amber-soft: #3a2c17;
+    --line: #2c2a52;
+    --line-strong: #3b3868;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14132a;
+      --bg-alt: #1a1934;
+      --paper: #1c1b38;
+      --ink: #ece9fb;
+      --ink-soft: #b6b2d8;
+      --ink-faint: #7f7ba6;
+      --accent: #8b7bff;
+      --accent-hover: #a394ff;
+      --accent-soft: #2a2657;
+      --accent-soft-strong: #383163;
+      --teal: #4bd8bf;
+      --teal-soft: #173832;
+      --amber: #e3a94d;
+      --amber-soft: #3a2c17;
+      --line: #2c2a52;
+      --line-strong: #3b3868;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 0 18px 72px; }
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    padding: 44px 0 8px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h1.title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 4.4vw, 2.7rem);
+    line-height: 1.12;
+    margin: 0.5rem 0 0.9rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .hero p.lede {
+    max-width: 66ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    margin: 0 0 6px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 12.8px;
+    color: var(--ink-faint);
+  }
+  .hero-meta strong { color: var(--ink); }
+
+  .copyright-note {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    margin: 22px 0 8px;
+  }
+  .copyright-note .box {
+    background: var(--amber-soft);
+    border: 1px solid color-mix(in srgb, var(--amber) 40%, var(--line));
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14.3px;
+    color: var(--ink-soft);
+  }
+  .copyright-note .box b { color: var(--ink); }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(21px, 2.4vw, 26px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--teal);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--teal) 45%, var(--line-strong)); color: var(--teal); }
+  .controls .btn-answer:hover { background: var(--teal-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: #fff;
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+    font-family: var(--display);
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<div class="shell">
+  <header class="hero">
+    <span class="eyebrow">Ôn luyện · Toán 2 · Bồi dưỡng học sinh giỏi</span>
+    <h1 class="title">Toán Nâng Cao Lớp 2</h1>
+    <p class="lede">
+      12 bài toán "khó mà vui" dành cho các bạn đã nắm chắc kiến thức lớp 2 cơ bản và muốn thử sức
+      với những bài cần suy nghĩ nhiều bước hơn — tìm hai số biết tổng và hiệu, các bài toán ngược,
+      nhân chia nhiều bước, đếm hình ghép, và những câu đố suy luận nho nhỏ. Không cần học trước kiến
+      thức nào cao hơn lớp 2 — chỉ cần kiên nhẫn đọc kỹ đề và suy luận từng bước.
+    </p>
+    <div class="hero-meta">
+      <span><strong>4</strong> chuyên đề</span>
+      <span><strong>12</strong> bài gốc</span>
+      <span><strong>12</strong> bài biến thể</span>
+      <span><strong>24</strong> lượt luyện tổng cộng</span>
+    </div>
+  </header>
+
+  <div class="copyright-note">
+    <div class="box">
+      <b>Về nội dung:</b> toàn bộ 12 bài toán, số liệu và lời giải trong tài liệu này do đội ngũ tự
+      biên soạn mới hoàn toàn. Tài liệu chỉ lấy cảm hứng về <i>dạng bài</i> và mức độ khó thường gặp
+      trong các sách bồi dưỡng học sinh giỏi Toán lớp 2 (tìm hai số biết tổng — hiệu, toán ngược, đếm
+      hình ghép, suy luận lô-gích...), không sao chép nguyên văn bất kỳ đề bài hay số liệu nào từ sách
+      đã xuất bản.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">4 chuyên đề</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔢</span>Số và phép tính nâng cao</a></li>
+      <li><a href="#sec2"><span class="n">✖️</span>Nhân chia nâng cao</a></li>
+      <li><a href="#sec3"><span class="n">🧩</span>Hình học tư duy</a></li>
+      <li><a href="#sec4"><span class="n">🧠</span>Toán đố suy luận</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ================= SEC 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 1</span>Số và phép tính nâng cao</h2>
+      </div>
+      <p class="topic-intro">Ở chuyên đề này, các con sẽ gặp những bài toán "tìm số bí ẩn" — biết
+      <span class="kw">tổng và hiệu</span> của hai số, biết một dãy tính nhiều bước còn thiếu một số,
+      hoặc phải "đi ngược" lại một chuỗi phép tính để tìm ra số ban đầu. Mẹo chung: luôn làm chậm rãi
+      từng bước một, và sau khi tìm ra đáp số, hãy <span class="kw">thử lại</span> bằng cách thay số vào
+      đề bài xem có đúng không.</p>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Tổng của hai số là <b>18</b>. Hiệu của hai số đó là <b>4</b> (số lớn hơn số bé 4 đơn vị).</p>
+          <p>Hỏi số lớn và số bé là những số nào?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nếu ta lấy tổng (18) trừ đi hiệu (4), ta được: 18 − 4 = 14. Số 14 này chính là <b>hai lần số bé</b> (vì số lớn = số bé + hiệu, nên tổng = số bé + số bé + hiệu).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vậy số bé = 14 : 2 = 7.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số lớn = số bé + hiệu = 7 + 4 = 11.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử lại: 11 + 7 = 18 (đúng bằng tổng), và 11 − 7 = 4 (đúng bằng hiệu). Vậy kết quả chính xác.</p></div></div>
+          <p class="answer hidden">Số lớn là 11, số bé là 7.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Điền số thích hợp vào chỗ trống để dãy tính sau đúng:</p>
+          <p><b>24 − 9 + ⬜ = 20</b></p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Trong dãy tính có nhiều phép tính, ta tính lần lượt từ trái sang phải. Tính trước phần không có ô trống: 24 − 9 = 15.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Dãy tính trở thành: 15 + ⬜ = 20.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Muốn tìm số hạng còn thiếu, ta lấy tổng trừ đi số hạng đã biết: 20 − 15 = 5.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử lại: 24 − 9 + 5 = 15 + 5 = 20 (đúng).</p></div></div>
+          <p class="answer hidden">Số cần điền là 5.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-3" data-qid="Bài 1.3">
+        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext">
+          <p>Lan nghĩ ra một số. Lan lấy số đó <b>cộng thêm 15</b>, sau đó <b>trừ đi 8</b>, thì được kết
+          quả là <b>20</b>.</p>
+          <p>Hỏi số Lan đã nghĩ ra là số nào?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Với bài toán "đi ngược", ta làm ngược lại các bước, từ kết quả về số ban đầu, và đổi ngược phép tính (cộng thành trừ, trừ thành cộng).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Bước cuối cùng Lan đã làm là "trừ đi 8" để được 20. Vậy trước khi trừ đi 8, số đó là: 20 + 8 = 28.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Bước trước đó, Lan đã "cộng thêm 15" để được 28. Vậy số ban đầu là: 28 − 15 = 13.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử lại: 13 + 15 = 28, rồi 28 − 8 = 20 (đúng bằng đề bài).</p></div></div>
+          <p class="answer hidden">Số Lan đã nghĩ ra là 13.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">✖️</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 2</span>Nhân chia nâng cao</h2>
+      </div>
+      <p class="topic-intro">Chuyên đề này rèn khả năng nhận ra <span class="kw">nên nhân hay nên
+      chia</span> trong một bài toán có nhiều bước, và so sánh kết quả của hai phép tính khác nhau.
+      Mẹo: đọc kỹ đề, xác định "một phần" là bao nhiêu trước khi tính "tất cả các phần".</p>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Một cửa hàng có <b>4 hộp bút chì</b>, mỗi hộp có <b>6 chiếc bút</b>. Cửa hàng bán đi <b>2
+          hộp</b> nguyên (chưa mở hộp).</p>
+          <p>Hỏi cửa hàng còn lại bao nhiêu chiếc bút chì?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Sau khi bán đi 2 hộp nguyên, số hộp còn lại là: 4 − 2 = 2 hộp.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mỗi hộp vẫn có 6 chiếc bút, nên số bút còn lại là: 2 hộp × 6 chiếc = 12 chiếc.</p></div></div>
+          <p class="answer hidden">Cửa hàng còn lại 12 chiếc bút chì.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>So sánh hai biểu thức sau: <b>3 × 6</b> và <b>4 × 4</b>.</p>
+          <p>Biểu thức nào có giá trị lớn hơn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính giá trị biểu thức thứ nhất: 3 × 6 = 18.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính giá trị biểu thức thứ hai: 4 × 4 = 16.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>So sánh 18 và 16: vì 18 > 16 nên 3 × 6 > 4 × 4.</p></div></div>
+          <p class="answer hidden">Biểu thức 3 × 6 (bằng 18) lớn hơn biểu thức 4 × 4 (bằng 16).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-3" data-qid="Bài 2.3">
+        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext">
+          <p>Có <b>18 quả cam</b> được chia đều vào các đĩa, mỗi đĩa <b>3 quả</b>. Sau đó, mỗi đĩa lại
+          được lấy bớt đi <b>1 quả</b> để đem tặng bạn.</p>
+          <p>Hỏi sau khi tặng, tổng cộng trên tất cả các đĩa còn lại bao nhiêu quả cam?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Trước tiên tìm xem có bao nhiêu đĩa: 18 quả chia đều, mỗi đĩa 3 quả, nên số đĩa là: 18 : 3 = 6 đĩa.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mỗi đĩa bớt đi 1 quả, nên mỗi đĩa còn lại: 3 − 1 = 2 quả.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Có 6 đĩa, mỗi đĩa còn 2 quả, nên tổng số cam còn lại là: 6 × 2 = 12 quả.</p></div></div>
+          <p class="answer hidden">Còn lại tất cả 12 quả cam trên các đĩa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">🧩</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 3</span>Hình học tư duy</h2>
+      </div>
+      <p class="topic-intro">Ở chuyên đề này, các con sẽ luyện <span class="kw">quan sát và đếm cẩn
+      thận</span> — đếm hình trong một hình ghép phức tạp, tính diện tích và chu vi trên lưới ô vuông,
+      và ghép các hình vuông nhỏ lại thành một hình chữ nhật lớn. Mẹo: đếm theo từng nhóm nhỏ (hình 1
+      ô, hình 2 ô ghép lại...) để không bị sót hoặc đếm trùng.</p>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Một hình chữ nhật lớn được chia bởi <b>1 đường thẳng dọc</b> và <b>1 đường thẳng ngang</b>
+          thành 4 ô hình chữ nhật nhỏ, giống như hình dưới đây:</p>
+          <p class="concrete">┌──┬──┐<br>├──┼──┤<br>└──┴──┘</p>
+          <p>Hỏi trong toàn bộ hình vẽ có tất cả bao nhiêu hình chữ nhật (kể cả hình chữ nhật lớn
+          nhất và 4 ô nhỏ)?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm những hình nhỏ nhất (mỗi hình chỉ gồm 1 ô): có 4 hình.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm những hình ghép từ 2 ô nằm cạnh nhau theo hàng ngang (ô trên-trái + ô trên-phải, và ô dưới-trái + ô dưới-phải): có 2 hình.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm những hình ghép từ 2 ô nằm cạnh nhau theo hàng dọc (ô trái trên + ô trái dưới, và ô phải trên + ô phải dưới): có 2 hình.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Cuối cùng, đếm hình chữ nhật lớn nhất (gồm cả 4 ô): có 1 hình. Cộng tất cả lại: 4 + 2 + 2 + 1 = 9.</p></div></div>
+          <p class="answer hidden">Có tất cả 9 hình chữ nhật.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Một hình chữ nhật được vẽ trên lưới ô vuông, có <b>chiều dài 5 ô</b> và <b>chiều rộng 3
+          ô</b> (mỗi ô vuông nhỏ là một đơn vị).</p>
+          <p>a) Hình chữ nhật đó gồm tất cả bao nhiêu ô vuông nhỏ?<br>
+          b) Chu vi của hình chữ nhật đó bằng bao nhiêu cạnh ô (tính tổng độ dài 4 cạnh, mỗi cạnh ô
+          vuông nhỏ tính là 1 đơn vị)?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Để đếm số ô vuông nhỏ, ta tưởng tượng lưới có 3 hàng, mỗi hàng có 5 ô: số ô vuông = 5 × 3 = 15 ô.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hình chữ nhật có 2 cạnh dài (mỗi cạnh 5 đơn vị) và 2 cạnh rộng (mỗi cạnh 3 đơn vị).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Chu vi = (chiều dài + chiều rộng) × 2 = (5 + 3) × 2 = 8 × 2 = 16 đơn vị cạnh ô.</p></div></div>
+          <p class="answer hidden">a) Có 15 ô vuông nhỏ. b) Chu vi bằng 16 cạnh ô.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-3" data-qid="Bài 3.3">
+        <div class="q"><span class="qid">Bài 3.3</span><div class="qtext">
+          <p>Bo có <b>6 hình vuông nhỏ</b> bằng nhau, mỗi hình vuông có cạnh dài 1 ô. Bo muốn ghép cả 6
+          hình vuông đó lại (không chồng lên nhau, không để hở) để tạo thành <b>một hình chữ nhật</b>,
+          sao cho chiều rộng của hình chữ nhật <b>lớn hơn 1 ô</b>.</p>
+          <p>Hỏi hình chữ nhật Bo ghép được có chiều dài và chiều rộng là bao nhiêu ô?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Muốn ghép 6 ô vuông thành 1 hình chữ nhật, ta cần tìm hai số mà nhân với nhau được 6 (chiều dài × chiều rộng = 6).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Các cặp số nhân được 6 là: 1 × 6, và 2 × 3.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đề bài yêu cầu chiều rộng lớn hơn 1 ô, nên cặp "1 × 6" bị loại (vì có cạnh bằng 1 ô). Chỉ còn cặp "2 × 3" thỏa mãn.</p></div></div>
+          <p class="answer hidden">Hình chữ nhật có chiều rộng 2 ô và chiều dài 3 ô.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🧠</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 4</span>Toán đố suy luận</h2>
+      </div>
+      <p class="topic-intro">Chuyên đề cuối cùng là những câu đố vui cần <span class="kw">suy luận từng
+      bước</span> giữa 2-3 nhân vật hoặc đồ vật — cân thăng bằng, so sánh "ai nhiều hơn ai", và sắp xếp
+      thứ tự dựa trên các gợi ý. Mẹo: viết ra (hoặc tưởng tượng) từng mối quan hệ một, rồi ghép chúng
+      lại theo đúng thứ tự.</p>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Trên một chiếc cân thăng bằng: <b>1 quả bóng nặng bằng 3 quả táo</b>. Ở một lần cân khác,
+          người ta đặt <b>1 quả bóng và 2 quả táo</b> lên đĩa cân, thì tổng khối lượng là <b>20 lạng</b>.</p>
+          <p>Hỏi mỗi quả táo nặng bao nhiêu lạng? Mỗi quả bóng nặng bao nhiêu lạng?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vì 1 quả bóng nặng bằng 3 quả táo, ta có thể "thay" quả bóng bằng 3 quả táo trong phép cân thứ hai.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Lúc đó, "1 quả bóng và 2 quả táo" trở thành "3 quả táo và 2 quả táo", tức là 5 quả táo, nặng tổng cộng 20 lạng.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Vậy mỗi quả táo nặng: 20 : 5 = 4 lạng.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Mỗi quả bóng nặng bằng 3 quả táo, nên quả bóng nặng: 3 × 4 = 12 lạng. Thử lại: 12 + 2 × 4 = 12 + 8 = 20 (đúng).</p></div></div>
+          <p class="answer hidden">Mỗi quả táo nặng 4 lạng, mỗi quả bóng nặng 12 lạng.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>An có nhiều hơn Bình <b>5 viên bi</b>. Bình có ít hơn Chi <b>3 viên bi</b>. Biết Chi có
+          <b>12 viên bi</b>.</p>
+          <p>Hỏi An có bao nhiêu viên bi?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đề bài chưa cho biết số bi của An hay Bình trực tiếp, nhưng lại cho biết số bi của Chi (12 viên) — nên ta bắt đầu tính từ Chi.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>"Bình có ít hơn Chi 3 viên" nghĩa là Bình = Chi − 3 = 12 − 3 = 9 viên.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>"An có nhiều hơn Bình 5 viên" nghĩa là An = Bình + 5 = 9 + 5 = 14 viên.</p></div></div>
+          <p class="answer hidden">An có 14 viên bi.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-3" data-qid="Bài 4.3">
+        <div class="q"><span class="qid">Bài 4.3</span><div class="qtext">
+          <p>Ba bạn Tùng, Vy, Kiên — mỗi bạn có một số viên kẹo khác nhau, lần lượt là <b>5 viên, 8
+          viên, 11 viên</b> (nhưng chưa biết ai có số nào). Biết:</p>
+          <p>— Tùng có nhiều kẹo hơn Vy.<br>— Kiên có ít kẹo hơn Vy.</p>
+          <p>Hỏi mỗi bạn có bao nhiêu viên kẹo?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Từ "Kiên có ít kẹo hơn Vy" và "Tùng có nhiều kẹo hơn Vy", ta sắp xếp được thứ tự: Kiên &lt; Vy &lt; Tùng (Kiên ít nhất, Tùng nhiều nhất, Vy ở giữa).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Sắp xếp 3 số đã cho theo thứ tự từ bé đến lớn: 5, 8, 11.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Ghép đúng thứ tự: số bé nhất (5) cho bạn ít kẹo nhất là Kiên; số ở giữa (8) cho Vy; số lớn nhất (11) cho bạn nhiều kẹo nhất là Tùng.</p></div></div>
+          <p class="answer hidden">Kiên có 5 viên, Vy có 8 viên, Tùng có 11 viên.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-hoc">
+      <div class="topic-head">
+        <span class="topic-badge">💡</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo làm bài toán nâng cao</h2>
+      </div>
+      <p class="topic-intro">4 nguyên tắc ngắn gọn giúp con tự tin hơn khi gặp một bài toán "khó hơn
+      bình thường" — không cần vội, chỉ cần đúng phương pháp.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đọc đề 2 lần.</b> Lần đầu để hiểu chuyện gì đang xảy ra, lần hai để gạch chân những số
+          liệu quan trọng và câu hỏi thật sự của đề bài.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Chia nhỏ bài toán.</b> Một bài nâng cao thường có 2-3 bước nhỏ bên trong. Hãy tìm xem
+          bước nào có thể tính được ngay từ dữ kiện đề cho, rồi tính tiếp bước sau.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Luôn thử lại.</b> Sau khi tìm ra đáp số, hãy thay ngược vào đề bài xem có đúng không —
+          đây là cách tốt nhất để tự phát hiện lỗi sai.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Luyện lại bằng bài tương tự.</b> Dùng nút "Đổi bài tương tự" để luyện lại đúng dạng bài
+          đó với số liệu khác, giúp con hiểu cách làm chứ không học thuộc đáp số.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 2 (nâng cao). Nội dung lấy cảm hứng về dạng bài
+    và mức độ khó từ các sách bồi dưỡng học sinh giỏi Toán lớp 2 phổ biến, toàn bộ đề bài, số liệu và
+    lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu sách nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'sec1-1': [{
+      qHtml: '<p>Tổng của hai số là <b>24</b>. Hiệu của hai số đó là <b>6</b> (số lớn hơn số bé 6 đơn vị).</p><p>Hỏi số lớn và số bé là những số nào?</p>',
+      steps: [
+        '<p>Nếu ta lấy tổng (24) trừ đi hiệu (6), ta được: 24 − 6 = 18. Số 18 này chính là <b>hai lần số bé</b> (vì số lớn = số bé + hiệu, nên tổng = số bé + số bé + hiệu).</p>',
+        '<p>Vậy số bé = 18 : 2 = 9.</p>',
+        '<p>Số lớn = số bé + hiệu = 9 + 6 = 15.</p>',
+        '<p>Thử lại: 15 + 9 = 24 (đúng bằng tổng), và 15 − 9 = 6 (đúng bằng hiệu). Vậy kết quả chính xác.</p>'
+      ],
+      answerHtml: 'Số lớn là 15, số bé là 9.'
+    }],
+    'sec1-2': [{
+      qHtml: '<p>Điền số thích hợp vào chỗ trống để dãy tính sau đúng:</p><p><b>18 + 7 − ⬜ = 13</b></p>',
+      steps: [
+        '<p>Trong dãy tính có nhiều phép tính, ta tính lần lượt từ trái sang phải. Tính trước phần không có ô trống: 18 + 7 = 25.</p>',
+        '<p>Dãy tính trở thành: 25 − ⬜ = 13.</p>',
+        '<p>Muốn tìm số bị trừ còn thiếu, ta lấy số bị trừ (25) trừ đi kết quả (13): 25 − 13 = 12.</p>',
+        '<p>Thử lại: 18 + 7 − 12 = 25 − 12 = 13 (đúng).</p>'
+      ],
+      answerHtml: 'Số cần điền là 12.'
+    }],
+    'sec1-3': [{
+      qHtml: '<p>Minh nghĩ ra một số. Minh lấy số đó <b>trừ đi 6</b>, sau đó <b>cộng thêm 11</b>, thì được kết quả là <b>25</b>.</p><p>Hỏi số Minh đã nghĩ ra là số nào?</p>',
+      steps: [
+        '<p>Với bài toán "đi ngược", ta làm ngược lại các bước, từ kết quả về số ban đầu, và đổi ngược phép tính (cộng thành trừ, trừ thành cộng).</p>',
+        '<p>Bước cuối cùng Minh đã làm là "cộng thêm 11" để được 25. Vậy trước khi cộng thêm 11, số đó là: 25 − 11 = 14.</p>',
+        '<p>Bước trước đó, Minh đã "trừ đi 6" để được 14. Vậy số ban đầu là: 14 + 6 = 20.</p>',
+        '<p>Thử lại: 20 − 6 = 14, rồi 14 + 11 = 25 (đúng bằng đề bài).</p>'
+      ],
+      answerHtml: 'Số Minh đã nghĩ ra là 20.'
+    }],
+    'sec2-1': [{
+      qHtml: '<p>Một khu vườn có <b>5 luống rau</b>, mỗi luống trồng <b>7 cây</b>. Người ta nhổ bỏ hết <b>2 luống</b> để trồng lại.</p><p>Hỏi khu vườn còn lại bao nhiêu cây rau?</p>',
+      steps: [
+        '<p>Sau khi nhổ bỏ 2 luống, số luống còn lại là: 5 − 2 = 3 luống.</p>',
+        '<p>Mỗi luống vẫn có 7 cây, nên số cây còn lại là: 3 luống × 7 cây = 21 cây.</p>'
+      ],
+      answerHtml: 'Khu vườn còn lại 21 cây rau.'
+    }],
+    'sec2-2': [{
+      qHtml: '<p>So sánh hai biểu thức sau: <b>5 × 4</b> và <b>2 × 9</b>.</p><p>Biểu thức nào có giá trị lớn hơn?</p>',
+      steps: [
+        '<p>Tính giá trị biểu thức thứ nhất: 5 × 4 = 20.</p>',
+        '<p>Tính giá trị biểu thức thứ hai: 2 × 9 = 18.</p>',
+        '<p>So sánh 20 và 18: vì 20 > 18 nên 5 × 4 > 2 × 9.</p>'
+      ],
+      answerHtml: 'Biểu thức 5 × 4 (bằng 20) lớn hơn biểu thức 2 × 9 (bằng 18).'
+    }],
+    'sec2-3': [{
+      qHtml: '<p>Có <b>24 chiếc kẹo</b> được chia đều vào các túi, mỗi túi <b>4 chiếc</b>. Sau đó, mỗi túi lại được cho thêm <b>2 chiếc kẹo</b> nữa.</p><p>Hỏi lúc này tổng cộng trên tất cả các túi có bao nhiêu chiếc kẹo?</p>',
+      steps: [
+        '<p>Trước tiên tìm xem có bao nhiêu túi: 24 chiếc chia đều, mỗi túi 4 chiếc, nên số túi là: 24 : 4 = 6 túi.</p>',
+        '<p>Mỗi túi được thêm 2 chiếc, nên mỗi túi lúc này có: 4 + 2 = 6 chiếc.</p>',
+        '<p>Có 6 túi, mỗi túi có 6 chiếc, nên tổng số kẹo là: 6 × 6 = 36 chiếc.</p>'
+      ],
+      answerHtml: 'Tổng cộng có 36 chiếc kẹo trên tất cả các túi.'
+    }],
+    'sec3-1': [{
+      qHtml: '<p>Một hình vuông lớn được chia bởi <b>1 đường thẳng dọc</b> và <b>1 đường thẳng ngang</b> đi qua tâm thành 4 hình vuông nhỏ bằng nhau, giống như hình dưới đây:</p><p class="concrete">┌──┬──┐<br>├──┼──┤<br>└──┴──┘</p><p>Hỏi trong toàn bộ hình vẽ có tất cả bao nhiêu <b>hình vuông</b> (kể cả hình vuông lớn nhất)? (Lưu ý: chỉ đếm hình vuông, không đếm hình chữ nhật không phải hình vuông.)</p>',
+      steps: [
+        '<p>Đếm những hình vuông nhỏ nhất (mỗi hình chỉ gồm 1 ô): có 4 hình.</p>',
+        '<p>Các hình ghép từ 2 ô nằm cạnh nhau (dù theo hàng ngang hay hàng dọc) đều có dạng dài — không phải hình vuông, nên không được tính.</p>',
+        '<p>Cuối cùng, đếm hình vuông lớn nhất (gồm cả 4 ô nhỏ ghép lại vừa đúng thành 1 hình vuông): có 1 hình. Cộng tất cả lại: 4 + 1 = 5.</p>'
+      ],
+      answerHtml: 'Có tất cả 5 hình vuông.'
+    }],
+    'sec3-2': [{
+      qHtml: '<p>Một hình chữ nhật được vẽ trên lưới ô vuông, có <b>chiều dài 6 ô</b> và <b>chiều rộng 4 ô</b> (mỗi ô vuông nhỏ là một đơn vị).</p><p>a) Hình chữ nhật đó gồm tất cả bao nhiêu ô vuông nhỏ?<br>b) Chu vi của hình chữ nhật đó bằng bao nhiêu cạnh ô?</p>',
+      steps: [
+        '<p>Để đếm số ô vuông nhỏ, ta tưởng tượng lưới có 4 hàng, mỗi hàng có 6 ô: số ô vuông = 6 × 4 = 24 ô.</p>',
+        '<p>Hình chữ nhật có 2 cạnh dài (mỗi cạnh 6 đơn vị) và 2 cạnh rộng (mỗi cạnh 4 đơn vị).</p>',
+        '<p>Chu vi = (chiều dài + chiều rộng) × 2 = (6 + 4) × 2 = 10 × 2 = 20 đơn vị cạnh ô.</p>'
+      ],
+      answerHtml: 'a) Có 24 ô vuông nhỏ. b) Chu vi bằng 20 cạnh ô.'
+    }],
+    'sec3-3': [{
+      qHtml: '<p>Su có <b>8 hình vuông nhỏ</b> bằng nhau, mỗi hình vuông có cạnh dài 1 ô. Su muốn ghép cả 8 hình vuông đó lại (không chồng lên nhau, không để hở) để tạo thành <b>một hình chữ nhật</b>, sao cho chiều rộng <b>lớn hơn 1 ô</b> và <b>nhỏ hơn</b> chiều dài.</p><p>Hỏi hình chữ nhật Su ghép được có chiều dài và chiều rộng là bao nhiêu ô?</p>',
+      steps: [
+        '<p>Muốn ghép 8 ô vuông thành 1 hình chữ nhật, ta cần tìm hai số mà nhân với nhau được 8 (chiều dài × chiều rộng = 8).</p>',
+        '<p>Các cặp số nhân được 8 là: 1 × 8, và 2 × 4.</p>',
+        '<p>Đề bài yêu cầu chiều rộng lớn hơn 1 ô, nên cặp "1 × 8" bị loại. Cặp "2 × 4" thỏa mãn cả hai điều kiện (rộng > 1 và rộng < dài).</p>'
+      ],
+      answerHtml: 'Hình chữ nhật có chiều rộng 2 ô và chiều dài 4 ô.'
+    }],
+    'sec4-1': [{
+      qHtml: '<p>Trên một chiếc cân thăng bằng: <b>1 quả bóng nặng bằng 2 quả táo</b>. Ở một lần cân khác, người ta đặt <b>1 quả bóng và 3 quả táo</b> lên đĩa cân, thì tổng khối lượng là <b>15 lạng</b>.</p><p>Hỏi mỗi quả táo nặng bao nhiêu lạng? Mỗi quả bóng nặng bao nhiêu lạng?</p>',
+      steps: [
+        '<p>Vì 1 quả bóng nặng bằng 2 quả táo, ta có thể "thay" quả bóng bằng 2 quả táo trong phép cân thứ hai.</p>',
+        '<p>Lúc đó, "1 quả bóng và 3 quả táo" trở thành "2 quả táo và 3 quả táo", tức là 5 quả táo, nặng tổng cộng 15 lạng.</p>',
+        '<p>Vậy mỗi quả táo nặng: 15 : 5 = 3 lạng.</p>',
+        '<p>Mỗi quả bóng nặng bằng 2 quả táo, nên quả bóng nặng: 2 × 3 = 6 lạng. Thử lại: 6 + 3 × 3 = 6 + 9 = 15 (đúng).</p>'
+      ],
+      answerHtml: 'Mỗi quả táo nặng 3 lạng, mỗi quả bóng nặng 6 lạng.'
+    }],
+    'sec4-2': [{
+      qHtml: '<p>Hoa có ít hơn Mai <b>4 quyển vở</b>. Mai có nhiều hơn Lan <b>6 quyển vở</b>. Biết Lan có <b>10 quyển vở</b>.</p><p>Hỏi Hoa có bao nhiêu quyển vở?</p>',
+      steps: [
+        '<p>Đề bài cho biết số vở của Lan (10 quyển) — nên ta bắt đầu tính từ Lan.</p>',
+        '<p>"Mai có nhiều hơn Lan 6 quyển" nghĩa là Mai = Lan + 6 = 10 + 6 = 16 quyển.</p>',
+        '<p>"Hoa có ít hơn Mai 4 quyển" nghĩa là Hoa = Mai − 4 = 16 − 4 = 12 quyển.</p>'
+      ],
+      answerHtml: 'Hoa có 12 quyển vở.'
+    }],
+    'sec4-3': [{
+      qHtml: '<p>Ba bạn Lan, Minh, Huy — mỗi bạn có một số nhãn vở khác nhau, lần lượt là <b>6 cái, 9 cái, 13 cái</b> (nhưng chưa biết ai có số nào). Biết:</p><p>— Minh có ít nhãn vở hơn Huy.<br>— Lan có nhiều nhãn vở hơn Huy.</p><p>Hỏi mỗi bạn có bao nhiêu nhãn vở?</p>',
+      steps: [
+        '<p>Từ "Minh có ít nhãn vở hơn Huy" và "Lan có nhiều nhãn vở hơn Huy", ta sắp xếp được thứ tự: Minh &lt; Huy &lt; Lan (Minh ít nhất, Lan nhiều nhất, Huy ở giữa).</p>',
+        '<p>Sắp xếp 3 số đã cho theo thứ tự từ bé đến lớn: 6, 9, 13.</p>',
+        '<p>Ghép đúng thứ tự: số bé nhất (6) cho bạn ít nhãn vở nhất là Minh; số ở giữa (9) cho Huy; số lớn nhất (13) cho bạn nhiều nhãn vở nhất là Lan.</p>'
+      ],
+      answerHtml: 'Minh có 6 cái, Huy có 9 cái, Lan có 13 cái.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
