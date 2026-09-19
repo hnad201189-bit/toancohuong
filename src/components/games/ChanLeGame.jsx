@@ -5,7 +5,13 @@ const ROUNDS = 8
 
 function makeRound(round, grade = 1) {
   // Lớp 1: số nhỏ (0-20 rồi 0-30). Lớp 2: phạm vi 1000 (0-200 rồi 0-999).
-  const n = grade >= 2 ? randInt(0, round >= 3 ? 999 : 200) : randInt(0, round >= 3 ? 30 : 20)
+  // Lớp 3: phạm vi 100 000 (0-9999 rồi 0-99999).
+  const n =
+    grade >= 3
+      ? randInt(0, round >= 3 ? 99999 : 9999)
+      : grade === 2
+        ? randInt(0, round >= 3 ? 999 : 200)
+        : randInt(0, round >= 3 ? 30 : 20)
   const answer = n % 2 === 0 ? 'chan' : 'le'
   const options = shuffle([
     { label: 'Chẵn', value: 'chan' },

@@ -5,9 +5,10 @@ const ROUNDS = 8
 
 function makeRound(round, grade = 1) {
   // Lớp 1: 4-5 số trong 0-40. Lớp 2: 4-6 số trong phạm vi 1000.
+  // Lớp 3: 4-6 số trong phạm vi 100 000.
   const harder = round >= 3
   const count = grade >= 2 ? (harder ? 6 : 4) : harder ? 5 : 4
-  const max = grade >= 2 ? (harder ? 1000 : 200) : harder ? 40 : 20
+  const max = grade >= 3 ? (harder ? 100000 : 20000) : grade === 2 ? (harder ? 1000 : 200) : harder ? 40 : 20
   const nums = new Set()
   while (nums.size < count) nums.add(randInt(0, max))
   const arr = [...nums]

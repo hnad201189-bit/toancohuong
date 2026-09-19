@@ -5,7 +5,19 @@ const ROUNDS = 8
 
 function makeRound(round, grade = 1) {
   // Lớp 1: số nhỏ (1-19 rồi 1-39). Lớp 2: phạm vi 1000 (1-199 rồi 1-998).
-  const max = grade >= 2 ? (round >= 3 ? 998 : 199) : round >= 3 ? 39 : 19
+  // Lớp 3: phạm vi 100 000 (1-19999 rồi 1-99998).
+  const max =
+    grade >= 3
+      ? round >= 3
+        ? 99998
+        : 19999
+      : grade === 2
+        ? round >= 3
+          ? 998
+          : 199
+        : round >= 3
+          ? 39
+          : 19
   const n = randInt(1, max)
   const isBefore = Math.random() < 0.5
   const answer = isBefore ? n - 1 : n + 1

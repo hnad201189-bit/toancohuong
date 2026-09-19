@@ -32,6 +32,21 @@ const FACT_POOL_L2 = [
   { expr: '2 × 7', result: 14 },
   { expr: '48 − 19', result: 29 },
 ]
+// Lớp 3: cộng trừ có nhớ trong phạm vi 100 000 + bảng nhân, bảng chia đến 9.
+const FACT_POOL_L3 = [
+  { expr: '234 + 189', result: 423 },
+  { expr: '500 − 267', result: 233 },
+  { expr: '6 × 7', result: 42 },
+  { expr: '8 × 9', result: 72 },
+  { expr: '54 ÷ 6', result: 9 },
+  { expr: '45 ÷ 9', result: 5 },
+  { expr: '123 + 456', result: 579 },
+  { expr: '700 − 358', result: 342 },
+  { expr: '7 × 8', result: 56 },
+  { expr: '4 × 9', result: 36 },
+  { expr: '900 − 184', result: 716 },
+  { expr: '9 × 9', result: 81 },
+]
 const PAIR_COUNT = 6
 
 function shuffle(arr) {
@@ -44,7 +59,7 @@ function shuffle(arr) {
 }
 
 function makeBoard(grade = 1) {
-  const pool = grade >= 2 ? FACT_POOL_L2 : FACT_POOL_L1
+  const pool = grade >= 3 ? FACT_POOL_L3 : grade === 2 ? FACT_POOL_L2 : FACT_POOL_L1
   const facts = shuffle(pool).slice(0, PAIR_COUNT)
   const exprCards = shuffle(facts.map((f) => ({ id: `e${f.result}`, label: f.expr, result: f.result })))
   const resultCards = shuffle(facts.map((f) => ({ id: `r${f.result}`, label: String(f.result), result: f.result })))

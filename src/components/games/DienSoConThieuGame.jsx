@@ -42,8 +42,20 @@ function makeRoundL2(round) {
   return buildRound(roundedStart, step, Math.max(8, step * 3))
 }
 
+function makeRoundL3(round) {
+  // Lớp 3: bước nhảy lớn hơn (10, 100, 1000...) và phạm vi tới 100 000,
+  // đúng mạch "làm tròn số, ước lượng" + đếm cách quãng của chương trình.
+  const steps = round >= 5 ? [100, 1000] : round >= 2 ? [10, 100] : [5, 10]
+  const step = steps[randInt(0, steps.length - 1)]
+  const maxStart = round >= 5 ? 90000 : round >= 2 ? 9000 : 900
+  const start = randInt(0, maxStart)
+  const roundedStart = start - (start % step)
+  return buildRound(roundedStart, step, Math.max(8, step * 3))
+}
+
 function makeRound(round, grade = 1) {
-  return grade >= 2 ? makeRoundL2(round) : makeRoundL1(round)
+  if (grade >= 3) return makeRoundL3(round)
+  return grade === 2 ? makeRoundL2(round) : makeRoundL1(round)
 }
 
 function renderPrompt(current) {

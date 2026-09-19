@@ -21,10 +21,16 @@ const WORD_POOL_L2 = [12, 15, 21, 24, 30, 45, 50, 68, 71, 84, 99, 100, 105, 250]
   result: n,
   word: numberToVietnameseWords(n),
 }))
+// Lớp 3: số có 4-6 chữ số ("nghìn"), gồm cả trường hợp "không trăm" khi
+// hàng trăm bằng 0 nhưng vẫn còn chục/đơn vị — đúng chương trình "các số
+// đến 100 000".
+const WORD_POOL_L3 = [1200, 1005, 2050, 3421, 5674, 8000, 10000, 12345, 25000, 40500, 67089, 99999, 100000, 50015].map(
+  (n) => ({ result: n, word: numberToVietnameseWords(n) })
+)
 const PAIR_COUNT = 6
 
 function makeBoard(grade = 1) {
-  const pool = grade >= 2 ? WORD_POOL_L2 : WORD_POOL_L1
+  const pool = grade >= 3 ? WORD_POOL_L3 : grade === 2 ? WORD_POOL_L2 : WORD_POOL_L1
   const facts = shuffle(pool).slice(0, PAIR_COUNT)
   const digitCards = shuffle(facts.map((f) => ({ id: `d${f.result}`, label: String(f.result), result: f.result })))
   const wordCards = shuffle(facts.map((f) => ({ id: `w${f.result}`, label: f.word, result: f.result })))
