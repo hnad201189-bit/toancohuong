@@ -27,10 +27,16 @@ const WORD_POOL_L2 = [12, 15, 21, 24, 30, 45, 50, 68, 71, 84, 99, 100, 105, 250]
 const WORD_POOL_L3 = [1200, 1005, 2050, 3421, 5674, 8000, 10000, 12345, 25000, 40500, 67089, 99999, 100000, 50015].map(
   (n) => ({ result: n, word: numberToVietnameseWords(n) })
 )
+// Lớp 4: số thuộc lớp triệu, gồm cả trường hợp "không trăm ... nghìn" khi
+// nhóm nghìn có hàng trăm bằng 0 — đúng chương trình "các số trong lớp triệu".
+const WORD_POOL_L4 = [
+  1234567, 2000000, 3050000, 5000021, 1000000, 9999999, 4200000, 6100500, 7000045, 250000, 8500000, 3333333, 4050009,
+  6000100,
+].map((n) => ({ result: n, word: numberToVietnameseWords(n) }))
 const PAIR_COUNT = 6
 
 function makeBoard(grade = 1) {
-  const pool = grade >= 3 ? WORD_POOL_L3 : grade === 2 ? WORD_POOL_L2 : WORD_POOL_L1
+  const pool = grade >= 4 ? WORD_POOL_L4 : grade === 3 ? WORD_POOL_L3 : grade === 2 ? WORD_POOL_L2 : WORD_POOL_L1
   const facts = shuffle(pool).slice(0, PAIR_COUNT)
   const digitCards = shuffle(facts.map((f) => ({ id: `d${f.result}`, label: String(f.result), result: f.result })))
   const wordCards = shuffle(facts.map((f) => ({ id: `w${f.result}`, label: f.word, result: f.result })))

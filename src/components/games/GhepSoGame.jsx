@@ -47,6 +47,22 @@ const FACT_POOL_L3 = [
   { expr: '900 − 184', result: 716 },
   { expr: '9 × 9', result: 81 },
 ]
+// Lớp 4: số tự nhiên lớn (tới hàng chục nghìn) + bảng nhân, bảng chia mở
+// rộng đến 12.
+const FACT_POOL_L4 = [
+  { expr: '2345 + 4321', result: 6666 },
+  { expr: '8000 − 3456', result: 4544 },
+  { expr: '11 × 12', result: 132 },
+  { expr: '9 × 12', result: 108 },
+  { expr: '144 ÷ 12', result: 12 },
+  { expr: '121 ÷ 11', result: 11 },
+  { expr: '12345 + 6789', result: 19134 },
+  { expr: '20000 − 8765', result: 11235 },
+  { expr: '10 × 11', result: 110 },
+  { expr: '90 ÷ 9', result: 10 },
+  { expr: '7 × 11', result: 77 },
+  { expr: '15000 − 2384', result: 12616 },
+]
 const PAIR_COUNT = 6
 
 function shuffle(arr) {
@@ -59,7 +75,7 @@ function shuffle(arr) {
 }
 
 function makeBoard(grade = 1) {
-  const pool = grade >= 3 ? FACT_POOL_L3 : grade === 2 ? FACT_POOL_L2 : FACT_POOL_L1
+  const pool = grade >= 4 ? FACT_POOL_L4 : grade === 3 ? FACT_POOL_L3 : grade === 2 ? FACT_POOL_L2 : FACT_POOL_L1
   const facts = shuffle(pool).slice(0, PAIR_COUNT)
   const exprCards = shuffle(facts.map((f) => ({ id: `e${f.result}`, label: f.expr, result: f.result })))
   const resultCards = shuffle(facts.map((f) => ({ id: `r${f.result}`, label: String(f.result), result: f.result })))

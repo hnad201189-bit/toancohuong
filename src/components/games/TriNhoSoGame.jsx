@@ -8,8 +8,10 @@ const PAIR_COUNT = 6
 function makeBoard(grade = 1) {
   const values = new Set()
   // Lớp 1: số có 1 chữ số (1-10). Lớp 2: số có 2 chữ số (10-99).
-  // Lớp 3: số có 3-4 chữ số (100-9999).
-  if (grade >= 3) {
+  // Lớp 3: số có 3-4 chữ số (100-9999). Lớp 4: số có 5-6 chữ số (10000-999999).
+  if (grade >= 4) {
+    while (values.size < PAIR_COUNT) values.add(randInt(10000, 999999))
+  } else if (grade === 3) {
     while (values.size < PAIR_COUNT) values.add(randInt(100, 9999))
   } else if (grade === 2) {
     while (values.size < PAIR_COUNT) values.add(randInt(10, 99))

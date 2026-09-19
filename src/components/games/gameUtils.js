@@ -43,8 +43,33 @@ export function makeArithmeticQuestion(level, grade = 1) {
     return { a: divisor * quotient, b: divisor, op: '÷', answer: quotient }
   }
 
-  // Lớp 3 trở lên: phạm vi lớn hơn, bảng nhân/chia đủ đến 9.
-  const max = level >= 2 ? 1000 : level >= 1 ? 500 : 200
+  if (grade === 3) {
+    // Lớp 3: phạm vi lớn hơn, bảng nhân/chia đủ đến 9.
+    const max = level >= 2 ? 1000 : level >= 1 ? 500 : 200
+    const roll = Math.random()
+    if (roll < 0.3) {
+      const a = randInt(0, max)
+      const b = randInt(0, max - a)
+      return { a, b, op: '+', answer: a + b }
+    }
+    if (roll < 0.6) {
+      const a = randInt(0, max)
+      const b = randInt(0, a)
+      return { a, b, op: '−', answer: a - b }
+    }
+    if (roll < 0.8) {
+      const table = randInt(2, 9)
+      const b = randInt(1, 10)
+      return { a: table, b, op: '×', answer: table * b }
+    }
+    const divisor = randInt(2, 9)
+    const quotient = randInt(1, 10)
+    return { a: divisor * quotient, b: divisor, op: '÷', answer: quotient }
+  }
+
+  // Lớp 4 trở lên: số tự nhiên lớn hơn (khớp mạch "số có nhiều chữ số"),
+  // bảng nhân/chia mở rộng đến 12 để luyện phản xạ tính nhẩm nhanh hơn.
+  const max = level >= 2 ? 10000 : level >= 1 ? 3000 : 1000
   const roll = Math.random()
   if (roll < 0.3) {
     const a = randInt(0, max)
@@ -57,12 +82,12 @@ export function makeArithmeticQuestion(level, grade = 1) {
     return { a, b, op: '−', answer: a - b }
   }
   if (roll < 0.8) {
-    const table = randInt(2, 9)
-    const b = randInt(1, 10)
+    const table = randInt(2, 12)
+    const b = randInt(1, 12)
     return { a: table, b, op: '×', answer: table * b }
   }
-  const divisor = randInt(2, 9)
-  const quotient = randInt(1, 10)
+  const divisor = randInt(2, 12)
+  const quotient = randInt(1, 12)
   return { a: divisor * quotient, b: divisor, op: '÷', answer: quotient }
 }
 
@@ -112,19 +137,23 @@ function readHundredsGroup(n, forceHundredWord) {
   return words
 }
 
-// Đọc số tự nhiên 0-999999 thành chữ (dùng cho trò Ghép số với chữ số ở
-// lớp 2+ — lớp 3 cần tới hàng trăm nghìn theo đúng chương trình "các số
-// đến 100 000").
+// Đọc số tự nhiên 0-999 999 999 thành chữ (dùng cho trò Ghép số với chữ số
+// ở lớp 2+ — lớp 3 cần tới hàng trăm nghìn, lớp 4 cần tới lớp triệu theo
+// đúng chương trình). Tách thành 3 nhóm (triệu/nghìn/đơn vị), nhóm nào
+// bằng 0 thì bỏ qua hẳn (không đọc "không nghìn"); nhóm đứng SAU nhóm có
+// nghĩa đầu tiên thì bắt buộc nêu rõ hàng trăm (vd. "một triệu không trăm
+// linh năm nghìn") — đúng quy tắc đọc số tiếng Việt bậc tiểu học.
 export function numberToVietnameseWords(n) {
   if (n === 0) return 'Không'
-  let words
-  if (n < 1000) {
-    words = readHundredsGroup(n, false)
-  } else {
-    const thousands = Math.floor(n / 1000)
-    const rest = n % 1000
-    words = `${readHundredsGroup(thousands, false)} nghìn`
-    if (rest > 0) words += ` ${readHundredsGroup(rest, true)}`
+  const groups = [
+    { value: Math.floor(n / 1000000), suffix: ' triệu' },
+    { value: Math.floor((n % 1000000) / 1000), suffix: ' nghìn' },
+    { value: n % 1000, suffix: '' },
+  ]
+  let words = ''
+  for (const g of groups) {
+    if (g.value === 0) continue
+    words += (words ? ' ' : '') + readHundredsGroup(g.value, words !== '') + g.suffix
   }
   return words.charAt(0).toUpperCase() + words.slice(1)
 }
