@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán Tư Duy Lớp 3 (Violympic) — Ôn luyện Toán lớp 3</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f1f8f7;
+    --bg-alt: #e1f1ee;
+    --paper: #ffffff;
+    --ink: #122523;
+    --ink-soft: #456260;
+    --ink-faint: #7c9793;
+    --accent: #0f766e;
+    --accent-soft: #dbf0ec;
+    --accent-warm: #be185d;
+    --accent-warm-soft: #fce4ee;
+    --line: #d6e9e5;
+    --line-strong: #b7d6cf;
+    --shadow: 0 1px 2px rgba(10, 40, 35, 0.07), 0 6px 20px rgba(10, 40, 35, 0.08);
+    --radius: 14px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1917;
+    --bg-alt: #11211f;
+    --paper: #122624;
+    --ink: #e2f3f0;
+    --ink-soft: #a7c9c4;
+    --ink-faint: #79a29c;
+    --accent: #45d6c4;
+    --accent-soft: #153330;
+    --accent-warm: #ff77ab;
+    --accent-warm-soft: #3a1424;
+    --line: #1d3532;
+    --line-strong: #2a4d48;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1917;
+      --bg-alt: #11211f;
+      --paper: #122624;
+      --ink: #e2f3f0;
+      --ink-soft: #a7c9c4;
+      --ink-faint: #79a29c;
+      --accent: #45d6c4;
+      --accent-soft: #153330;
+      --accent-warm: #ff77ab;
+      --accent-warm-soft: #3a1424;
+      --line: #1d3532;
+      --line-strong: #2a4d48;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 44px 20px 96px;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 32px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 6px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { font-family: var(--mono); color: var(--ink-faint); margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 4px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  section.topic { padding-top: 52px; scroll-margin-top: 18px; }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; flex-wrap: wrap; }
+  .topic-num { font-family: var(--serif); font-size: 15px; color: var(--accent); font-style: italic; }
+  h2.topic-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(21px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 10px 0 28px; }
+
+  p { max-width: 68ch; margin: 0 0 12px; }
+  .kw { color: var(--accent); font-weight: 600; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0 32px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .qhead { padding: 16px 22px 0; }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 700; }
+  .problem .qtext { padding: 8px 22px 18px; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .seq { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 4px; }
+  .seq .tile {
+    min-width: 42px;
+    height: 42px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1.5px solid var(--line-strong);
+    background: var(--bg-alt);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .seq .tile.blank {
+    border-style: dashed;
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .seq .arrow { color: var(--ink-faint); font-size: 14px; }
+
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 14px 0 6px; }
+  .pyramid .prow { display: flex; gap: 8px; }
+  .pyramid .pbox {
+    min-width: 50px;
+    height: 40px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1.5px solid var(--line-strong);
+    background: var(--bg-alt);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .pyramid .pbox.given { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .pyramid .pbox.unknown { border-style: dashed; color: var(--ink-faint); background: transparent; }
+
+  .geo-figure { display: flex; justify-content: center; padding: 12px 0 4px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body:empty { padding: 0; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step[hidden] { display: none; }
+  .sol-body .step::before {
+    content: attr(data-n);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .answer[hidden] { display: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); max-width: 780px; }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 mảng tư duy</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">1</span>Quy luật dãy số</a></li>
+      <li><a href="#sec2"><span class="n">2</span>Tư duy hình học</a></li>
+      <li><a href="#sec3"><span class="n">3</span>Tư duy logic</a></li>
+      <li><a href="#sec4"><span class="n">4</span>Toán đố vui</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">Về tài liệu này</div>
+      <p><b>Toán Tư Duy Lớp 3 (Violympic)</b> là tuyển tập 12 bài toán tư duy — quy luật số, hình học, suy luận lô-gic và đố vui — tiếp nối tinh thần các sân chơi Violympic, Toán Tuổi Thơ và "1001 bài toán tư duy tiểu học", ở mức độ khó hơn một chút so với lớp 2: dãy số có quy luật phức tạp hơn, hình vẽ nhiều chi tiết hơn, và các bài suy luận có từ 4-5 đối tượng với nhiều manh mối hơn. Toàn bộ đề bài, số liệu, hình vẽ và lời giải trong tài liệu này là <b>bài tự soạn mới hoàn toàn</b>, chỉ tham khảo dạng bài và độ khó quen thuộc chứ không sao chép nguyên văn từ bất kỳ cuốn sách nào. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để luyện lại đúng kiểu bài với số liệu khác.</p>
+    </div>
+
+    <!-- ================= SEC 1: QUY LUẬT DÃY SỐ ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-num">Mảng 1</span>
+        <h2 class="topic-title">Tư duy số học — quy luật dãy số</h2>
+      </div>
+      <p class="topic-intro">Ở lớp 3, quy luật có thể phức tạp hơn: <span class="kw">cộng rồi trừ xen kẽ</span>, <span class="kw">nhân đôi mỗi bước</span>, hoặc một tháp số có tới 4 tầng. Hãy so sánh ít nhất 3-4 cặp số liền nhau trước khi kết luận quy luật, đừng vội đoán sau khi mới nhìn 2 số đầu.</p>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Bài 1.1">
+        <div class="qhead"><span class="qid">Bài 1.1</span></div>
+        <div class="qtext">
+          <p>Một chú kiến tha mồi bò qua các phiến lá đánh số trên đường về tổ. Quy luật của dãy số là "bước tới thì cộng, bước lùi thì trừ", lặp lại đều đặn. Tìm số bị che ở ô có dấu "?".</p>
+          <div class="seq">
+            <span class="tile">5</span><span class="arrow">→</span>
+            <span class="tile">12</span><span class="arrow">→</span>
+            <span class="tile">9</span><span class="arrow">→</span>
+            <span class="tile">16</span><span class="arrow">→</span>
+            <span class="tile">13</span><span class="arrow">→</span>
+            <span class="tile blank">?</span><span class="arrow">→</span>
+            <span class="tile">17</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>So sánh 2 số đầu: từ 5 đến 12 tăng thêm 7 (12 − 5 = 7).</div>
+          <div class="step" data-n="2" hidden>Từ 12 đến 9 lại giảm đi 3 (12 − 9 = 3). Từ 9 đến 16 lại tăng thêm 7, từ 16 đến 13 lại giảm 3. Vậy quy luật lặp lại là: +7, −3, +7, −3, ...</div>
+          <div class="step" data-n="3" hidden>Số "13" vừa được cộng −3 (từ 16 xuống 13), nên bước tiếp theo phải là +7: 13 + 7 = 20.</div>
+          <div class="step" data-n="4" hidden>Thử lại: sau 20 phải là 20 − 3 = 17 — đúng khớp với số cuối dãy ✓.</div>
+          <div class="answer" hidden>Đáp số: 20.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Bài 1.2">
+        <div class="qhead"><span class="qid">Bài 1.2</span></div>
+        <div class="qtext">
+          <p>Trong phòng thí nghiệm, số vi khuẩn trong đĩa cấy tăng gấp đôi sau mỗi giờ. Số liệu ghi lại như sau:</p>
+          <div class="seq">
+            <span class="tile">3</span><span class="arrow">→</span>
+            <span class="tile">6</span><span class="arrow">→</span>
+            <span class="tile">12</span><span class="arrow">→</span>
+            <span class="tile">24</span><span class="arrow">→</span>
+            <span class="tile blank">?</span><span class="arrow">→</span>
+            <span class="tile">96</span>
+          </div>
+          <p>Tìm số vi khuẩn bị che ở ô có dấu "?" (đơn vị: con).</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Từ 3 đến 6: gấp đôi (6 = 3 × 2). Từ 6 đến 12: cũng gấp đôi (12 = 6 × 2).</div>
+          <div class="step" data-n="2" hidden>Từ 12 đến 24: cũng gấp đôi (24 = 12 × 2). Vậy quy luật là "mỗi giờ số vi khuẩn nhân đôi", không phải cộng thêm một số cố định.</div>
+          <div class="step" data-n="3" hidden>Ô "?" đứng ngay sau 24, nên số đó là 24 × 2 = 48.</div>
+          <div class="step" data-n="4" hidden>Thử lại: sau 48 phải là 48 × 2 = 96 — đúng khớp với số cuối dãy ✓.</div>
+          <div class="answer" hidden>Đáp số: 48 con vi khuẩn.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-3" data-qid="Bài 1.3">
+        <div class="qhead"><span class="qid">Bài 1.3</span></div>
+        <div class="qtext">
+          <p>Tháp số dưới đây có <b>4 tầng</b>. Tầng đáy đã biết 4 số. Quy tắc: mỗi ô ở tầng trên bằng <b>tổng của hai ô liền kề</b> ngay bên dưới nó. Tìm số ở đỉnh tháp (ô trên cùng).</p>
+          <div class="pyramid">
+            <div class="prow"><div class="pbox unknown">?</div></div>
+            <div class="prow"><div class="pbox unknown">?</div><div class="pbox unknown">?</div></div>
+            <div class="prow"><div class="pbox unknown">?</div><div class="pbox unknown">?</div><div class="pbox unknown">?</div></div>
+            <div class="prow"><div class="pbox given">6</div><div class="pbox given">9</div><div class="pbox given">5</div><div class="pbox given">8</div></div>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Tính tầng 3 (ngay trên tầng đáy), lấy tổng từng cặp ô liền kề: 6 + 9 = 15; 9 + 5 = 14; 5 + 8 = 13.</div>
+          <div class="step" data-n="2" hidden>Tầng 3 giờ có 3 số: 15, 14, 13.</div>
+          <div class="step" data-n="3" hidden>Tính tầng 2: 15 + 14 = 29; 14 + 13 = 27.</div>
+          <div class="step" data-n="4" hidden>Đỉnh tháp (tầng 1) bằng tổng hai ô của tầng 2: 29 + 27 = 56.</div>
+          <div class="answer" hidden>Đáp số: 56.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2: TƯ DUY HÌNH HỌC ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-num">Mảng 2</span>
+        <h2 class="topic-title">Tư duy hình học</h2>
+      </div>
+      <p class="topic-intro">Lưới hình ở lớp 3 có nhiều đường kẻ hơn, nên càng cần <span class="kw">đếm có hệ thống</span>: đếm từng cỡ hình một (nhỏ trước, lớn sau) thay vì đếm tất cả cùng lúc, và luôn thử liệt kê lại để kiểm chứng con số cuối cùng.</p>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Bài 2.1">
+        <div class="qhead"><span class="qid">Bài 2.1</span></div>
+        <div class="qtext">
+          <p>Hình tam giác lớn dưới đây được chia thành 9 tam giác nhỏ bằng nhau, bằng cách chia đều mỗi cạnh thành 3 phần rồi nối các điểm chia song song với 3 cạnh. Hỏi trong toàn bộ hình có tất cả bao nhiêu hình tam giác (mọi kích cỡ, kể cả tam giác lớn ban đầu)?</p>
+          <div class="geo-figure"><svg viewBox="0 0 120 100" width="190" height="158">
+            <polygon points="60,10 10,90 110,90" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
+            <line x1="43.3" y1="36.7" x2="76.7" y2="36.7" stroke="var(--accent)" stroke-width="1.8"/>
+            <line x1="76.7" y1="36.7" x2="43.3" y2="90" stroke="var(--accent)" stroke-width="1.8"/>
+            <line x1="43.3" y1="36.7" x2="76.7" y2="90" stroke="var(--accent)" stroke-width="1.8"/>
+            <line x1="26.7" y1="63.3" x2="93.3" y2="63.3" stroke="var(--accent)" stroke-width="1.8"/>
+            <line x1="26.7" y1="63.3" x2="43.3" y2="90" stroke="var(--accent)" stroke-width="1.8"/>
+            <line x1="93.3" y1="63.3" x2="76.7" y2="90" stroke="var(--accent)" stroke-width="1.8"/>
+            <polygon points="43.3,36.7 76.7,36.7 60,63.3" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đếm tam giác nhỏ nhất theo từng hàng từ đỉnh xuống: hàng 1 có 1 tam giác, hàng 2 có 3 tam giác, hàng 3 có 5 tam giác. Tổng: 1 + 3 + 5 = 9 tam giác nhỏ nhất.</div>
+          <div class="step" data-n="2" hidden>Đếm tam giác cỡ vừa (ghép từ 4 tam giác nhỏ, cạnh dài gấp đôi): có đúng 3 tam giác như vậy, mỗi tam giác nằm ở một góc của hình lớn (góc trên, góc dưới-trái, góc dưới-phải).</div>
+          <div class="step" data-n="3" hidden>Đếm tam giác lớn nhất: chính là cả hình tam giác ban đầu — có 1 hình.</div>
+          <div class="step" data-n="4" hidden>Cộng tất cả các cỡ lại: 9 + 3 + 1 = 13 hình tam giác.</div>
+          <div class="answer" hidden>Đáp số: 13 hình tam giác.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Bài 2.2">
+        <div class="qhead"><span class="qid">Bài 2.2</span></div>
+        <div class="qtext">
+          <p>Hình chữ nhật lớn dưới đây gồm 6 cột × 3 hàng ô vuông nhỏ bằng nhau (tổng cộng 18 ô). Người ta đã ghép sẵn 4 mảnh "ba" (mỗi mảnh gồm 3 ô vuông liền nhau theo hàng ngang, tô màu hồng), phần còn lại vẫn để trống (viền nét đứt). Hỏi cần ghép thêm bao nhiêu mảnh "1 ô vuông" nữa để lấp đầy hình chữ nhật?</p>
+          <div class="geo-figure"><svg viewBox="0 0 180 90" width="230" height="115">
+            <rect x="0" y="0" width="180" height="90" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+            <line x1="30" y1="0" x2="30" y2="90" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="60" y1="0" x2="60" y2="90" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="90" y1="0" x2="90" y2="90" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="120" y1="0" x2="120" y2="90" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="150" y1="0" x2="150" y2="90" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="0" y1="30" x2="180" y2="30" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="0" y1="60" x2="180" y2="60" stroke="var(--line-strong)" stroke-width="1"/>
+            <rect x="1" y="1" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/>
+            <rect x="91" y="1" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/>
+            <rect x="1" y="31" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/>
+            <rect x="91" y="61" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/>
+            <rect x="91" y="31" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/>
+            <rect x="121" y="31" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/>
+            <rect x="151" y="31" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/>
+            <rect x="1" y="61" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/>
+            <rect x="31" y="61" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/>
+            <rect x="61" y="61" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đếm tổng số ô vuông nhỏ trong hình chữ nhật: 6 cột × 3 hàng = 18 ô.</div>
+          <div class="step" data-n="2" hidden>Mỗi mảnh "ba" che kín 3 ô. Có 4 mảnh "ba" đã ghép sẵn, che kín: 4 × 3 = 12 ô.</div>
+          <div class="step" data-n="3" hidden>Số ô còn trống cần lấp = tổng số ô − số ô đã che = 18 − 12 = 6 ô.</div>
+          <div class="step" data-n="4" hidden>Mỗi ô trống cần đúng 1 mảnh "1 ô vuông", nên cần 6 mảnh.</div>
+          <div class="answer" hidden>Đáp số: 6 mảnh hình vuông nhỏ.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-3" data-qid="Bài 2.3">
+        <div class="qhead"><span class="qid">Bài 2.3</span></div>
+        <div class="qtext">
+          <p>Có 5 hình đa giác đều xếp thành một hàng, đánh số từ Hình 1 đến Hình 5. Hình 1, Hình 2, Hình 4, Hình 5 đều là <b>lục giác đều</b> (6 cạnh), mỗi hình có đúng 6 chấm tròn bên trong (mỗi đỉnh một chấm). Riêng Hình 3 có nhiều hơn các hình còn lại đúng <b>2 cạnh</b>, nhưng lại có <b>ít hơn 1 chấm tròn</b> so với các hình còn lại. Hỏi Hình 3 có bao nhiêu cạnh, và có bao nhiêu chấm tròn?</p>
+          <div class="geo-figure"><svg viewBox="0 0 250 60" width="320" height="77">
+            <polygon points="20,3 36.5,12.5 36.5,31.5 20,41 3.5,31.5 3.5,12.5" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="20" cy="3" r="2.3" fill="var(--accent)"/><circle cx="36.5" cy="12.5" r="2.3" fill="var(--accent)"/><circle cx="36.5" cy="31.5" r="2.3" fill="var(--accent)"/><circle cx="20" cy="41" r="2.3" fill="var(--accent)"/><circle cx="3.5" cy="31.5" r="2.3" fill="var(--accent)"/><circle cx="3.5" cy="12.5" r="2.3" fill="var(--accent)"/>
+            <polygon points="70,3 86.5,12.5 86.5,31.5 70,41 53.5,31.5 53.5,12.5" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="70" cy="3" r="2.3" fill="var(--accent)"/><circle cx="86.5" cy="12.5" r="2.3" fill="var(--accent)"/><circle cx="86.5" cy="31.5" r="2.3" fill="var(--accent)"/><circle cx="70" cy="41" r="2.3" fill="var(--accent)"/><circle cx="53.5" cy="31.5" r="2.3" fill="var(--accent)"/><circle cx="53.5" cy="12.5" r="2.3" fill="var(--accent)"/>
+            <polygon points="127.3,4.5 137.6,14.7 137.6,29.3 127.3,39.6 112.7,39.6 102.4,29.3 102.4,14.7 112.7,4.5" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="127.3" cy="4.5" r="2.3" fill="var(--accent-warm)"/><circle cx="137.6" cy="14.7" r="2.3" fill="var(--accent-warm)"/><circle cx="127.3" cy="39.6" r="2.3" fill="var(--accent-warm)"/><circle cx="102.4" cy="29.3" r="2.3" fill="var(--accent-warm)"/><circle cx="112.7" cy="4.5" r="2.3" fill="var(--accent-warm)"/>
+            <polygon points="170,3 186.5,12.5 186.5,31.5 170,41 153.5,31.5 153.5,12.5" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="170" cy="3" r="2.3" fill="var(--accent)"/><circle cx="186.5" cy="12.5" r="2.3" fill="var(--accent)"/><circle cx="186.5" cy="31.5" r="2.3" fill="var(--accent)"/><circle cx="170" cy="41" r="2.3" fill="var(--accent)"/><circle cx="153.5" cy="31.5" r="2.3" fill="var(--accent)"/><circle cx="153.5" cy="12.5" r="2.3" fill="var(--accent)"/>
+            <polygon points="220,3 236.5,12.5 236.5,31.5 220,41 203.5,31.5 203.5,12.5" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="220" cy="3" r="2.3" fill="var(--accent)"/><circle cx="236.5" cy="12.5" r="2.3" fill="var(--accent)"/><circle cx="236.5" cy="31.5" r="2.3" fill="var(--accent)"/><circle cx="220" cy="41" r="2.3" fill="var(--accent)"/><circle cx="203.5" cy="31.5" r="2.3" fill="var(--accent)"/><circle cx="203.5" cy="12.5" r="2.3" fill="var(--accent)"/>
+            <text x="20" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 1</text>
+            <text x="70" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 2</text>
+            <text x="120" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 3</text>
+            <text x="170" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 4</text>
+            <text x="220" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 5</text>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Các Hình 1, 2, 4, 5 đều giống nhau: 6 cạnh (lục giác đều) và 6 chấm tròn.</div>
+          <div class="step" data-n="2" hidden>Hình 3 có nhiều hơn các hình còn lại đúng 2 cạnh: 6 + 2 = 8 cạnh (bát giác đều).</div>
+          <div class="step" data-n="3" hidden>Hình 3 có ít hơn các hình còn lại đúng 1 chấm tròn: 6 − 1 = 5 chấm.</div>
+          <div class="step" data-n="4" hidden>Quan sát hình vẽ: Hình 3 đúng là hình 8 cạnh với 5 chấm tròn bên trong — khác hẳn 4 hình lục giác còn lại ✓.</div>
+          <div class="answer" hidden>Đáp số: Hình 3 có 8 cạnh và 5 chấm tròn.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3: TƯ DUY LOGIC ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-num">Mảng 3</span>
+        <h2 class="topic-title">Tư duy logic</h2>
+      </div>
+      <p class="topic-intro">Lớp 3 thường có <span class="kw">5 đối tượng thay vì 4</span>, nên số lượng manh mối cũng nhiều hơn. Mẹo: viết lại từng manh mối thành một phép so sánh đơn giản (dùng dấu > hoặc <), rồi ghép tất cả thành một dãy duy nhất trước khi trả lời.</p>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Bài 3.1">
+        <div class="qhead"><span class="qid">Bài 3.1</span></div>
+        <div class="qtext">
+          <p>Năm bạn An, Bình, Chi, Dũng, Em có chiều cao khác nhau. Biết: <b>Chi cao hơn An</b>. <b>Dũng thấp hơn Em nhưng cao hơn Bình</b>. <b>Bình cao hơn Chi</b>. Hỏi thứ tự chiều cao của cả 5 bạn, từ thấp nhất đến cao nhất, là gì?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Từ "Chi cao hơn An": Chi > An.</div>
+          <div class="step" data-n="2" hidden>Từ "Dũng thấp hơn Em nhưng cao hơn Bình": Em > Dũng và Dũng > Bình.</div>
+          <div class="step" data-n="3" hidden>Từ "Bình cao hơn Chi": Bình > Chi.</div>
+          <div class="step" data-n="4" hidden>Ghép tất cả các dữ kiện thành một dãy duy nhất: An < Chi < Bình < Dũng < Em.</div>
+          <div class="step" data-n="5" hidden>Vậy thứ tự từ thấp đến cao là: An, Chi, Bình, Dũng, Em.</div>
+          <div class="answer" hidden>Đáp số: Thấp nhất → cao nhất: An, Chi, Bình, Dũng, Em.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Bài 3.2">
+        <div class="qhead"><span class="qid">Bài 3.2</span></div>
+        <div class="qtext">
+          <p>Năm bạn Trang, Lan, Huy, Minh, Việt xếp hàng mua vé xem xiếc, không ai đứng cùng vị trí. Biết: <b>Việt đứng cuối hàng</b> (vị trí thứ 5). <b>Huy đứng ngay sau Lan</b>. <b>Minh đứng ngay sau Huy</b>. <b>Trang đứng trước Lan</b>. Hỏi thứ tự xếp hàng từ đầu đến cuối là gì?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Việt đứng cuối hàng, tức là ở vị trí thứ 5.</div>
+          <div class="step" data-n="2" hidden>"Huy đứng ngay sau Lan" và "Minh đứng ngay sau Huy" nghĩa là 3 bạn Lan, Huy, Minh đứng liền nhau, đúng thứ tự Lan → Huy → Minh, trong 4 vị trí còn lại (1, 2, 3, 4).</div>
+          <div class="step" data-n="3" hidden>Nhóm 3 bạn liền nhau đó chỉ có thể chiếm các vị trí (1,2,3) hoặc (2,3,4) — vì cần đúng 3 vị trí liên tiếp trong 4 vị trí còn trống.</div>
+          <div class="step" data-n="4" hidden>Đề bài cho biết "Trang đứng trước Lan": nếu nhóm chiếm (1,2,3) thì Trang phải đứng ở vị trí 4 — tức là SAU Lan, trái với đề bài. Vậy nhóm phải chiếm (2,3,4), còn Trang đứng ở vị trí 1 (trước Lan) ✓.</div>
+          <div class="step" data-n="5" hidden>Vậy thứ tự đầy đủ: Trang (1), Lan (2), Huy (3), Minh (4), Việt (5).</div>
+          <div class="answer" hidden>Đáp số: Trang, Lan, Huy, Minh, Việt (từ đầu đến cuối hàng).</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-3" data-qid="Bài 3.3">
+        <div class="qhead"><span class="qid">Bài 3.3</span></div>
+        <div class="qtext">
+          <p>Bốn bạn Tí, Tèo, Sún, Na mỗi người nói một câu. Trong 4 bạn, có đúng <b>2 bạn nói thật</b> và 2 bạn nói dối.</p>
+          <p>Tí nói: "Tèo nói dối." — Tèo nói: "Sún nói dối." — Sún nói: "Na nói dối." — Na nói: "Cả Tí và Tèo đều nói dối."</p>
+          <p>Hỏi những ai nói thật?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Thử giả sử Na nói thật: khi đó "cả Tí và Tèo đều nói dối" là đúng, nên cả hai bạn đó phải nói dối.</div>
+          <div class="step" data-n="2" hidden>Nhưng nếu Tí nói dối thì câu "Tèo nói dối" của Tí phải sai — tức Tèo nói thật. Điều này mâu thuẫn với việc Tèo phải nói dối ở bước 1. Vậy giả sử Na nói thật là SAI — Na nói dối.</div>
+          <div class="step" data-n="3" hidden>Na nói dối, nên câu "cả Tí và Tèo đều nói dối" của Na là sai — tức KHÔNG PHẢI cả hai đều nói dối, có ít nhất 1 trong 2 bạn nói thật.</div>
+          <div class="step" data-n="4" hidden>Thử Tí nói thật: thì "Tèo nói dối" đúng → Tèo nói dối. Tèo nói dối thì câu "Sún nói dối" của Tèo lại sai → Sún nói thật. Sún nói thật thì câu "Na nói dối" của Sún phải đúng → Na nói dối — khớp với bước 2 ✓.</div>
+          <div class="step" data-n="5" hidden>Kiểm tra tổng số người nói thật: Tí thật, Tèo dối, Sún thật, Na dối — đúng 2 bạn nói thật, khớp với đề bài ✓.</div>
+          <div class="answer" hidden>Đáp số: Tí và Sún nói thật (Tèo và Na nói dối).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4: TOÁN ĐỐ VUI ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-num">Mảng 4</span>
+        <h2 class="topic-title">Toán đố vui</h2>
+      </div>
+      <p class="topic-intro">Những bài toán có bối cảnh vui nhộn, thường cần <span class="kw">nhiều bước suy luận nối tiếp nhau</span> chứ không chỉ một phép tính. Đọc thật kỹ đề trước khi tính — đôi khi câu trả lời không nằm ở phép cộng trừ mà ở việc hiểu đúng ý câu hỏi.</p>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Bài 4.1">
+        <div class="qhead"><span class="qid">Bài 4.1</span></div>
+        <div class="qtext">
+          <p>🥤 Một cửa hàng có chương trình đổi vỏ chai: cứ <b>3 vỏ chai</b> thì đổi được <b>1 chai nước mới</b> (uống xong lại có thêm 1 vỏ chai để dành đổi tiếp). Ban đầu bạn Tùng mua 12 chai nước. Hỏi tính cả những lần đổi vỏ, bạn Tùng uống được tất cả bao nhiêu chai nước?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Tùng uống hết 12 chai đầu tiên, có được 12 vỏ chai. Lấy 12 vỏ đổi được 12 ÷ 3 = 4 chai mới (dùng vừa hết 12 vỏ, không dư).</div>
+          <div class="step" data-n="2" hidden>Uống thêm 4 chai đó, tổng số đã uống là 12 + 4 = 16 chai. Sau khi uống, Tùng lại có thêm 4 vỏ chai mới.</div>
+          <div class="step" data-n="3" hidden>Lấy 4 vỏ đó đổi: 4 ÷ 3 = 1 chai mới, còn dư lại 1 vỏ chưa dùng hết. Uống thêm 1 chai này, tổng số đã uống là 16 + 1 = 17 chai.</div>
+          <div class="step" data-n="4" hidden>Sau khi uống chai đó, Tùng có 1 vỏ mới cộng với 1 vỏ dư trước đó, tổng cộng 2 vỏ — không đủ 3 vỏ để đổi tiếp nữa, nên dừng lại.</div>
+          <div class="answer" hidden>Đáp số: 17 chai nước.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-2" data-qid="Bài 4.2">
+        <div class="qhead"><span class="qid">Bài 4.2</span></div>
+        <div class="qtext">
+          <p>👧👦 Tổng số tuổi của hai chị em hiện nay là 24 tuổi. Biết chị hơn em 4 tuổi. Hỏi 5 năm nữa, chị bao nhiêu tuổi?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Nếu bớt đi phần chị hơn em (4 tuổi) khỏi tổng, thì phần còn lại chia đều cho 2 người bằng tuổi nhau: 24 − 4 = 20 tuổi.</div>
+          <div class="step" data-n="2" hidden>Vậy tuổi em hiện nay là 20 ÷ 2 = 10 tuổi.</div>
+          <div class="step" data-n="3" hidden>Chị hơn em 4 tuổi, nên tuổi chị hiện nay là 10 + 4 = 14 tuổi.</div>
+          <div class="step" data-n="4" hidden>5 năm nữa, tuổi chị là 14 + 5 = 19 tuổi.</div>
+          <div class="answer" hidden>Đáp số: 19 tuổi.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-3" data-qid="Bài 4.3">
+        <div class="qhead"><span class="qid">Bài 4.3</span></div>
+        <div class="qtext">
+          <p>🏃 Trong một cuộc thi chạy, nếu em vượt qua đúng bạn đang chạy ở <b>vị trí thứ 2</b> (nhì) ngay trước khi về đích, thì lúc đó em đang ở vị trí thứ mấy?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Nhiều bạn sẽ vội trả lời "vị trí thứ nhất", vì nghĩ rằng cứ vượt qua ai đó là mình sẽ lên vị trí cao nhất.</div>
+          <div class="step" data-n="2" hidden>Nhưng đề bài chỉ nói em vượt qua đúng MỘT bạn — bạn đang đứng ở vị trí nhì.</div>
+          <div class="step" data-n="3" hidden>Khi em vượt qua bạn đó, em chiếm ngay vị trí mà bạn ấy vừa đứng, tức là vị trí thứ 2. Còn bạn đang dẫn đầu (vị trí thứ nhất) vẫn ở phía trước — em chưa hề vượt qua bạn đó.</div>
+          <div class="step" data-n="4" hidden>Vậy em đang ở vị trí thứ 2, chứ chưa phải vị trí thứ nhất.</div>
+          <div class="answer" hidden>Đáp số: Vị trí thứ 2 (chưa phải thứ nhất).</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Tài liệu "Toán Tư Duy Lớp 3 (Violympic)" — bài tự soạn mới hoàn toàn, dùng cho mục đích ôn luyện. Đáp án và lời giải chỉ mang tính tham khảo, khuyến khích các em tự suy nghĩ trước khi bấm "Xem đáp số ngay".</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  'sec1-1': [{
+    qtext: '<p>Một chiếc thang máy đồ chơi di chuyển qua các tầng đánh số, theo quy luật "lên thì cộng, xuống thì trừ" lặp lại đều đặn. Tìm số bị che ở ô có dấu "?".</p><div class="seq"><span class="tile">8</span><span class="arrow">→</span><span class="tile">17</span><span class="arrow">→</span><span class="tile">13</span><span class="arrow">→</span><span class="tile">22</span><span class="arrow">→</span><span class="tile">18</span><span class="arrow">→</span><span class="tile blank">?</span><span class="arrow">→</span><span class="tile">23</span></div>',
+    steps: [
+      'So sánh 2 số đầu: từ 8 đến 17 tăng thêm 9 (17 − 8 = 9).',
+      'Từ 17 đến 13 lại giảm đi 4 (17 − 13 = 4). Từ 13 đến 22 lại tăng thêm 9, từ 22 đến 18 lại giảm 4. Vậy quy luật lặp lại là: +9, −4, +9, −4, ...',
+      'Số "18" vừa được trừ 4 (từ 22 xuống 18), nên bước tiếp theo phải là +9: 18 + 9 = 27.',
+      'Thử lại: sau 27 phải là 27 − 4 = 23 — đúng khớp với số cuối dãy ✓.'
+    ],
+    answer: 'Đáp số: 27.'
+  }],
+  'sec1-2': [{
+    qtext: '<p>Một tờ giấy được gấp đôi liên tiếp nhiều lần. Số lớp giấy sau mỗi lần gấp được ghi lại như sau:</p><div class="seq"><span class="tile">5</span><span class="arrow">→</span><span class="tile">10</span><span class="arrow">→</span><span class="tile">20</span><span class="arrow">→</span><span class="tile">40</span><span class="arrow">→</span><span class="tile blank">?</span><span class="arrow">→</span><span class="tile">160</span></div><p>Tìm số lớp giấy bị che ở ô có dấu "?".</p>',
+    steps: [
+      'Từ 5 đến 10: gấp đôi (10 = 5 × 2). Từ 10 đến 20: cũng gấp đôi (20 = 10 × 2).',
+      'Từ 20 đến 40: cũng gấp đôi (40 = 20 × 2). Vậy quy luật là "mỗi lần gấp, số lớp giấy nhân đôi".',
+      'Ô "?" đứng ngay sau 40, nên số đó là 40 × 2 = 80.',
+      'Thử lại: sau 80 phải là 80 × 2 = 160 — đúng khớp với số cuối dãy ✓.'
+    ],
+    answer: 'Đáp số: 80 lớp giấy.'
+  }],
+  'sec1-3': [{
+    qtext: '<p>Tháp số dưới đây có 4 tầng. Tầng đáy đã biết 4 số. Quy tắc: mỗi ô ở tầng trên bằng <b>tổng của hai ô liền kề</b> ngay bên dưới nó. Tìm số ở đỉnh tháp (ô trên cùng).</p><div class="pyramid"><div class="prow"><div class="pbox unknown">?</div></div><div class="prow"><div class="pbox unknown">?</div><div class="pbox unknown">?</div></div><div class="prow"><div class="pbox unknown">?</div><div class="pbox unknown">?</div><div class="pbox unknown">?</div></div><div class="prow"><div class="pbox given">7</div><div class="pbox given">4</div><div class="pbox given">10</div><div class="pbox given">3</div></div></div>',
+    steps: [
+      'Tính tầng 3 (ngay trên tầng đáy), lấy tổng từng cặp ô liền kề: 7 + 4 = 11; 4 + 10 = 14; 10 + 3 = 13.',
+      'Tầng 3 giờ có 3 số: 11, 14, 13.',
+      'Tính tầng 2: 11 + 14 = 25; 14 + 13 = 27.',
+      'Đỉnh tháp (tầng 1) bằng tổng hai ô của tầng 2: 25 + 27 = 52.'
+    ],
+    answer: 'Đáp số: 52.'
+  }],
+  'sec2-1': [{
+    qtext: '<p>Hình vuông dưới đây được vẽ thêm cả 2 đường chéo và cả 2 đường trung tuyến (nối trung điểm 2 cạnh đối diện). Hỏi trong toàn bộ hình có tất cả bao nhiêu hình tam giác?</p><div class="geo-figure"><svg viewBox="0 0 100 100" width="170" height="170"><rect x="10" y="10" width="80" height="80" fill="none" stroke="var(--accent)" stroke-width="2.5"/><line x1="10" y1="10" x2="90" y2="90" stroke="var(--accent)" stroke-width="1.8"/><line x1="90" y1="10" x2="10" y2="90" stroke="var(--accent)" stroke-width="1.8"/><line x1="50" y1="10" x2="50" y2="90" stroke="var(--accent)" stroke-width="1.8"/><line x1="10" y1="50" x2="90" y2="50" stroke="var(--accent)" stroke-width="1.8"/></svg></div>',
+    steps: [
+      'Bốn đường (2 đường chéo + 2 đường trung tuyến) cắt nhau tại đúng 1 điểm: tâm hình vuông. Quanh tâm có 8 điểm trên viền (4 góc + 4 điểm giữa cạnh), tạo ra 8 tam giác nhỏ nhất (mỗi tam giác là "một miếng bánh" của hình vuông): 8 hình.',
+      'Ghép 2 tam giác nhỏ liền kề chung một cạnh hình vuông: được 1 tam giác lớn hơn có đáy là cả cạnh đó và đỉnh là tâm. Hình vuông có 4 cạnh, nên có 4 tam giác loại này.',
+      'Dùng nguyên một đường chéo làm cạnh: mỗi đường chéo cùng 2 cạnh hình vuông tạo thành 1 tam giác bằng nửa hình vuông. Có 2 đường chéo, mỗi đường lại chia hình vuông thành 2 nửa như vậy → 4 tam giác cỡ lớn.',
+      'Cộng tất cả các cỡ lại: 8 + 4 + 4 = 16 hình tam giác.'
+    ],
+    answer: 'Đáp số: 16 hình tam giác.'
+  }],
+  'sec2-2': [{
+    qtext: '<p>Hình chữ nhật lớn dưới đây gồm 6 cột × 4 hàng ô vuông nhỏ bằng nhau (tổng cộng 24 ô). Người ta đã ghép sẵn 5 mảnh "ba" (mỗi mảnh gồm 3 ô vuông liền nhau theo hàng ngang, tô màu hồng), phần còn lại vẫn để trống (viền nét đứt). Hỏi cần ghép thêm bao nhiêu mảnh "1 ô vuông" nữa để lấp đầy hình chữ nhật?</p><div class="geo-figure"><svg viewBox="0 0 180 120" width="220" height="147"><rect x="0" y="0" width="180" height="120" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/><line x1="30" y1="0" x2="30" y2="120" stroke="var(--line-strong)" stroke-width="1"/><line x1="60" y1="0" x2="60" y2="120" stroke="var(--line-strong)" stroke-width="1"/><line x1="90" y1="0" x2="90" y2="120" stroke="var(--line-strong)" stroke-width="1"/><line x1="120" y1="0" x2="120" y2="120" stroke="var(--line-strong)" stroke-width="1"/><line x1="150" y1="0" x2="150" y2="120" stroke="var(--line-strong)" stroke-width="1"/><line x1="0" y1="30" x2="180" y2="30" stroke="var(--line-strong)" stroke-width="1"/><line x1="0" y1="60" x2="180" y2="60" stroke="var(--line-strong)" stroke-width="1"/><line x1="0" y1="90" x2="180" y2="90" stroke="var(--line-strong)" stroke-width="1"/><rect x="1" y="1" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/><rect x="91" y="1" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/><rect x="1" y="31" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/><rect x="91" y="31" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/><rect x="1" y="61" width="88" height="28" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" rx="4"/><rect x="91" y="61" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/><rect x="121" y="61" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/><rect x="151" y="61" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/><rect x="1" y="91" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/><rect x="31" y="91" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/><rect x="61" y="91" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/><rect x="91" y="91" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/><rect x="121" y="91" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/><rect x="151" y="91" width="28" height="28" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 3" rx="3"/></svg></div>',
+    steps: [
+      'Đếm tổng số ô vuông nhỏ trong hình chữ nhật: 6 cột × 4 hàng = 24 ô.',
+      'Mỗi mảnh "ba" che kín 3 ô. Có 5 mảnh "ba" đã ghép sẵn, che kín: 5 × 3 = 15 ô.',
+      'Số ô còn trống cần lấp = tổng số ô − số ô đã che = 24 − 15 = 9 ô.',
+      'Mỗi ô trống cần đúng 1 mảnh "1 ô vuông", nên cần 9 mảnh.'
+    ],
+    answer: 'Đáp số: 9 mảnh hình vuông nhỏ.'
+  }],
+  'sec2-3': [{
+    qtext: '<p>Có 5 hình đa giác đều xếp thành một hàng. Hình 1, Hình 2, Hình 4, Hình 5 đều là <b>ngũ giác đều</b> (5 cạnh), mỗi hình có đúng 5 chấm tròn bên trong. Riêng Hình 3 có nhiều hơn các hình còn lại đúng <b>1 cạnh</b>, nhưng lại có <b>ít hơn 2 chấm tròn</b> so với các hình còn lại. Hỏi Hình 3 có bao nhiêu cạnh, và có bao nhiêu chấm tròn?</p><div class="geo-figure"><svg viewBox="0 0 250 60" width="320" height="77"><polygon points="20,2 39,15.8 31.8,38.2 8.2,38.2 1,15.8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/><circle cx="20" cy="2" r="2.3" fill="var(--accent)"/><circle cx="39" cy="15.8" r="2.3" fill="var(--accent)"/><circle cx="31.8" cy="38.2" r="2.3" fill="var(--accent)"/><circle cx="8.2" cy="38.2" r="2.3" fill="var(--accent)"/><circle cx="1" cy="15.8" r="2.3" fill="var(--accent)"/><polygon points="70,2 89,15.8 81.8,38.2 58.2,38.2 51,15.8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/><circle cx="70" cy="2" r="2.3" fill="var(--accent)"/><circle cx="89" cy="15.8" r="2.3" fill="var(--accent)"/><circle cx="81.8" cy="38.2" r="2.3" fill="var(--accent)"/><circle cx="58.2" cy="38.2" r="2.3" fill="var(--accent)"/><circle cx="51" cy="15.8" r="2.3" fill="var(--accent)"/><polygon points="120,3 136.5,12.5 136.5,31.5 120,41 103.5,31.5 103.5,12.5" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2" stroke-linejoin="round"/><circle cx="120" cy="3" r="2.3" fill="var(--accent-warm)"/><circle cx="136.5" cy="31.5" r="2.3" fill="var(--accent-warm)"/><circle cx="103.5" cy="31.5" r="2.3" fill="var(--accent-warm)"/><polygon points="170,2 189,15.8 181.8,38.2 158.2,38.2 151,15.8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/><circle cx="170" cy="2" r="2.3" fill="var(--accent)"/><circle cx="189" cy="15.8" r="2.3" fill="var(--accent)"/><circle cx="181.8" cy="38.2" r="2.3" fill="var(--accent)"/><circle cx="158.2" cy="38.2" r="2.3" fill="var(--accent)"/><circle cx="151" cy="15.8" r="2.3" fill="var(--accent)"/><polygon points="220,2 239,15.8 231.8,38.2 208.2,38.2 201,15.8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/><circle cx="220" cy="2" r="2.3" fill="var(--accent)"/><circle cx="239" cy="15.8" r="2.3" fill="var(--accent)"/><circle cx="231.8" cy="38.2" r="2.3" fill="var(--accent)"/><circle cx="208.2" cy="38.2" r="2.3" fill="var(--accent)"/><circle cx="201" cy="15.8" r="2.3" fill="var(--accent)"/><text x="20" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 1</text><text x="70" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 2</text><text x="120" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 3</text><text x="170" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 4</text><text x="220" y="54" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Hình 5</text></svg></div>',
+    steps: [
+      'Các Hình 1, 2, 4, 5 đều giống nhau: 5 cạnh (ngũ giác đều) và 5 chấm tròn.',
+      'Hình 3 có nhiều hơn các hình còn lại đúng 1 cạnh: 5 + 1 = 6 cạnh (lục giác đều).',
+      'Hình 3 có ít hơn các hình còn lại đúng 2 chấm tròn: 5 − 2 = 3 chấm.',
+      'Quan sát hình vẽ: Hình 3 đúng là hình 6 cạnh với 3 chấm tròn bên trong — khác hẳn 4 hình ngũ giác còn lại ✓.'
+    ],
+    answer: 'Đáp số: Hình 3 có 6 cạnh và 3 chấm tròn.'
+  }],
+  'sec3-1': [{
+    qtext: '<p>Năm bạn Mai, Hoa, Nam, Tùng, Linh có tuổi khác nhau. Biết: <b>Nam nhiều tuổi hơn Hoa</b>. <b>Tùng ít tuổi hơn Linh nhưng nhiều tuổi hơn Nam</b>. <b>Hoa nhiều tuổi hơn Mai</b>. Hỏi thứ tự tuổi của cả 5 bạn, từ nhỏ nhất đến lớn nhất, là gì?</p>',
+    steps: [
+      'Từ "Nam nhiều tuổi hơn Hoa": Nam > Hoa.',
+      'Từ "Tùng ít tuổi hơn Linh nhưng nhiều tuổi hơn Nam": Linh > Tùng và Tùng > Nam.',
+      'Từ "Hoa nhiều tuổi hơn Mai": Hoa > Mai.',
+      'Ghép tất cả các dữ kiện thành một dãy duy nhất: Mai < Hoa < Nam < Tùng < Linh.',
+      'Vậy thứ tự từ nhỏ đến lớn là: Mai, Hoa, Nam, Tùng, Linh.'
+    ],
+    answer: 'Đáp số: Nhỏ nhất → lớn nhất: Mai, Hoa, Nam, Tùng, Linh.'
+  }],
+  'sec3-2': [{
+    qtext: '<p>Năm bạn Phương, Kiên, Vy, Đạt, Bảo xếp hàng lên xe buýt, không ai đứng cùng vị trí. Biết: <b>Bảo đứng cuối hàng</b> (vị trí thứ 5). <b>Vy đứng ngay sau Kiên</b>. <b>Đạt đứng ngay sau Vy</b>. <b>Phương đứng trước Kiên</b>. Hỏi thứ tự xếp hàng từ đầu đến cuối là gì?</p>',
+    steps: [
+      'Bảo đứng cuối hàng, tức là ở vị trí thứ 5.',
+      '"Vy đứng ngay sau Kiên" và "Đạt đứng ngay sau Vy" nghĩa là 3 bạn Kiên, Vy, Đạt đứng liền nhau, đúng thứ tự Kiên → Vy → Đạt, trong 4 vị trí còn lại (1, 2, 3, 4).',
+      'Nhóm 3 bạn liền nhau đó chỉ có thể chiếm các vị trí (1,2,3) hoặc (2,3,4).',
+      'Đề bài cho biết "Phương đứng trước Kiên": nếu nhóm chiếm (1,2,3) thì Phương phải đứng ở vị trí 4 — tức là SAU Kiên, trái với đề bài. Vậy nhóm phải chiếm (2,3,4), còn Phương đứng ở vị trí 1 (trước Kiên) ✓.',
+      'Vậy thứ tự đầy đủ: Phương (1), Kiên (2), Vy (3), Đạt (4), Bảo (5).'
+    ],
+    answer: 'Đáp số: Phương, Kiên, Vy, Đạt, Bảo (từ đầu đến cuối hàng).'
+  }],
+  'sec3-3': [{
+    qtext: '<p>Bốn bạn Bo, Bin, Kem, Xu mỗi người nói một câu. Trong 4 bạn, có đúng <b>2 bạn nói thật</b> và 2 bạn nói dối.</p><p>Bo nói: "Bin nói dối." — Bin nói: "Kem nói dối." — Kem nói: "Xu nói dối." — Xu nói: "Cả Bo và Bin đều nói dối."</p><p>Hỏi những ai nói thật?</p>',
+    steps: [
+      'Thử giả sử Xu nói thật: khi đó "cả Bo và Bin đều nói dối" là đúng, nên cả hai bạn đó phải nói dối.',
+      'Nhưng nếu Bo nói dối thì câu "Bin nói dối" của Bo phải sai — tức Bin nói thật. Điều này mâu thuẫn với việc Bin phải nói dối ở bước 1. Vậy giả sử Xu nói thật là SAI — Xu nói dối.',
+      'Xu nói dối, nên câu "cả Bo và Bin đều nói dối" của Xu là sai — tức có ít nhất 1 trong 2 bạn Bo, Bin nói thật.',
+      'Thử Bo nói thật: thì "Bin nói dối" đúng → Bin nói dối. Bin nói dối thì câu "Kem nói dối" của Bin lại sai → Kem nói thật. Kem nói thật thì câu "Xu nói dối" của Kem phải đúng → Xu nói dối — khớp với bước 2 ✓.',
+      'Kiểm tra tổng số người nói thật: Bo thật, Bin dối, Kem thật, Xu dối — đúng 2 bạn nói thật, khớp với đề bài ✓.'
+    ],
+    answer: 'Đáp số: Bo và Kem nói thật (Bin và Xu nói dối).'
+  }],
+  'sec4-1': [{
+    qtext: '<p>🥫 Một cửa hàng có chương trình đổi vỏ lon: cứ <b>4 vỏ lon</b> thì đổi được <b>1 lon nước ngọt mới</b>. Ban đầu bạn Mai mua 20 lon nước ngọt. Hỏi tính cả những lần đổi vỏ, bạn Mai uống được tất cả bao nhiêu lon nước ngọt?</p>',
+    steps: [
+      'Mai uống hết 20 lon đầu tiên, có được 20 vỏ lon. Lấy 20 vỏ đổi được 20 ÷ 4 = 5 lon mới (dùng vừa hết 20 vỏ, không dư).',
+      'Uống thêm 5 lon đó, tổng số đã uống là 20 + 5 = 25 lon. Sau khi uống, Mai lại có thêm 5 vỏ lon mới.',
+      'Lấy 5 vỏ đó đổi: 5 ÷ 4 = 1 lon mới, còn dư lại 1 vỏ chưa dùng hết. Uống thêm 1 lon này, tổng số đã uống là 25 + 1 = 26 lon.',
+      'Sau khi uống lon đó, Mai có 1 vỏ mới cộng với 1 vỏ dư trước đó, tổng cộng 2 vỏ — không đủ 4 vỏ để đổi tiếp nữa, nên dừng lại.'
+    ],
+    answer: 'Đáp số: 26 lon nước ngọt.'
+  }],
+  'sec4-2': [{
+    qtext: '<p>👦👧 Tổng số tuổi của hai anh em hiện nay là 30 tuổi. Biết anh hơn em 6 tuổi. Hỏi 3 năm trước, em bao nhiêu tuổi?</p>',
+    steps: [
+      'Nếu bớt đi phần anh hơn em (6 tuổi) khỏi tổng, thì phần còn lại chia đều cho 2 người bằng tuổi nhau: 30 − 6 = 24 tuổi.',
+      'Vậy tuổi em hiện nay là 24 ÷ 2 = 12 tuổi.',
+      'Anh hơn em 6 tuổi, nên tuổi anh hiện nay là 12 + 6 = 18 tuổi (không cần dùng đến số này, chỉ để kiểm tra).',
+      '3 năm trước, tuổi em là 12 − 3 = 9 tuổi.'
+    ],
+    answer: 'Đáp số: 9 tuổi.'
+  }],
+  'sec4-3': [{
+    qtext: '<p>📅 Một năm có 12 tháng. Hỏi có bao nhiêu tháng có <b>ít nhất 28 ngày</b>?</p>',
+    steps: [
+      'Nhiều bạn sẽ vội nghĩ ngay đến tháng 2 (tháng duy nhất có đúng 28 hoặc 29 ngày) và trả lời "1 tháng".',
+      'Nhưng đề bài hỏi tháng nào có ÍT NHẤT 28 ngày — nghĩa là 28 ngày trở lên, không phải đúng bằng 28.',
+      'Tháng 2 có 28 (hoặc 29 ngày vào năm nhuận) → đủ điều kiện "ít nhất 28 ngày". Các tháng còn lại đều có 30 hoặc 31 ngày, đều nhiều hơn 28 ngày → cũng đủ điều kiện.',
+      'Vậy TẤT CẢ 12 tháng trong năm đều có ít nhất 28 ngày.'
+    ],
+    answer: 'Đáp số: Cả 12 tháng.'
+  }]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function buildOriginal(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    return {
+      qtext: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) { return s.innerHTML; }),
+      answer: solBody.querySelector('.answer').innerHTML
+    };
+  }
+
+  function render(el, item) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    qtext.innerHTML = item.qtext;
+    var steps = solBody.querySelectorAll('.step');
+    if (steps.length !== item.steps.length) {
+      var html = item.steps.map(function (s, i) {
+        return '<div class="step" data-n="' + (i + 1) + '" hidden>' + s + '</div>';
+      }).join('');
+      html += '<div class="answer" hidden>' + item.answer + '</div>';
+      solBody.innerHTML = html;
+    } else {
+      steps.forEach(function (stepEl, i) {
+        stepEl.innerHTML = item.steps[i];
+        stepEl.hidden = true;
+      });
+      var ansEl = solBody.querySelector('.answer');
+      ansEl.innerHTML = item.answer;
+      ansEl.hidden = true;
+    }
+  }
+
+  function initProblem(el) {
+    var poolId = el.dataset.pool;
+    var pool = [buildOriginal(el)].concat((window.VARIANTS && window.VARIANTS[poolId]) || []);
+    var state = { index: 0, revealed: 0, answerShown: false };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+    var solBody = el.querySelector('.sol-body');
+
+    if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var steps = solBody.querySelectorAll('.step');
+      var anyRevealed = state.revealed > 0 || state.answerShown;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= steps.length;
+        btnHint.textContent = state.revealed >= steps.length ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) btnReset.hidden = !anyRevealed;
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.hidden = false;
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.hidden = false;
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.index = (state.index + 1) % pool.length;
+      render(el, pool[state.index]);
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.hidden = true; });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.hidden = true;
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+</body>
+</html>
