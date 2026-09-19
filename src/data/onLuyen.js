@@ -65,6 +65,29 @@ export const ON_LUYEN_TOPICS_BY_GRADE = {
       href: '/tai-lieu/toan-tu-duy-lop-3.html',
     },
   ],
+  4: [
+    {
+      id: 'chinh-phuc-diem-10-toan-4',
+      icon: '⭐',
+      name: 'Chinh Phục Điểm 10 Toán 4',
+      desc: 'Ôn tập trọng tâm 4 mảng kiến thức Toán 4, từ cơ bản đến nâng cao, có gợi ý từng bước.',
+      href: '/tai-lieu/chinh-phuc-diem-10-toan-4.html',
+    },
+    {
+      id: 'toan-nang-cao-lop-4',
+      icon: '🚀',
+      name: 'Toán Nâng Cao Lớp 4',
+      desc: 'Bài toán bồi dưỡng học sinh giỏi: tổng-tỉ, phân số của một số, hình học tư duy, toán đố suy luận nhiều bước.',
+      href: '/tai-lieu/toan-nang-cao-lop-4.html',
+    },
+    {
+      id: 'toan-tu-duy-lop-4',
+      icon: '🧩',
+      name: 'Toán Tư Duy Lớp 4 (Violympic)',
+      desc: 'Quy luật dãy số, đếm hình, suy luận logic nhiều đối tượng và toán đố vui phong cách Violympic, Toán Tuổi Thơ.',
+      href: '/tai-lieu/toan-tu-duy-lop-4.html',
+    },
+  ],
   6: [
     {
       id: 'chinh-phuc-diem-10',
