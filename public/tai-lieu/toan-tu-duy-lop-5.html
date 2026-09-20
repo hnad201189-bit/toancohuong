@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán Tư Duy Lớp 5 (Violympic) — Ôn luyện Toán lớp 5</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4f6f5;
+    --bg-alt: #e8eef0;
+    --paper: #ffffff;
+    --ink: #16262b;
+    --ink-soft: #46626b;
+    --ink-faint: #7c98a1;
+    --accent: #0d7d6e;
+    --accent-soft: #dcf2ee;
+    --accent-warm: #b3432f;
+    --accent-warm-soft: #fbe4de;
+    --line: #dbe6e6;
+    --line-strong: #b7cdcb;
+    --shadow: 0 1px 2px rgba(15, 40, 38, 0.08), 0 6px 20px rgba(15, 40, 38, 0.09);
+    --radius: 14px;
+    --serif: Cambria, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a1414;
+    --bg-alt: #0f1e1d;
+    --paper: #11201f;
+    --ink: #e6f2ef;
+    --ink-soft: #a4c4bd;
+    --ink-faint: #698c86;
+    --accent: #35d6bd;
+    --accent-soft: #12332f;
+    --accent-warm: #f0955f;
+    --accent-warm-soft: #3a2015;
+    --line: #1b2f2e;
+    --line-strong: #2a4644;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a1414;
+      --bg-alt: #0f1e1d;
+      --paper: #11201f;
+      --ink: #e6f2ef;
+      --ink-soft: #a4c4bd;
+      --ink-faint: #698c86;
+      --accent: #35d6bd;
+      --accent-soft: #12332f;
+      --accent-warm: #f0955f;
+      --accent-warm-soft: #3a2015;
+      --line: #1b2f2e;
+      --line-strong: #2a4644;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 44px 20px 96px;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 32px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 6px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { font-family: var(--mono); color: var(--ink-faint); margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 4px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  section.topic { padding-top: 52px; scroll-margin-top: 18px; }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; flex-wrap: wrap; }
+  .topic-num { font-family: var(--serif); font-size: 15px; color: var(--accent); font-style: italic; }
+  h2.topic-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(21px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 10px 0 28px; }
+
+  p { max-width: 68ch; margin: 0 0 12px; }
+  .kw { color: var(--accent); font-weight: 600; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0 32px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .qhead { padding: 16px 22px 0; }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 700; }
+  .problem .qtext { padding: 8px 22px 18px; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .seq { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 4px; }
+  .seq .tile {
+    min-width: 46px;
+    height: 42px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1.5px solid var(--line-strong);
+    background: var(--bg-alt);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .seq .tile.blank {
+    border-style: dashed;
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .seq .arrow { color: var(--ink-faint); font-size: 14px; }
+
+  .numgrid { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 14px 0 6px; }
+  .numgrid .ngrow { display: flex; gap: 6px; }
+  .numgrid .ncell {
+    min-width: 46px;
+    height: 42px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1.5px solid var(--line-strong);
+    background: var(--bg-alt);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+  .numgrid .ncell.unknown { border-style: dashed; border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+  .geo-figure { display: flex; justify-content: center; padding: 12px 0 4px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body:empty { padding: 0; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step[hidden] { display: none; }
+  .sol-body .step::before {
+    content: attr(data-n);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .answer[hidden] { display: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); max-width: 780px; }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 mảng tư duy</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">1</span>Quy luật dãy số</a></li>
+      <li><a href="#sec2"><span class="n">2</span>Tư duy hình học</a></li>
+      <li><a href="#sec3"><span class="n">3</span>Tư duy logic</a></li>
+      <li><a href="#sec4"><span class="n">4</span>Toán đố vui</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">Về tài liệu này</div>
+      <p><b>Toán Tư Duy Lớp 5 (Violympic)</b> là tuyển tập 12 bài toán tư duy — quy luật số, hình học, suy luận lô-gic và đố vui — ở mức khó nhất trong toàn bộ chuỗi tài liệu "Toán Tư Duy" bậc tiểu học, tiếp nối tinh thần các sân chơi Violympic, Toán Tuổi Thơ và "1001 bài toán tư duy tiểu học": quy luật dãy số lồng cả số thập phân, tháp số hai chiều, đếm hình chữ nhật trong lưới bằng cách liệt kê từng cặp đường thẳng, suy luận bảng 5 đối tượng với nhiều thuộc tính, câu đố "ai nói thật — ai nói dối" với các phát biểu lồng vào nhau, và đố vui nhiều bước kết hợp phần trăm, phân số. Đây là hành trang lý tưởng để các em tự tin bước vào kỳ thi và các lớp học nâng cao ở bậc THCS. Toàn bộ đề bài, số liệu, hình vẽ và lời giải trong tài liệu này là <b>bài tự soạn mới hoàn toàn</b>, chỉ tham khảo dạng bài và độ khó quen thuộc chứ không sao chép nguyên văn từ bất kỳ cuốn sách nào. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để luyện lại đúng kiểu bài với số liệu khác.</p>
+    </div>
+
+    <!-- ================= SEC 1: QUY LUẬT DÃY SỐ ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-num">Mảng 1</span>
+        <h2 class="topic-title">Tư duy số học — quy luật dãy số</h2>
+      </div>
+      <p class="topic-intro">Ở lớp 5 — lớp cuối cấp tiểu học — quy luật có thể lồng cả <span class="kw">số thập phân</span> vào một phép biến đổi hai bước (ví dụ "nhân đôi rồi trừ đi một số thập phân cố định"), hoặc ẩn trong <span class="kw">quy luật của hiệu số</span> — nhìn vào khoảng cách giữa các số hạng liên tiếp để phát hiện một quy luật bậc hai. Với tháp số, mỗi ô (trừ hàng đáy) luôn bằng tổng hai ô liền kề ngay bên dưới nó — hãy thử tính theo cả hai chiều, từ đáy lên và từ đỉnh xuống, để tự kiểm chứng kết quả.</p>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Bài 1.1">
+        <div class="qhead"><span class="qid">Bài 1.1</span></div>
+        <div class="qtext">
+          <p>Dãy số dưới đây có quy luật kết hợp <b>hai phép tính</b> trong một bước, có cả số thập phân: lấy số liền trước <b>nhân đôi rồi trừ đi 0,5</b> để được số tiếp theo. Tìm số bị che ở ô có dấu "?".</p>
+          <div class="seq">
+            <span class="tile">1,5</span><span class="arrow">→</span>
+            <span class="tile">2,5</span><span class="arrow">→</span>
+            <span class="tile">4,5</span><span class="arrow">→</span>
+            <span class="tile">8,5</span><span class="arrow">→</span>
+            <span class="tile blank">?</span><span class="arrow">→</span>
+            <span class="tile">32,5</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Từ 1,5 đến 2,5: không phải cộng thêm một số cố định (2,5 − 1,5 = 1, nhưng 4,5 − 2,5 = 2, khác nhau). Thử nhân đôi: 1,5 × 2 = 3, chưa khớp 2,5. Thử "nhân đôi rồi trừ 0,5": 1,5 × 2 − 0,5 = 2,5 — đúng!</div>
+          <div class="step" data-n="2" hidden>Kiểm tra tiếp: 2,5 × 2 − 0,5 = 4,5, khớp với số thứ 3 ✓. Và 4,5 × 2 − 0,5 = 8,5, khớp số thứ 4 ✓. Vậy quy luật là: mỗi số = (số liền trước × 2) − 0,5.</div>
+          <div class="step" data-n="3" hidden>Ô "?" đứng ngay sau 8,5, nên số đó là 8,5 × 2 − 0,5 = 17 − 0,5 = 16,5.</div>
+          <div class="step" data-n="4" hidden>Thử lại: 16,5 × 2 − 0,5 = 33 − 0,5 = 32,5 — đúng khớp số cuối cùng cho sẵn ✓.</div>
+          <div class="answer" hidden>Đáp số: 16,5.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Bài 1.2">
+        <div class="qhead"><span class="qid">Bài 1.2</span></div>
+        <div class="qtext">
+          <p>Tháp số dưới đây được xây theo quy luật: <b>mỗi ô (trừ hàng đáy) bằng tổng hai ô liền kề ngay bên dưới nó</b>. Tìm số bị che ở ô có dấu "?".</p>
+          <div class="numgrid">
+            <div class="ngrow"><div class="ncell">3</div><div class="ncell">5</div><div class="ncell">4</div><div class="ncell">6</div></div>
+            <div class="ngrow"><div class="ncell">8</div><div class="ncell unknown">?</div><div class="ncell">10</div></div>
+            <div class="ngrow"><div class="ncell">17</div><div class="ncell">19</div></div>
+            <div class="ngrow"><div class="ncell">36</div></div>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Ô "?" nằm ở hàng thứ hai (từ đáy đếm lên), ngay trên hai ô hàng đáy là 5 và 4. Theo quy luật, "?" = 5 + 4 = 9.</div>
+          <div class="step" data-n="2" hidden>Kiểm chứng bằng hàng phía trên: ô 17 ở hàng ba phải bằng tổng ô 8 và ô "?" ngay dưới nó: 8 + "?" = 17, suy ra "?" = 17 − 8 = 9 — khớp với cách tính ở bước 1 ✓.</div>
+          <div class="step" data-n="3" hidden>Kiểm chứng thêm: ô 19 phải bằng tổng ô "?" và ô 10 ngay dưới nó: "?" + 10 = 19, suy ra "?" = 9 — vẫn khớp ✓.</div>
+          <div class="step" data-n="4" hidden>Kiểm chứng ở đỉnh tháp: 17 + 19 = 36 — đúng bằng số ở đỉnh cho sẵn, chứng tỏ cả tháp số nhất quán ✓.</div>
+          <div class="answer" hidden>Đáp số: 9.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-3" data-qid="Bài 1.3">
+        <div class="qhead"><span class="qid">Bài 1.3</span></div>
+        <div class="qtext">
+          <p>Dãy số dưới đây không tăng đều: khoảng cách giữa hai số liên tiếp thay đổi theo một quy luật riêng. Hãy tìm ra "quy luật của hiệu số" để tìm số bị che ở ô có dấu "?".</p>
+          <div class="seq">
+            <span class="tile">3</span><span class="arrow">→</span>
+            <span class="tile">6</span><span class="arrow">→</span>
+            <span class="tile">11</span><span class="arrow">→</span>
+            <span class="tile">18</span><span class="arrow">→</span>
+            <span class="tile blank">?</span><span class="arrow">→</span>
+            <span class="tile">38</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Tính hiệu giữa các số liên tiếp: 6 − 3 = 3; 11 − 6 = 5; 18 − 11 = 7. Các hiệu này không bằng nhau, nên đây không phải quy luật cộng đều.</div>
+          <div class="step" data-n="2" hidden>Nhưng chính các hiệu số 3, 5, 7 lại tạo thành một dãy có quy luật riêng: mỗi hiệu tăng thêm đúng 2 so với hiệu trước (đây là "quy luật của quy luật"). Vậy hiệu tiếp theo (giữa 18 và "?") phải là 7 + 2 = 9.</div>
+          <div class="step" data-n="3" hidden>Số ở ô "?" = 18 + 9 = 27.</div>
+          <div class="step" data-n="4" hidden>Kiểm chứng: hiệu kế tiếp sau đó là 9 + 2 = 11, và 27 + 11 = 38 — khớp đúng với số cuối cùng cho sẵn ✓.</div>
+          <div class="answer" hidden>Đáp số: 27.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2: TƯ DUY HÌNH HỌC ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-num">Mảng 2</span>
+        <h2 class="topic-title">Tư duy hình học</h2>
+      </div>
+      <p class="topic-intro">Hình vẽ ở lớp 5 phức tạp hơn hẳn: đếm hình chữ nhật trong một lưới nhiều ô đòi hỏi liệt kê có hệ thống từng cặp đường thẳng thay vì đếm bằng mắt, bài toán diện tích yêu cầu "nhìn ra" cách chia một hình lạ thành các hình quen thuộc (tam giác vuông, hình chữ nhật) rồi lấy phần lớn trừ phần thừa, và bài đối xứng lớp 5 chuyển sang <span class="kw">phép quay 180° quanh một điểm</span> thay vì chỉ đối xứng qua một trục — dễ nhầm lẫn hơn hẳn nếu không kiểm tra từng ô một cách cẩn thận.</p>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Bài 2.1">
+        <div class="qhead"><span class="qid">Bài 2.1</span></div>
+        <div class="qtext">
+          <p>Hình vuông lớn dưới đây được chia thành lưới <b>3 × 3</b> ô vuông nhỏ bằng nhau, tạo thành <b>4 đường thẳng đứng</b> và <b>4 đường nằm ngang</b>. Hỏi có tất cả bao nhiêu hình chữ nhật (tính cả hình vuông) được tạo thành trong hình, biết rằng cứ chọn 2 đường đứng bất kỳ và 2 đường ngang bất kỳ thì luôn tạo ra đúng 1 hình chữ nhật?</p>
+          <div class="geo-figure"><svg viewBox="0 0 180 180" width="200" height="200">
+            <rect x="1" y="1" width="178" height="178" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+            <line x1="60" y1="0" x2="60" y2="180" stroke="var(--line-strong)" stroke-width="1.3"/>
+            <line x1="120" y1="0" x2="120" y2="180" stroke="var(--line-strong)" stroke-width="1.3"/>
+            <line x1="0" y1="60" x2="180" y2="60" stroke="var(--line-strong)" stroke-width="1.3"/>
+            <line x1="0" y1="120" x2="180" y2="120" stroke="var(--line-strong)" stroke-width="1.3"/>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đánh số 4 đường thẳng đứng là 1, 2, 3, 4 (từ trái sang phải). Liệt kê mọi cặp 2 đường có thể chọn: (1,2), (1,3), (1,4), (2,3), (2,4), (3,4) — tất cả đúng 6 cặp.</div>
+          <div class="step" data-n="2" hidden>Tương tự, 4 đường nằm ngang cũng cho đúng 6 cặp có thể chọn (liệt kê y hệt bước trên).</div>
+          <div class="step" data-n="3" hidden>Mỗi cặp đường đứng kết hợp với mỗi cặp đường ngang tạo ra đúng 1 hình chữ nhật khác nhau, nên tổng số hình chữ nhật = 6 × 6 = 36.</div>
+          <div class="step" data-n="4" hidden>Kiểm chứng thêm: trong 36 hình đó, chỉ có 14 hình thật sự là hình vuông (cỡ 1×1: 9 hình, cỡ 2×2: 4 hình, cỡ 3×3: 1 hình), còn lại 22 hình là chữ nhật không vuông — cộng lại đúng 14 + 22 = 36 ✓.</div>
+          <div class="answer" hidden>Đáp số: 36 hình chữ nhật (tính cả hình vuông).</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Bài 2.2">
+        <div class="qhead"><span class="qid">Bài 2.2</span></div>
+        <div class="qtext">
+          <p>Hình chữ nhật ABCD có AB = 12m, AD = 8m (A, B, C, D là 4 đỉnh theo thứ tự quanh hình chữ nhật). Gọi M là điểm trên cạnh AB sao cho AM = 5m, N là điểm trên cạnh BC sao cho BN = 3m. Tính diện tích tam giác MND (phần tô đậm trong hình).</p>
+          <div class="geo-figure"><svg viewBox="-18 -18 252 180" width="250" height="180">
+            <rect x="0" y="0" width="216" height="144" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+            <polygon points="90,0 216,54 0,144" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <circle cx="0" cy="0" r="3" fill="var(--ink-faint)"/>
+            <text x="-9" y="-6" font-size="11" fill="var(--ink-soft)">A</text>
+            <circle cx="216" cy="0" r="3" fill="var(--ink-faint)"/>
+            <text x="221" y="-6" font-size="11" fill="var(--ink-soft)">B</text>
+            <circle cx="216" cy="144" r="3" fill="var(--ink-faint)"/>
+            <text x="221" y="158" font-size="11" fill="var(--ink-soft)">C</text>
+            <circle cx="0" cy="144" r="3" fill="var(--ink-faint)"/>
+            <text x="-9" y="158" font-size="11" fill="var(--ink-soft)">D</text>
+            <circle cx="90" cy="0" r="3" fill="var(--accent-warm)"/>
+            <text x="90" y="-8" text-anchor="middle" font-size="11" fill="var(--accent-warm)">M</text>
+            <circle cx="216" cy="54" r="3" fill="var(--accent-warm)"/>
+            <text x="223" y="58" font-size="11" fill="var(--accent-warm)">N</text>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Diện tích hình chữ nhật ABCD = 12 × 8 = 96 m².</div>
+          <div class="step" data-n="2" hidden>Tam giác MND không có công thức tính trực tiếp, nhưng ta có thể "nhìn ra" cách tính khéo léo: lấy diện tích cả hình chữ nhật trừ đi 3 tam giác vuông ở 3 góc còn lại — góc A (tam giác AMD), góc B (tam giác MBN), góc C (tam giác NCD).</div>
+          <div class="step" data-n="3" hidden>Tam giác AMD vuông tại A, hai cạnh góc vuông AM = 5m và AD = 8m → diện tích = 5 × 8 ÷ 2 = 20 m².</div>
+          <div class="step" data-n="4" hidden>Tam giác MBN vuông tại B, hai cạnh góc vuông MB = 12 − 5 = 7m và BN = 3m → diện tích = 7 × 3 ÷ 2 = 10,5 m².</div>
+          <div class="step" data-n="5" hidden>Tam giác NCD vuông tại C, hai cạnh góc vuông NC = 8 − 3 = 5m và CD = 12m → diện tích = 5 × 12 ÷ 2 = 30 m².</div>
+          <div class="step" data-n="6" hidden>Diện tích tam giác MND = 96 − (20 + 10,5 + 30) = 96 − 60,5 = 35,5 m².</div>
+          <div class="answer" hidden>Đáp số: 35,5 m².</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-3" data-qid="Bài 2.3">
+        <div class="qhead"><span class="qid">Bài 2.3</span></div>
+        <div class="qtext">
+          <p>Lưới ô vuông <b>5×5</b> dưới đây có một số ô đã tô màu (hàng đánh số 1-5 từ trên xuống, cột đánh số 1-5 từ trái sang). Chấm tròn màu cam ở chính giữa lưới là <b>tâm quay</b>. Hỏi cần tô màu thêm <b>ít nhất</b> bao nhiêu ô nữa để cả hình <b>đối xứng qua phép quay 180°</b> quanh tâm đó (nghĩa là quay cả hình 180° quanh tâm thì hình trông y hệt ban đầu)?</p>
+          <div class="geo-figure"><svg viewBox="-16 -16 168 168" width="220" height="220">
+            <text x="15" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">1</text>
+            <text x="45" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">2</text>
+            <text x="75" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">3</text>
+            <text x="105" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">4</text>
+            <text x="135" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">5</text>
+            <text x="-6" y="18" text-anchor="end" font-size="9" fill="var(--ink-faint)">1</text>
+            <text x="-6" y="48" text-anchor="end" font-size="9" fill="var(--ink-faint)">2</text>
+            <text x="-6" y="78" text-anchor="end" font-size="9" fill="var(--ink-faint)">3</text>
+            <text x="-6" y="108" text-anchor="end" font-size="9" fill="var(--ink-faint)">4</text>
+            <text x="-6" y="138" text-anchor="end" font-size="9" fill="var(--ink-faint)">5</text>
+            <rect x="0" y="0" width="150" height="150" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+            <line x1="30" y1="0" x2="30" y2="150" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="60" y1="0" x2="60" y2="150" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="90" y1="0" x2="90" y2="150" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="120" y1="0" x2="120" y2="150" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="0" y1="30" x2="150" y2="30" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="0" y1="60" x2="150" y2="60" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="0" y1="90" x2="150" y2="90" stroke="var(--line-strong)" stroke-width="1"/>
+            <line x1="0" y1="120" x2="150" y2="120" stroke="var(--line-strong)" stroke-width="1"/>
+            <rect x="1" y="1" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/>
+            <rect x="121" y="121" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/>
+            <rect x="31" y="31" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/>
+            <rect x="91" y="1" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/>
+            <rect x="61" y="61" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/>
+            <rect x="1" y="91" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/>
+            <circle cx="75" cy="75" r="4.5" fill="var(--accent-warm)"/>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Phép quay 180° quanh tâm nghĩa là: ô ở hàng r, cột c sẽ "đi tới" ô ở hàng (6 − r), cột (6 − c) — vì lưới có 5 hàng, 5 cột. Ô nằm đúng tâm (hàng 3, cột 3) tự trùng với chính nó.</div>
+          <div class="step" data-n="2" hidden>Ô (hàng 1, cột 1) có ô ảnh qua tâm là (hàng 5, cột 5) — cả hai ô này đã được tô sẵn → cặp này đã hoàn chỉnh, không cần thêm.</div>
+          <div class="step" data-n="3" hidden>Ô (hàng 3, cột 3) là tâm quay, tự đối xứng với chính nó → không cần thêm.</div>
+          <div class="step" data-n="4" hidden>Ô (hàng 2, cột 2) cần ô ảnh là (hàng 4, cột 4) — ô này CHƯA được tô → cần tô thêm.</div>
+          <div class="step" data-n="5" hidden>Ô (hàng 1, cột 4) cần ô ảnh là (hàng 5, cột 2) — CHƯA được tô → cần tô thêm. Ô (hàng 4, cột 1) cần ô ảnh là (hàng 2, cột 5) — CHƯA được tô → cần tô thêm.</div>
+          <div class="step" data-n="6" hidden>Tổng số ô cần tô thêm: (hàng 4, cột 4), (hàng 5, cột 2), (hàng 2, cột 5) — tất cả 3 ô.</div>
+          <div class="answer" hidden>Đáp số: cần tô thêm 3 ô để cả hình đối xứng qua phép quay 180° quanh tâm.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3: TƯ DUY LOGIC ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-num">Mảng 3</span>
+        <h2 class="topic-title">Tư duy logic</h2>
+      </div>
+      <p class="topic-intro">Bài suy luận lớp 5 có thể là một <span class="kw">bảng 5 đối tượng với 3 thuộc tính</span> cùng lúc (nhà số, thú nuôi, đồ uống — kiểu rút gọn của câu đố Einstein nổi tiếng), câu đố "ai nói thật — ai nói dối" với các phát biểu <span class="kw">lồng vào nhau</span> (một người nói về việc người khác có nói thật hay không), hoặc một chuỗi so sánh hơn — kém bằng số thập phân. Mẹo: với bài "ai nói dối", hãy thử lần lượt giả sử từng người là người nói dối rồi kiểm tra xem tất cả các câu còn lại có nhất quán không — chỉ có đúng một cách giả sử là không mâu thuẫn.</p>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Bài 3.1">
+        <div class="qhead"><span class="qid">Bài 3.1</span></div>
+        <div class="qtext">
+          <p>Năm bạn An, Bình, Cường, Dung, Em ở 5 ngôi nhà liền nhau trong một dãy phố, đánh số 1 đến 5. Mỗi bạn nuôi một con vật khác nhau (chó, mèo, cá, chim, thỏ) và uống một loại nước khác nhau (trà, sữa, cà phê, nước cam, nước lọc). Biết:</p>
+          <p>① Nhà số 1 nuôi chó và uống trà. ② Nhà số 5 nuôi thỏ và uống nước lọc. ③ Nhà số 2 nuôi mèo. ④ Dung ở nhà số 3. ⑤ Bình ở nhà số 5. ⑥ Cường nuôi mèo và uống sữa. ⑦ Em không ở nhà số 4. ⑧ An không nuôi cá. ⑨ Dung không uống nước cam.</p>
+          <p>Hỏi mỗi bạn ở nhà số mấy, nuôi con gì, và uống loại nước nào?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Từ ③ và ⑥: nhà số 2 nuôi mèo, và người nuôi mèo là Cường → Cường ở nhà số 2 (Cường cũng uống sữa, theo ⑥).</div>
+          <div class="step" data-n="2" hidden>Từ ④ và ⑤: Dung ở nhà số 3, Bình ở nhà số 5. Vậy 3 nhà 2, 3, 5 đã có chủ (Cường, Dung, Bình). Còn lại nhà số 1 và số 4 dành cho An và Em.</div>
+          <div class="step" data-n="3" hidden>Từ ⑦: Em không ở nhà số 4 → Em phải ở nhà số 1, suy ra An ở nhà số 4 (loại trừ).</div>
+          <div class="step" data-n="4" hidden>Từ ①: nhà số 1 (Em) nuôi chó, uống trà. Từ ②: nhà số 5 (Bình) nuôi thỏ, uống nước lọc.</div>
+          <div class="step" data-n="5" hidden>Con vật còn lại "cá" và "chim" dành cho nhà số 3 (Dung) và nhà số 4 (An). Từ ⑧: An không nuôi cá → An nuôi chim, suy ra Dung nuôi cá.</div>
+          <div class="step" data-n="6" hidden>Nước uống còn lại "cà phê" và "nước cam" dành cho Dung và An. Từ ⑨: Dung không uống nước cam → Dung uống cà phê, suy ra An uống nước cam.</div>
+          <div class="answer" hidden>Đáp số: Em — nhà 1, nuôi chó, uống trà. Cường — nhà 2, nuôi mèo, uống sữa. Dung — nhà 3, nuôi cá, uống cà phê. An — nhà 4, nuôi chim, uống nước cam. Bình — nhà 5, nuôi thỏ, uống nước lọc.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Bài 3.2">
+        <div class="qhead"><span class="qid">Bài 3.2</span></div>
+        <div class="qtext">
+          <p>Năm bạn Anh, Bảo, Chi, Dũng, Hà cùng chơi trong phòng sinh hoạt. Có đúng <b>một bạn</b> đã làm vỡ bình hoa, và khi được hỏi, bạn đó đã <b>nói dối</b>; bốn bạn còn lại đều <b>nói thật</b>. Các câu trả lời (chú ý: có bạn nói về việc người khác nói thật hay nói dối, chứ không nói trực tiếp ai làm vỡ bình):</p>
+          <p>Anh: "Chi nói thật." — Bảo: "Người làm vỡ bình là Dũng hoặc Hà." — Chi: "Anh nói thật và Bảo nói thật." — Dũng: "Tôi không phải là người làm vỡ bình." — Hà: "Bảo nói thật."</p>
+          <p>Hỏi ai đã làm vỡ chiếc bình hoa?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Thử "Anh làm vỡ": Anh nói dối nên "Chi nói thật" phải sai, tức Chi nói dối — nhưng chỉ có 1 người nói dối (chính là người làm vỡ), mà Anh đã là người đó rồi, nên Chi bắt buộc phải nói thật. Mâu thuẫn → loại Anh.</div>
+          <div class="step" data-n="2" hidden>Thử "Bảo làm vỡ": Bảo nói dối nên "Dũng hoặc Hà làm vỡ" phải sai — hợp lý vì thật ra là Bảo làm vỡ. Nhưng khi đó Dũng phải nói thật, tức "Tôi không phải người làm vỡ" đúng — hợp lý. Còn Chi phải nói thật: "Anh nói thật và Bảo nói thật" phải đúng, nhưng Bảo đang nói dối (giả thiết) nên vế này sai → cả câu của Chi sai, mà Chi phải nói thật. Mâu thuẫn → loại Bảo.</div>
+          <div class="step" data-n="3" hidden>Thử "Chi làm vỡ": Chi nói dối nên "Anh nói thật và Bảo nói thật" phải sai. Nhưng Anh, Bảo đều không phải người làm vỡ (Chi mới là người đó) nên cả hai đều phải nói thật theo giả thiết, khiến câu của Chi thực ra đúng — trái với việc Chi phải nói dối. Mâu thuẫn → loại Chi.</div>
+          <div class="step" data-n="4" hidden>Thử "Hà làm vỡ": Hà nói dối nên "Bảo nói thật" phải sai, tức Bảo nói dối — nhưng Bảo không phải người làm vỡ (Hà mới là người đó) nên Bảo phải nói thật theo giả thiết. Mâu thuẫn → loại Hà.</div>
+          <div class="step" data-n="5" hidden>Thử "Dũng làm vỡ": Dũng nói dối nên "Tôi không phải người làm vỡ" sai — hợp lý (đúng là Dũng làm vỡ). Kiểm tra 4 bạn còn lại đều nói thật: Anh nói "Chi nói thật" — đúng vì Chi không làm vỡ nên nói thật ✓. Bảo nói "Dũng hoặc Hà làm vỡ" — đúng vì Dũng làm vỡ ✓. Chi nói "Anh nói thật và Bảo nói thật" — cả hai đều đúng nên câu này đúng ✓. Hà nói "Bảo nói thật" — đúng ✓. Tất cả đều khớp, không có mâu thuẫn nào!</div>
+          <div class="answer" hidden>Đáp số: Dũng là người đã làm vỡ chiếc bình hoa (và Dũng là người duy nhất nói dối).</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-3" data-qid="Bài 3.3">
+        <div class="qhead"><span class="qid">Bài 3.3</span></div>
+        <div class="qtext">
+          <p>Năm bạn A, B, C, D, E cân nặng khác nhau. Biết: <b>B nặng hơn A 1,5kg</b>. <b>C nhẹ hơn B 0,5kg</b>. <b>D nặng hơn C 2kg</b>. <b>E nhẹ hơn D 1,2kg</b>. Tổng cân nặng của cả 5 bạn là <b>157,3kg</b>. Hỏi mỗi bạn cân nặng bao nhiêu, và xếp thứ tự từ nhẹ đến nặng thế nào?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Tính phần "hơn A" của từng bạn: B hơn A 1,5kg. C = B − 0,5, nên C hơn A: 1,5 − 0,5 = 1,0kg. D = C + 2, nên D hơn A: 1,0 + 2 = 3,0kg. E = D − 1,2, nên E hơn A: 3,0 − 1,2 = 1,8kg.</div>
+          <div class="step" data-n="2" hidden>Tổng các phần "hơn A" của cả 5 bạn (A hơn chính mình 0kg): 0 + 1,5 + 1,0 + 3,0 + 1,8 = 7,3kg.</div>
+          <div class="step" data-n="3" hidden>Nếu bớt hết các phần "hơn A" khỏi tổng 157,3kg, phần còn lại chia đều cho 5 bạn, đúng bằng cân nặng của A: 157,3 − 7,3 = 150; 150 ÷ 5 = 30.</div>
+          <div class="step" data-n="4" hidden>Cân nặng A = 30kg. Suy ra B = 30 + 1,5 = 31,5kg; C = 30 + 1,0 = 31kg; D = 30 + 3,0 = 33kg; E = 30 + 1,8 = 31,8kg.</div>
+          <div class="step" data-n="5" hidden>Xếp thứ tự từ nhẹ đến nặng: A (30) — C (31) — B (31,5) — E (31,8) — D (33).</div>
+          <div class="answer" hidden>Đáp số: A = 30kg, B = 31,5kg, C = 31kg, D = 33kg, E = 31,8kg. Thứ tự nhẹ đến nặng: A, C, B, E, D.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4: TOÁN ĐỐ VUI ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-num">Mảng 4</span>
+        <h2 class="topic-title">Toán đố vui</h2>
+      </div>
+      <p class="topic-intro">Đố vui lớp 5 thường kết hợp <span class="kw">phần trăm, phân số</span> vào các bài toán nhiều bước, và có thể gồm một câu đố mẹo kiểu cổ điển dễ khiến ta tính nhầm nếu suy luận vội. Hãy đọc kỹ đề, xác định rõ các đại lượng đang so sánh với nhau trước khi đặt phép tính — nhiều bài không sai vì tính toán mà sai vì <span class="kw">hiểu nhầm đề</span>.</p>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Bài 4.1">
+        <div class="qhead"><span class="qid">Bài 4.1</span></div>
+        <div class="qtext">
+          <p>🏷️ Một cửa hàng sách giảm giá <b>20%</b> cho một cuốn sách, sau đó giảm thêm <b>10% trên giá đã giảm</b> (áp dụng thêm đợt khuyến mãi cuối tuần). Biết giá cuối cùng sau hai lần giảm là <b>108 000 đồng</b>. Hỏi giá gốc ban đầu của cuốn sách là bao nhiêu? Và nếu cửa hàng giảm giá một lần duy nhất <b>30%</b> ngay từ đầu thì giá sẽ là bao nhiêu — cách nào rẻ hơn?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Giảm giá 20% nghĩa là chỉ phải trả 100% − 20% = 80% giá gốc, tức giá sau lần giảm thứ nhất = giá gốc × 0,8.</div>
+          <div class="step" data-n="2" hidden>Giảm thêm 10% trên giá ĐÃ GIẢM (không phải trên giá gốc!) nghĩa là giá cuối = (giá gốc × 0,8) × 0,9 = giá gốc × 0,72.</div>
+          <div class="step" data-n="3" hidden>Giá cuối = 108 000đ, nên giá gốc = 108 000 ÷ 0,72 = 150 000đ.</div>
+          <div class="step" data-n="4" hidden>Nếu giảm 1 lần duy nhất 30%: giá = 150 000 × (1 − 0,3) = 150 000 × 0,7 = 105 000đ.</div>
+          <div class="step" data-n="5" hidden>So sánh: 105 000đ (giảm 1 lần 30%) rẻ hơn 108 000đ (giảm 2 lần 20% rồi 10%) — vì giảm giá liên tiếp 20% và 10% thực chất chỉ tương đương giảm đúng 1 lần 28% (100% − 72% = 28%), không phải 30% như nhiều người nhầm tưởng khi cộng dồn 20% + 10%.</div>
+          <div class="answer" hidden>Đáp số: giá gốc 150 000đ; nếu giảm 1 lần 30% thì giá là 105 000đ, rẻ hơn cách giảm 2 lần (108 000đ) đúng 3 000đ.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-2" data-qid="Bài 4.2">
+        <div class="qhead"><span class="qid">Bài 4.2</span></div>
+        <div class="qtext">
+          <p>🚰 Vòi A chảy một mình thì sau 6 giờ đầy bể. Vòi B chảy một mình thì sau 4 giờ đầy bể. Người ta mở cả hai vòi cùng lúc trong <b>1 giờ đầu</b>, sau đó khóa vòi A lại, chỉ để vòi B chảy tiếp một mình cho đến khi đầy bể. Hỏi kể từ lúc chỉ còn vòi B chảy một mình, phải mất bao lâu nữa thì bể đầy?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Mỗi giờ vòi A chảy được 1/6 bể, vòi B chảy được 1/4 bể.</div>
+          <div class="step" data-n="2" hidden>Trong 1 giờ đầu (mở cả 2 vòi), lượng nước chảy được: 1/6 + 1/4. Quy đồng mẫu số 12: 1/6 = 2/12, 1/4 = 3/12, tổng = 5/12 bể.</div>
+          <div class="step" data-n="3" hidden>Lượng bể còn lại cần chảy tiếp: 1 − 5/12 = 7/12 bể.</div>
+          <div class="step" data-n="4" hidden>Từ đó, chỉ vòi B chảy một mình với tốc độ 1/4 bể/giờ. Thời gian cần = (7/12) ÷ (1/4) = 7/12 × 4/1 = 28/12 = 7/3 giờ.</div>
+          <div class="step" data-n="5" hidden>Đổi 7/3 giờ = 2 giờ và 1/3 giờ; vì 1/3 giờ = 60 ÷ 3 = 20 phút, nên 7/3 giờ = 2 giờ 20 phút.</div>
+          <div class="answer" hidden>Đáp số: 2 giờ 20 phút (kể từ lúc chỉ còn vòi B chảy một mình).</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-3" data-qid="Bài 4.3">
+        <div class="qhead"><span class="qid">Bài 4.3</span></div>
+        <div class="qtext">
+          <p>🪚 Một người thợ cưa một khúc gỗ dài thành các đoạn bằng nhau. Mỗi nhát cưa mất <b>2 phút</b>. Cứ cưa xong <b>3 nhát</b> thì người đó nghỉ <b>1 phút</b> để mài lưỡi cưa trước khi cưa tiếp (chỉ nghỉ nếu vẫn còn nhát cần cưa). Hỏi cưa khúc gỗ thành <b>10 đoạn</b> bằng nhau thì mất tất cả bao nhiêu phút?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Nhiều bạn sẽ vội nghĩ "10 đoạn thì cưa 10 nhát" — nhưng cưa một khúc gỗ thành 10 đoạn chỉ cần 10 − 1 = 9 nhát cưa (giống việc đóng cọc hàng rào: số nhát cưa luôn kém số đoạn đúng 1 đơn vị).</div>
+          <div class="step" data-n="2" hidden>Thời gian cưa (chưa tính nghỉ): 9 nhát × 2 phút = 18 phút.</div>
+          <div class="step" data-n="3" hidden>Cứ cưa xong 3 nhát (và còn nhát để cưa tiếp) thì nghỉ 1 phút. Sau nhát thứ 3: còn 6 nhát nữa → có nghỉ. Sau nhát thứ 6: còn 3 nhát nữa → có nghỉ. Sau nhát thứ 9 (nhát cuối cùng): không còn nhát nào nữa → KHÔNG nghỉ.</div>
+          <div class="step" data-n="4" hidden>Vậy chỉ có 2 lần nghỉ (sau nhát 3 và sau nhát 6), mỗi lần 1 phút: 2 × 1 = 2 phút.</div>
+          <div class="step" data-n="5" hidden>Tổng thời gian = 18 + 2 = 20 phút.</div>
+          <div class="answer" hidden>Đáp số: 20 phút (không phải 18 phút hay 20,5 phút như nhiều bạn tính nhầm).</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Tài liệu "Toán Tư Duy Lớp 5 (Violympic)" — bài tự soạn mới hoàn toàn, dùng cho mục đích ôn luyện. Đáp án và lời giải chỉ mang tính tham khảo, khuyến khích các em tự suy nghĩ trước khi bấm "Xem đáp số ngay".</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  'sec1-1': [{
+    qtext: '<p>Dãy số dưới đây có quy luật kết hợp <b>hai phép tính</b> trong một bước, có cả số thập phân: lấy số liền trước <b>nhân đôi rồi trừ đi 1,5</b> để được số tiếp theo. Tìm số bị che ở ô có dấu "?".</p><div class="seq"><span class="tile">2,5</span><span class="arrow">→</span><span class="tile">3,5</span><span class="arrow">→</span><span class="tile">5,5</span><span class="arrow">→</span><span class="tile">9,5</span><span class="arrow">→</span><span class="tile blank">?</span><span class="arrow">→</span><span class="tile">33,5</span></div>',
+    steps: [
+      'Từ 2,5 đến 3,5: hiệu không cố định (3,5 − 2,5 = 1, nhưng 5,5 − 3,5 = 2). Thử nhân đôi: 2,5 × 2 = 5, chưa khớp 3,5. Thử "nhân đôi rồi trừ 1,5": 2,5 × 2 − 1,5 = 3,5 — đúng!',
+      'Kiểm tra tiếp: 3,5 × 2 − 1,5 = 5,5, khớp số thứ 3 ✓. Và 5,5 × 2 − 1,5 = 9,5, khớp số thứ 4 ✓. Vậy quy luật là: mỗi số = (số liền trước × 2) − 1,5.',
+      'Ô "?" đứng ngay sau 9,5, nên số đó là 9,5 × 2 − 1,5 = 19 − 1,5 = 17,5.',
+      'Thử lại: 17,5 × 2 − 1,5 = 35 − 1,5 = 33,5 — đúng khớp số cuối cùng cho sẵn ✓.'
+    ],
+    answer: 'Đáp số: 17,5.'
+  }],
+  'sec1-2': [{
+    qtext: '<p>Tháp số dưới đây được xây theo quy luật: <b>mỗi ô (trừ hàng đáy) bằng tổng hai ô liền kề ngay bên dưới nó</b>. Tìm số bị che ở ô có dấu "?".</p><div class="numgrid"><div class="ngrow"><div class="ncell">4</div><div class="ncell">7</div><div class="ncell">5</div><div class="ncell">9</div></div><div class="ngrow"><div class="ncell">11</div><div class="ncell unknown">?</div><div class="ncell">14</div></div><div class="ngrow"><div class="ncell">23</div><div class="ncell">26</div></div><div class="ngrow"><div class="ncell">49</div></div></div>',
+    steps: [
+      'Ô "?" nằm ở hàng thứ hai (từ đáy đếm lên), ngay trên hai ô hàng đáy là 7 và 5. Theo quy luật, "?" = 7 + 5 = 12.',
+      'Kiểm chứng bằng hàng phía trên: ô 23 phải bằng tổng ô 11 và ô "?" ngay dưới nó: 11 + "?" = 23, suy ra "?" = 23 − 11 = 12 — khớp ✓.',
+      'Kiểm chứng thêm: ô 26 phải bằng tổng ô "?" và ô 14 ngay dưới nó: "?" + 14 = 26, suy ra "?" = 12 — vẫn khớp ✓.',
+      'Kiểm chứng ở đỉnh tháp: 23 + 26 = 49 — đúng bằng số ở đỉnh cho sẵn ✓.'
+    ],
+    answer: 'Đáp số: 12.'
+  }],
+  'sec1-3': [{
+    qtext: '<p>Dãy số dưới đây không tăng đều: khoảng cách giữa hai số liên tiếp thay đổi theo một quy luật riêng. Hãy tìm ra "quy luật của hiệu số" để tìm số bị che ở ô có dấu "?".</p><div class="seq"><span class="tile">4</span><span class="arrow">→</span><span class="tile">7</span><span class="arrow">→</span><span class="tile">12</span><span class="arrow">→</span><span class="tile">19</span><span class="arrow">→</span><span class="tile blank">?</span><span class="arrow">→</span><span class="tile">39</span></div>',
+    steps: [
+      'Tính hiệu giữa các số liên tiếp: 7 − 4 = 3; 12 − 7 = 5; 19 − 12 = 7. Các hiệu này không bằng nhau, nên đây không phải quy luật cộng đều.',
+      'Chính các hiệu số 3, 5, 7 lại tạo thành một dãy có quy luật riêng: mỗi hiệu tăng thêm đúng 2 so với hiệu trước. Vậy hiệu tiếp theo (giữa 19 và "?") phải là 7 + 2 = 9.',
+      'Số ở ô "?" = 19 + 9 = 28.',
+      'Kiểm chứng: hiệu kế tiếp sau đó là 9 + 2 = 11, và 28 + 11 = 39 — khớp đúng với số cuối cùng cho sẵn ✓.'
+    ],
+    answer: 'Đáp số: 28.'
+  }],
+  'sec2-1': [{
+    qtext: '<p>Hình chữ nhật lớn dưới đây được chia thành lưới <b>3 cột × 2 hàng</b> ô vuông nhỏ bằng nhau, tạo thành <b>4 đường thẳng đứng</b> và <b>3 đường nằm ngang</b>. Hỏi có tất cả bao nhiêu hình chữ nhật (tính cả hình vuông) được tạo thành trong hình, biết rằng cứ chọn 2 đường đứng bất kỳ và 2 đường ngang bất kỳ thì luôn tạo ra đúng 1 hình chữ nhật?</p><div class="geo-figure"><svg viewBox="0 0 210 140" width="220" height="150"><rect x="1" y="1" width="208" height="138" fill="none" stroke="var(--accent)" stroke-width="2.5"/><line x1="70" y1="0" x2="70" y2="140" stroke="var(--line-strong)" stroke-width="1.3"/><line x1="140" y1="0" x2="140" y2="140" stroke="var(--line-strong)" stroke-width="1.3"/><line x1="0" y1="70" x2="210" y2="70" stroke="var(--line-strong)" stroke-width="1.3"/></svg></div>',
+    steps: [
+      'Đánh số 4 đường thẳng đứng là 1, 2, 3, 4. Liệt kê mọi cặp 2 đường có thể chọn: (1,2), (1,3), (1,4), (2,3), (2,4), (3,4) — tất cả đúng 6 cặp.',
+      'Với 3 đường nằm ngang (đánh số 1, 2, 3), các cặp có thể chọn là: (1,2), (1,3), (2,3) — tất cả đúng 3 cặp.',
+      'Mỗi cặp đường đứng kết hợp với mỗi cặp đường ngang tạo ra đúng 1 hình chữ nhật khác nhau, nên tổng số hình chữ nhật = 6 × 3 = 18.',
+      'Kiểm chứng thêm: trong 18 hình đó có 6 hình vuông thật sự (cỡ 1×1: 6 hình) và còn lại đúng 12 hình chữ nhật không vuông — cộng lại 6 + 12 = 18 ✓.'
+    ],
+    answer: 'Đáp số: 18 hình chữ nhật (tính cả hình vuông).'
+  }],
+  'sec2-2': [{
+    qtext: '<p>Hình chữ nhật ABCD có AB = 10m, AD = 6m (A, B, C, D là 4 đỉnh theo thứ tự quanh hình chữ nhật). Gọi M là điểm trên cạnh AB sao cho AM = 4,5m, N là điểm trên cạnh BC sao cho BN = 2m. Tính diện tích tam giác MND (phần tô đậm trong hình).</p><div class="geo-figure"><svg viewBox="-18 -18 236 156" width="230" height="156"><rect x="0" y="0" width="200" height="120" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/><polygon points="90,0 200,40 0,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="var(--ink-faint)"/><text x="-9" y="-6" font-size="11" fill="var(--ink-soft)">A</text><circle cx="200" cy="0" r="3" fill="var(--ink-faint)"/><text x="205" y="-6" font-size="11" fill="var(--ink-soft)">B</text><circle cx="200" cy="120" r="3" fill="var(--ink-faint)"/><text x="205" y="134" font-size="11" fill="var(--ink-soft)">C</text><circle cx="0" cy="120" r="3" fill="var(--ink-faint)"/><text x="-9" y="134" font-size="11" fill="var(--ink-soft)">D</text><circle cx="90" cy="0" r="3" fill="var(--accent-warm)"/><text x="90" y="-8" text-anchor="middle" font-size="11" fill="var(--accent-warm)">M</text><circle cx="200" cy="40" r="3" fill="var(--accent-warm)"/><text x="207" y="44" font-size="11" fill="var(--accent-warm)">N</text></svg></div>',
+    steps: [
+      'Diện tích hình chữ nhật ABCD = 10 × 6 = 60 m².',
+      'Ta tính diện tích tam giác MND bằng cách lấy diện tích cả hình chữ nhật trừ đi 3 tam giác vuông ở 3 góc còn lại — góc A (tam giác AMD), góc B (tam giác MBN), góc C (tam giác NCD).',
+      'Tam giác AMD vuông tại A, hai cạnh góc vuông AM = 4,5m và AD = 6m → diện tích = 4,5 × 6 ÷ 2 = 13,5 m².',
+      'Tam giác MBN vuông tại B, hai cạnh góc vuông MB = 10 − 4,5 = 5,5m và BN = 2m → diện tích = 5,5 × 2 ÷ 2 = 5,5 m².',
+      'Tam giác NCD vuông tại C, hai cạnh góc vuông NC = 6 − 2 = 4m và CD = 10m → diện tích = 4 × 10 ÷ 2 = 20 m².',
+      'Diện tích tam giác MND = 60 − (13,5 + 5,5 + 20) = 60 − 39 = 21 m².'
+    ],
+    answer: 'Đáp số: 21 m².'
+  }],
+  'sec2-3': [{
+    qtext: '<p>Lưới ô vuông <b>5×5</b> dưới đây có một số ô đã tô màu (hàng đánh số 1-5 từ trên xuống, cột đánh số 1-5 từ trái sang). Chấm tròn màu cam ở chính giữa lưới là <b>tâm quay</b>. Hỏi cần tô màu thêm <b>ít nhất</b> bao nhiêu ô nữa để cả hình <b>đối xứng qua phép quay 180°</b> quanh tâm đó?</p><div class="geo-figure"><svg viewBox="-16 -16 168 168" width="220" height="220"><text x="15" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">1</text><text x="45" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">2</text><text x="75" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">3</text><text x="105" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">4</text><text x="135" y="-4" text-anchor="middle" font-size="9" fill="var(--ink-faint)">5</text><text x="-6" y="18" text-anchor="end" font-size="9" fill="var(--ink-faint)">1</text><text x="-6" y="48" text-anchor="end" font-size="9" fill="var(--ink-faint)">2</text><text x="-6" y="78" text-anchor="end" font-size="9" fill="var(--ink-faint)">3</text><text x="-6" y="108" text-anchor="end" font-size="9" fill="var(--ink-faint)">4</text><text x="-6" y="138" text-anchor="end" font-size="9" fill="var(--ink-faint)">5</text><rect x="0" y="0" width="150" height="150" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/><line x1="30" y1="0" x2="30" y2="150" stroke="var(--line-strong)" stroke-width="1"/><line x1="60" y1="0" x2="60" y2="150" stroke="var(--line-strong)" stroke-width="1"/><line x1="90" y1="0" x2="90" y2="150" stroke="var(--line-strong)" stroke-width="1"/><line x1="120" y1="0" x2="120" y2="150" stroke="var(--line-strong)" stroke-width="1"/><line x1="0" y1="30" x2="150" y2="30" stroke="var(--line-strong)" stroke-width="1"/><line x1="0" y1="60" x2="150" y2="60" stroke="var(--line-strong)" stroke-width="1"/><line x1="0" y1="90" x2="150" y2="90" stroke="var(--line-strong)" stroke-width="1"/><line x1="0" y1="120" x2="150" y2="120" stroke="var(--line-strong)" stroke-width="1"/><rect x="1" y="1" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/><rect x="121" y="121" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/><rect x="61" y="61" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/><rect x="31" y="1" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/><rect x="121" y="31" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/><rect x="91" y="1" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/><rect x="61" y="91" width="28" height="28" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" rx="3"/><circle cx="75" cy="75" r="4.5" fill="var(--accent-warm)"/></svg></div>',
+    steps: [
+      'Phép quay 180° quanh tâm nghĩa là: ô ở hàng r, cột c sẽ "đi tới" ô ở hàng (6 − r), cột (6 − c). Ô nằm đúng tâm (hàng 3, cột 3) tự trùng với chính nó.',
+      'Ô (hàng 1, cột 1) có ô ảnh qua tâm là (hàng 5, cột 5) — cả hai ô này đã được tô sẵn → cặp này đã hoàn chỉnh, không cần thêm. Ô (hàng 3, cột 3) là tâm quay, tự đối xứng, không cần thêm.',
+      'Ô (hàng 1, cột 2) cần ô ảnh là (hàng 5, cột 4) — CHƯA được tô → cần tô thêm.',
+      'Ô (hàng 2, cột 5) cần ô ảnh là (hàng 4, cột 1) — CHƯA được tô → cần tô thêm.',
+      'Ô (hàng 1, cột 4) cần ô ảnh là (hàng 5, cột 2) — CHƯA được tô → cần tô thêm.',
+      'Ô (hàng 4, cột 3) cần ô ảnh là (hàng 2, cột 3) — CHƯA được tô → cần tô thêm. Tổng số ô cần tô thêm: (hàng 5, cột 4), (hàng 4, cột 1), (hàng 5, cột 2), (hàng 2, cột 3) — tất cả 4 ô.'
+    ],
+    answer: 'Đáp số: cần tô thêm 4 ô để cả hình đối xứng qua phép quay 180° quanh tâm.'
+  }],
+  'sec3-1': [{
+    qtext: '<p>Năm bạn Việt, Trang, Khang, Yến, Phúc ở 5 ngôi nhà liền nhau trong một dãy phố, đánh số 1 đến 5. Mỗi bạn nuôi một con vật khác nhau (chó, mèo, cá, chim, thỏ) và uống một loại nước khác nhau (trà, sữa, cà phê, nước cam, nước lọc). Biết:</p><p>① Nhà số 1 nuôi chó và uống trà. ② Nhà số 5 nuôi thỏ và uống nước lọc. ③ Nhà số 2 nuôi mèo. ④ Yến ở nhà số 3. ⑤ Trang ở nhà số 5. ⑥ Khang nuôi mèo và uống sữa. ⑦ Phúc không ở nhà số 4. ⑧ Việt không nuôi cá. ⑨ Yến không uống nước cam.</p><p>Hỏi mỗi bạn ở nhà số mấy, nuôi con gì, và uống loại nước nào?</p>',
+    steps: [
+      'Từ ③ và ⑥: nhà số 2 nuôi mèo, và người nuôi mèo là Khang → Khang ở nhà số 2 (Khang cũng uống sữa, theo ⑥).',
+      'Từ ④ và ⑤: Yến ở nhà số 3, Trang ở nhà số 5. Vậy 3 nhà 2, 3, 5 đã có chủ. Còn lại nhà số 1 và số 4 dành cho Việt và Phúc.',
+      'Từ ⑦: Phúc không ở nhà số 4 → Phúc phải ở nhà số 1, suy ra Việt ở nhà số 4 (loại trừ).',
+      'Từ ①: nhà số 1 (Phúc) nuôi chó, uống trà. Từ ②: nhà số 5 (Trang) nuôi thỏ, uống nước lọc.',
+      'Con vật còn lại "cá" và "chim" dành cho nhà số 3 (Yến) và nhà số 4 (Việt). Từ ⑧: Việt không nuôi cá → Việt nuôi chim, suy ra Yến nuôi cá.',
+      'Nước uống còn lại "cà phê" và "nước cam" dành cho Yến và Việt. Từ ⑨: Yến không uống nước cam → Yến uống cà phê, suy ra Việt uống nước cam.'
+    ],
+    answer: 'Đáp số: Phúc — nhà 1, nuôi chó, uống trà. Khang — nhà 2, nuôi mèo, uống sữa. Yến — nhà 3, nuôi cá, uống cà phê. Việt — nhà 4, nuôi chim, uống nước cam. Trang — nhà 5, nuôi thỏ, uống nước lọc.'
+  }],
+  'sec3-2': [{
+    qtext: '<p>Năm bạn Khoa, Linh, Minh, Nga, Phong cùng chơi trong phòng sinh hoạt. Có đúng <b>một bạn</b> đã làm rơi vỡ chiếc cốc, và khi được hỏi, bạn đó đã <b>nói dối</b>; bốn bạn còn lại đều <b>nói thật</b>. Các câu trả lời:</p><p>Khoa: "Minh nói thật." — Linh: "Người làm vỡ cốc là Nga hoặc Phong." — Minh: "Khoa nói thật và Linh nói thật." — Nga: "Tôi không phải là người làm vỡ cốc." — Phong: "Linh nói thật."</p><p>Hỏi ai đã làm vỡ chiếc cốc?</p>',
+    steps: [
+      'Thử "Khoa làm vỡ": Khoa nói dối nên "Minh nói thật" phải sai, tức Minh nói dối — nhưng chỉ có 1 người nói dối (chính là Khoa), nên Minh bắt buộc phải nói thật. Mâu thuẫn → loại Khoa.',
+      'Thử "Linh làm vỡ": Linh nói dối nên "Nga hoặc Phong làm vỡ" phải sai — hợp lý. Nhưng Minh phải nói thật: "Khoa nói thật và Linh nói thật" phải đúng, mà Linh đang nói dối (giả thiết) nên vế này sai → cả câu của Minh sai, trái với việc Minh phải nói thật. Mâu thuẫn → loại Linh.',
+      'Thử "Minh làm vỡ": Minh nói dối nên "Khoa nói thật và Linh nói thật" phải sai. Nhưng Khoa, Linh đều không phải người làm vỡ nên cả hai đều phải nói thật, khiến câu của Minh thực ra đúng — trái với việc Minh phải nói dối. Mâu thuẫn → loại Minh.',
+      'Thử "Phong làm vỡ": Phong nói dối nên "Linh nói thật" phải sai, tức Linh nói dối — nhưng Linh không phải người làm vỡ nên Linh phải nói thật. Mâu thuẫn → loại Phong.',
+      'Thử "Nga làm vỡ": Nga nói dối nên "Tôi không phải người làm vỡ" sai — hợp lý. Kiểm tra 4 bạn còn lại: Khoa nói "Minh nói thật" — đúng ✓. Linh nói "Nga hoặc Phong làm vỡ" — đúng vì Nga làm vỡ ✓. Minh nói "Khoa nói thật và Linh nói thật" — cả hai đúng nên câu này đúng ✓. Phong nói "Linh nói thật" — đúng ✓. Tất cả đều khớp!'
+    ],
+    answer: 'Đáp số: Nga là người đã làm vỡ chiếc cốc (và Nga là người duy nhất nói dối).'
+  }],
+  'sec3-3': [{
+    qtext: '<p>Năm bạn A, B, C, D, E cân nặng khác nhau. Biết: <b>B nặng hơn A 2,5kg</b>. <b>C nhẹ hơn B 1,0kg</b>. <b>D nặng hơn C 1,8kg</b>. <b>E nhẹ hơn D 0,9kg</b>. Tổng cân nặng của cả 5 bạn là <b>134,7kg</b>. Hỏi mỗi bạn cân nặng bao nhiêu, và xếp thứ tự từ nhẹ đến nặng thế nào?</p>',
+    steps: [
+      'Tính phần "hơn A" của từng bạn: B hơn A 2,5kg. C = B − 1,0, nên C hơn A: 2,5 − 1,0 = 1,5kg. D = C + 1,8, nên D hơn A: 1,5 + 1,8 = 3,3kg. E = D − 0,9, nên E hơn A: 3,3 − 0,9 = 2,4kg.',
+      'Tổng các phần "hơn A" của cả 5 bạn: 0 + 2,5 + 1,5 + 3,3 + 2,4 = 9,7kg.',
+      'Nếu bớt hết các phần "hơn A" khỏi tổng 134,7kg, phần còn lại chia đều cho 5 bạn, đúng bằng cân nặng của A: 134,7 − 9,7 = 125; 125 ÷ 5 = 25.',
+      'Cân nặng A = 25kg. Suy ra B = 25 + 2,5 = 27,5kg; C = 25 + 1,5 = 26,5kg; D = 25 + 3,3 = 28,3kg; E = 25 + 2,4 = 27,4kg.',
+      'Xếp thứ tự từ nhẹ đến nặng: A (25) — C (26,5) — E (27,4) — B (27,5) — D (28,3).'
+    ],
+    answer: 'Đáp số: A = 25kg, B = 27,5kg, C = 26,5kg, D = 28,3kg, E = 27,4kg. Thứ tự nhẹ đến nặng: A, C, E, B, D.'
+  }],
+  'sec4-1': [{
+    qtext: '<p>🏷️ Một cửa hàng sách giảm giá <b>25%</b> cho một cuốn sách, sau đó giảm thêm <b>20% trên giá đã giảm</b> (áp dụng thêm đợt khuyến mãi cuối tuần). Biết giá cuối cùng sau hai lần giảm là <b>96 000 đồng</b>. Hỏi giá gốc ban đầu của cuốn sách là bao nhiêu? Và nếu cửa hàng giảm giá một lần duy nhất <b>45%</b> ngay từ đầu thì giá sẽ là bao nhiêu — cách nào rẻ hơn?</p>',
+    steps: [
+      'Giảm giá 25% nghĩa là chỉ phải trả 100% − 25% = 75% giá gốc, tức giá sau lần giảm thứ nhất = giá gốc × 0,75.',
+      'Giảm thêm 20% trên giá ĐÃ GIẢM nghĩa là giá cuối = (giá gốc × 0,75) × 0,8 = giá gốc × 0,6.',
+      'Giá cuối = 96 000đ, nên giá gốc = 96 000 ÷ 0,6 = 160 000đ.',
+      'Nếu giảm 1 lần duy nhất 45%: giá = 160 000 × (1 − 0,45) = 160 000 × 0,55 = 88 000đ.',
+      'So sánh: 88 000đ (giảm 1 lần 45%) rẻ hơn 96 000đ (giảm 2 lần 25% rồi 20%) — vì giảm giá liên tiếp 25% và 20% thực chất chỉ tương đương giảm đúng 1 lần 40% (100% − 60% = 40%), không phải 45% như nhiều người nhầm tưởng khi cộng dồn 25% + 20%.'
+    ],
+    answer: 'Đáp số: giá gốc 160 000đ; nếu giảm 1 lần 45% thì giá là 88 000đ, rẻ hơn cách giảm 2 lần (96 000đ) đúng 8 000đ.'
+  }],
+  'sec4-2': [{
+    qtext: '<p>🚰 Vòi A chảy một mình thì sau 5 giờ đầy bể. Vòi B chảy một mình thì sau 3 giờ đầy bể. Người ta mở cả hai vòi cùng lúc trong <b>1 giờ đầu</b>, sau đó khóa vòi A lại, chỉ để vòi B chảy tiếp một mình cho đến khi đầy bể. Hỏi kể từ lúc chỉ còn vòi B chảy một mình, phải mất bao lâu nữa thì bể đầy?</p>',
+    steps: [
+      'Mỗi giờ vòi A chảy được 1/5 bể, vòi B chảy được 1/3 bể.',
+      'Trong 1 giờ đầu (mở cả 2 vòi), lượng nước chảy được: 1/5 + 1/3. Quy đồng mẫu số 15: 1/5 = 3/15, 1/3 = 5/15, tổng = 8/15 bể.',
+      'Lượng bể còn lại cần chảy tiếp: 1 − 8/15 = 7/15 bể.',
+      'Chỉ vòi B chảy một mình với tốc độ 1/3 bể/giờ. Thời gian cần = (7/15) ÷ (1/3) = 7/15 × 3/1 = 21/15 = 7/5 giờ.',
+      'Đổi 7/5 giờ = 1 giờ và 2/5 giờ; vì 2/5 giờ = 60 × 2 ÷ 5 = 24 phút, nên 7/5 giờ = 1 giờ 24 phút.'
+    ],
+    answer: 'Đáp số: 1 giờ 24 phút (kể từ lúc chỉ còn vòi B chảy một mình).'
+  }],
+  'sec4-3': [{
+    qtext: '<p>🪚 Một người thợ cưa một khúc gỗ dài thành các đoạn bằng nhau. Mỗi nhát cưa mất <b>3 phút</b>. Cứ cưa xong <b>4 nhát</b> thì người đó nghỉ <b>2 phút</b> để mài lưỡi cưa trước khi cưa tiếp (chỉ nghỉ nếu vẫn còn nhát cần cưa). Hỏi cưa khúc gỗ thành <b>13 đoạn</b> bằng nhau thì mất tất cả bao nhiêu phút?</p>',
+    steps: [
+      'Cưa một khúc gỗ thành 13 đoạn chỉ cần 13 − 1 = 12 nhát cưa (số nhát cưa luôn kém số đoạn đúng 1 đơn vị).',
+      'Thời gian cưa (chưa tính nghỉ): 12 nhát × 3 phút = 36 phút.',
+      'Cứ cưa xong 4 nhát (và còn nhát để cưa tiếp) thì nghỉ 2 phút. Sau nhát thứ 4: còn 8 nhát nữa → có nghỉ. Sau nhát thứ 8: còn 4 nhát nữa → có nghỉ. Sau nhát thứ 12 (nhát cuối cùng): không còn nhát nào nữa → KHÔNG nghỉ.',
+      'Vậy chỉ có 2 lần nghỉ (sau nhát 4 và sau nhát 8), mỗi lần 2 phút: 2 × 2 = 4 phút.',
+      'Tổng thời gian = 36 + 4 = 40 phút.'
+    ],
+    answer: 'Đáp số: 40 phút.'
+  }]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function buildOriginal(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    return {
+      qtext: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) { return s.innerHTML; }),
+      answer: solBody.querySelector('.answer').innerHTML
+    };
+  }
+
+  function render(el, item) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    qtext.innerHTML = item.qtext;
+    var steps = solBody.querySelectorAll('.step');
+    if (steps.length !== item.steps.length) {
+      var html = item.steps.map(function (s, i) {
+        return '<div class="step" data-n="' + (i + 1) + '" hidden>' + s + '</div>';
+      }).join('');
+      html += '<div class="answer" hidden>' + item.answer + '</div>';
+      solBody.innerHTML = html;
+    } else {
+      steps.forEach(function (stepEl, i) {
+        stepEl.innerHTML = item.steps[i];
+        stepEl.hidden = true;
+      });
+      var ansEl = solBody.querySelector('.answer');
+      ansEl.innerHTML = item.answer;
+      ansEl.hidden = true;
+    }
+  }
+
+  function initProblem(el) {
+    var poolId = el.dataset.pool;
+    var pool = [buildOriginal(el)].concat((window.VARIANTS && window.VARIANTS[poolId]) || []);
+    var state = { index: 0, revealed: 0, answerShown: false };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+    var solBody = el.querySelector('.sol-body');
+
+    if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var steps = solBody.querySelectorAll('.step');
+      var anyRevealed = state.revealed > 0 || state.answerShown;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= steps.length;
+        btnHint.textContent = state.revealed >= steps.length ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) btnReset.hidden = !anyRevealed;
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.hidden = false;
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.hidden = false;
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.index = (state.index + 1) % pool.length;
+      render(el, pool[state.index]);
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.hidden = true; });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.hidden = true;
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+</body>
+</html>

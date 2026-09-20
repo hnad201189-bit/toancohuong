@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chinh Phục Điểm 10 Toán 5</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --bg-alt: #eaeef8;
+    --paper: #ffffff;
+    --ink: #1a2238;
+    --ink-soft: #4b5573;
+    --ink-faint: #8892ab;
+    --accent: #2b5fd9;
+    --accent-soft: #dde6fb;
+    --accent-warm: #d97b0e;
+    --accent-warm-soft: #fbe8cf;
+    --line: #dde3f0;
+    --line-strong: #c3ccdf;
+    --shadow: 0 1px 2px rgba(20, 30, 60, 0.06), 0 6px 20px rgba(20, 30, 60, 0.08);
+    --radius: 18px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1220;
+    --bg-alt: #131a2c;
+    --paper: #161f35;
+    --ink: #e7ecfa;
+    --ink-soft: #a9b4d0;
+    --ink-faint: #6c7796;
+    --accent: #6f9bff;
+    --accent-soft: #1c2b4d;
+    --accent-warm: #ffb454;
+    --accent-warm-soft: #3a2a12;
+    --line: #232d47;
+    --line-strong: #33405f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1220;
+      --bg-alt: #131a2c;
+      --paper: #161f35;
+      --ink: #e7ecfa;
+      --ink-soft: #a9b4d0;
+      --ink-faint: #6c7796;
+      --accent: #6f9bff;
+      --accent-soft: #1c2b4d;
+      --accent-warm: #ffb454;
+      --accent-warm-soft: #3a2a12;
+      --line: #232d47;
+      --line-strong: #33405f;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 30px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(28px, 4.4vw, 40px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17.5px;
+    margin: 0;
+  }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(22px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 70ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+  .frac sup, .frac sub { font-size: 0.75em; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 22px 26px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .problem .qtext .concrete { font-size: 24px; letter-spacing: 3px; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 20px 26px 24px;
+    background: var(--paper);
+    font-size: 15.5px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 30px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 13px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 17px 19px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 mảng kiến thức</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔢</span>Số tự nhiên &amp; phân số</a></li>
+      <li><a href="#sec2"><span class="n">🔟</span>Số thập phân</a></li>
+      <li><a href="#sec3"><span class="n">📐</span>Hình học và đo lường</a></li>
+      <li><a href="#sec4"><span class="n">📊</span>Thống kê – xác suất</a></li>
+      <li><a href="#meo-cho-ba-me"><span class="n">🍀</span>Mẹo cho ba mẹ</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 5</div>
+      <h1>Chinh Phục Điểm 10 Toán 5</h1>
+      <p class="lede">Cuốn sổ tay ôn luyện đi qua đủ <b>4 mảng kiến thức</b> của Toán lớp 5 — Ôn tập số tự nhiên &amp; phân số (hỗn số, bốn phép tính phân số, tỉ lệ bản đồ), Số thập phân (hàng, so sánh, bốn phép tính, tỉ số phần trăm), Hình học &amp; đo lường (hình thang, hình tròn, thể tích hình hộp chữ nhật), và Thống kê – xác suất — mỗi mảng 3 bài tập đi từ cơ bản đến nâng cao, giúp con ôn lại chắc chắn từng dạng trước khi thi.</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Chinh Phục Điểm 10 Toán 5</b> là tài liệu ôn tập tổng hợp do đội ngũ tự biên soạn mới hoàn toàn — toàn bộ số liệu, tình huống và lời giải trong bài đều là nội dung gốc, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào. Mỗi bài tập có nút <b>"Đổi bài tương tự"</b> để con luyện lại đúng dạng đó với số liệu khác — hãy dùng nút <b>"Gợi ý"</b> trước khi xem đáp số, để con tự suy nghĩ từng bước một nhé!</p>
+    </div>
+
+    <!-- ================= SECTION 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Mảng kiến thức 1</span>Ôn tập số tự nhiên và phân số</h2>
+      </div>
+      <p class="topic-intro">Ôn lại số tự nhiên và bốn phép tính đã học, cách đọc — viết và chuyển đổi <span class="kw">hỗn số</span> sang <span class="kw">phân số</span> (và ngược lại), ôn tập bốn phép tính <span class="kw">cộng, trừ, nhân, chia phân số</span>, cùng các bài toán liên quan đến <span class="kw">tỉ lệ bản đồ</span>. Ba bài dưới đây đi từ chuyển đổi hỗn số — phân số, đến biểu thức phối hợp phép tính phân số, rồi đến bài toán tỉ lệ bản đồ có đổi đơn vị đo.</p>
+
+      <div class="problem" data-pool="s1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>a) Đổi hỗn số <b>3<span class="frac"><sup>2</sup>&frasl;<sub>5</sub></span></b> thành phân số.</p>
+          <p>b) Đổi phân số <span class="frac"><sup>17</sup>&frasl;<sub>4</sub></span> thành hỗn số.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhắc lại cách đổi hỗn số thành phân số: hỗn số <b>a <span class="frac"><sup>b</sup>&frasl;<sub>c</sub></span></b> = <span class="frac"><sup>a×c+b</sup>&frasl;<sub>c</sub></span> (giữ nguyên mẫu số c).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Với 3<span class="frac"><sup>2</sup>&frasl;<sub>5</sub></span>: phần nguyên là 3, mẫu số là 5, tử số là 2. Ta có <span class="frac"><sup>3×5+2</sup>&frasl;<sub>5</sub></span> = <span class="frac"><sup>17</sup>&frasl;<sub>5</sub></span>. Vậy 3<span class="frac"><sup>2</sup>&frasl;<sub>5</sub></span> = <span class="frac"><sup>17</sup>&frasl;<sub>5</sub></span>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Với <span class="frac"><sup>17</sup>&frasl;<sub>4</sub></span>: lấy tử số chia cho mẫu số, 17 : 4 = 4 (dư 1) → phần nguyên là 4, phần phân số là số dư 1 trên mẫu số 4 → hỗn số 4<span class="frac"><sup>1</sup>&frasl;<sub>4</sub></span>.</p></div></div>
+          <p class="answer hidden">a) 3<span class="frac"><sup>2</sup>&frasl;<sub>5</sub></span> = <b><span class="frac"><sup>17</sup>&frasl;<sub>5</sub></span></b>. &nbsp; b) <span class="frac"><sup>17</sup>&frasl;<sub>4</sub></span> = <b>4<span class="frac"><sup>1</sup>&frasl;<sub>4</sub></span></b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Tính giá trị biểu thức: <span class="frac"><sup>3</sup>&frasl;<sub>4</sub></span> − <span class="frac"><sup>1</sup>&frasl;<sub>3</sub></span> × <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span></p>
+          <p>(Nhắc: biểu thức có cả nhân và trừ thì phải thực hiện phép nhân trước.)</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thực hiện phép nhân trước: <span class="frac"><sup>1</sup>&frasl;<sub>3</sub></span> × <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> = <span class="frac"><sup>3</sup>&frasl;<sub>24</sub></span>, rút gọn (chia cả tử và mẫu cho 3) = <span class="frac"><sup>1</sup>&frasl;<sub>8</sub></span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Quy đồng mẫu số của <span class="frac"><sup>3</sup>&frasl;<sub>4</sub></span> và <span class="frac"><sup>1</sup>&frasl;<sub>8</sub></span>: MSC = 8 → <span class="frac"><sup>3</sup>&frasl;<sub>4</sub></span> = <span class="frac"><sup>3×2</sup>&frasl;<sub>4×2</sub></span> = <span class="frac"><sup>6</sup>&frasl;<sub>8</sub></span>, còn <span class="frac"><sup>1</sup>&frasl;<sub>8</sub></span> giữ nguyên.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trừ hai phân số cùng mẫu số: <span class="frac"><sup>6</sup>&frasl;<sub>8</sub></span> − <span class="frac"><sup>1</sup>&frasl;<sub>8</sub></span> = <span class="frac"><sup>5</sup>&frasl;<sub>8</sub></span>.</p></div></div>
+          <p class="answer hidden"><span class="frac"><sup>3</sup>&frasl;<sub>4</sub></span> − <span class="frac"><sup>1</sup>&frasl;<sub>3</sub></span> × <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> = <b><span class="frac"><sup>5</sup>&frasl;<sub>8</sub></span></b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s1-3" data-qid="Bài 1.3">
+        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext">
+          <p>Một bản đồ được vẽ theo tỉ lệ <b>1 : 1000</b>.</p>
+          <p>Trên bản đồ, khoảng cách từ sân trường đến cổng làng đo được <b>8cm</b>. Hỏi khoảng cách thật ngoài đời là bao nhiêu mét?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tỉ lệ bản đồ 1 : 1000 nghĩa là mỗi 1cm trên bản đồ ứng với 1000cm khoảng cách thật.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Khoảng cách thật (theo cm) = 8 × 1000 = 8000cm.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đổi 8000cm ra mét: vì 1m = 100cm, nên 8000 : 100 = 80m.</p></div></div>
+          <p class="answer hidden">Khoảng cách thật từ sân trường đến cổng làng là <b>80m</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">🔟</span>
+        <h2 class="topic-title"><span class="topic-num">Mảng kiến thức 2</span>Số thập phân</h2>
+      </div>
+      <p class="topic-intro">Ôn lại khái niệm <span class="kw">số thập phân</span> và các hàng của số thập phân (phần mười, phần trăm, phần nghìn), cách <span class="kw">so sánh số thập phân</span>, bốn phép tính <span class="kw">cộng, trừ, nhân, chia số thập phân</span>, và <span class="kw">tỉ số phần trăm</span>. Ba bài đi từ xác định hàng và so sánh số thập phân, đến bài toán có lời văn dùng nhân — trừ số thập phân, rồi đến bài toán tỉ số phần trăm hai bước.</p>
+
+      <div class="problem" data-pool="s2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Cho các số thập phân: <b>5,204</b>; <b>5,24</b>; <b>5,024</b>; <b>5,2</b>.</p>
+          <p>a) Sắp xếp các số theo thứ tự từ bé đến lớn.</p>
+          <p>b) Trong số 5,204, chữ số 2 ở hàng nào? Chữ số 4 ở hàng nào?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Để so sánh dễ dàng, viết tất cả các số về cùng 3 chữ số ở phần thập phân (thêm chữ số 0 vào cuối, giá trị không đổi): 5,204; 5,240; 5,024; 5,200.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Phần nguyên các số đều bằng 5 nên so sánh phần thập phân: 024 &lt; 200 &lt; 204 &lt; 240.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>a) Vậy thứ tự từ bé đến lớn là: 5,024 &lt; 5,2 &lt; 5,204 &lt; 5,24. b) Trong số 5,204, các chữ số sau dấu phẩy lần lượt là 2 (hàng phần mười), 0 (hàng phần trăm), 4 (hàng phần nghìn).</p></div></div>
+          <p class="answer hidden">a) 5,024 &lt; 5,2 &lt; 5,204 &lt; 5,24. &nbsp; b) Chữ số 2 ở <b>hàng phần mười</b>; chữ số 4 ở <b>hàng phần nghìn</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Một mảnh vườn hình chữ nhật có chiều dài <b>12,5m</b> và chiều rộng <b>8,4m</b>.</p>
+          <p>Người ta dùng <b>45,75m²</b> diện tích mảnh vườn để trồng rau, phần diện tích còn lại trồng hoa. Hỏi diện tích trồng hoa là bao nhiêu mét vuông?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính diện tích cả mảnh vườn = chiều dài × chiều rộng = 12,5 × 8,4.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhân như số tự nhiên: 125 × 84 = 10 500. Vì 12,5 có 1 chữ số thập phân và 8,4 cũng có 1 chữ số thập phân, tích có 1 + 1 = 2 chữ số thập phân → 105,00 = 105. Vậy diện tích cả mảnh vườn là 105m².</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Diện tích trồng hoa = diện tích cả vườn − diện tích trồng rau. Đặt tính trừ (viết 105 thành 105,00 để các hàng thẳng cột với 45,75): 105,00 − 45,75 = 59,25.</p></div></div>
+          <p class="answer hidden">Diện tích trồng hoa là <b>59,25m²</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s2-3" data-qid="Bài 2.3">
+        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext">
+          <p>Lớp 5A có <b>40 học sinh</b>, trong đó có <b>30%</b> số học sinh đạt loại giỏi, số học sinh còn lại đạt loại khá.</p>
+          <p>Hỏi số học sinh loại khá nhiều hơn số học sinh loại giỏi bao nhiêu bạn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính số học sinh giỏi: 30% = 30 : 100 = 0,3. Số học sinh giỏi = 40 × 0,3 = 12 (bạn).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số học sinh loại khá là số học sinh còn lại: 40 − 12 = 28 (bạn).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số học sinh khá nhiều hơn số học sinh giỏi: 28 − 12 = 16 (bạn).</p></div></div>
+          <p class="answer hidden">Số học sinh loại khá nhiều hơn số học sinh loại giỏi <b>16 bạn</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">📐</span>
+        <h2 class="topic-title"><span class="topic-num">Mảng kiến thức 3</span>Hình học và đo lường</h2>
+      </div>
+      <p class="topic-intro">Ôn lại công thức tính diện tích <span class="kw">hình thang</span> ((đáy lớn + đáy bé) × chiều cao : 2), <span class="kw">chu vi và diện tích hình tròn</span> (chu vi = đường kính × 3,14, diện tích = bán kính × bán kính × 3,14 — trong đó 3,14 là số gần đúng của số π), và <span class="kw">thể tích hình hộp chữ nhật, hình lập phương</span> cùng các đơn vị đo thể tích cm³, dm³, m³. Ba bài đi từ diện tích hình thang, đến chu vi — diện tích hình tròn, rồi đến bài toán thể tích hình hộp chữ nhật có đổi sang đơn vị lít.</p>
+
+      <div class="problem" data-pool="s3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Một thửa ruộng hình thang có đáy lớn <b>36m</b>, đáy bé <b>24m</b>, chiều cao <b>20m</b>.</p>
+          <p>Tính diện tích thửa ruộng đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số vào công thức: (36 + 24) × 20 : 2.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 36 + 24 = 60; &nbsp;60 × 20 = 1200; &nbsp;1200 : 2 = 600.</p></div></div>
+          <p class="answer hidden">Diện tích thửa ruộng là <b>600m²</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Một hình tròn có bán kính <b>5cm</b>. (Lấy 3,14 là số gần đúng của số π, không làm tròn thêm kết quả.)</p>
+          <p>a) Tính chu vi hình tròn. &nbsp;b) Tính diện tích hình tròn đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ công thức: chu vi = đường kính × 3,14 (đường kính = bán kính × 2); diện tích = bán kính × bán kính × 3,14.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Đường kính = 5 × 2 = 10cm. Chu vi = 10 × 3,14 = 31,4cm.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Diện tích = 5 × 5 × 3,14 = 25 × 3,14 = 78,5cm².</p></div></div>
+          <p class="answer hidden">a) Chu vi hình tròn là <b>31,4cm</b>. &nbsp; b) Diện tích hình tròn là <b>78,5cm²</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s3-3" data-qid="Bài 3.3">
+        <div class="q"><span class="qid">Bài 3.3</span><div class="qtext">
+          <p>Một bể cá dạng hình hộp chữ nhật có chiều dài <b>8dm</b>, chiều rộng <b>5dm</b>, chiều cao <b>6dm</b>.</p>
+          <p>a) Tính thể tích bể cá đó. &nbsp;b) Nếu đổ nước vào bể sao cho mực nước cao <b>4dm</b> thì cần bao nhiêu lít nước? (Biết 1dm³ = 1 lít)</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ công thức: thể tích hình hộp chữ nhật = chiều dài × chiều rộng × chiều cao.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Thể tích bể cá = 8 × 5 × 6 = 240dm³.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Khi mực nước cao 4dm (thấp hơn chiều cao bể), thể tích nước = 8 × 5 × 4 = 160dm³. Vì 1dm³ = 1 lít nên cần 160 lít nước.</p></div></div>
+          <p class="answer hidden">a) Thể tích bể cá là <b>240dm³</b>. &nbsp; b) Cần <b>160 lít</b> nước.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">📊</span>
+        <h2 class="topic-title"><span class="topic-num">Mảng kiến thức 4</span>Một số yếu tố thống kê — xác suất</h2>
+      </div>
+      <p class="topic-intro">Ôn lại cách đọc và phân tích <span class="kw">biểu đồ hình quạt</span> (mỗi phần thể hiện tỉ số phần trăm so với cả một tổng thể), cách tính <span class="kw">số trung bình cộng</span> của nhiều số, và cách tính <span class="kw">khả năng xảy ra</span> của một biến cố theo tỉ lệ phần trăm. Ba bài đi từ đọc biểu đồ hình quạt để tính số lượng thực tế, đến tính số trung bình cộng, rồi đến bài toán tính khả năng xảy ra bằng phần trăm.</p>
+
+      <div class="problem" data-pool="s4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Biểu đồ hình quạt cho biết tỉ lệ các loại sách trong thư viện lớp 5A: sách Toán chiếm <b>40%</b>, sách Tiếng Việt chiếm <b>35%</b>, sách Khoa học chiếm <b>25%</b>. Thư viện lớp có tất cả <b>80 quyển sách</b>.</p>
+          <p>Hỏi lớp 5A có bao nhiêu quyển sách Khoa học? Sách Toán nhiều hơn sách Khoa học bao nhiêu quyển?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Kiểm tra: trên biểu đồ hình quạt, các tỉ lệ luôn cộng lại bằng 100% của cả tổng thể: 40% + 35% + 25% = 100%. Đúng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số sách Khoa học = 80 × 25% = 80 × 0,25 = 20 (quyển).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số sách Toán = 80 × 40% = 80 × 0,4 = 32 (quyển). Sách Toán nhiều hơn sách Khoa học: 32 − 20 = 12 (quyển).</p></div></div>
+          <p class="answer hidden">Lớp 5A có <b>20 quyển</b> sách Khoa học; sách Toán nhiều hơn sách Khoa học <b>12 quyển</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Cân nặng của 5 bạn tổ 1 lần lượt là: <b>32kg, 35kg, 30kg, 34kg, 29kg</b>.</p>
+          <p>Tính cân nặng trung bình của 5 bạn.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: số trung bình cộng = tổng các số hạng : số các số hạng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính tổng cân nặng của 5 bạn: 32 + 35 + 30 + 34 + 29 = 160 (kg).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cân nặng trung bình = 160 : 5 = 32 (kg).</p></div></div>
+          <p class="answer hidden">Cân nặng trung bình của 5 bạn là <b>32kg</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s4-3" data-qid="Bài 4.3">
+        <div class="q"><span class="qid">Bài 4.3</span><div class="qtext">
+          <p>Một hộp có <b>20 tấm thẻ</b> giống nhau về kích thước, được đánh số từ 1 đến 20. Rút ngẫu nhiên 1 tấm thẻ.</p>
+          <p>Hỏi khả năng rút được tấm thẻ ghi số chia hết cho 5 chiếm bao nhiêu phần trăm?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Liệt kê các số từ 1 đến 20 chia hết cho 5: 5, 10, 15, 20 — có 4 số.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tổng số tấm thẻ trong hộp là 20, trong đó có 4 tấm thẻ thoả yêu cầu.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tỉ lệ khả năng = <span class="frac"><sup>4</sup>&frasl;<sub>20</sub></span> = <span class="frac"><sup>1</sup>&frasl;<sub>5</sub></span> = <span class="frac"><sup>20</sup>&frasl;<sub>100</sub></span> = 20%.</p></div></div>
+          <p class="answer hidden">Khả năng rút được tấm thẻ ghi số chia hết cho 5 chiếm <b>20%</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-cho-ba-me">
+      <div class="topic-head">
+        <span class="topic-badge">🍀</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo cùng con ôn luyện tại nhà</h2>
+      </div>
+      <p class="topic-intro">5 nguyên tắc ngắn gọn khi đồng hành cùng con ôn tập toàn bộ 4 mảng kiến thức Toán lớp 5, giúp con tự tin trước mỗi bài kiểm tra.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đổi hỗn số sang phân số trước khi tính.</b> Với hỗn số a b/c, nhắc con nhân phần nguyên với mẫu số rồi cộng tử số, giữ nguyên mẫu số — làm quen bước này trước khi cộng trừ nhân chia.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Viết thẳng hàng dấu phẩy khi cộng trừ số thập phân.</b> Nhắc con thêm chữ số 0 vào cuối phần thập phân cho các số cùng số chữ số, đặt tính sao cho các dấu phẩy thẳng cột nhau để tránh nhầm hàng.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Viết công thức hình học ra giấy trước khi thay số.</b> Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2; thể tích hình hộp chữ nhật = dài × rộng × cao — viết rõ công thức rồi mới thay số, tránh nhầm phép tính.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Dùng "Gợi ý" từng bước một.</b> Mỗi lần bấm chỉ hiện thêm 1 bước — để con tự nghĩ tiếp bước sau, thay vì đọc hết lời giải cùng lúc.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">5</span>
+          <p><b>Ôn đều cả 4 mảng mỗi tuần.</b> Đừng chỉ luyện phần con thích — dành thời gian ngang nhau cho Số tự nhiên &amp; phân số, Số thập phân, Hình học – đo lường, và Thống kê – xác suất để không bị hổng kiến thức.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 5. Toàn bộ bài tập, số liệu và lời giải trong tài liệu này là nội dung mới do đội ngũ tự viết, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    's1-1': [{
+      qHtml: '<p>a) Đổi hỗn số <b>4<span class="frac"><sup>3</sup>&frasl;<sub>7</sub></span></b> thành phân số.</p><p>b) Đổi phân số <span class="frac"><sup>23</sup>&frasl;<sub>6</sub></span> thành hỗn số.</p>',
+      steps: [
+        '<p>Nhắc lại cách đổi hỗn số thành phân số: hỗn số <b>a <span class="frac"><sup>b</sup>&frasl;<sub>c</sub></span></b> = <span class="frac"><sup>a×c+b</sup>&frasl;<sub>c</sub></span> (giữ nguyên mẫu số c).</p>',
+        '<p>a) Với 4<span class="frac"><sup>3</sup>&frasl;<sub>7</sub></span>: phần nguyên là 4, mẫu số là 7, tử số là 3. Ta có <span class="frac"><sup>4×7+3</sup>&frasl;<sub>7</sub></span> = <span class="frac"><sup>31</sup>&frasl;<sub>7</sub></span>. Vậy 4<span class="frac"><sup>3</sup>&frasl;<sub>7</sub></span> = <span class="frac"><sup>31</sup>&frasl;<sub>7</sub></span>.</p>',
+        '<p>b) Với <span class="frac"><sup>23</sup>&frasl;<sub>6</sub></span>: lấy tử số chia cho mẫu số, 23 : 6 = 3 (dư 5) → phần nguyên là 3, phần phân số là số dư 5 trên mẫu số 6 → hỗn số 3<span class="frac"><sup>5</sup>&frasl;<sub>6</sub></span>.</p>'
+      ],
+      answerHtml: 'a) 4<span class="frac"><sup>3</sup>&frasl;<sub>7</sub></span> = <b><span class="frac"><sup>31</sup>&frasl;<sub>7</sub></span></b>. &nbsp; b) <span class="frac"><sup>23</sup>&frasl;<sub>6</sub></span> = <b>3<span class="frac"><sup>5</sup>&frasl;<sub>6</sub></span></b>.'
+    }],
+    's1-2': [{
+      qHtml: '<p>Tính giá trị biểu thức: <span class="frac"><sup>5</sup>&frasl;<sub>6</sub></span> − <span class="frac"><sup>1</sup>&frasl;<sub>4</sub></span> × <span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span></p><p>(Nhắc: biểu thức có cả nhân và trừ thì phải thực hiện phép nhân trước.)</p>',
+      steps: [
+        '<p>Thực hiện phép nhân trước: <span class="frac"><sup>1</sup>&frasl;<sub>4</sub></span> × <span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span> = <span class="frac"><sup>2</sup>&frasl;<sub>12</sub></span>, rút gọn (chia cả tử và mẫu cho 2) = <span class="frac"><sup>1</sup>&frasl;<sub>6</sub></span>.</p>',
+        '<p>Hai phân số <span class="frac"><sup>5</sup>&frasl;<sub>6</sub></span> và <span class="frac"><sup>1</sup>&frasl;<sub>6</sub></span> đã cùng mẫu số nên trừ trực tiếp: <span class="frac"><sup>5</sup>&frasl;<sub>6</sub></span> − <span class="frac"><sup>1</sup>&frasl;<sub>6</sub></span> = <span class="frac"><sup>4</sup>&frasl;<sub>6</sub></span>.</p>',
+        '<p>Rút gọn <span class="frac"><sup>4</sup>&frasl;<sub>6</sub></span> (chia cả tử và mẫu cho 2): <span class="frac"><sup>4</sup>&frasl;<sub>6</sub></span> = <span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span>.</p>'
+      ],
+      answerHtml: '<span class="frac"><sup>5</sup>&frasl;<sub>6</sub></span> − <span class="frac"><sup>1</sup>&frasl;<sub>4</sub></span> × <span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span> = <b><span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span></b>.'
+    }],
+    's1-3': [{
+      qHtml: '<p>Một bản đồ được vẽ theo tỉ lệ <b>1 : 1000</b>.</p><p>Trên bản đồ, khoảng cách từ nhà An đến trường học đo được <b>12cm</b>. Hỏi khoảng cách thật ngoài đời là bao nhiêu mét?</p>',
+      steps: [
+        '<p>Tỉ lệ bản đồ 1 : 1000 nghĩa là mỗi 1cm trên bản đồ ứng với 1000cm khoảng cách thật.</p>',
+        '<p>Khoảng cách thật (theo cm) = 12 × 1000 = 12 000cm.</p>',
+        '<p>Đổi 12 000cm ra mét: vì 1m = 100cm, nên 12 000 : 100 = 120m.</p>'
+      ],
+      answerHtml: 'Khoảng cách thật từ nhà An đến trường học là <b>120m</b>.'
+    }],
+    's2-1': [{
+      qHtml: '<p>Cho các số thập phân: <b>7,308</b>; <b>7,38</b>; <b>7,038</b>; <b>7,3</b>.</p><p>a) Sắp xếp các số theo thứ tự từ bé đến lớn.</p><p>b) Trong số 7,308, chữ số 0 ở hàng nào? Chữ số 8 ở hàng nào?</p>',
+      steps: [
+        '<p>Để so sánh dễ dàng, viết tất cả các số về cùng 3 chữ số ở phần thập phân: 7,308; 7,380; 7,038; 7,300.</p>',
+        '<p>Phần nguyên các số đều bằng 7 nên so sánh phần thập phân: 038 &lt; 300 &lt; 308 &lt; 380.</p>',
+        '<p>a) Vậy thứ tự từ bé đến lớn là: 7,038 &lt; 7,3 &lt; 7,308 &lt; 7,38. b) Trong số 7,308, các chữ số sau dấu phẩy lần lượt là 3 (hàng phần mười), 0 (hàng phần trăm), 8 (hàng phần nghìn).</p>'
+      ],
+      answerHtml: 'a) 7,038 &lt; 7,3 &lt; 7,308 &lt; 7,38. &nbsp; b) Chữ số 0 ở <b>hàng phần trăm</b>; chữ số 8 ở <b>hàng phần nghìn</b>.'
+    }],
+    's2-2': [{
+      qHtml: '<p>Một mảnh vườn hình chữ nhật có chiều dài <b>15,4m</b> và chiều rộng <b>6,5m</b>.</p><p>Người ta dùng <b>52,6m²</b> diện tích mảnh vườn để trồng rau, phần diện tích còn lại trồng hoa. Hỏi diện tích trồng hoa là bao nhiêu mét vuông?</p>',
+      steps: [
+        '<p>Tính diện tích cả mảnh vườn = chiều dài × chiều rộng = 15,4 × 6,5.</p>',
+        '<p>Nhân như số tự nhiên: 154 × 65 = 10 010. Vì 15,4 có 1 chữ số thập phân và 6,5 cũng có 1 chữ số thập phân, tích có 1 + 1 = 2 chữ số thập phân → 100,10 = 100,1. Vậy diện tích cả mảnh vườn là 100,1m².</p>',
+        '<p>Diện tích trồng hoa = diện tích cả vườn − diện tích trồng rau. Đặt tính trừ (viết 100,1 thành 100,10 để các hàng thẳng cột với 52,60): 100,10 − 52,60 = 47,5.</p>'
+      ],
+      answerHtml: 'Diện tích trồng hoa là <b>47,5m²</b>.'
+    }],
+    's2-3': [{
+      qHtml: '<p>Lớp 5B có <b>36 học sinh</b>, trong đó có <b>25%</b> số học sinh đạt loại giỏi, số học sinh còn lại đạt loại khá.</p><p>Hỏi số học sinh loại khá nhiều hơn số học sinh loại giỏi bao nhiêu bạn?</p>',
+      steps: [
+        '<p>Tính số học sinh giỏi: 25% = 25 : 100 = 0,25. Số học sinh giỏi = 36 × 0,25 = 9 (bạn).</p>',
+        '<p>Số học sinh loại khá là số học sinh còn lại: 36 − 9 = 27 (bạn).</p>',
+        '<p>Số học sinh khá nhiều hơn số học sinh giỏi: 27 − 9 = 18 (bạn).</p>'
+      ],
+      answerHtml: 'Số học sinh loại khá nhiều hơn số học sinh loại giỏi <b>18 bạn</b>.'
+    }],
+    's3-1': [{
+      qHtml: '<p>Một thửa ruộng hình thang có đáy lớn <b>42m</b>, đáy bé <b>28m</b>, chiều cao <b>25m</b>.</p><p>Tính diện tích thửa ruộng đó.</p>',
+      steps: [
+        '<p>Nhớ lại công thức: diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2.</p>',
+        '<p>Thay số vào công thức: (42 + 28) × 25 : 2.</p>',
+        '<p>Tính: 42 + 28 = 70; &nbsp;70 × 25 = 1750; &nbsp;1750 : 2 = 875.</p>'
+      ],
+      answerHtml: 'Diện tích thửa ruộng là <b>875m²</b>.'
+    }],
+    's3-2': [{
+      qHtml: '<p>Một hình tròn có bán kính <b>7cm</b>. (Lấy 3,14 là số gần đúng của số π, không làm tròn thêm kết quả.)</p><p>a) Tính chu vi hình tròn. &nbsp;b) Tính diện tích hình tròn đó.</p>',
+      steps: [
+        '<p>Nhớ công thức: chu vi = đường kính × 3,14 (đường kính = bán kính × 2); diện tích = bán kính × bán kính × 3,14.</p>',
+        '<p>a) Đường kính = 7 × 2 = 14cm. Chu vi = 14 × 3,14 = 43,96cm.</p>',
+        '<p>b) Diện tích = 7 × 7 × 3,14 = 49 × 3,14 = 153,86cm².</p>'
+      ],
+      answerHtml: 'a) Chu vi hình tròn là <b>43,96cm</b>. &nbsp; b) Diện tích hình tròn là <b>153,86cm²</b>.'
+    }],
+    's3-3': [{
+      qHtml: '<p>Một bể cá dạng hình hộp chữ nhật có chiều dài <b>9dm</b>, chiều rộng <b>6dm</b>, chiều cao <b>5dm</b>.</p><p>a) Tính thể tích bể cá đó. &nbsp;b) Nếu đổ nước vào bể sao cho mực nước cao <b>3dm</b> thì cần bao nhiêu lít nước? (Biết 1dm³ = 1 lít)</p>',
+      steps: [
+        '<p>Nhớ công thức: thể tích hình hộp chữ nhật = chiều dài × chiều rộng × chiều cao.</p>',
+        '<p>a) Thể tích bể cá = 9 × 6 × 5 = 270dm³.</p>',
+        '<p>b) Khi mực nước cao 3dm (thấp hơn chiều cao bể), thể tích nước = 9 × 6 × 3 = 162dm³. Vì 1dm³ = 1 lít nên cần 162 lít nước.</p>'
+      ],
+      answerHtml: 'a) Thể tích bể cá là <b>270dm³</b>. &nbsp; b) Cần <b>162 lít</b> nước.'
+    }],
+    's4-1': [{
+      qHtml: '<p>Biểu đồ hình quạt cho biết tỉ lệ các loại sách trong thư viện lớp 5B: sách Toán chiếm <b>30%</b>, sách Tiếng Việt chiếm <b>45%</b>, sách Khoa học chiếm <b>25%</b>. Thư viện lớp có tất cả <b>60 quyển sách</b>.</p><p>Hỏi lớp 5B có bao nhiêu quyển sách Khoa học? Sách Toán nhiều hơn sách Khoa học bao nhiêu quyển?</p>',
+      steps: [
+        '<p>Kiểm tra: trên biểu đồ hình quạt, các tỉ lệ luôn cộng lại bằng 100% của cả tổng thể: 30% + 45% + 25% = 100%. Đúng.</p>',
+        '<p>Số sách Khoa học = 60 × 25% = 60 × 0,25 = 15 (quyển).</p>',
+        '<p>Số sách Toán = 60 × 30% = 60 × 0,3 = 18 (quyển). Sách Toán nhiều hơn sách Khoa học: 18 − 15 = 3 (quyển).</p>'
+      ],
+      answerHtml: 'Lớp 5B có <b>15 quyển</b> sách Khoa học; sách Toán nhiều hơn sách Khoa học <b>3 quyển</b>.'
+    }],
+    's4-2': [{
+      qHtml: '<p>Cân nặng của 5 bạn tổ 2 lần lượt là: <b>27kg, 30kg, 33kg, 29kg, 26kg</b>.</p><p>Tính cân nặng trung bình của 5 bạn.</p>',
+      steps: [
+        '<p>Nhớ lại công thức: số trung bình cộng = tổng các số hạng : số các số hạng.</p>',
+        '<p>Tính tổng cân nặng của 5 bạn: 27 + 30 + 33 + 29 + 26 = 145 (kg).</p>',
+        '<p>Cân nặng trung bình = 145 : 5 = 29 (kg).</p>'
+      ],
+      answerHtml: 'Cân nặng trung bình của 5 bạn là <b>29kg</b>.'
+    }],
+    's4-3': [{
+      qHtml: '<p>Một hộp có <b>50 tấm thẻ</b> giống nhau về kích thước, được đánh số từ 1 đến 50. Rút ngẫu nhiên 1 tấm thẻ.</p><p>Hỏi khả năng rút được tấm thẻ ghi số chia hết cho 10 chiếm bao nhiêu phần trăm?</p>',
+      steps: [
+        '<p>Liệt kê các số từ 1 đến 50 chia hết cho 10: 10, 20, 30, 40, 50 — có 5 số.</p>',
+        '<p>Tổng số tấm thẻ trong hộp là 50, trong đó có 5 tấm thẻ thoả yêu cầu.</p>',
+        '<p>Tỉ lệ khả năng = <span class="frac"><sup>5</sup>&frasl;<sub>50</sub></span> = <span class="frac"><sup>1</sup>&frasl;<sub>10</sub></span> = <span class="frac"><sup>10</sup>&frasl;<sub>100</sub></span> = 10%.</p>'
+      ],
+      answerHtml: 'Khả năng rút được tấm thẻ ghi số chia hết cho 10 chiếm <b>10%</b>.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('cp10-toan5-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('cp10-toan5-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

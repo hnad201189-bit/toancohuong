@@ -88,6 +88,29 @@ export const ON_LUYEN_TOPICS_BY_GRADE = {
       href: '/tai-lieu/toan-tu-duy-lop-4.html',
     },
   ],
+  5: [
+    {
+      id: 'chinh-phuc-diem-10-toan-5',
+      icon: '⭐',
+      name: 'Chinh Phục Điểm 10 Toán 5',
+      desc: 'Ôn tập trọng tâm 4 mảng kiến thức Toán 5, từ cơ bản đến nâng cao, có gợi ý từng bước.',
+      href: '/tai-lieu/chinh-phuc-diem-10-toan-5.html',
+    },
+    {
+      id: 'toan-nang-cao-lop-5',
+      icon: '🚀',
+      name: 'Toán Nâng Cao Lớp 5',
+      desc: 'Bài toán bồi dưỡng học sinh giỏi: hiệu-tỉ, công việc chung, phần trăm nhiều bước, chuyển động, chuẩn bị ôn thi vào lớp 6.',
+      href: '/tai-lieu/toan-nang-cao-lop-5.html',
+    },
+    {
+      id: 'toan-tu-duy-lop-5',
+      icon: '🧩',
+      name: 'Toán Tư Duy Lớp 5 (Violympic)',
+      desc: 'Quy luật dãy số, đếm hình, suy luận logic nhiều đối tượng và toán đố vui — mức khó nhất trong bộ tiểu học.',
+      href: '/tai-lieu/toan-tu-duy-lop-5.html',
+    },
+  ],
   6: [
     {
       id: 'chinh-phuc-diem-10',

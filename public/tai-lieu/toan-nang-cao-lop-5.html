@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán Nâng Cao Lớp 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #eaf6f3;
+    --bg-alt: #dcf0ea;
+    --paper: #ffffff;
+    --ink: #0f2e2a;
+    --ink-soft: #3d5c56;
+    --ink-faint: #7a9891;
+    --accent: #0d7a6c;
+    --accent-hover: #0a5f54;
+    --accent-soft: #d3f0e8;
+    --accent-soft-strong: #a9e0d0;
+    --success: #c2410c;
+    --success-soft: #fde8d8;
+    --amber: #a3620a;
+    --amber-soft: #fbeed2;
+    --line: #cfe4de;
+    --line-strong: #b0d0c7;
+    --shadow: 0 1px 2px rgba(15, 46, 42, 0.08), 0 8px 24px rgba(15, 46, 42, 0.10);
+    --radius: 16px;
+    --sans: "Nunito Sans", "Segoe UI", "Be Vietnam Pro", Calibri, Arial, sans-serif;
+    --display: "Fredoka", "Nunito Sans", "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", "Cascadia Code", Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1a18;
+    --bg-alt: #102422;
+    --paper: #142b28;
+    --ink: #e3f5ef;
+    --ink-soft: #a9cec4;
+    --ink-faint: #6f9a8e;
+    --accent: #4fd9bd;
+    --accent-hover: #6ee6cc;
+    --accent-soft: #163a34;
+    --accent-soft-strong: #1f4d44;
+    --success: #ff9d5c;
+    --success-soft: #3a2410;
+    --amber: #f0b45a;
+    --amber-soft: #3a2c10;
+    --line: #1f3d38;
+    --line-strong: #2c5049;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c1a18;
+      --bg-alt: #102422;
+      --paper: #142b28;
+      --ink: #e3f5ef;
+      --ink-soft: #a9cec4;
+      --ink-faint: #6f9a8e;
+      --accent: #4fd9bd;
+      --accent-hover: #6ee6cc;
+      --accent-soft: #163a34;
+      --accent-soft-strong: #1f4d44;
+      --success: #ff9d5c;
+      --success-soft: #3a2410;
+      --amber: #f0b45a;
+      --amber-soft: #3a2c10;
+      --line: #1f3d38;
+      --line-strong: #2c5049;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 0 18px 72px; }
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    padding: 44px 0 8px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h1.title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2rem, 4.4vw, 2.7rem);
+    line-height: 1.12;
+    margin: 0.5rem 0 0.9rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .hero p.lede {
+    max-width: 66ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    margin: 0 0 6px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 12.8px;
+    color: var(--ink-faint);
+  }
+  .hero-meta strong { color: var(--ink); }
+
+  .copyright-note {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    margin: 22px 0 8px;
+  }
+  .copyright-note .box {
+    background: var(--amber-soft);
+    border: 1px solid color-mix(in srgb, var(--amber) 40%, var(--line));
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14.3px;
+    color: var(--ink-soft);
+  }
+  .copyright-note .box b { color: var(--ink); }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(21px, 2.4vw, 26px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--success);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+  .concrete {
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: inline-block;
+    color: var(--ink);
+  }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--success) 45%, var(--line-strong)); color: var(--success); }
+  .controls .btn-answer:hover { background: var(--success-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: #fff;
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--success);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+    font-family: var(--display);
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<div class="shell">
+  <header class="hero">
+    <span class="eyebrow">Ôn luyện · Toán 5 · Bồi dưỡng học sinh giỏi</span>
+    <h1 class="title">Toán Nâng Cao Lớp 5</h1>
+    <p class="lede">
+      12 bài toán thử thách dành cho các bạn đã nắm chắc kiến thức lớp 5 cơ bản, muốn nâng trình độ lên
+      một bậc để chuẩn bị cho kỳ thi vào lớp 6 chuyên — bài toán hiệu - tỉ và tổng - tỉ với số liệu lớn
+      (dùng sơ đồ đoạn thẳng, không cần đến ẩn số), bài toán công việc chung của hai người hoặc hai vòi
+      nước, phân số của phân số của một số, tăng - giảm phần trăm liên tiếp, giá bán với lãi hoặc lỗ theo
+      phần trăm, so sánh nhiều tỉ số phần trăm viết dưới các dạng khác nhau, diện tích hình ghép từ hình
+      thang - tam giác - hình chữ nhật, thể tích hình lập phương khi cạnh thay đổi, tỉ lệ bản đồ, hai xe
+      chuyển động đuổi kịp nhau, toán tuổi nâng cao qua nhiều năm và suy luận lô-gic với 5 đối tượng cùng
+      lúc. Mỗi bài chỉ cần kiến thức lớp 5 — không có ẩn x — chỉ cần đọc kỹ đề, suy luận từng bước và luôn
+      thử lại đáp số.
+    </p>
+    <div class="hero-meta">
+      <span><strong>4</strong> chuyên đề</span>
+      <span><strong>12</strong> bài gốc</span>
+      <span><strong>12</strong> bài biến thể</span>
+      <span><strong>24</strong> lượt luyện tổng cộng</span>
+    </div>
+  </header>
+
+  <div class="copyright-note">
+    <div class="box">
+      <b>Về nội dung:</b> toàn bộ 12 bài toán, số liệu và lời giải trong tài liệu này do đội ngũ tự biên
+      soạn mới hoàn toàn. Tài liệu chỉ lấy cảm hứng về <i>dạng bài</i> và mức độ khó thường gặp trong các
+      sách bồi dưỡng học sinh giỏi và luyện thi vào lớp 6 chuyên môn Toán lớp 5 (hiệu - tỉ, tổng - tỉ,
+      công việc chung, phân số của một số, phần trăm nhiều bước, lãi - lỗ, diện tích hình ghép, thể tích,
+      tỉ lệ bản đồ, chuyển động, toán tuổi, suy luận lô-gic...), không sao chép nguyên văn bất kỳ đề bài
+      hay số liệu nào từ sách đã xuất bản.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">4 chuyên đề</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">➗</span>Phân số và tỉ số nâng cao</a></li>
+      <li><a href="#sec2"><span class="n">💯</span>Số thập phân và tỉ số % nâng cao</a></li>
+      <li><a href="#sec3"><span class="n">📐</span>Hình học tư duy</a></li>
+      <li><a href="#sec4"><span class="n">🧭</span>Toán đố suy luận</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ================= SEC 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">➗</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 1</span>Phân số và tỉ số nâng cao</h2>
+      </div>
+      <p class="topic-intro">Chuyên đề này rèn ba dạng toán rất hay gặp trong đề thi vào lớp 6 chuyên:
+      bài toán <span class="kw">hiệu - tỉ</span> (biết hiệu hai số và tỉ số giữa chúng, tìm hai số bằng
+      sơ đồ đoạn thẳng — không cần ẩn x), bài toán <span class="kw">công việc chung</span> của hai người
+      hoặc hai vòi nước, và bài toán <span class="kw">phân số của phân số</span> của một số. Mẹo chung:
+      với hiệu - tỉ, hãy vẽ hai đoạn thẳng biểu diễn hai số theo đúng tỉ lệ phần đã cho rồi tìm giá trị
+      một phần; với công việc chung, hãy đổi ra <span class="kw">"mỗi giờ làm được bao nhiêu phần công
+      việc"</span> rồi cộng các phần lại với nhau.</p>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Một cửa hàng nhập về gạo nếp và gạo tẻ. Biết số ki-lô-gam gạo tẻ nhiều hơn số ki-lô-gam gạo
+          nếp là <b>156kg</b>, và tỉ số giữa số gạo nếp và số gạo tẻ là <b>3/7</b>.</p>
+          <p>Hỏi cửa hàng đã nhập về bao nhiêu ki-lô-gam mỗi loại gạo?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vì tỉ số giữa số gạo nếp và số gạo tẻ là 3/7, nếu coi số gạo nếp là 3 phần bằng nhau thì số gạo tẻ là 7 phần như thế.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì gạo tẻ nhiều hơn gạo nếp, hiệu số phần bằng nhau giữa hai loại là: 7 − 3 = 4 phần. Hiệu này chính là 156kg đã cho.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giá trị 1 phần là: 156 : 4 = 39kg.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Số gạo nếp là: 39 × 3 = 117kg. Số gạo tẻ là: 39 × 7 = 273kg.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Thử lại: 273 − 117 = 156kg (đúng hiệu); và 117 : 273 rút gọn được 3/7 (đúng tỉ số).</p></div></div>
+          <p class="answer hidden">Cửa hàng đã nhập 117kg gạo nếp và 273kg gạo tẻ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Hai người cùng làm chung một công việc. Nếu làm một mình thì người thứ nhất làm xong việc
+          đó trong <b>8 giờ</b>, người thứ hai làm xong trong <b>12 giờ</b>. Hai người cùng làm chung
+          trong <b>3 giờ</b> thì người thứ hai phải nghỉ, sau đó người thứ nhất một mình làm nốt phần
+          việc còn lại.</p>
+          <p>Hỏi người thứ nhất phải làm thêm bao nhiêu giờ nữa mới xong toàn bộ công việc?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Coi toàn bộ công việc là 1 đơn vị. Mỗi giờ, người thứ nhất làm được 1/8 công việc; người thứ hai làm được 1/12 công việc.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mỗi giờ, hai người cùng làm được: 1/8 + 1/12 = 3/24 + 2/24 = 5/24 công việc.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trong 3 giờ làm chung, hai người làm được: 5/24 × 3 = 15/24 = 5/8 công việc.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Phần công việc còn lại là: 1 − 5/8 = 3/8 công việc. Phần này do một mình người thứ nhất làm nốt, với năng suất 1/8 công việc mỗi giờ.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Thời gian người thứ nhất cần làm thêm là: 3/8 : 1/8 = 3/8 × 8 = 3 giờ.</p></div></div>
+          <p class="answer hidden">Người thứ nhất phải làm thêm 3 giờ nữa mới xong công việc.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-3" data-qid="Bài 1.3">
+        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext">
+          <p>Một thư viện trường học có một số sách. Trong đó, số sách Toán bằng <b>2/5</b> tổng số sách
+          của thư viện, và số sách Văn bằng <b>3/4</b> số sách Toán. Biết số sách Văn là <b>240 quyển</b>.</p>
+          <p>Hỏi thư viện đó có tất cả bao nhiêu quyển sách?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số sách Văn (240 quyển) bằng 3/4 số sách Toán. Muốn tìm số sách Toán, ta lấy 240 chia cho 3 rồi nhân với 4: 240 : 3 × 4 = 320 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số sách Toán (320 quyển) lại bằng 2/5 tổng số sách của thư viện. Muốn tìm tổng số sách, ta lấy 320 chia cho 2 rồi nhân với 5: 320 : 2 × 5 = 800 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thử lại: 2/5 của 800 là 800 : 5 × 2 = 320 quyển sách Toán (đúng); 3/4 của 320 là 320 : 4 × 3 = 240 quyển sách Văn (đúng).</p></div></div>
+          <p class="answer hidden">Thư viện đó có tất cả 800 quyển sách.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">💯</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 2</span>Số thập phân và tỉ số phần trăm nâng cao</h2>
+      </div>
+      <p class="topic-intro">Ở chuyên đề này, các con sẽ luyện các bài toán phần trăm <span class="kw">nhiều
+      bước</span> — tăng rồi giảm giá liên tiếp, tìm giá mua khi biết giá bán và tỉ lệ lãi hoặc lỗ, và so
+      sánh nhiều tỉ số phần trăm được viết dưới các dạng khác nhau (phân số, số thập phân, phần trăm). Mẹo
+      quan trọng nhất: <span class="kw">tăng a% rồi giảm a% không đưa số ban đầu trở lại</span> — vì lần
+      giảm sau được tính trên một giá trị đã lớn hơn (hoặc nhỏ hơn) giá trị ban đầu, nên phải tính tuần tự
+      từng bước, không được cộng trừ phần trăm trực tiếp với nhau.</p>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Giá một chiếc xe đạp lúc đầu là <b>2 400 000 đồng</b>. Đầu năm, cửa hàng tăng giá thêm
+          <b>10%</b>. Đến giữa năm, do ế hàng, cửa hàng lại giảm giá <b>10% so với giá đã tăng</b>.</p>
+          <p>Hỏi giá xe đạp lúc đó là bao nhiêu, và so với giá ban đầu thì cao hơn hay thấp hơn bao nhiêu
+          đồng?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số tiền giá xe đạp tăng thêm ở đầu năm là 10% của 2 400 000 đồng: 2 400 000 : 100 × 10 = 240 000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Giá xe đạp sau khi tăng là: 2 400 000 + 240 000 = 2 640 000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số tiền giảm giữa năm là 10% của giá <b>đã tăng</b> (2 640 000 đồng), không phải 10% của giá ban đầu: 2 640 000 : 100 × 10 = 264 000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Giá xe đạp sau khi giảm là: 2 640 000 − 264 000 = 2 376 000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>So với giá ban đầu 2 400 000 đồng, giá lúc này thấp hơn: 2 400 000 − 2 376 000 = 24 000 đồng (dù đã "tăng 10% rồi giảm 10%").</p></div></div>
+          <p class="answer hidden">Giá xe đạp lúc đó là 2 376 000 đồng, thấp hơn giá ban đầu 24 000 đồng.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Một người bán một chiếc bàn học với giá <b>1 380 000 đồng</b> thì được lãi <b>15% so với
+          giá mua vào</b>.</p>
+          <p>Hỏi người đó đã mua chiếc bàn học đó với giá bao nhiêu?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nếu coi giá mua vào là 100 phần trăm, thì vì lãi 15% so với giá mua, giá bán ra ứng với: 100% + 15% = 115% giá mua.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Giá bán ra (1 380 000 đồng) chính là 115 phần bằng nhau (mỗi phần ứng với 1%). Giá trị 1 phần (1%) là: 1 380 000 : 115 = 12 000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giá mua vào (100%) là: 12 000 × 100 = 1 200 000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử lại: tiền lãi là 1 380 000 − 1 200 000 = 180 000 đồng; và 180 000 : 1 200 000 = 15%, đúng như đề bài.</p></div></div>
+          <p class="answer hidden">Người đó đã mua chiếc bàn học với giá 1 200 000 đồng.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-3" data-qid="Bài 2.3">
+        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext">
+          <p>Ba cửa hàng A, B, C cùng bán một loại gạo và cùng giảm giá. Cửa hàng A giảm giá <b>15%</b>;
+          cửa hàng B giảm giá <b>12%</b>; cửa hàng C giảm giá một số tiền bằng <b>1/8</b> giá gốc.</p>
+          <p>Hỏi cửa hàng nào giảm giá nhiều nhất, cửa hàng nào giảm giá ít nhất?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Ba tỉ lệ giảm giá đang được viết dưới hai dạng khác nhau (phần trăm và phân số). Muốn so sánh được, ta cần đưa tất cả về cùng một dạng — ở đây ta đổi phân số của cửa hàng C sang phần trăm.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cửa hàng C giảm 1/8 giá gốc. Đổi 1/8 sang phần trăm: 1/8 = 12,5/100 = 12,5%.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Bây giờ so sánh ba tỉ lệ cùng dạng phần trăm: cửa hàng A giảm 15%, cửa hàng B giảm 12%, cửa hàng C giảm 12,5%.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Trong ba số 15%, 12%, 12,5%, số lớn nhất là 15% (cửa hàng A), số bé nhất là 12% (cửa hàng B).</p></div></div>
+          <p class="answer hidden">Cửa hàng A giảm giá nhiều nhất (15%); cửa hàng B giảm giá ít nhất (12%).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">📐</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 3</span>Hình học tư duy</h2>
+      </div>
+      <p class="topic-intro">Chuyên đề hình học lớp 5 nâng cao tập trung vào <span class="kw">diện tích
+      hình ghép</span> từ hình thang, hình tam giác và hình chữ nhật (kể cả khi phải "cắt bớt" một phần),
+      sự thay đổi <span class="kw">thể tích hình lập phương</span> khi cạnh thay đổi, và bài toán về
+      <span class="kw">tỉ lệ bản đồ</span>. Mẹo: với hình ghép, hãy tách thành từng hình cơ bản, tính diện
+      tích từng hình rồi cộng (hoặc trừ nếu là phần bị cắt bỏ) lại với nhau; với tỉ lệ bản đồ, hãy đổi kích
+      thước thật của từng cạnh trước, rồi mới nhân hai cạnh để ra diện tích thật — không nhân tỉ lệ trực
+      tiếp vào diện tích.</p>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Một khu vườn gồm một hình chữ nhật có chiều dài <b>20m</b>, chiều rộng <b>12m</b>, ghép liền
+          với một hình thang vuông có đáy lớn <b>12m</b> (bằng đúng chiều rộng hình chữ nhật), đáy bé
+          <b>8m</b>, chiều cao <b>10m</b>. Ở một góc của hình thang, người ta cắt bớt một hình tam giác
+          vuông có hai cạnh góc vuông là <b>4m</b> và <b>3m</b> để làm lối đi.</p>
+          <p>Hỏi diện tích khu vườn còn lại (sau khi đã cắt lối đi) là bao nhiêu mét vuông?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Diện tích hình chữ nhật = chiều dài × chiều rộng: 20 × 12 = 240 m².</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2: (12 + 8) × 10 : 2 = 200 : 2 = 100 m².</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Diện tích hình tam giác bị cắt bớt = (cạnh góc vuông 1 × cạnh góc vuông 2) : 2: (4 × 3) : 2 = 12 : 2 = 6 m².</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Diện tích khu vườn còn lại = diện tích hình chữ nhật + diện tích hình thang − diện tích tam giác đã cắt: 240 + 100 − 6 = 334 m².</p></div></div>
+          <p class="answer hidden">Diện tích khu vườn còn lại là 334 m².</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Một khối gỗ hình lập phương có cạnh dài <b>6cm</b>. Người ta làm một khối gỗ mới cũng là
+          hình lập phương, có độ dài cạnh <b>gấp đôi</b> cạnh khối gỗ ban đầu.</p>
+          <p>Hỏi thể tích khối gỗ mới gấp bao nhiêu lần thể tích khối gỗ ban đầu? Tính thể tích khối gỗ mới.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thể tích khối gỗ ban đầu = cạnh × cạnh × cạnh: 6 × 6 × 6 = 216 cm³.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cạnh khối gỗ mới gấp đôi cạnh cũ, tức là: 6 × 2 = 12cm.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thể tích khối gỗ mới = 12 × 12 × 12 = 1728 cm³.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>So sánh: 1728 : 216 = 8 lần. Lưu ý quan trọng: cạnh chỉ gấp 2 lần, nhưng thể tích lại gấp tới 8 lần (= 2 × 2 × 2), vì thể tích phụ thuộc vào cả ba chiều dài, rộng, cao.</p></div></div>
+          <p class="answer hidden">Thể tích khối gỗ mới gấp 8 lần thể tích khối gỗ ban đầu, và bằng 1728 cm³.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-3" data-qid="Bài 3.3">
+        <div class="q"><span class="qid">Bài 3.3</span><div class="qtext">
+          <p>Trên một bản đồ vẽ theo tỉ lệ <b>1 : 1000</b>, một khu đất hình chữ nhật được vẽ với chiều
+          dài <b>8cm</b> và chiều rộng <b>5cm</b>.</p>
+          <p>Hỏi diện tích thật của khu đất đó là bao nhiêu mét vuông?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tỉ lệ 1 : 1000 nghĩa là 1cm trên bản đồ ứng với 1000cm ở ngoài thực tế. Ta đổi <b>từng cạnh riêng biệt</b> ra kích thước thật trước, không được nhân tỉ lệ thẳng vào diện tích.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Chiều dài thật: 8 × 1000 = 8000cm = 80m. Chiều rộng thật: 5 × 1000 = 5000cm = 50m.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Diện tích thật của khu đất = chiều dài thật × chiều rộng thật: 80 × 50 = 4000 m².</p></div></div>
+          <p class="answer hidden">Diện tích thật của khu đất đó là 4000 m².</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 4</span>Toán đố suy luận</h2>
+      </div>
+      <p class="topic-intro">Chuyên đề cuối cùng rèn khả năng suy luận nhiều bước — bài toán hai xe
+      <span class="kw">chuyển động cùng chiều</span> (đuổi kịp nhau), bài toán tuổi nâng cao mà tỉ số tuổi
+      <span class="kw">thay đổi qua nhiều năm</span> (dù hiệu số tuổi luôn không đổi), và một bài suy luận
+      lô-gic với <b>5</b> đối tượng cùng lúc. Mẹo: khi hai xe đuổi kịp nhau, khoảng cách ban đầu giữa chúng
+      được rút ngắn dần theo <span class="kw">hiệu vận tốc</span> mỗi giờ; với toán tuổi, hãy nhớ rằng
+      <span class="kw">hiệu số tuổi giữa hai người không bao giờ thay đổi theo thời gian</span>, dù tổng
+      và tỉ số tuổi có thể thay đổi.</p>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Lúc <b>6 giờ</b>, một người đi xe đạp xuất phát từ A đi về B với vận tốc <b>12km/giờ</b>.
+          Đến <b>8 giờ</b> cùng ngày, một người đi xe máy cũng xuất phát từ A, đi cùng chiều với người đi
+          xe đạp, với vận tốc <b>32km/giờ</b>.</p>
+          <p>Hỏi người đi xe máy đuổi kịp người đi xe đạp lúc mấy giờ?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính đến 8 giờ, người đi xe đạp đã đi được: 8 − 6 = 2 giờ, với quãng đường: 12 × 2 = 24km. Đây là khoảng cách mà người đi xe máy cần "đuổi kịp".</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì đi cùng chiều, mỗi giờ người đi xe máy rút ngắn khoảng cách này đúng bằng hiệu hai vận tốc: 32 − 12 = 20km.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thời gian để người đi xe máy đuổi kịp (tính từ lúc 8 giờ) là: 24 : 20 = 1,2 giờ, tức là 1 giờ 12 phút (vì 0,2 giờ = 0,2 × 60 phút = 12 phút).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thời điểm đuổi kịp là: 8 giờ + 1 giờ 12 phút = 9 giờ 12 phút.</p></div></div>
+          <p class="answer hidden">Người đi xe máy đuổi kịp người đi xe đạp lúc 9 giờ 12 phút.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Hiện nay tuổi mẹ gấp <b>4 lần</b> tuổi con. Sau <b>16 năm</b> nữa, tuổi mẹ chỉ còn gấp
+          <b>2 lần</b> tuổi con.</p>
+          <p>Hỏi hiện nay mỗi người bao nhiêu tuổi?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mấu chốt của bài này: hiệu số tuổi giữa mẹ và con không bao giờ thay đổi theo thời gian, vì mỗi năm cả hai mẹ con đều cùng lớn thêm đúng 1 tuổi.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hiện nay, coi tuổi con là 1 phần thì tuổi mẹ là 4 phần (vì mẹ gấp 4 lần con). Hiệu số tuổi lúc này là: 4 − 1 = 3 phần (mỗi phần bằng đúng tuổi con hiện nay).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Sau 16 năm, coi tuổi con lúc đó là 1 phần mới thì tuổi mẹ là 2 phần mới (vì mẹ gấp 2 lần con). Hiệu số tuổi lúc này là: 2 − 1 = 1 phần mới (mỗi phần mới bằng đúng tuổi con sau 16 năm).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Vì hiệu số tuổi không đổi, nên "3 phần cũ" (tuổi con hiện nay) phải bằng đúng "1 phần mới" (tuổi con sau 16 năm). Nói cách khác, tuổi con sau 16 năm gấp 3 lần tuổi con hiện nay.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Mà tuổi con sau 16 năm cũng bằng tuổi con hiện nay cộng thêm 16. Vậy phần chênh lệch giữa "gấp 3 lần tuổi con hiện nay" và "tuổi con hiện nay", tức 3 − 1 = 2 phần (lấy tuổi con hiện nay làm 1 phần), chính bằng 16 tuổi.</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p>Vậy tuổi con hiện nay là: 16 : 2 = 8 tuổi. Tuổi mẹ hiện nay là: 8 × 4 = 32 tuổi.</p></div></div>
+          <div class="step hidden"><span class="b">7</span><div class="t"><p>Thử lại: hiệu tuổi hiện nay là 32 − 8 = 24. Sau 16 năm: mẹ 32 + 16 = 48 tuổi, con 8 + 16 = 24 tuổi — hiệu vẫn là 48 − 24 = 24 (không đổi, đúng), và 48 = 2 × 24 (đúng, mẹ gấp 2 lần con).</p></div></div>
+          <p class="answer hidden">Hiện nay con 8 tuổi, mẹ 32 tuổi.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-3" data-qid="Bài 4.3">
+        <div class="q"><span class="qid">Bài 4.3</span><div class="qtext">
+          <p>Năm bạn An, Bình, Cường, Dung, Hoa mỗi bạn thích một loại trái cây khác nhau trong 5 loại:
+          <b>xoài, cam, chuối, dưa hấu, nho</b>. Biết:</p>
+          <p>— An thích cam.<br>— Dung không thích xoài, không thích chuối và không thích nho.<br>—
+          Bình không thích chuối và không thích nho.<br>— Hoa không thích nho.</p>
+          <p>Hỏi mỗi bạn thích loại trái cây nào?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Theo dữ kiện đầu tiên, An thích cam. Vậy bốn bạn còn lại (Bình, Cường, Dung, Hoa) sẽ chia nhau bốn loại quả còn lại: xoài, chuối, dưa hấu, nho.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Dung không thích xoài, không thích chuối, không thích nho — trong bốn loại còn lại, Dung chỉ có thể thích dưa hấu.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Bình không thích chuối và không thích nho; mà cam đã thuộc về An, dưa hấu đã thuộc về Dung, nên trong hai loại còn lại (xoài, chuối, nho) dành cho Bình, Cường, Hoa, Bình chỉ có thể thích xoài.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Còn lại Cường và Hoa chia nhau hai loại: chuối và nho. Vì Hoa không thích nho, nên Hoa thích chuối, và Cường thích nho — loại quả duy nhất còn lại.</p></div></div>
+          <p class="answer hidden">An thích cam, Dung thích dưa hấu, Bình thích xoài, Hoa thích chuối, Cường thích nho.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-hoc">
+      <div class="topic-head">
+        <span class="topic-badge">🧠</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo làm bài toán nâng cao</h2>
+      </div>
+      <p class="topic-intro">4 nguyên tắc ngắn gọn giúp con tự tin bước vào các bài toán khó hơn hẳn
+      chương trình chính khoá — đúng tinh thần chuẩn bị cho kỳ thi vào lớp 6 chuyên.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Vẽ sơ đồ trước khi tính.</b> Với bài toán tổng - tỉ, hiệu - tỉ, hãy vẽ hai đoạn thẳng
+          theo đúng tỉ lệ phần đã cho — nhìn vào sơ đồ, cách làm sẽ hiện ra rõ ràng hơn nhiều so với việc
+          tính nhẩm trong đầu.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Đưa về cùng một dạng.</b> Khi đề bài trộn lẫn phân số, số thập phân và phần trăm, hãy đổi
+          tất cả về cùng một dạng (thường là phần trăm hoặc phân số cùng mẫu số) trước khi so sánh hay
+          tính toán.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Luôn thử lại.</b> Sau khi tìm ra đáp số, hãy thay ngược vào tất cả các dữ kiện của đề bài
+          xem có khớp không — đây là cách chắc chắn nhất để tự phát hiện lỗi sai trước khi nộp bài.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Luyện lại bằng bài tương tự.</b> Dùng nút "Đổi bài tương tự" để luyện lại đúng dạng bài
+          đó với số liệu khác, giúp con hiểu chắc cách làm chứ không học thuộc đáp số.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 5 (nâng cao). Nội dung lấy cảm hứng về dạng bài và
+    mức độ khó từ các sách bồi dưỡng học sinh giỏi và luyện thi vào lớp 6 chuyên môn Toán lớp 5 phổ biến,
+    toàn bộ đề bài, số liệu và lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu
+    sách nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'sec1-1': [{
+      qHtml: '<p>Một cửa hàng nhập về đường trắng và đường phèn. Biết số ki-lô-gam đường trắng nhiều hơn số ki-lô-gam đường phèn là <b>165kg</b>, và tỉ số giữa số đường phèn và số đường trắng là <b>2/5</b>.</p><p>Hỏi cửa hàng đã nhập về bao nhiêu ki-lô-gam mỗi loại đường?</p>',
+      steps: [
+        '<p>Vì tỉ số giữa số đường phèn và số đường trắng là 2/5, nếu coi số đường phèn là 2 phần bằng nhau thì số đường trắng là 5 phần như thế.</p>',
+        '<p>Vì đường trắng nhiều hơn đường phèn, hiệu số phần bằng nhau giữa hai loại là: 5 − 2 = 3 phần. Hiệu này chính là 165kg đã cho.</p>',
+        '<p>Giá trị 1 phần là: 165 : 3 = 55kg.</p>',
+        '<p>Số đường phèn là: 55 × 2 = 110kg. Số đường trắng là: 55 × 5 = 275kg.</p>',
+        '<p>Thử lại: 275 − 110 = 165kg (đúng hiệu); và 110 : 275 rút gọn được 2/5 (đúng tỉ số).</p>'
+      ],
+      answerHtml: 'Cửa hàng đã nhập 110kg đường phèn và 275kg đường trắng.'
+    }],
+    'sec1-2': [{
+      qHtml: '<p>Hai người cùng làm chung một công việc. Nếu làm một mình thì người thứ nhất làm xong việc đó trong <b>9 giờ</b>, người thứ hai làm xong trong <b>18 giờ</b>. Hai người cùng làm chung trong <b>2 giờ</b> thì người thứ hai phải nghỉ, sau đó người thứ nhất một mình làm nốt phần việc còn lại.</p><p>Hỏi người thứ nhất phải làm thêm bao nhiêu giờ nữa mới xong toàn bộ công việc?</p>',
+      steps: [
+        '<p>Coi toàn bộ công việc là 1 đơn vị. Mỗi giờ, người thứ nhất làm được 1/9 công việc; người thứ hai làm được 1/18 công việc.</p>',
+        '<p>Mỗi giờ, hai người cùng làm được: 1/9 + 1/18 = 2/18 + 1/18 = 3/18 = 1/6 công việc.</p>',
+        '<p>Trong 2 giờ làm chung, hai người làm được: 1/6 × 2 = 2/6 = 1/3 công việc.</p>',
+        '<p>Phần công việc còn lại là: 1 − 1/3 = 2/3 công việc. Phần này do một mình người thứ nhất làm nốt, với năng suất 1/9 công việc mỗi giờ.</p>',
+        '<p>Thời gian người thứ nhất cần làm thêm là: 2/3 : 1/9 = 2/3 × 9 = 6 giờ.</p>'
+      ],
+      answerHtml: 'Người thứ nhất phải làm thêm 6 giờ nữa mới xong công việc.'
+    }],
+    'sec1-3': [{
+      qHtml: '<p>Một thư viện trường học có một số sách. Trong đó, số sách Khoa học bằng <b>3/8</b> tổng số sách của thư viện, và số sách Lịch sử bằng <b>2/3</b> số sách Khoa học. Biết số sách Lịch sử là <b>210 quyển</b>.</p><p>Hỏi thư viện đó có tất cả bao nhiêu quyển sách?</p>',
+      steps: [
+        '<p>Số sách Lịch sử (210 quyển) bằng 2/3 số sách Khoa học. Muốn tìm số sách Khoa học, ta lấy 210 chia cho 2 rồi nhân với 3: 210 : 2 × 3 = 315 quyển.</p>',
+        '<p>Số sách Khoa học (315 quyển) lại bằng 3/8 tổng số sách của thư viện. Muốn tìm tổng số sách, ta lấy 315 chia cho 3 rồi nhân với 8: 315 : 3 × 8 = 840 quyển.</p>',
+        '<p>Thử lại: 3/8 của 840 là 840 : 8 × 3 = 315 quyển sách Khoa học (đúng); 2/3 của 315 là 315 : 3 × 2 = 210 quyển sách Lịch sử (đúng).</p>'
+      ],
+      answerHtml: 'Thư viện đó có tất cả 840 quyển sách.'
+    }],
+    'sec2-1': [{
+      qHtml: '<p>Giá một chiếc ti-vi lúc đầu là <b>5 000 000 đồng</b>. Đầu năm, cửa hàng tăng giá thêm <b>20%</b>. Đến giữa năm, cửa hàng lại giảm giá <b>20% so với giá đã tăng</b>.</p><p>Hỏi giá ti-vi lúc đó là bao nhiêu, và so với giá ban đầu thì cao hơn hay thấp hơn bao nhiêu đồng?</p>',
+      steps: [
+        '<p>Số tiền giá ti-vi tăng thêm ở đầu năm là 20% của 5 000 000 đồng: 5 000 000 : 100 × 20 = 1 000 000 đồng.</p>',
+        '<p>Giá ti-vi sau khi tăng là: 5 000 000 + 1 000 000 = 6 000 000 đồng.</p>',
+        '<p>Số tiền giảm giữa năm là 20% của giá <b>đã tăng</b> (6 000 000 đồng): 6 000 000 : 100 × 20 = 1 200 000 đồng.</p>',
+        '<p>Giá ti-vi sau khi giảm là: 6 000 000 − 1 200 000 = 4 800 000 đồng.</p>',
+        '<p>So với giá ban đầu 5 000 000 đồng, giá lúc này thấp hơn: 5 000 000 − 4 800 000 = 200 000 đồng.</p>'
+      ],
+      answerHtml: 'Giá ti-vi lúc đó là 4 800 000 đồng, thấp hơn giá ban đầu 200 000 đồng.'
+    }],
+    'sec2-2': [{
+      qHtml: '<p>Một người bán một chiếc xe máy cũ với giá <b>23 400 000 đồng</b> thì bị lỗ <b>10% so với giá mua vào</b>.</p><p>Hỏi người đó đã mua chiếc xe máy đó với giá bao nhiêu?</p>',
+      steps: [
+        '<p>Nếu coi giá mua vào là 100 phần trăm, thì vì lỗ 10% so với giá mua, giá bán ra ứng với: 100% − 10% = 90% giá mua.</p>',
+        '<p>Giá bán ra (23 400 000 đồng) chính là 90 phần bằng nhau (mỗi phần ứng với 1%). Giá trị 1 phần (1%) là: 23 400 000 : 90 = 260 000 đồng.</p>',
+        '<p>Giá mua vào (100%) là: 260 000 × 100 = 26 000 000 đồng.</p>',
+        '<p>Thử lại: số tiền lỗ là 26 000 000 − 23 400 000 = 2 600 000 đồng; và 2 600 000 : 26 000 000 = 10%, đúng như đề bài.</p>'
+      ],
+      answerHtml: 'Người đó đã mua chiếc xe máy với giá 26 000 000 đồng.'
+    }],
+    'sec2-3': [{
+      qHtml: '<p>Ba trường Tiểu học A, B, C thống kê tỉ lệ học sinh đạt danh hiệu học sinh giỏi. Trường A có <b>3/20</b> số học sinh đạt giỏi; trường B có <b>18%</b> số học sinh đạt giỏi; trường C có <b>17%</b> số học sinh đạt giỏi.</p><p>Hỏi trường nào có tỉ lệ học sinh giỏi cao nhất, trường nào thấp nhất?</p>',
+      steps: [
+        '<p>Ba tỉ lệ đang được viết dưới hai dạng khác nhau (phân số và phần trăm). Muốn so sánh được, ta cần đưa tất cả về cùng một dạng — ở đây ta đổi phân số của trường A sang phần trăm.</p>',
+        '<p>Trường A có 3/20 số học sinh đạt giỏi. Đổi 3/20 sang phần trăm: 3/20 = 15/100 = 15%.</p>',
+        '<p>Bây giờ so sánh ba tỉ lệ cùng dạng phần trăm: trường A đạt 15%, trường B đạt 18%, trường C đạt 17%.</p>',
+        '<p>Trong ba số 15%, 18%, 17%, số lớn nhất là 18% (trường B), số bé nhất là 15% (trường A).</p>'
+      ],
+      answerHtml: 'Trường B có tỉ lệ học sinh giỏi cao nhất (18%); trường A có tỉ lệ thấp nhất (15%).'
+    }],
+    'sec3-1': [{
+      qHtml: '<p>Một khu vườn gồm một hình chữ nhật có chiều dài <b>24m</b>, chiều rộng <b>15m</b>, ghép liền với một hình thang vuông có đáy lớn <b>15m</b> (bằng đúng chiều rộng hình chữ nhật), đáy bé <b>9m</b>, chiều cao <b>8m</b>. Ở một góc của hình thang, người ta cắt bớt một hình tam giác vuông có hai cạnh góc vuông là <b>5m</b> và <b>4m</b> để làm lối đi.</p><p>Hỏi diện tích khu vườn còn lại (sau khi đã cắt lối đi) là bao nhiêu mét vuông?</p>',
+      steps: [
+        '<p>Diện tích hình chữ nhật = chiều dài × chiều rộng: 24 × 15 = 360 m².</p>',
+        '<p>Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2: (15 + 9) × 8 : 2 = 192 : 2 = 96 m².</p>',
+        '<p>Diện tích hình tam giác bị cắt bớt = (cạnh góc vuông 1 × cạnh góc vuông 2) : 2: (5 × 4) : 2 = 20 : 2 = 10 m².</p>',
+        '<p>Diện tích khu vườn còn lại = diện tích hình chữ nhật + diện tích hình thang − diện tích tam giác đã cắt: 360 + 96 − 10 = 446 m².</p>'
+      ],
+      answerHtml: 'Diện tích khu vườn còn lại là 446 m².'
+    }],
+    'sec3-2': [{
+      qHtml: '<p>Một khối gỗ hình lập phương có cạnh dài <b>4cm</b>. Người ta làm một khối gỗ mới cũng là hình lập phương, có độ dài cạnh <b>gấp 3 lần</b> cạnh khối gỗ ban đầu.</p><p>Hỏi thể tích khối gỗ mới gấp bao nhiêu lần thể tích khối gỗ ban đầu? Tính thể tích khối gỗ mới.</p>',
+      steps: [
+        '<p>Thể tích khối gỗ ban đầu = cạnh × cạnh × cạnh: 4 × 4 × 4 = 64 cm³.</p>',
+        '<p>Cạnh khối gỗ mới gấp 3 lần cạnh cũ, tức là: 4 × 3 = 12cm.</p>',
+        '<p>Thể tích khối gỗ mới = 12 × 12 × 12 = 1728 cm³.</p>',
+        '<p>So sánh: 1728 : 64 = 27 lần. Lưu ý quan trọng: cạnh chỉ gấp 3 lần, nhưng thể tích lại gấp tới 27 lần (= 3 × 3 × 3), vì thể tích phụ thuộc vào cả ba chiều dài, rộng, cao.</p>'
+      ],
+      answerHtml: 'Thể tích khối gỗ mới gấp 27 lần thể tích khối gỗ ban đầu, và bằng 1728 cm³.'
+    }],
+    'sec3-3': [{
+      qHtml: '<p>Trên một bản đồ vẽ theo tỉ lệ <b>1 : 2000</b>, một khu đất hình chữ nhật được vẽ với chiều dài <b>6cm</b> và chiều rộng <b>4cm</b>.</p><p>Hỏi diện tích thật của khu đất đó là bao nhiêu mét vuông?</p>',
+      steps: [
+        '<p>Tỉ lệ 1 : 2000 nghĩa là 1cm trên bản đồ ứng với 2000cm ở ngoài thực tế. Ta đổi từng cạnh riêng biệt ra kích thước thật trước, không được nhân tỉ lệ thẳng vào diện tích.</p>',
+        '<p>Chiều dài thật: 6 × 2000 = 12000cm = 120m. Chiều rộng thật: 4 × 2000 = 8000cm = 80m.</p>',
+        '<p>Diện tích thật của khu đất = chiều dài thật × chiều rộng thật: 120 × 80 = 9600 m².</p>'
+      ],
+      answerHtml: 'Diện tích thật của khu đất đó là 9600 m².'
+    }],
+    'sec4-1': [{
+      qHtml: '<p>Lúc <b>7 giờ</b>, một người đi bộ xuất phát từ A đi về B với vận tốc <b>5km/giờ</b>. Đến <b>9 giờ</b> cùng ngày, một người đi xe đạp cũng xuất phát từ A, đi cùng chiều với người đi bộ, với vận tốc <b>15km/giờ</b>.</p><p>Hỏi người đi xe đạp đuổi kịp người đi bộ lúc mấy giờ?</p>',
+      steps: [
+        '<p>Tính đến 9 giờ, người đi bộ đã đi được: 9 − 7 = 2 giờ, với quãng đường: 5 × 2 = 10km. Đây là khoảng cách mà người đi xe đạp cần "đuổi kịp".</p>',
+        '<p>Vì đi cùng chiều, mỗi giờ người đi xe đạp rút ngắn khoảng cách này đúng bằng hiệu hai vận tốc: 15 − 5 = 10km.</p>',
+        '<p>Thời gian để người đi xe đạp đuổi kịp (tính từ lúc 9 giờ) là: 10 : 10 = 1 giờ.</p>',
+        '<p>Thời điểm đuổi kịp là: 9 giờ + 1 giờ = 10 giờ.</p>'
+      ],
+      answerHtml: 'Người đi xe đạp đuổi kịp người đi bộ lúc 10 giờ.'
+    }],
+    'sec4-2': [{
+      qHtml: '<p>Hiện nay tuổi bố gấp <b>5 lần</b> tuổi con. Sau <b>15 năm</b> nữa, tuổi bố chỉ còn gấp <b>2 lần</b> tuổi con.</p><p>Hỏi hiện nay mỗi người bao nhiêu tuổi?</p>',
+      steps: [
+        '<p>Mấu chốt của bài này: hiệu số tuổi giữa bố và con không bao giờ thay đổi theo thời gian, vì mỗi năm cả hai bố con đều cùng lớn thêm đúng 1 tuổi.</p>',
+        '<p>Hiện nay, coi tuổi con là 1 phần thì tuổi bố là 5 phần (vì bố gấp 5 lần con). Hiệu số tuổi lúc này là: 5 − 1 = 4 phần (mỗi phần bằng đúng tuổi con hiện nay).</p>',
+        '<p>Sau 15 năm, coi tuổi con lúc đó là 1 phần mới thì tuổi bố là 2 phần mới (vì bố gấp 2 lần con). Hiệu số tuổi lúc này là: 2 − 1 = 1 phần mới (mỗi phần mới bằng đúng tuổi con sau 15 năm).</p>',
+        '<p>Vì hiệu số tuổi không đổi, nên "4 phần cũ" (tuổi con hiện nay) phải bằng đúng "1 phần mới" (tuổi con sau 15 năm). Nói cách khác, tuổi con sau 15 năm gấp 4 lần tuổi con hiện nay.</p>',
+        '<p>Mà tuổi con sau 15 năm cũng bằng tuổi con hiện nay cộng thêm 15. Vậy phần chênh lệch, tức 4 − 1 = 3 phần (lấy tuổi con hiện nay làm 1 phần), chính bằng 15 tuổi.</p>',
+        '<p>Vậy tuổi con hiện nay là: 15 : 3 = 5 tuổi. Tuổi bố hiện nay là: 5 × 5 = 25 tuổi.</p>',
+        '<p>Thử lại: hiệu tuổi hiện nay là 25 − 5 = 20. Sau 15 năm: bố 25 + 15 = 40 tuổi, con 5 + 15 = 20 tuổi — hiệu vẫn là 40 − 20 = 20 (không đổi, đúng), và 40 = 2 × 20 (đúng, bố gấp 2 lần con).</p>'
+      ],
+      answerHtml: 'Hiện nay con 5 tuổi, bố 25 tuổi.'
+    }],
+    'sec4-3': [{
+      qHtml: '<p>Năm bạn Khoa, Linh, Minh, Nga, Phúc mỗi bạn thích một màu áo khác nhau trong 5 màu: <b>đỏ, vàng, xanh lam, xanh lá, tím</b>. Biết:</p><p>— Khoa thích màu đỏ.<br>— Nga không thích vàng, không thích xanh lá và không thích tím.<br>— Linh không thích xanh lá và không thích tím.<br>— Phúc không thích tím.</p><p>Hỏi mỗi bạn thích màu áo nào?</p>',
+      steps: [
+        '<p>Theo dữ kiện đầu tiên, Khoa thích màu đỏ. Vậy bốn bạn còn lại (Linh, Minh, Nga, Phúc) sẽ chia nhau bốn màu còn lại: vàng, xanh lam, xanh lá, tím.</p>',
+        '<p>Nga không thích vàng, không thích xanh lá, không thích tím — trong bốn màu còn lại, Nga chỉ có thể thích xanh lam.</p>',
+        '<p>Linh không thích xanh lá và không thích tím; mà đỏ đã thuộc về Khoa, xanh lam đã thuộc về Nga, nên trong các màu còn lại dành cho Linh, Minh, Phúc, Linh chỉ có thể thích vàng.</p>',
+        '<p>Còn lại Minh và Phúc chia nhau hai màu: xanh lá và tím. Vì Phúc không thích tím, nên Phúc thích xanh lá, và Minh thích tím — màu duy nhất còn lại.</p>'
+      ],
+      answerHtml: 'Khoa thích màu đỏ, Nga thích xanh lam, Linh thích vàng, Phúc thích xanh lá, Minh thích tím.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
