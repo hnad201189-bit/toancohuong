@@ -3,9 +3,10 @@ export function randInt(min, max) {
 }
 
 // Sinh 1 phép tính +/− (lớp 1) hoặc +/−/×/÷ (lớp 2 dùng bảng nhân chia 2-5,
-// lớp 3 trở lên dùng bảng nhân chia đến 9 và phạm vi số lớn hơn) — dùng
-// chung cho "Ai nhanh ai đúng" và "Đúng hay sai?". `level` (0/1/2) tăng
-// theo điểm số hiện tại trong ván để phạm vi phép cộng/trừ tự khó dần.
+// lớp 3 dùng bảng nhân chia đến 9, lớp 4+ dùng bảng nhân chia đến 12 với
+// phạm vi số tăng dần theo khối) — dùng chung cho "Ai nhanh ai đúng" và
+// "Đúng hay sai?". `level` (0/1/2) tăng theo điểm số hiện tại trong ván để
+// phạm vi phép cộng/trừ tự khó dần.
 export function makeArithmeticQuestion(level, grade = 1) {
   if (grade < 2) {
     const max = level >= 2 ? 20 : level >= 1 ? 15 : 10
@@ -67,9 +68,35 @@ export function makeArithmeticQuestion(level, grade = 1) {
     return { a: divisor * quotient, b: divisor, op: '÷', answer: quotient }
   }
 
-  // Lớp 4 trở lên: số tự nhiên lớn hơn (khớp mạch "số có nhiều chữ số"),
-  // bảng nhân/chia mở rộng đến 12 để luyện phản xạ tính nhẩm nhanh hơn.
-  const max = level >= 2 ? 10000 : level >= 1 ? 3000 : 1000
+  if (grade === 4) {
+    // Lớp 4: số tự nhiên lớn hơn (khớp mạch "số có nhiều chữ số"), bảng
+    // nhân/chia mở rộng đến 12 để luyện phản xạ tính nhẩm nhanh hơn.
+    const max = level >= 2 ? 10000 : level >= 1 ? 3000 : 1000
+    const roll = Math.random()
+    if (roll < 0.3) {
+      const a = randInt(0, max)
+      const b = randInt(0, max - a)
+      return { a, b, op: '+', answer: a + b }
+    }
+    if (roll < 0.6) {
+      const a = randInt(0, max)
+      const b = randInt(0, a)
+      return { a, b, op: '−', answer: a - b }
+    }
+    if (roll < 0.8) {
+      const table = randInt(2, 12)
+      const b = randInt(1, 12)
+      return { a: table, b, op: '×', answer: table * b }
+    }
+    const divisor = randInt(2, 12)
+    const quotient = randInt(1, 12)
+    return { a: divisor * quotient, b: divisor, op: '÷', answer: quotient }
+  }
+
+  // Lớp 5 trở lên: ôn tập tổng hợp với phạm vi số tự nhiên rộng hơn nữa,
+  // vẫn giữ bảng nhân/chia đến 12 (đủ dùng ở tiểu học) nhưng thừa số thứ
+  // hai có thể lớn hơn để luyện nhân nhẩm số có 2 chữ số.
+  const max = level >= 2 ? 100000 : level >= 1 ? 30000 : 10000
   const roll = Math.random()
   if (roll < 0.3) {
     const a = randInt(0, max)
@@ -83,11 +110,11 @@ export function makeArithmeticQuestion(level, grade = 1) {
   }
   if (roll < 0.8) {
     const table = randInt(2, 12)
-    const b = randInt(1, 12)
+    const b = randInt(1, 20)
     return { a: table, b, op: '×', answer: table * b }
   }
   const divisor = randInt(2, 12)
-  const quotient = randInt(1, 12)
+  const quotient = randInt(1, 20)
   return { a: divisor * quotient, b: divisor, op: '÷', answer: quotient }
 }
 

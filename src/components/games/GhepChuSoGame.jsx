@@ -33,10 +33,25 @@ const WORD_POOL_L4 = [
   1234567, 2000000, 3050000, 5000021, 1000000, 9999999, 4200000, 6100500, 7000045, 250000, 8500000, 3333333, 4050009,
   6000100,
 ].map((n) => ({ result: n, word: numberToVietnameseWords(n) }))
+// Lớp 5: ôn tập tổng hợp — số lớn tới hàng trăm triệu, vẫn giữ đủ các quy
+// tắc đọc đặc biệt (không trăm, linh, mốt/tư/lăm) ở quy mô lớn hơn.
+const WORD_POOL_L5 = [
+  12345678, 50000000, 99999999, 100000000, 500000000, 123456789, 1000000, 25000005, 300000000, 987654321, 7050000,
+  600000060, 45000000, 999000001,
+].map((n) => ({ result: n, word: numberToVietnameseWords(n) }))
 const PAIR_COUNT = 6
 
 function makeBoard(grade = 1) {
-  const pool = grade >= 4 ? WORD_POOL_L4 : grade === 3 ? WORD_POOL_L3 : grade === 2 ? WORD_POOL_L2 : WORD_POOL_L1
+  const pool =
+    grade >= 5
+      ? WORD_POOL_L5
+      : grade === 4
+        ? WORD_POOL_L4
+        : grade === 3
+          ? WORD_POOL_L3
+          : grade === 2
+            ? WORD_POOL_L2
+            : WORD_POOL_L1
   const facts = shuffle(pool).slice(0, PAIR_COUNT)
   const digitCards = shuffle(facts.map((f) => ({ id: `d${f.result}`, label: String(f.result), result: f.result })))
   const wordCards = shuffle(facts.map((f) => ({ id: `w${f.result}`, label: f.word, result: f.result })))

@@ -7,7 +7,7 @@ const ROUNDS = 6
 const CHIPS_PER_ROUND = 5
 
 function makeRound(grade = 1) {
-  const max = grade >= 4 ? 9999999 : grade === 3 ? 99999 : grade === 2 ? 999 : 20
+  const max = grade >= 5 ? 99999999 : grade === 4 ? 9999999 : grade === 3 ? 99999 : grade === 2 ? 999 : 20
   const nums = new Set()
   while (nums.size < CHIPS_PER_ROUND) nums.add(randInt(0, max))
   const arr = [...nums]

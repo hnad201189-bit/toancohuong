@@ -3,27 +3,20 @@ import { randInt, shuffle } from './gameUtils'
 
 const ROUNDS = 8
 
+function getMax(harder, grade) {
+  // Lớp 1: 0-40. Lớp 2: phạm vi 1000. Lớp 3: phạm vi 100 000.
+  // Lớp 4: phạm vi lớp triệu. Lớp 5: ôn tập tổng hợp, rộng hơn lớp 4.
+  if (grade >= 5) return harder ? 100000000 : 20000000
+  if (grade === 4) return harder ? 10000000 : 2000000
+  if (grade === 3) return harder ? 100000 : 20000
+  if (grade === 2) return harder ? 1000 : 200
+  return harder ? 40 : 20
+}
+
 function makeRound(round, grade = 1) {
-  // Lớp 1: 4-5 số trong 0-40. Lớp 2: 4-6 số trong phạm vi 1000.
-  // Lớp 3: 4-6 số trong phạm vi 100 000. Lớp 4: 4-6 số trong phạm vi lớp triệu.
   const harder = round >= 3
   const count = grade >= 2 ? (harder ? 6 : 4) : harder ? 5 : 4
-  const max =
-    grade >= 4
-      ? harder
-        ? 10000000
-        : 2000000
-      : grade === 3
-        ? harder
-          ? 100000
-          : 20000
-        : grade === 2
-          ? harder
-            ? 1000
-            : 200
-          : harder
-            ? 40
-            : 20
+  const max = getMax(harder, grade)
   const nums = new Set()
   while (nums.size < count) nums.add(randInt(0, max))
   const arr = [...nums]

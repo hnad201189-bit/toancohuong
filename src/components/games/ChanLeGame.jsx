@@ -6,7 +6,9 @@ const ROUNDS = 8
 function getMax(round, grade) {
   // Lớp 1: số nhỏ (0-20 rồi 0-30). Lớp 2: phạm vi 1000 (0-200 rồi 0-999).
   // Lớp 3: phạm vi 100 000 (0-9999 rồi 0-99999). Lớp 4: phạm vi lớp triệu.
-  if (grade >= 4) return round >= 3 ? 9999999 : 999999
+  // Lớp 5: ôn tập tổng hợp, phạm vi rộng hơn lớp 4.
+  if (grade >= 5) return round >= 3 ? 99999999 : 9999999
+  if (grade === 4) return round >= 3 ? 9999999 : 999999
   if (grade === 3) return round >= 3 ? 99999 : 9999
   if (grade === 2) return round >= 3 ? 999 : 200
   return round >= 3 ? 30 : 20

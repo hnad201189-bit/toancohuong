@@ -64,8 +64,20 @@ function makeRoundL4(round) {
   return buildRound(roundedStart, step, Math.max(8, step * 3))
 }
 
+function makeRoundL5(round) {
+  // Lớp 5: bước nhảy tới chục nghìn/trăm nghìn, phạm vi rộng hơn lớp 4 —
+  // khớp mạch "ôn tập tổng hợp số tự nhiên" đầu năm lớp 5.
+  const steps = round >= 5 ? [10000, 100000] : round >= 2 ? [1000, 10000] : [100, 1000]
+  const step = steps[randInt(0, steps.length - 1)]
+  const maxStart = round >= 5 ? 9000000 : round >= 2 ? 900000 : 90000
+  const start = randInt(0, maxStart)
+  const roundedStart = start - (start % step)
+  return buildRound(roundedStart, step, Math.max(8, step * 3))
+}
+
 function makeRound(round, grade = 1) {
-  if (grade >= 4) return makeRoundL4(round)
+  if (grade >= 5) return makeRoundL5(round)
+  if (grade === 4) return makeRoundL4(round)
   if (grade === 3) return makeRoundL3(round)
   return grade === 2 ? makeRoundL2(round) : makeRoundL1(round)
 }

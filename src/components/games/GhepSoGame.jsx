@@ -63,6 +63,22 @@ const FACT_POOL_L4 = [
   { expr: '7 × 11', result: 77 },
   { expr: '15000 − 2384', result: 12616 },
 ]
+// Lớp 5: ôn tập tổng hợp — số tự nhiên lớn hơn nữa, bảng nhân/chia đến 12
+// với thừa số thứ hai lớn hơn (luyện nhân nhẩm số có 2 chữ số).
+const FACT_POOL_L5 = [
+  { expr: '23456 + 17654', result: 41110 },
+  { expr: '90000 − 34567', result: 55433 },
+  { expr: '12 × 15', result: 180 },
+  { expr: '11 × 13', result: 143 },
+  { expr: '156 ÷ 12', result: 13 },
+  { expr: '154 ÷ 11', result: 14 },
+  { expr: '123456 + 87654', result: 211110 },
+  { expr: '100000 − 45678', result: 54322 },
+  { expr: '9 × 13', result: 117 },
+  { expr: '200 ÷ 8', result: 25 },
+  { expr: '15 × 8', result: 120 },
+  { expr: '75000 − 12345', result: 62655 },
+]
 const PAIR_COUNT = 6
 
 function shuffle(arr) {
@@ -75,7 +91,16 @@ function shuffle(arr) {
 }
 
 function makeBoard(grade = 1) {
-  const pool = grade >= 4 ? FACT_POOL_L4 : grade === 3 ? FACT_POOL_L3 : grade === 2 ? FACT_POOL_L2 : FACT_POOL_L1
+  const pool =
+    grade >= 5
+      ? FACT_POOL_L5
+      : grade === 4
+        ? FACT_POOL_L4
+        : grade === 3
+          ? FACT_POOL_L3
+          : grade === 2
+            ? FACT_POOL_L2
+            : FACT_POOL_L1
   const facts = shuffle(pool).slice(0, PAIR_COUNT)
   const exprCards = shuffle(facts.map((f) => ({ id: `e${f.result}`, label: f.expr, result: f.result })))
   const resultCards = shuffle(facts.map((f) => ({ id: `r${f.result}`, label: String(f.result), result: f.result })))

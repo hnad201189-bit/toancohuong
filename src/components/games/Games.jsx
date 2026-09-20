@@ -127,13 +127,15 @@ export default function Games({ onBack, grade = 1 }) {
       <header className="screen__header">
         <h1>🎮 Trò chơi Toán lớp {grade}</h1>
         <p className="screen__subtitle">
-          {grade >= 4
-            ? 'Vừa chơi vừa luyện cộng, trừ, nhân, chia với số tự nhiên lớn (lớp triệu).'
-            : grade === 3
-              ? 'Vừa chơi vừa luyện cộng, trừ, nhân, chia trong phạm vi 100 000.'
-              : grade === 2
-                ? 'Vừa chơi vừa luyện cộng, trừ, nhân, chia trong phạm vi 1000.'
-                : 'Vừa chơi vừa luyện đếm, cộng, trừ trong phạm vi 10.'}
+          {grade >= 5
+            ? 'Vừa chơi vừa ôn tập tổng hợp cộng, trừ, nhân, chia với số tự nhiên lớn.'
+            : grade === 4
+              ? 'Vừa chơi vừa luyện cộng, trừ, nhân, chia với số tự nhiên lớn (lớp triệu).'
+              : grade === 3
+                ? 'Vừa chơi vừa luyện cộng, trừ, nhân, chia trong phạm vi 100 000.'
+                : grade === 2
+                  ? 'Vừa chơi vừa luyện cộng, trừ, nhân, chia trong phạm vi 1000.'
+                  : 'Vừa chơi vừa luyện đếm, cộng, trừ trong phạm vi 10.'}
         </p>
       </header>
 
