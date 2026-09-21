@@ -210,6 +210,13 @@ export const ON_LUYEN_TOPICS_BY_GRADE = {
       desc: 'Đủ 23 bài học song ngữ Anh–Việt theo khuôn 5 chuyên đề TIMO/HKIMO: từ vựng, ví dụ mẫu, luyện tập phân hoá và câu luyện đề phong cách thi thật.',
       href: '/tai-lieu/timo-hkimo-lop-6.html',
     },
+    {
+      id: 'toan-chuyen-lop-6',
+      icon: '🎓',
+      name: 'Toán Chuyên',
+      desc: 'Ước chung lớn nhất, bội chung nhỏ nhất và thuật toán Euclide ở độ sâu luyện thi chuyên.',
+      href: '/tai-lieu/toan-chuyen-lop-6.html',
+    },
   ],
   11: [
     {
