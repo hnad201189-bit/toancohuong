@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán Đố Vui Dân Gian Toán 2</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #fbf5e9;
+    --bg-alt: #f3e6cd;
+    --paper: #fffdf7;
+    --ink: #3c2c1a;
+    --ink-soft: #7c6248;
+    --ink-faint: #ab9578;
+    --accent: #b1490d;
+    --accent-soft: #f4decb;
+    --accent-warm: #c6910f;
+    --accent-warm-soft: #f7ecce;
+    --line: #ead9b8;
+    --line-strong: #d9bf90;
+    --shadow: 0 1px 2px rgba(80, 50, 10, 0.07), 0 6px 20px rgba(80, 50, 10, 0.08);
+    --radius: 17px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #201a11;
+    --bg-alt: #2a2216;
+    --paper: #241d13;
+    --ink: #f6ecda;
+    --ink-soft: #d3bd9b;
+    --ink-faint: #9c8867;
+    --accent: #e08a4e;
+    --accent-soft: #3c2a17;
+    --accent-warm: #e2bb51;
+    --accent-warm-soft: #3a2f13;
+    --line: #3d3220;
+    --line-strong: #53432a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.42);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #201a11;
+      --bg-alt: #2a2216;
+      --paper: #241d13;
+      --ink: #f6ecda;
+      --ink-soft: #d3bd9b;
+      --ink-faint: #9c8867;
+      --accent: #e08a4e;
+      --accent-soft: #3c2a17;
+      --accent-warm: #e2bb51;
+      --accent-warm-soft: #3a2f13;
+      --line: #3d3220;
+      --line-strong: #53432a;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.42);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 30px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(28px, 4.4vw, 40px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17.5px;
+    margin: 0;
+  }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(22px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 70ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 22px 26px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .problem .qtext .concrete { font-size: 24px; letter-spacing: 3px; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 20px 26px 24px;
+    background: var(--paper);
+    font-size: 15.5px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 30px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 13px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 17px 19px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 chặng đố vui</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🧺</span>Đố vui chợ quê</a></li>
+      <li><a href="#sec2"><span class="n">🐓</span>Đố vui đàn gà vịt</a></li>
+      <li><a href="#sec3"><span class="n">🌳</span>Đố vui vườn cây</a></li>
+      <li><a href="#sec4"><span class="n">🎵</span>Đố vui đồng dao</a></li>
+      <li><a href="#meo-choi-do-vui"><span class="n">🎈</span>Mẹo chơi cùng con</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 2</div>
+      <h1>Toán Đố Vui Dân Gian Toán 2</h1>
+      <p class="lede">Những câu đố vui rặt chất dân gian — <b>chợ quê</b>, <b>đàn gà vịt</b>, <b>vườn cây trái</b> và <b>đồng dao đếm nhịp</b> — gói trong 4 chặng, mỗi chặng 2 bài đố, giúp con vừa chơi vừa luyện chắc phép cộng trừ có nhớ và bảng nhân chia 2–5 trong phạm vi 1000.</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Toán Đố Vui Dân Gian Toán 2</b> là tài liệu tự biên soạn mới hoàn toàn, chỉ lấy cảm hứng từ không khí vui nhộn của những câu "toán đố dân gian" và đồng dao quen thuộc — chợ quê, đàn gà vịt, vườn cây trái — chứ không sao chép nội dung từ bất kỳ cuốn sách hay đề thi cụ thể nào. Mỗi bài đố có nút <b>"Đổi bài tương tự"</b> để con luyện lại đúng dạng đó với số liệu khác — hãy dùng nút <b>"Gợi ý"</b> trước khi xem đáp số, để con tự suy nghĩ từng bước một nhé!</p>
+    </div>
+
+    <!-- ================= SECTION 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🧺</span>
+        <h2 class="topic-title"><span class="topic-num">Chặng 1</span>Đố vui ở chợ quê</h2>
+      </div>
+      <p class="topic-intro">Phiên chợ quê họp từ tờ mờ sáng, tiếng rao hàng rộn rã khắp lối. Hai bài đố dưới đây đưa con dạo một vòng chợ quê — luyện <span class="kw">cộng, trừ có nhớ</span> qua chuyện mua bán, đổi tiền thối lại cho khách.</p>
+
+      <div class="problem" data-pool="s1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Phiên chợ quê hôm nay đông vui, bà mang <b>rổ trứng gà</b> ra chợ bán. Buổi sáng bà bán được <b>235</b> quả, buổi chiều bán thêm được <b>148</b> quả nữa.</p>
+          <p>Hỏi cả ngày bà bán được tất cả bao nhiêu quả trứng?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đề bài hỏi "cả ngày" — nghĩa là cộng số trứng bán được của cả hai buổi: 235 + 148.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng hàng đơn vị: 5 + 8 = 13, viết 3 nhớ 1.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng hàng chục: 3 + 4 = 7, cộng thêm 1 đã nhớ = 8.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Cộng hàng trăm: 2 + 1 = 3.</p></div></div>
+          <p class="answer hidden">Cả ngày bà bán được tất cả <b>383</b> quả trứng (235 + 148 = 383).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Cu Tí cầm tờ <b>5000 đồng</b> tung tăng ra chợ. Cu Tí mua một bó rau muống giá <b>1500 đồng</b> và một quả mướp giá <b>2500 đồng</b>.</p>
+          <p>Hỏi bà bán hàng phải thối lại cho Cu Tí bao nhiêu tiền?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài này có <b>2 bước</b>: trước tiên tính tổng số tiền Cu Tí đã mua, sau đó mới tính tiền thối lại.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (cộng):</b> Tổng tiền mua rau và mướp là 1500 + 2500 = 4000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (trừ):</b> Bà thối lại cho Cu Tí 5000 − 4000 = 1000 đồng.</p></div></div>
+          <p class="answer hidden">Bà bán hàng thối lại cho Cu Tí <b>1000 đồng</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">🐓</span>
+        <h2 class="topic-title"><span class="topic-num">Chặng 2</span>Đố vui đàn gà vịt</h2>
+      </div>
+      <p class="topic-intro">Sân nhà rộn tiếng gà gáy vịt kêu mỗi sớm mai. Hai bài đố dưới đây rủ con <span class="kw">đếm, so sánh</span> và <span class="kw">chia đều</span> đàn gà vịt sân sau.</p>
+
+      <div class="problem" data-pool="s2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Đồng dao có câu "Con gà cục tác lá chanh..." — sân nhà bà nuôi <b>47</b> con gà 🐔 và <b>38</b> con vịt 🦆.</p>
+          <p>Hỏi đàn gà nhà bà nhiều hơn đàn vịt bao nhiêu con?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tóm tắt đề: nhà bà có 47 con gà, 38 con vịt. Câu hỏi là: gà nhiều hơn vịt bao nhiêu con?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Chọn phép tính: đề hỏi "nhiều hơn" — lấy số lớn <b>trừ</b> số bé: 47 − 38.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Trừ hàng đơn vị: 7 không trừ được 8, mượn 1 chục: 17 − 8 = 9.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Trừ hàng chục: chục của 47 còn lại 3 (đã mượn 1), 3 − 3 = 0.</p></div></div>
+          <p class="answer hidden">Đàn gà nhiều hơn đàn vịt <b>9</b> con (47 − 38 = 9).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Đàn vịt <b>36</b> con 🦆 lạch bạch rủ nhau ra ao tắm mát. Tắm xong, bà muốn lùa vịt vào chia đều <b>4</b> chuồng nhỏ để nghỉ đêm.</p>
+          <p>Hỏi mỗi chuồng có bao nhiêu con vịt?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đề bài yêu cầu "chia đều" — nghĩa là dùng phép <b>chia</b>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Viết phép tính: 36 : 4 (36 con vịt chia cho 4 chuồng).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Nhớ lại bảng nhân 4: 4 × 9 = 36, nên 36 : 4 = 9.</p></div></div>
+          <p class="answer hidden">Mỗi chuồng có <b>9</b> con vịt.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">🌳</span>
+        <h2 class="topic-title"><span class="topic-num">Chặng 3</span>Đố vui vườn cây</h2>
+      </div>
+      <p class="topic-intro">Vườn nhà ông bà sai trĩu quả mỗi mùa thu hoạch. Hai bài đố dưới đây theo chân con hái quả, đếm quả và <span class="kw">chia đều</span> vào giỏ mang ra chợ, luyện cả phép <span class="kw">nhân lẫn phép chia</span>.</p>
+
+      <div class="problem" data-pool="s3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Mỗi cây bưởi trong vườn ông cho đúng <b>4</b> quả: 🍊🍊🍊🍊. Vườn ông có <b>7</b> cây bưởi sai quả như thế.</p>
+          <p>Hỏi cả vườn ông thu hoạch được bao nhiêu quả bưởi?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi cây cho 4 quả, có 7 cây giống nhau — đây là phép <b>cộng các số bằng nhau</b>, nên dùng phép <b>nhân</b>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Viết phép tính: 4 × 7 (4 quả, lặp lại 7 lần).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đọc bảng nhân 4: 4 × 7 = 28.</p></div></div>
+          <p class="answer hidden">Cả vườn ông thu hoạch được <b>28</b> quả bưởi.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Bà hái được <b>42</b> quả ổi 🍈, đem chia đều vào <b>6</b> rổ để gánh ra chợ bán. Sắp đi thì bà đổi ý, giữ lại <b>2</b> rổ để dành nhà ăn.</p>
+          <p>Hỏi bà mang ra chợ bao nhiêu quả ổi?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài này có <b>2 bước</b>: trước tiên tìm mỗi rổ có bao nhiêu quả ổi, sau đó mới tính số quả mang ra chợ.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (chia):</b> Mỗi rổ có 42 : 6 = 7 quả ổi.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2:</b> Số rổ mang ra chợ là 6 − 2 = 4 rổ.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Bước 3 (nhân):</b> Số quả ổi mang ra chợ là 4 × 7 = 28 quả.</p></div></div>
+          <p class="answer hidden">Bà mang ra chợ <b>28</b> quả ổi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🎵</span>
+        <h2 class="topic-title"><span class="topic-num">Chặng 4</span>Đố vui đồng dao</h2>
+      </div>
+      <p class="topic-intro">Đồng dao là những câu vè quen thuộc trẻ con hay hát khi nắm tay chơi vòng tròn. Hai bài đố dưới đây mượn nhịp điệu đồng dao để luyện phép <span class="kw">chia</span> và phép <span class="kw">cộng có nhớ</span>.</p>
+
+      <div class="problem" data-pool="s4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>"Nu na nu nống, đánh trống phất cờ..." — các bạn nhỏ ngồi thành vòng tròn chơi đồng dao. Vòng tròn có <b>24</b> bạn, cô giáo chia đều thành <b>4</b> nhóm để chơi cho vui.</p>
+          <p>Hỏi mỗi nhóm có bao nhiêu bạn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đề bài yêu cầu "chia đều" — nghĩa là dùng phép <b>chia</b>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Viết phép tính: 24 : 4 (24 bạn chia cho 4 nhóm).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Nhớ lại bảng nhân 4: 4 × 6 = 24, nên 24 : 4 = 6.</p></div></div>
+          <p class="answer hidden">Mỗi nhóm có <b>6</b> bạn.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Bài đồng dao "Chi chi chành chành" đang chơi vui thì có thêm bạn mới. Lượt đầu có <b>16</b> bạn nắm tay nhau thành vòng, lượt sau có thêm <b>9</b> bạn chạy vào chơi cùng.</p>
+          <p>Hỏi lượt sau vòng tròn có tất cả bao nhiêu bạn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Có từ "thêm" và hỏi "tất cả" — đây là dạng toán thêm vào, nên ta dùng phép <b>cộng</b>: 16 + 9.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng hàng đơn vị: 6 + 9 = 15, viết 5 nhớ 1.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng hàng chục: 1 + 0 = 1, cộng thêm 1 đã nhớ = 2.</p></div></div>
+          <p class="answer hidden">Lượt sau vòng tròn có tất cả <b>25</b> bạn (16 + 9 = 25).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-choi-do-vui">
+      <div class="topic-head">
+        <span class="topic-badge">🎈</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo chơi đố vui dân gian cùng con</h2>
+      </div>
+      <p class="topic-intro">5 gợi ý ngắn gọn để biến giờ ôn tập thành một trò chơi đố vui nhẹ nhàng, giúp con thấy toán học gần gũi như những câu đồng dao vẫn hát mỗi ngày.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đọc to như đọc vè.</b> Khuyến khích con đọc đề bài to, ngân nga như đọc đồng dao — nhịp điệu vui tai giúp con nhớ số liệu tốt hơn.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Dùng "Gợi ý" trước khi xem đáp số.</b> Mỗi lần bấm chỉ hiện thêm 1 bước — để con tự nghĩ tiếp bước sau, thay vì đọc hết lời giải cùng lúc.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Luyện lại bằng bài tương tự.</b> Dùng nút "Đổi bài tương tự" để làm lại đúng dạng bài với số liệu khác, giúp con hiểu cách làm chứ không học thuộc đáp số.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Đếm bằng que tính hoặc ngón tay.</b> Với các bài đếm gà vịt, quả cây, hãy để con dùng que tính hay hạt đậu để hình dung dễ hơn trước khi viết phép tính.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">5</span>
+          <p><b>Biến ôn tập thành trò chơi.</b> Cả nhà cùng thi xem ai tính nhanh và đúng — không khí vui vẻ giúp con thích toán hơn là sợ toán.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 2, lấy cảm hứng từ không khí toán đố dân gian và đồng dao. Toàn bộ bài tập, số liệu và lời giải trong tài liệu này là nội dung mới do đội ngũ tự viết, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    's1-1': [{
+      qHtml: '<p>Phiên chợ quê hôm nay đông vui, mẹ mang <b>thúng rau</b> ra chợ bán. Buổi sáng mẹ bán được <b>326</b> mớ rau, buổi chiều bán thêm được <b>157</b> mớ nữa.</p><p>Hỏi cả ngày mẹ bán được tất cả bao nhiêu mớ rau?</p>',
+      steps: [
+        '<p>Đề bài hỏi "cả ngày" — nghĩa là cộng số rau bán được của cả hai buổi: 326 + 157.</p>',
+        '<p>Cộng hàng đơn vị: 6 + 7 = 13, viết 3 nhớ 1.</p>',
+        '<p>Cộng hàng chục: 2 + 5 = 7, cộng thêm 1 đã nhớ = 8.</p>',
+        '<p>Cộng hàng trăm: 3 + 1 = 4.</p>'
+      ],
+      answerHtml: 'Cả ngày mẹ bán được tất cả <b>483</b> mớ rau (326 + 157 = 483).'
+    }],
+    's1-2': [{
+      qHtml: '<p>Cái Na cầm tờ <b>5000 đồng</b> tung tăng ra chợ. Cái Na mua một bó hoa giá <b>1500 đồng</b> và một chục cam giá <b>2000 đồng</b>.</p><p>Hỏi bà bán hàng phải thối lại cho Cái Na bao nhiêu tiền?</p>',
+      steps: [
+        '<p>Bài này có <b>2 bước</b>: trước tiên tính tổng số tiền Cái Na đã mua, sau đó mới tính tiền thối lại.</p>',
+        '<p><b>Bước 1 (cộng):</b> Tổng tiền mua hoa và cam là 1500 + 2000 = 3500 đồng.</p>',
+        '<p><b>Bước 2 (trừ):</b> Bà thối lại cho Cái Na 5000 − 3500 = 1500 đồng.</p>'
+      ],
+      answerHtml: 'Bà bán hàng thối lại cho Cái Na <b>1500 đồng</b>.'
+    }],
+    's2-1': [{
+      qHtml: '<p>Đồng dao có câu "Con vịt xoè ra hai cái cánh..." — sân nhà ông nuôi <b>56</b> con vịt 🦆 và <b>29</b> con gà 🐔.</p><p>Hỏi đàn vịt nhà ông nhiều hơn đàn gà bao nhiêu con?</p>',
+      steps: [
+        '<p>Tóm tắt đề: nhà ông có 56 con vịt, 29 con gà. Câu hỏi là: vịt nhiều hơn gà bao nhiêu con?</p>',
+        '<p>Chọn phép tính: đề hỏi "nhiều hơn" — lấy số lớn <b>trừ</b> số bé: 56 − 29.</p>',
+        '<p>Trừ hàng đơn vị: 6 không trừ được 9, mượn 1 chục: 16 − 9 = 7.</p>',
+        '<p>Trừ hàng chục: chục của 56 còn lại 4 (đã mượn 1), 4 − 2 = 2.</p>'
+      ],
+      answerHtml: 'Đàn vịt nhiều hơn đàn gà <b>27</b> con (56 − 29 = 27).'
+    }],
+    's2-2': [{
+      qHtml: '<p>Đàn gà <b>30</b> con 🐔 túa ra vườn kiếm ăn cả buổi sáng. Đến tối, ông muốn lùa gà vào chia đều <b>5</b> chuồng nhỏ để nghỉ đêm.</p><p>Hỏi mỗi chuồng có bao nhiêu con gà?</p>',
+      steps: [
+        '<p>Đề bài yêu cầu "chia đều" — nghĩa là dùng phép <b>chia</b>.</p>',
+        '<p>Viết phép tính: 30 : 5 (30 con gà chia cho 5 chuồng).</p>',
+        '<p>Nhớ lại bảng nhân 5: 5 × 6 = 30, nên 30 : 5 = 6.</p>'
+      ],
+      answerHtml: 'Mỗi chuồng có <b>6</b> con gà.'
+    }],
+    's3-1': [{
+      qHtml: '<p>Mỗi cây cam trong vườn bà cho đúng <b>5</b> quả: 🍊🍊🍊🍊🍊. Vườn bà có <b>6</b> cây cam sai quả như thế.</p><p>Hỏi cả vườn bà thu hoạch được bao nhiêu quả cam?</p>',
+      steps: [
+        '<p>Mỗi cây cho 5 quả, có 6 cây giống nhau — đây là phép <b>cộng các số bằng nhau</b>, nên dùng phép <b>nhân</b>.</p>',
+        '<p>Viết phép tính: 5 × 6 (5 quả, lặp lại 6 lần).</p>',
+        '<p>Đọc bảng nhân 5: 5 × 6 = 30.</p>'
+      ],
+      answerHtml: 'Cả vườn bà thu hoạch được <b>30</b> quả cam.'
+    }],
+    's3-2': [{
+      qHtml: '<p>Ông hái được <b>40</b> quả xoài 🥭, đem chia đều vào <b>5</b> giỏ để mang biếu hàng xóm. Sắp đi thì ông đổi ý, giữ lại <b>2</b> giỏ để dành nhà ăn.</p><p>Hỏi ông đem biếu hàng xóm bao nhiêu quả xoài?</p>',
+      steps: [
+        '<p>Bài này có <b>2 bước</b>: trước tiên tìm mỗi giỏ có bao nhiêu quả xoài, sau đó mới tính số quả đem biếu.</p>',
+        '<p><b>Bước 1 (chia):</b> Mỗi giỏ có 40 : 5 = 8 quả xoài.</p>',
+        '<p><b>Bước 2:</b> Số giỏ đem biếu là 5 − 2 = 3 giỏ.</p>',
+        '<p><b>Bước 3 (nhân):</b> Số quả xoài đem biếu là 3 × 8 = 24 quả.</p>'
+      ],
+      answerHtml: 'Ông đem biếu hàng xóm <b>24</b> quả xoài.'
+    }],
+    's4-1': [{
+      qHtml: '<p>"Dung dăng dung dẻ, dắt trẻ đi chơi..." — vòng tròn đồng dao có <b>16</b> bạn, cô giáo chia đều thành <b>4</b> nhóm để chơi cho vui.</p><p>Hỏi mỗi nhóm có bao nhiêu bạn?</p>',
+      steps: [
+        '<p>Đề bài yêu cầu "chia đều" — nghĩa là dùng phép <b>chia</b>.</p>',
+        '<p>Viết phép tính: 16 : 4 (16 bạn chia cho 4 nhóm).</p>',
+        '<p>Nhớ lại bảng nhân 4: 4 × 4 = 16, nên 16 : 4 = 4.</p>'
+      ],
+      answerHtml: 'Mỗi nhóm có <b>4</b> bạn.'
+    }],
+    's4-2': [{
+      qHtml: '<p>Bài đồng dao "Rồng rắn lên mây" đang chơi vui thì có thêm bạn mới. Lượt đầu có <b>27</b> bạn nối đuôi nhau thành hàng, lượt sau có thêm <b>8</b> bạn chạy vào chơi cùng.</p><p>Hỏi lượt sau hàng có tất cả bao nhiêu bạn?</p>',
+      steps: [
+        '<p>Có từ "thêm" và hỏi "tất cả" — đây là dạng toán thêm vào, nên ta dùng phép <b>cộng</b>: 27 + 8.</p>',
+        '<p>Cộng hàng đơn vị: 7 + 8 = 15, viết 5 nhớ 1.</p>',
+        '<p>Cộng hàng chục: 2 + 0 = 2, cộng thêm 1 đã nhớ = 3.</p>'
+      ],
+      answerHtml: 'Lượt sau hàng có tất cả <b>35</b> bạn (27 + 8 = 35).'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('dvdg-toan2-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('dvdg-toan2-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

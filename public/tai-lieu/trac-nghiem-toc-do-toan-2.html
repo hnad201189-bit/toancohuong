@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trắc Nghiệm Tốc Độ Toán 2</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f6f4ff;
+    --bg-alt: #ece7fd;
+    --paper: #ffffff;
+    --ink: #211b3a;
+    --ink-soft: #5b5480;
+    --ink-faint: #8d86ab;
+    --accent: #5b3df6;
+    --accent-soft: #e7e3fe;
+    --accent-warm: #ff8a3d;
+    --accent-warm-soft: #ffe8d6;
+    --line: #e1ddf7;
+    --line-strong: #c7c0ef;
+    --shadow: 0 1px 2px rgba(33, 27, 58, 0.06), 0 6px 20px rgba(33, 27, 58, 0.08);
+    --radius: 18px;
+    --sans: "Outfit", "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #120f24;
+    --bg-alt: #181433;
+    --paper: #1a1638;
+    --ink: #eeecfb;
+    --ink-soft: #bab3e0;
+    --ink-faint: #8981b3;
+    --accent: #9b86ff;
+    --accent-soft: #2c2456;
+    --accent-warm: #ffab63;
+    --accent-warm-soft: #3a2712;
+    --line: #332a5e;
+    --line-strong: #473b7d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #120f24;
+      --bg-alt: #181433;
+      --paper: #1a1638;
+      --ink: #eeecfb;
+      --ink-soft: #bab3e0;
+      --ink-faint: #8981b3;
+      --accent: #9b86ff;
+      --accent-soft: #2c2456;
+      --accent-warm: #ffab63;
+      --accent-warm-soft: #3a2712;
+      --line: #332a5e;
+      --line-strong: #473b7d;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 20px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(28px, 4.4vw, 40px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17.5px;
+    margin: 0;
+  }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0 34px;
+  }
+  .stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--line-strong);
+  }
+  .stat-chip.warm { background: var(--accent-warm-soft); color: var(--accent-warm); }
+  .stat-chip b { font-weight: 800; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(22px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 70ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 22px 26px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .problem .qtext .concrete { font-size: 22px; letter-spacing: 2px; }
+
+  /* inline A/B/C/D option chips, shown as part of qtext */
+  .opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0 4px;
+  }
+  @media (max-width: 460px) {
+    .opts { grid-template-columns: 1fr; }
+  }
+  .opts .opt {
+    font-size: 15px;
+    padding: 9px 13px;
+    border-radius: 10px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .opts .opt b { color: var(--accent); font-family: var(--mono); margin-right: 4px; }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 20px 26px 24px;
+    background: var(--paper);
+    font-size: 15.5px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 30px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 13px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 17px 19px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 mảng kiến thức</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔢</span>Số và phép tính</a></li>
+      <li><a href="#sec2"><span class="n">✖️</span>Nhân, chia</a></li>
+      <li><a href="#sec3"><span class="n">📐</span>Hình học, đo lường</a></li>
+      <li><a href="#sec4"><span class="n">📊</span>Thống kê – xác suất</a></li>
+      <li><a href="#meo-lam-bai"><span class="n">⚡</span>Mẹo làm bài nhanh</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">⚡ Ôn luyện tốc độ · Toán lớp 2</div>
+      <h1>Trắc Nghiệm Tốc Độ Toán 2</h1>
+      <p class="lede">Bộ câu hỏi trắc nghiệm nhanh, 4 phương án A/B/C/D, đi qua đủ <b>4 mảng kiến thức</b> của Toán lớp 2 — Số và phép tính, Nhân chia, Hình học &amp; đo lường, Thống kê – xác suất. Đọc thật nhanh, chọn thật chắc — mỗi câu chỉ có đúng 1 đáp án!</p>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-chip">⚡ <b>8</b> câu gốc</span>
+      <span class="stat-chip">🔄 <b>8</b> biến thể</span>
+      <span class="stat-chip warm">🎯 <b>16</b> lượt luyện</span>
+      <span class="stat-chip">🅰️🅱️ 4 phương án / câu</span>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Trắc Nghiệm Tốc Độ Toán 2</b> là tài liệu ôn tập trắc nghiệm do đội ngũ tự biên soạn mới hoàn toàn — toàn bộ câu hỏi, số liệu và lời giải trong bài đều là nội dung gốc, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào. Mỗi câu có nút <b>"Đổi câu tương tự"</b> để con luyện lại đúng dạng đó với số liệu khác — hãy dùng nút <b>"Gợi ý"</b> trước khi xem đáp số, để con tự suy nghĩ rồi mới chọn đáp án nhé!</p>
+    </div>
+
+    <!-- ================= SECTION 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Mảng kiến thức 1</span>Số và phép tính</h2>
+      </div>
+      <p class="topic-intro">Ôn nhanh cách <span class="kw">đọc, viết số</span> theo hàng chục — đơn vị, cùng <span class="kw">cộng, trừ có nhớ</span> trong phạm vi 100. Hai câu dưới đây rèn phản xạ đọc số và tính nhẩm nhanh, mỗi câu 4 phương án — chọn đúng ngay từ lần đọc đầu tiên!</p>
+
+      <div class="problem" data-pool="s1-1" data-qid="Câu 1.1">
+        <div class="q"><span class="qid">Câu 1.1</span><div class="qtext">
+          <p>Số gồm <b>5 chục</b> và <b>8 đơn vị</b> là số nào?</p>
+          <div class="opts">
+            <span class="opt"><b>A.</b> 85</span>
+            <span class="opt"><b>B.</b> 58</span>
+            <span class="opt"><b>C.</b> 508</span>
+            <span class="opt"><b>D.</b> 580</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>5 chục nghĩa là chữ số hàng chục là 5, tức là 5 × 10 = 50.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>8 đơn vị nghĩa là chữ số hàng đơn vị là 8, cộng thêm vào: 50 + 8 = 58.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>So khớp 58 với 4 phương án: chỉ có phương án <b>B</b> ghi đúng số 58 — các phương án còn lại hoặc đảo ngược chữ số (A: 85) hoặc thêm nhầm số 0 (C, D).</p></div></div>
+          <p class="answer hidden">Đáp án đúng là <b>B. 58</b> (5 chục + 8 đơn vị = 58).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s1-2" data-qid="Câu 1.2">
+        <div class="q"><span class="qid">Câu 1.2</span><div class="qtext">
+          <p>Tính: <b>56 + 27</b> = ?</p>
+          <div class="opts">
+            <span class="opt"><b>A.</b> 83</span>
+            <span class="opt"><b>B.</b> 73</span>
+            <span class="opt"><b>C.</b> 82</span>
+            <span class="opt"><b>D.</b> 93</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đặt tính rồi cộng từ hàng đơn vị: 6 + 7 = 13, viết 3 nhớ 1.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng hàng chục: 5 + 2 = 7, cộng thêm 1 đã nhớ = 8.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Ghép lại ta được 83 — so khớp với 4 phương án, chỉ có phương án <b>A</b> đúng.</p></div></div>
+          <p class="answer hidden">Đáp án đúng là <b>A. 83</b> (56 + 27 = 83).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">✖️</span>
+        <h2 class="topic-title"><span class="topic-num">Mảng kiến thức 2</span>Phép nhân, phép chia</h2>
+      </div>
+      <p class="topic-intro">Ôn nhanh <span class="kw">bảng nhân, bảng chia 2, 3, 4, 5</span> qua các tình huống quen thuộc. Hai câu dưới đây rèn phản xạ nhận ra "nhân" hay "chia" chỉ từ vài từ khóa trong đề — càng luyện nhiều càng nhanh!</p>
+
+      <div class="problem" data-pool="s2-1" data-qid="Câu 2.1">
+        <div class="q"><span class="qid">Câu 2.1</span><div class="qtext">
+          <p>Mỗi túi có <b>5</b> viên bi: 🔵🔵🔵🔵🔵.</p>
+          <p>Hỏi <b>4</b> túi như thế có tất cả bao nhiêu viên bi?</p>
+          <div class="opts">
+            <span class="opt"><b>A.</b> 9</span>
+            <span class="opt"><b>B.</b> 20</span>
+            <span class="opt"><b>C.</b> 24</span>
+            <span class="opt"><b>D.</b> 15</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi túi có 5 viên, có 4 túi giống nhau — đây là phép cộng các số bằng nhau, nên dùng phép <b>nhân</b>: 5 × 4.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đọc bảng nhân 5: 5 × 4 = 20.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>So khớp 20 với 4 phương án: chỉ có phương án <b>B</b> đúng.</p></div></div>
+          <p class="answer hidden">Đáp án đúng là <b>B. 20</b> viên bi (5 × 4 = 20).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s2-2" data-qid="Câu 2.2">
+        <div class="q"><span class="qid">Câu 2.2</span><div class="qtext">
+          <p>Có <b>14</b> cái bánh, chia đều cho <b>2</b> bạn.</p>
+          <p>Hỏi mỗi bạn được bao nhiêu cái bánh?</p>
+          <div class="opts">
+            <span class="opt"><b>A.</b> 5</span>
+            <span class="opt"><b>B.</b> 7</span>
+            <span class="opt"><b>C.</b> 6</span>
+            <span class="opt"><b>D.</b> 8</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đề bài yêu cầu "chia đều" — nghĩa là dùng phép <b>chia</b>: 14 : 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đọc bảng chia 2 (hoặc nghĩ ngược từ bảng nhân 2: 2 × 7 = 14, nên 14 : 2 = 7).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>So khớp 7 với 4 phương án: chỉ có phương án <b>B</b> đúng.</p></div></div>
+          <p class="answer hidden">Đáp án đúng là <b>B. 7</b> cái bánh (14 : 2 = 7).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">📐</span>
+        <h2 class="topic-title"><span class="topic-num">Mảng kiến thức 3</span>Hình học và đo lường</h2>
+      </div>
+      <p class="topic-intro">Ôn nhanh cách nhận biết <span class="kw">hình, khối</span> quen thuộc và <span class="kw">đổi đơn vị đo độ dài</span> (m, cm). Hai câu dưới đây kiểm tra phản xạ nhận diện đặc điểm hình/khối và đổi đơn vị thật nhanh.</p>
+
+      <div class="problem" data-pool="s3-1" data-qid="Câu 3.1">
+        <div class="q"><span class="qid">Câu 3.1</span><div class="qtext">
+          <p>Hình nào dưới đây có <b>4 cạnh dài bằng nhau</b> và <b>4 góc đều là góc vuông</b>?</p>
+          <div class="opts">
+            <span class="opt"><b>A.</b> Hình chữ nhật</span>
+            <span class="opt"><b>B.</b> Hình tam giác</span>
+            <span class="opt"><b>C.</b> Hình vuông</span>
+            <span class="opt"><b>D.</b> Hình tròn</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hình chữ nhật có 4 góc vuông nhưng chỉ có 2 cặp cạnh đối bằng nhau, không phải cả 4 cạnh bằng nhau — chưa đúng yêu cầu đề bài.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hình tam giác chỉ có 3 cạnh, hình tròn không có cạnh và góc nào — cả hai đều không phù hợp.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hình có đúng 4 cạnh bằng nhau và 4 góc vuông chính là hình vuông — so khớp với 4 phương án, chỉ có phương án <b>C</b> đúng.</p></div></div>
+          <p class="answer hidden">Đáp án đúng là <b>C. Hình vuông</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s3-2" data-qid="Câu 3.2">
+        <div class="q"><span class="qid">Câu 3.2</span><div class="qtext">
+          <p>Băng giấy dài <b>1m 20cm</b>.</p>
+          <p>Hỏi đổi ra xăng-ti-mét thì băng giấy dài bao nhiêu?</p>
+          <div class="opts">
+            <span class="opt"><b>A.</b> 12cm</span>
+            <span class="opt"><b>B.</b> 102cm</span>
+            <span class="opt"><b>C.</b> 120cm</span>
+            <span class="opt"><b>D.</b> 20cm</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại: 1m = 100cm.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Băng giấy dài 1m 20cm, tức là 100cm + 20cm.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 100 + 20 = 120cm — so khớp với 4 phương án, chỉ có phương án <b>C</b> đúng.</p></div></div>
+          <p class="answer hidden">Đáp án đúng là <b>C. 120cm</b> (1m 20cm = 100cm + 20cm = 120cm).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">📊</span>
+        <h2 class="topic-title"><span class="topic-num">Mảng kiến thức 4</span>Một số yếu tố thống kê — xác suất</h2>
+      </div>
+      <p class="topic-intro">Ôn nhanh cách <span class="kw">đọc biểu đồ tranh</span> đơn giản và nhận biết khả năng xảy ra: <span class="kw">chắc chắn, có thể, không thể</span>. Hai câu dưới đây rèn phản xạ đếm nhanh và suy luận nhanh — không cần tính toán phức tạp.</p>
+
+      <div class="problem" data-pool="s4-1" data-qid="Câu 4.1">
+        <div class="q"><span class="qid">Câu 4.1</span><div class="qtext">
+          <p>Biểu đồ tranh cho biết số bông hoa mỗi bạn hái được:</p>
+          <p class="concrete">Mai: 🌼🌼🌼🌼🌼<br>Lan: 🌼🌼🌼<br>Hà: 🌼🌼</p>
+          <p>Hỏi Mai và Hà hái được tất cả bao nhiêu bông hoa?</p>
+          <div class="opts">
+            <span class="opt"><b>A.</b> 8</span>
+            <span class="opt"><b>B.</b> 7</span>
+            <span class="opt"><b>C.</b> 5</span>
+            <span class="opt"><b>D.</b> 10</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đọc biểu đồ: mỗi 🌼 tương ứng với 1 bông hoa. Mai có 🌼🌼🌼🌼🌼 — tức 5 bông.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hà có 🌼🌼 — tức 2 bông. Đề bài chỉ hỏi Mai và Hà, không tính Lan.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng lại: 5 + 2 = 7 — so khớp với 4 phương án, chỉ có phương án <b>B</b> đúng.</p></div></div>
+          <p class="answer hidden">Đáp án đúng là <b>B. 7</b> bông hoa (5 + 2 = 7).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s4-2" data-qid="Câu 4.2">
+        <div class="q"><span class="qid">Câu 4.2</span><div class="qtext">
+          <p>Trong hộp chỉ có <b>4 viên bi xanh</b>, không có viên bi màu nào khác.</p>
+          <p>Lấy ngẫu nhiên 1 viên. Khả năng lấy được <b>bi đỏ</b> là:</p>
+          <div class="opts">
+            <span class="opt"><b>A.</b> Chắc chắn</span>
+            <span class="opt"><b>B.</b> Có thể</span>
+            <span class="opt"><b>C.</b> Không thể</span>
+            <span class="opt"><b>D.</b> Không xác định được</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Trong hộp có đúng 4 viên, và tất cả đều là màu xanh.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì trong hộp không hề có viên bi đỏ nào, nên không bao giờ lấy ra được bi đỏ.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Sự việc không bao giờ xảy ra được gọi là "không thể" — so khớp với 4 phương án, chỉ có phương án <b>C</b> đúng.</p></div></div>
+          <p class="answer hidden">Đáp án đúng là <b>C. Không thể</b> (trong hộp không có bi đỏ nào).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-lam-bai">
+      <div class="topic-head">
+        <span class="topic-badge">⚡</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo làm bài trắc nghiệm tốc độ</h2>
+      </div>
+      <p class="topic-intro">4 nguyên tắc ngắn gọn giúp con làm trắc nghiệm nhanh mà vẫn chắc chắn, áp dụng cho cả 4 mảng kiến thức Toán lớp 2.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đọc hết câu hỏi trước khi nhìn đáp án.</b> Đọc lướt cả 4 phương án một lượt để biết mình đang tìm một con số, một tên hình, hay một từ như "chắc chắn/không thể".</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Tính nhẩm trước, so khớp sau.</b> Tự tính ra kết quả của mình trước, rồi mới tìm phương án khớp — tránh bị các phương án gây nhiễu làm rối.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Dùng "Gợi ý" khi bí, không dùng ngay từ đầu.</b> Mỗi lần bấm chỉ hiện thêm 1 bước — để con tự nghĩ tiếp trước khi đọc gợi ý kế tiếp.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Luyện lại bằng câu tương tự.</b> Dùng nút "Đổi câu tương tự" để làm lại đúng dạng câu với số liệu khác, giúp con quen dạng bài chứ không học thuộc đáp án.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện tốc độ Toán lớp 2. Toàn bộ câu hỏi, số liệu và lời giải trong tài liệu này là nội dung mới do đội ngũ tự viết, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    's1-1': [{
+      qHtml: '<p>Số gồm <b>7 chục</b> và <b>3 đơn vị</b> là số nào?</p><div class="opts"><span class="opt"><b>A.</b> 37</span><span class="opt"><b>B.</b> 703</span><span class="opt"><b>C.</b> 73</span><span class="opt"><b>D.</b> 370</span></div>',
+      steps: [
+        '<p>7 chục nghĩa là chữ số hàng chục là 7, tức là 7 × 10 = 70.</p>',
+        '<p>3 đơn vị nghĩa là chữ số hàng đơn vị là 3, cộng thêm vào: 70 + 3 = 73.</p>',
+        '<p>So khớp 73 với 4 phương án: chỉ có phương án <b>C</b> ghi đúng số 73.</p>'
+      ],
+      answerHtml: 'Đáp án đúng là <b>C. 73</b> (7 chục + 3 đơn vị = 73).'
+    }],
+    's1-2': [{
+      qHtml: '<p>Tính: <b>94 − 58</b> = ?</p><div class="opts"><span class="opt"><b>A.</b> 46</span><span class="opt"><b>B.</b> 36</span><span class="opt"><b>C.</b> 26</span><span class="opt"><b>D.</b> 44</span></div>',
+      steps: [
+        '<p>Đặt tính rồi trừ từ hàng đơn vị: 4 không trừ được 8, mượn 1 chục ở hàng chục: 14 − 8 = 6.</p>',
+        '<p>Hàng chục: 9 đã cho mượn 1 nên còn 8, ta tính 8 − 5 = 3.</p>',
+        '<p>Ghép lại ta được 36 — so khớp với 4 phương án, chỉ có phương án <b>B</b> đúng.</p>'
+      ],
+      answerHtml: 'Đáp án đúng là <b>B. 36</b> (94 − 58 = 36).'
+    }],
+    's2-1': [{
+      qHtml: '<p>Mỗi hộp có <b>3</b> quả trứng: 🥚🥚🥚.</p><p>Hỏi <b>6</b> hộp như thế có tất cả bao nhiêu quả trứng?</p><div class="opts"><span class="opt"><b>A.</b> 18</span><span class="opt"><b>B.</b> 9</span><span class="opt"><b>C.</b> 24</span><span class="opt"><b>D.</b> 21</span></div>',
+      steps: [
+        '<p>Mỗi hộp có 3 quả, có 6 hộp giống nhau — dùng phép <b>nhân</b>: 3 × 6.</p>',
+        '<p>Đọc bảng nhân 3: 3 × 6 = 18.</p>',
+        '<p>So khớp 18 với 4 phương án: chỉ có phương án <b>A</b> đúng.</p>'
+      ],
+      answerHtml: 'Đáp án đúng là <b>A. 18</b> quả trứng (3 × 6 = 18).'
+    }],
+    's2-2': [{
+      qHtml: '<p>Có <b>24</b> chiếc kẹo, chia đều cho <b>4</b> bạn.</p><p>Hỏi mỗi bạn được bao nhiêu chiếc kẹo?</p><div class="opts"><span class="opt"><b>A.</b> 5</span><span class="opt"><b>B.</b> 6</span><span class="opt"><b>C.</b> 8</span><span class="opt"><b>D.</b> 4</span></div>',
+      steps: [
+        '<p>"Chia đều" nghĩa là dùng phép <b>chia</b>: 24 : 4.</p>',
+        '<p>Nghĩ từ bảng nhân 4: 4 × 6 = 24, nên 24 : 4 = 6.</p>',
+        '<p>So khớp 6 với 4 phương án: chỉ có phương án <b>B</b> đúng.</p>'
+      ],
+      answerHtml: 'Đáp án đúng là <b>B. 6</b> chiếc kẹo (24 : 4 = 6).'
+    }],
+    's3-1': [{
+      qHtml: '<p>Khối nào dưới đây có <b>mặt hoàn toàn cong</b>, không có cạnh hay góc nào, và lăn được theo mọi hướng?</p><div class="opts"><span class="opt"><b>A.</b> Khối lập phương</span><span class="opt"><b>B.</b> Khối hộp chữ nhật</span><span class="opt"><b>C.</b> Khối trụ</span><span class="opt"><b>D.</b> Khối cầu</span></div>',
+      steps: [
+        '<p>Khối lập phương và khối hộp chữ nhật đều có các mặt phẳng, có cạnh và góc — không lăn tự do theo mọi hướng.</p>',
+        '<p>Khối trụ có hai mặt đáy phẳng (hình tròn), chỉ lăn được khi để nằm nghiêng, không lăn theo mọi hướng.</p>',
+        '<p>Khối có mặt hoàn toàn cong, giống quả bóng, lăn theo mọi hướng chính là khối cầu — so khớp với 4 phương án, chỉ có phương án <b>D</b> đúng.</p>'
+      ],
+      answerHtml: 'Đáp án đúng là <b>D. Khối cầu</b>.'
+    }],
+    's3-2': [{
+      qHtml: '<p>Sợi dây dài <b>2m 35cm</b>.</p><p>Hỏi đổi ra xăng-ti-mét thì sợi dây dài bao nhiêu?</p><div class="opts"><span class="opt"><b>A.</b> 235cm</span><span class="opt"><b>B.</b> 325cm</span><span class="opt"><b>C.</b> 253cm</span><span class="opt"><b>D.</b> 35cm</span></div>',
+      steps: [
+        '<p>Nhớ lại: 1m = 100cm, vậy 2m = 2 × 100 = 200cm.</p>',
+        '<p>Sợi dây dài 2m 35cm, tức là 200cm + 35cm.</p>',
+        '<p>Tính: 200 + 35 = 235cm — so khớp với 4 phương án, chỉ có phương án <b>A</b> đúng.</p>'
+      ],
+      answerHtml: 'Đáp án đúng là <b>A. 235cm</b> (2m 35cm = 200cm + 35cm = 235cm).'
+    }],
+    's4-1': [{
+      qHtml: '<p>Biểu đồ tranh cho biết số ngôi sao mỗi bạn dán được:</p><p class="concrete">Nam: ⭐⭐⭐⭐<br>Đức: ⭐⭐⭐⭐⭐⭐<br>Tùng: ⭐⭐⭐</p><p>Hỏi Đức và Tùng dán được tất cả bao nhiêu ngôi sao?</p><div class="opts"><span class="opt"><b>A.</b> 9</span><span class="opt"><b>B.</b> 10</span><span class="opt"><b>C.</b> 7</span><span class="opt"><b>D.</b> 6</span></div>',
+      steps: [
+        '<p>Đọc biểu đồ: mỗi ⭐ tương ứng với 1 ngôi sao. Đức có ⭐⭐⭐⭐⭐⭐ — tức 6 ngôi sao.</p>',
+        '<p>Tùng có ⭐⭐⭐ — tức 3 ngôi sao. Đề bài chỉ hỏi Đức và Tùng, không tính Nam.</p>',
+        '<p>Cộng lại: 6 + 3 = 9 — so khớp với 4 phương án, chỉ có phương án <b>A</b> đúng.</p>'
+      ],
+      answerHtml: 'Đáp án đúng là <b>A. 9</b> ngôi sao (6 + 3 = 9).'
+    }],
+    's4-2': [{
+      qHtml: '<p>Trong túi chỉ có <b>6 viên bi vàng</b>, không có màu nào khác.</p><p>Lấy ngẫu nhiên 1 viên. Khả năng lấy được <b>bi vàng</b> là:</p><div class="opts"><span class="opt"><b>A.</b> Không thể</span><span class="opt"><b>B.</b> Có thể</span><span class="opt"><b>C.</b> Chắc chắn</span><span class="opt"><b>D.</b> Không xác định được</span></div>',
+      steps: [
+        '<p>Trong túi có đúng 6 viên, và tất cả đều là màu vàng.</p>',
+        '<p>Vì mọi viên bi trong túi đều là màu vàng, nên lấy ra viên nào cũng chắc chắn là màu vàng.</p>',
+        '<p>Sự việc luôn luôn xảy ra được gọi là "chắc chắn" — so khớp với 4 phương án, chỉ có phương án <b>C</b> đúng.</p>'
+      ],
+      answerHtml: 'Đáp án đúng là <b>C. Chắc chắn</b> (mọi viên bi trong túi đều màu vàng).'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('tntd-toan2-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('tntd-toan2-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

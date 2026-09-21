@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài Tập Cuối Tuần Toán 2</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #faf7fd;
+    --bg-alt: #f1eafb;
+    --paper: #ffffff;
+    --ink: #2b2140;
+    --ink-soft: #6b5f88;
+    --ink-faint: #a79bc4;
+    --accent: #7c3aed;
+    --accent-soft: #ede4fd;
+    --accent-warm: #e8590c;
+    --accent-warm-soft: #fde8da;
+    --line: #e6def8;
+    --line-strong: #cdbdf0;
+    --shadow: 0 1px 2px rgba(60, 30, 90, 0.06), 0 6px 20px rgba(60, 30, 90, 0.08);
+    --radius: 17px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #171225;
+    --bg-alt: #1e1830;
+    --paper: #1c1730;
+    --ink: #f1ebfc;
+    --ink-soft: #c2b3e0;
+    --ink-faint: #8a7bab;
+    --accent: #a78bfa;
+    --accent-soft: #2c2350;
+    --accent-warm: #ff9f5a;
+    --accent-warm-soft: #3a2414;
+    --line: #322a4d;
+    --line-strong: #453a67;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #171225;
+      --bg-alt: #1e1830;
+      --paper: #1c1730;
+      --ink: #f1ebfc;
+      --ink-soft: #c2b3e0;
+      --ink-faint: #8a7bab;
+      --accent: #a78bfa;
+      --accent-soft: #2c2350;
+      --accent-warm: #ff9f5a;
+      --accent-warm-soft: #3a2414;
+      --line: #322a4d;
+      --line-strong: #453a67;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.66;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 28px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(27px, 4.2vw, 38px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17px;
+    margin: 0;
+  }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(21px, 2.4vw, 26px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 760px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .problem .qtext .concrete { font-size: 22px; letter-spacing: 3px; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 Tuần ôn luyện</div>
+    <ol>
+      <li><a href="#tuan1"><span class="n">🔢</span>Tuần 1</a></li>
+      <li><a href="#tuan2"><span class="n">🧮</span>Tuần 2</a></li>
+      <li><a href="#tuan3"><span class="n">✖️</span>Tuần 3</a></li>
+      <li><a href="#tuan4"><span class="n">🏆</span>Tuần 4</a></li>
+      <li><a href="#meo-on-tap"><span class="n">🌟</span>Mẹo ôn tập</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 2</div>
+      <h1>Bài Tập Cuối Tuần Toán 2</h1>
+      <p class="lede">4 phiếu bài tập cuối tuần, mỗi phiếu ôn lại đúng những kỹ năng con vừa học trong tuần — độ khó tăng dần từ số đến 1000 và cộng trừ có nhớ, đến nhân chia và bài toán có lời văn nhiều bước.</p>
+    </div>
+
+    <div class="callout note" style="max-width:760px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Bài Tập Cuối Tuần Toán 2</b> gồm 4 phiếu, mỗi phiếu ứng với một tuần ôn luyện, độ khó tăng dần theo đúng tiến trình chương trình Toán lớp 2. Toàn bộ đề bài, số liệu và lời giải trong tài liệu này do đội ngũ tự biên soạn mới hoàn toàn, chỉ lấy cảm hứng về hình thức "phiếu bài tập cuối tuần" quen thuộc trong các bộ sách ôn luyện, không sao chép nội dung từ bất kỳ đầu sách cụ thể nào. Mỗi bài có nút <b>"Đổi bài tương tự"</b> để luyện lại đúng dạng với số liệu khác.</p>
+    </div>
+
+    <!-- ================= TUẦN 1 ================= -->
+    <section class="topic" id="tuan1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Tuần 1</span>Số đến 1000 — Cộng trừ có nhớ trong phạm vi 100</h2>
+      </div>
+      <p class="topic-intro">Tuần đầu tiên, con ôn lại cách <span class="kw">đọc, viết và so sánh số</span> có ba chữ số theo hàng trăm — chục — đơn vị, cùng với phép <span class="kw">cộng, trừ có nhớ</span> trong phạm vi 100 đã học từ học kỳ trước.</p>
+
+      <div class="problem" data-pool="t1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Cho ba số: <b>482</b>, <b>428</b>, <b>824</b>.</p>
+          <p>Hỏi số nào lớn nhất, số nào bé nhất?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>So sánh chữ số hàng trăm: 482 và 428 có hàng trăm là 4, còn 824 có hàng trăm là 8.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>8 trăm lớn hơn 4 trăm, nên 824 là số lớn nhất trong ba số.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>So sánh tiếp 482 và 428 (cùng 4 trăm): hàng chục là 8 và 2, vì 8 > 2 nên 482 > 428.</p></div></div>
+          <p class="answer hidden">Số lớn nhất là <b>824</b>, số bé nhất là <b>428</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="t1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Một cửa hàng có <b>65</b> chiếc mũ. Buổi sáng bán được <b>28</b> chiếc, buổi chiều nhập thêm <b>19</b> chiếc mũ nữa.</p>
+          <p>Hỏi cuối ngày cửa hàng có bao nhiêu chiếc mũ?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài toán có <b>2 bước</b>: bán xong buổi sáng mới nhập thêm buổi chiều, nên ta tính lần lượt từng bước.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (trừ, có nhớ):</b> Sau khi bán buổi sáng, số mũ còn lại là 65 − 28 = 37 chiếc.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (cộng, có nhớ):</b> Sau khi nhập thêm buổi chiều, cửa hàng có 37 + 19 = 56 chiếc.</p></div></div>
+          <p class="answer hidden">Cuối ngày cửa hàng có <b>56</b> chiếc mũ.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TUẦN 2 ================= -->
+    <section class="topic" id="tuan2">
+      <div class="topic-head">
+        <span class="topic-badge">🧮</span>
+        <h2 class="topic-title"><span class="topic-num">Tuần 2</span>Cộng trừ trong phạm vi 1000</h2>
+      </div>
+      <p class="topic-intro">Sang tuần 2, các số đã có ba chữ số. Con luyện <span class="kw">đặt tính rồi tính</span> phép cộng, phép trừ có nhớ trong phạm vi 1000 — nhớ tính lần lượt từ hàng đơn vị, rồi đến hàng chục, rồi đến hàng trăm.</p>
+
+      <div class="problem" data-pool="t2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Trường Tiểu học Sao Mai có <b>245</b> học sinh khối 2 và <b>367</b> học sinh khối 3.</p>
+          <p>Hỏi hai khối có tất cả bao nhiêu học sinh?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đề bài hỏi "tất cả" — nghĩa là ta phải <b>cộng</b> số học sinh hai khối: 245 + 367.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng hàng đơn vị trước: 5 + 7 = 12, viết 2 nhớ 1.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng hàng chục: 4 + 6 = 10, cộng thêm 1 đã nhớ = 11, viết 1 nhớ 1.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Cộng hàng trăm: 2 + 3 = 5, cộng thêm 1 đã nhớ = 6.</p></div></div>
+          <p class="answer hidden">Hai khối có tất cả <b>612</b> học sinh (245 + 367 = 612).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="t2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Một kho gạo có <b>850kg</b> gạo. Người ta chuyển đi <b>275kg</b>, sau đó nhập thêm <b>140kg</b> gạo nữa.</p>
+          <p>Hỏi kho gạo còn lại bao nhiêu ki-lô-gam gạo?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài toán có <b>2 bước</b>: chuyển đi xong mới nhập thêm, nên ta tính lần lượt từng bước.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (trừ, có nhớ):</b> Sau khi chuyển đi, kho còn lại 850 − 275 = 575kg gạo.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (cộng):</b> Sau khi nhập thêm, kho có 575 + 140 = 715kg gạo.</p></div></div>
+          <p class="answer hidden">Kho gạo còn lại <b>715kg</b> gạo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TUẦN 3 ================= -->
+    <section class="topic" id="tuan3">
+      <div class="topic-head">
+        <span class="topic-badge">✖️</span>
+        <h2 class="topic-title"><span class="topic-num">Tuần 3</span>Bảng nhân, bảng chia 2 và 3</h2>
+      </div>
+      <p class="topic-intro">Tuần 3 bắt đầu làm quen với phép nhân, phép chia qua <span class="kw">bảng nhân 2, bảng nhân 3, bảng chia 2, bảng chia 3</span>. Hãy nhớ: nhân là <span class="kw">cộng các số bằng nhau</span>, còn chia là <span class="kw">chia đều</span> thành các phần bằng nhau.</p>
+
+      <div class="problem" data-pool="t3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Mỗi túi có <b>3</b> quả cam: 🍊🍊🍊.</p>
+          <p>Hỏi <b>7</b> túi như thế có tất cả bao nhiêu quả cam?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Mỗi túi có 3 quả, có tất cả 7 túi giống nhau — đây là phép <b>cộng các số bằng nhau</b>, nên dùng phép <b>nhân</b>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Viết phép tính: 3 × 7 (3 quả, lặp lại 7 lần).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đọc bảng nhân 3: 3 × 7 = 21.</p></div></div>
+          <p class="answer hidden">Có tất cả <b>21</b> quả cam.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="t3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Có <b>21</b> quyển vở, chia đều vào <b>3</b> hộp. Sau đó cô giáo lấy <b>1</b> hộp để làm phần thưởng.</p>
+          <p>Hỏi số vở còn lại trong các hộp là bao nhiêu quyển?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài này có <b>2 bước</b>: trước tiên tìm mỗi hộp có bao nhiêu quyển vở, sau đó mới tính số vở còn lại.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (chia):</b> Mỗi hộp có 21 : 3 = 7 quyển vở.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (nhân):</b> Cô lấy đi 1 hộp, còn lại 3 − 1 = 2 hộp, tức là 2 × 7 = 14 quyển vở.</p></div></div>
+          <p class="answer hidden">Số vở còn lại là <b>14</b> quyển.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TUẦN 4 ================= -->
+    <section class="topic" id="tuan4">
+      <div class="topic-head">
+        <span class="topic-badge">🏆</span>
+        <h2 class="topic-title"><span class="topic-num">Tuần 4</span>Bảng nhân, bảng chia 4, 5 — Toán có lời văn nhiều bước</h2>
+      </div>
+      <p class="topic-intro">Tuần cuối cùng, con ôn tiếp <span class="kw">bảng nhân 4, bảng nhân 5, bảng chia 4, bảng chia 5</span>, rồi ghép chúng cùng phép cộng, phép trừ vào những <span class="kw">bài toán có lời văn nhiều bước</span> — dạng bài thường gặp nhất trong đề kiểm tra cuối kỳ.</p>
+
+      <div class="problem" data-pool="t4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Mỗi hộp bánh quy có <b>5</b> chiếc bánh. Cô giáo mua <b>6</b> hộp bánh như vậy để chia đều cho <b>5</b> tổ.</p>
+          <p>Hỏi mỗi tổ được bao nhiêu chiếc bánh quy?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài này có <b>2 bước</b>: trước tiên tìm tổng số bánh quy cô mua, sau đó mới chia đều cho các tổ.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (nhân):</b> Tổng số bánh quy là 5 × 6 = 30 chiếc.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (chia):</b> Chia đều 30 chiếc bánh cho 5 tổ: 30 : 5 = 6 chiếc.</p></div></div>
+          <p class="answer hidden">Mỗi tổ được <b>6</b> chiếc bánh quy.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="t4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Cô giáo có <b>40</b> viên kẹo, chia đều vào <b>5</b> túi. Cô lấy <b>2</b> túi mang tặng cho lớp bên cạnh, số kẹo còn lại cô chia đều cho <b>4</b> bạn học sinh giỏi nhất.</p>
+          <p>Hỏi mỗi bạn nhận được bao nhiêu viên kẹo?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài này có nhiều bước — trước tiên tìm số kẹo trong mỗi túi, rồi tìm số kẹo đã tặng, số kẹo còn lại, cuối cùng mới chia cho các bạn.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (chia):</b> Mỗi túi có 40 : 5 = 8 viên kẹo.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (nhân):</b> Cô tặng đi 2 túi, tức là tặng 8 × 2 = 16 viên kẹo.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Bước 3 (trừ):</b> Số kẹo còn lại là 40 − 16 = 24 viên.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Bước 4 (chia):</b> Chia đều 24 viên kẹo cho 4 bạn: 24 : 4 = 6 viên.</p></div></div>
+          <p class="answer hidden">Mỗi bạn nhận được <b>6</b> viên kẹo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-on-tap">
+      <div class="topic-head">
+        <span class="topic-badge">🌟</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo ôn cuối tuần cùng con</h2>
+      </div>
+      <p class="topic-intro">5 gợi ý ngắn gọn để việc làm phiếu bài tập cuối tuần trở thành một thói quen nhẹ nhàng, giúp con vững kiến thức trước khi bước sang tuần học mới.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Ôn ngay trong tuần, đừng để dồn.</b> Làm 1 bài mỗi tối thay vì dồn cả phiếu vào cuối tuần — kiến thức mới học sẽ được nhớ lâu hơn nếu ôn sớm.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Đặt tính rồi tính cẩn thận.</b> Với phép cộng, trừ trong phạm vi 1000, nhắc con đặt các hàng thẳng cột và tính từ hàng đơn vị trước.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Gạch chân từ khóa trong đề.</b> Với bài toán có lời văn nhiều bước, cùng con gạch chân các số liệu và từ khóa ("chia đều", "tất cả", "còn lại") trước khi đặt phép tính.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Học thuộc bảng nhân, bảng chia.</b> Ôn lại bảng nhân 2, 3, 4, 5 mỗi ngày vài phút — thuộc bảng giúp con làm bài toán có lời văn nhanh và chính xác hơn.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">5</span>
+          <p><b>Luyện thêm bằng bài tương tự.</b> Nếu con làm sai, dùng nút "Đổi bài tương tự" để luyện lại đúng dạng bài đó với số liệu khác cho đến khi con tự tin.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán 2, theo hình thức phiếu bài tập cuối tuần. Toàn bộ đề bài và lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu sách nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    't1-1': [{
+      qHtml: '<p>Cho ba số: <b>519</b>, <b>591</b>, <b>195</b>.</p><p>Hỏi số nào lớn nhất, số nào bé nhất?</p>',
+      steps: [
+        '<p>So sánh chữ số hàng trăm: 519 và 591 có hàng trăm là 5, còn 195 có hàng trăm là 1.</p>',
+        '<p>1 trăm nhỏ hơn 5 trăm, nên 195 là số bé nhất trong ba số.</p>',
+        '<p>So sánh tiếp 519 và 591 (cùng 5 trăm): hàng chục là 1 và 9, vì 9 > 1 nên 591 > 519.</p>'
+      ],
+      answerHtml: 'Số lớn nhất là <b>591</b>, số bé nhất là <b>195</b>.'
+    }],
+    't1-2': [{
+      qHtml: '<p>Một tiệm bánh có <b>54</b> chiếc bánh ngọt. Buổi sáng bán được <b>37</b> chiếc, buổi chiều làm thêm <b>26</b> chiếc bánh nữa.</p><p>Hỏi cuối ngày tiệm bánh có bao nhiêu chiếc bánh?</p>',
+      steps: [
+        '<p>Bài toán có <b>2 bước</b>: bán xong buổi sáng mới làm thêm buổi chiều, nên ta tính lần lượt từng bước.</p>',
+        '<p><b>Bước 1 (trừ, có nhớ):</b> Sau khi bán buổi sáng, số bánh còn lại là 54 − 37 = 17 chiếc.</p>',
+        '<p><b>Bước 2 (cộng, có nhớ):</b> Sau khi làm thêm buổi chiều, tiệm có 17 + 26 = 43 chiếc.</p>'
+      ],
+      answerHtml: 'Cuối ngày tiệm bánh có <b>43</b> chiếc bánh.'
+    }],
+    't2-1': [{
+      qHtml: '<p>Trường Tiểu học Hoa Sen có <b>378</b> học sinh khối 4 và <b>256</b> học sinh khối 5.</p><p>Hỏi hai khối có tất cả bao nhiêu học sinh?</p>',
+      steps: [
+        '<p>Đề bài hỏi "tất cả" — nghĩa là ta phải <b>cộng</b> số học sinh hai khối: 378 + 256.</p>',
+        '<p>Cộng hàng đơn vị trước: 8 + 6 = 14, viết 4 nhớ 1.</p>',
+        '<p>Cộng hàng chục: 7 + 5 = 12, cộng thêm 1 đã nhớ = 13, viết 3 nhớ 1.</p>',
+        '<p>Cộng hàng trăm: 3 + 2 = 5, cộng thêm 1 đã nhớ = 6.</p>'
+      ],
+      answerHtml: 'Hai khối có tất cả <b>634</b> học sinh (378 + 256 = 634).'
+    }],
+    't2-2': [{
+      qHtml: '<p>Một xưởng may có <b>720m</b> vải. Xưởng đã dùng hết <b>385m</b> để may áo, sau đó nhập thêm <b>160m</b> vải nữa.</p><p>Hỏi xưởng còn lại bao nhiêu mét vải?</p>',
+      steps: [
+        '<p>Bài toán có <b>2 bước</b>: dùng hết xong mới nhập thêm, nên ta tính lần lượt từng bước.</p>',
+        '<p><b>Bước 1 (trừ, có nhớ):</b> Sau khi may áo, xưởng còn lại 720 − 385 = 335m vải.</p>',
+        '<p><b>Bước 2 (cộng):</b> Sau khi nhập thêm, xưởng có 335 + 160 = 495m vải.</p>'
+      ],
+      answerHtml: 'Xưởng còn lại <b>495m</b> vải.'
+    }],
+    't3-1': [{
+      qHtml: '<p>Mỗi rổ có <b>2</b> quả dưa hấu: 🍉🍉.</p><p>Hỏi <b>9</b> rổ như thế có tất cả bao nhiêu quả dưa hấu?</p>',
+      steps: [
+        '<p>Mỗi rổ có 2 quả, có tất cả 9 rổ giống nhau — đây là phép <b>cộng các số bằng nhau</b>, nên dùng phép <b>nhân</b>.</p>',
+        '<p>Viết phép tính: 2 × 9 (2 quả, lặp lại 9 lần).</p>',
+        '<p>Đọc bảng nhân 2: 2 × 9 = 18.</p>'
+      ],
+      answerHtml: 'Có tất cả <b>18</b> quả dưa hấu.'
+    }],
+    't3-2': [{
+      qHtml: '<p>Có <b>16</b> chiếc kẹo, chia đều vào <b>2</b> đĩa. Sau đó bạn Mai lấy <b>1</b> đĩa mang đi tặng bạn.</p><p>Hỏi số kẹo còn lại trên đĩa kia là bao nhiêu chiếc?</p>',
+      steps: [
+        '<p>Bài này có <b>2 bước</b>: trước tiên tìm mỗi đĩa có bao nhiêu chiếc kẹo, sau đó mới tính số kẹo còn lại.</p>',
+        '<p><b>Bước 1 (chia):</b> Mỗi đĩa có 16 : 2 = 8 chiếc kẹo.</p>',
+        '<p><b>Bước 2:</b> Mai lấy đi 1 đĩa, còn lại 2 − 1 = 1 đĩa, tức là còn đúng 8 chiếc kẹo trên đĩa đó.</p>'
+      ],
+      answerHtml: 'Số kẹo còn lại trên đĩa kia là <b>8</b> chiếc.'
+    }],
+    't4-1': [{
+      qHtml: '<p>Mỗi lọ có <b>4</b> viên bi. Bạn Tuấn có <b>8</b> lọ bi như vậy, đem chia đều cho <b>4</b> người bạn.</p><p>Hỏi mỗi người bạn được bao nhiêu viên bi?</p>',
+      steps: [
+        '<p>Bài này có <b>2 bước</b>: trước tiên tìm tổng số viên bi của Tuấn, sau đó mới chia đều cho các bạn.</p>',
+        '<p><b>Bước 1 (nhân):</b> Tổng số viên bi là 4 × 8 = 32 viên.</p>',
+        '<p><b>Bước 2 (chia):</b> Chia đều 32 viên bi cho 4 người bạn: 32 : 4 = 8 viên.</p>'
+      ],
+      answerHtml: 'Mỗi người bạn được <b>8</b> viên bi.'
+    }],
+    't4-2': [{
+      qHtml: '<p>Chú Sơn có <b>60</b> quả cam, chia đều vào <b>5</b> rổ. Chú tặng <b>2</b> rổ cam cho hàng xóm, số cam còn lại chú chia đều cho <b>4</b> người con.</p><p>Hỏi mỗi người con nhận được bao nhiêu quả cam?</p>',
+      steps: [
+        '<p>Bài này có nhiều bước — trước tiên tìm số cam trong mỗi rổ, rồi tìm số cam đã tặng, số cam còn lại, cuối cùng mới chia cho các con.</p>',
+        '<p><b>Bước 1 (chia):</b> Mỗi rổ có 60 : 5 = 12 quả cam.</p>',
+        '<p><b>Bước 2 (nhân):</b> Chú tặng đi 2 rổ, tức là tặng 12 × 2 = 24 quả cam.</p>',
+        '<p><b>Bước 3 (trừ):</b> Số cam còn lại là 60 − 24 = 36 quả.</p>',
+        '<p><b>Bước 4 (chia):</b> Chia đều 36 quả cam cho 4 người con: 36 : 4 = 9 quả.</p>'
+      ],
+      answerHtml: 'Mỗi người con nhận được <b>9</b> quả cam.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('bt-cuoi-tuan-toan2-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('bt-cuoi-tuan-toan2-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

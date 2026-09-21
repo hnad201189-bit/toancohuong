@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chu Vi – Diện Tích – Hình Học Toán 2</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #fdf8ef;
+    --bg-alt: #f6ecd3;
+    --paper: #ffffff;
+    --ink: #3b2f16;
+    --ink-soft: #6c5a35;
+    --ink-faint: #a4936f;
+    --accent: #b5730f;
+    --accent-soft: #f5e3bb;
+    --accent-warm: #c23b5a;
+    --accent-warm-soft: #f9dbe1;
+    --line: #ecdfbe;
+    --line-strong: #ddc696;
+    --shadow: 0 1px 2px rgba(70, 50, 10, 0.07), 0 8px 22px rgba(70, 50, 10, 0.08);
+    --radius: 18px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #20180d;
+    --bg-alt: #2b2011;
+    --paper: #241b0f;
+    --ink: #f5ecd6;
+    --ink-soft: #cdbb92;
+    --ink-faint: #96875f;
+    --accent: #e0a93f;
+    --accent-soft: #3a2a10;
+    --accent-warm: #ea7e97;
+    --accent-warm-soft: #3a1e25;
+    --line: #3c2f18;
+    --line-strong: #52411f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #20180d;
+      --bg-alt: #2b2011;
+      --paper: #241b0f;
+      --ink: #f5ecd6;
+      --ink-soft: #cdbb92;
+      --ink-faint: #96875f;
+      --accent: #e0a93f;
+      --accent-soft: #3a2a10;
+      --accent-warm: #ea7e97;
+      --accent-warm-soft: #3a1e25;
+      --line: #3c2f18;
+      --line-strong: #52411f;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  .doc-head { max-width: 780px; margin: 0 0 30px; }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(27px, 4.2vw, 38px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede { color: var(--ink-soft); max-width: 66ch; font-size: 17.5px; margin: 0; }
+
+  section.topic { padding-top: 54px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title { font-weight: 800; font-size: clamp(22px, 2.5vw, 27px); margin: 0; text-wrap: balance; color: var(--ink); }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 14px 0 26px; }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q { padding: 22px 26px; display: flex; gap: 14px; align-items: baseline; border-bottom: 1px solid var(--line); }
+  .problem .qid { font-family: var(--mono); font-size: 13.5px; color: var(--accent); white-space: nowrap; padding-top: 1px; font-weight: 700; }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .mcq-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin: 12px 0 2px; font-size: 16px; }
+  .mcq-opts span b { color: var(--accent); margin-right: 4px; }
+  @media (max-width: 480px) { .mcq-opts { grid-template-columns: 1fr; } }
+
+  .geo-figure { display: flex; justify-content: center; padding: 14px 0 8px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .obj-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 12px 0 6px; }
+  .obj-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 92px;
+    padding: 10px 6px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--bg-alt);
+  }
+  .obj-chip .ic { font-size: 32px; line-height: 1; }
+  .obj-chip .cap { font-size: 11.5px; font-weight: 600; color: var(--ink-soft); text-align: center; }
+
+  .money-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 12px 0 6px; }
+  .money-chip {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 2px solid var(--line-strong);
+    background: var(--accent-warm-soft);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 26px; background: var(--bg-alt); border-bottom: 1px solid var(--line); }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 20px 26px 24px; background: var(--paper); font-size: 15.5px; }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step { display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 4px 12px; margin-bottom: 13px; }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-strong); font-weight: 700; color: var(--accent-warm); }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 chủ đề</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">📐</span>Đường gấp khúc, tứ giác</a></li>
+      <li><a href="#sec2"><span class="n">🥫</span>Khối trụ, khối cầu</a></li>
+      <li><a href="#sec3"><span class="n">⚖️</span>Đơn vị đo</a></li>
+      <li><a href="#sec4"><span class="n">🕐</span>Xem giờ, tiền Việt Nam</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 2</div>
+      <h1>Chu Vi – Diện Tích – Hình Học Toán 2</h1>
+      <p class="lede">Một chuyến đào sâu vào mảng <b>Hình học và Đo lường</b> của Toán lớp 2: nhận biết đường gấp khúc và hình tứ giác, khối trụ – khối cầu, đơn vị đo độ dài — khối lượng, cùng cách xem giờ và tính tiền Việt Nam.</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Lưu ý quan trọng:</b> ở lớp 2, các em <b>chưa học công thức tính chu vi, diện tích</b> — phần đó sẽ học ở lớp 3. Tài liệu này tập trung đúng vào nội dung hình học — đo lường của chương trình lớp 2: đường gấp khúc, hình tứ giác, khối trụ, khối cầu, đơn vị đo độ dài (m, dm, cm), khối lượng (kg), xem giờ và tiền Việt Nam. Toàn bộ 8 câu hỏi (16 lượt bài tính cả biến thể) là <b>bài tự soạn mới hoàn toàn</b>, không sao chép từ bất kỳ nguồn nào. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để luyện lại đúng dạng bài với số liệu khác — hãy bấm <b>💡 Gợi ý</b> từng bước trước khi xem đáp số nhé!</p>
+    </div>
+
+    <!-- ================= SECTION 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">📐</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 1</span>Đường gấp khúc và hình tứ giác</h2>
+      </div>
+      <p class="topic-intro">Một <span class="kw">đường gấp khúc</span> gồm nhiều đoạn thẳng nối tiếp nhau; độ dài của nó bằng <span class="kw">tổng độ dài các đoạn</span>. Một <span class="kw">hình tứ giác</span> là hình có 4 cạnh và 4 góc — hình chữ nhật, hình vuông đều là những hình tứ giác đặc biệt.</p>
+
+      <div class="problem" data-pool="g1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Đường gấp khúc <b>ABCD</b> gồm 3 đoạn thẳng nối tiếp nhau: đoạn AB, đoạn BC và đoạn CD, với số đo như hình vẽ.</p>
+          <div class="geo-figure"><svg viewBox="0 0 280 150" width="260" height="140">
+            <polyline points="20,120 90,30 160,120 240,40" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="120" r="4.5" fill="var(--accent)"/>
+            <circle cx="90" cy="30" r="4.5" fill="var(--accent)"/>
+            <circle cx="160" cy="120" r="4.5" fill="var(--accent)"/>
+            <circle cx="240" cy="40" r="4.5" fill="var(--accent)"/>
+            <text x="6" y="139" font-size="14" font-weight="700" fill="var(--ink)">A</text>
+            <text x="90" y="19" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="middle">B</text>
+            <text x="160" y="139" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="middle">C</text>
+            <text x="253" y="33" font-size="14" font-weight="700" fill="var(--ink)">D</text>
+            <text x="42" y="63" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">3 cm</text>
+            <text x="138" y="63" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">5 cm</text>
+            <text x="212" y="68" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">4 cm</text>
+          </svg></div>
+          <p>Hỏi độ dài đường gấp khúc ABCD là bao nhiêu xăng-ti-mét?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đường gấp khúc ABCD gồm 3 đoạn thẳng nối tiếp: AB, BC và CD.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Độ dài đường gấp khúc bằng <b>tổng độ dài các đoạn</b>: AB + BC + CD.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thay số: 3 + 5 + 4 = 12.</p></div></div>
+          <p class="answer hidden">Độ dài đường gấp khúc ABCD là <b>12 cm</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="g1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Quan sát nhóm hình bên. Hình chữ nhật và hình vuông đều là <b>hình tứ giác</b> (có 4 cạnh, 4 góc). Hỏi trong nhóm hình có tất cả bao nhiêu hình tứ giác?</p>
+          <div class="geo-figure"><svg viewBox="0 0 320 160" width="300" height="150">
+            <rect x="10" y="18" width="70" height="42" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <circle cx="150" cy="40" r="24" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="260,16 228,64 292,64" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <rect x="10" y="98" width="70" height="42" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <rect x="130" y="96" width="46" height="46" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="260,94 228,144 292,144" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 4 hình</span><span><b>B.</b> 3 hình</span>
+            <span><b>C.</b> 5 hình</span><span><b>D.</b> 2 hình</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hình tứ giác là hình có 4 cạnh thẳng và 4 góc.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trong nhóm hình có 2 hình chữ nhật và 1 hình vuông — cả hai loại này đều có 4 cạnh nên đều là hình tứ giác. Hình tròn không có cạnh thẳng, hình tam giác chỉ có 3 cạnh, nên không phải tứ giác.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm số hình tứ giác: 2 hình chữ nhật + 1 hình vuông = 3 hình.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 3 hình.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">🥫</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 2</span>Khối trụ, khối cầu</h2>
+      </div>
+      <p class="topic-intro"><span class="kw">Khối trụ</span> có hai mặt đáy là hình tròn bằng nhau, nối với nhau bằng một mặt xung quanh cong đều (như lon sữa, cây nến). <span class="kw">Khối cầu</span> tròn đều ở mọi phía, không có mặt phẳng nào (như quả bóng, viên bi).</p>
+
+      <div class="problem" data-pool="g2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Hình khối bên có hai mặt đáy là hình tròn bằng nhau, mặt xung quanh là mặt cong. Đây là khối gì?</p>
+          <div class="geo-figure"><svg viewBox="0 0 120 130" width="140" height="150">
+            <rect x="24" y="28" width="72" height="72" fill="var(--accent-soft)" opacity="0.55"/>
+            <line x1="24" y1="28" x2="24" y2="100" stroke="var(--accent)" stroke-width="4"/>
+            <line x1="96" y1="28" x2="96" y2="100" stroke="var(--accent)" stroke-width="4"/>
+            <path d="M24,100 A36,13 0 0 0 96,100" fill="none" stroke="var(--accent)" stroke-width="4"/>
+            <ellipse cx="60" cy="28" rx="36" ry="13" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Khối cầu</span><span><b>B.</b> Khối lập phương</span>
+            <span><b>C.</b> Khối trụ</span><span><b>D.</b> Khối chóp</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Khối cầu tròn đều khắp mọi phía như quả bóng, không có mặt đáy phẳng — khác với hình bên nên loại.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Khối lập phương và khối chóp đều có các mặt phẳng, không có mặt cong — cũng khác với hình bên nên loại.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hình bên có hai mặt đáy là hình tròn bằng nhau, nối với nhau bằng một mặt xung quanh cong đều — đây chính là đặc điểm của khối trụ.</p></div></div>
+          <p class="answer hidden">Đáp án: C — Khối trụ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="g2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Quan sát nhóm đồ vật bên. Khối trụ là khối có hai mặt đáy tròn bằng nhau và mặt bên cong (như lon sữa, cây nến, cuộn giấy...). Hỏi trong nhóm có bao nhiêu đồ vật dạng khối trụ?</p>
+          <div class="obj-grid">
+            <div class="obj-chip"><span class="ic">🥫</span><span class="cap">lon sữa</span></div>
+            <div class="obj-chip"><span class="ic">⚽</span><span class="cap">quả bóng</span></div>
+            <div class="obj-chip"><span class="ic">🧃</span><span class="cap">hộp sữa</span></div>
+            <div class="obj-chip"><span class="ic">🕯️</span><span class="cap">cây nến</span></div>
+            <div class="obj-chip"><span class="ic">🎾</span><span class="cap">bóng tennis</span></div>
+            <div class="obj-chip"><span class="ic">🧻</span><span class="cap">cuộn giấy</span></div>
+          </div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 2 đồ vật</span><span><b>B.</b> 4 đồ vật</span>
+            <span><b>C.</b> 3 đồ vật</span><span><b>D.</b> 5 đồ vật</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Khối trụ có hai đáy tròn bằng nhau, mặt bên cong đều — như lon sữa, cây nến, cuộn giấy.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Quả bóng và bóng tennis có dạng khối cầu (tròn đều mọi phía), hộp sữa có dạng khối hộp (các mặt phẳng) — đều không phải khối trụ.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm các đồ vật dạng khối trụ: lon sữa, cây nến, cuộn giấy → có 3 đồ vật.</p></div></div>
+          <p class="answer hidden">Đáp án: C — 3 đồ vật.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">⚖️</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 3</span>Đơn vị đo độ dài và khối lượng</h2>
+      </div>
+      <p class="topic-intro">Ba đơn vị đo độ dài thường gặp: <span class="kw">mét (m)</span>, <span class="kw">đề-xi-mét (dm)</span>, <span class="kw">xăng-ti-mét (cm)</span>, với 1m = 10dm = 100cm. Đơn vị đo khối lượng thường gặp là <span class="kw">ki-lô-gam (kg)</span>, đọc được nhờ kim chỉ trên mặt cân đồng hồ.</p>
+
+      <div class="problem" data-pool="g3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Một sợi dây dài <b>3m 4dm</b>.</p>
+          <p>Hỏi sợi dây đó dài bao nhiêu đề-xi-mét (dm)?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại: 1m = 10dm. Đổi phần mét sang đề-xi-mét: 3m = 3 × 10 = 30dm.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng thêm phần đề-xi-mét còn lại: 30dm + 4dm = 34dm.</p></div></div>
+          <p class="answer hidden">Sợi dây đó dài <b>34dm</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="g3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Kim của chiếc cân đồng hồ bên đang chỉ số cân nặng của một túi gạo. Hỏi túi gạo đó nặng bao nhiêu ki-lô-gam (kg)?</p>
+          <div class="geo-figure"><svg viewBox="0 0 140 140" width="160" height="160">
+            <circle cx="70" cy="70" r="56" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <text x="70" y="26" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">0</text>
+            <text x="108" y="48" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">2</text>
+            <text x="108" y="92" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">4</text>
+            <text x="70" y="114" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">6</text>
+            <text x="32" y="92" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">8</text>
+            <text x="32" y="48" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">10</text>
+            <line x1="70" y1="70" x2="70" y2="112" stroke="var(--accent-warm)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="70" cy="70" r="5" fill="var(--accent-warm)"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 4 kg</span><span><b>B.</b> 8 kg</span>
+            <span><b>C.</b> 6 kg</span><span><b>D.</b> 10 kg</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Trên mặt cân, các vạch số lần lượt là 0, 2, 4, 6, 8, 10 ki-lô-gam, cách đều nhau quanh mặt cân.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Kim của cân đang chỉ thẳng xuống dưới, đúng vào vạch số 6.</p></div></div>
+          <p class="answer hidden">Đáp án: C — Túi gạo nặng 6 kg.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🕐</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 4</span>Xem giờ và tiền Việt Nam</h2>
+      </div>
+      <p class="topic-intro">Kim ngắn là <span class="kw">kim giờ</span>, kim dài là <span class="kw">kim phút</span>. Khi kim phút chỉ đúng vào số 6, đồng hồ đang chỉ <span class="kw">giờ 30 phút</span> (giờ rưỡi). Với tiền Việt Nam, để biết tổng số tiền, ta <span class="kw">cộng giá trị các tờ tiền</span> lại với nhau.</p>
+
+      <div class="problem" data-pool="g4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Đồng hồ bên đang chỉ mấy giờ?</p>
+          <div class="geo-figure"><svg viewBox="0 0 120 120" width="160" height="160">
+            <circle cx="60" cy="60" r="48" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <text x="60" y="22" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">12</text>
+            <text x="79" y="27" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">1</text>
+            <text x="93" y="41" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">2</text>
+            <text x="98" y="60" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">3</text>
+            <text x="93" y="79" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">4</text>
+            <text x="79" y="93" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">5</text>
+            <text x="60" y="98" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">6</text>
+            <text x="41" y="93" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">7</text>
+            <text x="27" y="79" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">8</text>
+            <text x="22" y="60" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">9</text>
+            <text x="27" y="41" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">10</text>
+            <text x="41" y="27" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">11</text>
+            <line x1="60" y1="60" x2="43" y2="77" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+            <line x1="60" y1="60" x2="60" y2="96" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="60" cy="60" r="4" fill="var(--ink)"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 7 giờ</span><span><b>B.</b> 8 giờ</span>
+            <span><b>C.</b> 7 giờ 30 phút</span><span><b>D.</b> 8 giờ 30 phút</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Kim ngắn (kim giờ) đang nằm giữa số 7 và số 8 — đã qua 7 giờ nhưng chưa tới 8 giờ.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Kim dài (kim phút) đang chỉ thẳng xuống, đúng vào số 6 — nghĩa là đã qua 30 phút (nửa vòng đồng hồ).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Kim giờ nằm giữa 7 và 8, kim phút chỉ số 6, vậy đồng hồ đang chỉ 7 giờ 30 phút (còn gọi là 7 giờ rưỡi).</p></div></div>
+          <p class="answer hidden">Đáp án: C — 7 giờ 30 phút.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="g4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Trong ví của bạn Mai có các tờ tiền sau:</p>
+          <div class="money-row">
+            <span class="money-chip">10 000đ</span>
+            <span class="money-chip">5 000đ</span>
+            <span class="money-chip">2 000đ</span>
+            <span class="money-chip">2 000đ</span>
+          </div>
+          <p>Hỏi trong ví bạn Mai có tất cả bao nhiêu tiền?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Liệt kê các tờ tiền: 10 000 đồng, 5 000 đồng, 2 000 đồng và 2 000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Cộng hai tờ đầu tiên: 10 000 + 5 000 = 15 000 (đồng).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng tiếp hai tờ 2 000 đồng còn lại: 15 000 + 2 000 + 2 000 = 19 000 (đồng).</p></div></div>
+          <p class="answer hidden">Trong ví bạn Mai có tất cả <b>19 000 đồng</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 2, chủ đề Chu Vi – Diện Tích – Hình Học Toán 2. Toàn bộ đề bài, hình vẽ và lời giải trong tài liệu này là nội dung tự soạn mới, bám sát mảng hình học — đo lường của chương trình lớp 2 (đường gấp khúc, hình tứ giác, khối trụ, khối cầu, đơn vị đo độ dài — khối lượng, xem giờ, tiền Việt Nam), không sao chép từ bất kỳ nguồn nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'g1-1': [{
+      qHtml: '<p>Đường gấp khúc <b>MNPQ</b> gồm 3 đoạn thẳng nối tiếp nhau: đoạn MN, đoạn NP và đoạn PQ, với số đo như hình vẽ.</p><div class="geo-figure"><svg viewBox="0 0 280 150" width="260" height="140"><polyline points="20,40 90,130 160,40 240,120" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="40" r="4.5" fill="var(--accent)"/><circle cx="90" cy="130" r="4.5" fill="var(--accent)"/><circle cx="160" cy="40" r="4.5" fill="var(--accent)"/><circle cx="240" cy="120" r="4.5" fill="var(--accent)"/><text x="6" y="30" font-size="14" font-weight="700" fill="var(--ink)">M</text><text x="90" y="146" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="middle">N</text><text x="160" y="28" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="middle">P</text><text x="253" y="112" font-size="14" font-weight="700" fill="var(--ink)">Q</text><text x="42" y="95" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">4 cm</text><text x="138" y="95" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">6 cm</text><text x="212" y="90" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">3 cm</text></svg></div><p>Hỏi độ dài đường gấp khúc MNPQ là bao nhiêu xăng-ti-mét?</p>',
+      steps: [
+        '<p>Đường gấp khúc MNPQ gồm 3 đoạn thẳng nối tiếp: MN, NP và PQ.</p>',
+        '<p>Độ dài đường gấp khúc bằng <b>tổng độ dài các đoạn</b>: MN + NP + PQ.</p>',
+        '<p>Thay số: 4 + 6 + 3 = 13.</p>'
+      ],
+      answerHtml: 'Độ dài đường gấp khúc MNPQ là <b>13 cm</b>.'
+    }],
+    'g1-2': [{
+      qHtml: '<p>Quan sát nhóm hình bên. Hình chữ nhật và hình vuông đều là <b>hình tứ giác</b> (có 4 cạnh, 4 góc). Hỏi trong nhóm hình có tất cả bao nhiêu hình tứ giác?</p><div class="geo-figure"><svg viewBox="0 0 320 160" width="300" height="150"><rect x="10" y="18" width="60" height="38" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><rect x="90" y="18" width="60" height="38" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><circle cx="230" cy="37" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><rect x="10" y="98" width="60" height="38" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><rect x="90" y="94" width="46" height="46" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><polygon points="232,90 200,142 264,142" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/></svg></div><div class="mcq-opts"><span><b>A.</b> 3 hình</span><span><b>B.</b> 5 hình</span><span><b>C.</b> 4 hình</span><span><b>D.</b> 6 hình</span></div>',
+      steps: [
+        '<p>Hình tứ giác là hình có 4 cạnh thẳng và 4 góc.</p>',
+        '<p>Trong nhóm hình có 3 hình chữ nhật và 1 hình vuông — đều là hình tứ giác. Hình tròn và hình tam giác thì không phải.</p>',
+        '<p>Đếm số hình tứ giác: 3 hình chữ nhật + 1 hình vuông = 4 hình.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 4 hình.'
+    }],
+    'g2-1': [{
+      qHtml: '<p>Hình khối bên tròn đều ở mọi phía, không có mặt phẳng nào, giống hình dạng của một quả bóng. Đây là khối gì?</p><div class="geo-figure"><svg viewBox="0 0 120 130" width="140" height="150"><circle cx="60" cy="65" r="46" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><ellipse cx="60" cy="65" rx="46" ry="16" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.5"/><ellipse cx="44" cy="46" rx="14" ry="8" fill="var(--paper)" opacity="0.4"/></svg></div><div class="mcq-opts"><span><b>A.</b> Khối trụ</span><span><b>B.</b> Khối cầu</span><span><b>C.</b> Khối hộp chữ nhật</span><span><b>D.</b> Khối lập phương</span></div>',
+      steps: [
+        '<p>Khối trụ có hai mặt đáy là hình tròn phẳng — còn hình bên không có mặt phẳng nào cả, nên không phải khối trụ.</p>',
+        '<p>Khối hộp chữ nhật và khối lập phương đều có các mặt phẳng hình chữ nhật hoặc hình vuông — cũng khác với hình bên nên loại.</p>',
+        '<p>Hình bên tròn đều khắp mọi phía, không có góc, không có cạnh, không có mặt phẳng nào — đây chính là đặc điểm của khối cầu.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Khối cầu.'
+    }],
+    'g2-2': [{
+      qHtml: '<p>Quan sát nhóm đồ vật bên. Khối cầu là khối tròn đều ở mọi phía, không có mặt phẳng (như quả bóng, viên bi...). Hỏi trong nhóm có bao nhiêu đồ vật dạng khối cầu?</p><div class="obj-grid"><div class="obj-chip"><span class="ic">🍊</span><span class="cap">quả cam</span></div><div class="obj-chip"><span class="ic">🥫</span><span class="cap">lon nước</span></div><div class="obj-chip"><span class="ic">🏀</span><span class="cap">bóng rổ</span></div><div class="obj-chip"><span class="ic">🎁</span><span class="cap">hộp quà</span></div><div class="obj-chip"><span class="ic">⚾</span><span class="cap">bóng chày</span></div><div class="obj-chip"><span class="ic">🧻</span><span class="cap">cuộn giấy</span></div></div><div class="mcq-opts"><span><b>A.</b> 4 đồ vật</span><span><b>B.</b> 3 đồ vật</span><span><b>C.</b> 2 đồ vật</span><span><b>D.</b> 5 đồ vật</span></div>',
+      steps: [
+        '<p>Khối cầu tròn đều ở mọi phía, không có mặt phẳng, không có cạnh — như quả cam, bóng rổ, bóng chày.</p>',
+        '<p>Lon nước và cuộn giấy có dạng khối trụ (hai đáy tròn, mặt bên cong nhưng có 2 mặt đáy phẳng); hộp quà có dạng khối hộp — đều không phải khối cầu.</p>',
+        '<p>Đếm các đồ vật dạng khối cầu: quả cam, bóng rổ, bóng chày → có 3 đồ vật.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 3 đồ vật.'
+    }],
+    'g3-1': [{
+      qHtml: '<p>Một thanh gỗ dài <b>2m 7dm</b>.</p><p>Hỏi thanh gỗ đó dài bao nhiêu đề-xi-mét (dm)?</p>',
+      steps: [
+        '<p>Nhớ lại: 1m = 10dm. Đổi phần mét sang đề-xi-mét: 2m = 2 × 10 = 20dm.</p>',
+        '<p>Cộng thêm phần đề-xi-mét còn lại: 20dm + 7dm = 27dm.</p>'
+      ],
+      answerHtml: 'Thanh gỗ đó dài <b>27dm</b>.'
+    }],
+    'g3-2': [{
+      qHtml: '<p>Kim của chiếc cân đồng hồ bên đang chỉ số cân nặng của một bao xi măng nhỏ. Hỏi bao xi măng đó nặng bao nhiêu ki-lô-gam (kg)?</p><div class="geo-figure"><svg viewBox="0 0 140 140" width="160" height="160"><circle cx="70" cy="70" r="56" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><text x="70" y="26" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">0</text><text x="112" y="59" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">5</text><text x="92" y="108" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">10</text><text x="39" y="101" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">15</text><text x="32" y="48" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">20</text><line x1="70" y1="70" x2="40" y2="100" stroke="var(--accent-warm)" stroke-width="4" stroke-linecap="round"/><circle cx="70" cy="70" r="5" fill="var(--accent-warm)"/></svg></div><div class="mcq-opts"><span><b>A.</b> 10 kg</span><span><b>B.</b> 20 kg</span><span><b>C.</b> 5 kg</span><span><b>D.</b> 15 kg</span></div>',
+      steps: [
+        '<p>Trên mặt cân, các vạch số lần lượt là 0, 5, 10, 15, 20 ki-lô-gam, cách đều nhau quanh mặt cân.</p>',
+        '<p>Kim của cân đang chỉ đúng vào vạch số 15.</p>'
+      ],
+      answerHtml: 'Đáp án: D — Bao xi măng nặng 15 kg.'
+    }],
+    'g4-1': [{
+      qHtml: '<p>Đồng hồ bên đang chỉ mấy giờ?</p><div class="geo-figure"><svg viewBox="0 0 120 120" width="160" height="160"><circle cx="60" cy="60" r="48" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><text x="60" y="22" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">12</text><text x="79" y="27" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">1</text><text x="93" y="41" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">2</text><text x="98" y="60" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">3</text><text x="93" y="79" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">4</text><text x="79" y="93" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">5</text><text x="60" y="98" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">6</text><text x="41" y="93" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">7</text><text x="27" y="79" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">8</text><text x="22" y="60" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">9</text><text x="27" y="41" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">10</text><text x="41" y="27" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">11</text><line x1="60" y1="60" x2="77" y2="77" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/><line x1="60" y1="60" x2="60" y2="96" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="60" cy="60" r="4" fill="var(--ink)"/></svg></div><div class="mcq-opts"><span><b>A.</b> 5 giờ</span><span><b>B.</b> 4 giờ 30 phút</span><span><b>C.</b> 4 giờ</span><span><b>D.</b> 5 giờ 30 phút</span></div>',
+      steps: [
+        '<p>Kim ngắn (kim giờ) đang nằm giữa số 4 và số 5 — đã qua 4 giờ nhưng chưa tới 5 giờ.</p>',
+        '<p>Kim dài (kim phút) đang chỉ thẳng xuống, đúng vào số 6 — nghĩa là đã qua 30 phút.</p>',
+        '<p>Kim giờ nằm giữa 4 và 5, kim phút chỉ số 6, vậy đồng hồ đang chỉ 4 giờ 30 phút.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 4 giờ 30 phút.'
+    }],
+    'g4-2': [{
+      qHtml: '<p>Trong ví của bạn Nam có các tờ tiền sau:</p><div class="money-row"><span class="money-chip">20 000đ</span><span class="money-chip">5 000đ</span><span class="money-chip">1 000đ</span><span class="money-chip">1 000đ</span></div><p>Hỏi trong ví bạn Nam có tất cả bao nhiêu tiền?</p>',
+      steps: [
+        '<p>Liệt kê các tờ tiền: 20 000 đồng, 5 000 đồng, 1 000 đồng và 1 000 đồng.</p>',
+        '<p>Cộng hai tờ đầu tiên: 20 000 + 5 000 = 25 000 (đồng).</p>',
+        '<p>Cộng tiếp hai tờ 1 000 đồng còn lại: 25 000 + 1 000 + 1 000 = 27 000 (đồng).</p>'
+      ],
+      answerHtml: 'Trong ví bạn Nam có tất cả <b>27 000 đồng</b>.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('cvdt-hh-toan2-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('cvdt-hh-toan2-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
