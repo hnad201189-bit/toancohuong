@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán Quốc Tế Mầm Non – Bước Đệm TIMO — Ôn luyện Toán lớp 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #fff7ef;
+    --bg-alt: #ffece0;
+    --paper: #ffffff;
+    --ink: #3d2b1f;
+    --ink-soft: #7a6152;
+    --ink-faint: #ab947f;
+    --accent: #e64980;
+    --accent-soft: #fde3ee;
+    --accent-warm: #f7b500;
+    --accent-warm-soft: #fff2cf;
+    --hue-teal: #0f9e94;
+    --hue-purple: #8452e0;
+    --line: #f5ddc9;
+    --line-strong: #e8c29f;
+    --shadow: 0 1px 2px rgba(90, 50, 20, 0.07), 0 6px 20px rgba(90, 50, 20, 0.08);
+    --radius: 18px;
+    --display: "Fredoka", "Segoe UI", Calibri, sans-serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #201319;
+    --bg-alt: #2a1a22;
+    --paper: #241620;
+    --ink: #fbe9f0;
+    --ink-soft: #ddb9cb;
+    --ink-faint: #a988a1;
+    --accent: #ff7fae;
+    --accent-soft: #3c2130;
+    --accent-warm: #ffd166;
+    --accent-warm-soft: #3a2c10;
+    --hue-teal: #3fdccc;
+    --hue-purple: #b799ff;
+    --line: #3c2432;
+    --line-strong: #4f2f42;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #201319;
+      --bg-alt: #2a1a22;
+      --paper: #241620;
+      --ink: #fbe9f0;
+      --ink-soft: #ddb9cb;
+      --ink-faint: #a988a1;
+      --accent: #ff7fae;
+      --accent-soft: #3c2130;
+      --accent-warm: #ffd166;
+      --accent-warm-soft: #3a2c10;
+      --hue-teal: #3fdccc;
+      --hue-purple: #b799ff;
+      --line: #3c2432;
+      --line-strong: #4f2f42;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 48px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; }
+  }
+
+  nav.toc { align-self: start; position: sticky; top: 28px; padding-top: 8px; }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; border-left: 1px solid var(--line); }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.8px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { font-family: var(--display); font-weight: 700; color: var(--accent); margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 8px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  section.topic { padding-top: 54px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .topic-badge {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(21px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 66ch; margin: 12px 0 28px; }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q { padding: 20px 24px; display: flex; gap: 14px; align-items: baseline; border-bottom: 1px solid var(--line); }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); white-space: nowrap; padding-top: 1px; }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .count-row { font-size: 30px; letter-spacing: 6px; line-height: 1.5; margin: 12px 0 6px; }
+
+  .mcq-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin: 12px 0 2px; font-size: 15px; }
+  .mcq-opts span b { color: var(--accent); margin-right: 4px; }
+  @media (max-width: 480px) { .mcq-opts { grid-template-columns: 1fr; } }
+
+  .chip-sm { display: inline-block; vertical-align: middle; width: 13px; height: 13px; border-radius: 50%; margin-right: 5px; }
+
+  .geo-figure { display: flex; justify-content: center; padding: 14px 0 6px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .pattern-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 14px 0 4px; }
+  .chip { width: 30px; height: 30px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 2px rgba(0,0,0,0.06); }
+  .chip-pink { background: var(--accent); }
+  .chip-gold { background: var(--accent-warm); }
+  .chip-teal { background: var(--hue-teal); }
+  .chip-purple { background: var(--hue-purple); }
+  .chip.qmark {
+    background: var(--bg-alt);
+    border: 2px dashed var(--line-strong);
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 55%, var(--line-strong)); color: color-mix(in srgb, var(--accent-warm) 75%, var(--ink)); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 24px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 4px 12px; margin-bottom: 12px; }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: color-mix(in srgb, var(--accent-warm) 70%, var(--ink));
+  }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 chặng bước đệm</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">1</span>Đếm và ghép số</a></li>
+      <li><a href="#sec2"><span class="n">2</span>Tìm hình khác biệt</a></li>
+      <li><a href="#sec3"><span class="n">3</span>Quy luật màu &amp; hình</a></li>
+      <li><a href="#sec4"><span class="n">4</span>Đố vui đếm hình</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">🌈 Về tài liệu này</div>
+      <p><b>Toán Quốc Tế Mầm Non – Bước Đệm TIMO</b> là bước khởi động nhẹ nhàng nhất, dành cho bé vừa rời mầm non, làm quen với "hương vị" của các bài toán tư duy quốc tế kiểu TIMO: nhiều màu sắc, nhiều hình vẽ, giống trò chơi hơn là bài kiểm tra. Các con số trong tài liệu không vượt quá 20, và mỗi câu chỉ xoay quanh một ý rất đơn giản: đếm, so sánh, hoặc đoán tiếp. Đây là tài liệu <b>tự biên soạn mới hoàn toàn</b> — toàn bộ đề bài, hình vẽ và lời giải đều do đội ngũ tự viết, chỉ tham khảo "phong cách" bài toán tư duy quốc tế dành cho lứa tuổi mầm non chứ không sao chép từ bất kỳ đề gốc nào. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để bé luyện lại đúng kiểu bài với hình ảnh và số liệu khác.</p>
+    </div>
+
+    <!-- ================= SEC 1: ĐẾM VÀ GHÉP SỐ VỚI HÌNH ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title">Đếm và ghép số với hình</h2>
+      </div>
+      <p class="topic-intro">Bé đếm thật kỹ từng đồ vật trong tranh, rồi chọn đúng chữ số bằng với số lượng đã đếm được. Mẹo nhỏ: với nhóm đông, hãy đếm theo từng cụm 5 cái một cho đỡ nhầm, thay vì đếm lẻ từng cái.</p>
+
+      <div class="problem" data-pool="s1-1" data-qid="Câu 1.1">
+        <div class="q"><span class="qid">Câu 1.1</span><div class="qtext">
+          <p>Bé hãy đếm xem có bao nhiêu quả táo trong tranh, rồi chọn đúng chữ số nhé!</p>
+          <p class="count-row">🍎🍎🍎🍎🍎 · 🍎🍎</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 6</span><span><b>B.</b> 7</span>
+            <span><b>C.</b> 8</span><span><b>D.</b> 5</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm một cụm 5 quả táo trước: 1, 2, 3, 4, 5.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm thêm 2 quả còn lại: 5 rồi 6, 7. Có tất cả 7 quả táo.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 7.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s1-2" data-qid="Câu 1.2">
+        <div class="q"><span class="qid">Câu 1.2</span><div class="qtext">
+          <p>Bé hãy đếm xem có bao nhiêu chú cá đang bơi, rồi chọn đúng chữ số nhé!</p>
+          <p class="count-row">🐟🐟🐟🐟🐟 · 🐟🐟🐟🐟🐟 · 🐟🐟🐟🐟</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 12</span><span><b>B.</b> 13</span>
+            <span><b>C.</b> 14</span><span><b>D.</b> 15</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm theo từng cụm 5 con một: cụm 1 có 5 con, cụm 2 có 5 con nữa — vậy là 5 rồi 10.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm thêm cụm cuối còn 4 con: 10 rồi 11, 12, 13, 14. Có tất cả 14 chú cá.</p></div></div>
+          <p class="answer hidden">Đáp án: C — 14.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2: TÌM HÌNH KHÁC BIỆT ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">🔍</span>
+        <h2 class="topic-title">Tìm hình khác biệt</h2>
+      </div>
+      <p class="topic-intro">Trong mỗi hàng có 4 hình, ba trong số đó giống hệt nhau, chỉ có một hình "lạc loài". Bé hãy quan sát thật kỹ màu sắc, hình dạng và kích thước của từng hình để tìm ra hình khác biệt.</p>
+
+      <div class="problem" data-pool="s2-1" data-qid="Câu 2.1">
+        <div class="q"><span class="qid">Câu 2.1</span><div class="qtext">
+          <p>Trong 4 hình dưới đây, hình nào khác với 3 hình còn lại?</p>
+          <div class="geo-figure"><svg viewBox="0 0 240 60" width="280" height="70">
+            <circle cx="30" cy="30" r="20" fill="var(--accent)"/>
+            <circle cx="90" cy="30" r="20" fill="var(--accent)"/>
+            <rect x="130" y="10" width="40" height="40" fill="var(--accent)"/>
+            <circle cx="210" cy="30" r="20" fill="var(--accent)"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Hình 1</span><span><b>B.</b> Hình 2</span>
+            <span><b>C.</b> Hình 3</span><span><b>D.</b> Hình 4</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hình 1, Hình 2 và Hình 4 đều là hình tròn, cùng màu và cùng kích thước.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hình 3 là hình vuông, khác hẳn dạng hình tròn của 3 hình còn lại.</p></div></div>
+          <p class="answer hidden">Đáp án: C — Hình 3.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s2-2" data-qid="Câu 2.2">
+        <div class="q"><span class="qid">Câu 2.2</span><div class="qtext">
+          <p>Trong 4 hình tam giác dưới đây, hình nào khác với 3 hình còn lại?</p>
+          <div class="geo-figure"><svg viewBox="0 0 240 60" width="280" height="70">
+            <polygon points="12,54 48,54 30,14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/>
+            <polygon points="80,54 100,54 90,32" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/>
+            <polygon points="132,54 168,54 150,14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/>
+            <polygon points="192,54 228,54 210,14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Hình 1</span><span><b>B.</b> Hình 2</span>
+            <span><b>C.</b> Hình 3</span><span><b>D.</b> Hình 4</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Cả 4 hình tam giác đều cùng màu vàng, cùng hướng lên trên.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hình 2 nhỏ hơn hẳn so với 3 hình tam giác còn lại.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Hình 2.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3: QUY LUẬT MÀU SẮC VÀ HÌNH ĐƠN GIẢN ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">🔁</span>
+        <h2 class="topic-title">Quy luật màu sắc và hình đơn giản</h2>
+      </div>
+      <p class="topic-intro">Một dãy màu lặp đi lặp lại theo đúng một chu kỳ. Bé hãy quan sát xem cứ cách mấy hình thì màu lặp lại một lần, rồi đoán xem quả bóng có dấu "?" sẽ mang màu gì.</p>
+
+      <div class="problem" data-pool="s3-1" data-qid="Câu 3.1">
+        <div class="q"><span class="qid">Câu 3.1</span><div class="qtext">
+          <p>Quan sát dãy quả bóng màu dưới đây, quả có dấu "?" sẽ mang màu gì?</p>
+          <div class="pattern-row">
+            <span class="chip chip-pink"></span><span class="chip chip-gold"></span>
+            <span class="chip chip-pink"></span><span class="chip chip-gold"></span>
+            <span class="chip chip-pink"></span><span class="chip chip-gold"></span>
+            <span class="chip chip-pink"></span><span class="chip qmark">?</span>
+          </div>
+          <div class="mcq-opts">
+            <span><b>A.</b> <span class="chip-sm chip-pink"></span>Hồng</span>
+            <span><b>B.</b> <span class="chip-sm chip-gold"></span>Vàng</span>
+            <span><b>C.</b> <span class="chip-sm chip-teal"></span>Xanh ngọc</span>
+            <span><b>D.</b> <span class="chip-sm chip-purple"></span>Tím</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Dãy màu cứ lặp lại từng đôi một: hồng, vàng, hồng, vàng...</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Quả thứ 7 là màu hồng, nên quả tiếp theo (thứ 8, dấu "?") sẽ là màu vàng.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Vàng.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s3-2" data-qid="Câu 3.2">
+        <div class="q"><span class="qid">Câu 3.2</span><div class="qtext">
+          <p>Quan sát dãy quả bóng màu dưới đây, quả có dấu "?" sẽ mang màu gì?</p>
+          <div class="pattern-row">
+            <span class="chip chip-pink"></span><span class="chip chip-gold"></span><span class="chip chip-teal"></span>
+            <span class="chip chip-pink"></span><span class="chip chip-gold"></span><span class="chip chip-teal"></span>
+            <span class="chip chip-pink"></span><span class="chip qmark">?</span>
+          </div>
+          <div class="mcq-opts">
+            <span><b>A.</b> <span class="chip-sm chip-pink"></span>Hồng</span>
+            <span><b>B.</b> <span class="chip-sm chip-gold"></span>Vàng</span>
+            <span><b>C.</b> <span class="chip-sm chip-teal"></span>Xanh ngọc</span>
+            <span><b>D.</b> <span class="chip-sm chip-purple"></span>Tím</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Dãy màu lặp lại theo nhóm 3 màu: hồng, vàng, xanh ngọc — rồi quay lại từ đầu.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Quả thứ 7 là màu hồng (đầu một chu kỳ mới), nên quả thứ 8 (dấu "?") sẽ là màu vàng, giống vị trí thứ 2 trong mỗi chu kỳ.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Vàng.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4: ĐỐ VUI ĐẾM HÌNH CHỒNG ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🧩</span>
+        <h2 class="topic-title">Đố vui đếm hình chồng</h2>
+      </div>
+      <p class="topic-intro">Mỗi hình dưới đây được ghép từ đúng 2 hình cơ bản đặt chồng lên nhau. Bé chỉ cần nhớ: dù phần chồng lên nhau có trông lạ mắt đến đâu, số hình được dùng để ghép vẫn không đổi.</p>
+
+      <div class="problem" data-pool="s4-1" data-qid="Câu 4.1">
+        <div class="q"><span class="qid">Câu 4.1</span><div class="qtext">
+          <p>Hình dưới đây được ghép từ 2 hình vuông đặt chồng lên nhau. Đố bé, có tất cả bao nhiêu hình vuông?</p>
+          <div class="geo-figure"><svg viewBox="0 0 100 100" width="180" height="180">
+            <rect x="8" y="15" width="55" height="55" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="3"/>
+            <rect x="40" y="30" width="55" height="55" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3" fill-opacity="0.92"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 1</span><span><b>B.</b> 2</span>
+            <span><b>C.</b> 3</span><span><b>D.</b> 4</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hình được vẽ từ 1 hình vuông màu hồng và 1 hình vuông màu vàng đặt chồng lên nhau.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Phần chồng lên nhau chỉ là chỗ giao nhau của 2 hình vuông đó, không phải là một hình vuông mới. Vậy chỉ có đúng 2 hình vuông.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 2.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s4-2" data-qid="Câu 4.2">
+        <div class="q"><span class="qid">Câu 4.2</span><div class="qtext">
+          <p>Hình dưới đây được ghép từ 2 hình tam giác đặt chồng lên nhau. Đố bé, có tất cả bao nhiêu hình tam giác?</p>
+          <div class="geo-figure"><svg viewBox="0 0 105 95" width="180" height="163">
+            <polygon points="10,85 65,85 37,25" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="3"/>
+            <polygon points="40,85 95,85 67,25" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3" fill-opacity="0.92"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 1</span><span><b>B.</b> 2</span>
+            <span><b>C.</b> 3</span><span><b>D.</b> 4</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hình được vẽ từ 1 hình tam giác màu hồng và 1 hình tam giác màu vàng đặt chồng lên nhau.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Dù phần chồng lên nhau trông hơi lạ, hình này vẫn chỉ được ghép từ đúng 2 hình tam giác.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 2.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 1, dành cho bé mới rời mầm non làm quen với phong cách toán tư duy quốc tế kiểu TIMO. Toàn bộ đề bài, hình vẽ và lời giải trong tài liệu này là nội dung tự soạn mới hoàn toàn, không sao chép từ bất kỳ đề gốc nào.</footer>
+
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  's1-1': [
+    {
+      qHtml: '<p>Bé hãy đếm xem có bao nhiêu quả cam trong tranh, rồi chọn đúng chữ số nhé!</p><p class="count-row">🍊🍊🍊🍊🍊 · 🍊🍊🍊🍊🍊 · 🍊</p><div class="mcq-opts"><span><b>A.</b> 9</span><span><b>B.</b> 10</span><span><b>C.</b> 11</span><span><b>D.</b> 12</span></div>',
+      steps: [
+        '<p>Đếm cụm 5 quả cam đầu tiên: 1, 2, 3, 4, 5.</p>',
+        '<p>Đếm tiếp cụm 5 quả nữa: 5 rồi 10. Còn 1 quả lẻ: 10 rồi 11. Có tất cả 11 quả cam.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 11.'
+    }
+  ],
+  's1-2': [
+    {
+      qHtml: '<p>Bé hãy đếm xem có bao nhiêu quả bóng bay, rồi chọn đúng chữ số nhé!</p><p class="count-row">🎈🎈🎈🎈🎈 · 🎈🎈🎈🎈</p><div class="mcq-opts"><span><b>A.</b> 7</span><span><b>B.</b> 8</span><span><b>C.</b> 9</span><span><b>D.</b> 10</span></div>',
+      steps: [
+        '<p>Đếm cụm 5 quả bóng bay trước: 1, 2, 3, 4, 5.</p>',
+        '<p>Đếm thêm 4 quả còn lại: 5 rồi 6, 7, 8, 9. Có tất cả 9 quả bóng bay.</p>'
+      ],
+      answerHtml: 'Đáp án: C — 9.'
+    }
+  ],
+  's2-1': [
+    {
+      qHtml: '<p>Trong 4 hình dưới đây, hình nào khác với 3 hình còn lại?</p><div class="geo-figure"><svg viewBox="0 0 240 60" width="280" height="70"><circle cx="30" cy="30" r="20" fill="var(--accent)"/><circle cx="90" cy="30" r="20" fill="var(--accent)"/><circle cx="150" cy="30" r="20" fill="var(--accent)"/><circle cx="210" cy="30" r="20" fill="var(--accent-warm)"/></svg></div><div class="mcq-opts"><span><b>A.</b> Hình 1</span><span><b>B.</b> Hình 2</span><span><b>C.</b> Hình 3</span><span><b>D.</b> Hình 4</span></div>',
+      steps: [
+        '<p>Cả 4 hình đều là hình tròn, cùng kích thước như nhau.</p>',
+        '<p>Hình 1, Hình 2 và Hình 3 cùng một màu hồng; riêng Hình 4 có màu vàng khác hẳn.</p>'
+      ],
+      answerHtml: 'Đáp án: D — Hình 4.'
+    }
+  ],
+  's2-2': [
+    {
+      qHtml: '<p>Trong 4 hình vuông dưới đây, hình nào khác với 3 hình còn lại?</p><div class="geo-figure"><svg viewBox="0 0 240 60" width="280" height="70"><rect x="14" y="14" width="32" height="32" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/><rect x="74" y="14" width="32" height="32" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/><rect x="128" y="8" width="44" height="44" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/><rect x="194" y="14" width="32" height="32" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/></svg></div><div class="mcq-opts"><span><b>A.</b> Hình 1</span><span><b>B.</b> Hình 2</span><span><b>C.</b> Hình 3</span><span><b>D.</b> Hình 4</span></div>',
+      steps: [
+        '<p>Cả 4 hình vuông đều cùng một màu vàng.</p>',
+        '<p>Hình 3 to hơn hẳn so với 3 hình vuông còn lại.</p>'
+      ],
+      answerHtml: 'Đáp án: C — Hình 3.'
+    }
+  ],
+  's3-1': [
+    {
+      qHtml: '<p>Quan sát dãy quả bóng màu dưới đây, quả có dấu "?" sẽ mang màu gì?</p><div class="pattern-row"><span class="chip chip-teal"></span><span class="chip chip-purple"></span><span class="chip chip-teal"></span><span class="chip chip-purple"></span><span class="chip chip-teal"></span><span class="chip chip-purple"></span><span class="chip chip-teal"></span><span class="chip qmark">?</span></div><div class="mcq-opts"><span><b>A.</b> <span class="chip-sm chip-pink"></span>Hồng</span><span><b>B.</b> <span class="chip-sm chip-gold"></span>Vàng</span><span><b>C.</b> <span class="chip-sm chip-teal"></span>Xanh ngọc</span><span><b>D.</b> <span class="chip-sm chip-purple"></span>Tím</span></div>',
+      steps: [
+        '<p>Dãy màu cứ lặp lại từng đôi một: xanh ngọc, tím, xanh ngọc, tím...</p>',
+        '<p>Quả thứ 7 là màu xanh ngọc, nên quả tiếp theo (thứ 8, dấu "?") sẽ là màu tím.</p>'
+      ],
+      answerHtml: 'Đáp án: D — Tím.'
+    }
+  ],
+  's3-2': [
+    {
+      qHtml: '<p>Quan sát dãy quả bóng màu dưới đây, quả có dấu "?" sẽ mang màu gì?</p><div class="pattern-row"><span class="chip chip-purple"></span><span class="chip chip-pink"></span><span class="chip chip-gold"></span><span class="chip chip-purple"></span><span class="chip chip-pink"></span><span class="chip chip-gold"></span><span class="chip chip-purple"></span><span class="chip qmark">?</span></div><div class="mcq-opts"><span><b>A.</b> <span class="chip-sm chip-purple"></span>Tím</span><span><b>B.</b> <span class="chip-sm chip-pink"></span>Hồng</span><span><b>C.</b> <span class="chip-sm chip-gold"></span>Vàng</span><span><b>D.</b> <span class="chip-sm chip-teal"></span>Xanh ngọc</span></div>',
+      steps: [
+        '<p>Dãy màu lặp lại theo nhóm 3 màu: tím, hồng, vàng — rồi quay lại từ đầu.</p>',
+        '<p>Quả thứ 7 là màu tím (đầu một chu kỳ mới), nên quả thứ 8 (dấu "?") sẽ là màu hồng, giống vị trí thứ 2 trong mỗi chu kỳ.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Hồng.'
+    }
+  ],
+  's4-1': [
+    {
+      qHtml: '<p>Hình dưới đây được ghép từ 2 hình vuông đặt chồng lên nhau. Đố bé, có tất cả bao nhiêu hình vuông?</p><div class="geo-figure"><svg viewBox="0 0 100 100" width="180" height="180"><rect x="10" y="30" width="50" height="50" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="3"/><rect x="45" y="8" width="50" height="50" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3" fill-opacity="0.92"/></svg></div><div class="mcq-opts"><span><b>A.</b> 1</span><span><b>B.</b> 2</span><span><b>C.</b> 3</span><span><b>D.</b> 4</span></div>',
+      steps: [
+        '<p>Hình được vẽ từ 1 hình vuông màu hồng và 1 hình vuông màu vàng đặt chồng lên nhau.</p>',
+        '<p>Phần chồng lên nhau chỉ là chỗ giao nhau, không phải là một hình vuông mới. Vậy chỉ có đúng 2 hình vuông.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 2.'
+    }
+  ],
+  's4-2': [
+    {
+      qHtml: '<p>Hình dưới đây được ghép từ 2 hình tam giác đặt chồng lên nhau. Đố bé, có tất cả bao nhiêu hình tam giác?</p><div class="geo-figure"><svg viewBox="0 0 110 100" width="180" height="164"><polygon points="15,20 15,80 65,50" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="3"/><polygon points="45,20 45,80 95,50" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3" fill-opacity="0.92"/></svg></div><div class="mcq-opts"><span><b>A.</b> 1</span><span><b>B.</b> 2</span><span><b>C.</b> 3</span><span><b>D.</b> 4</span></div>',
+      steps: [
+        '<p>Hình được vẽ từ 1 hình tam giác màu hồng và 1 hình tam giác màu vàng đặt chồng lên nhau.</p>',
+        '<p>Dù phần chồng lên nhau trông hơi lạ, hình này vẫn chỉ được ghép từ đúng 2 hình tam giác.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 2.'
+    }
+  ]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initProblem(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    var qidEl = el.querySelector('.qid');
+    var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+    var original = {
+      qHtml: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+        return s.querySelector('.t').innerHTML;
+      }),
+      answerHtml: (function () {
+        var a = solBody.querySelector('.answer');
+        return a ? a.innerHTML : '';
+      })()
+    };
+    var poolKey = el.dataset.pool;
+    var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+    var pool = [original].concat(extra);
+
+    var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+
+    if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var totalSteps = solBody.querySelectorAll('.step').length;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= totalSteps;
+        btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) {
+        if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+        else btnReset.setAttribute('hidden', '');
+      }
+    }
+
+    function renderVariant(idx) {
+      var v = pool[idx];
+      qtext.innerHTML = v.qHtml;
+      var steps = solBody.querySelectorAll('.step');
+      if (steps.length !== v.steps.length) {
+        var html = v.steps.map(function (stepHtml, i) {
+          return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+        }).join('');
+        html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+        solBody.innerHTML = html;
+      } else {
+        steps.forEach(function (stepEl, i) {
+          stepEl.querySelector('.t').innerHTML = v.steps[i];
+          stepEl.classList.add('hidden');
+        });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+      }
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+      if (qidEl) {
+        qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+      }
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.classList.remove('hidden');
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.classList.remove('hidden');
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.variantIndex = (state.variantIndex + 1) % pool.length;
+      renderVariant(state.variantIndex);
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.classList.add('hidden');
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+</body>
+</html>

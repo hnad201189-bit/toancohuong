@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sẵn Sàng Vào Lớp 1 — Ôn luyện Toán lớp 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #fff7ec;
+    --bg-alt: #ffedd3;
+    --paper: #ffffff;
+    --ink: #2f2a4a;
+    --ink-soft: #635c82;
+    --ink-faint: #9992b3;
+    --accent: #0e9a8b;
+    --accent-soft: #dbf4ef;
+    --accent-warm: #ff6f59;
+    --accent-warm-soft: #ffe3da;
+    --line: #f0e0c4;
+    --line-strong: #e3caa0;
+    --shadow: 0 1px 2px rgba(90, 60, 20, 0.07), 0 8px 22px rgba(90, 60, 20, 0.09);
+    --radius: 18px;
+    --display: "Baloo 2", "Segoe UI", Calibri, sans-serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #201a33;
+    --bg-alt: #291f45;
+    --paper: #251d3e;
+    --ink: #f4eefc;
+    --ink-soft: #c9bfe4;
+    --ink-faint: #8d80ac;
+    --accent: #37d6c2;
+    --accent-soft: #163531;
+    --accent-warm: #ff9478;
+    --accent-warm-soft: #3c2620;
+    --line: #3a3158;
+    --line-strong: #4c4172;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #201a33;
+      --bg-alt: #291f45;
+      --paper: #251d3e;
+      --ink: #f4eefc;
+      --ink-soft: #c9bfe4;
+      --ink-faint: #8d80ac;
+      --accent: #37d6c2;
+      --accent-soft: #163531;
+      --accent-warm: #ff9478;
+      --accent-warm-soft: #3c2620;
+      --line: #3a3158;
+      --line-strong: #4c4172;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17.5px;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 44px 20px 96px;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 28px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 6px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 2px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    margin-left: -2px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+      margin-bottom: 6px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  section.topic { padding-top: 50px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .topic-num { font-family: var(--display); font-size: 16px; color: var(--accent-warm); font-weight: 600; }
+  h1.doc-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 38px);
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  p.doc-sub { color: var(--ink-soft); margin: 0 0 26px; font-size: 16px; }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 66ch; margin: 10px 0 26px; }
+
+  p { max-width: 66ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 18px 0 30px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks (MCQ) ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q { padding: 18px 22px; display: flex; gap: 14px; align-items: baseline; border-bottom: 1px solid var(--line); }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent-warm); white-space: nowrap; padding-top: 1px; }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .mcq-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 18px;
+    margin: 12px 0 2px;
+    font-size: 16px;
+  }
+  .mcq-opts span b { color: var(--accent); margin-right: 4px; }
+  .mcq-opts.emoji { font-size: 24px; }
+  @media (max-width: 480px) {
+    .mcq-opts { grid-template-columns: 1fr; }
+  }
+
+  .geo-figure {
+    display: flex;
+    justify-content: center;
+    padding: 14px 0 8px;
+  }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .scene-pair {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 10px 0 8px;
+    font-size: 32px;
+    text-align: center;
+  }
+  .scene-pair .cnt { font-family: var(--mono); font-size: 13px; color: var(--ink-faint); display: block; margin-top: 4px; }
+
+  .pattern-row {
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 6px;
+    padding: 10px 0 4px;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15.5px; }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 4px 12px; margin-bottom: 12px; }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 chủ đề sẵn sàng</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔷</span>Nhận biết hình</a></li>
+      <li><a href="#sec2"><span class="n">🧭</span>Vị trí &amp; định hướng</a></li>
+      <li><a href="#sec3"><span class="n">🔁</span>Quy luật đơn giản</a></li>
+      <li><a href="#sec4"><span class="n">⚖️</span>So sánh</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <h1 class="doc-title">Sẵn Sàng Vào Lớp 1 🎒</h1>
+    <p class="doc-sub">Khởi động tư duy trước khi bé chính thức học Toán lớp 1.</p>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">Về tài liệu này</div>
+      <p><b>Sẵn Sàng Vào Lớp 1</b> gồm 4 chủ đề khởi động tư duy cho bé chuẩn bị vào lớp 1: nhận biết hình dạng, định hướng vị trí trong không gian, tìm quy luật đơn giản và so sánh trực quan. Toàn bộ 8 câu hỏi (16 lượt bài tính cả biến thể) là <b>bài tự soạn mới hoàn toàn</b> — đề bài, hình vẽ và lời giải đều do đội ngũ biên soạn lại, chỉ tham khảo ý tưởng chung "chuẩn bị vào lớp 1 bằng toán tư duy" chứ không sao chép nguyên văn từ bất kỳ nguồn nào. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để bé luyện lại đúng kiểu bài với hình ảnh khác.</p>
+    </div>
+
+    <!-- ================= 1. NHẬN BIẾT HÌNH ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 1</span>
+        <h2 class="topic-title">Nhận biết hình 🔷</h2>
+      </div>
+      <p class="topic-intro">Bé quan sát các đồ vật quen thuộc quanh nhà và ở lớp, rồi gọi tên đúng hình dạng của chúng: <span class="kw">hình vuông</span>, <span class="kw">hình tròn</span>, <span class="kw">hình tam giác</span>, <span class="kw">hình chữ nhật</span>. Mẹo nhỏ: đếm số cạnh, xem cạnh có bằng nhau không, và xem có góc nhọn hay không.</p>
+
+      <div class="problem" data-pool="s1-1" data-qid="Câu 1.1">
+        <div class="q"><span class="qid">Câu 1.1</span><div class="qtext">
+          <p>Chiếc đồng hồ treo tường nhà bé có dạng hình gì? 🕐</p>
+          <div class="geo-figure"><svg viewBox="0 0 100 100" width="130" height="130">
+            <circle cx="50" cy="50" r="42" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <line x1="50" y1="50" x2="50" y2="24" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="50" y1="50" x2="68" y2="58" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="3.5" fill="var(--ink)"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Hình vuông</span><span><b>B.</b> Hình tròn</span>
+            <span><b>C.</b> Hình tam giác</span><span><b>D.</b> Hình chữ nhật</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chiếc đồng hồ có đường viền cong đều, không có góc nhọn nào.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đường cong khép kín, không góc, chính là hình tròn.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Hình tròn.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s1-2" data-qid="Câu 1.2">
+        <div class="q"><span class="qid">Câu 1.2</span><div class="qtext">
+          <p>Lá cờ đuôi nheo bé cầm ở ngày hội có dạng hình gì? 🚩</p>
+          <div class="geo-figure"><svg viewBox="0 0 110 100" width="140" height="128">
+            <line x1="20" y1="10" x2="20" y2="92" stroke="var(--ink-faint)" stroke-width="4" stroke-linecap="round"/>
+            <polygon points="20,16 96,40 20,64" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="4" stroke-linejoin="round"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Hình vuông</span><span><b>B.</b> Hình tròn</span>
+            <span><b>C.</b> Hình tam giác</span><span><b>D.</b> Hình chữ nhật</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Lá cờ có 3 cạnh thẳng và 3 góc.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hình có đúng 3 cạnh, 3 góc chính là hình tam giác.</p></div></div>
+          <p class="answer hidden">Đáp án: C — Hình tam giác.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. VỊ TRÍ & ĐỊNH HƯỚNG ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 2</span>
+        <h2 class="topic-title">Vị trí &amp; định hướng 🧭</h2>
+      </div>
+      <p class="topic-intro">Bé tập nói xem một vật ở đâu so với vật khác: <span class="kw">trên</span> hay <span class="kw">dưới</span>, <span class="kw">bên trái</span> hay <span class="kw">bên phải</span>. Mẹo nhỏ: chọn một vật làm mốc, rồi nhìn kỹ xem vật còn lại nằm ở phía nào của vật mốc.</p>
+
+      <div class="problem" data-pool="s2-1" data-qid="Câu 2.1">
+        <div class="q"><span class="qid">Câu 2.1</span><div class="qtext">
+          <p>Bạn mèo đang ở đâu so với cái bàn? 🐱</p>
+          <div class="geo-figure"><svg viewBox="0 0 140 120" width="170" height="146">
+            <rect x="20" y="70" width="100" height="10" rx="2" fill="var(--accent-warm)"/>
+            <rect x="28" y="80" width="8" height="30" fill="var(--accent-warm)"/>
+            <rect x="104" y="80" width="8" height="30" fill="var(--accent-warm)"/>
+            <text x="70" y="58" font-size="34" text-anchor="middle">🐱</text>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Trên bàn</span><span><b>B.</b> Dưới bàn</span>
+            <span><b>C.</b> Bên trái bàn</span><span><b>D.</b> Bên phải bàn</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhìn hình: bạn mèo đang nằm ở phía trên mặt bàn.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nằm ở phía trên mặt bàn nghĩa là ở vị trí "trên".</p></div></div>
+          <p class="answer hidden">Đáp án: A — Trên bàn.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s2-2" data-qid="Câu 2.2">
+        <div class="q"><span class="qid">Câu 2.2</span><div class="qtext">
+          <p>Bạn thỏ đứng ở đâu so với bạn gấu? 🐰🐻</p>
+          <div class="geo-figure"><svg viewBox="0 0 160 90" width="190" height="108">
+            <text x="35" y="55" font-size="34" text-anchor="middle">🐰</text>
+            <text x="125" y="55" font-size="34" text-anchor="middle">🐻</text>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Bên trái gấu</span><span><b>B.</b> Bên phải gấu</span>
+            <span><b>C.</b> Ở trên gấu</span><span><b>D.</b> Ở dưới gấu</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhìn hình: bạn thỏ đứng ở phía tay trái, bạn gấu đứng ở phía tay phải.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thỏ đứng ở phía tay trái của gấu, nên thỏ ở "bên trái" gấu.</p></div></div>
+          <p class="answer hidden">Đáp án: A — Bên trái gấu.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. QUY LUẬT ĐƠN GIẢN ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 3</span>
+        <h2 class="topic-title">Quy luật đơn giản 🔁</h2>
+      </div>
+      <p class="topic-intro">Bé quan sát một dãy hình hoặc màu <span class="kw">lặp đi lặp lại</span>, tìm ra nhóm lặp lại rồi đoán hình tiếp theo. Mẹo nhỏ: khoanh từng nhóm giống nhau trong dãy trước khi đoán hình còn thiếu.</p>
+
+      <div class="problem" data-pool="s3-1" data-qid="Câu 3.1">
+        <div class="q"><span class="qid">Câu 3.1</span><div class="qtext">
+          <p>Hình nào tiếp theo trong dãy sau?</p>
+          <div class="pattern-row">🔴 🔵 🔴 🔵 🔴 ❓</div>
+          <div class="mcq-opts emoji">
+            <span><b>A.</b> 🔴</span><span><b>B.</b> 🔵</span>
+            <span><b>C.</b> 🟡</span><span><b>D.</b> 🟢</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Quan sát dãy: đỏ, xanh dương lặp lại liên tiếp — cứ 2 hình lại quay vòng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Sau hình đỏ 🔴 ở vị trí thứ 5 sẽ đến hình xanh dương 🔵.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 🔵.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s3-2" data-qid="Câu 3.2">
+        <div class="q"><span class="qid">Câu 3.2</span><div class="qtext">
+          <p>Hình nào tiếp theo trong dãy sau?</p>
+          <div class="pattern-row">🔺 ⬛ 🔵 🔺 ⬛ 🔵 🔺 ❓</div>
+          <div class="mcq-opts emoji">
+            <span><b>A.</b> 🔺</span><span><b>B.</b> ⬛</span>
+            <span><b>C.</b> 🔵</span><span><b>D.</b> ⭐</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Quan sát dãy: tam giác, vuông đen, tròn xanh lặp lại theo nhóm 3 hình.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Sau hình tam giác 🔺 ở vị trí thứ 7 — đầu một nhóm mới — sẽ đến hình vuông đen ⬛.</p></div></div>
+          <p class="answer hidden">Đáp án: B — ⬛.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. SO SÁNH ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 4</span>
+        <h2 class="topic-title">So sánh ⚖️</h2>
+      </div>
+      <p class="topic-intro">Bé so sánh hai nhóm hoặc hai vật để biết bên nào <span class="kw">nhiều hơn — ít hơn</span>, <span class="kw">to hơn — nhỏ hơn</span>, <span class="kw">dài hơn — ngắn hơn</span>. Mẹo nhỏ: đếm hoặc nhìn thật kỹ rồi mới trả lời, không đoán bừa.</p>
+
+      <div class="problem" data-pool="s4-1" data-qid="Câu 4.1">
+        <div class="q"><span class="qid">Câu 4.1</span><div class="qtext">
+          <p>Bên nào có nhiều quả táo hơn?</p>
+          <div class="scene-pair">
+            <div>🍎🍎🍎<span class="cnt">Bên trái</span></div>
+            <div>🍎🍎🍎🍎🍎<span class="cnt">Bên phải</span></div>
+          </div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Bên trái</span><span><b>B.</b> Bên phải</span>
+            <span><b>C.</b> Hai bên bằng nhau</span><span><b>D.</b> Không so sánh được</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm số táo bên trái: 🍎🍎🍎 — có 3 quả.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm số táo bên phải: 🍎🍎🍎🍎🍎 — có 5 quả. 5 nhiều hơn 3.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Bên phải.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s4-2" data-qid="Câu 4.2">
+        <div class="q"><span class="qid">Câu 4.2</span><div class="qtext">
+          <p>Quả bóng nào to hơn?</p>
+          <div class="geo-figure"><svg viewBox="0 0 200 110" width="220" height="121">
+            <circle cx="55" cy="55" r="45" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <circle cx="160" cy="70" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Quả bên trái</span><span><b>B.</b> Quả bên phải</span>
+            <span><b>C.</b> Hai quả bằng nhau</span><span><b>D.</b> Không xác định được</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>So sánh hai quả bóng: quả bên trái có đường viền lớn hơn hẳn.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vòng tròn lớn hơn nghĩa là quả bóng đó to hơn.</p></div></div>
+          <p class="answer hidden">Đáp án: A — Quả bên trái.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 1, chủ đề Sẵn Sàng Vào Lớp 1. Toàn bộ đề bài, hình vẽ và lời giải trong tài liệu này là nội dung tự soạn mới, chỉ tham khảo ý tưởng chung về các chủ đề chuẩn bị vào lớp 1 (nhận biết hình, định hướng không gian, quy luật, so sánh), không sao chép từ bất kỳ nguồn nào.</footer>
+
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  's1-1': [
+    {
+      qHtml: '<p>Ô cửa sổ phòng bé có dạng hình gì? 🪟</p><div class="geo-figure"><svg viewBox="0 0 100 100" width="130" height="130"><rect x="14" y="14" width="72" height="72" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><line x1="50" y1="14" x2="50" y2="86" stroke="var(--accent)" stroke-width="3"/><line x1="14" y1="50" x2="86" y2="50" stroke="var(--accent)" stroke-width="3"/></svg></div><div class="mcq-opts"><span><b>A.</b> Hình vuông</span><span><b>B.</b> Hình tròn</span><span><b>C.</b> Hình tam giác</span><span><b>D.</b> Hình chữ nhật</span></div>',
+      steps: [
+        '<p>Ô cửa sổ có 4 cạnh bằng nhau và 4 góc vuông.</p>',
+        '<p>4 cạnh bằng nhau, 4 góc vuông chính là hình vuông.</p>'
+      ],
+      answerHtml: 'Đáp án: A — Hình vuông.'
+    }
+  ],
+  's1-2': [
+    {
+      qHtml: '<p>Chiếc bảng đen ở lớp học có dạng hình gì? 🖤</p><div class="geo-figure"><svg viewBox="0 0 130 90" width="150" height="104"><rect x="10" y="10" width="110" height="70" rx="6" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="4"/></svg></div><div class="mcq-opts"><span><b>A.</b> Hình vuông</span><span><b>B.</b> Hình tròn</span><span><b>C.</b> Hình tam giác</span><span><b>D.</b> Hình chữ nhật</span></div>',
+      steps: [
+        '<p>Chiếc bảng có 4 cạnh, 4 góc vuông, nhưng 2 cạnh dài hơn 2 cạnh còn lại.</p>',
+        '<p>4 góc vuông mà các cạnh không bằng nhau hết chính là hình chữ nhật.</p>'
+      ],
+      answerHtml: 'Đáp án: D — Hình chữ nhật.'
+    }
+  ],
+  's2-1': [
+    {
+      qHtml: '<p>Quả bóng đang ở đâu so với cái bàn? ⚽</p><div class="geo-figure"><svg viewBox="0 0 140 120" width="170" height="146"><rect x="20" y="30" width="100" height="10" rx="2" fill="var(--accent-warm)"/><rect x="28" y="40" width="8" height="30" fill="var(--accent-warm)"/><rect x="104" y="40" width="8" height="30" fill="var(--accent-warm)"/><text x="70" y="102" font-size="30" text-anchor="middle">⚽</text></svg></div><div class="mcq-opts"><span><b>A.</b> Trên bàn</span><span><b>B.</b> Dưới bàn</span><span><b>C.</b> Bên trái bàn</span><span><b>D.</b> Bên phải bàn</span></div>',
+      steps: [
+        '<p>Nhìn hình: quả bóng nằm ở dưới mặt bàn, giữa hai chân bàn.</p>',
+        '<p>Nằm ở phía dưới mặt bàn nghĩa là ở vị trí "dưới".</p>'
+      ],
+      answerHtml: 'Đáp án: B — Dưới bàn.'
+    }
+  ],
+  's2-2': [
+    {
+      qHtml: '<p>Bạn mèo đứng ở đâu so với bạn chó? 🐶🐱</p><div class="geo-figure"><svg viewBox="0 0 160 90" width="190" height="108"><text x="35" y="55" font-size="34" text-anchor="middle">🐶</text><text x="125" y="55" font-size="34" text-anchor="middle">🐱</text></svg></div><div class="mcq-opts"><span><b>A.</b> Bên trái chó</span><span><b>B.</b> Bên phải chó</span><span><b>C.</b> Ở trên chó</span><span><b>D.</b> Ở dưới chó</span></div>',
+      steps: [
+        '<p>Nhìn hình: bạn chó đứng ở phía tay trái, bạn mèo đứng ở phía tay phải.</p>',
+        '<p>Mèo đứng ở phía tay phải của chó, nên mèo ở "bên phải" chó.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Bên phải chó.'
+    }
+  ],
+  's3-1': [
+    {
+      qHtml: '<p>Hình nào tiếp theo trong dãy sau?</p><div class="pattern-row">🟨 🟩 🟨 🟩 🟨 ❓</div><div class="mcq-opts emoji"><span><b>A.</b> 🟨</span><span><b>B.</b> 🟩</span><span><b>C.</b> 🟥</span><span><b>D.</b> 🟦</span></div>',
+      steps: [
+        '<p>Quan sát dãy: vàng, xanh lá lặp lại liên tiếp — cứ 2 hình lại quay vòng.</p>',
+        '<p>Sau hình vàng 🟨 ở vị trí thứ 5 sẽ đến hình xanh lá 🟩.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 🟩.'
+    }
+  ],
+  's3-2': [
+    {
+      qHtml: '<p>Hình nào tiếp theo trong dãy sau?</p><div class="pattern-row">🍎 🍌 🍇 🍎 🍌 🍇 🍎 ❓</div><div class="mcq-opts emoji"><span><b>A.</b> 🍎</span><span><b>B.</b> 🍌</span><span><b>C.</b> 🍇</span><span><b>D.</b> 🍊</span></div>',
+      steps: [
+        '<p>Quan sát dãy: táo, chuối, nho lặp lại theo nhóm 3 hình.</p>',
+        '<p>Sau quả táo 🍎 ở vị trí thứ 7 — đầu một nhóm mới — sẽ đến quả chuối 🍌.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 🍌.'
+    }
+  ],
+  's4-1': [
+    {
+      qHtml: '<p>Bên nào có nhiều quả dâu hơn?</p><div class="scene-pair"><div>🍓🍓🍓🍓🍓🍓<span class="cnt">Bên trái</span></div><div>🍓🍓🍓🍓<span class="cnt">Bên phải</span></div></div><div class="mcq-opts"><span><b>A.</b> Bên trái</span><span><b>B.</b> Bên phải</span><span><b>C.</b> Hai bên bằng nhau</span><span><b>D.</b> Không so sánh được</span></div>',
+      steps: [
+        '<p>Đếm số dâu bên trái: 🍓🍓🍓🍓🍓🍓 — có 6 quả.</p>',
+        '<p>Đếm số dâu bên phải: 🍓🍓🍓🍓 — có 4 quả. 6 nhiều hơn 4.</p>'
+      ],
+      answerHtml: 'Đáp án: A — Bên trái.'
+    }
+  ],
+  's4-2': [
+    {
+      qHtml: '<p>Đoạn dây nào dài hơn?</p><div class="geo-figure"><svg viewBox="0 0 200 80" width="220" height="88"><rect x="10" y="18" width="60" height="14" rx="7" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/><rect x="10" y="50" width="150" height="14" rx="7" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/></svg></div><div class="mcq-opts"><span><b>A.</b> Dây trên</span><span><b>B.</b> Dây dưới</span><span><b>C.</b> Hai dây bằng nhau</span><span><b>D.</b> Không xác định được</span></div>',
+      steps: [
+        '<p>So sánh hai đoạn dây: đoạn dây dưới kéo dài hơn hẳn đoạn dây trên.</p>',
+        '<p>Đoạn kéo dài hơn nghĩa là đoạn dây đó dài hơn.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Dây dưới.'
+    }
+  ]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initProblem(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    var qidEl = el.querySelector('.qid');
+    var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+    var original = {
+      qHtml: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+        return s.querySelector('.t').innerHTML;
+      }),
+      answerHtml: (function () {
+        var a = solBody.querySelector('.answer');
+        return a ? a.innerHTML : '';
+      })()
+    };
+    var poolKey = el.dataset.pool;
+    var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+    var pool = [original].concat(extra);
+
+    var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+
+    if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var totalSteps = solBody.querySelectorAll('.step').length;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= totalSteps;
+        btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) {
+        if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+        else btnReset.setAttribute('hidden', '');
+      }
+    }
+
+    function renderVariant(idx) {
+      var v = pool[idx];
+      qtext.innerHTML = v.qHtml;
+      var steps = solBody.querySelectorAll('.step');
+      if (steps.length !== v.steps.length) {
+        var html = v.steps.map(function (stepHtml, i) {
+          return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+        }).join('');
+        html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+        solBody.innerHTML = html;
+      } else {
+        steps.forEach(function (stepEl, i) {
+          stepEl.querySelector('.t').innerHTML = v.steps[i];
+          stepEl.classList.add('hidden');
+        });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+      }
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+      if (qidEl) {
+        qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+      }
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.classList.remove('hidden');
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.classList.remove('hidden');
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.variantIndex = (state.variantIndex + 1) % pool.length;
+      renderVariant(state.variantIndex);
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.classList.add('hidden');
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+</body>
+</html>

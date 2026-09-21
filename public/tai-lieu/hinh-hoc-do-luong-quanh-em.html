@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hình Học Và Đo Lường Quanh Em — Ôn luyện Toán lớp 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f2faf4;
+    --bg-alt: #e3f3e7;
+    --paper: #ffffff;
+    --ink: #1d3327;
+    --ink-soft: #4f6b5a;
+    --ink-faint: #8aa398;
+    --accent: #16916a;
+    --accent-soft: #dcf3e7;
+    --accent-warm: #e08a2b;
+    --accent-warm-soft: #fbe7cd;
+    --line: #d9ead9;
+    --line-strong: #b9d8bc;
+    --shadow: 0 1px 2px rgba(20, 60, 40, 0.07), 0 8px 22px rgba(20, 60, 40, 0.08);
+    --radius: 16px;
+    --display: "Quicksand", "Segoe UI", Calibri, sans-serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #142019;
+    --bg-alt: #182a20;
+    --paper: #16241c;
+    --ink: #eaf5ee;
+    --ink-soft: #b6d0c1;
+    --ink-faint: #7c9a89;
+    --accent: #3ecf96;
+    --accent-soft: #173829;
+    --accent-warm: #f0a94e;
+    --accent-warm-soft: #3a2812;
+    --line: #25402f;
+    --line-strong: #33553e;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #142019;
+      --bg-alt: #182a20;
+      --paper: #16241c;
+      --ink: #eaf5ee;
+      --ink-soft: #b6d0c1;
+      --ink-faint: #7c9a89;
+      --accent: #3ecf96;
+      --accent-soft: #173829;
+      --accent-warm: #f0a94e;
+      --accent-warm-soft: #3a2812;
+      --line: #25402f;
+      --line-strong: #33553e;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17.5px;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 44px 20px 96px;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 28px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 6px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 2px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    margin-left: -2px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+      margin-bottom: 6px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  section.topic { padding-top: 50px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .topic-num { font-family: var(--display); font-size: 16px; color: var(--accent-warm); font-weight: 600; }
+  h1.doc-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 38px);
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  p.doc-sub { color: var(--ink-soft); margin: 0 0 26px; font-size: 16px; }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 66ch; margin: 10px 0 26px; }
+
+  p { max-width: 66ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 18px 0 30px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks (MCQ) ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q { padding: 18px 22px; display: flex; gap: 14px; align-items: baseline; border-bottom: 1px solid var(--line); }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent-warm); white-space: nowrap; padding-top: 1px; }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .mcq-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 18px;
+    margin: 12px 0 2px;
+    font-size: 16px;
+  }
+  .mcq-opts span b { color: var(--accent); margin-right: 4px; }
+  @media (max-width: 480px) {
+    .mcq-opts { grid-template-columns: 1fr; }
+  }
+
+  .geo-figure {
+    display: flex;
+    justify-content: center;
+    padding: 14px 0 8px;
+  }
+  .geo-figure svg { max-width: 100%; height: auto; }
+  .geo-figure.stacked { flex-direction: column; align-items: center; gap: 2px; }
+  .geo-label { text-align: center; font-size: 12.5px; color: var(--ink-soft); font-weight: 600; margin: 2px 0 -4px; }
+
+  .row-trio {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    font-size: 40px;
+    padding: 10px 0 6px;
+    text-align: center;
+  }
+
+  .shelf {
+    display: flex;
+    flex-direction: column;
+    width: 92px;
+    border: 3px solid var(--line-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-alt);
+  }
+  .shelf-slot {
+    padding: 13px 0;
+    text-align: center;
+    font-size: 32px;
+    border-bottom: 2px dashed var(--line-strong);
+  }
+  .shelf-slot:last-child { border-bottom: none; }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15.5px; }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 4px 12px; margin-bottom: 12px; }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 chủ đề hình học</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔷</span>Đếm hình</a></li>
+      <li><a href="#sec2"><span class="n">🧭</span>Vị trí &amp; định hướng</a></li>
+      <li><a href="#sec3"><span class="n">📏</span>Đo độ dài</a></li>
+      <li><a href="#sec4"><span class="n">🕐</span>Xem giờ đúng</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <h1 class="doc-title">Hình Học Và Đo Lường Quanh Em 📐</h1>
+    <p class="doc-sub">Khám phá hình khối, vị trí, thước đo và chiếc đồng hồ trong cuộc sống hằng ngày của em.</p>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">Về tài liệu này</div>
+      <p><b>Hình Học Và Đo Lường Quanh Em</b> gồm 4 chủ đề đào sâu phần hình học của chương trình Toán lớp 1: đếm hình trong nhóm hình trộn lẫn, xác định vị trí — định hướng, đo độ dài bằng thước cm và xem giờ đúng trên đồng hồ. Toàn bộ 8 câu hỏi (16 lượt bài tính cả biến thể) là <b>bài tự soạn mới hoàn toàn</b>, bám sát chương trình GDPT 2018 lớp 1 — đề bài, hình vẽ và lời giải đều do đội ngũ biên soạn, không sao chép nguyên văn từ bất kỳ nguồn nào. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để em luyện lại đúng kiểu bài với số liệu và hình ảnh khác.</p>
+    </div>
+
+    <!-- ================= 1. ĐẾM HÌNH ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 1</span>
+        <h2 class="topic-title">Nhận biết và đếm hình 🔷</h2>
+      </div>
+      <p class="topic-intro">Em quan sát một nhóm nhiều hình dạng trộn lẫn nhau — <span class="kw">hình vuông</span>, <span class="kw">hình tròn</span>, <span class="kw">hình tam giác</span>, <span class="kw">hình chữ nhật</span> — rồi đếm chính xác có bao nhiêu hình mỗi loại. Mẹo nhỏ: khoanh lần lượt từng hình cùng loại trước khi đếm, để không bị đếm sót hoặc đếm trùng.</p>
+
+      <div class="problem" data-pool="h1-1" data-qid="Câu 1.1">
+        <div class="q"><span class="qid">Câu 1.1</span><div class="qtext">
+          <p>Trong nhóm hình bên, có bao nhiêu <b>hình vuông</b>? 🔎</p>
+          <div class="geo-figure"><svg viewBox="0 0 320 160" width="300" height="150">
+            <rect x="10" y="18" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="96,16 70,60 122,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="160" cy="40" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <rect x="202" y="18" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="288,16 262,60 314,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <polygon points="32,96 6,140 58,140" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <rect x="66" y="104" width="60" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <circle cx="160" cy="120" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <rect x="202" y="98" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="288,96 262,140 314,140" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 2 hình</span><span><b>B.</b> 3 hình</span>
+            <span><b>C.</b> 4 hình</span><span><b>D.</b> 5 hình</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hình vuông có 4 cạnh bằng nhau và 4 góc vuông. Khoanh vào từng hình như vậy trong nhóm.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm được đúng 3 hình vuông trong nhóm hình trên (còn lại là tam giác, tròn, chữ nhật).</p></div></div>
+          <p class="answer hidden">Đáp án: B — 3 hình.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="h1-2" data-qid="Câu 1.2">
+        <div class="q"><span class="qid">Câu 1.2</span><div class="qtext">
+          <p>Nhóm hình bên có bao nhiêu <b>hình vuông</b> và <b>hình chữ nhật</b> cộng lại? ➕</p>
+          <div class="geo-figure"><svg viewBox="0 0 380 160" width="320" height="135">
+            <rect x="10" y="18" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="96,16 70,60 122,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="160" cy="40" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <rect x="194" y="24" width="60" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="288,16 262,60 314,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="352" cy="40" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <rect x="2" y="104" width="60" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <rect x="74" y="98" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="160,96 134,140 186,140" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="224" cy="120" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <rect x="258" y="104" width="60" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <polygon points="352,96 326,140 378,140" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 4 hình</span><span><b>B.</b> 5 hình</span>
+            <span><b>C.</b> 6 hình</span><span><b>D.</b> 7 hình</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm số hình vuông trong nhóm (4 cạnh bằng nhau, 4 góc vuông): có 2 hình.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm số hình chữ nhật (4 góc vuông nhưng các cạnh không bằng nhau hết): có 3 hình.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng số hình vuông với số hình chữ nhật: 2 + 3 = 5.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 5 hình.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. VỊ TRÍ & ĐỊNH HƯỚNG ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 2</span>
+        <h2 class="topic-title">Vị trí, định hướng trong không gian 🧭</h2>
+      </div>
+      <p class="topic-intro">Em xác định một vật nằm ở đâu trong không gian: <span class="kw">trên — dưới</span>, <span class="kw">trái — phải</span>, và đặc biệt là vị trí <span class="kw">ở giữa</span> — không phải đầu tiên, cũng không phải cuối cùng. Mẹo nhỏ: nhìn theo thứ tự từ trái sang phải hoặc từ trên xuống dưới để xác định đúng.</p>
+
+      <div class="problem" data-pool="h2-1" data-qid="Câu 2.1">
+        <div class="q"><span class="qid">Câu 2.1</span><div class="qtext">
+          <p>Ba bạn nhỏ xếp hàng như hình dưới. Bạn nào đứng <b>ở giữa</b>? 🧒</p>
+          <div class="geo-figure"><div class="row-trio"><span>🐱</span><span>🐶</span><span>🐰</span></div></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Mèo</span><span><b>B.</b> Chó</span>
+            <span><b>C.</b> Thỏ</span><span><b>D.</b> Không bạn nào</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhìn hàng từ trái sang phải: mèo — chó — thỏ.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Chó không đứng đầu hàng, cũng không đứng cuối hàng, nên chó đứng ở giữa.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Chó.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="h2-2" data-qid="Câu 2.2">
+        <div class="q"><span class="qid">Câu 2.2</span><div class="qtext">
+          <p>Ba chiếc hộp được xếp chồng lên nhau như hình bên. Hộp nào <b>ở giữa</b> (không ở trên cùng, không ở dưới cùng)? 📦</p>
+          <div class="geo-figure"><div class="shelf"><div class="shelf-slot">🟥</div><div class="shelf-slot">🟦</div><div class="shelf-slot">🟨</div></div></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Hộp đỏ</span><span><b>B.</b> Hộp xanh dương</span>
+            <span><b>C.</b> Hộp vàng</span><span><b>D.</b> Không hộp nào</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhìn hình từ trên xuống dưới: hộp đỏ ở trên cùng, hộp vàng ở dưới cùng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hộp còn lại — hộp xanh dương — nằm ở giữa hai hộp kia, không trên cùng, không dưới cùng.</p></div></div>
+          <p class="answer hidden">Đáp án: B — Hộp xanh dương.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. ĐO ĐỘ DÀI ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 3</span>
+        <h2 class="topic-title">Đo độ dài bằng thước 📏</h2>
+      </div>
+      <p class="topic-intro">Em tập dùng <span class="kw">thước kẻ</span> để đo độ dài một vật theo đơn vị <span class="kw">xăng-ti-mét (cm)</span>, và so sánh xem vật nào dài hơn, ngắn hơn — thậm chí dài hơn bao nhiêu cm. Mẹo nhỏ: luôn đặt một đầu vật trùng với vạch số 0 trên thước rồi mới đọc số ở đầu kia.</p>
+
+      <div class="problem" data-pool="h3-1" data-qid="Câu 3.1">
+        <div class="q"><span class="qid">Câu 3.1</span><div class="qtext">
+          <p>Que tính trong hình dài bao nhiêu xăng-ti-mét (cm)? 📏</p>
+          <div class="geo-figure"><svg viewBox="0 0 340 90" width="300" height="80">
+            <rect x="20" y="24" width="180" height="14" rx="3" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/>
+            <line x1="20" y1="50" x2="320" y2="50" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="20" y1="42" x2="20" y2="58" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="50" y1="44" x2="50" y2="56" stroke="var(--ink)" stroke-width="1.5"/>
+            <line x1="80" y1="44" x2="80" y2="56" stroke="var(--ink)" stroke-width="1.5"/>
+            <line x1="110" y1="44" x2="110" y2="56" stroke="var(--ink)" stroke-width="1.5"/>
+            <line x1="140" y1="44" x2="140" y2="56" stroke="var(--ink)" stroke-width="1.5"/>
+            <line x1="170" y1="44" x2="170" y2="56" stroke="var(--ink)" stroke-width="1.5"/>
+            <line x1="200" y1="42" x2="200" y2="58" stroke="var(--ink)" stroke-width="2"/>
+            <line x1="230" y1="44" x2="230" y2="56" stroke="var(--ink)" stroke-width="1.5"/>
+            <line x1="260" y1="44" x2="260" y2="56" stroke="var(--ink)" stroke-width="1.5"/>
+            <line x1="290" y1="44" x2="290" y2="56" stroke="var(--ink)" stroke-width="1.5"/>
+            <line x1="320" y1="42" x2="320" y2="58" stroke="var(--ink)" stroke-width="2"/>
+            <text x="20" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">0</text>
+            <text x="50" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">1</text>
+            <text x="80" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">2</text>
+            <text x="110" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">3</text>
+            <text x="140" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">4</text>
+            <text x="170" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">5</text>
+            <text x="200" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">6</text>
+            <text x="230" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">7</text>
+            <text x="260" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">8</text>
+            <text x="290" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">9</text>
+            <text x="320" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">10</text>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 5 cm</span><span><b>B.</b> 6 cm</span>
+            <span><b>C.</b> 7 cm</span><span><b>D.</b> 8 cm</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Một đầu que tính đã trùng với vạch số 0 trên thước.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Nhìn đầu còn lại của que tính chạm vào vạch số 6, nên que tính dài 6 cm.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 6 cm.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="h3-2" data-qid="Câu 3.2">
+        <div class="q"><span class="qid">Câu 3.2</span><div class="qtext">
+          <p>Bút chì nào dài hơn, và dài hơn bao nhiêu xăng-ti-mét? ✏️</p>
+          <div class="geo-figure stacked">
+            <div class="geo-label">Bút xanh dương</div>
+            <svg viewBox="0 0 340 70" width="300" height="62">
+              <rect x="20" y="22" width="150" height="14" rx="3" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="3"/>
+              <line x1="20" y1="50" x2="320" y2="50" stroke="var(--ink)" stroke-width="2"/>
+              <line x1="20" y1="44" x2="20" y2="56" stroke="var(--ink)" stroke-width="2"/>
+              <line x1="50" y1="46" x2="50" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="80" y1="46" x2="80" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="110" y1="46" x2="110" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="140" y1="46" x2="140" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="170" y1="44" x2="170" y2="56" stroke="var(--ink)" stroke-width="2"/>
+              <line x1="200" y1="46" x2="200" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="230" y1="46" x2="230" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="260" y1="46" x2="260" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="290" y1="46" x2="290" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="320" y1="44" x2="320" y2="56" stroke="var(--ink)" stroke-width="2"/>
+              <text x="20" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">0</text>
+              <text x="170" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">5</text>
+              <text x="320" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">10</text>
+            </svg>
+            <div class="geo-label">Bút đỏ</div>
+            <svg viewBox="0 0 340 70" width="300" height="62">
+              <rect x="20" y="22" width="240" height="14" rx="3" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/>
+              <line x1="20" y1="50" x2="320" y2="50" stroke="var(--ink)" stroke-width="2"/>
+              <line x1="20" y1="44" x2="20" y2="56" stroke="var(--ink)" stroke-width="2"/>
+              <line x1="50" y1="46" x2="50" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="80" y1="46" x2="80" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="110" y1="46" x2="110" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="140" y1="46" x2="140" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="170" y1="44" x2="170" y2="56" stroke="var(--ink)" stroke-width="2"/>
+              <line x1="200" y1="46" x2="200" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="230" y1="46" x2="230" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="260" y1="44" x2="260" y2="56" stroke="var(--ink)" stroke-width="2"/>
+              <line x1="290" y1="46" x2="290" y2="54" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="320" y1="44" x2="320" y2="56" stroke="var(--ink)" stroke-width="2"/>
+              <text x="20" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">0</text>
+              <text x="170" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">5</text>
+              <text x="320" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">10</text>
+            </svg>
+          </div>
+          <div class="mcq-opts">
+            <span><b>A.</b> Bút xanh dương, dài hơn 2 cm</span><span><b>B.</b> Bút đỏ, dài hơn 3 cm</span>
+            <span><b>C.</b> Bút đỏ, dài hơn 2 cm</span><span><b>D.</b> Hai bút dài bằng nhau</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đo bằng thước: bút xanh dương dài 5 cm, bút đỏ dài 8 cm.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>So sánh: 8 cm dài hơn 5 cm, nên bút đỏ dài hơn.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính phần dài hơn: 8 − 5 = 3 (cm).</p></div></div>
+          <p class="answer hidden">Đáp án: B — Bút đỏ, dài hơn 3 cm.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. XEM GIỜ ĐÚNG ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-num">Chủ đề 4</span>
+        <h2 class="topic-title">Xem giờ đúng trên đồng hồ 🕐</h2>
+      </div>
+      <p class="topic-intro">Em học đọc <span class="kw">giờ đúng</span> trên mặt đồng hồ: kim ngắn là <span class="kw">kim giờ</span>, kim dài là <span class="kw">kim phút</span>. Khi kim phút chỉ đúng vào số 12, đồng hồ đang chỉ giờ đúng — không có phút lẻ. Mẹo nhỏ: đọc số mà kim ngắn đang chỉ vào trước, đó chính là giờ.</p>
+
+      <div class="problem" data-pool="h4-1" data-qid="Câu 4.1">
+        <div class="q"><span class="qid">Câu 4.1</span><div class="qtext">
+          <p>Đồng hồ bên đang chỉ mấy giờ? 🕗</p>
+          <div class="geo-figure"><svg viewBox="0 0 120 120" width="160" height="160">
+            <circle cx="60" cy="60" r="48" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <text x="60" y="22" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">12</text>
+            <text x="79" y="27" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">1</text>
+            <text x="93" y="41" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">2</text>
+            <text x="98" y="60" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">3</text>
+            <text x="93" y="79" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">4</text>
+            <text x="79" y="93" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">5</text>
+            <text x="60" y="98" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">6</text>
+            <text x="41" y="93" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">7</text>
+            <text x="27" y="79" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">8</text>
+            <text x="22" y="60" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">9</text>
+            <text x="27" y="41" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">10</text>
+            <text x="41" y="27" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">11</text>
+            <line x1="60" y1="60" x2="39" y2="72" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+            <line x1="60" y1="60" x2="60" y2="24" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="60" cy="60" r="4" fill="var(--ink)"/>
+          </svg></div>
+          <div class="mcq-opts">
+            <span><b>A.</b> 7 giờ</span><span><b>B.</b> 8 giờ</span>
+            <span><b>C.</b> 9 giờ</span><span><b>D.</b> 10 giờ</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Kim ngắn (kim giờ) đang chỉ đúng vào số 8 trên mặt đồng hồ.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Kim dài (kim phút) chỉ đúng vào số 12, nghĩa là đúng giờ, không có phút lẻ.</p></div></div>
+          <p class="answer hidden">Đáp án: B — 8 giờ.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="h4-2" data-qid="Câu 4.2">
+        <div class="q"><span class="qid">Câu 4.2</span><div class="qtext">
+          <p>Buổi sáng, bé Na thức dậy khi kim ngắn (kim giờ) chỉ đúng vào số 6, kim dài (kim phút) chỉ đúng vào số 12. Hỏi lúc đó đồng hồ chỉ mấy giờ? ⏰</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> 5 giờ</span><span><b>B.</b> 6 giờ</span>
+            <span><b>C.</b> 7 giờ</span><span><b>D.</b> 6 giờ 30 phút</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Kim ngắn (kim giờ) chỉ đúng vào số 6, nghĩa là đang ở giờ thứ 6.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Kim dài (kim phút) chỉ đúng vào số 12, nghĩa là đúng giờ, không có phút lẻ (không phải 6 giờ 30 phút).</p></div></div>
+          <p class="answer hidden">Đáp án: B — 6 giờ.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 1, chủ đề Hình Học Và Đo Lường Quanh Em. Toàn bộ đề bài, hình vẽ và lời giải trong tài liệu này là nội dung tự soạn mới, bám sát các chủ đề hình học — đo lường trong chương trình lớp 1 (nhận biết đếm hình, vị trí định hướng, đo độ dài bằng thước, xem giờ đúng), không sao chép từ bất kỳ nguồn nào.</footer>
+
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  'h1-1': [
+    {
+      qHtml: '<p>Trong nhóm hình bên, có bao nhiêu <b>hình tròn</b>? 🔎</p><div class="geo-figure"><svg viewBox="0 0 320 160" width="300" height="150"><circle cx="32" cy="40" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><rect x="74" y="18" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><polygon points="160,16 134,60 186,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><circle cx="224" cy="40" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><polygon points="288,16 262,60 314,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><rect x="10" y="98" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><circle cx="96" cy="120" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><rect x="130" y="104" width="60" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><circle cx="224" cy="120" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><rect x="266" y="98" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/></svg></div><div class="mcq-opts"><span><b>A.</b> 2 hình</span><span><b>B.</b> 3 hình</span><span><b>C.</b> 4 hình</span><span><b>D.</b> 5 hình</span></div>',
+      steps: [
+        '<p>Hình tròn có đường viền cong đều, không có góc nhọn nào. Khoanh vào từng hình như vậy trong nhóm.</p>',
+        '<p>Đếm được đúng 4 hình tròn trong nhóm hình trên (còn lại là vuông, tam giác, chữ nhật).</p>'
+      ],
+      answerHtml: 'Đáp án: C — 4 hình.'
+    }
+  ],
+  'h1-2': [
+    {
+      qHtml: '<p>Nhóm hình bên có bao nhiêu <b>hình tròn</b> và <b>hình tam giác</b> cộng lại? ➕</p><div class="geo-figure"><svg viewBox="0 0 380 160" width="320" height="135"><circle cx="32" cy="40" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><rect x="74" y="18" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><polygon points="160,16 134,60 186,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><rect x="194" y="24" width="60" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><circle cx="288" cy="40" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><polygon points="352,16 326,60 378,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><rect x="2" y="104" width="60" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><circle cx="96" cy="120" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><rect x="138" y="98" width="44" height="44" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><polygon points="224,96 198,140 250,140" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><rect x="258" y="104" width="60" height="32" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><circle cx="352" cy="120" r="22" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/></svg></div><div class="mcq-opts"><span><b>A.</b> 6 hình</span><span><b>B.</b> 7 hình</span><span><b>C.</b> 8 hình</span><span><b>D.</b> 5 hình</span></div>',
+      steps: [
+        '<p>Đếm số hình tròn trong nhóm (đường viền cong đều, không góc): có 4 hình.</p>',
+        '<p>Đếm số hình tam giác (3 cạnh thẳng, 3 góc): có 3 hình.</p>',
+        '<p>Cộng số hình tròn với số hình tam giác: 4 + 3 = 7.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 7 hình.'
+    }
+  ],
+  'h2-1': [
+    {
+      qHtml: '<p>Ba loại quả được xếp thành hàng như hình dưới. Quả nào ở <b>giữa</b>? 🍉</p><div class="geo-figure"><div class="row-trio"><span>🍎</span><span>🍌</span><span>🍇</span></div></div><div class="mcq-opts"><span><b>A.</b> Táo</span><span><b>B.</b> Chuối</span><span><b>C.</b> Nho</span><span><b>D.</b> Không quả nào</span></div>',
+      steps: [
+        '<p>Nhìn hàng từ trái sang phải: táo — chuối — nho.</p>',
+        '<p>Chuối không ở đầu hàng, cũng không ở cuối hàng, nên chuối ở giữa.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Chuối.'
+    }
+  ],
+  'h2-2': [
+    {
+      qHtml: '<p>Ba quyển sách được xếp chồng lên nhau như hình bên. Quyển sách nào <b>ở giữa</b> (không ở trên cùng, không ở dưới cùng)? 📚</p><div class="geo-figure"><div class="shelf"><div class="shelf-slot">🟪</div><div class="shelf-slot">🟩</div><div class="shelf-slot">🟧</div></div></div><div class="mcq-opts"><span><b>A.</b> Sách tím</span><span><b>B.</b> Sách xanh lá</span><span><b>C.</b> Sách cam</span><span><b>D.</b> Không quyển nào</span></div>',
+      steps: [
+        '<p>Nhìn hình từ trên xuống dưới: sách tím ở trên cùng, sách cam ở dưới cùng.</p>',
+        '<p>Quyển còn lại — sách xanh lá — nằm ở giữa hai quyển kia, không trên cùng, không dưới cùng.</p>'
+      ],
+      answerHtml: 'Đáp án: B — Sách xanh lá.'
+    }
+  ],
+  'h3-1': [
+    {
+      qHtml: '<p>Que tính trong hình dài bao nhiêu xăng-ti-mét (cm)? 📏</p><div class="geo-figure"><svg viewBox="0 0 340 90" width="300" height="80"><rect x="20" y="24" width="120" height="14" rx="3" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/><line x1="20" y1="50" x2="320" y2="50" stroke="var(--ink)" stroke-width="2"/><line x1="20" y1="42" x2="20" y2="58" stroke="var(--ink)" stroke-width="2"/><line x1="50" y1="44" x2="50" y2="56" stroke="var(--ink)" stroke-width="1.5"/><line x1="80" y1="44" x2="80" y2="56" stroke="var(--ink)" stroke-width="1.5"/><line x1="110" y1="44" x2="110" y2="56" stroke="var(--ink)" stroke-width="1.5"/><line x1="140" y1="42" x2="140" y2="58" stroke="var(--ink)" stroke-width="2"/><line x1="170" y1="44" x2="170" y2="56" stroke="var(--ink)" stroke-width="1.5"/><line x1="200" y1="44" x2="200" y2="56" stroke="var(--ink)" stroke-width="1.5"/><line x1="230" y1="44" x2="230" y2="56" stroke="var(--ink)" stroke-width="1.5"/><line x1="260" y1="44" x2="260" y2="56" stroke="var(--ink)" stroke-width="1.5"/><line x1="290" y1="44" x2="290" y2="56" stroke="var(--ink)" stroke-width="1.5"/><line x1="320" y1="42" x2="320" y2="58" stroke="var(--ink)" stroke-width="2"/><text x="20" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">0</text><text x="50" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">1</text><text x="80" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">2</text><text x="110" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">3</text><text x="140" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">4</text><text x="170" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">5</text><text x="200" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">6</text><text x="230" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">7</text><text x="260" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">8</text><text x="290" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">9</text><text x="320" y="72" font-size="11" fill="var(--ink-soft)" text-anchor="middle">10</text></svg></div><div class="mcq-opts"><span><b>A.</b> 3 cm</span><span><b>B.</b> 4 cm</span><span><b>C.</b> 5 cm</span><span><b>D.</b> 6 cm</span></div>',
+      steps: [
+        '<p>Một đầu que tính đã trùng với vạch số 0 trên thước.</p>',
+        '<p>Nhìn đầu còn lại của que tính chạm vào vạch số 4, nên que tính dài 4 cm.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 4 cm.'
+    }
+  ],
+  'h3-2': [
+    {
+      qHtml: '<p>Bút chì nào dài hơn, và dài hơn bao nhiêu xăng-ti-mét? ✏️</p><div class="geo-figure stacked"><div class="geo-label">Bút vàng</div><svg viewBox="0 0 340 70" width="300" height="62"><rect x="20" y="22" width="120" height="14" rx="3" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="3"/><line x1="20" y1="50" x2="320" y2="50" stroke="var(--ink)" stroke-width="2"/><line x1="20" y1="44" x2="20" y2="56" stroke="var(--ink)" stroke-width="2"/><line x1="50" y1="46" x2="50" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="80" y1="46" x2="80" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="110" y1="46" x2="110" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="140" y1="44" x2="140" y2="56" stroke="var(--ink)" stroke-width="2"/><line x1="170" y1="44" x2="170" y2="56" stroke="var(--ink)" stroke-width="2"/><line x1="200" y1="46" x2="200" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="230" y1="46" x2="230" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="260" y1="46" x2="260" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="290" y1="46" x2="290" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="320" y1="44" x2="320" y2="56" stroke="var(--ink)" stroke-width="2"/><text x="20" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">0</text><text x="170" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">5</text><text x="320" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">10</text></svg><div class="geo-label">Bút tím</div><svg viewBox="0 0 340 70" width="300" height="62"><rect x="20" y="22" width="270" height="14" rx="3" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="3"/><line x1="20" y1="50" x2="320" y2="50" stroke="var(--ink)" stroke-width="2"/><line x1="20" y1="44" x2="20" y2="56" stroke="var(--ink)" stroke-width="2"/><line x1="50" y1="46" x2="50" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="80" y1="46" x2="80" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="110" y1="46" x2="110" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="140" y1="44" x2="140" y2="56" stroke="var(--ink)" stroke-width="2"/><line x1="170" y1="44" x2="170" y2="56" stroke="var(--ink)" stroke-width="2"/><line x1="200" y1="46" x2="200" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="230" y1="46" x2="230" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="260" y1="46" x2="260" y2="54" stroke="var(--ink)" stroke-width="1.5"/><line x1="290" y1="44" x2="290" y2="56" stroke="var(--ink)" stroke-width="2"/><line x1="320" y1="44" x2="320" y2="56" stroke="var(--ink)" stroke-width="2"/><text x="20" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">0</text><text x="170" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">5</text><text x="320" y="66" font-size="10" fill="var(--ink-soft)" text-anchor="middle">10</text></svg></div><div class="mcq-opts"><span><b>A.</b> Bút vàng, dài hơn 5 cm</span><span><b>B.</b> Bút tím, dài hơn 5 cm</span><span><b>C.</b> Bút tím, dài hơn 4 cm</span><span><b>D.</b> Hai bút dài bằng nhau</span></div>',
+      steps: [
+        '<p>Đo bằng thước: bút vàng dài 4 cm, bút tím dài 9 cm.</p>',
+        '<p>So sánh: 9 cm dài hơn 4 cm, nên bút tím dài hơn.</p>',
+        '<p>Tính phần dài hơn: 9 − 4 = 5 (cm).</p>'
+      ],
+      answerHtml: 'Đáp án: B — Bút tím, dài hơn 5 cm.'
+    }
+  ],
+  'h4-1': [
+    {
+      qHtml: '<p>Đồng hồ bên đang chỉ mấy giờ? 🕒</p><div class="geo-figure"><svg viewBox="0 0 120 120" width="160" height="160"><circle cx="60" cy="60" r="48" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><text x="60" y="22" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">12</text><text x="79" y="27" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">1</text><text x="93" y="41" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">2</text><text x="98" y="60" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">3</text><text x="93" y="79" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">4</text><text x="79" y="93" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">5</text><text x="60" y="98" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">6</text><text x="41" y="93" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">7</text><text x="27" y="79" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">8</text><text x="22" y="60" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">9</text><text x="27" y="41" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">10</text><text x="41" y="27" font-size="11" font-weight="700" fill="var(--ink-soft)" text-anchor="middle" dominant-baseline="middle">11</text><line x1="60" y1="60" x2="84" y2="60" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/><line x1="60" y1="60" x2="60" y2="24" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="60" cy="60" r="4" fill="var(--ink)"/></svg></div><div class="mcq-opts"><span><b>A.</b> 2 giờ</span><span><b>B.</b> 3 giờ</span><span><b>C.</b> 4 giờ</span><span><b>D.</b> 5 giờ</span></div>',
+      steps: [
+        '<p>Kim ngắn (kim giờ) đang chỉ đúng vào số 3 trên mặt đồng hồ.</p>',
+        '<p>Kim dài (kim phút) chỉ đúng vào số 12, nghĩa là đúng giờ, không có phút lẻ.</p>'
+      ],
+      answerHtml: 'Đáp án: B — 3 giờ.'
+    }
+  ],
+  'h4-2': [
+    {
+      qHtml: '<p>Buổi tối, bé Bo đi ngủ khi kim ngắn (kim giờ) chỉ đúng vào số 9, kim dài (kim phút) chỉ đúng vào số 12. Hỏi lúc đó đồng hồ chỉ mấy giờ? ⏰</p><div class="mcq-opts"><span><b>A.</b> 8 giờ</span><span><b>B.</b> 9 giờ</span><span><b>C.</b> 10 giờ</span><span><b>D.</b> 9 giờ 30 phút</span></div>',
+      steps: [
+        '<p>Kim ngắn (kim giờ) chỉ đúng vào số 9, nghĩa là đang ở giờ thứ 9.</p>',
+        '<p>Kim dài (kim phút) chỉ đúng vào số 12, nghĩa là đúng giờ, không có phút lẻ (không phải 9 giờ 30 phút).</p>'
+      ],
+      answerHtml: 'Đáp án: B — 9 giờ.'
+    }
+  ]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initProblem(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    var qidEl = el.querySelector('.qid');
+    var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+    var original = {
+      qHtml: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+        return s.querySelector('.t').innerHTML;
+      }),
+      answerHtml: (function () {
+        var a = solBody.querySelector('.answer');
+        return a ? a.innerHTML : '';
+      })()
+    };
+    var poolKey = el.dataset.pool;
+    var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+    var pool = [original].concat(extra);
+
+    var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+
+    if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var totalSteps = solBody.querySelectorAll('.step').length;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= totalSteps;
+        btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) {
+        if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+        else btnReset.setAttribute('hidden', '');
+      }
+    }
+
+    function renderVariant(idx) {
+      var v = pool[idx];
+      qtext.innerHTML = v.qHtml;
+      var steps = solBody.querySelectorAll('.step');
+      if (steps.length !== v.steps.length) {
+        var html = v.steps.map(function (stepHtml, i) {
+          return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+        }).join('');
+        html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+        solBody.innerHTML = html;
+      } else {
+        steps.forEach(function (stepEl, i) {
+          stepEl.querySelector('.t').innerHTML = v.steps[i];
+          stepEl.classList.add('hidden');
+        });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+      }
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+      if (qidEl) {
+        qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+      }
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.classList.remove('hidden');
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.classList.remove('hidden');
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.variantIndex = (state.variantIndex + 1) % pool.length;
+      renderVariant(state.variantIndex);
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.classList.add('hidden');
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+</body>
+</html>

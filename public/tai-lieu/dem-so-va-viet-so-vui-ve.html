@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đếm Số Và Viết Số Vui Vẻ — Ôn luyện Toán lớp 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f2f8ff;
+    --bg-alt: #e6f1ff;
+    --paper: #ffffff;
+    --ink: #1e2a3a;
+    --ink-soft: #56657b;
+    --ink-faint: #95a4ba;
+    --accent: #7c4dff;
+    --accent-soft: #efe7ff;
+    --accent-warm: #1fb673;
+    --accent-warm-soft: #dcf7ea;
+    --line: #dde8f6;
+    --line-strong: #bcd4ec;
+    --shadow: 0 1px 2px rgba(30, 60, 110, 0.06), 0 8px 22px rgba(30, 60, 110, 0.08);
+    --radius: 20px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --round: "Baloo 2", "Segoe UI", "Be Vietnam Pro", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #121828;
+    --bg-alt: #182034;
+    --paper: #1a2236;
+    --ink: #eef2ff;
+    --ink-soft: #b7c2da;
+    --ink-faint: #7d8bab;
+    --accent: #b394ff;
+    --accent-soft: #2c2350;
+    --accent-warm: #4fd18f;
+    --accent-warm-soft: #123626;
+    --line: #2a3552;
+    --line-strong: #3c4c73;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.42);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121828;
+      --bg-alt: #182034;
+      --paper: #1a2236;
+      --ink: #eef2ff;
+      --ink-soft: #b7c2da;
+      --ink-faint: #7d8bab;
+      --accent: #b394ff;
+      --accent-soft: #2c2350;
+      --accent-warm: #4fd18f;
+      --accent-warm-soft: #123626;
+      --line: #2a3552;
+      --line-strong: #3c4c73;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.42);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 20px 90px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 24px 16px 70px; }
+  }
+
+  /* ---------- Header ---------- */
+  .hero {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .hero .emoji-big { font-size: 44px; line-height: 1; }
+  .hero h1 {
+    font-family: var(--round);
+    font-weight: 800;
+    font-size: clamp(22px, 3.4vw, 32px);
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .hero p {
+    margin: 4px 0 0;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 4px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 2px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-family: var(--round);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    margin-left: -2px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+      margin-bottom: 4px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 50px;
+    scroll-margin-top: 18px;
+  }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 2px dashed var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+  }
+  h2.topic-title {
+    font-family: var(--round);
+    font-weight: 800;
+    font-size: clamp(20px, 2.4vw, 25px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 760px;
+    border: 2px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 2px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--round);
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .problem .qtext .concrete { font-size: 26px; letter-spacing: 3px; line-height: 1.5; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 2px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--round);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 2px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15.5px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--round);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 2px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 2px dashed var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-family: var(--round);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 22px;
+    border-top: 2px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<div class="shell">
+  <div class="hero">
+    <span class="emoji-big">🔢</span>
+    <div>
+      <h1>Đếm Số Và Viết Số Vui Vẻ</h1>
+      <p>Ôn luyện Toán lớp 1 — làm quen số 0–20, đếm và viết số, cộng trừ đơn giản qua đếm đồ vật</p>
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">4 chủ đề</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🍓</span>Đếm đồ vật, viết số</a></li>
+      <li><a href="#sec2"><span class="n">🔟</span>So sánh, thứ tự số</a></li>
+      <li><a href="#sec3"><span class="n">➕</span>Làm quen phép cộng</a></li>
+      <li><a href="#sec4"><span class="n">➖</span>Làm quen phép trừ</a></li>
+      <li><a href="#meo-cho-ba-me"><span class="n">💛</span>Mẹo cho ba mẹ</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="callout note" style="max-width:760px; margin: 0 0 36px;">
+      <div class="label">Về tài liệu này</div>
+      <p><b>Đếm Số Và Viết Số Vui Vẻ</b> dành cho các bé chuẩn bị vào lớp 1 hoặc mới học lớp 1, giúp con làm quen với việc đếm đồ vật, đọc và viết đúng các chữ số từ 0 đến 20, nhận biết số liền trước — liền sau, và bước đầu hiểu phép cộng — phép trừ thông qua việc đếm đồ vật thật (gộp thêm vào, bớt đi). Toàn bộ bài tập trong tài liệu này do đội ngũ tự biên soạn mới hoàn toàn, không sao chép nội dung từ bất kỳ đầu sách cụ thể nào.</p>
+    </div>
+
+    <!-- ================= SEC 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🍓</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 1</span>Đếm Đồ Vật Và Viết Số</h2>
+      </div>
+      <p class="topic-intro">Con hãy <span class="kw">đếm thật chậm</span> từng đồ vật một, có thể chỉ tay vào từng hình khi đếm cho khỏi nhầm. Đếm theo từng nhóm 5 sẽ dễ hơn là đếm một lượt dài. Sau khi đếm xong, con hãy viết đúng chữ số vào giấy hoặc vở nháp nhé!</p>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Bạn Mít hái được một rổ dâu tây thật to.</p>
+          <p class="concrete">🍓🍓🍓🍓🍓 🍓🍓🍓🍓🍓 🍓🍓🍓</p>
+          <p>Con đếm xem có bao nhiêu quả dâu tây, rồi viết số vào nhé!</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm nhóm thứ nhất: 🍓🍓🍓🍓🍓 — có 5 quả.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm tiếp nhóm thứ hai, cũng 5 quả nữa: đếm thêm 6, 7, 8, 9, 10.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm nốt 3 quả còn lại: 11, 12, 13.</p></div></div>
+          <p class="answer hidden">Có tất cả 13 quả dâu tây. Con viết số: 13.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Trên bầu trời đêm có một chùm sao lấp lánh.</p>
+          <p class="concrete">⭐⭐⭐⭐⭐ ⭐⭐⭐⭐</p>
+          <p>Con đếm xem có bao nhiêu ngôi sao, rồi viết số vào nhé!</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm nhóm đầu tiên: ⭐⭐⭐⭐⭐ — có 5 ngôi sao.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm tiếp 4 ngôi sao còn lại: 6, 7, 8, 9.</p></div></div>
+          <p class="answer hidden">Có tất cả 9 ngôi sao. Con viết số: 9.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">🔟</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 2</span>So Sánh Và Thứ Tự Số</h2>
+      </div>
+      <p class="topic-intro">Các số xếp thành một hàng dài như một con đường: số <span class="kw">liền sau</span> là số đứng ngay phía sau (lớn hơn 1 đơn vị), số <span class="kw">liền trước</span> là số đứng ngay phía trước (nhỏ hơn 1 đơn vị). Khi sắp xếp nhiều số, con hãy tìm số bé nhất trước, rồi tìm tiếp số bé nhì, cứ thế cho đến số lớn nhất.</p>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Con hãy tìm <b>số liền sau</b> của số 7 — là số đứng ngay sau 7, lớn hơn 7 đúng 1 đơn vị.</p>
+          <p class="concrete">5 — 6 — 7 — ❓</p>
+          <p>Số liền sau của 7 là số nào?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số liền sau của một số là số ngay sau nó khi đếm tiếp thêm 1 bước.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Bắt đầu từ 7, đếm tiếp thêm 1 bước nữa.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Từ 7 đếm tiếp một bước là 8.</p></div></div>
+          <p class="answer hidden">Số liền sau của 7 là 8.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Cho 4 số: <b>6, 2, 9, 4</b>.</p>
+          <p>Con hãy sắp xếp các số này theo thứ tự TỪ BÉ ĐẾN LỚN.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>So sánh cả 4 số, tìm số bé nhất trong nhóm: đó là số 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trong các số còn lại (6, 9, 4), số bé nhất là 4.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Còn lại 6 và 9 — 6 bé hơn, 9 là số lớn nhất trong cả nhóm.</p></div></div>
+          <p class="answer hidden">Thứ tự từ bé đến lớn là: 2, 4, 6, 9.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">➕</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 3</span>Làm Quen Phép Cộng Qua Đếm</h2>
+      </div>
+      <p class="topic-intro">Khi có <span class="kw">thêm</span> một nhóm đồ vật nữa, con hãy đếm nhóm đầu tiên trước, rồi đếm tiếp (không đếm lại từ đầu) cho nhóm thứ hai. Đó chính là phép cộng — gộp hai nhóm lại rồi đếm tất cả.</p>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Có 3 chú mèo con đang chơi trong sân: 🐱🐱🐱.</p>
+          <p>Có thêm 4 chú mèo con nữa chạy tới chơi cùng: 🐱🐱🐱🐱.</p>
+          <p>Hỏi lúc này có tất cả bao nhiêu chú mèo con?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm nhóm mèo đầu tiên: 🐱🐱🐱 — có 3 chú.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm nhóm mèo thứ hai: 🐱🐱🐱🐱 — có 4 chú.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Gộp lại và đếm tất cả: đếm 3, rồi đếm thêm 4 — 4, 5, 6, 7.</p></div></div>
+          <p class="answer hidden">Có tất cả 7 chú mèo con (3 + 4 = 7).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Hộp kẹo có 5 viên kẹo mút 🍭🍭🍭🍭🍭 và 3 viên kẹo dẻo 🍬🍬🍬.</p>
+          <p>Hỏi hộp kẹo có tất cả bao nhiêu viên?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm số kẹo mút trước: 🍭🍭🍭🍭🍭 — có 5 viên.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đếm số kẹo dẻo: 🍬🍬🍬 — có 3 viên.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Gộp lại và đếm tiếp từ 5: 6, 7, 8.</p></div></div>
+          <p class="answer hidden">Hộp kẹo có tất cả 8 viên (5 + 3 = 8).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">➖</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 4</span>Làm Quen Phép Trừ Qua Đếm</h2>
+      </div>
+      <p class="topic-intro">Khi <span class="kw">bớt đi</span> một số đồ vật, con hãy đếm số lượng lúc đầu, rồi đếm lùi lại đúng số lượng bị bớt đi, hoặc đếm lại những gì còn lại. Đó chính là phép trừ.</p>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Trên tay bé Bo có 9 quả bóng bay: 🎈🎈🎈🎈🎈 🎈🎈🎈🎈.</p>
+          <p>Gió thổi bay mất 3 quả.</p>
+          <p>Hỏi bé Bo còn lại bao nhiêu quả bóng bay?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Lúc đầu bé Bo có 9 quả bóng bay.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Bay mất 3 quả nghĩa là bớt đi 3.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm lùi từ 9: bớt 1 còn 8, bớt 1 còn 7, bớt 1 còn 6.</p></div></div>
+          <p class="answer hidden">Bé Bo còn lại 6 quả bóng bay (9 − 3 = 6).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Trên đĩa có 10 chiếc kẹo: 🍬🍬🍬🍬🍬 🍬🍬🍬🍬🍬.</p>
+          <p>Bé Na ăn mất 6 chiếc.</p>
+          <p>Hỏi đĩa còn lại bao nhiêu chiếc kẹo?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Lúc đầu trên đĩa có 10 chiếc kẹo.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Ăn mất 6 chiếc nghĩa là bớt đi 6.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Đếm lùi từ 10: bớt 1 còn 9, bớt tiếp cho đến khi bớt đủ 6 lần, còn lại 4.</p></div></div>
+          <p class="answer hidden">Đĩa còn lại 4 chiếc kẹo (10 − 6 = 4).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-cho-ba-me">
+      <div class="topic-head">
+        <span class="topic-badge">💛</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo cùng con học tại nhà</h2>
+      </div>
+      <p class="topic-intro">Vài nguyên tắc ngắn gọn khi đồng hành cùng con luyện đếm và viết số ở giai đoạn đầu lớp 1.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đếm bằng tay trước, viết số sau.</b> Hãy để con chỉ tay vào từng đồ vật khi đếm, tránh đếm nhảy cóc hoặc đếm sót.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Viết số đúng chiều.</b> Một số bé hay viết ngược số (như 3, 5, 7) — ba mẹ có thể cho con viết trên không trung bằng ngón tay trước khi viết vào vở.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Luyện lại bằng bài tương tự.</b> Dùng nút "Đổi bài tương tự" để con luyện lại đúng dạng bài với số liệu khác, tránh học thuộc đáp số.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Dùng đồ vật thật quanh nhà.</b> Đếm đũa, đếm kẹo, đếm bậc thang... để con thấy con số gắn liền với đời sống, không chỉ là ký hiệu trên giấy.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 1. Toàn bộ bài tập và lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu sách nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'sec1-1': [{
+      qHtml: '<p>Bạn Cam hái được một giỏ cam thật đầy.</p><p class="concrete">🍊🍊🍊🍊🍊 🍊🍊🍊🍊🍊 🍊🍊🍊🍊🍊 🍊</p><p>Con đếm xem có bao nhiêu quả cam, rồi viết số vào nhé!</p>',
+      steps: [
+        '<p>Đếm nhóm thứ nhất: 🍊🍊🍊🍊🍊 — có 5 quả.</p>',
+        '<p>Đếm tiếp nhóm thứ hai, cũng 5 quả: đếm thêm 6, 7, 8, 9, 10.</p>',
+        '<p>Đếm tiếp nhóm thứ ba, cũng 5 quả: đếm thêm 11, 12, 13, 14, 15.</p>',
+        '<p>Đếm nốt 1 quả còn lại: 16.</p>'
+      ],
+      answerHtml: 'Có tất cả 16 quả cam. Con viết số: 16.'
+    }],
+    'sec1-2': [{
+      qHtml: '<p>Một tổ ong đang bay quanh vườn hoa.</p><p class="concrete">🐝🐝🐝🐝🐝 🐝🐝🐝🐝🐝 🐝🐝🐝🐝🐝 🐝🐝</p><p>Con đếm xem có bao nhiêu chú ong, rồi viết số vào nhé!</p>',
+      steps: [
+        '<p>Đếm nhóm thứ nhất: 🐝🐝🐝🐝🐝 — có 5 chú ong.</p>',
+        '<p>Đếm tiếp nhóm thứ hai, cũng 5 chú: đếm thêm 6, 7, 8, 9, 10.</p>',
+        '<p>Đếm tiếp nhóm thứ ba, cũng 5 chú: đếm thêm 11, 12, 13, 14, 15.</p>',
+        '<p>Đếm nốt 2 chú còn lại: 16, 17.</p>'
+      ],
+      answerHtml: 'Có tất cả 17 chú ong. Con viết số: 17.'
+    }],
+    'sec2-1': [{
+      qHtml: '<p>Con hãy tìm <b>số liền trước</b> của số 12 — là số đứng ngay trước 12, nhỏ hơn 12 đúng 1 đơn vị.</p><p class="concrete">❓ — 12 — 13</p><p>Số liền trước của 12 là số nào?</p>',
+      steps: [
+        '<p>Số liền trước của một số là số ngay trước nó khi đếm lùi 1 bước.</p>',
+        '<p>Bắt đầu từ 12, đếm lùi 1 bước.</p>',
+        '<p>Từ 12 lùi lại một bước là 11.</p>'
+      ],
+      answerHtml: 'Số liền trước của 12 là 11.'
+    }],
+    'sec2-2': [{
+      qHtml: '<p>Cho 4 số: <b>15, 3, 11, 8</b>.</p><p>Con hãy sắp xếp các số này theo thứ tự TỪ BÉ ĐẾN LỚN.</p>',
+      steps: [
+        '<p>So sánh cả 4 số, tìm số bé nhất trong nhóm: đó là số 3.</p>',
+        '<p>Trong các số còn lại (15, 11, 8), số bé nhất là 8.</p>',
+        '<p>Còn lại 11 và 15 — 11 bé hơn, 15 là số lớn nhất trong cả nhóm.</p>'
+      ],
+      answerHtml: 'Thứ tự từ bé đến lớn là: 3, 8, 11, 15.'
+    }],
+    'sec3-1': [{
+      qHtml: '<p>Có 2 chú gà con đang đi kiếm ăn: 🐥🐥.</p><p>Có thêm 6 chú gà con nữa chạy tới cùng mẹ: 🐥🐥🐥🐥🐥🐥.</p><p>Hỏi lúc này có tất cả bao nhiêu chú gà con?</p>',
+      steps: [
+        '<p>Đếm nhóm gà con đầu tiên: 🐥🐥 — có 2 chú.</p>',
+        '<p>Đếm nhóm gà con thứ hai: 🐥🐥🐥🐥🐥🐥 — có 6 chú.</p>',
+        '<p>Gộp lại và đếm tất cả: đếm 2, rồi đếm thêm 6 — 3, 4, 5, 6, 7, 8.</p>'
+      ],
+      answerHtml: 'Có tất cả 8 chú gà con (2 + 6 = 8).'
+    }],
+    'sec3-2': [{
+      qHtml: '<p>Hộp đồ chơi có 4 con gấu bông nhỏ 🧸🧸🧸🧸 và 5 con gấu bông to 🧸🧸🧸🧸🧸.</p><p>Hỏi hộp đồ chơi có tất cả bao nhiêu con gấu bông?</p>',
+      steps: [
+        '<p>Đếm số gấu bông nhỏ trước: 🧸🧸🧸🧸 — có 4 con.</p>',
+        '<p>Đếm số gấu bông to: 🧸🧸🧸🧸🧸 — có 5 con.</p>',
+        '<p>Gộp lại và đếm tiếp từ 4: 5, 6, 7, 8, 9.</p>'
+      ],
+      answerHtml: 'Hộp đồ chơi có tất cả 9 con gấu bông (4 + 5 = 9).'
+    }],
+    'sec4-1': [{
+      qHtml: '<p>Trên cành cây có 7 chú chim: 🐦🐦🐦🐦🐦 🐦🐦.</p><p>Có 2 chú bay đi.</p><p>Hỏi trên cành cây còn lại bao nhiêu chú chim?</p>',
+      steps: [
+        '<p>Lúc đầu trên cành có 7 chú chim.</p>',
+        '<p>Bay đi 2 chú nghĩa là bớt đi 2.</p>',
+        '<p>Đếm lùi từ 7: bớt 1 còn 6, bớt tiếp 1 còn 5.</p>'
+      ],
+      answerHtml: 'Trên cành cây còn lại 5 chú chim (7 − 2 = 5).'
+    }],
+    'sec4-2': [{
+      qHtml: '<p>Trong rổ có 8 quả chuối: 🍌🍌🍌🍌🍌 🍌🍌🍌.</p><p>Mẹ đem cho bạn 5 quả.</p><p>Hỏi trong rổ còn lại bao nhiêu quả chuối?</p>',
+      steps: [
+        '<p>Lúc đầu trong rổ có 8 quả chuối.</p>',
+        '<p>Cho bạn 5 quả nghĩa là bớt đi 5.</p>',
+        '<p>Đếm lùi từ 8: bớt 1 còn 7, bớt tiếp cho đến khi bớt đủ 5 lần, còn lại 3.</p>'
+      ],
+      answerHtml: 'Trong rổ còn lại 3 quả chuối (8 − 5 = 3).'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
