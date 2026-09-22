@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Học Sinh Giỏi Toán Lớp 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Mulish:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --bg-alt: #e9edf8;
+    --paper: #ffffff;
+    --ink: #202844;
+    --ink-soft: #545f82;
+    --ink-faint: #8b93b3;
+    --accent: #3454d1;
+    --accent-hover: #2841ad;
+    --accent-soft: #e1e7fb;
+    --accent-soft-strong: #c3d0f5;
+    --teal: #0e8f72;
+    --teal-soft: #dcf3ea;
+    --amber: #b8790a;
+    --amber-soft: #faecd0;
+    --line: #dde3f0;
+    --line-strong: #c3cce3;
+    --shadow: 0 1px 2px rgba(30, 40, 80, 0.06), 0 8px 22px rgba(30, 40, 80, 0.09);
+    --radius: 16px;
+    --sans: "Mulish", "Segoe UI", "Be Vietnam Pro", Calibri, Arial, sans-serif;
+    --display: "Baloo 2", "Mulish", "Segoe UI", sans-serif;
+    --mono: "Space Mono", "Cascadia Code", Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #131826;
+    --bg-alt: #1a2030;
+    --paper: #1c2336;
+    --ink: #e8ecf9;
+    --ink-soft: #b3bcdb;
+    --ink-faint: #7c85a8;
+    --accent: #7c9bf0;
+    --accent-hover: #9db3f5;
+    --accent-soft: #232c4a;
+    --accent-soft-strong: #2f3b5e;
+    --teal: #4fd8ae;
+    --teal-soft: #16332a;
+    --amber: #e0b458;
+    --amber-soft: #3a2d16;
+    --line: #2a3350;
+    --line-strong: #3a4568;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131826;
+      --bg-alt: #1a2030;
+      --paper: #1c2336;
+      --ink: #e8ecf9;
+      --ink-soft: #b3bcdb;
+      --ink-faint: #7c85a8;
+      --accent: #7c9bf0;
+      --accent-hover: #9db3f5;
+      --accent-soft: #232c4a;
+      --accent-soft-strong: #2f3b5e;
+      --teal: #4fd8ae;
+      --teal-soft: #16332a;
+      --amber: #e0b458;
+      --amber-soft: #3a2d16;
+      --line: #2a3350;
+      --line-strong: #3a4568;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 0 18px 72px; }
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    padding: 44px 0 8px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  h1.title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2rem, 4.4vw, 2.7rem);
+    line-height: 1.12;
+    margin: 0.5rem 0 0.9rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .hero p.lede {
+    max-width: 66ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    margin: 0 0 6px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 12.8px;
+    color: var(--ink-faint);
+  }
+  .hero-meta strong { color: var(--ink); }
+
+  .copyright-note {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    margin: 22px 0 8px;
+  }
+  .copyright-note .box {
+    background: var(--amber-soft);
+    border: 1px solid color-mix(in srgb, var(--amber) 40%, var(--line));
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14.3px;
+    color: var(--ink-soft);
+  }
+  .copyright-note .box b { color: var(--ink); }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(21px, 2.4vw, 26px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--teal);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--teal) 45%, var(--line-strong)); color: var(--teal); }
+  .controls .btn-answer:hover { background: var(--teal-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: #fff;
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+    font-family: var(--display);
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<div class="shell">
+  <header class="hero">
+    <span class="eyebrow">Ôn luyện · Toán 3 · Ngân hàng đề thi học sinh giỏi</span>
+    <h1 class="title">Học Sinh Giỏi Toán Lớp 3</h1>
+    <p class="lede">
+      4 đề thi thử ngắn, mỗi đề gồm 2 câu hỏi, biên soạn theo đúng phong cách một đề thi
+      <span class="kw">học sinh giỏi (HSG)</span> Toán lớp 3 thật sự — số liệu nằm trong
+      <span class="kw">phạm vi 100000</span>, có nhân chia số nhiều chữ số, và mỗi câu đòi hỏi suy luận
+      <span class="kw">ít nhất 2-3 bước</span> thay vì tính toán đơn thuần. Hãy làm bài như đang thi thật:
+      đọc kỹ đề, đặt tính cẩn thận từng bước, rồi mới dùng gợi ý hoặc xem đáp số để tự kiểm tra lại.
+    </p>
+    <div class="hero-meta">
+      <span><strong>4</strong> đề thi thử</span>
+      <span><strong>8</strong> câu gốc</span>
+      <span><strong>8</strong> câu biến thể</span>
+      <span><strong>16</strong> lượt luyện tổng cộng</span>
+    </div>
+  </header>
+
+  <div class="copyright-note">
+    <div class="box">
+      <b>Về nội dung:</b> toàn bộ 8 câu hỏi, số liệu và lời giải trong tài liệu này do đội ngũ tự biên
+      soạn mới hoàn toàn. Tài liệu chỉ lấy cảm hứng về <i>dạng bài</i> và mức độ khó thường gặp trong các
+      đề thi học sinh giỏi Toán lớp 3 phổ biến (làm tròn — ước lượng trong phạm vi lớn, chia có dư cần
+      suy luận thực tế, nhân chia kết hợp hình học, toán có lời văn nhiều bước, câu hỏi tư duy nhanh...),
+      không sao chép nguyên văn bất kỳ đề bài hay số liệu nào từ tài liệu đã xuất bản.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">4 đề thi thử</div>
+    <ol>
+      <li><a href="#de1"><span class="n">🔢</span>Đề số 1</a></li>
+      <li><a href="#de2"><span class="n">🧮</span>Đề số 2</a></li>
+      <li><a href="#de3"><span class="n">📖</span>Đề số 3</a></li>
+      <li><a href="#de4"><span class="n">⚡</span>Đề số 4</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ================= ĐỀ 1 ================= -->
+    <section class="topic" id="de1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Đề số 1 · 20 phút</span>Số và phép tính</h2>
+      </div>
+      <p class="topic-intro">Đề số 1 tập trung vào mảng <span class="kw">số và phép tính</span> trong
+      phạm vi 100000, với 2 câu khó hơn mức thông thường: một câu về <span class="kw">làm tròn và ước
+      lượng</span> trước khi tính tổng chính xác, và một câu về <span class="kw">tổng — hiệu</span> của
+      hai số được diễn đạt gián tiếp. Hãy làm bài như một đề thi thật: đọc kỹ đề, đặt tính cẩn thận từng
+      bước rồi mới kết luận.</p>
+
+      <div class="problem" data-pool="de1-1" data-qid="Đề 1 · Câu 1">
+        <div class="q"><span class="qid">Đề 1 · Câu 1</span><div class="qtext">
+          <p>Một cửa hàng bán được 3 đợt hàng với số lượng lần lượt là <b>18452</b> sản phẩm,
+          <b>27891</b> sản phẩm và <b>31604</b> sản phẩm.</p>
+          <p>Bằng cách làm tròn mỗi số đến hàng nghìn rồi cộng lại, hãy <b>ước lượng</b> tổng số sản
+          phẩm cửa hàng đã bán. Sau đó tính <b>tổng chính xác</b> của ba số đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Muốn làm tròn một số đến hàng nghìn, ta nhìn vào chữ số hàng trăm của số đó: nếu chữ số hàng trăm nhỏ hơn 5 thì làm tròn xuống (giữ nguyên hàng nghìn, các chữ số sau thành 0); nếu từ 5 trở lên thì làm tròn lên (tăng hàng nghìn thêm 1).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>18452 có chữ số hàng trăm là 4 (nhỏ hơn 5) → làm tròn thành 18000. 27891 có chữ số hàng trăm là 8 (từ 5 trở lên) → làm tròn thành 28000. 31604 có chữ số hàng trăm là 6 (từ 5 trở lên) → làm tròn thành 32000.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng các số đã làm tròn để ước lượng: 18000 + 28000 + 32000 = 78000.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Tính tổng chính xác của ba số ban đầu: 18452 + 27891 = 46343; 46343 + 31604 = 77947. So với số ước lượng 78000, kết quả chính xác 77947 chỉ chênh lệch 53 — số ước lượng khá sát, giúp ta kiểm tra nhanh xem phép tính có hợp lý không.</p></div></div>
+          <p class="answer hidden">Ước lượng tổng là 78000. Tổng chính xác là 77947.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de1-2" data-qid="Đề 1 · Câu 2">
+        <div class="q"><span class="qid">Đề 1 · Câu 2</span><div class="qtext">
+          <p>Tổng của hai số là <b>86400</b>. Biết nếu lấy số thứ nhất cộng thêm <b>5200</b> thì sẽ
+          bằng số thứ hai.</p>
+          <p>Tìm mỗi số.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>"Số thứ nhất cộng thêm 5200 thì bằng số thứ hai" nghĩa là số thứ hai lớn hơn số thứ nhất đúng 5200 đơn vị. Vậy đây chính là bài toán tổng — hiệu quen thuộc, với tổng = 86400 và hiệu = 5200.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số bé (số thứ nhất) = (Tổng − Hiệu) : 2 = (86400 − 5200) : 2 = 81200 : 2 = 40600.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số lớn (số thứ hai) = (Tổng + Hiệu) : 2 = (86400 + 5200) : 2 = 91600 : 2 = 45800.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử lại: 40600 + 45800 = 86400 (đúng bằng tổng), và 40600 + 5200 = 45800 (đúng như đề bài).</p></div></div>
+          <p class="answer hidden">Số thứ nhất là 40600, số thứ hai là 45800.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ĐỀ 2 ================= -->
+    <section class="topic" id="de2">
+      <div class="topic-head">
+        <span class="topic-badge">🧮</span>
+        <h2 class="topic-title"><span class="topic-num">Đề số 2 · 20 phút</span>Nhân chia và hình học</h2>
+      </div>
+      <p class="topic-intro">Đề số 2 kết hợp <span class="kw">nhân chia</span> với <span class="kw">hình
+      học</span> trong cùng một câu hỏi — một câu chia có dư đòi hỏi <span class="kw">suy luận thực
+      tế</span> về phần dư ghép lại thành một hình mới, và một câu nhân số có nhiều chữ số để tính diện
+      tích rồi nhân tiếp thêm một bước nữa. Mẹo: tính xong bước hình học hoặc bước chia dư rồi mới áp
+      dụng phép tính còn lại.</p>
+
+      <div class="problem" data-pool="de2-1" data-qid="Đề 2 · Câu 1">
+        <div class="q"><span class="qid">Đề 2 · Câu 1</span><div class="qtext">
+          <p>Một xưởng gạch có <b>375 viên gạch</b> hình vuông, mỗi viên cạnh <b>20cm</b>. Người ta xếp
+          số gạch đó thành các hàng, mỗi hàng đủ <b>8 viên</b>.</p>
+          <p>Hỏi xếp được nhiều nhất bao nhiêu hàng đủ 8 viên, còn dư bao nhiêu viên? Nếu đem số viên
+          gạch dư đó ghép liền nhau thành một hàng ngang, hàng đó dài bao nhiêu xăng-ti-mét?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thực hiện phép chia: 375 : 8 = 46 (dư 7), vì 46 × 8 = 368 và 375 − 368 = 7 (số dư 7 nhỏ hơn số chia 8, hợp lệ).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vậy xếp được 46 hàng đủ 8 viên, còn dư 7 viên gạch chưa đủ để xếp thành một hàng mới.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Ghép 7 viên gạch dư đó nối tiếp nhau thành một hàng ngang, mỗi viên cạnh 20cm: chiều dài hàng đó = 7 × 20 = 140cm.</p></div></div>
+          <p class="answer hidden">Xếp được 46 hàng đủ 8 viên, dư 7 viên. Hàng ghép từ số gạch dư dài 140cm.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de2-2" data-qid="Đề 2 · Câu 2">
+        <div class="q"><span class="qid">Đề 2 · Câu 2</span><div class="qtext">
+          <p>Một thửa ruộng hình chữ nhật có chiều rộng <b>36m</b>, chiều dài gấp <b>4 lần</b> chiều
+          rộng. Người ta cấy lúa trên cả thửa ruộng đó, cứ mỗi mét vuông cần trung bình <b>6 khóm
+          lúa</b>.</p>
+          <p>Hỏi cần tất cả bao nhiêu khóm lúa để cấy hết thửa ruộng?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính chiều dài thửa ruộng: chiều dài gấp 4 lần chiều rộng (36m), nên chiều dài = 36 × 4 = 144m.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính diện tích thửa ruộng: diện tích = chiều dài × chiều rộng = 144 × 36 = 5184 m².</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Mỗi mét vuông cần 6 khóm lúa, nên tổng số khóm lúa cần dùng = 5184 × 6 = 31104 khóm.</p></div></div>
+          <p class="answer hidden">Cần tất cả 31104 khóm lúa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ĐỀ 3 ================= -->
+    <section class="topic" id="de3">
+      <div class="topic-head">
+        <span class="topic-badge">📖</span>
+        <h2 class="topic-title"><span class="topic-num">Đề số 3 · 20 phút</span>Toán có lời văn nhiều bước</h2>
+      </div>
+      <p class="topic-intro">Đề số 3 gồm hai bài <span class="kw">toán có lời văn nhiều bước</span> trong
+      phạm vi 100000 — mỗi bài cần thực hiện từ <span class="kw">4 đến 5 phép tính liên tiếp</span>, có cả
+      nhân số nhiều chữ số, mới ra được đáp số cuối cùng, giống hệt các bài toán đố dài trong đề thi học
+      sinh giỏi thật. Mẹo: tính lần lượt từng đại lượng theo đúng thứ tự đề bài cho, không bỏ sót bước
+      nào.</p>
+
+      <div class="problem" data-pool="de3-1" data-qid="Đề 3 · Câu 1">
+        <div class="q"><span class="qid">Đề 3 · Câu 1</span><div class="qtext">
+          <p>Một nhà sách nhập về <b>15420 quyển</b> sách Toán. Số sách Văn nhập về nhiều hơn sách Toán
+          <b>6780 quyển</b>. Số sách Tiếng Anh nhập về bằng <b>một nửa</b> tổng số sách Toán và sách
+          Văn.</p>
+          <p>Hỏi nhà sách đã nhập về tất cả bao nhiêu quyển sách?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính số sách Văn: nhiều hơn sách Toán 6780 quyển, nên sách Văn = 15420 + 6780 = 22200 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính tổng số sách Toán và sách Văn: 15420 + 22200 = 37620 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính số sách Tiếng Anh: bằng một nửa tổng số sách Toán và Văn, nên sách Anh = 37620 : 2 = 18810 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Tính tổng cả ba loại sách: 37620 + 18810 = 56430 quyển.</p></div></div>
+          <p class="answer hidden">Nhà sách đã nhập về tất cả 56430 quyển sách.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de3-2" data-qid="Đề 3 · Câu 2">
+        <div class="q"><span class="qid">Đề 3 · Câu 2</span><div class="qtext">
+          <p>Một kho hàng có <b>12 thùng sách</b>, mỗi thùng chứa <b>1250 quyển</b>. Kho đã xuất đi 3
+          lần: lần đầu <b>2480 quyển</b>, lần hai gấp <b>đôi</b> lần đầu, lần ba ít hơn lần hai <b>900
+          quyển</b>.</p>
+          <p>Hỏi trong kho còn lại bao nhiêu quyển sách?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính tổng số sách nhập kho: 12 thùng × 1250 quyển = 15000 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính số sách xuất lần hai: gấp đôi lần đầu (2480 quyển), nên lần hai = 2480 × 2 = 4960 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính số sách xuất lần ba: ít hơn lần hai 900 quyển, nên lần ba = 4960 − 900 = 4060 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Tính tổng số sách đã xuất cả 3 lần: 2480 + 4960 + 4060 = 11500 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Tính số sách còn lại trong kho: 15000 − 11500 = 3500 quyển.</p></div></div>
+          <p class="answer hidden">Kho còn lại 3500 quyển sách.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ĐỀ 4 ================= -->
+    <section class="topic" id="de4">
+      <div class="topic-head">
+        <span class="topic-badge">⚡</span>
+        <h2 class="topic-title"><span class="topic-num">Đề số 4 · 20 phút</span>Tổng hợp — tư duy nhanh</h2>
+      </div>
+      <p class="topic-intro">Đề số 4 tổng hợp và rèn <span class="kw">tư duy nhanh</span> — một câu về
+      tuổi tác cần nhận ra tính chất đặc biệt của hiệu số tuổi, và một câu đếm số theo điều kiện chữ số
+      vận dụng bảng nhân. Dạng câu hỏi này thường xuất hiện ở cuối đề thi HSG để phân loại những bạn nắm
+      chắc kiến thức và biết suy luận linh hoạt, không cần tính toán quá dài.</p>
+
+      <div class="problem" data-pool="de4-1" data-qid="Đề 4 · Câu 1">
+        <div class="q"><span class="qid">Đề 4 · Câu 1</span><div class="qtext">
+          <p>Năm nay tuổi mẹ gấp <b>4 lần</b> tuổi con. Biết tuổi con năm nay là <b>9 tuổi</b>.</p>
+          <p>Hỏi 5 năm nữa, mẹ hơn con bao nhiêu tuổi?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính tuổi mẹ hiện nay: gấp 4 lần tuổi con (9 tuổi), nên tuổi mẹ = 9 × 4 = 36 tuổi.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính hiệu số tuổi hiện nay giữa mẹ và con: 36 − 9 = 27 tuổi.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Điều đặc biệt: dù thời gian trôi qua bao lâu, hiệu số tuổi giữa hai người <b>không bao giờ thay đổi</b>, vì mỗi năm cả hai đều tăng thêm đúng 1 tuổi như nhau. Vì vậy, đề bài cho "5 năm nữa" chỉ để đánh lạc hướng — không cần tính lại.</p></div></div>
+          <p class="answer hidden">5 năm nữa, mẹ vẫn hơn con đúng 27 tuổi.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de4-2" data-qid="Đề 4 · Câu 2">
+        <div class="q"><span class="qid">Đề 4 · Câu 2</span><div class="qtext">
+          <p>Có bao nhiêu số có <b>ba chữ số</b> mà chữ số hàng trăm gấp <b>đôi</b> chữ số hàng chục, và
+          chữ số hàng đơn vị là <b>0</b>?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số có 3 chữ số có dạng "h c 0", trong đó h là chữ số hàng trăm, c là chữ số hàng chục, chữ số hàng đơn vị cố định là 0, và h = 2 × c. Vì h là chữ số hàng trăm nên h phải từ 1 đến 9 (không thể bằng 0).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vì h = 2 × c phải là một chữ số từ 1 đến 9, nên c chỉ có thể là 1, 2, 3 hoặc 4 (nếu c = 5 thì h = 10, không còn là một chữ số nữa).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Liệt kê từng trường hợp: c = 1 → h = 2, được số 210; c = 2 → h = 4, được số 420; c = 3 → h = 6, được số 630; c = 4 → h = 8, được số 840.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Đếm được tất cả 4 số thỏa mãn: 210, 420, 630, 840.</p></div></div>
+          <p class="answer hidden">Có tất cả 4 số thỏa mãn: 210, 420, 630, 840.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-lam-bai">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo làm bài thi học sinh giỏi</h2>
+      </div>
+      <p class="topic-intro">4 mẹo ngắn gọn giúp con làm bài thi thử hiệu quả hơn — không chỉ để giải
+      đúng, mà còn để làm bài có chiến thuật như một kỳ thi thật.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đọc lướt cả đề trước.</b> Trước khi làm, hãy xem qua cả 2 câu trong đề để biết câu nào
+          mình thấy dễ hơn, câu nào cần suy nghĩ nhiều hơn.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Viết ra từng đại lượng trung gian.</b> Với bài nhiều bước, đừng cố nhẩm hết một lần —
+          hãy ghi rõ kết quả từng bước ra giấy trước khi tính bước tiếp theo.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Ước lượng trước khi tính chính xác.</b> Làm tròn số liệu để đoán khoảng kết quả trước,
+          rồi tính chính xác — nếu hai kết quả lệch nhau quá nhiều, khả năng cao là con đã tính sai.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Luôn thử lại đáp số.</b> Làm xong một câu, hãy thay đáp số ngược vào đề bài kiểm tra lại
+          trước khi chuyển sang đề tiếp theo — đây là thói quen của những bạn học sinh giỏi thật sự.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 3, ngân hàng đề thi học sinh giỏi. Nội dung lấy
+    cảm hứng về dạng bài và mức độ khó từ các đề thi học sinh giỏi Toán lớp 3 phổ biến, toàn bộ đề bài,
+    số liệu và lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu tài liệu nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'de1-1': [{
+      qHtml: '<p>Một cửa hàng bán được 3 đợt hàng với số lượng lần lượt là <b>24178</b> sản phẩm, <b>35927</b> sản phẩm và <b>19350</b> sản phẩm.</p><p>Bằng cách làm tròn mỗi số đến hàng nghìn rồi cộng lại, hãy <b>ước lượng</b> tổng số sản phẩm cửa hàng đã bán. Sau đó tính <b>tổng chính xác</b> của ba số đó.</p>',
+      steps: [
+        '<p>Muốn làm tròn một số đến hàng nghìn, ta nhìn vào chữ số hàng trăm của số đó: nếu chữ số hàng trăm nhỏ hơn 5 thì làm tròn xuống; nếu từ 5 trở lên thì làm tròn lên.</p>',
+        '<p>24178 có chữ số hàng trăm là 1 (nhỏ hơn 5) → làm tròn thành 24000. 35927 có chữ số hàng trăm là 9 (từ 5 trở lên) → làm tròn thành 36000. 19350 có chữ số hàng trăm là 3 (nhỏ hơn 5) → làm tròn thành 19000.</p>',
+        '<p>Cộng các số đã làm tròn để ước lượng: 24000 + 36000 + 19000 = 79000.</p>',
+        '<p>Tính tổng chính xác của ba số ban đầu: 24178 + 35927 = 60105; 60105 + 19350 = 79455. So với số ước lượng 79000, kết quả chính xác 79455 chênh lệch 455 — vẫn khá gần, đủ để kiểm tra nhanh phép tính.</p>'
+      ],
+      answerHtml: 'Ước lượng tổng là 79000. Tổng chính xác là 79455.'
+    }],
+    'de1-2': [{
+      qHtml: '<p>Tổng của hai số là <b>74800</b>. Biết nếu lấy số thứ nhất cộng thêm <b>6400</b> thì sẽ bằng số thứ hai.</p><p>Tìm mỗi số.</p>',
+      steps: [
+        '<p>"Số thứ nhất cộng thêm 6400 thì bằng số thứ hai" nghĩa là số thứ hai lớn hơn số thứ nhất đúng 6400 đơn vị. Đây là bài toán tổng — hiệu, với tổng = 74800 và hiệu = 6400.</p>',
+        '<p>Số bé (số thứ nhất) = (Tổng − Hiệu) : 2 = (74800 − 6400) : 2 = 68400 : 2 = 34200.</p>',
+        '<p>Số lớn (số thứ hai) = (Tổng + Hiệu) : 2 = (74800 + 6400) : 2 = 81200 : 2 = 40600.</p>',
+        '<p>Thử lại: 34200 + 40600 = 74800 (đúng bằng tổng), và 34200 + 6400 = 40600 (đúng như đề bài).</p>'
+      ],
+      answerHtml: 'Số thứ nhất là 34200, số thứ hai là 40600.'
+    }],
+    'de2-1': [{
+      qHtml: '<p>Một xưởng gạch có <b>452 viên gạch</b> hình vuông, mỗi viên cạnh <b>25cm</b>. Người ta xếp số gạch đó thành các hàng, mỗi hàng đủ <b>9 viên</b>.</p><p>Hỏi xếp được nhiều nhất bao nhiêu hàng đủ 9 viên, còn dư bao nhiêu viên? Nếu đem số viên gạch dư đó ghép liền nhau thành một hàng ngang, hàng đó dài bao nhiêu xăng-ti-mét?</p>',
+      steps: [
+        '<p>Thực hiện phép chia: 452 : 9 = 50 (dư 2), vì 50 × 9 = 450 và 452 − 450 = 2 (số dư 2 nhỏ hơn số chia 9, hợp lệ).</p>',
+        '<p>Vậy xếp được 50 hàng đủ 9 viên, còn dư 2 viên gạch chưa đủ để xếp thành một hàng mới.</p>',
+        '<p>Ghép 2 viên gạch dư đó nối tiếp nhau thành một hàng ngang, mỗi viên cạnh 25cm: chiều dài hàng đó = 2 × 25 = 50cm.</p>'
+      ],
+      answerHtml: 'Xếp được 50 hàng đủ 9 viên, dư 2 viên. Hàng ghép từ số gạch dư dài 50cm.'
+    }],
+    'de2-2': [{
+      qHtml: '<p>Một thửa ruộng hình chữ nhật có chiều rộng <b>28m</b>, chiều dài gấp <b>5 lần</b> chiều rộng. Người ta cấy lúa trên cả thửa ruộng đó, cứ mỗi mét vuông cần trung bình <b>7 khóm lúa</b>.</p><p>Hỏi cần tất cả bao nhiêu khóm lúa để cấy hết thửa ruộng?</p>',
+      steps: [
+        '<p>Tính chiều dài thửa ruộng: chiều dài gấp 5 lần chiều rộng (28m), nên chiều dài = 28 × 5 = 140m.</p>',
+        '<p>Tính diện tích thửa ruộng: diện tích = chiều dài × chiều rộng = 140 × 28 = 3920 m².</p>',
+        '<p>Mỗi mét vuông cần 7 khóm lúa, nên tổng số khóm lúa cần dùng = 3920 × 7 = 27440 khóm.</p>'
+      ],
+      answerHtml: 'Cần tất cả 27440 khóm lúa.'
+    }],
+    'de3-1': [{
+      qHtml: '<p>Một nhà sách nhập về <b>13650 quyển</b> sách Toán. Số sách Văn nhập về nhiều hơn sách Toán <b>5920 quyển</b>. Số sách Tiếng Anh nhập về bằng <b>một nửa</b> tổng số sách Toán và sách Văn.</p><p>Hỏi nhà sách đã nhập về tất cả bao nhiêu quyển sách?</p>',
+      steps: [
+        '<p>Tính số sách Văn: nhiều hơn sách Toán 5920 quyển, nên sách Văn = 13650 + 5920 = 19570 quyển.</p>',
+        '<p>Tính tổng số sách Toán và sách Văn: 13650 + 19570 = 33220 quyển.</p>',
+        '<p>Tính số sách Tiếng Anh: bằng một nửa tổng số sách Toán và Văn, nên sách Anh = 33220 : 2 = 16610 quyển.</p>',
+        '<p>Tính tổng cả ba loại sách: 33220 + 16610 = 49830 quyển.</p>'
+      ],
+      answerHtml: 'Nhà sách đã nhập về tất cả 49830 quyển sách.'
+    }],
+    'de3-2': [{
+      qHtml: '<p>Một kho hàng có <b>15 thùng sách</b>, mỗi thùng chứa <b>1400 quyển</b>. Kho đã xuất đi 3 lần: lần đầu <b>3150 quyển</b>, lần hai gấp <b>đôi</b> lần đầu, lần ba ít hơn lần hai <b>1200 quyển</b>.</p><p>Hỏi trong kho còn lại bao nhiêu quyển sách?</p>',
+      steps: [
+        '<p>Tính tổng số sách nhập kho: 15 thùng × 1400 quyển = 21000 quyển.</p>',
+        '<p>Tính số sách xuất lần hai: gấp đôi lần đầu (3150 quyển), nên lần hai = 3150 × 2 = 6300 quyển.</p>',
+        '<p>Tính số sách xuất lần ba: ít hơn lần hai 1200 quyển, nên lần ba = 6300 − 1200 = 5100 quyển.</p>',
+        '<p>Tính tổng số sách đã xuất cả 3 lần: 3150 + 6300 + 5100 = 14550 quyển.</p>',
+        '<p>Tính số sách còn lại trong kho: 21000 − 14550 = 6450 quyển.</p>'
+      ],
+      answerHtml: 'Kho còn lại 6450 quyển sách.'
+    }],
+    'de4-1': [{
+      qHtml: '<p>Năm nay tuổi mẹ gấp <b>5 lần</b> tuổi con. Biết tuổi con năm nay là <b>8 tuổi</b>.</p><p>Hỏi 8 năm nữa, mẹ hơn con bao nhiêu tuổi?</p>',
+      steps: [
+        '<p>Tính tuổi mẹ hiện nay: gấp 5 lần tuổi con (8 tuổi), nên tuổi mẹ = 8 × 5 = 40 tuổi.</p>',
+        '<p>Tính hiệu số tuổi hiện nay giữa mẹ và con: 40 − 8 = 32 tuổi.</p>',
+        '<p>Điều đặc biệt: dù thời gian trôi qua bao lâu, hiệu số tuổi giữa hai người <b>không bao giờ thay đổi</b>, vì mỗi năm cả hai đều tăng thêm đúng 1 tuổi như nhau. Vì vậy, "8 năm nữa" chỉ để đánh lạc hướng — không cần tính lại.</p>'
+      ],
+      answerHtml: '8 năm nữa, mẹ vẫn hơn con đúng 32 tuổi.'
+    }],
+    'de4-2': [{
+      qHtml: '<p>Có bao nhiêu số có <b>ba chữ số</b> mà chữ số hàng trăm gấp <b>ba lần</b> chữ số hàng chục, và chữ số hàng đơn vị là <b>5</b>?</p>',
+      steps: [
+        '<p>Số có 3 chữ số có dạng "h c 5", trong đó h là chữ số hàng trăm, c là chữ số hàng chục, chữ số hàng đơn vị cố định là 5, và h = 3 × c. Vì h là chữ số hàng trăm nên h phải từ 1 đến 9.</p>',
+        '<p>Vì h = 3 × c phải là một chữ số từ 1 đến 9, nên c chỉ có thể là 1, 2 hoặc 3 (nếu c = 4 thì h = 12, không còn là một chữ số nữa).</p>',
+        '<p>Liệt kê từng trường hợp: c = 1 → h = 3, được số 315; c = 2 → h = 6, được số 625; c = 3 → h = 9, được số 935.</p>',
+        '<p>Đếm được tất cả 3 số thỏa mãn: 315, 625, 935.</p>'
+      ],
+      answerHtml: 'Có tất cả 3 số thỏa mãn: 315, 625, 935.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

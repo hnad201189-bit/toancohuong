@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Câu Đố IQ Toán 3 — Ôn luyện Toán lớp 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f6f3ff;
+    --bg-alt: #ece1ff;
+    --paper: #ffffff;
+    --ink: #241b3d;
+    --ink-soft: #5b4d7a;
+    --ink-faint: #9184ad;
+    --accent: #7c3aed;
+    --accent-soft: #ede4ff;
+    --accent-warm: #f59e0b;
+    --accent-warm-soft: #fef3d6;
+    --line: #e4daff;
+    --line-strong: #cbb8f7;
+    --shadow: 0 1px 2px rgba(50, 20, 90, 0.08), 0 6px 20px rgba(50, 20, 90, 0.1);
+    --radius: 18px;
+    --display: "Fredoka", "Segoe UI", Calibri, sans-serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #170f28;
+    --bg-alt: #1e1533;
+    --paper: #201735;
+    --ink: #f1eaff;
+    --ink-soft: #c3b3e8;
+    --ink-faint: #8b78ae;
+    --accent: #b794f6;
+    --accent-soft: #362a52;
+    --accent-warm: #fbbf24;
+    --accent-warm-soft: #3d2f0c;
+    --line: #362a52;
+    --line-strong: #4a3a6b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #170f28;
+      --bg-alt: #1e1533;
+      --paper: #201735;
+      --ink: #f1eaff;
+      --ink-soft: #c3b3e8;
+      --ink-faint: #8b78ae;
+      --accent: #b794f6;
+      --accent-soft: #362a52;
+      --accent-warm: #fbbf24;
+      --accent-warm-soft: #3d2f0c;
+      --line: #362a52;
+      --line-strong: #4a3a6b;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 44px 20px 96px;
+    display: grid;
+    grid-template-columns: 214px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 32px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 6px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 4px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  .doc-head { max-width: 780px; margin: 0 0 28px; }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 41px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede { color: var(--ink-soft); max-width: 66ch; font-size: 17px; margin: 0; }
+
+  section.topic { padding-top: 52px; scroll-margin-top: 18px; }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(21px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 12.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    font-family: var(--mono);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 12px 0 28px; }
+
+  p { max-width: 68ch; margin: 0 0 12px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0 32px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .qhead { padding: 16px 22px 0; }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 700; }
+  .problem .qtext { padding: 8px 22px 18px; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .geo-figure { display: flex; justify-content: center; padding: 14px 0 4px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .scale-pair { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; margin-top: 4px; }
+  .scale-block { text-align: center; }
+  .scale-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 55%, var(--line-strong)); color: color-mix(in srgb, var(--accent-warm) 80%, var(--ink)); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body:empty { padding: 0; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step[hidden] { display: none; }
+  .sol-body .step::before {
+    content: attr(data-n);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .answer[hidden] { display: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); max-width: 780px; }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 vòng câu đố</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔢</span>Đố vui số học</a></li>
+      <li><a href="#sec2"><span class="n">🔎</span>Đố vui hình ảnh</a></li>
+      <li><a href="#sec3"><span class="n">🎩</span>Đố mẹo</a></li>
+      <li><a href="#sec4"><span class="n">⚖️</span>Đố cân bằng</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="doc-head">
+      <div class="doc-eyebrow">🧠 Ôn luyện Toán lớp 3 · Sách đố vui IQ</div>
+      <h1>Câu Đố IQ Toán 3</h1>
+      <p class="lede">8 câu đố "não cân não" mang phong cách sách đố vui IQ thiếu nhi — ngắn gọn, bất ngờ, và luôn có một chút "bẫy" khiến bạn phải đọc lại đề lần hai. Số đã lớn hơn, hình đã rối hơn, nhưng đáp án thì luôn rõ ràng, duy nhất nếu bạn chịu khó suy nghĩ!</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">🧠 Về tài liệu này</div>
+      <p><b>Câu Đố IQ Toán 3</b> là tuyển tập 8 câu đố tư duy mang phong cách các cuốn sách đố vui IQ thiếu nhi (kiểu "365 ngày phát triển IQ") — có yếu tố toán học, quan sát và suy luận ngược, nhưng luôn giữ đáp án rõ ràng, duy nhất. Toàn bộ đề bài, số liệu, hình vẽ và lời giải trong tài liệu này là <b>nội dung tự soạn mới hoàn toàn</b>, chỉ tham khảo tinh thần và độ khó quen thuộc của thể loại đố vui IQ chứ không sao chép nguyên văn từ bất kỳ cuốn sách hay câu đố dân gian cụ thể nào. Mỗi câu có nút <b>🔄 Đổi câu đố tương tự</b> để luyện lại đúng kiểu bài với tình huống khác.</p>
+    </div>
+
+    <!-- ================= SEC 1: ĐỐ VUI SỐ HỌC ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 1</span>Đố vui số học</h2>
+      </div>
+      <p class="topic-intro">Ở lớp 3, các con số đã "lớn" hơn hẳn — có phép chia có dư, có số hàng nghìn, hàng chục nghìn. Nhưng đôi khi câu đố không khó ở phép tính, mà khó ở việc <span class="kw">đọc đúng đề bài</span>. Hãy đọc chậm, đọc kỹ trước khi đặt bút tính nhé!</p>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Đố 1.1">
+        <div class="qhead"><span class="qid">Đố 1.1</span></div>
+        <div class="qtext">
+          <p>🔢 Một số khi đem chia cho <b>9</b> thì được thương là <b>1111</b>, còn số dư là <b>số dư lớn nhất có thể có</b> trong phép chia đó. Đố bạn: số đó là số nào?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Nhớ lại quy tắc: trong phép chia có dư, số dư LUÔN LUÔN bé hơn số chia. Vậy khi chia cho 9, số dư lớn nhất có thể có là bao nhiêu?</div>
+          <div class="step" data-n="2" hidden>Số dư phải bé hơn 9, nên số dư lớn nhất có thể có là 8 (không phải 9!).</div>
+          <div class="step" data-n="3" hidden>Số bị chia = thương × số chia + số dư = 1111 × 9 + 8.</div>
+          <div class="step" data-n="4" hidden>Tính: 1111 × 9 = 9999, rồi 9999 + 8 = 10007.</div>
+          <div class="answer" hidden>Đáp số: Số đó là 10007.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Đố 1.2">
+        <div class="qhead"><span class="qid">Đố 1.2</span></div>
+        <div class="qtext">
+          <p>📖 Một quyển sách dày đúng <b>100 trang</b>, được đánh số lần lượt: trang 1, trang 2, trang 3, ..., cho tới trang 100. Đố bạn: để đánh số hết cả quyển sách, người ta phải viết ra tất cả bao nhiêu <b>CHỮ SỐ</b> (đếm từng chữ số 0-9 được viết ra, KHÔNG PHẢI đếm số trang)?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đừng vội trả lời "100 chữ số"! Đề bài hỏi số CHỮ SỐ được viết ra, mà các trang từ 10 trở đi cần tới 2, thậm chí 3 chữ số mới viết được 1 số trang.</div>
+          <div class="step" data-n="2" hidden>Từ trang 1 đến trang 9: có 9 trang, mỗi trang chỉ cần 1 chữ số → 9 × 1 = 9 chữ số.</div>
+          <div class="step" data-n="3" hidden>Từ trang 10 đến trang 99: có 90 trang, mỗi trang cần 2 chữ số → 90 × 2 = 180 chữ số.</div>
+          <div class="step" data-n="4" hidden>Trang 100 cần 3 chữ số. Tổng cộng: 9 + 180 + 3 = 192 chữ số.</div>
+          <div class="answer" hidden>Đáp số: 192 chữ số.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2: ĐỐ VUI HÌNH ẢNH ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">🔎</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 2</span>Đố vui hình ảnh</h2>
+      </div>
+      <p class="topic-intro">Mắt của bạn đôi khi cũng biết "nói dối" đấy! Ở vòng này, hãy quan sát thật kỹ từng đường nét, từng ô nhỏ trong hình vẽ — và <span class="kw">đừng tin ngay vào cảm giác đầu tiên</span>.</p>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Đố 2.1">
+        <div class="qhead"><span class="qid">Đố 2.1</span></div>
+        <div class="qtext">
+          <p>🔎 Hình vuông dưới đây được chia thành 4 ô nhỏ bằng nhau (2 hàng × 2 cột). Đố bạn: nhìn thật kỹ, trong hình có tất cả bao nhiêu <b>HÌNH CHỮ NHẬT</b> (tính cả các ô vuông nhỏ, và cả những hình được ghép từ nhiều ô nhỏ liền nhau)?</p>
+          <div class="geo-figure"><svg viewBox="0 0 100 100" width="170" height="170">
+            <rect x="10" y="10" width="80" height="80" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>
+            <line x1="50" y1="10" x2="50" y2="90" stroke="var(--accent)" stroke-width="2.2"/>
+            <line x1="10" y1="50" x2="90" y2="50" stroke="var(--accent)" stroke-width="2.2"/>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đừng chỉ đếm 4 ô vuông nhỏ rồi dừng lại! Hai hoặc bốn ô nhỏ ghép liền nhau cũng tạo thành một hình chữ nhật mới.</div>
+          <div class="step" data-n="2" hidden>Đếm hình cỡ nhỏ nhất (từng ô một): có 4 ô vuông nhỏ.</div>
+          <div class="step" data-n="3" hidden>Đếm hình cỡ vừa (ghép 2 ô liền nhau thành 1 hình chữ nhật dài): ghép theo hàng ngang được 2 hình (hàng trên, hàng dưới), ghép theo cột dọc được 2 hình (cột trái, cột phải) → tất cả 4 hình cỡ vừa.</div>
+          <div class="step" data-n="4" hidden>Đếm hình cỡ lớn nhất (ghép cả 4 ô): chính là cả hình vuông ban đầu → 1 hình. Cộng lại: 4 + 4 + 1 = 9 hình.</div>
+          <div class="answer" hidden>Đáp số: 9 hình chữ nhật.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Đố 2.2">
+        <div class="qhead"><span class="qid">Đố 2.2</span></div>
+        <div class="qtext">
+          <p>👁️ Hai đoạn thẳng A và B dưới đây được vẽ thêm "cánh" ở hai đầu theo hai kiểu khác nhau. Nhìn thoáng qua, một đoạn trông dài hơn hẳn đoạn còn lại! Đố bạn: đoạn nào thực sự dài hơn — hay chúng bằng nhau?</p>
+          <div class="geo-figure"><svg viewBox="0 0 260 140" width="260" height="140">
+            <line x1="50" y1="20" x2="50" y2="120" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="210" y1="20" x2="210" y2="120" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="50" y1="40" x2="210" y2="40" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="50" y1="40" x2="36" y2="30" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="50" y1="40" x2="36" y2="50" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="210" y1="40" x2="224" y2="30" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="210" y1="40" x2="224" y2="50" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <text x="130" y="30" text-anchor="middle" font-size="12" fill="var(--ink-soft)">A</text>
+            <line x1="50" y1="100" x2="210" y2="100" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="50" y1="100" x2="64" y2="90" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="50" y1="100" x2="64" y2="110" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="210" y1="100" x2="196" y2="90" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="210" y1="100" x2="196" y2="110" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/>
+            <text x="130" y="118" text-anchor="middle" font-size="12" fill="var(--ink-soft)">B</text>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Nhìn lướt qua, đoạn A (cánh chĩa ra ngoài) thường trông DÀI hơn đoạn B (cánh chĩa vào trong) — đây là một ảo giác thị giác rất nổi tiếng, đánh lừa cả người lớn!</div>
+          <div class="step" data-n="2" hidden>Đừng tin vội vào mắt mình — hãy nhìn 2 đường kẻ đứt nét thẳng đứng trong hình: chúng đánh dấu đúng điểm bắt đầu và kết thúc của CẢ HAI đoạn thẳng.</div>
+          <div class="step" data-n="3" hidden>Quan sát kỹ: cả đoạn A và đoạn B đều bắt đầu và kết thúc đúng ngay tại 2 đường kẻ đứt nét đó — chứng tỏ 2 đoạn có cùng độ dài.</div>
+          <div class="step" data-n="4" hidden>Nếu chưa tin, hãy lấy một chiếc thước kẻ đo trực tiếp cả 2 đoạn — em sẽ thấy chúng dài bằng nhau!</div>
+          <div class="answer" hidden>Đáp số: Hai đoạn thẳng A và B dài BẰNG NHAU — chỉ là "cánh" ở hai đầu đã đánh lừa mắt bạn thôi!</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3: ĐỐ MẸO ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">🎩</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 3</span>Đố mẹo</h2>
+      </div>
+      <p class="topic-intro">Vòng này không cần tính toán phức tạp — chỉ cần bạn đọc thật chậm, thật kỹ từng chữ trong đề bài. Nhiều bạn trả lời sai không phải vì không biết tính, mà vì <span class="kw">đọc vội quá</span>!</p>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Đố 3.1">
+        <div class="qhead"><span class="qid">Đố 3.1</span></div>
+        <div class="qtext">
+          <p>🎩 Một gia đình có <b>3 anh trai</b>. Cả 3 anh đều có <b>chung đúng 1 em gái</b> — nghĩa là cả 3 anh trai đó đều là anh ruột của MỘT bạn gái duy nhất, chứ không phải mỗi anh có một em gái riêng. Đố bạn: gia đình đó có tất cả bao nhiêu người con?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đừng vội nghĩ "3 anh, mỗi anh 1 em gái" nghĩa là có tới 3 em gái khác nhau!</div>
+          <div class="step" data-n="2" hidden>Đọc kỹ lại đề: cả 3 anh trai đều có CHUNG đúng 1 em gái — tức là chỉ có DUY NHẤT một bạn gái trong nhà, và bạn ấy là em của cả 3 anh luôn.</div>
+          <div class="step" data-n="3" hidden>Vậy gia đình đó có: 3 anh trai + 1 em gái (chỉ một người) = tổng cộng 4 người con.</div>
+          <div class="step" data-n="4" hidden>Kiểm tra lại: bạn gái đó có đúng 3 anh trai ✓, và mỗi anh trai đều có đúng 1 em gái — chính là bạn ấy ✓.</div>
+          <div class="answer" hidden>Đáp số: Gia đình đó có 4 người con (3 anh trai và 1 em gái).</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Đố 3.2">
+        <div class="qhead"><span class="qid">Đố 3.2</span></div>
+        <div class="qtext">
+          <p>🐑 Một người nông dân nuôi <b>15 con cừu</b>. Một trận bão lớn ập đến, cuốn trôi mất tất cả đàn cừu — <b>chỉ trừ 6 con</b>. Đố bạn: sau trận bão, người nông dân đó còn lại bao nhiêu con cừu?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đừng vội lấy 15 − 6 = 9! Hãy đọc thật chậm lại câu: "cuốn trôi mất tất cả — CHỈ TRỪ 6 con".</div>
+          <div class="step" data-n="2" hidden>Cụm từ "chỉ trừ 6 con" ở đây không phải là một phép tính trừ — nó có nghĩa là "chỉ có 6 con là NGOẠI LỆ", tức là 6 con đó không hề bị cuốn trôi.</div>
+          <div class="step" data-n="3" hidden>Vậy 6 con đó chính là những con còn sống sót sau bão. Còn lại 15 − 6 = 9 con mới là số bị cuốn trôi mất.</div>
+          <div class="step" data-n="4" hidden>Số cừu còn lại sau bão chính là 6 con (những con không bị cuốn trôi), không phải 9 con.</div>
+          <div class="answer" hidden>Đáp số: 6 con cừu.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4: ĐỐ CÂN BẰNG ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">⚖️</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 4</span>Đố cân bằng</h2>
+      </div>
+      <p class="topic-intro">Chiếc cân thăng bằng khi hai đĩa cân nặng bằng nhau. Ở lớp 3, có khi bạn cần dùng tới <span class="kw">hai chiếc cân</span> — hoặc phải khéo léo "bỏ bớt" vật giống nhau ở cả hai đĩa — thì mới tìm ra được khối lượng còn ẩn.</p>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Đố 4.1">
+        <div class="qhead"><span class="qid">Đố 4.1</span></div>
+        <div class="qtext">
+          <p>⚖️ <b>Cân 1</b>: đĩa cân bên trái có 1 con chó đồ chơi, đĩa cân bên phải có 2 con mèo đồ chơi giống hệt nhau. Cân 1 đang thăng bằng.<br>
+          <b>Cân 2</b>: đĩa cân bên trái có 1 con mèo đồ chơi (giống hệt mèo ở Cân 1), đĩa cân bên phải có 3 quả bóng nhỏ giống hệt nhau, mỗi quả nặng <b>50g</b>. Cân 2 cũng đang thăng bằng.<br>
+          Đố bạn: con chó đồ chơi nặng bao nhiêu gam?</p>
+          <div class="scale-pair">
+            <div class="scale-block">
+              <div class="scale-label">Cân 1</div>
+              <div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117">
+                <polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/>
+                <rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/>
+                <circle cx="120" cy="56" r="6" fill="var(--accent)"/>
+                <line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/>
+                <line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+                <line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+                <text x="40" y="99" text-anchor="middle" font-size="15">🐶</text>
+                <text x="200" y="99" text-anchor="middle" font-size="14">🐱×2</text>
+              </svg></div>
+            </div>
+            <div class="scale-block">
+              <div class="scale-label">Cân 2</div>
+              <div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117">
+                <polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/>
+                <rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/>
+                <circle cx="120" cy="56" r="6" fill="var(--accent)"/>
+                <line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/>
+                <line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+                <line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+                <text x="40" y="99" text-anchor="middle" font-size="15">🐱</text>
+                <text x="200" y="99" text-anchor="middle" font-size="14">⚽×3</text>
+              </svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Nhìn Cân 2 trước, vì nó có số liệu cụ thể: 1 con mèo = 3 quả bóng, mỗi quả nặng 50g. Vậy mèo nặng: 3 × 50 = 150g.</div>
+          <div class="step" data-n="2" hidden>Bây giờ nhìn sang Cân 1: 1 con chó = 2 con mèo. Mà mỗi con mèo nặng 150g (vừa tìm được ở bước 1).</div>
+          <div class="step" data-n="3" hidden>Vậy chó nặng: 2 × 150 = 300g.</div>
+          <div class="step" data-n="4" hidden>Thử lại: 2 con mèo (2 × 150 = 300g) đúng bằng con chó (300g) ✓; và 1 con mèo (150g) đúng bằng 3 quả bóng (150g) ✓.</div>
+          <div class="answer" hidden>Đáp số: Con chó đồ chơi nặng 300g.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-2" data-qid="Đố 4.2">
+        <div class="qhead"><span class="qid">Đố 4.2</span></div>
+        <div class="qtext">
+          <p>⚖️ Đĩa cân bên trái có 1 con khỉ đồ chơi và 1 con vịt đồ chơi. Đĩa cân bên phải có 1 con vịt đồ chơi giống hệt con vịt bên trái, cùng với 4 quả chuối nhỏ giống hệt nhau. Cân đang thăng bằng. Biết mỗi quả chuối nặng <b>90g</b>. Đố bạn: con khỉ đồ chơi nặng bao nhiêu gam?</p>
+          <div class="geo-figure"><svg viewBox="0 0 240 140" width="240" height="140">
+            <polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/>
+            <rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/>
+            <circle cx="120" cy="56" r="6" fill="var(--accent)"/>
+            <line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+            <line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+            <ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+            <line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+            <ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <text x="40" y="99" text-anchor="middle" font-size="13">🐒+🦆</text>
+            <text x="200" y="99" text-anchor="middle" font-size="13">🦆+🍌×4</text>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Cân thăng bằng nghĩa là: (khỉ + vịt) nặng bằng (vịt + 4 quả chuối).</div>
+          <div class="step" data-n="2" hidden>Cả 2 bên đều có đúng 1 con vịt giống hệt nhau — ta có thể "bỏ bớt" con vịt ở cả 2 đĩa cân mà cân vẫn thăng bằng, giống như bớt cùng một lượng ở cả hai bên.</div>
+          <div class="step" data-n="3" hidden>Sau khi bỏ vịt ở mỗi bên: đĩa trái chỉ còn con khỉ, đĩa phải còn nguyên 4 quả chuối.</div>
+          <div class="step" data-n="4" hidden>Vậy khỉ nặng bằng 4 quả chuối: 4 × 90 = 360g.</div>
+          <div class="answer" hidden>Đáp số: Con khỉ đồ chơi nặng 360g.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Tài liệu "Câu Đố IQ Toán 3" — bộ câu đố tự biên soạn mới hoàn toàn, lấy cảm hứng từ thể loại sách đố vui IQ dành cho thiếu nhi, dùng cho mục đích ôn luyện. Đáp án và lời giải chỉ mang tính tham khảo, khuyến khích các em tự suy nghĩ thật kỹ trước khi bấm "Xem đáp số ngay".</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  'sec1-1': [{
+    qtext: '<p>🔢 Một số khi đem chia cho <b>7</b> thì được thương là <b>1000</b>, còn số dư là <b>số dư lớn nhất có thể có</b> trong phép chia đó. Đố bạn: số đó là số nào?</p>',
+    steps: [
+      'Nhớ lại quy tắc: số dư luôn bé hơn số chia. Chia cho 7 thì số dư lớn nhất có thể có là bao nhiêu?',
+      'Số dư phải bé hơn 7, nên số dư lớn nhất có thể có là 6 (không phải 7!).',
+      'Số bị chia = thương × số chia + số dư = 1000 × 7 + 6.',
+      'Tính: 1000 × 7 = 7000, rồi 7000 + 6 = 7006.'
+    ],
+    answer: 'Đáp số: Số đó là 7006.'
+  }],
+  'sec1-2': [{
+    qtext: '<p>📖 Một quyển sổ tay dày đúng <b>60 trang</b>, được đánh số lần lượt: trang 1, trang 2, ..., cho tới trang 60. Đố bạn: để đánh số hết cả quyển sổ, người ta phải viết ra tất cả bao nhiêu <b>CHỮ SỐ</b> (đếm từng chữ số 0-9 được viết ra, KHÔNG PHẢI đếm số trang)?</p>',
+    steps: [
+      'Đừng vội trả lời "60 chữ số"! Các trang từ 10 trở đi cần tới 2 chữ số mới viết được 1 số trang.',
+      'Từ trang 1 đến trang 9: có 9 trang, mỗi trang cần 1 chữ số → 9 × 1 = 9 chữ số.',
+      'Từ trang 10 đến trang 60: có 51 trang (vì 60 − 10 + 1 = 51), mỗi trang cần 2 chữ số → 51 × 2 = 102 chữ số.',
+      'Tổng cộng: 9 + 102 = 111 chữ số.'
+    ],
+    answer: 'Đáp số: 111 chữ số.'
+  }],
+  'sec2-1': [{
+    qtext: '<p>🔎 Hình chữ nhật dưới đây được chia thành 3 ô nhỏ bằng nhau (xếp thành 1 hàng ngang). Đố bạn: nhìn thật kỹ, trong hình có tất cả bao nhiêu <b>HÌNH CHỮ NHẬT</b> (tính cả các ô nhỏ, và cả những hình được ghép từ nhiều ô liền nhau)?</p><div class="geo-figure"><svg viewBox="0 0 140 60" width="230" height="99"><rect x="10" y="10" width="120" height="40" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/><line x1="50" y1="10" x2="50" y2="50" stroke="var(--accent)" stroke-width="2.2"/><line x1="90" y1="10" x2="90" y2="50" stroke="var(--accent)" stroke-width="2.2"/></svg></div>',
+    steps: [
+      'Đừng chỉ đếm 3 ô nhỏ rồi dừng lại! Các ô liền nhau ghép lại cũng tạo thành hình chữ nhật mới.',
+      'Đếm hình cỡ nhỏ nhất (từng ô một): có 3 ô.',
+      'Đếm hình cỡ vừa (ghép 2 ô liền nhau): ô 1+2 ghép được 1 hình, ô 2+3 ghép được 1 hình → tất cả 2 hình cỡ vừa.',
+      'Đếm hình cỡ lớn nhất (ghép cả 3 ô): chính là cả hình chữ nhật ban đầu → 1 hình. Cộng lại: 3 + 2 + 1 = 6 hình.'
+    ],
+    answer: 'Đáp số: 6 hình chữ nhật.'
+  }],
+  'sec2-2': [{
+    qtext: '<p>👁️ Hai sợi dây C và D dưới đây được vẽ thêm "cánh" ở hai đầu theo hai kiểu khác nhau. Nhìn thoáng qua, một sợi trông dài hơn hẳn sợi còn lại! Đố bạn: sợi nào thực sự dài hơn — hay chúng bằng nhau?</p><div class="geo-figure"><svg viewBox="0 0 140 260" width="140" height="260"><line x1="20" y1="50" x2="120" y2="50" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 3"/><line x1="20" y1="210" x2="120" y2="210" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 3"/><line x1="40" y1="50" x2="40" y2="210" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><line x1="40" y1="50" x2="28" y2="36" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><line x1="40" y1="50" x2="52" y2="36" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><line x1="40" y1="210" x2="28" y2="224" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><line x1="40" y1="210" x2="52" y2="224" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><text x="40" y="240" text-anchor="middle" font-size="12" fill="var(--ink-soft)">C</text><line x1="100" y1="50" x2="100" y2="210" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/><line x1="100" y1="50" x2="88" y2="64" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/><line x1="100" y1="50" x2="112" y2="64" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/><line x1="100" y1="210" x2="88" y2="196" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/><line x1="100" y1="210" x2="112" y2="196" stroke="var(--accent-warm)" stroke-width="3" stroke-linecap="round"/><text x="100" y="240" text-anchor="middle" font-size="12" fill="var(--ink-soft)">D</text></svg></div>',
+    steps: [
+      'Nhìn lướt qua, sợi dây C (cánh chĩa ra ngoài) thường trông DÀI hơn sợi dây D (cánh chĩa vào trong) — vẫn là kiểu ảo giác thị giác như câu đố trước, chỉ xoay theo chiều dọc.',
+      'Đừng tin vội vào mắt mình — hãy nhìn 2 đường kẻ đứt nét nằm ngang trong hình: chúng đánh dấu đúng điểm bắt đầu và kết thúc của CẢ HAI sợi dây.',
+      'Quan sát kỹ: cả sợi C và sợi D đều bắt đầu và kết thúc đúng ngay tại 2 đường kẻ đứt nét đó — chứng tỏ 2 sợi dây dài bằng nhau.',
+      'Nếu chưa tin, hãy lấy thước đo trực tiếp cả 2 sợi — em sẽ thấy chúng dài bằng nhau!'
+    ],
+    answer: 'Đáp số: Hai sợi dây C và D dài BẰNG NHAU — vẫn là "cánh" ở hai đầu đánh lừa mắt bạn!'
+  }],
+  'sec3-1': [{
+    qtext: '<p>🎩 Một gia đình có <b>4 anh trai</b>. Cả 4 anh đều có <b>chung đúng 1 em gái</b> — nghĩa là cả 4 anh trai đó đều là anh ruột của MỘT bạn gái duy nhất, chứ không phải mỗi anh có một em gái riêng. Đố bạn: gia đình đó có tất cả bao nhiêu người con?</p>',
+    steps: [
+      'Đừng vội nghĩ "4 anh, mỗi anh 1 em gái" nghĩa là có tới 4 em gái khác nhau!',
+      'Đọc kỹ lại đề: cả 4 anh trai đều có CHUNG đúng 1 em gái — tức là chỉ có DUY NHẤT một bạn gái trong nhà.',
+      'Vậy gia đình đó có: 4 anh trai + 1 em gái (chỉ một người) = tổng cộng 5 người con.',
+      'Kiểm tra lại: bạn gái đó có đúng 4 anh trai ✓, và mỗi anh trai đều có đúng 1 em gái — chính là bạn ấy ✓.'
+    ],
+    answer: 'Đáp số: Gia đình đó có 5 người con (4 anh trai và 1 em gái).'
+  }],
+  'sec3-2': [{
+    qtext: '<p>🐑 Một người nông dân nuôi <b>20 con cừu</b>. Một trận bão lớn ập đến, cuốn trôi mất tất cả đàn cừu — <b>chỉ trừ 7 con</b>. Đố bạn: sau trận bão, người nông dân đó còn lại bao nhiêu con cừu?</p>',
+    steps: [
+      'Đừng vội lấy 20 − 7 = 13! Hãy đọc thật chậm lại câu: "cuốn trôi mất tất cả — CHỈ TRỪ 7 con".',
+      'Cụm từ "chỉ trừ 7 con" có nghĩa là "chỉ có 7 con là NGOẠI LỆ", tức là 7 con đó không hề bị cuốn trôi.',
+      'Vậy 7 con đó chính là những con còn sống sót sau bão. Còn lại 20 − 7 = 13 con mới là số bị cuốn trôi mất.',
+      'Số cừu còn lại sau bão chính là 7 con (những con không bị cuốn trôi), không phải 13 con.'
+    ],
+    answer: 'Đáp số: 7 con cừu.'
+  }],
+  'sec4-1': [{
+    qtext: '<p>⚖️ <b>Cân 1</b>: đĩa cân bên trái có 1 con gấu bông, đĩa cân bên phải có 2 con thỏ đồ chơi giống hệt nhau. Cân 1 đang thăng bằng.<br><b>Cân 2</b>: đĩa cân bên trái có 1 con thỏ đồ chơi (giống hệt thỏ ở Cân 1), đĩa cân bên phải có 4 quả bóng nhỏ giống hệt nhau, mỗi quả nặng <b>60g</b>. Cân 2 cũng đang thăng bằng.<br>Đố bạn: con gấu bông nặng bao nhiêu gam?</p><div class="scale-pair"><div class="scale-block"><div class="scale-label">Cân 1</div><div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117"><polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/><rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/><circle cx="120" cy="56" r="6" fill="var(--accent)"/><line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/><line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><text x="40" y="99" text-anchor="middle" font-size="15">🧸</text><text x="200" y="99" text-anchor="middle" font-size="14">🐰×2</text></svg></div></div><div class="scale-block"><div class="scale-label">Cân 2</div><div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117"><polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/><rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/><circle cx="120" cy="56" r="6" fill="var(--accent)"/><line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/><line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><text x="40" y="99" text-anchor="middle" font-size="15">🐰</text><text x="200" y="99" text-anchor="middle" font-size="14">⚽×4</text></svg></div></div></div>',
+    steps: [
+      'Nhìn Cân 2 trước: 1 con thỏ = 4 quả bóng, mỗi quả nặng 60g. Vậy thỏ nặng: 4 × 60 = 240g.',
+      'Nhìn sang Cân 1: 1 con gấu bông = 2 con thỏ. Mà mỗi con thỏ nặng 240g (vừa tìm được ở bước 1).',
+      'Vậy gấu bông nặng: 2 × 240 = 480g.',
+      'Thử lại: 2 con thỏ (2 × 240 = 480g) đúng bằng gấu bông (480g) ✓; và 1 con thỏ (240g) đúng bằng 4 quả bóng (240g) ✓.'
+    ],
+    answer: 'Đáp số: Con gấu bông nặng 480g.'
+  }],
+  'sec4-2': [{
+    qtext: '<p>⚖️ Đĩa cân bên trái có 1 con gấu trúc đồ chơi và 1 con gà con đồ chơi. Đĩa cân bên phải có 1 con gà con đồ chơi giống hệt con gà con bên trái, cùng với 5 quả xoài nhỏ giống hệt nhau. Cân đang thăng bằng. Biết mỗi quả xoài nặng <b>110g</b>. Đố bạn: con gấu trúc đồ chơi nặng bao nhiêu gam?</p><div class="geo-figure"><svg viewBox="0 0 240 140" width="240" height="140"><polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/><rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/><circle cx="120" cy="56" r="6" fill="var(--accent)"/><line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/><line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><text x="40" y="99" text-anchor="middle" font-size="13">🐼+🐤</text><text x="200" y="99" text-anchor="middle" font-size="13">🐤+🥭×5</text></svg></div>',
+    steps: [
+      'Cân thăng bằng nghĩa là: (gấu trúc + gà con) nặng bằng (gà con + 5 quả xoài).',
+      'Cả 2 bên đều có đúng 1 con gà con giống hệt nhau — ta có thể "bỏ bớt" con gà con ở cả 2 đĩa cân mà cân vẫn thăng bằng.',
+      'Sau khi bỏ gà con ở mỗi bên: đĩa trái chỉ còn gấu trúc, đĩa phải còn nguyên 5 quả xoài.',
+      'Vậy gấu trúc nặng bằng 5 quả xoài: 5 × 110 = 550g.'
+    ],
+    answer: 'Đáp số: Con gấu trúc đồ chơi nặng 550g.'
+  }]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function buildOriginal(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    return {
+      qtext: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) { return s.innerHTML; }),
+      answer: solBody.querySelector('.answer').innerHTML
+    };
+  }
+
+  function render(el, item) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    qtext.innerHTML = item.qtext;
+    var steps = solBody.querySelectorAll('.step');
+    if (steps.length !== item.steps.length) {
+      var html = item.steps.map(function (s, i) {
+        return '<div class="step" data-n="' + (i + 1) + '" hidden>' + s + '</div>';
+      }).join('');
+      html += '<div class="answer" hidden>' + item.answer + '</div>';
+      solBody.innerHTML = html;
+    } else {
+      steps.forEach(function (stepEl, i) {
+        stepEl.innerHTML = item.steps[i];
+        stepEl.hidden = true;
+      });
+      var ansEl = solBody.querySelector('.answer');
+      ansEl.innerHTML = item.answer;
+      ansEl.hidden = true;
+    }
+  }
+
+  function initProblem(el) {
+    var poolId = el.dataset.pool;
+    var pool = [buildOriginal(el)].concat((window.VARIANTS && window.VARIANTS[poolId]) || []);
+    var state = { index: 0, revealed: 0, answerShown: false };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+    var solBody = el.querySelector('.sol-body');
+
+    if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var steps = solBody.querySelectorAll('.step');
+      var anyRevealed = state.revealed > 0 || state.answerShown;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= steps.length;
+        btnHint.textContent = state.revealed >= steps.length ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) btnReset.hidden = !anyRevealed;
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.hidden = false;
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.hidden = false;
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.index = (state.index + 1) % pool.length;
+      render(el, pool[state.index]);
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.hidden = true; });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.hidden = true;
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+
+</body>
+</html>
