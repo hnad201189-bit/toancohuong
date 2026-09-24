@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giải Toán Có Lời Văn Lớp 5</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f2f8f6;
+    --bg-alt: #e6f2ee;
+    --paper: #ffffff;
+    --ink: #142524;
+    --ink-soft: #3f5c58;
+    --ink-faint: #7c9793;
+    --accent: #0f8b6c;
+    --accent-soft: #dcf0e8;
+    --accent-warm: #c1502f;
+    --accent-warm-soft: #f7e2d7;
+    --line: #d7e8e2;
+    --line-strong: #b9d6cc;
+    --shadow: 0 1px 2px rgba(10, 30, 25, 0.06), 0 6px 20px rgba(10, 30, 25, 0.08);
+    --radius: 16px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a1614;
+    --bg-alt: #0f201c;
+    --paper: #132824;
+    --ink: #e7f5f0;
+    --ink-soft: #a9c7bf;
+    --ink-faint: #688e85;
+    --accent: #4fd9ac;
+    --accent-soft: #163c30;
+    --accent-warm: #ff9569;
+    --accent-warm-soft: #3d2115;
+    --line: #1e3a33;
+    --line-strong: #2c5347;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a1614;
+      --bg-alt: #0f201c;
+      --paper: #132824;
+      --ink: #e7f5f0;
+      --ink-soft: #a9c7bf;
+      --ink-faint: #688e85;
+      --accent: #4fd9ac;
+      --accent-soft: #163c30;
+      --accent-warm: #ff9569;
+      --accent-warm-soft: #3d2115;
+      --line: #1e3a33;
+      --line-strong: #2c5347;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 30px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(28px, 4.4vw, 40px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17.5px;
+    margin: 0;
+  }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(22px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 70ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+  .frac sup, .frac sub { font-size: 0.75em; }
+
+  /* ---------- Bar model (sơ đồ đoạn thẳng) ---------- */
+  .bar-model {
+    margin: 10px 0 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    max-width: 480px;
+  }
+  .bar-row { display: flex; align-items: center; gap: 10px; }
+  .bar-label {
+    flex: none;
+    width: 92px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.25;
+  }
+  .bar-track {
+    display: flex;
+    height: 28px;
+    border-radius: 7px;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    flex: none;
+  }
+  .bar-seg { height: 100%; }
+  .bar-seg.s-base { background: var(--accent); }
+  .bar-seg.s-diff { background: var(--accent-warm); }
+  .bar-seg.s-part { background: var(--accent); border-right: 1px solid var(--paper); }
+  .bar-seg.s-part:last-child { border-right: none; }
+  .bar-seg.s-empty { background: var(--accent-soft); border-right: 1px solid var(--paper); }
+  .bar-seg.s-empty:last-child { border-right: none; }
+  .bar-caption { font-size: 12.5px; color: var(--ink-faint); margin: 0; }
+  @media (max-width: 480px) {
+    .bar-label { width: 74px; font-size: 11px; }
+  }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 22px 26px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 20px 26px 24px;
+    background: var(--paper);
+    font-size: 15.5px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 30px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 13px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 17px 19px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 dạng lời văn</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">📊</span>Tỉ số phần trăm</a></li>
+      <li><a href="#sec2"><span class="n">🚗</span>Chuyển động đều</a></li>
+      <li><a href="#sec3"><span class="n">⚖️</span>Tổng - tỉ nâng cao</a></li>
+      <li><a href="#sec4"><span class="n">🧩</span>Bài toán 2 bước kết hợp</a></li>
+      <li><a href="#buoc-giai-toan"><span class="n">🧭</span>4 bước giải toán</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 5</div>
+      <h1>Giải Toán Có Lời Văn Lớp 5</h1>
+      <p class="lede">Cuốn sổ tay nhỏ giúp con nắm vững <b>CÁCH LÀM</b> bài toán có lời văn ở lớp 5 — không chỉ luyện tính, mà học đúng quy trình: tóm tắt đề (kèm <b>sơ đồ đoạn thẳng</b>, không dùng ẩn x), chọn phép tính &amp; giải thích, tính toán, và viết câu trả lời đầy đủ. Tài liệu đi qua <b>4 dạng lời văn</b> đặc trưng của lớp 5: bài toán về tỉ số phần trăm, bài toán chuyển động đều, bài toán tổng-tỉ nâng cao (số thập phân &amp; phần trăm), và bài toán kết hợp hai bước tính.</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Giải Toán Có Lời Văn Lớp 5</b> là tài liệu ôn tập do đội ngũ tự biên soạn mới hoàn toàn — toàn bộ số liệu, tình huống và lời giải trong bài đều là nội dung gốc, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào. Mỗi bài đều đi theo đúng quy trình: <b>tóm tắt đề &amp; vẽ sơ đồ đoạn thẳng</b> → <b>chọn phép tính</b> (và giải thích tại sao) → <b>tính toán</b> → <b>viết câu trả lời đầy đủ</b>. Bấm nút <b>"Gợi ý"</b> để xem từng bước một, hoặc <b>"Đổi bài tương tự"</b> để luyện lại đúng dạng với số liệu khác.</p>
+    </div>
+
+    <!-- ================= SECTION 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">📊</span>
+        <h2 class="topic-title"><span class="topic-num">Dạng bài 1</span>Bài toán về tỉ số phần trăm</h2>
+      </div>
+      <p class="topic-intro">Đề bài liên quan đến <span class="kw">tỉ số phần trăm (%)</span> của một số lượng. Có hai dạng ngược nhau: <b>(1)</b> biết số ban đầu và tỉ số %, tìm phần tương ứng — muốn <span class="kw">tìm a% của một số</span>, con đổi a% = a : 100 rồi <span class="kw">nhân</span> số đó với kết quả vừa đổi; <b>(2)</b> biết phần tương ứng và tỉ số %, tìm số ban đầu (ứng với 100%) — con tìm giá trị ứng với <span class="kw">1%</span> (lấy phần đã biết chia cho số % của nó), rồi <span class="kw">nhân với 100</span>.</p>
+
+      <div class="problem" data-pool="s1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Cửa hàng sách Hoa Mai có <b>320</b> quyển vở. Trong đợt khai giảng, cửa hàng đã bán được <b>65%</b> số vở đó, số vở còn lại vẫn để trên kệ.</p>
+          <p>Hỏi cửa hàng đã bán được bao nhiêu quyển vở? Còn lại bao nhiêu quyển vở chưa bán?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Cửa hàng có 320 quyển vở. Đã bán được 65% số vở đó. Câu hỏi là: bán được bao nhiêu quyển, còn lại bao nhiêu quyển?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (tìm a% của một số):</b> Đây là dạng tìm 65% của 320. Đổi 65% = 65 : 100 = 0,65. Muốn tìm 65% của 320, ta lấy 320 <b>nhân</b> với 0,65.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">320 quyển vở</span><div class="bar-track" style="width:280px"><span class="bar-seg s-part" style="width:65%"></span><span class="bar-seg s-empty" style="width:35%"></span></div></div>
+            </div>
+            <p class="bar-caption">Ô xanh (65%) là số vở đã bán · ô nhạt (35%) là số vở còn lại — cả thanh = 320 quyển (100%).</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính số vở đã bán:</b> 320 × 0,65 = 208 quyển.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính số vở còn lại:</b> 320 − 208 = 112 quyển. (Kiểm tra: 208 + 112 = 320 ✓)</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Cửa hàng đã bán được 208 quyển vở, còn lại 112 quyển vở chưa bán."</p></div></div>
+          <p class="answer hidden">Đáp số: Đã bán: <b>208</b> quyển; Còn lại: <b>112</b> quyển.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Trường Tiểu học Kim Đồng có số học sinh nam chiếm <b>45%</b> tổng số học sinh toàn trường. Biết trường có <b>270</b> học sinh nam.</p>
+          <p>Hỏi trường Tiểu học Kim Đồng có tất cả bao nhiêu học sinh?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Số học sinh nam chiếm 45% tổng số học sinh. Số học sinh nam là 270 bạn. Câu hỏi là: trường có tất cả bao nhiêu học sinh?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (tìm một số biết % của nó):</b> Đây là dạng ngược lại — biết 270 học sinh ứng với 45%, cần tìm số ứng với 100% (cả trường). Trước tiên tìm giá trị ứng với <b>1%</b> bằng cách lấy 270 : 45, sau đó <b>nhân với 100</b> để được 100%.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Cả trường (100%)</span><div class="bar-track" style="width:280px"><span class="bar-seg s-part" style="width:45%"></span><span class="bar-seg s-empty" style="width:55%"></span></div></div>
+            </div>
+            <p class="bar-caption">Ô xanh (45%) ứng với 270 học sinh nam đã biết · ô nhạt (55%) là phần chưa biết — cần tìm cả thanh (100%).</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính giá trị 1%:</b> 270 : 45 = 6 (học sinh).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính tổng số học sinh (100%):</b> 6 × 100 = 600 học sinh. (Kiểm tra: 600 × 45 : 100 = 270 ✓)</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Trường Tiểu học Kim Đồng có tất cả 600 học sinh."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>600</b> học sinh.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">🚗</span>
+        <h2 class="topic-title"><span class="topic-num">Dạng bài 2</span>Bài toán về chuyển động đều</h2>
+      </div>
+      <p class="topic-intro">Một chuyển động đi với vận tốc không đổi liên hệ ba đại lượng qua công thức <span class="kw">quãng đường = vận tốc × thời gian</span> (S = v × t). Từ đó suy ra hai công thức ngược: <span class="kw">vận tốc = quãng đường : thời gian</span> và <span class="kw">thời gian = quãng đường : vận tốc</span>. Trước khi tính, con luôn đổi thời gian về đơn vị "giờ" dưới dạng số thập phân (ví dụ 2 giờ 30 phút = 2,5 giờ, vì 30 phút = 0,5 giờ) để các đại lượng cùng đơn vị.</p>
+
+      <div class="problem" data-pool="s2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Một xe máy đi từ nhà bác Tư đến thị trấn với vận tốc <b>38km/giờ</b>, đi hết <b>2 giờ 30 phút</b>.</p>
+          <p>Tính quãng đường từ nhà bác Tư đến thị trấn.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Vận tốc xe máy là 38km/giờ. Thời gian đi là 2 giờ 30 phút. Câu hỏi là: quãng đường từ nhà đến thị trấn dài bao nhiêu ki-lô-mét?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Đổi đơn vị thời gian:</b> 2 giờ 30 phút = 2 giờ + 0,5 giờ = 2,5 giờ (vì 30 phút = 0,5 giờ).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t">
+            <p><b>Chọn phép tính (công thức quãng đường):</b> Muốn tìm quãng đường khi biết vận tốc và thời gian, ta lấy vận tốc <b>nhân</b> với thời gian: S = v × t = 38 × 2,5.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">1 giờ</span><div class="bar-track"><span class="bar-seg s-base" style="width:40px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">2,5 giờ (quãng đường)</span><div class="bar-track"><span class="bar-seg s-base" style="width:100px"></span></div></div>
+            </div>
+            <p class="bar-caption">Quãng đường (hàng dưới) dài gấp 2,5 lần đoạn đi trong 1 giờ (hàng trên), vì thời gian đi là 2,5 giờ với vận tốc không đổi.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính toán:</b> 38 × 2,5 = 95 (km).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Quãng đường từ nhà bác Tư đến thị trấn dài 95km."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>95km</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Một người đi xe đạp từ nhà đến trường, quãng đường dài <b>36km</b>, với vận tốc <b>12km/giờ</b>.</p>
+          <p>Hỏi người đó đi hết bao nhiêu thời gian?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Quãng đường 36km. Vận tốc 12km/giờ. Câu hỏi là: người đó đi hết bao nhiêu thời gian?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (công thức thời gian):</b> Muốn tìm thời gian khi biết quãng đường và vận tốc, ta lấy quãng đường <b>chia</b> cho vận tốc: t = S : v = 36 : 12. Có thể hình dung: chia quãng đường thành các đoạn bằng nhau, mỗi đoạn dài đúng bằng quãng đường đi được trong 1 giờ (12km) — số đoạn chính là số giờ cần tìm.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">36km (quãng đường)</span><div class="bar-track"><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span></div></div>
+            </div>
+            <p class="bar-caption">3 đoạn bằng nhau, mỗi đoạn 12km (đi trong 1 giờ) — 36km chia thành đúng 3 đoạn như vậy.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính toán:</b> 36 : 12 = 3 (giờ).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Viết câu trả lời:</b> "Người đó đi hết 3 giờ."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>3 giờ</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">⚖️</span>
+        <h2 class="topic-title"><span class="topic-num">Dạng bài 3</span>Bài toán tổng-tỉ nâng cao</h2>
+      </div>
+      <p class="topic-intro">Vẫn là dạng "tổng và tỉ số" quen thuộc — chia thành các <span class="kw">phần bằng nhau</span> theo đúng tỉ số, tìm <span class="kw">giá trị 1 phần</span> bằng cách lấy tổng chia cho tổng số phần — nhưng ở mức nâng cao: có bài tổng và các số cần tìm là <span class="kw">số thập phân</span> (giá trị 1 phần có thể là số thập phân), có bài tỉ số được cho dưới dạng <span class="kw">phần trăm</span> — khi đó con phải <span class="kw">đổi % sang phân số tối giản</span> trước khi chia phần bằng nhau.</p>
+
+      <div class="problem" data-pool="s3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Hai thùng dầu ăn chứa tổng cộng <b>15,6 lít</b> dầu. Số dầu ở thùng thứ nhất gấp <b>3</b> lần số dầu ở thùng thứ hai.</p>
+          <p>Hỏi mỗi thùng chứa bao nhiêu lít dầu ăn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Tổng số dầu hai thùng là 15,6 lít. Thùng 1 gấp 3 lần thùng 2. Câu hỏi là: mỗi thùng chứa bao nhiêu lít dầu?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (sơ đồ tổng-tỉ):</b> Coi số dầu thùng 2 là 1 phần thì số dầu thùng 1 là 3 phần bằng nhau như thế. Tổng số phần = 1 + 3 = 4 phần, ứng với 15,6 lít. Tổng là số thập phân nên giá trị 1 phần cũng có thể là số thập phân, con vẫn chia bình thường.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Thùng 2</span><div class="bar-track"><span class="bar-seg s-part" style="width:45px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">Thùng 1</span><div class="bar-track"><span class="bar-seg s-part" style="width:45px"></span><span class="bar-seg s-part" style="width:45px"></span><span class="bar-seg s-part" style="width:45px"></span></div></div>
+            </div>
+            <p class="bar-caption">Mỗi ô xanh là 1 phần bằng nhau — thùng 2 có 1 phần, thùng 1 có 3 phần như thế (vì gấp 3 lần).</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính giá trị 1 phần:</b> 1 phần = 15,6 : 4 = 3,9 (lít).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính số dầu thùng 2:</b> Thùng 2 = 3,9 × 1 = 3,9 lít.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Tính số dầu thùng 1:</b> Thùng 1 = 3,9 × 3 = 11,7 lít. (Kiểm tra: 3,9 + 11,7 = 15,6 ✓)</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p><b>Viết câu trả lời:</b> "Thùng thứ nhất chứa 11,7 lít dầu, thùng thứ hai chứa 3,9 lít dầu."</p></div></div>
+          <p class="answer hidden">Đáp số: Thùng 1: <b>11,7 lít</b>; Thùng 2: <b>3,9 lít</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Kho gạo A và kho gạo B chứa tổng cộng <b>350 tấn</b> gạo. Biết số gạo ở kho A bằng <b>40%</b> số gạo ở kho B.</p>
+          <p>Hỏi mỗi kho chứa bao nhiêu tấn gạo?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Tổng số gạo hai kho là 350 tấn. Số gạo kho A bằng 40% số gạo kho B. Câu hỏi là: mỗi kho chứa bao nhiêu tấn gạo?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Đổi tỉ số phần trăm sang phân số tối giản:</b> 40% = <span class="frac"><sup>40</sup>&frasl;<sub>100</sub></span> = <span class="frac"><sup>2</sup>&frasl;<sub>5</sub></span>. Nghĩa là kho A : kho B = 2 : 5 — coi kho A gồm 2 phần bằng nhau thì kho B gồm 5 phần bằng nhau như thế.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t">
+            <p><b>Chọn phép tính (sơ đồ tổng-tỉ):</b> Tổng số phần = 2 + 5 = 7 phần, ứng với 350 tấn.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Kho A</span><div class="bar-track"><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">Kho B</span><div class="bar-track"><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span></div></div>
+            </div>
+            <p class="bar-caption">Mỗi ô xanh là 1 phần bằng nhau — kho A có 2 phần, kho B có 5 phần như thế (tỉ số A : B = 2 : 5, đổi từ 40%).</p>
+          </div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính giá trị 1 phần:</b> 1 phần = 350 : 7 = 50 (tấn).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Tính số gạo kho A:</b> Kho A = 50 × 2 = 100 tấn.</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p><b>Tính số gạo kho B:</b> Kho B = 50 × 5 = 250 tấn. (Kiểm tra: 100 + 250 = 350 ✓; 100 : 250 = 0,4 = 40% ✓)</p></div></div>
+          <div class="step hidden"><span class="b">7</span><div class="t"><p><b>Viết câu trả lời:</b> "Kho A chứa 100 tấn gạo, kho B chứa 250 tấn gạo."</p></div></div>
+          <p class="answer hidden">Đáp số: Kho A: <b>100 tấn</b>; Kho B: <b>250 tấn</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🧩</span>
+        <h2 class="topic-title"><span class="topic-num">Dạng bài 4</span>Bài toán 2 bước kết hợp</h2>
+      </div>
+      <p class="topic-intro">Dạng khó nhất — bài toán cần <span class="kw">kết hợp hai dạng đã học</span> (diện tích &amp; phần trăm, hoặc chuyển động &amp; so sánh) trong cùng một bài. Con cần tách bài toán thành <span class="kw">từng bước nhỏ</span>, giải quyết <span class="kw">lần lượt</span> — kết quả của bước trước là dữ liệu để làm bước sau, không được tính gộp hay đảo thứ tự.</p>
+
+      <div class="problem" data-pool="s4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Một mảnh vườn hình chữ nhật có chiều dài <b>24m</b>, chiều rộng <b>15m</b>. Người ta dùng <b>40%</b> diện tích mảnh vườn để trồng rau, phần diện tích còn lại dùng để trồng hoa.</p>
+          <p>Hỏi diện tích trồng hoa là bao nhiêu mét vuông?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Vườn hình chữ nhật dài 24m, rộng 15m. Dùng 40% diện tích để trồng rau, phần còn lại trồng hoa. Câu hỏi là: diện tích trồng hoa là bao nhiêu mét vuông?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Chọn phép tính bước 1 (diện tích hình chữ nhật):</b> Muốn biết diện tích trồng hoa, trước tiên phải biết diện tích cả mảnh vườn: S = chiều dài × chiều rộng = 24 × 15.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính diện tích cả vườn:</b> 24 × 15 = 360 (m²).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t">
+            <p><b>Chọn phép tính bước 2 (tìm % của một số, rồi lấy phần còn lại):</b> Diện tích trồng rau = 40% của 360m². Diện tích trồng hoa = diện tích cả vườn − diện tích trồng rau.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">360m² (100%)</span><div class="bar-track" style="width:280px"><span class="bar-seg s-part" style="width:40%"></span><span class="bar-seg s-empty" style="width:60%"></span></div></div>
+            </div>
+            <p class="bar-caption">Ô xanh (40%) là diện tích trồng rau · ô nhạt (60%) là diện tích trồng hoa cần tìm.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Tính diện tích trồng rau:</b> 360 × 40 : 100 = 360 × 0,4 = 144 (m²).</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p><b>Tính diện tích trồng hoa:</b> 360 − 144 = 216 (m²).</p></div></div>
+          <div class="step hidden"><span class="b">7</span><div class="t"><p><b>Viết câu trả lời:</b> "Diện tích trồng hoa là 216m²."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>216m²</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Bạn Lan đi từ nhà đến trường, quãng đường dài <b>6km</b>. Nếu đi bộ với vận tốc <b>4km/giờ</b> thì Lan đến trường sau bao lâu? Nếu đi xe đạp với vận tốc <b>12km/giờ</b> thì Lan đến trường sớm hơn đi bộ bao nhiêu phút?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Quãng đường 6km. Đi bộ vận tốc 4km/giờ. Đi xe đạp vận tốc 12km/giờ. Câu hỏi là: đi xe đạp đến sớm hơn đi bộ bao nhiêu phút?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Chọn phép tính bước 1 (thời gian đi bộ):</b> t = quãng đường : vận tốc = 6 : 4.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính thời gian đi bộ:</b> 6 : 4 = 1,5 giờ = 1 giờ 30 phút = 90 phút (vì 0,5 giờ = 30 phút).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t">
+            <p><b>Chọn phép tính bước 2 (thời gian đi xe đạp):</b> t = quãng đường : vận tốc = 6 : 12.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Đi bộ</span><div class="bar-track"><span class="bar-seg s-base" style="width:90px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">Xe đạp</span><div class="bar-track"><span class="bar-seg s-diff" style="width:30px"></span></div></div>
+            </div>
+            <p class="bar-caption">Độ dài mỗi thanh tỉ lệ với thời gian: đi bộ 90 phút, xe đạp 30 phút — phần chênh lệch chính là số phút xe đạp đến sớm hơn.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Tính thời gian đi xe đạp:</b> 6 : 12 = 0,5 giờ = 30 phút.</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p><b>So sánh:</b> Thời gian đi xe đạp sớm hơn đi bộ = 90 − 30 = 60 phút.</p></div></div>
+          <div class="step hidden"><span class="b">7</span><div class="t"><p><b>Viết câu trả lời:</b> "Nếu đi bộ, Lan đến trường sau 90 phút (1 giờ 30 phút); nếu đi xe đạp, Lan đến trường sớm hơn đi bộ 60 phút."</p></div></div>
+          <p class="answer hidden">Đáp số: Sớm hơn <b>60 phút</b> (1 giờ).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="buoc-giai-toan">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>4 bước giải toán có lời văn — nhớ nhanh</h2>
+      </div>
+      <p class="topic-intro">Dù là dạng "tỉ số phần trăm", "chuyển động đều", "tổng-tỉ nâng cao" hay bài toán kết hợp 2 bước, con luôn áp dụng đúng 4 bước sau đây theo thứ tự, không bỏ bước nào. Nếu bài cần 2 bước tính, hãy làm lần lượt từng bước một, không tính gộp.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đọc kỹ &amp; tóm tắt.</b> Đọc đề 2 lần, gạch chân số liệu: đề bài cho biết gì, và câu hỏi là gì. Chú ý các từ như "chiếm... %", "gấp... lần", "vận tốc", "quãng đường", "thời gian".</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Chọn đúng phương pháp &amp; vẽ sơ đồ.</b> "Tìm a% của 1 số" → nhân với a:100. "Tìm 1 số biết % của nó" → tìm giá trị 1% rồi nhân 100. "Chuyển động" → S = v × t. "Tổng-tỉ nâng cao" → đổi % sang phân số rồi chia phần bằng nhau. Bài 2 bước → làm lần lượt từng dạng.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Tính toán cẩn thận.</b> Đổi đơn vị (phút → giờ, % → số thập phân) trước khi tính. Làm đúng thứ tự từng phép tính, không gộp bước. Sau khi tìm được kết quả, thử lại để kiểm tra.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Viết câu trả lời &amp; đáp số.</b> Viết câu trả lời đầy đủ theo đúng câu hỏi (không viết trống số), rồi ghi Đáp số kèm đơn vị (kg, tấn, lít, km, giờ, phút, m², học sinh...).</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Giải Toán Có Lời Văn Lớp 5. Toàn bộ bài tập, số liệu và lời giải trong tài liệu này là nội dung mới do đội ngũ tự viết, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    's1-1': [{
+      qHtml: '<p>Siêu thị Mini Xanh nhập về <b>480kg</b> gạo. Trong tuần lễ khuyến mãi, siêu thị đã bán được <b>75%</b> số gạo đó, số gạo còn lại vẫn để trong kho.</p><p>Hỏi siêu thị đã bán được bao nhiêu ki-lô-gam gạo? Còn lại bao nhiêu ki-lô-gam gạo chưa bán?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Siêu thị có 480kg gạo. Đã bán được 75% số gạo đó. Câu hỏi là: bán được bao nhiêu kg, còn lại bao nhiêu kg?</p>',
+        '<p><b>Chọn phép tính (tìm a% của một số):</b> Đây là dạng tìm 75% của 480. Đổi 75% = 75 : 100 = 0,75. Muốn tìm 75% của 480, ta lấy 480 <b>nhân</b> với 0,75.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">480kg gạo</span><div class="bar-track" style="width:280px"><span class="bar-seg s-part" style="width:75%"></span><span class="bar-seg s-empty" style="width:25%"></span></div></div></div><p class="bar-caption">Ô xanh (75%) là số gạo đã bán · ô nhạt (25%) là số gạo còn lại — cả thanh = 480kg (100%).</p>',
+        '<p><b>Tính số gạo đã bán:</b> 480 × 0,75 = 360kg.</p>',
+        '<p><b>Tính số gạo còn lại:</b> 480 − 360 = 120kg. (Kiểm tra: 360 + 120 = 480 ✓)</p>',
+        '<p><b>Viết câu trả lời:</b> "Siêu thị đã bán được 360kg gạo, còn lại 120kg gạo chưa bán."</p>'
+      ],
+      answerHtml: 'Đáp số: Đã bán: <b>360kg</b>; Còn lại: <b>120kg</b>.'
+    }],
+    's1-2': [{
+      qHtml: '<p>Trong hội chợ sách mùa hè, số vé bán cho người lớn chiếm <b>60%</b> tổng số vé bán ra. Biết ban tổ chức đã bán được <b>180</b> vé cho người lớn.</p><p>Hỏi hội chợ đã bán ra tất cả bao nhiêu vé?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Số vé bán cho người lớn chiếm 60% tổng số vé. Số vé người lớn là 180 vé. Câu hỏi là: hội chợ bán ra tất cả bao nhiêu vé?</p>',
+        '<p><b>Chọn phép tính (tìm một số biết % của nó):</b> Biết 180 vé ứng với 60%, cần tìm số ứng với 100% (tổng số vé). Trước tiên tìm giá trị ứng với <b>1%</b> bằng cách lấy 180 : 60, sau đó <b>nhân với 100</b>.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Tổng số vé (100%)</span><div class="bar-track" style="width:280px"><span class="bar-seg s-part" style="width:60%"></span><span class="bar-seg s-empty" style="width:40%"></span></div></div></div><p class="bar-caption">Ô xanh (60%) ứng với 180 vé người lớn đã biết · ô nhạt (40%) là phần chưa biết — cần tìm cả thanh (100%).</p>',
+        '<p><b>Tính giá trị 1%:</b> 180 : 60 = 3 (vé).</p>',
+        '<p><b>Tính tổng số vé (100%):</b> 3 × 100 = 300 vé. (Kiểm tra: 300 × 60 : 100 = 180 ✓)</p>',
+        '<p><b>Viết câu trả lời:</b> "Hội chợ đã bán ra tất cả 300 vé."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>300</b> vé.'
+    }],
+    's2-1': [{
+      qHtml: '<p>Một ca nô đi trên sông với vận tốc <b>24km/giờ</b>, đi hết <b>1 giờ 45 phút</b>.</p><p>Tính quãng đường ca nô đã đi được.</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Vận tốc ca nô là 24km/giờ. Thời gian đi là 1 giờ 45 phút. Câu hỏi là: quãng đường ca nô đã đi được là bao nhiêu ki-lô-mét?</p>',
+        '<p><b>Đổi đơn vị thời gian:</b> 1 giờ 45 phút = 1 giờ + 0,75 giờ = 1,75 giờ (vì 45 phút = 0,75 giờ).</p>',
+        '<p><b>Chọn phép tính (công thức quãng đường):</b> Muốn tìm quãng đường khi biết vận tốc và thời gian, ta lấy vận tốc <b>nhân</b> với thời gian: S = v × t = 24 × 1,75.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">1 giờ</span><div class="bar-track"><span class="bar-seg s-base" style="width:40px"></span></div></div><div class="bar-row"><span class="bar-label">1,75 giờ (quãng đường)</span><div class="bar-track"><span class="bar-seg s-base" style="width:70px"></span></div></div></div><p class="bar-caption">Quãng đường (hàng dưới) dài gấp 1,75 lần đoạn đi trong 1 giờ (hàng trên), vì thời gian đi là 1,75 giờ với vận tốc không đổi.</p>',
+        '<p><b>Tính toán:</b> 24 × 1,75 = 42 (km).</p>',
+        '<p><b>Viết câu trả lời:</b> "Quãng đường ca nô đã đi được là 42km."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>42km</b>.'
+    }],
+    's2-2': [{
+      qHtml: '<p>Một chiếc thuyền đi trên kênh, quãng đường dài <b>28km</b>, với vận tốc <b>8km/giờ</b>.</p><p>Hỏi thuyền đó đi hết bao nhiêu thời gian?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Quãng đường 28km. Vận tốc 8km/giờ. Câu hỏi là: thuyền đó đi hết bao nhiêu thời gian?</p>',
+        '<p><b>Chọn phép tính (công thức thời gian):</b> Muốn tìm thời gian khi biết quãng đường và vận tốc, ta lấy quãng đường <b>chia</b> cho vận tốc: t = S : v = 28 : 8.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">28km (quãng đường)</span><div class="bar-track"><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:40px"></span><span class="bar-seg s-part" style="width:20px"></span></div></div></div><p class="bar-caption">Chia quãng đường thành các đoạn bằng nhau, mỗi đoạn dài đúng 8km (đi trong 1 giờ); còn dư nửa đoạn ứng với nửa giờ — tất cả là 3,5 đoạn = 3,5 giờ.</p>',
+        '<p><b>Tính toán:</b> 28 : 8 = 3,5 giờ = 3 giờ 30 phút (vì 0,5 giờ = 30 phút).</p>',
+        '<p><b>Viết câu trả lời:</b> "Thuyền đó đi hết 3 giờ 30 phút."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>3 giờ 30 phút</b> (3,5 giờ).'
+    }],
+    's3-1': [{
+      qHtml: '<p>Hai bể nước chứa tổng cộng <b>22,5m³</b> nước. Lượng nước ở bể thứ nhất gấp <b>4</b> lần lượng nước ở bể thứ hai.</p><p>Hỏi mỗi bể chứa bao nhiêu mét khối nước?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Tổng lượng nước hai bể là 22,5m³. Bể 1 gấp 4 lần bể 2. Câu hỏi là: mỗi bể chứa bao nhiêu mét khối nước?</p>',
+        '<p><b>Chọn phép tính (sơ đồ tổng-tỉ):</b> Coi lượng nước bể 2 là 1 phần thì lượng nước bể 1 là 4 phần bằng nhau như thế. Tổng số phần = 1 + 4 = 5 phần, ứng với 22,5m³.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Bể 2</span><div class="bar-track"><span class="bar-seg s-part" style="width:45px"></span></div></div><div class="bar-row"><span class="bar-label">Bể 1</span><div class="bar-track"><span class="bar-seg s-part" style="width:45px"></span><span class="bar-seg s-part" style="width:45px"></span><span class="bar-seg s-part" style="width:45px"></span><span class="bar-seg s-part" style="width:45px"></span></div></div></div><p class="bar-caption">Mỗi ô xanh là 1 phần bằng nhau — bể 2 có 1 phần, bể 1 có 4 phần như thế (vì gấp 4 lần).</p>',
+        '<p><b>Tính giá trị 1 phần:</b> 1 phần = 22,5 : 5 = 4,5 (m³).</p>',
+        '<p><b>Tính lượng nước bể 2:</b> Bể 2 = 4,5 × 1 = 4,5m³.</p>',
+        '<p><b>Tính lượng nước bể 1:</b> Bể 1 = 4,5 × 4 = 18m³. (Kiểm tra: 4,5 + 18 = 22,5 ✓)</p>',
+        '<p><b>Viết câu trả lời:</b> "Bể thứ nhất chứa 18m³ nước, bể thứ hai chứa 4,5m³ nước."</p>'
+      ],
+      answerHtml: 'Đáp số: Bể 1: <b>18m³</b>; Bể 2: <b>4,5m³</b>.'
+    }],
+    's3-2': [{
+      qHtml: '<p>Đội trồng cây A và đội trồng cây B trồng được tổng cộng <b>400 cây</b>. Biết số cây đội A trồng được bằng <b>60%</b> số cây đội B trồng được.</p><p>Hỏi mỗi đội trồng được bao nhiêu cây?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Tổng số cây hai đội trồng được là 400 cây. Số cây đội A bằng 60% số cây đội B. Câu hỏi là: mỗi đội trồng được bao nhiêu cây?</p>',
+        '<p><b>Đổi tỉ số phần trăm sang phân số tối giản:</b> 60% = <span class="frac"><sup>60</sup>&frasl;<sub>100</sub></span> = <span class="frac"><sup>3</sup>&frasl;<sub>5</sub></span>. Nghĩa là đội A : đội B = 3 : 5 — coi đội A gồm 3 phần bằng nhau thì đội B gồm 5 phần bằng nhau như thế.</p>',
+        '<p><b>Chọn phép tính (sơ đồ tổng-tỉ):</b> Tổng số phần = 3 + 5 = 8 phần, ứng với 400 cây.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Đội A</span><div class="bar-track"><span class="bar-seg s-part" style="width:35px"></span><span class="bar-seg s-part" style="width:35px"></span><span class="bar-seg s-part" style="width:35px"></span></div></div><div class="bar-row"><span class="bar-label">Đội B</span><div class="bar-track"><span class="bar-seg s-part" style="width:35px"></span><span class="bar-seg s-part" style="width:35px"></span><span class="bar-seg s-part" style="width:35px"></span><span class="bar-seg s-part" style="width:35px"></span><span class="bar-seg s-part" style="width:35px"></span></div></div></div><p class="bar-caption">Mỗi ô xanh là 1 phần bằng nhau — đội A có 3 phần, đội B có 5 phần như thế (tỉ số A : B = 3 : 5, đổi từ 60%).</p>',
+        '<p><b>Tính giá trị 1 phần:</b> 1 phần = 400 : 8 = 50 (cây).</p>',
+        '<p><b>Tính số cây đội A:</b> Đội A = 50 × 3 = 150 cây.</p>',
+        '<p><b>Tính số cây đội B:</b> Đội B = 50 × 5 = 250 cây. (Kiểm tra: 150 + 250 = 400 ✓; 150 : 250 = 0,6 = 60% ✓)</p>',
+        '<p><b>Viết câu trả lời:</b> "Đội A trồng được 150 cây, đội B trồng được 250 cây."</p>'
+      ],
+      answerHtml: 'Đáp số: Đội A: <b>150 cây</b>; Đội B: <b>250 cây</b>.'
+    }],
+    's4-1': [{
+      qHtml: '<p>Một thửa ruộng hình chữ nhật có chiều dài <b>32m</b>, chiều rộng <b>20m</b>. Người ta dùng <b>35%</b> diện tích thửa ruộng để trồng ngô, phần diện tích còn lại dùng để trồng đậu.</p><p>Hỏi diện tích trồng đậu là bao nhiêu mét vuông?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Thửa ruộng hình chữ nhật dài 32m, rộng 20m. Dùng 35% diện tích để trồng ngô, phần còn lại trồng đậu. Câu hỏi là: diện tích trồng đậu là bao nhiêu mét vuông?</p>',
+        '<p><b>Chọn phép tính bước 1 (diện tích hình chữ nhật):</b> Muốn biết diện tích trồng đậu, trước tiên phải biết diện tích cả thửa ruộng: S = chiều dài × chiều rộng = 32 × 20.</p>',
+        '<p><b>Tính diện tích cả thửa ruộng:</b> 32 × 20 = 640 (m²).</p>',
+        '<p><b>Chọn phép tính bước 2 (tìm % của một số, rồi lấy phần còn lại):</b> Diện tích trồng ngô = 35% của 640m². Diện tích trồng đậu = diện tích cả thửa ruộng − diện tích trồng ngô.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">640m² (100%)</span><div class="bar-track" style="width:280px"><span class="bar-seg s-part" style="width:35%"></span><span class="bar-seg s-empty" style="width:65%"></span></div></div></div><p class="bar-caption">Ô xanh (35%) là diện tích trồng ngô · ô nhạt (65%) là diện tích trồng đậu cần tìm.</p>',
+        '<p><b>Tính diện tích trồng ngô:</b> 640 × 35 : 100 = 640 × 0,35 = 224 (m²).</p>',
+        '<p><b>Tính diện tích trồng đậu:</b> 640 − 224 = 416 (m²).</p>',
+        '<p><b>Viết câu trả lời:</b> "Diện tích trồng đậu là 416m²."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>416m²</b>.'
+    }],
+    's4-2': [{
+      qHtml: '<p>Bạn Minh đi từ nhà đến thư viện, quãng đường dài <b>12km</b>. Nếu đi bộ với vận tốc <b>4km/giờ</b> thì Minh đến thư viện sau bao lâu? Nếu đi xe đạp với vận tốc <b>12km/giờ</b> thì Minh đến thư viện sớm hơn đi bộ bao nhiêu phút?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Quãng đường 12km. Đi bộ vận tốc 4km/giờ. Đi xe đạp vận tốc 12km/giờ. Câu hỏi là: đi xe đạp đến sớm hơn đi bộ bao nhiêu phút?</p>',
+        '<p><b>Chọn phép tính bước 1 (thời gian đi bộ):</b> t = quãng đường : vận tốc = 12 : 4.</p>',
+        '<p><b>Tính thời gian đi bộ:</b> 12 : 4 = 3 giờ = 180 phút.</p>',
+        '<p><b>Chọn phép tính bước 2 (thời gian đi xe đạp):</b> t = quãng đường : vận tốc = 12 : 12.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Đi bộ</span><div class="bar-track"><span class="bar-seg s-base" style="width:180px"></span></div></div><div class="bar-row"><span class="bar-label">Xe đạp</span><div class="bar-track"><span class="bar-seg s-diff" style="width:60px"></span></div></div></div><p class="bar-caption">Độ dài mỗi thanh tỉ lệ với thời gian: đi bộ 180 phút, xe đạp 60 phút — phần chênh lệch chính là số phút xe đạp đến sớm hơn.</p>',
+        '<p><b>Tính thời gian đi xe đạp:</b> 12 : 12 = 1 giờ = 60 phút.</p>',
+        '<p><b>So sánh:</b> Thời gian đi xe đạp sớm hơn đi bộ = 180 − 60 = 120 phút.</p>',
+        '<p><b>Viết câu trả lời:</b> "Nếu đi bộ, Minh đến thư viện sau 180 phút (3 giờ); nếu đi xe đạp, Minh đến thư viện sớm hơn đi bộ 120 phút."</p>'
+      ],
+      answerHtml: 'Đáp số: Sớm hơn <b>120 phút</b> (2 giờ).'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('gtclv-lop5-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('gtclv-lop5-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toán Đố Vui Dân Gian Toán 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f6efdc;
+    --bg-alt: #efe3c4;
+    --paper: #fffcf4;
+    --ink: #3a2b1d;
+    --ink-soft: #6b5842;
+    --ink-faint: #9c8a6f;
+    --accent: #b3401f;
+    --accent-hover: #8f3018;
+    --accent-soft: #f5ddd0;
+    --accent-soft-strong: #ecc0a8;
+    --success: #4d7c0f;
+    --success-soft: #e4efd1;
+    --success-soft-strong: #cbe0a8;
+    --line: #e3d3ac;
+    --line-strong: #d0bb87;
+    --shadow: 0 1px 2px rgba(58, 43, 29, 0.08), 0 8px 22px rgba(58, 43, 29, 0.10);
+    --radius: 16px;
+    --sans: "Be Vietnam Pro", "Segoe UI", Calibri, Arial, sans-serif;
+    --display: "Bitter", "Be Vietnam Pro", Georgia, serif;
+    --mono: "DM Mono", "Cascadia Code", Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #201710;
+    --bg-alt: #291d14;
+    --paper: #2a1d15;
+    --ink: #f3e7d3;
+    --ink-soft: #cbb89a;
+    --ink-faint: #8f7a5c;
+    --accent: #e0794a;
+    --accent-hover: #f0916a;
+    --accent-soft: #452a1b;
+    --accent-soft-strong: #5c3624;
+    --success: #9ccc4f;
+    --success-soft: #2e3a18;
+    --success-soft-strong: #3d4d20;
+    --line: #493826;
+    --line-strong: #5e4a34;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #201710;
+      --bg-alt: #291d14;
+      --paper: #2a1d15;
+      --ink: #f3e7d3;
+      --ink-soft: #cbb89a;
+      --ink-faint: #8f7a5c;
+      --accent: #e0794a;
+      --accent-hover: #f0916a;
+      --accent-soft: #452a1b;
+      --accent-soft-strong: #5c3624;
+      --success: #9ccc4f;
+      --success-soft: #2e3a18;
+      --success-soft-strong: #3d4d20;
+      --line: #493826;
+      --line-strong: #5e4a34;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.66;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 236px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 0 18px 72px; }
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    padding: 44px 0 8px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  h1.title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 4.4vw, 2.7rem);
+    line-height: 1.14;
+    margin: 0.5rem 0 0.9rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .hero p.lede {
+    max-width: 68ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    margin: 0 0 6px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 12.8px;
+    color: var(--ink-faint);
+  }
+  .hero-meta strong { color: var(--ink); }
+
+  .copyright-note {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    margin: 22px 0 8px;
+  }
+  .copyright-note .box {
+    background: var(--success-soft);
+    border: 1px solid color-mix(in srgb, var(--success) 38%, var(--line));
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14.3px;
+    color: var(--ink-soft);
+  }
+  .copyright-note .box b { color: var(--ink); }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(21px, 2.4vw, 26px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--success);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--success) 45%, var(--line-strong)); color: var(--success); }
+  .controls .btn-answer:hover { background: var(--success-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: #fff;
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--success);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+    font-family: var(--display);
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<div class="shell">
+  <header class="hero">
+    <span class="eyebrow">Ôn luyện · Toán 5 · Toán đố dân gian</span>
+    <h1 class="title">Toán Đố Vui Dân Gian Toán 5</h1>
+    <p class="lede">
+      Những câu đố mang hơi thở làng quê Việt — <span class="kw">phiên chợ quê</span> buôn bán lời lãi,
+      <span class="kw">đồng ruộng</span> chia hoa lợi theo mùa gặt, <span class="kw">hội làng</span> rước
+      kiệu trẩy hội đầu xuân, và những <span class="kw">chuyện xưa tích cũ</span> kể lại quanh bếp lửa —
+      nhưng bài toán bên trong vẫn đúng trình độ lớp 5: <span class="kw">tỉ số phần trăm</span> (lãi, lỗ),
+      <span class="kw">số thập phân</span> trong cân đong đo lường, <span class="kw">tỉ lệ</span> khi chia
+      phần, <span class="kw">diện tích hình học</span>, <span class="kw">chuyển động đều</span> và cách suy
+      luận "giả thiết tạm" cổ truyền. Gồm 4 mục, mỗi mục 2 bài gốc, bấm 🔄 để đổi sang bài tương tự luyện
+      thêm.
+    </p>
+    <div class="hero-meta">
+      <span><strong>4</strong> mục dân gian</span>
+      <span><strong>8</strong> bài gốc</span>
+      <span><strong>8</strong> bài biến thể</span>
+      <span><strong>16</strong> lượt luyện tổng cộng</span>
+    </div>
+  </header>
+
+  <div class="copyright-note">
+    <div class="box">
+      <b>Về nội dung:</b> toàn bộ 8 bài toán, số liệu, câu chuyện và lời giải trong tài liệu này do đội
+      ngũ tự biên soạn mới hoàn toàn. Tài liệu chỉ lấy cảm hứng về <i>không khí</i> dân gian Việt Nam
+      (chợ quê, đồng ruộng, hội làng, chuyện xưa tích cũ) — không sao chép nguyên văn ca dao, tục ngữ hay
+      bất kỳ đề bài, số liệu nào từ tài liệu đã xuất bản.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">4 mục dân gian</div>
+    <ol>
+      <li><a href="#muc1"><span class="n">🧺</span>Chợ Quê</a></li>
+      <li><a href="#muc2"><span class="n">🌾</span>Đồng Ruộng</a></li>
+      <li><a href="#muc3"><span class="n">🏮</span>Hội Làng</a></li>
+      <li><a href="#muc4"><span class="n">📜</span>Chuyện Xưa Tích Cũ</a></li>
+      <li><a href="#meo-lam-bai"><span class="n">🧭</span>Mẹo giải toán đố</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ================= MỤC 1: CHỢ QUÊ ================= -->
+    <section class="topic" id="muc1">
+      <div class="topic-head">
+        <span class="topic-badge">🧺</span>
+        <h2 class="topic-title"><span class="topic-num">Mục 1</span>Chợ Quê</h2>
+      </div>
+      <p class="topic-intro">Phiên chợ quê họp dưới gốc đa đầu làng, người bán kẻ mua tấp nập gánh hàng,
+      cân thóc đong gạo. Hai bài đố dưới đây theo chân các bà, các mẹ ra chợ — luyện <span class="kw">tỉ số
+      phần trăm lãi</span> khi buôn bán và <span class="kw">phân số kết hợp số thập phân</span> khi cân đong
+      thóc gạo bằng thúng, bằng yến.</p>
+
+      <div class="problem" data-pool="m1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Phiên chợ quê hôm ấy, bà Tám gánh ra chợ mớ rau muống hái ở ao nhà, tính cả công chăm bón hết
+          <b>180 000 đồng</b>. Bán hết mớ rau, bà thu về <b>216 000 đồng</b>.</p>
+          <p>Hỏi bà Tám lãi bao nhiêu phần trăm so với số vốn đã bỏ ra?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tính số tiền lãi: lấy số tiền bán được trừ đi số tiền vốn: 216 000 − 180 000 = 36 000 đồng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Muốn tìm tỉ số phần trăm lãi so với vốn, ta lấy số tiền lãi chia cho số tiền vốn rồi nhân với 100: 36 000 : 180 000 × 100.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 36 000 : 180 000 = 0,2; 0,2 × 100 = 20. Vậy bà Tám lãi 20%.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử lại: 180 000 + 20% của 180 000 = 180 000 + 36 000 = 216 000 đồng (đúng bằng số tiền bán được).</p></div></div>
+          <p class="answer hidden">Bà Tám lãi 20% so với số vốn đã bỏ ra.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="m1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Ông Ba gánh ra chợ <b>2 thúng thóc</b>, mỗi thúng cân được <b>28,5kg</b>. Tại chợ, ông bán được
+          <b>3/4</b> số thóc mang đi, số còn lại ông gánh về nhà để dành làm giống cho vụ sau.</p>
+          <p>Hỏi ông Ba đã bán được bao nhiêu ki-lô-gam thóc? Còn lại bao nhiêu ki-lô-gam thóc mang về?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Tổng số thóc ông Ba gánh ra chợ: 2 × 28,5 = 57kg.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số thóc đã bán bằng 3/4 tổng số thóc mang đi: 57 × 3/4 = 42,75kg.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số thóc còn lại (gánh về nhà): 57 − 42,75 = 14,25kg.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử lại: 42,75 + 14,25 = 57kg (đúng bằng tổng số thóc mang đi); 14,25 cũng chính là 1/4 của 57kg.</p></div></div>
+          <p class="answer hidden">Ông Ba đã bán được 42,75kg thóc, còn lại 14,25kg thóc mang về nhà.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MỤC 2: ĐỒNG RUỘNG ================= -->
+    <section class="topic" id="muc2">
+      <div class="topic-head">
+        <span class="topic-badge">🌾</span>
+        <h2 class="topic-title"><span class="topic-num">Mục 2</span>Đồng Ruộng</h2>
+      </div>
+      <p class="topic-intro">Cánh đồng làng trải dài theo mùa vụ, thửa ruộng nhà ai cũng có phần lúa, phần
+      ao; ngày mùa, các đội xã viên cùng nhau ra đồng gặt hái, chia công theo tỉ lệ đóng góp. Hai bài đố
+      dưới đây luyện <span class="kw">diện tích hình chữ nhật kết hợp tỉ số phần trăm</span>, và bài toán
+      <span class="kw">tổng - tỉ</span> khi chia sản lượng theo tỉ lệ "gấp rưỡi".</p>
+
+      <div class="problem" data-pool="m2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Thửa ruộng nhà bác Tư hình chữ nhật có chiều dài <b>45m</b>, chiều rộng bằng <b>2/3</b> chiều
+          dài. Bác dành <b>60%</b> diện tích thửa ruộng để cấy lúa, phần diện tích còn lại bác đào ao thả
+          cá.</p>
+          <p>Hỏi diện tích ao thả cá là bao nhiêu mét vuông?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Chiều rộng thửa ruộng: 45 × 2/3 = 30m.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Diện tích thửa ruộng hình chữ nhật: 45 × 30 = 1350m².</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Diện tích cấy lúa (60% diện tích thửa ruộng): 1350 × 60 : 100 = 1350 × 0,6 = 810m².</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Diện tích ao thả cá (phần còn lại): 1350 − 810 = 540m².</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Thử lại: 810 + 540 = 1350m² (đúng); 540 : 1350 × 100 = 40%, đúng bằng phần trăm còn lại sau khi trừ 60%.</p></div></div>
+          <p class="answer hidden">Diện tích ao thả cá là 540m².</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="m2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Vụ gặt năm nay, hai đội xã viên hợp tác xã gặt được tổng cộng <b>9 tấn thóc</b>. Biết số thóc
+          đội Một gặt được <b>gấp rưỡi (1,5 lần)</b> số thóc đội Hai gặt được.</p>
+          <p>Hỏi mỗi đội gặt được bao nhiêu tấn thóc?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đổi "gấp rưỡi" (1,5 lần) thành tỉ số hai số phần bằng nhau: 1,5 = 3/2, nên đội Một : đội Hai = 3 : 2. Coi đội Hai là 2 phần thì đội Một là 3 phần bằng thế.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tổng số phần: 3 + 2 = 5 phần, ứng với 9 tấn thóc.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giá trị 1 phần: 9 : 5 = 1,8 (tấn).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Số thóc đội Một: 1,8 × 3 = 5,4 tấn. Số thóc đội Hai: 1,8 × 2 = 3,6 tấn.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Thử lại: 5,4 + 3,6 = 9 tấn (đúng tổng); 5,4 : 3,6 = 1,5 (đúng tỉ số "gấp rưỡi").</p></div></div>
+          <p class="answer hidden">Đội Một gặt được 5,4 tấn thóc, đội Hai gặt được 3,6 tấn thóc.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MỤC 3: HỘI LÀNG ================= -->
+    <section class="topic" id="muc3">
+      <div class="topic-head">
+        <span class="topic-badge">🏮</span>
+        <h2 class="topic-title"><span class="topic-num">Mục 3</span>Hội Làng</h2>
+      </div>
+      <p class="topic-intro">Xuân về, làng vào hội — cờ hoa rợp sân đình, đoàn rước kiệu nhộn nhịp trẩy hội
+      từ tinh mơ, trẻ già kéo nhau tới xem chật kín sân. Hai bài đố dưới đây luyện
+      <span class="kw">chuyển động đều</span> (quãng đường, vận tốc, thời gian) khi đoàn rước kiệu đi trẩy
+      hội, và <span class="kw">tỉ số phần trăm của một số</span> khi đếm người tới xem hội.</p>
+
+      <div class="problem" data-pool="m3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Sáng mồng Sáu Tết, đoàn rước kiệu của hội làng xuất phát từ đình làng lúc <b>7 giờ</b>, đi bộ
+          với vận tốc <b>4,2km/giờ</b> để tới miếu Bà cách đình <b>6,3km</b> làm lễ dâng hương.</p>
+          <p>Hỏi đoàn rước kiệu tới miếu Bà lúc mấy giờ?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Thời gian đoàn rước kiệu đi từ đình tới miếu = quãng đường : vận tốc = 6,3 : 4,2 = 1,5 (giờ).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Đổi 1,5 giờ = 1 giờ 30 phút (vì 0,5 giờ = 30 phút).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giờ đoàn tới miếu Bà = giờ xuất phát + thời gian đi = 7 giờ + 1 giờ 30 phút = 8 giờ 30 phút.</p></div></div>
+          <p class="answer hidden">Đoàn rước kiệu tới miếu Bà lúc 8 giờ 30 phút.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="m3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Hội làng năm nay đông vui, có <b>450 người</b> tới xem, trong đó có <b>54%</b> là trẻ em theo
+          ông bà đi trẩy hội, số còn lại là người lớn.</p>
+          <p>Hỏi có bao nhiêu trẻ em và bao nhiêu người lớn tới xem hội làng?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số trẻ em bằng 54% tổng số người tới xem: 450 × 54 : 100 = 450 × 0,54 = 243 (người).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Số người lớn (phần còn lại): 450 − 243 = 207 (người).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Thử lại: 243 + 207 = 450 (đúng tổng); 243 : 450 × 100 = 54% (đúng tỉ lệ trẻ em).</p></div></div>
+          <p class="answer hidden">Có 243 trẻ em và 207 người lớn tới xem hội làng.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MỤC 4: CHUYỆN XƯA TÍCH CŨ ================= -->
+    <section class="topic" id="muc4">
+      <div class="topic-head">
+        <span class="topic-badge">📜</span>
+        <h2 class="topic-title"><span class="topic-num">Mục 4</span>Chuyện Xưa Tích Cũ</h2>
+      </div>
+      <p class="topic-intro">Đêm trăng sáng, bà kể chuyện xưa quanh bếp lửa — chuyện phú ông chia gia tài,
+      chuyện đàn vật nuôi ngoài sân đình — mỗi chuyện đều giấu một bài toán khéo léo. Hai bài đố dưới đây
+      luyện <span class="kw">phân số của phần còn lại</span> qua bài chia kho thóc ba đời con, và cách suy
+      luận <span class="kw">"giả thiết tạm"</span> cổ truyền qua bài đếm đầu, đếm chân đàn vật nuôi.</p>
+
+      <div class="problem" data-pool="m4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Chuyện xưa kể rằng, có một phú ông giàu có để lại cho ba người con trai một kho thóc lớn trước
+          khi qua đời. Người con cả được chia <b>1/2</b> kho thóc. Người con thứ hai được chia <b>2/5</b>
+          số thóc <b>còn lại</b> (sau khi người con cả đã lấy phần của mình). Người con út được chia nốt
+          phần thóc còn lại cuối cùng, đúng bằng <b>180 yến thóc</b>.</p>
+          <p>Hỏi kho thóc của phú ông lúc đầu có tất cả bao nhiêu yến thóc?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Coi cả kho thóc là 1 đơn vị. Sau khi người con cả lấy 1/2 kho thóc, số thóc còn lại là: 1 − 1/2 = 1/2 (kho thóc).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Người con thứ hai lấy 2/5 của phần còn lại (1/2 kho thóc), tức là lấy: 2/5 × 1/2 = 1/5 (kho thóc, so với cả kho ban đầu).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Số thóc còn lại sau khi người con thứ lấy (chính là phần của người con út): 1/2 − 1/5 = 5/10 − 2/10 = 3/10 (kho thóc).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Theo đề bài, phần này bằng đúng 180 yến. Vậy cả kho thóc có: 180 : 3 × 10 = 600 (yến).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Thử lại: con cả lấy 600 × 1/2 = 300 yến, còn lại 300 yến; con thứ lấy 2/5 × 300 = 120 yến, còn lại 300 − 120 = 180 yến (đúng bằng phần con út). Tổng: 300 + 120 + 180 = 600 (đúng).</p></div></div>
+          <p class="answer hidden">Kho thóc của phú ông lúc đầu có tất cả 600 yến thóc.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="m4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Chuyện xưa kể, ở sân đình làng có một đàn trâu và ngỗng cùng nhau gặm cỏ dưới gốc đa. Người ta
+          tò mò đếm được tất cả <b>35 cái đầu</b> và <b>100 cái chân</b> (mỗi con trâu có 4 chân, mỗi con
+          ngỗng có 2 chân).</p>
+          <p>Hỏi có bao nhiêu con trâu và bao nhiêu con ngỗng?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Giả thiết tạm:</b> giả sử cả 35 con trong đàn đều là ngỗng, thì tổng số chân sẽ là: 35 × 2 = 70 (chân).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>So với thực tế có 100 chân, số chân còn thiếu là: 100 − 70 = 30 (chân).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Mỗi lần thay 1 con ngỗng (2 chân) bằng 1 con trâu (4 chân), số chân tăng thêm: 4 − 2 = 2 (chân). Vậy số con trâu là: 30 : 2 = 15 (con).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Số con ngỗng: 35 − 15 = 20 (con).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Thử lại: 15 × 4 + 20 × 2 = 60 + 40 = 100 (đúng số chân); 15 + 20 = 35 (đúng số đầu).</p></div></div>
+          <p class="answer hidden">Đàn có 15 con trâu và 20 con ngỗng.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-lam-bai">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo giải toán đố dân gian</h2>
+      </div>
+      <p class="topic-intro">4 mẹo ngắn gọn giúp con "gỡ" lớp vỏ câu chuyện dân gian để tìm ra đúng dạng
+      toán quen thuộc bên trong — vì dù đề bài kể về chợ quê, đồng ruộng hay chuyện xưa tích cũ, bản chất
+      phép tính vẫn là những dạng toán lớp 5 đã học.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Tách câu chuyện khỏi con số.</b> Gạch chân số liệu và câu hỏi thật của đề bài trước, tạm bỏ
+          qua các chi tiết chỉ để tạo không khí (tên người, tên làng, thời điểm) — chúng không ảnh hưởng
+          tới phép tính.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>"Còn lại" luôn tính trên phần vừa xác định.</b> Khi đề có nhiều lần chia hoặc bán liên tiếp
+          (như chia kho thóc, bán thóc theo đợt), phân số hay phần trăm của lượt sau luôn tính trên phần
+          <i>còn lại</i> sau lượt trước, không phải trên số ban đầu.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Đổi "gấp rưỡi", "gấp đôi" về tỉ số phần bằng nhau.</b> "Gấp rưỡi" = 1,5 lần = tỉ số 3:2;
+          "gấp đôi" = 2 lần = tỉ số 2:1. Đổi xong mới vẽ sơ đồ chia phần và tìm giá trị 1 phần.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Dùng "giả thiết tạm" khi đếm hai loại vật khác chân.</b> Giả sử tất cả đều thuộc một loại,
+          tính chênh lệch với số liệu thật, rồi chia cho hiệu số chân mỗi con để tìm ra loại còn lại — đây
+          là mẹo dân gian quen thuộc khi đếm đầu, đếm chân.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 5, toán đố dân gian. Nội dung lấy cảm hứng về không
+    khí làng quê Việt Nam (chợ quê, đồng ruộng, hội làng, chuyện xưa tích cũ), toàn bộ đề bài, số liệu và
+    lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu tài liệu nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'm1-1': [{
+      qHtml: '<p>Phiên chợ quê hôm ấy, cô Sáu gánh ra chợ mớ ổi hái ở vườn nhà, tính cả công chăm bón hết <b>240 000 đồng</b>. Bán hết mớ ổi, cô thu về <b>276 000 đồng</b>.</p><p>Hỏi cô Sáu lãi bao nhiêu phần trăm so với số vốn đã bỏ ra?</p>',
+      steps: [
+        '<p>Tính số tiền lãi: lấy số tiền bán được trừ đi số tiền vốn: 276 000 − 240 000 = 36 000 đồng.</p>',
+        '<p>Muốn tìm tỉ số phần trăm lãi so với vốn, ta lấy số tiền lãi chia cho số tiền vốn rồi nhân với 100: 36 000 : 240 000 × 100.</p>',
+        '<p>Tính: 36 000 : 240 000 = 0,15; 0,15 × 100 = 15. Vậy cô Sáu lãi 15%.</p>',
+        '<p>Thử lại: 240 000 + 15% của 240 000 = 240 000 + 36 000 = 276 000 đồng (đúng bằng số tiền bán được).</p>'
+      ],
+      answerHtml: 'Cô Sáu lãi 15% so với số vốn đã bỏ ra.'
+    }],
+    'm1-2': [{
+      qHtml: '<p>Bà Năm gánh ra chợ <b>3 thúng khoai lang</b>, mỗi thúng cân được <b>18,4kg</b>. Tại chợ, bà bán được <b>2/5</b> số khoai mang đi, số còn lại bà gánh về nhà.</p><p>Hỏi bà Năm đã bán được bao nhiêu ki-lô-gam khoai lang? Còn lại bao nhiêu ki-lô-gam khoai mang về?</p>',
+      steps: [
+        '<p>Tổng số khoai lang bà Năm gánh ra chợ: 3 × 18,4 = 55,2kg.</p>',
+        '<p>Số khoai đã bán bằng 2/5 tổng số khoai mang đi: 55,2 × 2/5 = 22,08kg.</p>',
+        '<p>Số khoai còn lại (gánh về nhà): 55,2 − 22,08 = 33,12kg.</p>',
+        '<p>Thử lại: 22,08 + 33,12 = 55,2kg (đúng bằng tổng số khoai mang đi); 33,12 cũng chính là 3/5 của 55,2kg.</p>'
+      ],
+      answerHtml: 'Bà Năm đã bán được 22,08kg khoai lang, còn lại 33,12kg khoai mang về nhà.'
+    }],
+    'm2-1': [{
+      qHtml: '<p>Thửa ruộng nhà ông Sáu hình chữ nhật có chiều dài <b>32m</b>, chiều rộng bằng <b>3/4</b> chiều dài. Ông dành <b>62,5%</b> diện tích thửa ruộng để cấy lúa, phần diện tích còn lại ông đào ao thả cá.</p><p>Hỏi diện tích ao thả cá là bao nhiêu mét vuông?</p>',
+      steps: [
+        '<p>Chiều rộng thửa ruộng: 32 × 3/4 = 24m.</p>',
+        '<p>Diện tích thửa ruộng hình chữ nhật: 32 × 24 = 768m².</p>',
+        '<p>Diện tích cấy lúa (62,5% diện tích thửa ruộng): 768 × 62,5 : 100 = 768 × 0,625 = 480m².</p>',
+        '<p>Diện tích ao thả cá (phần còn lại): 768 − 480 = 288m².</p>',
+        '<p>Thử lại: 480 + 288 = 768m² (đúng); 288 : 768 × 100 = 37,5%, đúng bằng phần trăm còn lại sau khi trừ 62,5%.</p>'
+      ],
+      answerHtml: 'Diện tích ao thả cá là 288m².'
+    }],
+    'm2-2': [{
+      qHtml: '<p>Vụ gặt năm nay, hai đội xã viên hợp tác xã gặt được tổng cộng <b>10,5 tấn thóc</b>. Biết số thóc đội Một gặt được <b>gấp đôi (2 lần)</b> số thóc đội Hai gặt được.</p><p>Hỏi mỗi đội gặt được bao nhiêu tấn thóc?</p>',
+      steps: [
+        '<p>Đổi "gấp đôi" (2 lần) thành tỉ số hai số phần bằng nhau: đội Một : đội Hai = 2 : 1. Coi đội Hai là 1 phần thì đội Một là 2 phần bằng thế.</p>',
+        '<p>Tổng số phần: 2 + 1 = 3 phần, ứng với 10,5 tấn thóc.</p>',
+        '<p>Giá trị 1 phần: 10,5 : 3 = 3,5 (tấn).</p>',
+        '<p>Số thóc đội Một: 3,5 × 2 = 7 tấn. Số thóc đội Hai: 3,5 × 1 = 3,5 tấn.</p>',
+        '<p>Thử lại: 7 + 3,5 = 10,5 tấn (đúng tổng); 7 : 3,5 = 2 (đúng tỉ số "gấp đôi").</p>'
+      ],
+      answerHtml: 'Đội Một gặt được 7 tấn thóc, đội Hai gặt được 3,5 tấn thóc.'
+    }],
+    'm3-1': [{
+      qHtml: '<p>Chiều mồng Bảy Tết, đoàn rước kiệu của hội làng xuất phát từ đình làng lúc <b>7 giờ 15 phút</b>, đi bộ với vận tốc <b>6,3km/giờ</b> để tới chùa Cả cách đình <b>12,6km</b> làm lễ dâng hương.</p><p>Hỏi đoàn rước kiệu tới chùa Cả lúc mấy giờ?</p>',
+      steps: [
+        '<p>Thời gian đoàn rước kiệu đi từ đình tới chùa = quãng đường : vận tốc = 12,6 : 6,3 = 2 (giờ).</p>',
+        '<p>Giờ đoàn tới chùa Cả = giờ xuất phát + thời gian đi = 7 giờ 15 phút + 2 giờ = 9 giờ 15 phút.</p>'
+      ],
+      answerHtml: 'Đoàn rước kiệu tới chùa Cả lúc 9 giờ 15 phút.'
+    }],
+    'm3-2': [{
+      qHtml: '<p>Hội chợ xuân năm nay đông vui, có <b>500 người</b> tới xem, trong đó có <b>62%</b> là trẻ em theo ông bà đi trẩy hội, số còn lại là người lớn.</p><p>Hỏi có bao nhiêu trẻ em và bao nhiêu người lớn tới xem hội chợ xuân?</p>',
+      steps: [
+        '<p>Số trẻ em bằng 62% tổng số người tới xem: 500 × 62 : 100 = 500 × 0,62 = 310 (người).</p>',
+        '<p>Số người lớn (phần còn lại): 500 − 310 = 190 (người).</p>',
+        '<p>Thử lại: 310 + 190 = 500 (đúng tổng); 310 : 500 × 100 = 62% (đúng tỉ lệ trẻ em).</p>'
+      ],
+      answerHtml: 'Có 310 trẻ em và 190 người lớn tới xem hội chợ xuân.'
+    }],
+    'm4-1': [{
+      qHtml: '<p>Chuyện xưa kể rằng, có một cụ đồ nghèo để lại cho ba người học trò thân thiết một hòm sách quý trước khi qua đời. Người học trò cả được chia <b>3/5</b> hòm sách. Người học trò thứ hai được chia <b>1/4</b> số sách <b>còn lại</b> (sau khi người học trò cả đã lấy phần của mình). Người học trò út được chia nốt phần sách còn lại cuối cùng, đúng bằng <b>150 quyển sách</b>.</p><p>Hỏi hòm sách của cụ đồ lúc đầu có tất cả bao nhiêu quyển sách?</p>',
+      steps: [
+        '<p>Coi cả hòm sách là 1 đơn vị. Sau khi người học trò cả lấy 3/5 hòm sách, số sách còn lại là: 1 − 3/5 = 2/5 (hòm sách).</p>',
+        '<p>Người học trò thứ hai lấy 1/4 của phần còn lại (2/5 hòm sách), tức là lấy: 1/4 × 2/5 = 1/10 (hòm sách, so với cả hòm ban đầu).</p>',
+        '<p>Số sách còn lại sau khi người học trò thứ lấy (chính là phần của người học trò út): 2/5 − 1/10 = 4/10 − 1/10 = 3/10 (hòm sách).</p>',
+        '<p>Theo đề bài, phần này bằng đúng 150 quyển. Vậy cả hòm sách có: 150 : 3 × 10 = 500 (quyển).</p>',
+        '<p>Thử lại: học trò cả lấy 500 × 3/5 = 300 quyển, còn lại 200 quyển; học trò thứ lấy 1/4 × 200 = 50 quyển, còn lại 200 − 50 = 150 quyển (đúng bằng phần út). Tổng: 300 + 50 + 150 = 500 (đúng).</p>'
+      ],
+      answerHtml: 'Hòm sách của cụ đồ lúc đầu có tất cả 500 quyển sách.'
+    }],
+    'm4-2': [{
+      qHtml: '<p>Chuyện xưa kể, ở bãi cỏ ven sông có một đàn trâu và ngan cùng nhau gặm cỏ buổi chiều tà. Người ta tò mò đếm được tất cả <b>28 cái đầu</b> và <b>76 cái chân</b> (mỗi con trâu có 4 chân, mỗi con ngan có 2 chân).</p><p>Hỏi có bao nhiêu con trâu và bao nhiêu con ngan?</p>',
+      steps: [
+        '<p><b>Giả thiết tạm:</b> giả sử cả 28 con trong đàn đều là ngan, thì tổng số chân sẽ là: 28 × 2 = 56 (chân).</p>',
+        '<p>So với thực tế có 76 chân, số chân còn thiếu là: 76 − 56 = 20 (chân).</p>',
+        '<p>Mỗi lần thay 1 con ngan (2 chân) bằng 1 con trâu (4 chân), số chân tăng thêm: 4 − 2 = 2 (chân). Vậy số con trâu là: 20 : 2 = 10 (con).</p>',
+        '<p>Số con ngan: 28 − 10 = 18 (con).</p>',
+        '<p>Thử lại: 10 × 4 + 18 × 2 = 40 + 36 = 76 (đúng số chân); 10 + 18 = 28 (đúng số đầu).</p>'
+      ],
+      answerHtml: 'Đàn có 10 con trâu và 18 con ngan.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

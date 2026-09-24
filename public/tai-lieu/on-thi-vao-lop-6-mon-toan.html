@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ôn Thi Vào Lớp 6 Môn Toán</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600;700&family=Work+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@500;600;700&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4f2ec;
+    --bg-alt: #eae6d9;
+    --paper: #ffffff;
+    --ink: #22242b;
+    --ink-soft: #53565f;
+    --ink-faint: #8a8c96;
+    --accent: #2c3e5c;
+    --accent-hover: #1e2c43;
+    --accent-soft: #e2e6ee;
+    --accent-soft-strong: #ccd3e2;
+    --success: #8a2f1f;
+    --success-soft: #f3e2dc;
+    --line: #ddd7c6;
+    --line-strong: #c8bfa4;
+    --shadow: 0 1px 2px rgba(34, 36, 43, 0.08), 0 8px 22px rgba(34, 36, 43, 0.10);
+    --radius: 16px;
+    --sans: "Work Sans", "Segoe UI", "Be Vietnam Pro", Calibri, Arial, sans-serif;
+    --display: "Newsreader", Georgia, "Times New Roman", serif;
+    --mono: "Roboto Mono", "Cascadia Code", Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161c;
+    --bg-alt: #1b1e26;
+    --paper: #1e212a;
+    --ink: #eceef2;
+    --ink-soft: #b7bac4;
+    --ink-faint: #82858f;
+    --accent: #93a7cc;
+    --accent-hover: #b3c2df;
+    --accent-soft: #26304a;
+    --accent-soft-strong: #34405f;
+    --success: #e2897a;
+    --success-soft: #3a221d;
+    --line: #2a2d37;
+    --line-strong: #3a3e4a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14161c;
+      --bg-alt: #1b1e26;
+      --paper: #1e212a;
+      --ink: #eceef2;
+      --ink-soft: #b7bac4;
+      --ink-faint: #82858f;
+      --accent: #93a7cc;
+      --accent-hover: #b3c2df;
+      --accent-soft: #26304a;
+      --accent-soft-strong: #34405f;
+      --success: #e2897a;
+      --success-soft: #3a221d;
+      --line: #2a2d37;
+      --line-strong: #3a3e4a;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 236px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 0 18px 72px; }
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    padding: 44px 0 8px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12.5px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  h1.title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2rem, 4.4vw, 2.7rem);
+    line-height: 1.14;
+    margin: 0.5rem 0 0.9rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .hero p.lede {
+    max-width: 68ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    margin: 0 0 6px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 12.8px;
+    color: var(--ink-faint);
+  }
+  .hero-meta strong { color: var(--ink); }
+
+  .copyright-note {
+    grid-column: 1 / -1;
+    max-width: 900px;
+    margin: 22px 0 8px;
+  }
+  .copyright-note .box {
+    background: var(--success-soft);
+    border: 1px solid color-mix(in srgb, var(--success) 40%, var(--line));
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14.3px;
+    color: var(--ink-soft);
+  }
+  .copyright-note .box b { color: var(--ink); }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(21px, 2.4vw, 26px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--success);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; color: var(--ink-soft); }
+  ul.plain li { margin-bottom: 8px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Callout ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 20px 0 30px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+    background: var(--bg-alt);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--success) 45%, var(--line-strong)); color: var(--success); }
+  .controls .btn-answer:hover { background: var(--success-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: #fff;
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--success);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+    font-family: var(--display);
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<div class="shell">
+  <header class="hero">
+    <span class="eyebrow">Ôn luyện · Toán 5 · Luyện thi vào lớp 6</span>
+    <h1 class="title">Ôn Thi Vào Lớp 6 Môn Toán</h1>
+    <p class="lede">
+      Cuốn ôn luyện <span class="kw">cam go nhất</span> trong bộ Toán 5 — 3 đề thi thử mô phỏng đúng cấu
+      trúc một đề thi tuyển sinh vào lớp 6 các trường chất lượng cao/trường chuyên, với các bài toán
+      <span class="kw">tổng hợp nhiều dạng kiến thức</span>: số thập phân phối hợp tỉ số phần trăm nhiều
+      bước, hình học nâng cao (tỉ số diện tích qua đường chéo hình thang, thể tích bể nước), chuyển động
+      đều nâng cao, dãy số - quy luật kiểu "kính viễn vọng", và các bài toán <span class="kw">suy luận
+      lô-gic</span> dùng phương pháp giả thiết tạm. Độ khó cao hơn hẳn cuốn "Học Sinh Giỏi Toán Lớp 5" —
+      hãy làm bài nghiêm túc như đang thi thật, dùng gợi ý khi thực sự bí, và luôn thử lại đáp số.
+    </p>
+    <div class="hero-meta">
+      <span><strong>3</strong> đề thi thử</span>
+      <span><strong>8</strong> bài gốc</span>
+      <span><strong>8</strong> bài biến thể</span>
+      <span><strong>16</strong> lượt luyện tổng cộng</span>
+    </div>
+  </header>
+
+  <div class="copyright-note">
+    <div class="box">
+      <b>Về nội dung:</b> toàn bộ 8 bài toán, số liệu và lời giải trong tài liệu này do đội ngũ tự biên
+      soạn mới hoàn toàn. Tài liệu chỉ lấy cảm hứng về <i>cấu trúc đề thi, tỉ lệ dạng bài và mức độ khó</i>
+      thường gặp trong các đề thi tuyển sinh vào lớp 6 (trường chất lượng cao, trường chuyên) phổ biến hiện
+      nay, không sao chép nguyên văn bất kỳ đề bài hay số liệu nào từ tài liệu đã xuất bản.
+    </div>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Nội dung</div>
+    <ol>
+      <li><a href="#gioi-thieu"><span class="n">📋</span>Cấu trúc đề thi</a></li>
+      <li><a href="#de1"><span class="n">📐</span>Đề số 1</a></li>
+      <li><a href="#de2"><span class="n">🚗</span>Đề số 2</a></li>
+      <li><a href="#de3"><span class="n">🧩</span>Đề số 3</a></li>
+      <li><a href="#chien-thuat"><span class="n">🧭</span>Chiến thuật làm bài</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ================= GIỚI THIỆU ================= -->
+    <section class="topic" id="gioi-thieu">
+      <div class="topic-head">
+        <span class="topic-badge">📋</span>
+        <h2 class="topic-title"><span class="topic-num">Giới thiệu</span>Cấu trúc đề thi vào lớp 6 điển hình</h2>
+      </div>
+      <p class="topic-intro">Trước khi làm 3 đề thi thử, hãy cùng nắm nhanh cấu trúc chung của một đề thi
+      tuyển sinh vào lớp 6 (trường chất lượng cao/trường chuyên) mà các con thường gặp. Đây là cấu trúc
+      <span class="kw">tham khảo tổng quát</span>, tổng hợp từ nhiều đề thi phổ biến, không phải đề thi
+      chính thức của trường cụ thể nào.</p>
+      <ul class="plain">
+        <li><b>Thời gian làm bài:</b> thường khoảng 45-90 phút tùy trường.</li>
+        <li><b>Số lượng câu hỏi:</b> khoảng 8-12 câu, kết hợp trắc nghiệm và tự luận trình bày lời giải.</li>
+        <li><b>Tỉ lệ điểm:</b> khoảng 55-65% số điểm dành cho kiến thức cơ bản (bốn phép tính, số thập
+        phân, phân số, hình học cơ bản, toán có lời văn một vài bước); khoảng 35-45% số điểm còn lại dành
+        cho các câu <b>vận dụng - vận dụng cao</b>, thường là 2-4 câu cuối đề.</li>
+        <li><b>Các câu vận dụng cao</b> thường kết hợp: số thập phân + tỉ số phần trăm nhiều bước, hình
+        học nâng cao (diện tích/thể tích kết hợp tỉ số), chuyển động đều nâng cao, dãy số - quy luật, và
+        các bài toán suy luận lô-gic.</li>
+      </ul>
+      <div class="callout">
+        <div class="label">🎯 Về 3 đề thi thử dưới đây</div>
+        <p>Ba đề thi thử được biên soạn theo đúng tỉ lệ và mức độ khó của phần <b>vận dụng - vận dụng
+        cao</b> nói trên — đây là phần khó nhất, thường quyết định thứ hạng của thí sinh. Mỗi đề gồm 2-3
+        bài toán tổng hợp, mỗi bài có nút <b>"Đổi bài tương tự"</b> để luyện lại đúng dạng đó với số liệu
+        khác.</p>
+      </div>
+    </section>
+
+    <!-- ================= ĐỀ 1 ================= -->
+    <section class="topic" id="de1">
+      <div class="topic-head">
+        <span class="topic-badge">📐</span>
+        <h2 class="topic-title"><span class="topic-num">Đề số 1 · 45 phút</span>Số thập phân, hình học và suy luận nâng cao</h2>
+      </div>
+      <p class="topic-intro">Đề số 1 gồm 3 bài: một bài <span class="kw">số thập phân phối hợp tỉ số phần
+      trăm</span> qua ba giai đoạn xuất - nhập kho liên tiếp, một bài <span class="kw">hình học nâng
+      cao</span> khai thác tính chất bốn tam giác tạo bởi hai đường chéo của hình thang, và một bài
+      <span class="kw">suy luận tuổi</span> kiểu thi tuyển — phải xác định tỉ số tuổi từ một điều kiện diễn
+      đạt qua hai mốc thời gian trước khi áp dụng dạng toán tổng - tỉ.</p>
+
+      <div class="problem" data-pool="de1-1" data-qid="Đề 1 · Bài 1">
+        <div class="q"><span class="qid">Đề 1 · Bài 1</span><div class="qtext">
+          <p>Một kho gạo có một số tấn gạo chưa biết. Đợt 1, kho xuất đi <b>30%</b> số gạo. Đợt 2, kho
+          nhập thêm vào một lượng gạo bằng <b>25%</b> số gạo <b>còn lại sau đợt 1</b>. Đợt 3, kho xuất
+          tiếp <b>20%</b> số gạo <b>hiện có sau đợt 2</b>.</p>
+          <p>Sau ba đợt, trong kho còn lại <b>45,5 tấn</b> gạo. Hỏi ban đầu kho có bao nhiêu tấn gạo?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Coi số gạo ban đầu là 100%. Sau đợt 1 (xuất 30%), số gạo còn lại bằng 100% − 30% = 70% số gạo ban đầu.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Sau đợt 2 (nhập thêm 25% của số còn lại sau đợt 1), số gạo hiện có bằng 70% × (100% + 25%) = 70% × 125% = 87,5% số gạo ban đầu.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Sau đợt 3 (xuất 20% số hiện có), số gạo còn lại bằng 87,5% × (100% − 20%) = 87,5% × 80% = 70% số gạo ban đầu.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Theo đề bài, 70% số gạo ban đầu chính là 45,5 tấn. Vậy số gạo ban đầu = 45,5 : 70 × 100 = 65 (tấn).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Thử lại: đợt 1 xuất 30% của 65 = 19,5 tấn, còn 45,5 tấn. Đợt 2 nhập thêm 25% của 45,5 = 11,375 tấn, có 56,875 tấn. Đợt 3 xuất 20% của 56,875 = 11,375 tấn, còn lại 56,875 − 11,375 = 45,5 tấn (đúng bằng đề bài).</p></div></div>
+          <p class="answer hidden">Ban đầu kho có 65 tấn gạo.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de1-2" data-qid="Đề 1 · Bài 2">
+        <div class="q"><span class="qid">Đề 1 · Bài 2</span><div class="qtext">
+          <p>Cho hình thang ABCD (đáy bé AB, đáy lớn CD, AB // CD). Hai đường chéo AC và BD cắt nhau tại
+          điểm O, chia hình thang thành 4 tam giác: AOB, BOC, COD, DOA. Biết diện tích tam giác AOB bằng
+          <b>18cm²</b> và diện tích tam giác COD bằng <b>50cm²</b>.</p>
+          <p>Tính diện tích hình thang ABCD.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Vì AB // CD nên khoảng cách giữa hai đáy AB và CD không đổi. Hai tam giác ABD và ABC có chung đáy AB và chung chiều cao (khoảng cách giữa AB và CD), nên diện tích bằng nhau: S(ABD) = S(ABC).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Mà S(ABD) = S(AOB) + S(AOD) và S(ABC) = S(AOB) + S(BOC). Hai tổng này bằng nhau và có chung phần S(AOB), nên S(AOD) = S(BOC). Gọi chung diện tích này là b.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hai tam giác AOB và AOD có chung đỉnh A, hai đáy OB và OD cùng nằm trên đường chéo BD, nên tỉ số diện tích bằng tỉ số hai đáy: S(AOB) : S(AOD) = OB : OD.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Hai tam giác BOC và DOC có chung đỉnh C, hai đáy OB và OD cùng nằm trên đường chéo BD, nên: S(BOC) : S(DOC) = OB : OD.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Từ bước 3 và bước 4, vì hai tỉ số OB : OD bằng nhau nên: S(AOB) : S(AOD) = S(BOC) : S(DOC), tức là S(AOB) : b = b : S(COD). Suy ra b × b = S(AOB) × S(COD) = 18 × 50 = 900, mà 30 × 30 = 900 nên b = 30 (cm²).</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p>Diện tích hình thang ABCD = S(AOB) + S(BOC) + S(COD) + S(DOA) = 18 + 30 + 50 + 30 = 128 (cm²).</p></div></div>
+          <p class="answer hidden">Diện tích hình thang ABCD là 128cm².</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de1-3" data-qid="Đề 1 · Bài 3">
+        <div class="q"><span class="qid">Đề 1 · Bài 3</span><div class="qtext">
+          <p>Tổng số tuổi của hai anh em hiện nay là <b>42 tuổi</b>. Biết rằng tuổi anh hiện nay đúng bằng
+          <b>2 lần</b> tuổi em vào đúng lúc tuổi anh bằng tuổi em hiện nay (tức là tại thời điểm trong quá
+          khứ khi anh có số tuổi đúng bằng số tuổi của em bây giờ).</p>
+          <p>Tính tuổi hiện nay của mỗi người.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hiệu số tuổi giữa hai anh em không đổi theo thời gian. Gọi hiệu đó là d = (tuổi anh hiện nay) − (tuổi em hiện nay).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Vào đúng d năm trước, tuổi anh lúc đó = (tuổi anh hiện nay) − d = tuổi em hiện nay — đây chính là "lúc tuổi anh bằng tuổi em hiện nay". Khi đó tuổi em là (tuổi em hiện nay) − d.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Theo đề bài: tuổi anh hiện nay = 2 × [(tuổi em hiện nay) − d].</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Thử với các phần bằng nhau: coi tuổi em hiện nay là 3 phần, hiệu d là 1 phần, tuổi anh hiện nay là 4 phần. Kiểm tra: (3 phần − 1 phần) × 2 = 2 phần × 2 = 4 phần, đúng bằng tuổi anh (4 phần). Vậy tỉ số tuổi anh : tuổi em hiện nay = 4 : 3.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Áp dụng dạng toán tổng - tỉ: tổng số phần bằng nhau = 4 + 3 = 7 phần, ứng với 42 tuổi. Một phần = 42 : 7 = 6 (tuổi). Tuổi anh = 6 × 4 = 24 (tuổi). Tuổi em = 6 × 3 = 18 (tuổi).</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p>Thử lại: 24 + 18 = 42 (đúng). Hiệu d = 24 − 18 = 6; 6 năm trước anh 18 tuổi (đúng bằng tuổi em hiện nay), khi đó em 18 − 6 = 12 tuổi, và 24 = 2 × 12 (đúng).</p></div></div>
+          <p class="answer hidden">Tuổi anh hiện nay là 24 tuổi, tuổi em hiện nay là 18 tuổi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ĐỀ 2 ================= -->
+    <section class="topic" id="de2">
+      <div class="topic-head">
+        <span class="topic-badge">🚗</span>
+        <h2 class="topic-title"><span class="topic-num">Đề số 2 · 45 phút</span>Chuyển động, tỉ số và thể tích nâng cao</h2>
+      </div>
+      <p class="topic-intro">Đề số 2 gồm 3 bài: một bài <span class="kw">chuyển động đều nâng cao</span>
+      với hai xe đi ngược chiều rồi tách ra sau khi gặp nhau, một bài <span class="kw">tổng - tỉ nâng
+      cao</span> dùng tính chất "tổng không đổi khi chuyển hàng giữa hai kho", và một bài <span
+      class="kw">thể tích bể nước</span> kết hợp tình huống thực tế (vòi hỏng giữa chừng, phải đổi sang
+      cách bơm khác). Mẹo: khi chuyển đồ vật giữa hai nơi, tổng số lượng của cả hai nơi luôn không đổi —
+      hãy tận dụng tính chất này để quy về dạng toán tổng - tỉ quen thuộc.</p>
+
+      <div class="problem" data-pool="de2-1" data-qid="Đề 2 · Bài 1">
+        <div class="q"><span class="qid">Đề 2 · Bài 1</span><div class="qtext">
+          <p>Hai ô tô khởi hành cùng một lúc từ hai địa điểm A và B cách nhau <b>240km</b>, đi ngược chiều
+          nhau và gặp nhau sau <b>3 giờ</b>. Biết vận tốc ô tô đi từ A lớn hơn vận tốc ô tô đi từ B là
+          <b>10km/giờ</b>.</p>
+          <p>a) Tính vận tốc mỗi ô tô.<br>b) Sau khi gặp nhau, hai xe vẫn tiếp tục đi với vận tốc như cũ
+          theo hướng ban đầu. Hỏi ô tô đi từ A phải đi thêm bao lâu nữa mới đến B?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Vì hai xe đi ngược chiều và gặp nhau, nên tổng quãng đường hai xe đi được đến lúc gặp nhau đúng bằng quãng đường AB: tổng vận tốc hai xe = 240 : 3 = 80 (km/giờ).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Đây là dạng toán tổng - hiệu với tổng = 80km/giờ, hiệu = 10km/giờ. Vận tốc xe đi từ A = (80 + 10) : 2 = 45 (km/giờ). Vận tốc xe đi từ B = 80 − 45 = 35 (km/giờ).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Quãng đường xe đi từ A đã đi được đến lúc gặp nhau = vận tốc × thời gian = 45 × 3 = 135 (km).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Quãng đường còn lại từ điểm gặp nhau đến B = 240 − 135 = 105 (km).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>b) Thời gian xe đi từ A cần thêm để đi hết quãng đường còn lại = 105 : 45 = 2,3333... giờ = 2 giờ 20 phút (vì 0,3333... giờ × 60 = 20 phút).</p></div></div>
+          <p class="answer hidden">Đáp số: a) Vận tốc xe đi từ A là 45km/giờ, xe đi từ B là 35km/giờ. b) Ô tô đi từ A cần thêm 2 giờ 20 phút nữa mới đến B.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de2-2" data-qid="Đề 2 · Bài 2">
+        <div class="q"><span class="qid">Đề 2 · Bài 2</span><div class="qtext">
+          <p>Hai kho A và B chứa tổng cộng <b>480 tấn</b> hàng hóa. Người ta chuyển <b>30 tấn</b> hàng từ
+          kho A sang kho B thì lúc này số hàng ở kho B gấp đôi số hàng ở kho A.</p>
+          <p>Hỏi lúc đầu (trước khi chuyển) mỗi kho chứa bao nhiêu tấn hàng?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Khi chuyển hàng từ kho này sang kho kia, tổng số hàng của cả hai kho không thay đổi, vẫn là 480 tấn.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Sau khi chuyển, kho B gấp đôi kho A, tức là tỉ số (kho A sau khi chuyển) : (kho B sau khi chuyển) = 1 : 2. Coi kho A sau khi chuyển là 1 phần thì kho B sau khi chuyển là 2 phần, tổng 3 phần = 480 tấn. Một phần = 480 : 3 = 160 (tấn).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Kho A sau khi chuyển = 160 tấn. Kho B sau khi chuyển = 160 × 2 = 320 (tấn).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Lúc đầu, kho A đã CHO đi 30 tấn nên phải nhiều hơn sau khi chuyển: kho A lúc đầu = 160 + 30 = 190 (tấn). Kho B đã NHẬN thêm 30 tấn nên phải ít hơn sau khi chuyển: kho B lúc đầu = 320 − 30 = 290 (tấn).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Thử lại: 190 + 290 = 480 (đúng tổng ban đầu). Sau khi chuyển: 190 − 30 = 160 (tấn); 290 + 30 = 320 tấn = 2 × 160 (đúng).</p></div></div>
+          <p class="answer hidden">Lúc đầu, kho A có 190 tấn, kho B có 290 tấn hàng hóa.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de2-3" data-qid="Đề 2 · Bài 3">
+        <div class="q"><span class="qid">Đề 2 · Bài 3</span><div class="qtext">
+          <p>Một bể nước dạng hình hộp chữ nhật có chiều dài <b>2m</b>, chiều rộng <b>1,5m</b>, chiều cao
+          <b>1,2m</b>, hiện đang chứa nước cao <b>0,6m</b>. Người ta mở vòi bơm nước vào bể với lưu lượng
+          <b>150 lít/phút</b> (1m³ = 1000 lít).</p>
+          <p>a) Nếu bơm liên tục thì sau bao lâu bể sẽ đầy nước?<br>b) Thực tế, vòi bơm được <b>8 phút</b>
+          thì bị hỏng. Người ta phải dùng xô múc nước đổ thêm vào bể, mỗi xô chứa <b>15 lít</b>, cứ <b>3
+          phút</b> đổ được <b>4 xô</b>. Hỏi cần thêm bao nhiêu phút nữa (kể từ khi vòi hỏng) để bể đầy
+          nước?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Thể tích bể = dài × rộng × cao = 2 × 1,5 × 1,2 = 3,6 (m³) = 3600 lít.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Thể tích nước hiện có = 2 × 1,5 × 0,6 = 1,8 (m³) = 1800 lít. Lượng nước cần bơm thêm để đầy bể = 3600 − 1800 = 1800 (lít).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>a) Nếu bơm liên tục với lưu lượng 150 lít/phút, thời gian để đầy bể = 1800 : 150 = 12 (phút).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Trong 8 phút vòi hoạt động (trước khi hỏng), lượng nước bơm được = 150 × 8 = 1200 (lít). Tổng lượng nước trong bể lúc này = 1800 + 1200 = 3000 (lít).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>b) Lượng nước còn thiếu để đầy bể = 3600 − 3000 = 600 (lít).</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p>b) Mỗi 3 phút đổ được 4 xô, mỗi xô 15 lít, nên lượng nước đổ được mỗi phút = (4 × 15) : 3 = 60 : 3 = 20 (lít/phút). Thời gian cần thêm = 600 : 20 = 30 (phút).</p></div></div>
+          <p class="answer hidden">Đáp số: a) 12 phút. b) Cần thêm 30 phút nữa (kể từ khi vòi hỏng) để bể đầy nước.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ĐỀ 3 ================= -->
+    <section class="topic" id="de3">
+      <div class="topic-head">
+        <span class="topic-badge">🧩</span>
+        <h2 class="topic-title"><span class="topic-num">Đề số 3 · 40 phút · Câu phân loại</span>Dãy số quy luật và suy luận lô-gic</h2>
+      </div>
+      <p class="topic-intro">Đề số 3 là 2 câu khó nhất của cả bộ đề, thường nằm ở vị trí "câu phân loại"
+      cuối đề thi thật: một bài <span class="kw">tính tổng dãy phân số</span> theo kiểu "kính viễn vọng"
+      (các số hạng ở giữa tự triệt tiêu), và một bài <span class="kw">suy luận lô-gic</span> dùng phương
+      pháp giả thiết tạm để tìm số câu đúng - sai trong một bài thi có trừ điểm. Mẹo: với dãy phân số có
+      mẫu số là tích hai số liên tiếp, hãy tách mỗi số hạng thành hiệu của hai phân số đơn; với bài toán
+      trừ điểm, hãy luôn giả sử "làm đúng hết" trước, rồi tính xem mỗi câu sai làm mất bao nhiêu điểm.</p>
+
+      <div class="problem" data-pool="de3-1" data-qid="Đề 3 · Bài 1">
+        <div class="q"><span class="qid">Đề 3 · Bài 1</span><div class="qtext">
+          <p>Cho tổng: <b>A = 1/(1×2) + 1/(2×3) + 1/(3×4) + ... + 1/(24×25)</b> (mẫu số của mỗi phân số là
+          tích hai số tự nhiên liên tiếp, số hạng cuối cùng có mẫu số là 24×25).</p>
+          <p>Tính giá trị của tổng A.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhận xét quy luật: mỗi phân số trong tổng A đều có dạng 1/(n × (n+1)), với n lần lượt là 1, 2, 3, ..., 24.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Với mỗi số tự nhiên n, ta có tính chất: 1/(n × (n+1)) = 1/n − 1/(n+1) (có thể kiểm tra: 1/n − 1/(n+1) = [(n+1) − n] : [n×(n+1)] = 1 : [n×(n+1)], đúng như tính chất).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Áp dụng tính chất trên cho từng số hạng, ta viết lại: A = (1/1 − 1/2) + (1/2 − 1/3) + (1/3 − 1/4) + ... + (1/24 − 1/25).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>Các số hạng ở giữa triệt tiêu lẫn nhau theo từng cặp (−1/2 với +1/2, −1/3 với +1/3, ..., −1/24 với +1/24), chỉ còn lại số hạng đầu tiên và số hạng cuối cùng: A = 1/1 − 1/25.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>Tính: A = 1 − 1/25 = 25/25 − 1/25 = 24/25.</p></div></div>
+          <p class="answer hidden">A = 24/25.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="de3-2" data-qid="Đề 3 · Bài 2">
+        <div class="q"><span class="qid">Đề 3 · Bài 2</span><div class="qtext">
+          <p>Trong một bài thi thử gồm <b>20 câu hỏi trắc nghiệm</b>, mỗi câu trả lời đúng được <b>5
+          điểm</b>, mỗi câu trả lời sai bị trừ <b>2 điểm</b> (đề bài yêu cầu phải trả lời tất cả các câu,
+          không được bỏ trống). Bạn Nam làm hết cả 20 câu và đạt được tổng cộng <b>79 điểm</b>.</p>
+          <p>a) Hỏi bạn Nam làm đúng bao nhiêu câu, làm sai bao nhiêu câu?<br>b) Biết trường quy định: thí
+          sinh đạt từ <b>85 điểm</b> trở lên mới được xếp loại Xuất sắc. Hỏi bạn Nam có đạt loại Xuất sắc
+          không? Vì sao?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Giả sử Nam làm đúng cả 20 câu, khi đó tổng điểm sẽ là 20 × 5 = 100 (điểm).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Thực tế Nam chỉ được 79 điểm, tức là kém so với giả sử là 100 − 79 = 21 (điểm).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>a) Mỗi khi thay 1 câu đúng bằng 1 câu sai, số điểm bị mất đi là 5 − (−2) = 5 + 2 = 7 (điểm) (đáng lẽ được cộng 5 điểm nhưng lại bị trừ 2 điểm).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>a) Vậy số câu Nam làm sai = 21 : 7 = 3 (câu). Số câu Nam làm đúng = 20 − 3 = 17 (câu).</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p>a) Thử lại: 17 × 5 − 3 × 2 = 85 − 6 = 79 (điểm), đúng bằng đề bài.</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p>b) So sánh 79 điểm với mức quy định 85 điểm: vì 79 < 85 nên bạn Nam CHƯA đạt loại Xuất sắc (còn thiếu 85 − 79 = 6 điểm).</p></div></div>
+          <p class="answer hidden">Đáp số: a) Nam làm đúng 17 câu, làm sai 3 câu. b) Nam chưa đạt loại Xuất sắc vì 79 điểm nhỏ hơn 85 điểm (còn thiếu 6 điểm).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="chien-thuat">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Chiến thuật làm bài thi</h2>
+      </div>
+      <p class="topic-intro">5 chiến thuật ngắn gọn giúp con làm bài thi thử hiệu quả hơn — đặc biệt hữu
+      ích với các câu vận dụng cao tổng hợp nhiều dạng kiến thức như trong bộ đề này.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đọc lướt cả đề trước khi làm.</b> Dành 1-2 phút đọc qua toàn bộ đề để phân bổ thời gian hợp
+          lý — làm câu dễ trước, đánh dấu câu khó để quay lại làm sau.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Tách bài toán tổng hợp thành từng phần nhỏ.</b> Với các bài kết hợp nhiều dạng (hình học +
+          tỉ số, chuyển động + tổng - hiệu...), hãy giải quyết từng phần một rồi mới ghép kết quả lại.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Đổi đơn vị trước khi tính.</b> % → phân số/số thập phân, phút → giờ, lít → m³ — đổi xong
+          xuôi rồi mới đặt phép tính, tránh sai đơn vị giữa chừng.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Trình bày đầy đủ từng bước.</b> Dù đề chỉ hỏi đáp số, cách trình bày rõ ràng từng bước giúp
+          không bị mất điểm ở các câu vận dụng cao khi chấm theo thang điểm từng phần.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">5</span>
+          <p><b>Dành 5 phút cuối để soát lại bài.</b> Ưu tiên kiểm tra lại các phép tính ở câu khó và đơn
+          vị của đáp số — đây là lúc dễ phát hiện những lỗi sai đáng tiếc nhất.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 5, luyện thi vào lớp 6. Nội dung lấy cảm hứng về cấu
+    trúc đề thi, tỉ lệ dạng bài và mức độ khó từ các đề thi tuyển sinh vào lớp 6 phổ biến, toàn bộ đề bài,
+    số liệu và lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu tài liệu nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'de1-1': [{
+      qHtml: '<p>Một kho gạo có một số tấn gạo chưa biết. Đợt 1, kho xuất đi <b>35%</b> số gạo. Đợt 2, kho nhập thêm vào một lượng gạo bằng <b>25%</b> số gạo <b>còn lại sau đợt 1</b>. Đợt 3, kho xuất tiếp <b>20%</b> số gạo <b>hiện có sau đợt 2</b>.</p><p>Sau ba đợt, trong kho còn lại <b>52 tấn</b> gạo. Hỏi ban đầu kho có bao nhiêu tấn gạo?</p>',
+      steps: [
+        '<p>Coi số gạo ban đầu là 100%. Sau đợt 1 (xuất 35%), số gạo còn lại bằng 100% − 35% = 65% số gạo ban đầu.</p>',
+        '<p>Sau đợt 2 (nhập thêm 25% của số còn lại sau đợt 1), số gạo hiện có bằng 65% × (100% + 25%) = 65% × 125% = 81,25% số gạo ban đầu.</p>',
+        '<p>Sau đợt 3 (xuất 20% số hiện có), số gạo còn lại bằng 81,25% × (100% − 20%) = 81,25% × 80% = 65% số gạo ban đầu.</p>',
+        '<p>Theo đề bài, 65% số gạo ban đầu chính là 52 tấn. Vậy số gạo ban đầu = 52 : 65 × 100 = 80 (tấn).</p>',
+        '<p>Thử lại: đợt 1 xuất 35% của 80 = 28 tấn, còn 52 tấn. Đợt 2 nhập thêm 25% của 52 = 13 tấn, có 65 tấn. Đợt 3 xuất 20% của 65 = 13 tấn, còn lại 65 − 13 = 52 tấn (đúng bằng đề bài).</p>'
+      ],
+      answerHtml: 'Ban đầu kho có 80 tấn gạo.'
+    }],
+    'de1-2': [{
+      qHtml: '<p>Cho hình thang ABCD (đáy bé AB, đáy lớn CD, AB // CD). Hai đường chéo AC và BD cắt nhau tại điểm O, chia hình thang thành 4 tam giác: AOB, BOC, COD, DOA. Biết diện tích tam giác AOB bằng <b>8cm²</b> và diện tích tam giác COD bằng <b>32cm²</b>.</p><p>Tính diện tích hình thang ABCD.</p>',
+      steps: [
+        '<p>Vì AB // CD nên khoảng cách giữa hai đáy AB và CD không đổi. Hai tam giác ABD và ABC có chung đáy AB và chung chiều cao (khoảng cách giữa AB và CD), nên diện tích bằng nhau: S(ABD) = S(ABC).</p>',
+        '<p>Mà S(ABD) = S(AOB) + S(AOD) và S(ABC) = S(AOB) + S(BOC). Hai tổng này bằng nhau và có chung phần S(AOB), nên S(AOD) = S(BOC). Gọi chung diện tích này là b.</p>',
+        '<p>Hai tam giác AOB và AOD có chung đỉnh A, hai đáy OB và OD cùng nằm trên đường chéo BD, nên tỉ số diện tích bằng tỉ số hai đáy: S(AOB) : S(AOD) = OB : OD.</p>',
+        '<p>Hai tam giác BOC và DOC có chung đỉnh C, hai đáy OB và OD cùng nằm trên đường chéo BD, nên: S(BOC) : S(DOC) = OB : OD.</p>',
+        '<p>Từ bước 3 và bước 4, vì hai tỉ số OB : OD bằng nhau nên: S(AOB) : S(AOD) = S(BOC) : S(DOC), tức là S(AOB) : b = b : S(COD). Suy ra b × b = S(AOB) × S(COD) = 8 × 32 = 256, mà 16 × 16 = 256 nên b = 16 (cm²).</p>',
+        '<p>Diện tích hình thang ABCD = S(AOB) + S(BOC) + S(COD) + S(DOA) = 8 + 16 + 32 + 16 = 72 (cm²).</p>'
+      ],
+      answerHtml: 'Diện tích hình thang ABCD là 72cm².'
+    }],
+    'de1-3': [{
+      qHtml: '<p>Tổng số tuổi của hai anh em hiện nay là <b>63 tuổi</b>. Biết rằng tuổi anh hiện nay đúng bằng <b>2 lần</b> tuổi em vào đúng lúc tuổi anh bằng tuổi em hiện nay (tức là tại thời điểm trong quá khứ khi anh có số tuổi đúng bằng số tuổi của em bây giờ).</p><p>Tính tuổi hiện nay của mỗi người.</p>',
+      steps: [
+        '<p>Hiệu số tuổi giữa hai anh em không đổi theo thời gian. Gọi hiệu đó là d = (tuổi anh hiện nay) − (tuổi em hiện nay).</p>',
+        '<p>Vào đúng d năm trước, tuổi anh lúc đó = (tuổi anh hiện nay) − d = tuổi em hiện nay — đây chính là "lúc tuổi anh bằng tuổi em hiện nay". Khi đó tuổi em là (tuổi em hiện nay) − d.</p>',
+        '<p>Theo đề bài: tuổi anh hiện nay = 2 × [(tuổi em hiện nay) − d].</p>',
+        '<p>Thử với các phần bằng nhau: coi tuổi em hiện nay là 3 phần, hiệu d là 1 phần, tuổi anh hiện nay là 4 phần. Kiểm tra: (3 phần − 1 phần) × 2 = 2 phần × 2 = 4 phần, đúng bằng tuổi anh (4 phần). Vậy tỉ số tuổi anh : tuổi em hiện nay = 4 : 3.</p>',
+        '<p>Áp dụng dạng toán tổng - tỉ: tổng số phần bằng nhau = 4 + 3 = 7 phần, ứng với 63 tuổi. Một phần = 63 : 7 = 9 (tuổi). Tuổi anh = 9 × 4 = 36 (tuổi). Tuổi em = 9 × 3 = 27 (tuổi).</p>',
+        '<p>Thử lại: 36 + 27 = 63 (đúng). Hiệu d = 36 − 27 = 9; 9 năm trước anh 27 tuổi (đúng bằng tuổi em hiện nay), khi đó em 27 − 9 = 18 tuổi, và 36 = 2 × 18 (đúng).</p>'
+      ],
+      answerHtml: 'Tuổi anh hiện nay là 36 tuổi, tuổi em hiện nay là 27 tuổi.'
+    }],
+    'de2-1': [{
+      qHtml: '<p>Hai ô tô khởi hành cùng một lúc từ hai địa điểm A và B cách nhau <b>300km</b>, đi ngược chiều nhau và gặp nhau sau <b>4 giờ</b>. Biết vận tốc ô tô đi từ A lớn hơn vận tốc ô tô đi từ B là <b>5km/giờ</b>.</p><p>a) Tính vận tốc mỗi ô tô.<br>b) Sau khi gặp nhau, hai xe vẫn tiếp tục đi với vận tốc như cũ theo hướng ban đầu. Hỏi ô tô đi từ A phải đi thêm bao lâu nữa mới đến B?</p>',
+      steps: [
+        '<p>a) Vì hai xe đi ngược chiều và gặp nhau, nên tổng quãng đường hai xe đi được đến lúc gặp nhau đúng bằng quãng đường AB: tổng vận tốc hai xe = 300 : 4 = 75 (km/giờ).</p>',
+        '<p>a) Đây là dạng toán tổng - hiệu với tổng = 75km/giờ, hiệu = 5km/giờ. Vận tốc xe đi từ A = (75 + 5) : 2 = 40 (km/giờ). Vận tốc xe đi từ B = 75 − 40 = 35 (km/giờ).</p>',
+        '<p>b) Quãng đường xe đi từ A đã đi được đến lúc gặp nhau = vận tốc × thời gian = 40 × 4 = 160 (km).</p>',
+        '<p>b) Quãng đường còn lại từ điểm gặp nhau đến B = 300 − 160 = 140 (km).</p>',
+        '<p>b) Thời gian xe đi từ A cần thêm để đi hết quãng đường còn lại = 140 : 40 = 3,5 giờ = 3 giờ 30 phút.</p>'
+      ],
+      answerHtml: 'Đáp số: a) Vận tốc xe đi từ A là 40km/giờ, xe đi từ B là 35km/giờ. b) Ô tô đi từ A cần thêm 3 giờ 30 phút nữa mới đến B.'
+    }],
+    'de2-2': [{
+      qHtml: '<p>Hai kho A và B chứa tổng cộng <b>600 tấn</b> hàng hóa. Người ta chuyển <b>40 tấn</b> hàng từ kho A sang kho B thì lúc này số hàng ở kho B gấp đôi số hàng ở kho A.</p><p>Hỏi lúc đầu (trước khi chuyển) mỗi kho chứa bao nhiêu tấn hàng?</p>',
+      steps: [
+        '<p>Khi chuyển hàng từ kho này sang kho kia, tổng số hàng của cả hai kho không thay đổi, vẫn là 600 tấn.</p>',
+        '<p>Sau khi chuyển, kho B gấp đôi kho A, tức là tỉ số (kho A sau khi chuyển) : (kho B sau khi chuyển) = 1 : 2. Coi kho A sau khi chuyển là 1 phần thì kho B sau khi chuyển là 2 phần, tổng 3 phần = 600 tấn. Một phần = 600 : 3 = 200 (tấn).</p>',
+        '<p>Kho A sau khi chuyển = 200 tấn. Kho B sau khi chuyển = 200 × 2 = 400 (tấn).</p>',
+        '<p>Lúc đầu, kho A đã CHO đi 40 tấn nên phải nhiều hơn sau khi chuyển: kho A lúc đầu = 200 + 40 = 240 (tấn). Kho B đã NHẬN thêm 40 tấn nên phải ít hơn sau khi chuyển: kho B lúc đầu = 400 − 40 = 360 (tấn).</p>',
+        '<p>Thử lại: 240 + 360 = 600 (đúng tổng ban đầu). Sau khi chuyển: 240 − 40 = 200 (tấn); 360 + 40 = 400 tấn = 2 × 200 (đúng).</p>'
+      ],
+      answerHtml: 'Lúc đầu, kho A có 240 tấn, kho B có 360 tấn hàng hóa.'
+    }],
+    'de2-3': [{
+      qHtml: '<p>Một bể nước dạng hình hộp chữ nhật có chiều dài <b>2,5m</b>, chiều rộng <b>1,2m</b>, chiều cao <b>1m</b>, hiện đang chứa nước cao <b>0,4m</b>. Người ta mở vòi bơm nước vào bể với lưu lượng <b>100 lít/phút</b> (1m³ = 1000 lít).</p><p>a) Nếu bơm liên tục thì sau bao lâu bể sẽ đầy nước?<br>b) Thực tế, vòi bơm được <b>6 phút</b> thì bị hỏng. Người ta phải dùng xô múc nước đổ thêm vào bể, mỗi xô chứa <b>10 lít</b>, cứ <b>2 phút</b> đổ được <b>5 xô</b>. Hỏi cần thêm bao nhiêu phút nữa (kể từ khi vòi hỏng) để bể đầy nước?</p>',
+      steps: [
+        '<p>a) Thể tích bể = dài × rộng × cao = 2,5 × 1,2 × 1 = 3 (m³) = 3000 lít.</p>',
+        '<p>a) Thể tích nước hiện có = 2,5 × 1,2 × 0,4 = 1,2 (m³) = 1200 lít. Lượng nước cần bơm thêm để đầy bể = 3000 − 1200 = 1800 (lít).</p>',
+        '<p>a) Nếu bơm liên tục với lưu lượng 100 lít/phút, thời gian để đầy bể = 1800 : 100 = 18 (phút).</p>',
+        '<p>b) Trong 6 phút vòi hoạt động (trước khi hỏng), lượng nước bơm được = 100 × 6 = 600 (lít). Tổng lượng nước trong bể lúc này = 1200 + 600 = 1800 (lít).</p>',
+        '<p>b) Lượng nước còn thiếu để đầy bể = 3000 − 1800 = 1200 (lít).</p>',
+        '<p>b) Mỗi 2 phút đổ được 5 xô, mỗi xô 10 lít, nên lượng nước đổ được mỗi phút = (5 × 10) : 2 = 50 : 2 = 25 (lít/phút). Thời gian cần thêm = 1200 : 25 = 48 (phút).</p>'
+      ],
+      answerHtml: 'Đáp số: a) 18 phút. b) Cần thêm 48 phút nữa (kể từ khi vòi hỏng) để bể đầy nước.'
+    }],
+    'de3-1': [{
+      qHtml: '<p>Cho tổng: <b>A = 1/(1×2) + 1/(2×3) + 1/(3×4) + ... + 1/(29×30)</b> (mẫu số của mỗi phân số là tích hai số tự nhiên liên tiếp, số hạng cuối cùng có mẫu số là 29×30).</p><p>Tính giá trị của tổng A.</p>',
+      steps: [
+        '<p>Nhận xét quy luật: mỗi phân số trong tổng A đều có dạng 1/(n × (n+1)), với n lần lượt là 1, 2, 3, ..., 29.</p>',
+        '<p>Với mỗi số tự nhiên n, ta có tính chất: 1/(n × (n+1)) = 1/n − 1/(n+1) (có thể kiểm tra: 1/n − 1/(n+1) = [(n+1) − n] : [n×(n+1)] = 1 : [n×(n+1)], đúng như tính chất).</p>',
+        '<p>Áp dụng tính chất trên cho từng số hạng, ta viết lại: A = (1/1 − 1/2) + (1/2 − 1/3) + (1/3 − 1/4) + ... + (1/29 − 1/30).</p>',
+        '<p>Các số hạng ở giữa triệt tiêu lẫn nhau theo từng cặp (−1/2 với +1/2, −1/3 với +1/3, ..., −1/29 với +1/29), chỉ còn lại số hạng đầu tiên và số hạng cuối cùng: A = 1/1 − 1/30.</p>',
+        '<p>Tính: A = 1 − 1/30 = 30/30 − 1/30 = 29/30.</p>'
+      ],
+      answerHtml: 'A = 29/30.'
+    }],
+    'de3-2': [{
+      qHtml: '<p>Trong một bài thi thử gồm <b>25 câu hỏi trắc nghiệm</b>, mỗi câu trả lời đúng được <b>5 điểm</b>, mỗi câu trả lời sai bị trừ <b>2 điểm</b> (đề bài yêu cầu phải trả lời tất cả các câu, không được bỏ trống). Bạn Lan làm hết cả 25 câu và đạt được tổng cộng <b>90 điểm</b>.</p><p>a) Hỏi bạn Lan làm đúng bao nhiêu câu, làm sai bao nhiêu câu?<br>b) Biết trường quy định: thí sinh đạt từ <b>95 điểm</b> trở lên mới được xếp loại Xuất sắc. Hỏi bạn Lan có đạt loại Xuất sắc không? Vì sao?</p>',
+      steps: [
+        '<p>a) Giả sử Lan làm đúng cả 25 câu, khi đó tổng điểm sẽ là 25 × 5 = 125 (điểm).</p>',
+        '<p>a) Thực tế Lan chỉ được 90 điểm, tức là kém so với giả sử là 125 − 90 = 35 (điểm).</p>',
+        '<p>a) Mỗi khi thay 1 câu đúng bằng 1 câu sai, số điểm bị mất đi là 5 − (−2) = 5 + 2 = 7 (điểm) (đáng lẽ được cộng 5 điểm nhưng lại bị trừ 2 điểm).</p>',
+        '<p>a) Vậy số câu Lan làm sai = 35 : 7 = 5 (câu). Số câu Lan làm đúng = 25 − 5 = 20 (câu).</p>',
+        '<p>a) Thử lại: 20 × 5 − 5 × 2 = 100 − 10 = 90 (điểm), đúng bằng đề bài.</p>',
+        '<p>b) So sánh 90 điểm với mức quy định 95 điểm: vì 90 < 95 nên bạn Lan CHƯA đạt loại Xuất sắc (còn thiếu 95 − 90 = 5 điểm).</p>'
+      ],
+      answerHtml: 'Đáp số: a) Lan làm đúng 20 câu, làm sai 5 câu. b) Lan chưa đạt loại Xuất sắc vì 90 điểm nhỏ hơn 95 điểm (còn thiếu 5 điểm).'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

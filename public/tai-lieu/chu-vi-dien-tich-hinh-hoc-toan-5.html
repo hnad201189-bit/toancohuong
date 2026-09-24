@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chu Vi – Diện Tích – Hình Học Toán 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f2f6fb;
+    --bg-alt: #e3edf8;
+    --paper: #ffffff;
+    --ink: #0f2438;
+    --ink-soft: #3e5872;
+    --ink-faint: #7c93a8;
+    --accent: #0369a1;
+    --accent-soft: #dceefc;
+    --accent-warm: #be123c;
+    --accent-warm-soft: #fbdde5;
+    --line: #d6e3f0;
+    --line-strong: #b3cbe2;
+    --shadow: 0 1px 2px rgba(10, 30, 50, 0.07), 0 8px 22px rgba(10, 30, 50, 0.09);
+    --radius: 18px;
+    --sans: "Outfit", "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #081522;
+    --bg-alt: #0c1e2e;
+    --paper: #0f2436;
+    --ink: #e7f1fa;
+    --ink-soft: #a9c2d6;
+    --ink-faint: #6c8aa3;
+    --accent: #38bdf8;
+    --accent-soft: #103048;
+    --accent-warm: #fb7185;
+    --accent-warm-soft: #3a1420;
+    --line: #163449;
+    --line-strong: #204a66;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #081522;
+      --bg-alt: #0c1e2e;
+      --paper: #0f2436;
+      --ink: #e7f1fa;
+      --ink-soft: #a9c2d6;
+      --ink-faint: #6c8aa3;
+      --accent: #38bdf8;
+      --accent-soft: #103048;
+      --accent-warm: #fb7185;
+      --accent-warm-soft: #3a1420;
+      --line: #163449;
+      --line-strong: #204a66;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  .doc-head { max-width: 780px; margin: 0 0 20px; }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(27px, 4.2vw, 39px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede { color: var(--ink-soft); max-width: 66ch; font-size: 17.5px; margin: 0; }
+
+  .stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 34px; }
+  .stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--line-strong);
+  }
+  .stat-chip.warm { background: var(--accent-warm-soft); color: var(--accent-warm); }
+  .stat-chip b { font-weight: 800; }
+
+  section.topic { padding-top: 54px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title { font-weight: 800; font-size: clamp(21px, 2.4vw, 26px); margin: 0; text-wrap: balance; color: var(--ink); }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 14px 0 22px; }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout.formula { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  .callout.formula .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+  .formula-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .formula-list li {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    font-family: var(--mono);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .formula-list li span.note { display: block; font-family: var(--sans); font-weight: 500; font-size: 13px; color: var(--ink-faint); margin-top: 3px; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q { padding: 22px 26px; display: flex; gap: 14px; align-items: baseline; border-bottom: 1px solid var(--line); }
+  .problem .qid { font-family: var(--mono); font-size: 13.5px; color: var(--accent); white-space: nowrap; padding-top: 1px; font-weight: 700; }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .geo-figure { display: flex; justify-content: center; padding: 14px 0 8px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 26px; background: var(--bg-alt); border-bottom: 1px solid var(--line); }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 20px 26px 24px; background: var(--paper); font-size: 15.5px; }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step { display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 4px 12px; margin-bottom: 13px; }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-strong); font-weight: 700; color: var(--accent-warm); }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 22px 0; }
+  .method-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 17px 19px; background: var(--paper); }
+  .method-card .mnum { color: var(--accent); font-weight: 800; font-size: 20px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .method-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+  .method-card .fx { display: block; font-family: var(--mono); font-weight: 700; color: var(--ink); background: var(--bg-alt); border-radius: 8px; padding: 7px 10px; margin: 6px 0; font-size: 13.5px; }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">5 chủ đề hình học</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔺</span>Diện tích tam giác</a></li>
+      <li><a href="#sec2"><span class="n">⏢</span>Diện tích hình thang</a></li>
+      <li><a href="#sec3"><span class="n">⭕</span>Chu vi, diện tích hình tròn</a></li>
+      <li><a href="#sec4"><span class="n">📦</span>Hình hộp chữ nhật</a></li>
+      <li><a href="#sec5"><span class="n">🧊</span>Hình lập phương</a></li>
+      <li><a href="#bang-cong-thuc"><span class="n">🧭</span>Bảng công thức</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">📐 Ôn luyện hình học · Toán lớp 5</div>
+      <h1>Chu Vi – Diện Tích – Hình Học Toán 5</h1>
+      <p class="lede">Cuốn ôn luyện tập trung vào mảng <b>Hình học</b> trọng tâm của Toán lớp 5: diện tích <b>tam giác</b>, diện tích <b>hình thang</b>, chu vi &amp; diện tích <b>hình tròn</b> (với π ≈ 3,14), và hai hình khối không gian đầu tiên các em được học — diện tích xung quanh, diện tích toàn phần &amp; thể tích của <b>hình hộp chữ nhật</b> và <b>hình lập phương</b>. Mỗi mục đều mở đầu bằng phần "Ghi nhớ công thức" để con ôn lại trước khi luyện tập.</p>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-chip">📐 <b>8</b> bài gốc</span>
+      <span class="stat-chip">🔄 <b>8</b> biến thể</span>
+      <span class="stat-chip warm">🎯 <b>16</b> lượt luyện</span>
+      <span class="stat-chip">🔷 5 chủ đề hình</span>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Chu Vi – Diện Tích – Hình Học Toán 5</b> là tài liệu ôn tập do đội ngũ tự biên soạn mới hoàn toàn — toàn bộ đề bài, số liệu, hình vẽ và lời giải trong bài đều là nội dung gốc, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào. Mỗi bài có nút <b>"🔄 Đổi bài tương tự"</b> để luyện lại đúng dạng với số liệu khác — hãy đọc kỹ phần <b>"Ghi nhớ công thức"</b> đầu mỗi chủ đề, tự làm trước, rồi mới bấm <b>"💡 Gợi ý"</b> hoặc <b>"👁 Xem đáp số"</b> để kiểm tra nhé!</p>
+    </div>
+
+    <!-- ================= SECTION 1: TAM GIÁC ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🔺</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 1</span>Diện tích tam giác</h2>
+      </div>
+      <p class="topic-intro"><span class="kw">Chiều cao</span> của tam giác là đoạn thẳng hạ từ một đỉnh, vuông góc xuống cạnh đáy đối diện (hoặc đường kéo dài của cạnh đáy đó) — trên hình được vẽ bằng nét đứt, có kí hiệu góc vuông tại chân đường cao.</p>
+      <div class="callout formula" style="max-width:780px;">
+        <div class="label">📐 Công thức cần nhớ</div>
+        <ul class="formula-list">
+          <li>Diện tích tam giác = đáy × chiều cao : 2<span class="note">Đáy và chiều cao phải cùng một đơn vị đo.</span></li>
+          <li>Suy ra: chiều cao = diện tích × 2 : đáy &nbsp;|&nbsp; đáy = diện tích × 2 : chiều cao</li>
+        </ul>
+      </div>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Bác Bình có một mảnh vườn hình tam giác, độ dài đáy <b>18m</b>, chiều cao <b>12m</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157">
+            <polygon points="110,20 20,120 200,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="110" y1="20" x2="110" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="100" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/>
+            <text x="110" y="140" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy = 18m</text>
+            <text x="152" y="65" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều cao</text>
+            <text x="152" y="80" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">= 12m</text>
+          </svg></div>
+          <p>Tính diện tích mảnh vườn của bác Bình.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: diện tích tam giác = đáy × chiều cao : 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số: 18 × 12 : 2.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 18 × 12 = 216; 216 : 2 = 108.</p></div></div>
+          <p class="answer hidden">Diện tích mảnh vườn của bác Bình là <b>108m²</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Một tấm bìa hình tam giác có diện tích <b>96cm²</b>, độ dài đáy <b>12cm</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157">
+            <polygon points="110,20 20,120 200,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="110" y1="20" x2="110" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="100" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/>
+            <text x="110" y="140" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy = 12cm</text>
+            <text x="152" y="65" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều cao</text>
+            <text x="152" y="80" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">= ?</text>
+            <text x="110" y="98" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle">S = 96cm²</text>
+          </svg></div>
+          <p>Tính chiều cao của tấm bìa đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Từ công thức diện tích tam giác = đáy × chiều cao : 2, suy ra: chiều cao = diện tích × 2 : đáy.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số: chiều cao = 96 × 2 : 12.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 96 × 2 = 192; 192 : 12 = 16.</p></div></div>
+          <p class="answer hidden">Chiều cao của tấm bìa đó là <b>16cm</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: HÌNH THANG ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">⏢</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 2</span>Diện tích hình thang</h2>
+      </div>
+      <p class="topic-intro">Hình thang có một cặp cạnh đối diện song song, gọi là <span class="kw">đáy lớn</span> và <span class="kw">đáy bé</span> (được đánh dấu song song bằng mũi tên nhỏ trên hình). <span class="kw">Chiều cao</span> là đoạn thẳng vuông góc giữa hai đáy đó.</p>
+      <div class="callout formula" style="max-width:780px;">
+        <div class="label">📐 Công thức cần nhớ</div>
+        <ul class="formula-list">
+          <li>Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2</li>
+          <li>Suy ra: (đáy lớn + đáy bé) = diện tích × 2 : chiều cao</li>
+        </ul>
+      </div>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Thửa ruộng nhà bác Sáu hình thang có đáy lớn <b>32m</b>, đáy bé <b>20m</b>, chiều cao <b>14m</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157">
+            <polygon points="70,30 150,30 190,120 30,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="70" y1="30" x2="70" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="60" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/>
+            <path d="M100,26 L108,30 L100,34" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M100,116 L108,120 L100,124" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/>
+            <text x="110" y="17" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy bé = 20m</text>
+            <text x="110" y="139" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy lớn = 32m</text>
+            <text x="35" y="70" font-size="12" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều</text>
+            <text x="35" y="83" font-size="12" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">cao = 14m</text>
+          </svg></div>
+          <p>Tính diện tích thửa ruộng nhà bác Sáu.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số: (32 + 20) × 14 : 2.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 32 + 20 = 52; 52 × 14 = 728; 728 : 2 = 364.</p></div></div>
+          <p class="answer hidden">Diện tích thửa ruộng nhà bác Sáu là <b>364m²</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Một mảnh vườn hình thang có diện tích <b>270m²</b>, đáy lớn <b>24m</b>, chiều cao <b>15m</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157">
+            <polygon points="70,30 150,30 190,120 30,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="70" y1="30" x2="70" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="60" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/>
+            <path d="M100,26 L108,30 L100,34" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M100,116 L108,120 L100,124" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/>
+            <text x="110" y="17" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy bé = ?</text>
+            <text x="110" y="139" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy lớn = 24m</text>
+            <text x="35" y="70" font-size="12" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều</text>
+            <text x="35" y="83" font-size="12" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">cao = 15m</text>
+            <text x="125" y="75" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle">S = 270m²</text>
+          </svg></div>
+          <p>Tính độ dài đáy bé của mảnh vườn đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Từ công thức diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2, suy ra: (đáy lớn + đáy bé) = diện tích × 2 : chiều cao. Sau đó: đáy bé = tổng hai đáy − đáy lớn.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính tổng hai đáy: 270 × 2 : 15 = 540 : 15 = 36 (m).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính đáy bé: 36 − 24 = 12 (m).</p></div></div>
+          <p class="answer hidden">Đáy bé của mảnh vườn đó dài <b>12m</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: HÌNH TRÒN ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">⭕</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 3</span>Chu vi, diện tích hình tròn</h2>
+      </div>
+      <p class="topic-intro">Trong mọi bài về hình tròn, ta luôn lấy <span class="kw">π ≈ 3,14</span>. <span class="kw">Đường kính</span> luôn gấp đôi <span class="kw">bán kính</span> (d = r × 2) — cần đổi trước khi tính chu vi.</p>
+      <div class="callout formula" style="max-width:780px;">
+        <div class="label">📐 Công thức cần nhớ</div>
+        <ul class="formula-list">
+          <li>Chu vi hình tròn C = đường kính × 3,14 = (bán kính × 2) × 3,14</li>
+          <li>Diện tích hình tròn S = bán kính × bán kính × 3,14</li>
+        </ul>
+      </div>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Một bồn hoa hình tròn có bán kính <b>9m</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 200 160" width="200" height="160">
+            <circle cx="100" cy="90" r="60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <line x1="100" y1="90" x2="160" y2="90" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <circle cx="100" cy="90" r="3" fill="var(--ink)"/>
+            <text x="130" y="82" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">r = 9m</text>
+          </svg></div>
+          <p>Tính chu vi bồn hoa đó (lấy π ≈ 3,14).</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: đường kính = bán kính × 2; chu vi hình tròn = đường kính × 3,14.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính đường kính: d = 9 × 2 = 18 (m).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính chu vi: C = 18 × 3,14 = 56,52 (m).</p></div></div>
+          <p class="answer hidden">Chu vi bồn hoa đó là <b>56,52m</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Một mặt bàn hình tròn có bán kính <b>12dm</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 200 160" width="200" height="160">
+            <circle cx="100" cy="90" r="60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/>
+            <line x1="100" y1="90" x2="160" y2="90" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <circle cx="100" cy="90" r="3" fill="var(--ink)"/>
+            <text x="130" y="82" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">r = 12dm</text>
+          </svg></div>
+          <p>Tính diện tích mặt bàn đó (lấy π ≈ 3,14).</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: diện tích hình tròn = bán kính × bán kính × 3,14.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số: 12 × 12 × 3,14.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 12 × 12 = 144; 144 × 3,14 = 452,16.</p></div></div>
+          <p class="answer hidden">Diện tích mặt bàn đó là <b>452,16dm²</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4: HÌNH HỘP CHỮ NHẬT ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">📦</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 4</span>Hình hộp chữ nhật</h2>
+      </div>
+      <p class="topic-intro">Hình hộp chữ nhật có ba kích thước: <span class="kw">chiều dài</span>, <span class="kw">chiều rộng</span>, <span class="kw">chiều cao</span>. <span class="kw">Diện tích xung quanh</span> (Sxq) là tổng diện tích 4 mặt bên; <span class="kw">diện tích toàn phần</span> (Stp) gồm cả 2 mặt đáy.</p>
+      <div class="callout formula" style="max-width:780px;">
+        <div class="label">📐 Công thức cần nhớ</div>
+        <ul class="formula-list">
+          <li>Sxq = chu vi mặt đáy × chiều cao = (dài + rộng) × 2 × cao</li>
+          <li>Stp = Sxq + diện tích 2 mặt đáy = Sxq + (dài × rộng) × 2</li>
+          <li>Thể tích V = dài × rộng × cao</li>
+        </ul>
+      </div>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Một chiếc hộp các-tông hình hộp chữ nhật có chiều dài <b>15dm</b>, chiều rộng <b>8dm</b>, chiều cao <b>6dm</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157">
+            <polygon points="55,120 145,120 145,50 55,50" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <polygon points="55,50 145,50 185,20 95,20" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <polygon points="145,120 145,50 185,20 185,90" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <text x="165" y="35" font-size="12" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">dài=15dm</text>
+            <text x="100" y="136" font-size="12" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">rộng=8dm</text>
+            <text x="30" y="82" font-size="12" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">cao</text>
+            <text x="30" y="96" font-size="12" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">=6dm</text>
+          </svg></div>
+          <p>Tính: a) Diện tích xung quanh; &nbsp;b) Diện tích toàn phần; &nbsp;c) Thể tích của chiếc hộp đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt:</b> dài = 15dm, rộng = 8dm, cao = 6dm.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>a) Diện tích xung quanh:</b> chu vi mặt đáy = (15 + 8) × 2 = 46 (dm). Sxq = 46 × 6 = 276 (dm²).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>b) Diện tích toàn phần:</b> diện tích 2 mặt đáy = 15 × 8 × 2 = 240 (dm²). Stp = 276 + 240 = 516 (dm²).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>c) Thể tích:</b> V = 15 × 8 × 6 = 720 (dm³).</p></div></div>
+          <p class="answer hidden">Đáp số: Sxq = <b>276dm²</b>; Stp = <b>516dm²</b>; V = <b>720dm³</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 5: HÌNH LẬP PHƯƠNG ================= -->
+    <section class="topic" id="sec5">
+      <div class="topic-head">
+        <span class="topic-badge">🧊</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 5</span>Hình lập phương</h2>
+      </div>
+      <p class="topic-intro">Hình lập phương là trường hợp đặc biệt của hình hộp chữ nhật khi <span class="kw">3 kích thước bằng nhau</span>, đều gọi là <span class="kw">cạnh</span>. Vì các cạnh bằng nhau nên công thức trở nên đơn giản hơn nhiều so với hình hộp chữ nhật.</p>
+      <div class="callout formula" style="max-width:780px;">
+        <div class="label">📐 Công thức cần nhớ</div>
+        <ul class="formula-list">
+          <li>Sxq = cạnh × cạnh × 4</li>
+          <li>Stp = cạnh × cạnh × 6</li>
+          <li>Thể tích V = cạnh × cạnh × cạnh</li>
+        </ul>
+      </div>
+
+      <div class="problem" data-pool="sec5-1" data-qid="Bài 5.1">
+        <div class="q"><span class="qid">Bài 5.1</span><div class="qtext">
+          <p>Một khối gỗ hình lập phương có cạnh dài <b>9cm</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157">
+            <polygon points="55,120 125,120 125,50 55,50" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <polygon points="55,50 125,50 160,25 90,25" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <polygon points="125,120 125,50 160,25 160,95" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <text x="90" y="136" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">cạnh = 9cm</text>
+          </svg></div>
+          <p>Tính: a) Diện tích xung quanh; &nbsp;b) Diện tích toàn phần; &nbsp;c) Thể tích của khối gỗ đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt:</b> cạnh a = 9cm.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>a) Diện tích xung quanh:</b> Sxq = cạnh × cạnh × 4 = 9 × 9 × 4. Tính: 9 × 9 = 81; 81 × 4 = 324 (cm²).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>b) Diện tích toàn phần:</b> Stp = cạnh × cạnh × 6 = 81 × 6 = 486 (cm²).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>c) Thể tích:</b> V = cạnh × cạnh × cạnh = 81 × 9 = 729 (cm³).</p></div></div>
+          <p class="answer hidden">Đáp số: Sxq = <b>324cm²</b>; Stp = <b>486cm²</b>; V = <b>729cm³</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC: BẢNG CÔNG THỨC ================= -->
+    <section class="topic appendix" id="bang-cong-thuc">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Bảng công thức hình học lớp 5 — nhớ nhanh</h2>
+      </div>
+      <p class="topic-intro">Tổng hợp lại toàn bộ 5 công thức đã học trong tài liệu này, để con tra cứu nhanh khi làm bài.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">🔺 Tam giác</span>
+          <span class="fx">S = đáy × cao : 2</span>
+          <p>Chiều cao vuông góc với đáy, hạ từ đỉnh đối diện.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">⏢ Hình thang</span>
+          <span class="fx">S = (đáy lớn + đáy bé) × cao : 2</span>
+          <p>Chiều cao vuông góc với cả hai đáy song song.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">⭕ Hình tròn</span>
+          <span class="fx">C = d × 3,14 &nbsp;·&nbsp; S = r × r × 3,14</span>
+          <p>d = r × 2. Luôn lấy π ≈ 3,14.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">📦 Hộp chữ nhật</span>
+          <span class="fx">Sxq=(d+r)×2×c &nbsp;Stp=Sxq+2dr &nbsp;V=d×r×c</span>
+          <p>d = dài, r = rộng, c = cao.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">🧊 Lập phương</span>
+          <span class="fx">Sxq=a×a×4 &nbsp;Stp=a×a×6 &nbsp;V=a×a×a</span>
+          <p>a = độ dài 1 cạnh (3 kích thước bằng nhau).</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 5, chủ đề Chu Vi – Diện Tích – Hình Học. Toàn bộ đề bài, số liệu, hình vẽ và lời giải trong tài liệu này là nội dung tự soạn mới, bám sát mảng hình học của chương trình lớp 5 (diện tích tam giác, hình thang, chu vi — diện tích hình tròn, hình hộp chữ nhật, hình lập phương), không sao chép từ bất kỳ nguồn nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'sec1-1': [{
+      qHtml: '<p>Cô Lan có một mảnh vườn hình tam giác, độ dài đáy <b>24m</b>, chiều cao <b>15m</b>.</p><div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157"><polygon points="110,20 20,120 200,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><line x1="110" y1="20" x2="110" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><rect x="100" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/><text x="110" y="140" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy = 24m</text><text x="152" y="65" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều cao</text><text x="152" y="80" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">= 15m</text></svg></div><p>Tính diện tích mảnh vườn của cô Lan.</p>',
+      steps: [
+        '<p>Nhớ lại công thức: diện tích tam giác = đáy × chiều cao : 2.</p>',
+        '<p>Thay số: 24 × 15 : 2.</p>',
+        '<p>Tính: 24 × 15 = 360; 360 : 2 = 180.</p>'
+      ],
+      answerHtml: 'Diện tích mảnh vườn của cô Lan là <b>180m²</b>.'
+    }],
+    'sec1-2': [{
+      qHtml: '<p>Một tấm bìa hình tam giác khác có diện tích <b>175cm²</b>, độ dài đáy <b>14cm</b>.</p><div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157"><polygon points="110,20 20,120 200,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><line x1="110" y1="20" x2="110" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><rect x="100" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/><text x="110" y="140" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy = 14cm</text><text x="152" y="65" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều cao</text><text x="152" y="80" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">= ?</text><text x="110" y="98" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle">S = 175cm²</text></svg></div><p>Tính chiều cao của tấm bìa đó.</p>',
+      steps: [
+        '<p>Từ công thức diện tích tam giác = đáy × chiều cao : 2, suy ra: chiều cao = diện tích × 2 : đáy.</p>',
+        '<p>Thay số: chiều cao = 175 × 2 : 14.</p>',
+        '<p>Tính: 175 × 2 = 350; 350 : 14 = 25.</p>'
+      ],
+      answerHtml: 'Chiều cao của tấm bìa đó là <b>25cm</b>.'
+    }],
+    'sec2-1': [{
+      qHtml: '<p>Thửa ruộng nhà bác Tám hình thang có đáy lớn <b>28m</b>, đáy bé <b>18m</b>, chiều cao <b>16m</b>.</p><div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157"><polygon points="70,30 150,30 190,120 30,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><line x1="70" y1="30" x2="70" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><rect x="60" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/><path d="M100,26 L108,30 L100,34" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/><path d="M100,116 L108,120 L100,124" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/><text x="110" y="17" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy bé = 18m</text><text x="110" y="139" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy lớn = 28m</text><text x="35" y="70" font-size="12" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều</text><text x="35" y="83" font-size="12" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">cao = 16m</text></svg></div><p>Tính diện tích thửa ruộng nhà bác Tám.</p>',
+      steps: [
+        '<p>Nhớ lại công thức: diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2.</p>',
+        '<p>Thay số: (28 + 18) × 16 : 2.</p>',
+        '<p>Tính: 28 + 18 = 46; 46 × 16 = 736; 736 : 2 = 368.</p>'
+      ],
+      answerHtml: 'Diện tích thửa ruộng nhà bác Tám là <b>368m²</b>.'
+    }],
+    'sec2-2': [{
+      qHtml: '<p>Một mảnh vườn hình thang khác có diện tích <b>350m²</b>, đáy lớn <b>30m</b>, chiều cao <b>14m</b>.</p><div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157"><polygon points="70,30 150,30 190,120 30,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><line x1="70" y1="30" x2="70" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><rect x="60" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/><path d="M100,26 L108,30 L100,34" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/><path d="M100,116 L108,120 L100,124" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/><text x="110" y="17" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy bé = ?</text><text x="110" y="139" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy lớn = 30m</text><text x="35" y="70" font-size="12" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều</text><text x="35" y="83" font-size="12" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">cao = 14m</text><text x="125" y="75" font-size="12.5" font-weight="700" fill="var(--ink)" text-anchor="middle">S = 350m²</text></svg></div><p>Tính độ dài đáy bé của mảnh vườn đó.</p>',
+      steps: [
+        '<p>Từ công thức diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2, suy ra: (đáy lớn + đáy bé) = diện tích × 2 : chiều cao. Sau đó: đáy bé = tổng hai đáy − đáy lớn.</p>',
+        '<p>Tính tổng hai đáy: 350 × 2 : 14 = 700 : 14 = 50 (m).</p>',
+        '<p>Tính đáy bé: 50 − 30 = 20 (m).</p>'
+      ],
+      answerHtml: 'Đáy bé của mảnh vườn đó dài <b>20m</b>.'
+    }],
+    'sec3-1': [{
+      qHtml: '<p>Một cái giếng hình tròn có bán kính <b>7m</b>.</p><div class="geo-figure"><svg viewBox="0 0 200 160" width="200" height="160"><circle cx="100" cy="90" r="60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><line x1="100" y1="90" x2="160" y2="90" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><circle cx="100" cy="90" r="3" fill="var(--ink)"/><text x="130" y="82" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">r = 7m</text></svg></div><p>Tính chu vi miệng giếng đó (lấy π ≈ 3,14).</p>',
+      steps: [
+        '<p>Nhớ lại công thức: đường kính = bán kính × 2; chu vi hình tròn = đường kính × 3,14.</p>',
+        '<p>Tính đường kính: d = 7 × 2 = 14 (m).</p>',
+        '<p>Tính chu vi: C = 14 × 3,14 = 43,96 (m).</p>'
+      ],
+      answerHtml: 'Chu vi miệng giếng đó là <b>43,96m</b>.'
+    }],
+    'sec3-2': [{
+      qHtml: '<p>Một chiếc đĩa hình tròn có bán kính <b>11dm</b>.</p><div class="geo-figure"><svg viewBox="0 0 200 160" width="200" height="160"><circle cx="100" cy="90" r="60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4"/><line x1="100" y1="90" x2="160" y2="90" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><circle cx="100" cy="90" r="3" fill="var(--ink)"/><text x="130" y="82" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">r = 11dm</text></svg></div><p>Tính diện tích chiếc đĩa đó (lấy π ≈ 3,14).</p>',
+      steps: [
+        '<p>Nhớ lại công thức: diện tích hình tròn = bán kính × bán kính × 3,14.</p>',
+        '<p>Thay số: 11 × 11 × 3,14.</p>',
+        '<p>Tính: 11 × 11 = 121; 121 × 3,14 = 379,94.</p>'
+      ],
+      answerHtml: 'Diện tích chiếc đĩa đó là <b>379,94dm²</b>.'
+    }],
+    'sec4-1': [{
+      qHtml: '<p>Một bể cá hình hộp chữ nhật (không nắp) — xét riêng phần khối hộp — có chiều dài <b>18dm</b>, chiều rộng <b>10dm</b>, chiều cao <b>7dm</b>.</p><div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157"><polygon points="55,120 145,120 145,50 55,50" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><polygon points="55,50 145,50 185,20 95,20" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><polygon points="145,120 145,50 185,20 185,90" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><text x="165" y="35" font-size="12" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">dài=18dm</text><text x="100" y="136" font-size="12" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">rộng=10dm</text><text x="30" y="82" font-size="12" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">cao</text><text x="30" y="96" font-size="12" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">=7dm</text></svg></div><p>Tính: a) Diện tích xung quanh; &nbsp;b) Diện tích toàn phần; &nbsp;c) Thể tích của khối hộp đó.</p>',
+      steps: [
+        '<p><b>Tóm tắt:</b> dài = 18dm, rộng = 10dm, cao = 7dm.</p>',
+        '<p><b>a) Diện tích xung quanh:</b> chu vi mặt đáy = (18 + 10) × 2 = 56 (dm). Sxq = 56 × 7 = 392 (dm²).</p>',
+        '<p><b>b) Diện tích toàn phần:</b> diện tích 2 mặt đáy = 18 × 10 × 2 = 360 (dm²). Stp = 392 + 360 = 752 (dm²).</p>',
+        '<p><b>c) Thể tích:</b> V = 18 × 10 × 7 = 1260 (dm³).</p>'
+      ],
+      answerHtml: 'Đáp số: Sxq = <b>392dm²</b>; Stp = <b>752dm²</b>; V = <b>1260dm³</b>.'
+    }],
+    'sec5-1': [{
+      qHtml: '<p>Một hộp quà hình lập phương có cạnh dài <b>11cm</b>.</p><div class="geo-figure"><svg viewBox="0 0 220 150" width="230" height="157"><polygon points="55,120 125,120 125,50 55,50" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><polygon points="55,50 125,50 160,25 90,25" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><polygon points="125,120 125,50 160,25 160,95" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><text x="90" y="136" font-size="12.5" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">cạnh = 11cm</text></svg></div><p>Tính: a) Diện tích xung quanh; &nbsp;b) Diện tích toàn phần; &nbsp;c) Thể tích của hộp quà đó.</p>',
+      steps: [
+        '<p><b>Tóm tắt:</b> cạnh a = 11cm.</p>',
+        '<p><b>a) Diện tích xung quanh:</b> Sxq = cạnh × cạnh × 4 = 11 × 11 × 4. Tính: 11 × 11 = 121; 121 × 4 = 484 (cm²).</p>',
+        '<p><b>b) Diện tích toàn phần:</b> Stp = cạnh × cạnh × 6 = 121 × 6 = 726 (cm²).</p>',
+        '<p><b>c) Thể tích:</b> V = cạnh × cạnh × cạnh = 121 × 11 = 1331 (cm³).</p>'
+      ],
+      answerHtml: 'Đáp số: Sxq = <b>484cm²</b>; Stp = <b>726cm²</b>; V = <b>1331cm³</b>.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('cvdt-hh-toan5-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('cvdt-hh-toan5-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Câu Đố IQ Toán 5 — Ôn luyện Toán lớp 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f7f5fc;
+    --bg-alt: #efe9fb;
+    --paper: #ffffff;
+    --ink: #241b3a;
+    --ink-soft: #5b4b7a;
+    --ink-faint: #8b7aa8;
+    --accent: #7c3aed;
+    --accent-soft: #ede4fd;
+    --accent-warm: #4d7c0f;
+    --accent-warm-soft: #ecfccb;
+    --line: #e3d9f7;
+    --line-strong: #cbb8f0;
+    --shadow: 0 1px 2px rgba(50, 20, 90, 0.08), 0 8px 22px rgba(50, 20, 90, 0.1);
+    --radius: 18px;
+    --display: "Space Grotesk", "Segoe UI", Calibri, sans-serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #170f28;
+    --bg-alt: #1f1638;
+    --paper: #241a3d;
+    --ink: #f3edff;
+    --ink-soft: #cbbbe8;
+    --ink-faint: #9884b8;
+    --accent: #a78bfa;
+    --accent-soft: #2f2151;
+    --accent-warm: #a3e635;
+    --accent-warm-soft: #2b3a0c;
+    --line: #35275a;
+    --line-strong: #4a3574;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.5);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #170f28;
+      --bg-alt: #1f1638;
+      --paper: #241a3d;
+      --ink: #f3edff;
+      --ink-soft: #cbbbe8;
+      --ink-faint: #9884b8;
+      --accent: #a78bfa;
+      --accent-soft: #2f2151;
+      --accent-warm: #a3e635;
+      --accent-warm-soft: #2b3a0c;
+      --line: #35275a;
+      --line-strong: #4a3574;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.66;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 44px 20px 96px;
+    display: grid;
+    grid-template-columns: 218px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 32px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 6px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 4px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  .doc-head { max-width: 780px; margin: 0 0 20px; }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 41px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede { color: var(--ink-soft); max-width: 66ch; font-size: 17px; margin: 0; }
+
+  .stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 30px; }
+  .stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--line-strong);
+  }
+  .stat-chip.warm { background: var(--accent-warm-soft); color: var(--accent-warm); }
+  .stat-chip b { font-weight: 800; }
+
+  section.topic { padding-top: 52px; scroll-margin-top: 18px; }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(21px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 12.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    font-family: var(--mono);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 12px 0 28px; }
+
+  p { max-width: 68ch; margin: 0 0 12px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0 32px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .qhead { padding: 16px 22px 0; }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 700; }
+  .problem .qtext { padding: 8px 22px 18px; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .geo-figure { display: flex; justify-content: center; padding: 14px 0 4px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .scale-pair { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; margin-top: 4px; }
+  .scale-block { text-align: center; }
+  .scale-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 55%, var(--line-strong)); color: color-mix(in srgb, var(--accent-warm) 80%, var(--ink)); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body:empty { padding: 0; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step[hidden] { display: none; }
+  .sol-body .step::before {
+    content: attr(data-n);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .answer[hidden] { display: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); max-width: 780px; }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 vòng câu đố</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔢</span>Bẫy số học</a></li>
+      <li><a href="#sec2"><span class="n">⚖️</span>Cân thăng bằng</a></li>
+      <li><a href="#sec3"><span class="n">🧩</span>Dãy số bí ẩn</a></li>
+      <li><a href="#sec4"><span class="n">🕵️</span>Đố mẹo lô-gic</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="doc-head">
+      <div class="doc-eyebrow">💡 Ôn luyện Toán lớp 5 · Sổ tay đố vui IQ</div>
+      <h1>Câu Đố IQ Toán 5</h1>
+      <p class="lede">8 câu đố "não cân não" ở trình độ lớp 5 — số thập phân, tỉ số phần trăm, dãy số quy luật và bài toán cân thăng bằng logic. Mỗi câu đều giấu một cái bẫy tư duy nho nhỏ: đọc nhanh, đoán bừa là dính bẫy ngay — nhưng chỉ cần bình tĩnh suy luận từng bước, đáp số luôn rõ ràng và duy nhất!</p>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-chip">🧠 <b>8</b> bài gốc</span>
+      <span class="stat-chip">🔄 <b>8</b> biến thể</span>
+      <span class="stat-chip warm">🎯 <b>16</b> lượt luyện</span>
+      <span class="stat-chip">🔷 4 vòng đố</span>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">🧠 Về tài liệu này</div>
+      <p><b>Câu Đố IQ Toán 5</b> là tuyển tập 8 câu đố tư duy tự biên soạn mới hoàn toàn, mang phong cách các cuốn sách đố vui IQ thiếu nhi nhưng bám sát kiến thức lớp 5 (số thập phân, tỉ số phần trăm, tỉ số hai số, dãy số quy luật). Toàn bộ đề bài, số liệu và lời giải trong tài liệu này là nội dung gốc, không sao chép nguyên văn từ bất kỳ nguồn nào. Mỗi câu có nút <b>🔄 Đổi câu đố tương tự</b> để luyện lại đúng kiểu bài với tình huống khác — hãy tự suy nghĩ thật kỹ trước khi bấm <b>👁 Xem đáp số ngay</b> nhé!</p>
+    </div>
+
+    <!-- ================= SEC 1: BẪY SỐ HỌC ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 1</span>Bẫy số học</h2>
+      </div>
+      <p class="topic-intro">Ở lớp 5, các con số đã có <span class="kw">phần thập phân</span> và <span class="kw">tỉ số phần trăm</span>. Vòng này chuyên "gài bẫy" ở những chỗ trực giác hay đánh lừa — như tưởng "tăng rồi giảm cùng %" thì huề vốn, hay tưởng tỉ lệ phần trăm hai chiều là đối xứng. Đọc chậm, tính cẩn thận!</p>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Đố 1.1">
+        <div class="qhead"><span class="qid">Đố 1.1</span></div>
+        <div class="qtext">
+          <p>💰 Một chiếc áo khoác đang có giá <b>250 000 đồng</b>. Đầu tháng, cửa hàng tăng giá thêm <b>20%</b>. Cuối tháng ế hàng, cửa hàng giảm giá <b>20% so với giá MỚI</b> (giá đã tăng) để "về giá cũ". Đố bạn: giá chiếc áo lúc này có đúng bằng 250 000 đồng không? Nếu không, nó cao hơn hay thấp hơn, và chênh lệch bao nhiêu đồng?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Bẫy nằm ở chỗ: "tăng 20% rồi giảm 20%" nghe có vẻ sẽ quay về giá cũ — nhưng hai lần 20% đó KHÔNG được tính trên cùng một số tiền!</div>
+          <div class="step" data-n="2" hidden>Giá sau khi tăng 20%: 250 000 × (100% + 20%) = 250 000 × 1,2 = 300 000 đồng.</div>
+          <div class="step" data-n="3" hidden>Giá sau khi giảm 20% — lần này 20% được tính trên 300 000 đồng (giá mới), không phải trên 250 000 đồng ban đầu: 300 000 × 20% = 60 000 đồng. Giá cuối = 300 000 − 60 000 = 240 000 đồng.</div>
+          <div class="step" data-n="4" hidden>So sánh: 240 000 đồng nhỏ hơn 250 000 đồng ban đầu. Chênh lệch = 250 000 − 240 000 = 10 000 đồng — giá THẤP HƠN giá gốc, dù đã "tăng 20% rồi giảm 20%"!</div>
+          <div class="answer" hidden>Đáp số: Giá cuối cùng là 240 000 đồng — thấp hơn giá ban đầu 10 000 đồng (tức 4%), KHÔNG bằng giá gốc như nhiều người tưởng.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Đố 1.2">
+        <div class="qhead"><span class="qid">Đố 1.2</span></div>
+        <div class="qtext">
+          <p>🔵 Trong hộp có các viên bi xanh và bi đỏ. Số bi xanh bằng <b>80%</b> số bi đỏ. Biết hộp có <b>40 viên bi xanh</b>. Đố bạn: số bi đỏ bằng bao nhiêu <b>PHẦN TRĂM</b> số bi xanh? (Cẩn thận: đây KHÔNG phải là 100% + 20% = 120% đâu nhé!)</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Trước tiên tìm số bi đỏ: bi xanh bằng 80% bi đỏ, tức là bi xanh = 80 : 100 × bi đỏ, mà bi xanh = 40 viên.</div>
+          <div class="step" data-n="2" hidden>Số bi đỏ = 40 : 80 × 100 = 50 viên (hay 40 : 0,8 = 50 viên).</div>
+          <div class="step" data-n="3" hidden>Tính tỉ số phần trăm của bi đỏ so với bi xanh: 50 : 40 = 1,25 = 125%.</div>
+          <div class="step" data-n="4" hidden>Nhiều bạn nghĩ "xanh kém đỏ 20% thì đỏ hơn xanh 20%, tức 120%" — đó chính là cái BẪY! Vì 20% ở hai chiều so sánh được tính trên hai số khác nhau (một lần trên bi đỏ, một lần trên bi xanh), nên kết quả không đối xứng.</div>
+          <div class="answer" hidden>Đáp số: Số bi đỏ (50 viên) bằng 125% số bi xanh (40 viên) — chứ không phải 120%.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2: CÂN THĂNG BẰNG ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">⚖️</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 2</span>Cân thăng bằng</h2>
+      </div>
+      <p class="topic-intro">Chiếc cân thăng bằng khi hai đĩa nặng bằng nhau. Ở vòng này, khối lượng có cả <span class="kw">số thập phân</span>, và có bài phải "nối" qua nhiều lần cân mới ra được đáp số — có bài lại giấu một mẹo tính ngược hoàn toàn bất ngờ!</p>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Đố 2.1">
+        <div class="qhead"><span class="qid">Đố 2.1</span></div>
+        <div class="qtext">
+          <p>⚖️ <b>Cân 1</b>: đĩa trái có 1 quả bí ngô và 2 quả cam, đĩa phải có 1 quả dưa hấu. Cân thăng bằng.<br>
+          <b>Cân 2</b>: đĩa trái có 1 quả dưa hấu (giống hệt dưa hấu ở Cân 1), đĩa phải có 3 quả cam (giống hệt cam ở Cân 1) và 1 quả cân <b>0,4kg</b>. Cân cũng thăng bằng.<br>
+          Biết mỗi quả cam nặng <b>0,3kg</b>. Đố bạn: quả bí ngô nặng bao nhiêu kg?</p>
+          <div class="scale-pair">
+            <div class="scale-block">
+              <div class="scale-label">Cân 1</div>
+              <div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117">
+                <polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/>
+                <rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/>
+                <circle cx="120" cy="56" r="6" fill="var(--accent)"/>
+                <line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/>
+                <line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+                <line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+                <text x="40" y="99" text-anchor="middle" font-size="13">🎃+🍊×2</text>
+                <text x="200" y="99" text-anchor="middle" font-size="15">🍉</text>
+              </svg></div>
+            </div>
+            <div class="scale-block">
+              <div class="scale-label">Cân 2</div>
+              <div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117">
+                <polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/>
+                <rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/>
+                <circle cx="120" cy="56" r="6" fill="var(--accent)"/>
+                <line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/>
+                <line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+                <line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+                <text x="40" y="99" text-anchor="middle" font-size="15">🍉</text>
+                <text x="200" y="99" text-anchor="middle" font-size="12">🍊×3+0,4kg</text>
+              </svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Có tới 3 "nhân vật" (bí ngô, dưa hấu, cam) nên phải nối qua từng cân một. Bắt đầu từ Cân 2 vì đã biết số liệu cụ thể: mỗi quả cam nặng 0,3kg.</div>
+          <div class="step" data-n="2" hidden>Cân 2: dưa hấu = 3 × cam + 0,4kg = 3 × 0,3 + 0,4 = 0,9 + 0,4 = 1,3kg.</div>
+          <div class="step" data-n="3" hidden>Cân 1: bí ngô + 2 × cam = dưa hấu. Mà dưa hấu = 1,3kg (vừa tìm được), và 2 × cam = 2 × 0,3 = 0,6kg.</div>
+          <div class="step" data-n="4" hidden>Bí ngô = 1,3 − 0,6 = 0,7kg. Thử lại: bí ngô + 2 cam = 0,7 + 0,6 = 1,3kg, đúng bằng dưa hấu ✓.</div>
+          <div class="answer" hidden>Đáp số: Quả bí ngô nặng 0,7kg.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Đố 2.2">
+        <div class="qhead"><span class="qid">Đố 2.2</span></div>
+        <div class="qtext">
+          <p>🧴 Một chai đựng đầy nước, cân nặng tổng cộng <b>1000g</b> (kể cả vỏ chai). Nếu rót bớt cho chai chỉ còn <b>MỘT NỬA</b> lượng nước, thì cân được <b>620g</b>. Đố bạn: vỏ chai (không có nước) nặng bao nhiêu gam? Và nếu đổ đầy nước, phần nước nặng bao nhiêu gam?</p>
+          <div class="scale-pair">
+            <div class="scale-block">
+              <div class="scale-label">Đầy nước · 1000g</div>
+              <div class="geo-figure"><svg viewBox="0 0 80 160" width="90" height="180">
+                <path d="M32,8 h16 v22 l10,10 v92 a14,14 0 0 1 -14,14 h-24 a14,14 0 0 1 -14,-14 v-92 l10,-10 z" fill="none" stroke="var(--ink-soft)" stroke-width="3.5" stroke-linejoin="round"/>
+                <path d="M22,52 h36 v78 a12,12 0 0 1 -12,12 h-12 a12,12 0 0 1 -12,-12 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
+              </svg></div>
+            </div>
+            <div class="scale-block">
+              <div class="scale-label">Còn nửa nước · 620g</div>
+              <div class="geo-figure"><svg viewBox="0 0 80 160" width="90" height="180">
+                <path d="M32,8 h16 v22 l10,10 v92 a14,14 0 0 1 -14,14 h-24 a14,14 0 0 1 -14,-14 v-92 l10,-10 z" fill="none" stroke="var(--ink-soft)" stroke-width="3.5" stroke-linejoin="round"/>
+                <path d="M22,96 h36 v34 a12,12 0 0 1 -12,12 h-12 a12,12 0 0 1 -12,-12 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
+              </svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Gọi khối lượng vỏ chai là V, khối lượng nước khi ĐẦY là N. Đầy nước: V + N = 1000g.</div>
+          <div class="step" data-n="2" hidden>Khi còn một nửa nước: V + N : 2 = 620g (chỉ có nước giảm đi một nửa, vỏ chai không đổi khối lượng).</div>
+          <div class="step" data-n="3" hidden>Lấy phép tính đầy nước trừ phép tính nửa nước: (V + N) − (V + N : 2) = 1000 − 620, tức là N : 2 = 380g. Vậy N = 380 × 2 = 760g.</div>
+          <div class="step" data-n="4" hidden>Vỏ chai: V = 1000 − N = 1000 − 760 = 240g. Thử lại: 240 + 760:2 = 240+380=620g ✓.</div>
+          <div class="answer" hidden>Đáp số: Vỏ chai nặng 240g; nước đầy chai nặng 760g.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3: DÃY SỐ BÍ ẨN ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">🧩</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 3</span>Dãy số bí ẩn</h2>
+      </div>
+      <p class="topic-intro">Không phải dãy số nào cũng có <span class="kw">khoảng cách cố định</span> giữa các số hạng! Có dãy mà khoảng cách tự nó tăng dần, có dãy thực ra là <span class="kw">hai dãy trộn lẫn</span> vào nhau. Nhìn kỹ trước khi kết luận quy luật nhé.</p>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Đố 3.1">
+        <div class="qhead"><span class="qid">Đố 3.1</span></div>
+        <div class="qtext">
+          <p>🧩 Cho dãy số: <b>1 ; 2 ; 4 ; 7 ; 11 ; ...</b> Đố bạn: số hạng thứ <b>8</b> của dãy là số nào? (Gợi ý: khoảng cách giữa các số hạng liên tiếp không cố định đâu!)</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Tính hiệu giữa các số hạng liên tiếp đã cho: 2−1=1; 4−2=2; 7−4=3; 11−7=4. Hiệu KHÔNG cố định mà tăng dần đều: 1, 2, 3, 4, 5, ...</div>
+          <div class="step" data-n="2" hidden>Số hạng thứ 6 = số hạng thứ 5 + 5 = 11 + 5 = 16.</div>
+          <div class="step" data-n="3" hidden>Số hạng thứ 7 = số hạng thứ 6 + 6 = 16 + 6 = 22.</div>
+          <div class="step" data-n="4" hidden>Số hạng thứ 8 = số hạng thứ 7 + 7 = 22 + 7 = 29.</div>
+          <div class="answer" hidden>Đáp số: Số hạng thứ 8 của dãy là 29.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Đố 3.2">
+        <div class="qhead"><span class="qid">Đố 3.2</span></div>
+        <div class="qtext">
+          <p>🧩 Cho dãy số: <b>3 ; 10 ; 6 ; 20 ; 9 ; 30 ; 12 ; ?</b> Đố bạn: số hạng thứ 8 (dấu ?) là số nào? (Gợi ý: nhìn kỹ — có thể đây KHÔNG phải là MỘT dãy số, mà là HAI dãy số trộn lẫn vào nhau!)</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Bẫy ở đây: nếu cố tìm MỘT quy luật duy nhất cho cả dãy sẽ rất khó, vì đây thực chất là 2 dãy số lồng vào nhau — các số ở vị trí LẺ (1, 3, 5, 7) và các số ở vị trí CHẴN (2, 4, 6, 8).</div>
+          <div class="step" data-n="2" hidden>Dãy các số ở vị trí lẻ: 3 (vị trí 1), 6 (vị trí 3), 9 (vị trí 5), 12 (vị trí 7) — dãy cách đều, mỗi số hơn số trước 3 đơn vị.</div>
+          <div class="step" data-n="3" hidden>Dãy các số ở vị trí chẵn: 10 (vị trí 2), 20 (vị trí 4), 30 (vị trí 6), ? (vị trí 8) — cũng là dãy cách đều, mỗi số hơn số trước 10 đơn vị.</div>
+          <div class="step" data-n="4" hidden>Số hạng thứ 8 nằm ở vị trí chẵn, thuộc dãy 10, 20, 30, ... nên số tiếp theo là 30 + 10 = 40.</div>
+          <div class="answer" hidden>Đáp số: Số hạng thứ 8 là 40.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4: ĐỐ MẸO LÔ-GIC ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🕵️</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 4</span>Đố mẹo lô-gic</h2>
+      </div>
+      <p class="topic-intro">Vòng này cần một chút "trinh thám": có bài phải nhớ một sự thật không đổi theo thời gian, có bài phải cẩn thận với <span class="kw">phép chia có dư</span> chứ không được vội quy về tỉ số đơn giản.</p>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Đố 4.1">
+        <div class="qhead"><span class="qid">Đố 4.1</span></div>
+        <div class="qtext">
+          <p>👵 Tuổi mẹ hiện nay gấp <b>4 lần</b> tuổi con. Sau <b>5 năm</b> nữa, tuổi mẹ sẽ gấp <b>3 lần</b> tuổi con. Đố bạn: hiện nay mẹ và con bao nhiêu tuổi? (Mẹo: có MỘT điều về tuổi tác không bao giờ thay đổi theo thời gian — hãy nghĩ xem đó là gì!)</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Mẹo tuổi tác quan trọng nhất: HIỆU số tuổi giữa hai người không bao giờ thay đổi theo thời gian, dù tỉ số tuổi có thay đổi.</div>
+          <div class="step" data-n="2" hidden>Gọi tuổi con hiện nay là c, thì tuổi mẹ hiện nay là 4×c, hiệu số tuổi = 4×c − c = 3×c.</div>
+          <div class="step" data-n="3" hidden>Sau 5 năm: tuổi con là c+5, tuổi mẹ là 4×c+5, và lúc này mẹ gấp 3 lần con: 4×c+5 = 3×(c+5) = 3×c+15. Suy ra: 4×c − 3×c = 15 − 5, tức là c = 10.</div>
+          <div class="step" data-n="4" hidden>Vậy tuổi con hiện nay là 10, tuổi mẹ hiện nay là 4×10 = 40. Thử lại: hiệu tuổi = 40−10=30; sau 5 năm mẹ 45, con 15, mà 45:15=3 (đúng!), hiệu vẫn là 30 (không đổi) ✓.</div>
+          <div class="answer" hidden>Đáp số: Hiện nay con 10 tuổi, mẹ 40 tuổi.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-2" data-qid="Đố 4.2">
+        <div class="qhead"><span class="qid">Đố 4.2</span></div>
+        <div class="qtext">
+          <p>➗ Tổng của hai số là <b>100</b>. Nếu lấy số lớn chia cho số bé thì được thương là <b>4</b> và số dư là <b>5</b>. Đố bạn: tìm hai số đó. (Mẹo: đừng vội nghĩ tỉ số hai số là 4:1 — phép chia này CÓ DƯ, nên tỉ số không đơn giản như vậy đâu!)</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Gọi số bé là b, số lớn là l. Theo đề: l = b × 4 + 5 (vì chia số lớn cho số bé được thương 4, dư 5).</div>
+          <div class="step" data-n="2" hidden>Thay vào tổng: b + l = 100, tức là b + (b×4+5) = 100, hay 5×b + 5 = 100.</div>
+          <div class="step" data-n="3" hidden>Suy ra: 5×b = 100 − 5 = 95, vậy b = 95 : 5 = 19.</div>
+          <div class="step" data-n="4" hidden>Số lớn: l = 19×4+5 = 76+5 = 81. Thử lại: 19+81=100 ✓; 81:19 = 4 dư 5 (vì 19×4=76, 81−76=5) ✓.</div>
+          <div class="answer" hidden>Đáp số: Số bé là 19, số lớn là 81.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Tài liệu "Câu Đố IQ Toán 5" — bộ câu đố tự biên soạn mới hoàn toàn, lấy cảm hứng từ thể loại sách đố vui IQ dành cho thiếu nhi, dùng cho mục đích ôn luyện. Đáp án và lời giải chỉ mang tính tham khảo, khuyến khích các em tự suy nghĩ thật kỹ trước khi bấm "Xem đáp số ngay".</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  'sec1-1': [{
+    qtext: '<p>💰 Một chiếc xe đạp đang có giá <b>500 000 đồng</b>. Cửa hàng tăng giá thêm <b>25%</b>, sau đó giảm giá <b>25% so với giá MỚI</b> (giá đã tăng) để "về giá cũ". Đố bạn: giá cuối cùng có đúng bằng 500 000 đồng không? Nếu không, chênh lệch bao nhiêu đồng?</p>',
+    steps: [
+      'Vẫn là bẫy quen thuộc: hai lần 25% không được tính trên cùng một số tiền.',
+      'Giá sau khi tăng 25%: 500 000 × 1,25 = 625 000 đồng.',
+      'Giá sau khi giảm 25% của 625 000 đồng: 625 000 × 25% = 156 250 đồng. Giá cuối = 625 000 − 156 250 = 468 750 đồng.',
+      'So sánh: 468 750 đồng nhỏ hơn 500 000 đồng ban đầu. Chênh lệch = 500 000 − 468 750 = 31 250 đồng.'
+    ],
+    answer: 'Đáp số: Giá cuối cùng là 468 750 đồng — thấp hơn giá ban đầu 31 250 đồng (tức 6,25%).'
+  }],
+  'sec1-2': [{
+    qtext: '<p>🔵 Trong một hộp khác, số bi xanh bằng <b>40%</b> số bi đỏ. Biết hộp có <b>20 viên bi xanh</b>. Đố bạn: số bi đỏ bằng bao nhiêu <b>PHẦN TRĂM</b> số bi xanh?</p>',
+    steps: [
+      'Bi xanh = 40% bi đỏ, mà bi xanh = 20 viên.',
+      'Số bi đỏ = 20 : 40 × 100 = 50 viên (hay 20 : 0,4 = 50 viên).',
+      'Tỉ số phần trăm của bi đỏ so với bi xanh: 50 : 20 = 2,5 = 250%.',
+      'Nếu nghĩ "xanh kém đỏ 60% thì đỏ hơn xanh 60%, tức 160%" là SAI hoàn toàn — chênh lệch càng lớn thì bẫy phần trăm ngược này càng "lộ rõ": 250% khác xa 160%!'
+    ],
+    answer: 'Đáp số: Số bi đỏ (50 viên) bằng 250% số bi xanh (20 viên).'
+  }],
+  'sec2-1': [{
+    qtext: '<p>⚖️ <b>Cân 1</b>: đĩa trái có 1 quả xoài và 2 quả chanh, đĩa phải có 1 quả bưởi. Cân thăng bằng.<br><b>Cân 2</b>: đĩa trái có 1 quả bưởi (giống hệt bưởi ở Cân 1), đĩa phải có 3 quả chanh (giống hệt chanh ở Cân 1) và 1 quả cân <b>0,5kg</b>. Cân cũng thăng bằng.<br>Biết mỗi quả chanh nặng <b>0,25kg</b>. Đố bạn: quả xoài nặng bao nhiêu kg?</p><div class="scale-pair"><div class="scale-block"><div class="scale-label">Cân 1</div><div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117"><polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/><rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/><circle cx="120" cy="56" r="6" fill="var(--accent)"/><line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/><line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><text x="40" y="99" text-anchor="middle" font-size="13">🥭+🍋×2</text><text x="200" y="99" text-anchor="middle" font-size="15">🍈</text></svg></div></div><div class="scale-block"><div class="scale-label">Cân 2</div><div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117"><polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/><rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/><circle cx="120" cy="56" r="6" fill="var(--accent)"/><line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/><line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><text x="40" y="99" text-anchor="middle" font-size="15">🍈</text><text x="200" y="99" text-anchor="middle" font-size="12">🍋×3+0,5kg</text></svg></div></div></div>',
+    steps: [
+      'Có 3 "nhân vật" (xoài, bưởi, chanh) nên phải nối qua từng cân một. Bắt đầu từ Cân 2 vì đã biết số liệu cụ thể: mỗi quả chanh nặng 0,25kg.',
+      'Cân 2: bưởi = 3 × chanh + 0,5kg = 3 × 0,25 + 0,5 = 0,75 + 0,5 = 1,25kg.',
+      'Cân 1: xoài + 2 × chanh = bưởi. Mà bưởi = 1,25kg (vừa tìm được), và 2 × chanh = 2 × 0,25 = 0,5kg.',
+      'Xoài = 1,25 − 0,5 = 0,75kg. Thử lại: xoài + 2 chanh = 0,75+0,5=1,25kg, đúng bằng bưởi ✓.'
+    ],
+    answer: 'Đáp số: Quả xoài nặng 0,75kg.'
+  }],
+  'sec2-2': [{
+    qtext: '<p>🧴 Một bình đựng đầy nước, cân nặng tổng cộng <b>1200g</b> (kể cả vỏ bình). Nếu rót bớt cho bình chỉ còn <b>MỘT NỬA</b> lượng nước, thì cân được <b>750g</b>. Đố bạn: vỏ bình nặng bao nhiêu gam? Nếu đổ đầy nước, phần nước nặng bao nhiêu gam?</p><div class="scale-pair"><div class="scale-block"><div class="scale-label">Đầy nước · 1200g</div><div class="geo-figure"><svg viewBox="0 0 80 160" width="90" height="180"><path d="M32,8 h16 v22 l10,10 v92 a14,14 0 0 1 -14,14 h-24 a14,14 0 0 1 -14,-14 v-92 l10,-10 z" fill="none" stroke="var(--ink-soft)" stroke-width="3.5" stroke-linejoin="round"/><path d="M22,52 h36 v78 a12,12 0 0 1 -12,12 h-12 a12,12 0 0 1 -12,-12 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/></svg></div></div><div class="scale-block"><div class="scale-label">Còn nửa nước · 750g</div><div class="geo-figure"><svg viewBox="0 0 80 160" width="90" height="180"><path d="M32,8 h16 v22 l10,10 v92 a14,14 0 0 1 -14,14 h-24 a14,14 0 0 1 -14,-14 v-92 l10,-10 z" fill="none" stroke="var(--ink-soft)" stroke-width="3.5" stroke-linejoin="round"/><path d="M22,96 h36 v34 a12,12 0 0 1 -12,12 h-12 a12,12 0 0 1 -12,-12 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/></svg></div></div></div>',
+    steps: [
+      'Gọi khối lượng vỏ bình là V, khối lượng nước khi ĐẦY là N. Đầy nước: V + N = 1200g.',
+      'Khi còn một nửa nước: V + N : 2 = 750g (vỏ bình không đổi khối lượng, chỉ nước giảm đi một nửa).',
+      'Lấy phép tính đầy nước trừ phép tính nửa nước: 1200 − 750 = 450g, đây chính là N : 2. Vậy N = 450 × 2 = 900g.',
+      'Vỏ bình: V = 1200 − N = 1200 − 900 = 300g. Thử lại: 300 + 900:2 = 300+450=750g ✓.'
+    ],
+    answer: 'Đáp số: Vỏ bình nặng 300g; nước đầy bình nặng 900g.'
+  }],
+  'sec3-1': [{
+    qtext: '<p>🧩 Cho dãy số: <b>3 ; 4 ; 6 ; 9 ; 13 ; ...</b> Đố bạn: số hạng thứ <b>8</b> của dãy là số nào?</p>',
+    steps: [
+      'Tính hiệu giữa các số hạng liên tiếp: 4−3=1; 6−4=2; 9−6=3; 13−9=4. Hiệu tăng dần đều: 1, 2, 3, 4, 5, ...',
+      'Số hạng thứ 6 = số hạng thứ 5 + 5 = 13 + 5 = 18.',
+      'Số hạng thứ 7 = số hạng thứ 6 + 6 = 18 + 6 = 24.',
+      'Số hạng thứ 8 = số hạng thứ 7 + 7 = 24 + 7 = 31.'
+    ],
+    answer: 'Đáp số: Số hạng thứ 8 của dãy là 31.'
+  }],
+  'sec3-2': [{
+    qtext: '<p>🧩 Cho dãy số: <b>5 ; 8 ; 8 ; 14 ; 11 ; 20 ; 14 ; ?</b> Đố bạn: số hạng thứ 8 (dấu ?) là số nào?</p>',
+    steps: [
+      'Vẫn là mẹo cũ: tách dãy thành 2 dãy con — các số ở vị trí LẺ (1, 3, 5, 7) và các số ở vị trí CHẴN (2, 4, 6, 8).',
+      'Dãy các số ở vị trí lẻ: 5 (vị trí 1), 8 (vị trí 3), 11 (vị trí 5), 14 (vị trí 7) — mỗi số hơn số trước 3 đơn vị.',
+      'Dãy các số ở vị trí chẵn: 8 (vị trí 2), 14 (vị trí 4), 20 (vị trí 6), ? (vị trí 8) — mỗi số hơn số trước 6 đơn vị.',
+      'Số hạng thứ 8 nằm ở vị trí chẵn, thuộc dãy 8, 14, 20, ... nên số tiếp theo là 20 + 6 = 26.'
+    ],
+    answer: 'Đáp số: Số hạng thứ 8 là 26.'
+  }],
+  'sec4-1': [{
+    qtext: '<p>👵 Tuổi mẹ hiện nay gấp <b>5 lần</b> tuổi con. Sau <b>6 năm</b> nữa, tuổi mẹ sẽ gấp <b>3 lần</b> tuổi con. Đố bạn: hiện nay mẹ và con bao nhiêu tuổi?</p>',
+    steps: [
+      'Vẫn dùng mẹo cũ: hiệu số tuổi giữa hai người không bao giờ thay đổi theo thời gian.',
+      'Gọi tuổi con hiện nay là c, thì tuổi mẹ hiện nay là 5×c.',
+      'Sau 6 năm: tuổi con là c+6, tuổi mẹ là 5×c+6, và lúc này mẹ gấp 3 lần con: 5×c+6 = 3×(c+6) = 3×c+18. Suy ra: 5×c − 3×c = 18 − 6, tức là 2×c = 12, vậy c = 6.',
+      'Vậy tuổi con hiện nay là 6, tuổi mẹ hiện nay là 5×6 = 30. Thử lại: hiệu tuổi = 30−6=24; sau 6 năm mẹ 36, con 12, mà 36:12=3 (đúng!), hiệu vẫn là 24 (không đổi) ✓.'
+    ],
+    answer: 'Đáp số: Hiện nay con 6 tuổi, mẹ 30 tuổi.'
+  }],
+  'sec4-2': [{
+    qtext: '<p>➗ Tổng của hai số là <b>90</b>. Nếu lấy số lớn chia cho số bé thì được thương là <b>3</b> và số dư là <b>6</b>. Đố bạn: tìm hai số đó.</p>',
+    steps: [
+      'Gọi số bé là b, số lớn là l. Theo đề: l = b × 3 + 6 (vì chia số lớn cho số bé được thương 3, dư 6).',
+      'Thay vào tổng: b + l = 90, tức là b + (b×3+6) = 90, hay 4×b + 6 = 90.',
+      'Suy ra: 4×b = 90 − 6 = 84, vậy b = 84 : 4 = 21.',
+      'Số lớn: l = 21×3+6 = 63+6 = 69. Thử lại: 21+69=90 ✓; 69:21 = 3 dư 6 (vì 21×3=63, 69−63=6) ✓.'
+    ],
+    answer: 'Đáp số: Số bé là 21, số lớn là 69.'
+  }]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function buildOriginal(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    return {
+      qtext: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) { return s.innerHTML; }),
+      answer: solBody.querySelector('.answer').innerHTML
+    };
+  }
+
+  function render(el, item) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    qtext.innerHTML = item.qtext;
+    var steps = solBody.querySelectorAll('.step');
+    if (steps.length !== item.steps.length) {
+      var html = item.steps.map(function (s, i) {
+        return '<div class="step" data-n="' + (i + 1) + '" hidden>' + s + '</div>';
+      }).join('');
+      html += '<div class="answer" hidden>' + item.answer + '</div>';
+      solBody.innerHTML = html;
+    } else {
+      steps.forEach(function (stepEl, i) {
+        stepEl.innerHTML = item.steps[i];
+        stepEl.hidden = true;
+      });
+      var ansEl = solBody.querySelector('.answer');
+      ansEl.innerHTML = item.answer;
+      ansEl.hidden = true;
+    }
+  }
+
+  function initProblem(el) {
+    var poolId = el.dataset.pool;
+    var pool = [buildOriginal(el)].concat((window.VARIANTS && window.VARIANTS[poolId]) || []);
+    var state = { index: 0, revealed: 0, answerShown: false };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+    var solBody = el.querySelector('.sol-body');
+
+    if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var steps = solBody.querySelectorAll('.step');
+      var anyRevealed = state.revealed > 0 || state.answerShown;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= steps.length;
+        btnHint.textContent = state.revealed >= steps.length ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) btnReset.hidden = !anyRevealed;
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.hidden = false;
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.hidden = false;
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.index = (state.index + 1) % pool.length;
+      render(el, pool[state.index]);
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.hidden = true; });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.hidden = true;
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+
+</body>
+</html>

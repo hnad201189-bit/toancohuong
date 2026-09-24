@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luyện Thi Violympic Toán 5 — Ôn luyện Toán lớp 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Red+Hat+Mono:wght@500;600;700&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f7f4fd;
+    --bg-alt: #ede7fa;
+    --paper: #ffffff;
+    --ink: #241b3d;
+    --ink-soft: #5b4f7a;
+    --ink-faint: #8b7fa8;
+    --accent: #7c3aed;
+    --accent-soft: #ede4fd;
+    --accent-warm: #65a30d;
+    --accent-warm-soft: #e8f3d6;
+    --line: #e3dcf6;
+    --line-strong: #c9bdea;
+    --shadow: 0 1px 2px rgba(60, 30, 110, 0.08), 0 6px 20px rgba(60, 30, 110, 0.1);
+    --radius: 14px;
+    --serif: "Syne", Cambria, Georgia, serif;
+    --sans: "Plus Jakarta Sans", "Segoe UI", Calibri, Arial, sans-serif;
+    --mono: "Red Hat Mono", "Cascadia Code", Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #140f24;
+    --bg-alt: #1c1533;
+    --paper: #19112b;
+    --ink: #efeaf9;
+    --ink-soft: #bcaed8;
+    --ink-faint: #7c6c9c;
+    --accent: #a78bfa;
+    --accent-soft: #2c2249;
+    --accent-warm: #a3e635;
+    --accent-warm-soft: #29350f;
+    --line: #2c2249;
+    --line-strong: #3e3268;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #140f24;
+      --bg-alt: #1c1533;
+      --paper: #19112b;
+      --ink: #efeaf9;
+      --ink-soft: #bcaed8;
+      --ink-faint: #7c6c9c;
+      --accent: #a78bfa;
+      --accent-soft: #2c2249;
+      --accent-warm: #a3e635;
+      --accent-warm-soft: #29350f;
+      --line: #2c2249;
+      --line-strong: #3e3268;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 44px 20px 96px;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 32px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 6px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { font-family: var(--mono); color: var(--ink-faint); margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 4px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  section.topic { padding-top: 52px; scroll-margin-top: 18px; }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; flex-wrap: wrap; }
+  .topic-num { font-family: var(--serif); font-weight: 700; font-size: 15px; color: var(--accent); }
+  h2.topic-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(21px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .round-badge {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--accent-warm);
+    background: var(--accent-warm-soft);
+    border: 1px solid color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong));
+    border-radius: 999px;
+    padding: 4px 12px 4px 10px;
+    white-space: nowrap;
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 10px 0 28px; }
+
+  p { max-width: 68ch; margin: 0 0 12px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0 32px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .qhead { padding: 16px 22px 0; display: flex; align-items: center; }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line-strong));
+    border-radius: 7px;
+    padding: 3px 9px;
+    letter-spacing: 0.02em;
+  }
+  .problem .qtext { padding: 8px 22px 18px; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .obstacle-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin: 0 0 8px;
+  }
+
+  /* quick-fill calc row (Vòng 1) and plain expression chip row (Vòng 2, Vòng 3) */
+  .calc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 4px; }
+  .calc-row .tile {
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1.5px solid var(--line-strong);
+    background: var(--bg-alt);
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+  .calc-row .tile.blank {
+    border-style: dashed;
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .calc-row .op { color: var(--ink-faint); font-size: 16px; font-family: var(--mono); font-weight: 700; }
+
+  /* labeled expression chips (Vòng 2 sort + Vòng 3 matching pairs) */
+  .expr-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 4px; }
+  .expr-list .expr-chip {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 16px 9px 9px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line-strong);
+    background: var(--bg-alt);
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .expr-list .lbl {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--paper);
+    font-size: 12.5px;
+    flex-shrink: 0;
+  }
+  .expr-list .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.15;
+    font-size: 14px;
+  }
+  .expr-list .frac .num { padding: 0 3px 2px; border-bottom: 1.6px solid currentColor; }
+  .expr-list .frac .den { padding: 2px 3px 0; }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body:empty { padding: 0; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step[hidden] { display: none; }
+  .sol-body .step::before {
+    content: attr(data-n);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .answer[hidden] { display: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); max-width: 780px; }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 vòng thi đấu</div>
+    <ol>
+      <li><a href="#vong1"><span class="n">1</span>Điền đáp số</a></li>
+      <li><a href="#vong2"><span class="n">2</span>Sắp xếp thứ tự</a></li>
+      <li><a href="#vong3"><span class="n">3</span>Cặp bằng nhau</a></li>
+      <li><a href="#vong4"><span class="n">4</span>Vượt chướng ngại vật</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">🏁 Về tài liệu này</div>
+      <p><b>Luyện Thi Violympic Toán 5</b> mô phỏng đúng nhịp một lượt thi đấu trường trên hệ thống thi trực tuyến Violympic thật sự dành cho học sinh lớp 5: 4 "Vòng" nối tiếp nhau theo đúng 4 kiểu câu hỏi quen thuộc của sân chơi này — <span class="kw">điền đáp số</span> không có lựa chọn sẵn, <span class="kw">sắp xếp thứ tự</span> tăng/giảm dần, <span class="kw">tìm cặp bằng nhau</span> giữa các biểu thức, và chặng <span class="kw">vượt chướng ngại vật</span> nhiều bước ở cuối cùng — độ khó tăng dần qua từng vòng, với đúng nội dung lớp 5: số thập phân, tỉ số phần trăm, phân số, hình học và chuyển động đều. Tài liệu này <b>khác hẳn</b> cuốn "Toán Tư Duy Lớp 5 (Violympic)" đã có — cuốn đó xoay quanh các câu đố quy luật, hình học tư duy và suy luận lô-gic, còn cuốn này tập trung đúng vào <span class="kw">cấu trúc và nhịp độ thi đấu</span> của 4 vòng thi thật. Toàn bộ 8 bài toán và lời giải là <b>bài tự soạn mới hoàn toàn</b>, chỉ phỏng theo các dạng câu hỏi công khai, quen thuộc của Violympic chứ không sao chép đề thi nào. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để luyện lại đúng kiểu bài với số liệu khác.</p>
+    </div>
+
+    <!-- ================= VÒNG 1: ĐIỀN ĐÁP SỐ ================= -->
+    <section class="topic" id="vong1">
+      <div class="topic-head">
+        <span class="topic-num">Vòng 1</span>
+        <h2 class="topic-title">Điền đáp số</h2>
+        <span class="round-badge">⏱ Không có đáp án cho sẵn</span>
+      </div>
+      <p class="topic-intro">Mở màn giống hệt vòng đầu tiên trên hệ thống Violympic: mỗi câu chỉ có một ô trống duy nhất, <span class="kw">không có đáp án để chọn</span> — em phải tự tính thật nhanh và thật chính xác rồi điền kết quả vào ô "?". Ở lớp 5, số liệu là các phép tính với <span class="kw">số thập phân</span> và <span class="kw">tỉ số phần trăm</span>.</p>
+
+      <div class="problem" data-pool="vong1-1" data-qid="Câu 1.1">
+        <div class="qhead"><span class="qid">Câu 1.1</span></div>
+        <div class="qtext">
+          <p>Điền nhanh đáp số:</p>
+          <div class="calc-row">
+            <span class="tile">128,45</span><span class="op">+</span><span class="tile">96,78</span><span class="op">=</span><span class="tile blank">?</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đặt tính sao cho các dấu phẩy thẳng cột: 128,45 và 96,78.</div>
+          <div class="step" data-n="2" hidden>Cộng hàng phần trăm (hàng cuối): 5 + 8 = 13, viết 3 nhớ 1.</div>
+          <div class="step" data-n="3" hidden>Cộng hàng phần mười: 4 + 7 = 11, cộng thêm 1 (nhớ) = 12, viết 2 nhớ 1.</div>
+          <div class="step" data-n="4" hidden>Cộng phần nguyên: 128 + 96 = 224, cộng thêm 1 (nhớ) = 225.</div>
+          <div class="step" data-n="5" hidden>Ghép lại các chữ số: 225,23.</div>
+          <div class="answer" hidden>Đáp số: 225,23.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="vong1-2" data-qid="Câu 1.2">
+        <div class="qhead"><span class="qid">Câu 1.2</span></div>
+        <div class="qtext">
+          <p>Điền nhanh đáp số:</p>
+          <div class="calc-row">
+            <span class="tile">25% của 360</span><span class="op">−</span><span class="tile">18,5</span><span class="op">=</span><span class="tile blank">?</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>25% = 25/100 = 1/4, nên "25% của 360" nghĩa là 360 ÷ 4.</div>
+          <div class="step" data-n="2" hidden>Tính 360 ÷ 4 = 90.</div>
+          <div class="step" data-n="3" hidden>Lấy 90 trừ đi 18,5: 90 − 18,5 = 71,5.</div>
+          <div class="answer" hidden>Đáp số: 71,5.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VÒNG 2: SẮP XẾP THEO THỨ TỰ ================= -->
+    <section class="topic" id="vong2">
+      <div class="topic-head">
+        <span class="topic-num">Vòng 2</span>
+        <h2 class="topic-title">Sắp xếp theo thứ tự</h2>
+        <span class="round-badge">🔢 Xếp về đúng thứ tự</span>
+      </div>
+      <p class="topic-intro">Cho một nhóm số, nhiệm vụ là <span class="kw">sắp xếp đúng thứ tự</span> tăng dần hoặc giảm dần — đúng dạng bài "xếp thứ tự" quen thuộc trên hệ thống thi trực tuyến Violympic. Ở lớp 5, các số cần so sánh có thể là số thập phân nhiều chữ số, hoặc trộn lẫn <span class="kw">phân số — số thập phân — tỉ số phần trăm</span>, buộc phải đổi về cùng một dạng trước khi so sánh.</p>
+
+      <div class="problem" data-pool="vong2-1" data-qid="Câu 2.1">
+        <div class="qhead"><span class="qid">Câu 2.1</span></div>
+        <div class="qtext">
+          <p>Cho 4 số thập phân sau, hãy sắp xếp chúng theo thứ tự từ <b>bé đến lớn</b>:</p>
+          <div class="expr-list">
+            <span class="expr-chip"><span class="lbl">A</span>3,08</span>
+            <span class="expr-chip"><span class="lbl">B</span>3,8</span>
+            <span class="expr-chip"><span class="lbl">C</span>3,081</span>
+            <span class="expr-chip"><span class="lbl">D</span>3,18</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Viết lại đủ 3 chữ số sau dấu phẩy để dễ so sánh cùng hàng: A = 3,080; B = 3,800; C = 3,081; D = 3,180.</div>
+          <div class="step" data-n="2" hidden>Cả 4 số đều có phần nguyên bằng 3, nên so sánh tiếp ở hàng phần mười: A và C có 0, D có 1, B có 8 — vậy A, C nhỏ hơn D, và D nhỏ hơn B.</div>
+          <div class="step" data-n="3" hidden>So sánh riêng A và C ở hàng phần nghìn (vì phần mười và phần trăm của chúng bằng nhau): A = 3,080 có phần nghìn là 0, còn C = 3,081 có phần nghìn là 1 — nên A &lt; C.</div>
+          <div class="step" data-n="4" hidden>Ghép lại toàn bộ thứ tự: A &lt; C &lt; D &lt; B.</div>
+          <div class="answer" hidden>Đáp số: 3,08 (A) &lt; 3,081 (C) &lt; 3,18 (D) &lt; 3,8 (B).</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="vong2-2" data-qid="Câu 2.2">
+        <div class="qhead"><span class="qid">Câu 2.2</span></div>
+        <div class="qtext">
+          <p>Cho 4 số sau, viết ở nhiều dạng khác nhau. Hãy sắp xếp chúng theo thứ tự từ <b>lớn đến bé</b>:</p>
+          <div class="expr-list">
+            <span class="expr-chip"><span class="lbl">A</span><span class="frac"><span class="num">3</span><span class="den">5</span></span></span>
+            <span class="expr-chip"><span class="lbl">B</span>0,55</span>
+            <span class="expr-chip"><span class="lbl">C</span>62%</span>
+            <span class="expr-chip"><span class="lbl">D</span><span class="frac"><span class="num">7</span><span class="den">10</span></span></span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đổi tất cả về cùng dạng số thập phân để dễ so sánh: A = 3/5 = 0,6.</div>
+          <div class="step" data-n="2" hidden>B = 0,55 (giữ nguyên); C = 62% = 62/100 = 0,62; D = 7/10 = 0,7.</div>
+          <div class="step" data-n="3" hidden>So sánh 4 số thập phân: 0,7 &gt; 0,62 &gt; 0,6 &gt; 0,55, tức là D &gt; C &gt; A &gt; B.</div>
+          <div class="step" data-n="4" hidden>Vậy thứ tự từ lớn đến bé theo chữ cái là: D, C, A, B.</div>
+          <div class="answer" hidden>Đáp số: 7/10 (D) &gt; 62% (C) &gt; 3/5 (A) &gt; 0,55 (B).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VÒNG 3: CẶP BẰNG NHAU ================= -->
+    <section class="topic" id="vong3">
+      <div class="topic-head">
+        <span class="topic-num">Vòng 3</span>
+        <h2 class="topic-title">Cặp bằng nhau</h2>
+        <span class="round-badge">🔗 Tìm đúng 1 cặp</span>
+      </div>
+      <p class="topic-intro">Vòng này thử mắt tinh và tính nhanh: trong 4 giá trị (có thể viết ở các dạng khác nhau: phân số, số thập phân, tỉ số phần trăm, hoặc kết quả một phép tính), chỉ có đúng <span class="kw">một cặp</span> cho ra giá trị bằng nhau — đúng dạng bài "nối cặp bằng nhau" trên Violympic. Ở lớp 5, hãy cẩn thận <span class="kw">đổi mọi giá trị về cùng một dạng</span> (ví dụ đều đổi ra số thập phân) trước khi so sánh, vì phân số và tỉ số phần trăm có thể "ngụy trang" cho cùng một giá trị.</p>
+
+      <div class="problem" data-pool="vong3-1" data-qid="Câu 3.1">
+        <div class="qhead"><span class="qid">Câu 3.1</span></div>
+        <div class="qtext">
+          <p>Trong 4 giá trị dưới đây, có đúng <b>một cặp</b> bằng nhau. Em hãy tìm cặp đó:</p>
+          <div class="expr-list">
+            <span class="expr-chip"><span class="lbl">A</span><span class="frac"><span class="num">3</span><span class="den">8</span></span></span>
+            <span class="expr-chip"><span class="lbl">B</span>35%</span>
+            <span class="expr-chip"><span class="lbl">C</span>37,5%</span>
+            <span class="expr-chip"><span class="lbl">D</span><span class="frac"><span class="num">2</span><span class="den">5</span></span></span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đổi các phân số về tỉ số phần trăm để so sánh cùng dạng với B, C: A = 3/8 = 0,375 = 37,5%.</div>
+          <div class="step" data-n="2" hidden>B = 35% (giữ nguyên); C = 37,5% (giữ nguyên); D = 2/5 = 0,4 = 40%.</div>
+          <div class="step" data-n="3" hidden>So sánh 4 giá trị: A = 37,5%, B = 35%, C = 37,5%, D = 40% — chỉ có A và C cùng bằng 37,5%.</div>
+          <div class="step" data-n="4" hidden>B = 35% và D = 40% đều khác các giá trị còn lại, nên cặp bằng nhau duy nhất là A và C.</div>
+          <div class="answer" hidden>Đáp số: A và C (cùng bằng 3/8 = 37,5%).</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="vong3-2" data-qid="Câu 3.2">
+        <div class="qhead"><span class="qid">Câu 3.2</span></div>
+        <div class="qtext">
+          <p>Trong 4 phép tính dưới đây, có đúng <b>một cặp</b> cho kết quả bằng nhau. Em hãy tìm cặp đó:</p>
+          <div class="expr-list">
+            <span class="expr-chip"><span class="lbl">A</span>1/4 của 60</span>
+            <span class="expr-chip"><span class="lbl">B</span>20% của 80</span>
+            <span class="expr-chip"><span class="lbl">C</span>0,3 × 50</span>
+            <span class="expr-chip"><span class="lbl">D</span>2/5 của 45</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Tính giá trị từng biểu thức: A = 1/4 của 60 = 60 ÷ 4 = 15.</div>
+          <div class="step" data-n="2" hidden>B = 20% của 80 = 80 × 20 ÷ 100 = 16; C = 0,3 × 50 = 15; D = 2/5 của 45 = 45 ÷ 5 × 2 = 18.</div>
+          <div class="step" data-n="3" hidden>So sánh 4 kết quả: A = 15, B = 16, C = 15, D = 18 — chỉ có A và C cùng bằng 15.</div>
+          <div class="step" data-n="4" hidden>B = 16 và D = 18 đều khác các số còn lại, nên cặp bằng nhau duy nhất là A và C.</div>
+          <div class="answer" hidden>Đáp số: A và C (cùng bằng 15).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VÒNG 4: VƯỢT CHƯỚNG NGẠI VẬT ================= -->
+    <section class="topic" id="vong4">
+      <div class="topic-head">
+        <span class="topic-num">Vòng 4</span>
+        <h2 class="topic-title">Vượt chướng ngại vật</h2>
+        <span class="round-badge">🚩 Chặng về đích — nhiều bước</span>
+      </div>
+      <p class="topic-intro">Chặng cuối cùng của lượt thi — đúng tinh thần bài toán "về đích" trên Violympic: mỗi bài cần <span class="kw">nhiều bước tính nối tiếp nhau</span>, kết hợp hai hoặc ba mảng kiến thức cùng lúc như <span class="kw">chuyển động đều</span>, <span class="kw">hình học</span>, phân số và tỉ số phần trăm — đúng độ khó cao nhất của lớp 5. Vượt qua được cả 2 bài này là hoàn thành trọn vẹn lượt thi!</p>
+
+      <div class="problem" data-pool="vong4-1" data-qid="Câu 4.1">
+        <div class="qhead"><span class="qid">Câu 4.1</span></div>
+        <div class="qtext">
+          <p class="obstacle-tag">🚩 Chướng ngại vật</p>
+          <p>Quãng đường AB dài 180km. Lúc 6 giờ, một ô tô xuất phát từ A đi về B với vận tốc 40km/h; cùng lúc đó một xe máy xuất phát từ B đi về A với vận tốc 35km/h. Hỏi hai xe gặp nhau lúc mấy giờ và chỗ gặp nhau cách A bao nhiêu ki-lô-mét?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Vì hai xe khởi hành cùng lúc và đi ngược chiều nhau, tổng vận tốc hai xe là 40 + 35 = 75 km/h.</div>
+          <div class="step" data-n="2" hidden>Thời gian để hai xe gặp nhau: 180 ÷ 75 = 2,4 giờ.</div>
+          <div class="step" data-n="3" hidden>Đổi 2,4 giờ = 2 giờ 24 phút (vì 0,4 giờ = 0,4 × 60 = 24 phút). Hai xe xuất phát lúc 6 giờ nên gặp nhau lúc 6 giờ + 2 giờ 24 phút = 8 giờ 24 phút.</div>
+          <div class="step" data-n="4" hidden>Quãng đường ô tô đi được đến lúc gặp nhau (cũng là khoảng cách từ chỗ gặp nhau đến A): 40 × 2,4 = 96 km.</div>
+          <div class="step" data-n="5" hidden>Thử lại: xe máy đi được 35 × 2,4 = 84 km; cộng lại 96 + 84 = 180 km, đúng bằng quãng đường AB ✓.</div>
+          <div class="answer" hidden>Đáp số: hai xe gặp nhau lúc 8 giờ 24 phút, chỗ gặp nhau cách A 96km.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="vong4-2" data-qid="Câu 4.2">
+        <div class="qhead"><span class="qid">Câu 4.2</span></div>
+        <div class="qtext">
+          <p class="obstacle-tag">🚩 Chướng ngại vật</p>
+          <p>Một thửa ruộng hình chữ nhật có chiều dài 45m, chiều rộng bằng 2/3 chiều dài. Người ta dùng 40% diện tích thửa ruộng để trồng lúa, phần diện tích còn lại dùng để trồng rau. Biết trung bình mỗi mét vuông trồng rau thu hoạch được 1,5kg rau, hỏi tổng thu hoạch rau trên thửa ruộng là bao nhiêu ki-lô-gam?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Chiều rộng thửa ruộng: 45 × 2/3 = 30m.</div>
+          <div class="step" data-n="2" hidden>Diện tích thửa ruộng: 45 × 30 = 1350 m².</div>
+          <div class="step" data-n="3" hidden>Diện tích trồng lúa: 40% của 1350 là 1350 × 40 ÷ 100 = 540 m².</div>
+          <div class="step" data-n="4" hidden>Diện tích trồng rau (phần còn lại): 1350 − 540 = 810 m².</div>
+          <div class="step" data-n="5" hidden>Tổng thu hoạch rau: 810 × 1,5 = 1215 kg.</div>
+          <div class="answer" hidden>Đáp số: diện tích trồng rau là 810 m², tổng thu hoạch được 1215 kg rau.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Tài liệu "Luyện Thi Violympic Toán 5" — bài tự soạn mới hoàn toàn, dùng cho mục đích ôn luyện. Đáp án và lời giải chỉ mang tính tham khảo, khuyến khích các em tự tính trước khi bấm "Xem đáp số ngay".</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  'vong1-1': [{
+    qtext: '<p>Điền nhanh đáp số:</p><div class="calc-row"><span class="tile">215,67</span><span class="op">+</span><span class="tile">184,59</span><span class="op">=</span><span class="tile blank">?</span></div>',
+    steps: [
+      'Đặt tính sao cho các dấu phẩy thẳng cột: 215,67 và 184,59.',
+      'Cộng hàng phần trăm (hàng cuối): 7 + 9 = 16, viết 6 nhớ 1.',
+      'Cộng hàng phần mười: 6 + 5 = 11, cộng thêm 1 (nhớ) = 12, viết 2 nhớ 1.',
+      'Cộng phần nguyên: 215 + 184 = 399, cộng thêm 1 (nhớ) = 400.',
+      'Ghép lại các chữ số: 400,26.'
+    ],
+    answer: 'Đáp số: 400,26.'
+  }],
+  'vong1-2': [{
+    qtext: '<p>Điền nhanh đáp số:</p><div class="calc-row"><span class="tile">40% của 250</span><span class="op">−</span><span class="tile">27,4</span><span class="op">=</span><span class="tile blank">?</span></div>',
+    steps: [
+      '40% = 40/100 = 2/5, nên "40% của 250" nghĩa là lấy 250 chia 5 rồi nhân 2.',
+      'Tính 250 ÷ 5 = 50, rồi 50 × 2 = 100.',
+      'Lấy 100 trừ đi 27,4: 100 − 27,4 = 72,6.'
+    ],
+    answer: 'Đáp số: 72,6.'
+  }],
+  'vong2-1': [{
+    qtext: '<p>Cho 4 số thập phân sau, hãy sắp xếp chúng theo thứ tự từ <b>bé đến lớn</b>:</p><div class="expr-list"><span class="expr-chip"><span class="lbl">A</span>4,25</span><span class="expr-chip"><span class="lbl">B</span>4,025</span><span class="expr-chip"><span class="lbl">C</span>4,2</span><span class="expr-chip"><span class="lbl">D</span>4,205</span></div>',
+    steps: [
+      'Viết lại đủ 3 chữ số sau dấu phẩy để dễ so sánh cùng hàng: A = 4,250; B = 4,025; C = 4,200; D = 4,205.',
+      'Cả 4 số đều có phần nguyên bằng 4, so sánh tiếp hàng phần mười: B có 0, còn A, C, D đều có 2 — vậy B nhỏ nhất trong 4 số.',
+      'So sánh A, C, D ở hàng phần trăm: C và D đều có 0, còn A có 5 — nên A lớn hơn cả C và D.',
+      'So sánh riêng C và D ở hàng phần nghìn: C = 4,200 có phần nghìn là 0, D = 4,205 có phần nghìn là 5 — nên C &lt; D.',
+      'Ghép lại toàn bộ thứ tự: B &lt; C &lt; D &lt; A.'
+    ],
+    answer: 'Đáp số: 4,025 (B) &lt; 4,2 (C) &lt; 4,205 (D) &lt; 4,25 (A).'
+  }],
+  'vong2-2': [{
+    qtext: '<p>Cho 4 số sau, viết ở nhiều dạng khác nhau. Hãy sắp xếp chúng theo thứ tự từ <b>lớn đến bé</b>:</p><div class="expr-list"><span class="expr-chip"><span class="lbl">A</span><span class="frac"><span class="num">3</span><span class="den">4</span></span></span><span class="expr-chip"><span class="lbl">B</span>0,7</span><span class="expr-chip"><span class="lbl">C</span>78%</span><span class="expr-chip"><span class="lbl">D</span><span class="frac"><span class="num">4</span><span class="den">5</span></span></span></div>',
+    steps: [
+      'Đổi tất cả về cùng dạng số thập phân để dễ so sánh: A = 3/4 = 0,75.',
+      'B = 0,7 (giữ nguyên); C = 78% = 78/100 = 0,78; D = 4/5 = 0,8.',
+      'So sánh 4 số thập phân: 0,8 &gt; 0,78 &gt; 0,75 &gt; 0,7, tức là D &gt; C &gt; A &gt; B.',
+      'Vậy thứ tự từ lớn đến bé theo chữ cái là: D, C, A, B.'
+    ],
+    answer: 'Đáp số: 4/5 (D) &gt; 78% (C) &gt; 3/4 (A) &gt; 0,7 (B).'
+  }],
+  'vong3-1': [{
+    qtext: '<p>Trong 4 giá trị dưới đây, có đúng <b>một cặp</b> bằng nhau. Em hãy tìm cặp đó:</p><div class="expr-list"><span class="expr-chip"><span class="lbl">A</span><span class="frac"><span class="num">5</span><span class="den">8</span></span></span><span class="expr-chip"><span class="lbl">B</span>60%</span><span class="expr-chip"><span class="lbl">C</span>62,5%</span><span class="expr-chip"><span class="lbl">D</span><span class="frac"><span class="num">3</span><span class="den">4</span></span></span></div>',
+    steps: [
+      'Đổi các phân số về tỉ số phần trăm để so sánh cùng dạng với B, C: A = 5/8 = 0,625 = 62,5%.',
+      'B = 60% (giữ nguyên); C = 62,5% (giữ nguyên); D = 3/4 = 0,75 = 75%.',
+      'So sánh 4 giá trị: A = 62,5%, B = 60%, C = 62,5%, D = 75% — chỉ có A và C cùng bằng 62,5%.',
+      'B = 60% và D = 75% đều khác các giá trị còn lại, nên cặp bằng nhau duy nhất là A và C.'
+    ],
+    answer: 'Đáp số: A và C (cùng bằng 5/8 = 62,5%).'
+  }],
+  'vong3-2': [{
+    qtext: '<p>Trong 4 phép tính dưới đây, có đúng <b>một cặp</b> cho kết quả bằng nhau. Em hãy tìm cặp đó:</p><div class="expr-list"><span class="expr-chip"><span class="lbl">A</span>1/5 của 90</span><span class="expr-chip"><span class="lbl">B</span>30% của 70</span><span class="expr-chip"><span class="lbl">C</span>0,2 × 90</span><span class="expr-chip"><span class="lbl">D</span>3/10 của 50</span></div>',
+    steps: [
+      'Tính giá trị từng biểu thức: A = 1/5 của 90 = 90 ÷ 5 = 18.',
+      'B = 30% của 70 = 70 × 30 ÷ 100 = 21; C = 0,2 × 90 = 18; D = 3/10 của 50 = 50 ÷ 10 × 3 = 15.',
+      'So sánh 4 kết quả: A = 18, B = 21, C = 18, D = 15 — chỉ có A và C cùng bằng 18.',
+      'B = 21 và D = 15 đều khác các số còn lại, nên cặp bằng nhau duy nhất là A và C.'
+    ],
+    answer: 'Đáp số: A và C (cùng bằng 18).'
+  }],
+  'vong4-1': [{
+    qtext: '<p class="obstacle-tag">🚩 Chướng ngại vật</p><p>Quãng đường AB dài 165km. Lúc 7 giờ, một ô tô xuất phát từ A đi về B với vận tốc 42km/h; cùng lúc đó một xe máy xuất phát từ B đi về A với vận tốc 33km/h. Hỏi hai xe gặp nhau lúc mấy giờ và chỗ gặp nhau cách A bao nhiêu ki-lô-mét?</p>',
+    steps: [
+      'Vì hai xe khởi hành cùng lúc và đi ngược chiều nhau, tổng vận tốc hai xe là 42 + 33 = 75 km/h.',
+      'Thời gian để hai xe gặp nhau: 165 ÷ 75 = 2,2 giờ.',
+      'Đổi 2,2 giờ = 2 giờ 12 phút (vì 0,2 giờ = 0,2 × 60 = 12 phút). Hai xe xuất phát lúc 7 giờ nên gặp nhau lúc 7 giờ + 2 giờ 12 phút = 9 giờ 12 phút.',
+      'Quãng đường ô tô đi được đến lúc gặp nhau (cũng là khoảng cách từ chỗ gặp nhau đến A): 42 × 2,2 = 92,4 km.',
+      'Thử lại: xe máy đi được 33 × 2,2 = 72,6 km; cộng lại 92,4 + 72,6 = 165 km, đúng bằng quãng đường AB ✓.'
+    ],
+    answer: 'Đáp số: hai xe gặp nhau lúc 9 giờ 12 phút, chỗ gặp nhau cách A 92,4km.'
+  }],
+  'vong4-2': [{
+    qtext: '<p class="obstacle-tag">🚩 Chướng ngại vật</p><p>Một thửa ruộng hình chữ nhật có chiều dài 60m, chiều rộng bằng 3/4 chiều dài. Người ta dùng 35% diện tích thửa ruộng để trồng ngô, phần diện tích còn lại dùng để trồng đậu. Biết trung bình mỗi mét vuông trồng đậu thu hoạch được 1,2kg đậu, hỏi tổng thu hoạch đậu trên thửa ruộng là bao nhiêu ki-lô-gam?</p>',
+    steps: [
+      'Chiều rộng thửa ruộng: 60 × 3/4 = 45m.',
+      'Diện tích thửa ruộng: 60 × 45 = 2700 m².',
+      'Diện tích trồng ngô: 35% của 2700 là 2700 × 35 ÷ 100 = 945 m².',
+      'Diện tích trồng đậu (phần còn lại): 2700 − 945 = 1755 m².',
+      'Tổng thu hoạch đậu: 1755 × 1,2 = 2106 kg.'
+    ],
+    answer: 'Đáp số: diện tích trồng đậu là 1755 m², tổng thu hoạch được 2106 kg đậu.'
+  }]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function buildOriginal(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    return {
+      qtext: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) { return s.innerHTML; }),
+      answer: solBody.querySelector('.answer').innerHTML
+    };
+  }
+
+  function render(el, item) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    qtext.innerHTML = item.qtext;
+    var steps = solBody.querySelectorAll('.step');
+    if (steps.length !== item.steps.length) {
+      var html = item.steps.map(function (s, i) {
+        return '<div class="step" data-n="' + (i + 1) + '" hidden>' + s + '</div>';
+      }).join('');
+      html += '<div class="answer" hidden>' + item.answer + '</div>';
+      solBody.innerHTML = html;
+    } else {
+      steps.forEach(function (stepEl, i) {
+        stepEl.innerHTML = item.steps[i];
+        stepEl.hidden = true;
+      });
+      var ansEl = solBody.querySelector('.answer');
+      ansEl.innerHTML = item.answer;
+      ansEl.hidden = true;
+    }
+  }
+
+  function initProblem(el) {
+    var poolId = el.dataset.pool;
+    var pool = [buildOriginal(el)].concat((window.VARIANTS && window.VARIANTS[poolId]) || []);
+    var state = { index: 0, revealed: 0, answerShown: false };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+    var solBody = el.querySelector('.sol-body');
+
+    if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var steps = solBody.querySelectorAll('.step');
+      var anyRevealed = state.revealed > 0 || state.answerShown;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= steps.length;
+        btnHint.textContent = state.revealed >= steps.length ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) btnReset.hidden = !anyRevealed;
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.hidden = false;
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.hidden = false;
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.index = (state.index + 1) % pool.length;
+      render(el, pool[state.index]);
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.hidden = true; });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.hidden = true;
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+</body>
+</html>

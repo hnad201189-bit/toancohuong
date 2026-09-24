@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ôn Tập Học Kỳ Toán 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Mulish:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #fdf8ef;
+    --bg-alt: #f8ecd3;
+    --paper: #ffffff;
+    --ink: #2e2013;
+    --ink-soft: #6b5636;
+    --ink-faint: #a3906c;
+    --accent: #b3690a;
+    --accent-soft: #f6e3bb;
+    --accent-warm: #a12a44;
+    --accent-warm-soft: #f6dde3;
+    --line: #ecddb9;
+    --line-strong: #dcbd82;
+    --shadow: 0 1px 2px rgba(46, 32, 19, 0.08), 0 8px 22px rgba(46, 32, 19, 0.10);
+    --radius: 18px;
+    --sans: "Mulish", "Segoe UI", "Be Vietnam Pro", Calibri, Arial, sans-serif;
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", "Cascadia Code", Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #191309;
+    --bg-alt: #221a0d;
+    --paper: #241c0f;
+    --ink: #f7ecd6;
+    --ink-soft: #d8c19a;
+    --ink-faint: #a89468;
+    --accent: #f0a93a;
+    --accent-soft: #3d2c10;
+    --accent-warm: #ff8fa3;
+    --accent-warm-soft: #3d1620;
+    --line: #3d3018;
+    --line-strong: #57431f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #191309;
+      --bg-alt: #221a0d;
+      --paper: #241c0f;
+      --ink: #f7ecd6;
+      --ink-soft: #d8c19a;
+      --ink-faint: #a89468;
+      --accent: #f0a93a;
+      --accent-soft: #3d2c10;
+      --accent-warm: #ff8fa3;
+      --accent-warm-soft: #3d1620;
+      --line: #3d3018;
+      --line-strong: #57431f;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 20px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(28px, 4.4vw, 42px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17.5px;
+    margin: 0;
+  }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0 6px;
+  }
+  .stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--line-strong);
+  }
+  .stat-chip.warm { background: var(--accent-warm-soft); color: var(--accent-warm); }
+  .stat-chip b { font-weight: 800; }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(22px, 2.5vw, 28px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 70ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 22px 26px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 20px 26px 24px;
+    background: var(--paper);
+    font-size: 15.5px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 30px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 13px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 17px 19px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+    font-family: var(--display);
+  }
+  .method-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">2 đề ôn tập học kỳ</div>
+    <ol>
+      <li><a href="#hk1"><span class="n">📘</span>Học kỳ 1</a></li>
+      <li><a href="#hk2"><span class="n">📗</span>Học kỳ 2</a></li>
+      <li><a href="#meo-lam-bai"><span class="n">🧭</span>Mẹo ôn thi học kỳ</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">📖 Ôn luyện Toán lớp 5</div>
+      <h1>Ôn Tập Học Kỳ Toán 5</h1>
+      <p class="lede">Hai đề ôn tập tổng hợp, mỗi đề <b>4 bài</b> đi từ dễ đến khó, mô phỏng cấu trúc một bài kiểm tra cuối học kỳ thật. <b>Học kỳ 1</b> ôn số thập phân, phân số, tỉ số phần trăm, bốn phép tính với số thập phân và các bài toán có lời văn dạng tổng-hiệu, tổng-tỉ. <b>Học kỳ 2</b> ôn hình học (diện tích tam giác, hình thang), thể tích hình hộp chữ nhật, chuyển động đều và một bài toán tổng hợp nâng cao ôn lại kiến thức cả năm.</p>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-chip">📘📗 <b>8</b> bài gốc</span>
+      <span class="stat-chip">🔄 <b>8</b> biến thể</span>
+      <span class="stat-chip warm">🎯 <b>16</b> lượt luyện</span>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 22px 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Ôn Tập Học Kỳ Toán 5</b> là tài liệu ôn tập do đội ngũ tự biên soạn mới hoàn toàn — toàn bộ số liệu, tình huống và lời giải trong bài đều là nội dung gốc, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào. Mỗi bài tập có nút <b>"Đổi bài tương tự"</b> để con luyện lại đúng dạng đó với số liệu khác — hãy dùng nút <b>"Gợi ý"</b> trước khi xem đáp số, để con tự suy nghĩ từng bước một nhé!</p>
+    </div>
+
+    <!-- ================= HỌC KỲ 1 ================= -->
+    <section class="topic" id="hk1">
+      <div class="topic-head">
+        <span class="topic-badge">📘</span>
+        <h2 class="topic-title"><span class="topic-num">Đề ôn tập 1</span>Học kỳ 1</h2>
+      </div>
+      <p class="topic-intro">Đề số 1 tổng hợp kiến thức trọng tâm của nửa đầu năm học lớp 5: cộng — trừ số thập phân, nhân — chia số thập phân, tỉ số phần trăm, cùng bài toán có lời văn dạng <span class="kw">tổng-hiệu</span> với số thập phân. 4 bài dưới đây đi từ dễ đến khó, đúng như cấu trúc một đề kiểm tra học kỳ thật.</p>
+
+      <div class="problem" data-pool="hk1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Một cửa hàng có 2 bao gạo. Bao thứ nhất cân nặng <b>45,5kg</b>. Bao thứ hai nhẹ hơn bao thứ nhất <b>8,2kg</b>.</p>
+          <p>a) Bao thứ hai cân nặng bao nhiêu ki-lô-gam?<br>b) Cả hai bao gạo cân nặng bao nhiêu ki-lô-gam?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) "Nhẹ hơn" nghĩa là phải <b>trừ</b>: cân nặng bao thứ hai = 45,5 − 8,2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Thực hiện phép trừ: 45,5 − 8,2 = 37,3 (kg).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Cân nặng cả hai bao = bao thứ nhất + bao thứ hai = 45,5 + 37,3.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Thực hiện phép cộng: 45,5 + 37,3 = 82,8 (kg).</p></div></div>
+          <p class="answer hidden">Đáp số: a) Bao thứ hai nặng <b>37,3kg</b>. b) Cả hai bao nặng <b>82,8kg</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Một xưởng may dùng hết <b>3,5m</b> vải để may xong 1 bộ đồng phục. Xưởng có <b>87,5m</b> vải.</p>
+          <p>a) Hỏi xưởng may được nhiều nhất bao nhiêu bộ đồng phục (không dư vải)?<br>b) Mỗi bộ đồng phục bán với giá <b>235 000 đồng</b>. Hỏi bán hết số bộ đồng phục đó, xưởng thu được bao nhiêu tiền?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Số bộ đồng phục may được = tổng số mét vải ÷ số mét vải mỗi bộ = 87,5 : 3,5.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Thực hiện phép chia hai số thập phân: 87,5 : 3,5 = 25 (bộ).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Số tiền thu được = số bộ đồng phục × giá mỗi bộ = 25 × 235 000.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Thực hiện phép nhân: 25 × 235 000 = 5 875 000 (đồng).</p></div></div>
+          <p class="answer hidden">Đáp số: a) May được <b>25</b> bộ đồng phục. b) Thu được <b>5 875 000 đồng</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk1-3" data-qid="Bài 1.3">
+        <div class="q"><span class="qid">Bài 1.3</span><div class="qtext">
+          <p>Trường Tiểu học Việt Xanh có <b>450</b> học sinh, trong đó có <b>189</b> học sinh đạt danh hiệu Học sinh Xuất sắc trong học kỳ 1.</p>
+          <p>a) Số học sinh đạt danh hiệu Học sinh Xuất sắc chiếm bao nhiêu phần trăm số học sinh toàn trường?<br>b) Mỗi học sinh Xuất sắc được nhà trường thưởng <b>50 000 đồng</b>. Hỏi nhà trường đã chi bao nhiêu tiền thưởng cho tất cả học sinh Xuất sắc?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Muốn tìm tỉ số phần trăm của hai số, ta chia số này cho số kia rồi nhân thương với 100, viết kèm dấu %: 189 : 450.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Tính: 189 : 450 = 0,42 = 42%.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Số tiền thưởng = số học sinh Xuất sắc × số tiền thưởng mỗi em = 189 × 50 000.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Thực hiện phép nhân: 189 × 50 000 = 9 450 000 (đồng).</p></div></div>
+          <p class="answer hidden">Đáp số: a) Chiếm <b>42%</b>. b) Nhà trường đã chi <b>9 450 000 đồng</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk1-4" data-qid="Bài 1.4">
+        <div class="q"><span class="qid">Bài 1.4</span><div class="qtext">
+          <p>Hai kho chứa tổng cộng <b>84,6 tấn</b> xi măng. Kho A chứa nhiều hơn kho B là <b>12,4 tấn</b>.</p>
+          <p>a) Hỏi kho A chứa bao nhiêu tấn xi măng?<br>b) Hỏi kho B chứa bao nhiêu tấn xi măng?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đây là dạng toán <b>tổng-hiệu</b>: biết tổng hai số (84,6) và hiệu hai số (12,4), cần tìm từng số.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Số lớn (kho A) = (tổng + hiệu) : 2 = (84,6 + 12,4) : 2 = 97 : 2.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>a) Tính: 97 : 2 = 48,5 (tấn).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Số bé (kho B) = số lớn − hiệu = 48,5 − 12,4 = 36,1 (tấn). (Kiểm tra: 48,5 + 36,1 = 84,6 ✓)</p></div></div>
+          <p class="answer hidden">Đáp số: a) Kho A chứa <b>48,5 tấn</b>. b) Kho B chứa <b>36,1 tấn</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HỌC KỲ 2 ================= -->
+    <section class="topic" id="hk2">
+      <div class="topic-head">
+        <span class="topic-badge">📗</span>
+        <h2 class="topic-title"><span class="topic-num">Đề ôn tập 2</span>Học kỳ 2</h2>
+      </div>
+      <p class="topic-intro">Đề số 2 tổng hợp kiến thức trọng tâm của nửa sau năm học lớp 5: diện tích hình tam giác, thể tích hình hộp chữ nhật, chuyển động đều, cùng một bài toán <span class="kw">tổng hợp nâng cao</span> ôn lại kiến thức cả năm (kết hợp hình học và tỉ số phần trăm). 4 bài dưới đây cũng đi từ dễ đến khó như một đề kiểm tra học kỳ thật.</p>
+
+      <div class="problem" data-pool="hk2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Một thửa ruộng hình tam giác có đáy <b>42m</b> và chiều cao <b>18m</b>. Người ta trồng lúa trên toàn bộ thửa ruộng đó, mỗi mét vuông thu hoạch được <b>0,8kg</b> thóc.</p>
+          <p>a) Tính diện tích thửa ruộng.<br>b) Tính số ki-lô-gam thóc thu hoạch được trên cả thửa ruộng.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Diện tích hình tam giác = đáy × chiều cao : 2 = 42 × 18 : 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Tính: 42 × 18 = 756; 756 : 2 = 378 (m²).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Số thóc thu hoạch = diện tích × năng suất mỗi mét vuông = 378 × 0,8.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Thực hiện phép nhân: 378 × 0,8 = 302,4 (kg).</p></div></div>
+          <p class="answer hidden">Đáp số: a) Diện tích thửa ruộng là <b>378m²</b>. b) Thu hoạch được <b>302,4kg</b> thóc.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Một bể nước dạng hình hộp chữ nhật có chiều dài <b>1,5m</b>, chiều rộng <b>0,8m</b> và chiều cao <b>1,2m</b>.</p>
+          <p>a) Tính thể tích bể nước đó.<br>b) Người ta đổ nước vào bể đến khi đầy 3/4 thể tích bể. Hỏi trong bể có bao nhiêu lít nước? (1m³ = 1000 lít)</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Thể tích hình hộp chữ nhật = chiều dài × chiều rộng × chiều cao = 1,5 × 0,8 × 1,2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Tính: 1,5 × 0,8 = 1,2; 1,2 × 1,2 = 1,44 (m³).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Thể tích nước trong bể = thể tích bể × 3/4 = 1,44 × 3 : 4.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Tính: 1,44 × 3 = 4,32; 4,32 : 4 = 1,08 (m³). Đổi ra lít: 1,08 × 1000 = 1080 (lít).</p></div></div>
+          <p class="answer hidden">Đáp số: a) Thể tích bể là <b>1,44m³</b>. b) Trong bể có <b>1080 lít</b> nước.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk2-3" data-qid="Bài 2.3">
+        <div class="q"><span class="qid">Bài 2.3</span><div class="qtext">
+          <p>Một ô tô đi từ A đến B với vận tốc <b>52km/giờ</b>, đi hết <b>2 giờ 30 phút</b>.</p>
+          <p>a) Tính quãng đường AB.<br>b) Trên đường về, ô tô đi với vận tốc <b>65km/giờ</b>. Hỏi ô tô đi từ B về A hết bao nhiêu thời gian?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Đổi đơn vị thời gian: 2 giờ 30 phút = 2,5 giờ (vì 30 phút = 0,5 giờ).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Quãng đường AB = vận tốc × thời gian = 52 × 2,5 = 130 (km).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Thời gian đi từ B về A = quãng đường : vận tốc = 130 : 65.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Tính: 130 : 65 = 2 (giờ).</p></div></div>
+          <p class="answer hidden">Đáp số: a) Quãng đường AB dài <b>130km</b>. b) Đi từ B về A hết <b>2 giờ</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="hk2-4" data-qid="Bài 2.4">
+        <div class="q"><span class="qid">Bài 2.4</span><div class="qtext">
+          <p>Một mảnh vườn hình thang có đáy lớn <b>36m</b>, đáy bé <b>24m</b> và chiều cao <b>20m</b>. Người ta dùng <b>45%</b> diện tích mảnh vườn để trồng hoa, phần diện tích còn lại dùng để trồng rau. Trung bình mỗi mét vuông đất trồng rau cho thu hoạch <b>2,5kg</b> rau.</p>
+          <p>a) Tính diện tích mảnh vườn hình thang đó.<br>b) Tính diện tích đất trồng rau và số ki-lô-gam rau thu hoạch được trên diện tích đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>a) Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2 = (36 + 24) × 20 : 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>a) Tính: (36 + 24) × 20 = 60 × 20 = 1200; 1200 : 2 = 600 (m²).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>b) Diện tích trồng hoa = 45% của 600m² = 600 × 45 : 100 = 270 (m²). Diện tích trồng rau = diện tích cả vườn − diện tích trồng hoa = 600 − 270 = 330 (m²).</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p>b) Số rau thu hoạch = diện tích trồng rau × năng suất mỗi mét vuông = 330 × 2,5 = 825 (kg).</p></div></div>
+          <p class="answer hidden">Đáp số: a) Diện tích mảnh vườn là <b>600m²</b>. b) Diện tích trồng rau là <b>330m²</b>, thu hoạch được <b>825kg</b> rau.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-lam-bai">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo ôn thi học kỳ</h2>
+      </div>
+      <p class="topic-intro">5 nguyên tắc ngắn gọn giúp con làm quen với không khí một đề kiểm tra học kỳ thật, ôn đều cả hai học kỳ trước khi bước vào phòng thi.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Làm thử cả đề trước khi xem đáp số.</b> Khuyến khích con làm hết 4 bài của một học kỳ rồi mới bấm "Xem đáp số", để tập quen với cảm giác làm một đề thi trọn vẹn.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Đọc kỹ đề, gạch chân số liệu.</b> Với các bài có 2 câu hỏi (a, b), nhắc con đọc hết cả đề rồi mới bắt đầu tính, tránh bỏ sót câu hỏi phụ.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Đổi đơn vị trước khi tính.</b> Phút → giờ, % → số thập phân, m³ → lít — đổi xong xuôi rồi mới đặt phép tính, tránh sai đơn vị giữa chừng.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Dùng "Gợi ý" khi thực sự bí.</b> Mỗi lần bấm chỉ hiện thêm 1 bước — để con tự nghĩ tiếp bước sau, giống như đang tự làm bài kiểm tra.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">5</span>
+          <p><b>Ôn đều cả hai học kỳ.</b> Bài toán tổng hợp cuối Học kỳ 2 dùng lại cả tỉ số phần trăm của Học kỳ 1, nên đừng bỏ qua đề số 1 dù con đang chuẩn bị thi cuối năm.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 5. Toàn bộ bài tập, số liệu và lời giải trong tài liệu này là nội dung mới do đội ngũ tự viết, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'hk1-1': [{
+      qHtml: '<p>Một cửa hàng có 2 bao đường. Bao thứ nhất cân nặng <b>38,4kg</b>. Bao thứ hai nhẹ hơn bao thứ nhất <b>6,7kg</b>.</p><p>a) Bao thứ hai cân nặng bao nhiêu ki-lô-gam?<br>b) Cả hai bao đường cân nặng bao nhiêu ki-lô-gam?</p>',
+      steps: [
+        '<p>a) "Nhẹ hơn" nghĩa là phải <b>trừ</b>: cân nặng bao thứ hai = 38,4 − 6,7.</p>',
+        '<p>a) Thực hiện phép trừ: 38,4 − 6,7 = 31,7 (kg).</p>',
+        '<p>b) Cân nặng cả hai bao = bao thứ nhất + bao thứ hai = 38,4 + 31,7.</p>',
+        '<p>b) Thực hiện phép cộng: 38,4 + 31,7 = 70,1 (kg).</p>'
+      ],
+      answerHtml: 'Đáp số: a) Bao thứ hai nặng <b>31,7kg</b>. b) Cả hai bao nặng <b>70,1kg</b>.'
+    }],
+    'hk1-2': [{
+      qHtml: '<p>Một xưởng may dùng hết <b>2,5m</b> vải để may xong 1 chiếc rèm cửa. Xưởng có <b>62,5m</b> vải.</p><p>a) Hỏi xưởng may được nhiều nhất bao nhiêu chiếc rèm cửa (không dư vải)?<br>b) Mỗi chiếc rèm cửa bán với giá <b>180 000 đồng</b>. Hỏi bán hết số rèm cửa đó, xưởng thu được bao nhiêu tiền?</p>',
+      steps: [
+        '<p>a) Số rèm cửa may được = tổng số mét vải ÷ số mét vải mỗi chiếc = 62,5 : 2,5.</p>',
+        '<p>a) Thực hiện phép chia hai số thập phân: 62,5 : 2,5 = 25 (chiếc).</p>',
+        '<p>b) Số tiền thu được = số rèm cửa × giá mỗi chiếc = 25 × 180 000.</p>',
+        '<p>b) Thực hiện phép nhân: 25 × 180 000 = 4 500 000 (đồng).</p>'
+      ],
+      answerHtml: 'Đáp số: a) May được <b>25</b> chiếc rèm cửa. b) Thu được <b>4 500 000 đồng</b>.'
+    }],
+    'hk1-3': [{
+      qHtml: '<p>Trường Tiểu học Ánh Dương có <b>500</b> học sinh, trong đó có <b>220</b> học sinh đạt danh hiệu Học sinh Xuất sắc trong học kỳ 1.</p><p>a) Số học sinh đạt danh hiệu Học sinh Xuất sắc chiếm bao nhiêu phần trăm số học sinh toàn trường?<br>b) Mỗi học sinh Xuất sắc được nhà trường thưởng <b>60 000 đồng</b>. Hỏi nhà trường đã chi bao nhiêu tiền thưởng cho tất cả học sinh Xuất sắc?</p>',
+      steps: [
+        '<p>a) Muốn tìm tỉ số phần trăm của hai số, ta chia số này cho số kia rồi nhân thương với 100, viết kèm dấu %: 220 : 500.</p>',
+        '<p>a) Tính: 220 : 500 = 0,44 = 44%.</p>',
+        '<p>b) Số tiền thưởng = số học sinh Xuất sắc × số tiền thưởng mỗi em = 220 × 60 000.</p>',
+        '<p>b) Thực hiện phép nhân: 220 × 60 000 = 13 200 000 (đồng).</p>'
+      ],
+      answerHtml: 'Đáp số: a) Chiếm <b>44%</b>. b) Nhà trường đã chi <b>13 200 000 đồng</b>.'
+    }],
+    'hk1-4': [{
+      qHtml: '<p>Hai đội thu hoạch tổng cộng <b>96,8 tấn</b> cà phê. Đội Một thu hoạch nhiều hơn đội Hai là <b>15,2 tấn</b>.</p><p>a) Hỏi đội Một thu hoạch bao nhiêu tấn cà phê?<br>b) Hỏi đội Hai thu hoạch bao nhiêu tấn cà phê?</p>',
+      steps: [
+        '<p>Đây là dạng toán <b>tổng-hiệu</b>: biết tổng hai số (96,8) và hiệu hai số (15,2), cần tìm từng số.</p>',
+        '<p>a) Số lớn (đội Một) = (tổng + hiệu) : 2 = (96,8 + 15,2) : 2 = 112 : 2.</p>',
+        '<p>a) Tính: 112 : 2 = 56 (tấn).</p>',
+        '<p>b) Số bé (đội Hai) = số lớn − hiệu = 56 − 15,2 = 40,8 (tấn). (Kiểm tra: 56 + 40,8 = 96,8 ✓)</p>'
+      ],
+      answerHtml: 'Đáp số: a) Đội Một thu hoạch <b>56 tấn</b>. b) Đội Hai thu hoạch <b>40,8 tấn</b>.'
+    }],
+    'hk2-1': [{
+      qHtml: '<p>Một thửa ruộng hình tam giác có đáy <b>50m</b> và chiều cao <b>24m</b>. Người ta trồng ngô trên toàn bộ thửa ruộng đó, mỗi mét vuông thu hoạch được <b>0,6kg</b> ngô.</p><p>a) Tính diện tích thửa ruộng.<br>b) Tính số ki-lô-gam ngô thu hoạch được trên cả thửa ruộng.</p>',
+      steps: [
+        '<p>a) Diện tích hình tam giác = đáy × chiều cao : 2 = 50 × 24 : 2.</p>',
+        '<p>a) Tính: 50 × 24 = 1200; 1200 : 2 = 600 (m²).</p>',
+        '<p>b) Số ngô thu hoạch = diện tích × năng suất mỗi mét vuông = 600 × 0,6.</p>',
+        '<p>b) Thực hiện phép nhân: 600 × 0,6 = 360 (kg).</p>'
+      ],
+      answerHtml: 'Đáp số: a) Diện tích thửa ruộng là <b>600m²</b>. b) Thu hoạch được <b>360kg</b> ngô.'
+    }],
+    'hk2-2': [{
+      qHtml: '<p>Một bể cá dạng hình hộp chữ nhật có chiều dài <b>1,2m</b>, chiều rộng <b>0,6m</b> và chiều cao <b>0,9m</b>.</p><p>a) Tính thể tích bể cá đó.<br>b) Người ta đổ nước vào bể đến khi đầy 2/3 thể tích bể. Hỏi trong bể có bao nhiêu lít nước? (1m³ = 1000 lít)</p>',
+      steps: [
+        '<p>a) Thể tích hình hộp chữ nhật = chiều dài × chiều rộng × chiều cao = 1,2 × 0,6 × 0,9.</p>',
+        '<p>a) Tính: 1,2 × 0,6 = 0,72; 0,72 × 0,9 = 0,648 (m³).</p>',
+        '<p>b) Thể tích nước trong bể = thể tích bể × 2/3 = 0,648 × 2 : 3.</p>',
+        '<p>b) Tính: 0,648 × 2 = 1,296; 1,296 : 3 = 0,432 (m³). Đổi ra lít: 0,432 × 1000 = 432 (lít).</p>'
+      ],
+      answerHtml: 'Đáp số: a) Thể tích bể là <b>0,648m³</b>. b) Trong bể có <b>432 lít</b> nước.'
+    }],
+    'hk2-3': [{
+      qHtml: '<p>Một xe khách đi từ C đến D với vận tốc <b>45km/giờ</b>, đi hết <b>3 giờ 12 phút</b>.</p><p>a) Tính quãng đường CD.<br>b) Trên đường về, xe khách đi với vận tốc <b>48km/giờ</b>. Hỏi xe khách đi từ D về C hết bao nhiêu thời gian?</p>',
+      steps: [
+        '<p>a) Đổi đơn vị thời gian: 3 giờ 12 phút = 3,2 giờ (vì 12 phút = 0,2 giờ).</p>',
+        '<p>a) Quãng đường CD = vận tốc × thời gian = 45 × 3,2 = 144 (km).</p>',
+        '<p>b) Thời gian đi từ D về C = quãng đường : vận tốc = 144 : 48.</p>',
+        '<p>b) Tính: 144 : 48 = 3 (giờ).</p>'
+      ],
+      answerHtml: 'Đáp số: a) Quãng đường CD dài <b>144km</b>. b) Đi từ D về C hết <b>3 giờ</b>.'
+    }],
+    'hk2-4': [{
+      qHtml: '<p>Một mảnh vườn hình thang có đáy lớn <b>40m</b>, đáy bé <b>28m</b> và chiều cao <b>15m</b>. Người ta dùng <b>40%</b> diện tích mảnh vườn để trồng hoa, phần diện tích còn lại dùng để trồng rau. Trung bình mỗi mét vuông đất trồng rau cho thu hoạch <b>3kg</b> rau.</p><p>a) Tính diện tích mảnh vườn hình thang đó.<br>b) Tính diện tích đất trồng rau và số ki-lô-gam rau thu hoạch được trên diện tích đó.</p>',
+      steps: [
+        '<p>a) Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2 = (40 + 28) × 15 : 2.</p>',
+        '<p>a) Tính: (40 + 28) × 15 = 68 × 15 = 1020; 1020 : 2 = 510 (m²).</p>',
+        '<p>b) Diện tích trồng hoa = 40% của 510m² = 510 × 40 : 100 = 204 (m²). Diện tích trồng rau = diện tích cả vườn − diện tích trồng hoa = 510 − 204 = 306 (m²).</p>',
+        '<p>b) Số rau thu hoạch = diện tích trồng rau × năng suất mỗi mét vuông = 306 × 3 = 918 (kg).</p>'
+      ],
+      answerHtml: 'Đáp số: a) Diện tích mảnh vườn là <b>510m²</b>. b) Diện tích trồng rau là <b>306m²</b>, thu hoạch được <b>918kg</b> rau.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('ontaphk-toan5-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('ontaphk-toan5-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
