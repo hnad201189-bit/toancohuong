@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chu Vi – Diện Tích – Hình Học Toán 4</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --bg-alt: #e7ecf8;
+    --paper: #ffffff;
+    --ink: #1a2233;
+    --ink-soft: #4b5674;
+    --ink-faint: #8a93ad;
+    --accent: #3357d1;
+    --accent-soft: #dde5fb;
+    --accent-warm: #dd8712;
+    --accent-warm-soft: #fbe7cc;
+    --line: #dde3f0;
+    --line-strong: #c1cbe6;
+    --shadow: 0 1px 2px rgba(20, 30, 60, 0.07), 0 8px 22px rgba(20, 30, 60, 0.08);
+    --radius: 18px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1220;
+    --bg-alt: #131b2e;
+    --paper: #141c30;
+    --ink: #e9edf9;
+    --ink-soft: #aab4d4;
+    --ink-faint: #6d78a0;
+    --accent: #7d9bff;
+    --accent-soft: #1c2947;
+    --accent-warm: #ffb454;
+    --accent-warm-soft: #3a2711;
+    --line: #232f4d;
+    --line-strong: #34446c;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1220;
+      --bg-alt: #131b2e;
+      --paper: #141c30;
+      --ink: #e9edf9;
+      --ink-soft: #aab4d4;
+      --ink-faint: #6d78a0;
+      --accent: #7d9bff;
+      --accent-soft: #1c2947;
+      --accent-warm: #ffb454;
+      --accent-warm-soft: #3a2711;
+      --line: #232f4d;
+      --line-strong: #34446c;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  .doc-head { max-width: 780px; margin: 0 0 30px; }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(27px, 4.2vw, 38px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede { color: var(--ink-soft); max-width: 66ch; font-size: 17.5px; margin: 0; }
+
+  section.topic { padding-top: 54px; scroll-margin-top: 20px; }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title { font-weight: 800; font-size: clamp(22px, 2.5vw, 27px); margin: 0; text-wrap: balance; color: var(--ink); }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 14px 0 26px; }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout.formula { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  .callout.formula .label { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+  .formula-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .formula-list li {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+    font-family: var(--mono);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q { padding: 22px 26px; display: flex; gap: 14px; align-items: baseline; border-bottom: 1px solid var(--line); }
+  .problem .qid { font-family: var(--mono); font-size: 13.5px; color: var(--accent); white-space: nowrap; padding-top: 1px; font-weight: 700; }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .mcq-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin: 12px 0 2px; font-size: 16px; }
+  .mcq-opts span b { color: var(--accent); margin-right: 4px; }
+  @media (max-width: 480px) { .mcq-opts { grid-template-columns: 1fr; } }
+
+  .geo-figure { display: flex; justify-content: center; padding: 14px 0 8px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .obj-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 12px 0 6px; }
+  .obj-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 92px;
+    padding: 10px 6px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--bg-alt);
+  }
+  .obj-chip svg { width: 58px; height: 58px; }
+  .obj-chip .cap { font-size: 11.5px; font-weight: 600; color: var(--ink-soft); text-align: center; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 26px; background: var(--bg-alt); border-bottom: 1px solid var(--line); }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 20px 26px 24px; background: var(--paper); font-size: 15.5px; }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden, .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step { display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 4px 12px; margin-bottom: 13px; }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line-strong); font-weight: 700; color: var(--accent-warm); }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 chủ đề</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">📐</span>Góc nhọn, góc tù, góc bẹt</a></li>
+      <li><a href="#sec2"><span class="n">📏</span>Hai đường thẳng vuông góc, song song</a></li>
+      <li><a href="#sec3"><span class="n">▱</span>Diện tích hình bình hành</a></li>
+      <li><a href="#sec4"><span class="n">🔶</span>Diện tích hình thoi</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 4</div>
+      <h1>Chu Vi – Diện Tích – Hình Học Toán 4</h1>
+      <p class="lede">Một chuyến đào sâu vào mảng <b>Hình học và Đo lường</b> của Toán lớp 4: phân biệt góc nhọn — góc tù — góc bẹt, nhận biết hai đường thẳng vuông góc — song song trong hình vẽ, và đặc biệt là hai hình <b>mới</b> của lớp 4 — hình bình hành, hình thoi — cùng công thức tính diện tích của chúng.</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Lưu ý quan trọng:</b> ở lớp 3, các em mới chỉ học góc vuông và góc không vuông; lên lớp 4, góc không vuông được gọi tên rõ ràng thành góc nhọn, góc tù, góc bẹt, đồng thời các em học thêm hai hình tứ giác mới — hình bình hành và hình thoi — cùng công thức diện tích của chúng. Tài liệu tập trung vào 4 nội dung: góc nhọn — góc tù — góc bẹt, hai đường thẳng vuông góc — song song, diện tích hình bình hành, diện tích hình thoi. Toàn bộ 8 câu hỏi (16 lượt bài tính cả biến thể) là <b>bài tự soạn mới hoàn toàn</b>, không sao chép từ bất kỳ nguồn nào. Mỗi câu có nút <b>🔄 Đổi bài tương tự</b> để luyện lại đúng dạng bài với số liệu khác — hãy bấm <b>💡 Gợi ý</b> từng bước trước khi xem đáp số nhé!</p>
+    </div>
+
+    <!-- ================= SECTION 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">📐</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 1</span>Góc nhọn, góc tù, góc bẹt</h2>
+      </div>
+      <p class="topic-intro">Ở lớp 3, các em đã biết góc vuông và góc không vuông. Lên lớp 4, góc không vuông được gọi tên rõ ràng hơn: <span class="kw">góc nhọn</span> là góc bé hơn góc vuông (số đo nhỏ hơn 90°), <span class="kw">góc tù</span> là góc lớn hơn góc vuông nhưng bé hơn góc bẹt (số đo từ 90° đến dưới 180°), còn <span class="kw">góc bẹt</span> có hai cạnh là hai tia đối nhau (nằm trên một đường thẳng), số đo đúng bằng <b>180°</b> — tức là bằng hai góc vuông cộng lại. Trong các hình dưới đây, mỗi góc được đánh dấu bằng một cung nhỏ kèm số đo.</p>
+
+      <div class="problem" data-pool="g1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Từ đỉnh <b>O</b>, người ta vẽ các tia <b>OA, OB, OC, OD</b> như hình bên, trong đó <b>A, O, D thẳng hàng</b> (OA và OD là hai tia đối nhau). Số đo các góc đã được ghi ngay trên hình.</p>
+          <div class="geo-figure"><svg viewBox="0 0 220 150" width="240" height="164">
+            <line x1="20" y1="125" x2="200" y2="125" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="110" y1="125" x2="167.85" y2="56.06" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="110" y1="125" x2="36.27" y2="73.38" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M134,125 A24 24 0 0 1 125.43,106.62" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/>
+            <path d="M125.43,106.62 A24 24 0 0 1 90.34,111.23" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/>
+            <path d="M90.34,111.23 A24 24 0 0 1 86,125" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/>
+            <circle cx="110" cy="125" r="3" fill="var(--ink)"/>
+            <text x="204" y="129" font-size="13" font-weight="700" fill="var(--ink)">A</text>
+            <text x="169" y="52" font-size="13" font-weight="700" fill="var(--ink)">B</text>
+            <text x="26" y="72" font-size="13" font-weight="700" fill="var(--ink)">C</text>
+            <text x="6" y="129" font-size="13" font-weight="700" fill="var(--ink)">D</text>
+            <text x="100" y="140" font-size="12" font-weight="700" fill="var(--ink-soft)">O</text>
+            <text x="142.6" y="109.8" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">50°</text>
+            <text x="105.3" y="85.3" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">95°</text>
+            <text x="75.7" y="118" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">35°</text>
+          </svg></div>
+          <p>Hỏi trong hình bên có tất cả bao nhiêu góc nhọn, bao nhiêu góc tù và bao nhiêu góc bẹt (tính cả góc AOD)?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhắc lại: góc nhọn &lt; 90°; góc tù lớn hơn 90° và nhỏ hơn 180°; góc bẹt = 180° (hai cạnh là hai tia đối nhau).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Xét từng góc đã ghi số đo: ∠AOB = 50° (nhọn), ∠BOC = 95° (tù), ∠COD = 35° (nhọn).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Vì A, O, D thẳng hàng nên ∠AOD = 180°, đây chính là một góc bẹt. Đếm lại: nhọn có ∠AOB và ∠COD (2 góc); tù có ∠BOC (1 góc); bẹt có ∠AOD (1 góc).</p></div></div>
+          <p class="answer hidden">Hình bên có <b>2 góc nhọn</b> (∠AOB = 50°, ∠COD = 35°), <b>1 góc tù</b> (∠BOC = 95°) và <b>1 góc bẹt</b> (∠AOD = 180°).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="g1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Tam giác <b>ABC</b> có số đo các góc đã được ghi ngay trên hình.</p>
+          <div class="geo-figure"><svg viewBox="0 0 200 150" width="220" height="165">
+            <polygon points="75,20 15,130 175,115" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M75,35 A15 15 0 0 1 65,45" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/>
+            <path d="M32,120 A15 15 0 0 1 30,105" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/>
+            <path d="M158,110 A20 20 0 0 1 155,90" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/>
+            <text x="70" y="14" font-size="13" font-weight="700" fill="var(--ink)">A</text>
+            <text x="2" y="140" font-size="13" font-weight="700" fill="var(--ink)">B</text>
+            <text x="180" y="122" font-size="13" font-weight="700" fill="var(--ink)">C</text>
+            <text x="62" y="52" font-size="12" font-weight="700" fill="var(--accent-warm)">38°</text>
+            <text x="35" y="102" font-size="12" font-weight="700" fill="var(--accent-warm)">47°</text>
+            <text x="130" y="92" font-size="12" font-weight="700" fill="var(--accent-warm)">95°</text>
+          </svg></div>
+          <p>Trong tam giác ABC bên, góc nào là góc tù?</p>
+          <div class="mcq-opts">
+            <span><b>A.</b> Góc A (38°)</span><span><b>B.</b> Góc B (47°)</span>
+            <span><b>C.</b> Góc C (95°)</span><span><b>D.</b> Không có góc tù nào</span>
+          </div>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Góc tù là góc có số đo lớn hơn 90° và nhỏ hơn 180°.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Xét từng góc: góc A = 38° (nhỏ hơn 90° → nhọn), góc B = 47° (nhỏ hơn 90° → nhọn), góc C = 95° (lớn hơn 90° và nhỏ hơn 180° → tù).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Kiểm tra lại: 38° + 47° + 95° = 180° (đúng bằng tổng ba góc trong một tam giác), vậy số liệu hợp lý.</p></div></div>
+          <p class="answer hidden">Đáp án: C — <b>góc C (95°)</b> là góc tù.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">📏</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 2</span>Hai đường thẳng vuông góc, song song</h2>
+      </div>
+      <p class="topic-intro">Hai đường thẳng <span class="kw">vuông góc</span> với nhau tạo thành 4 góc vuông tại giao điểm — trên hình được đánh dấu bằng kí hiệu hình vuông nhỏ tại góc đó. Hai đường thẳng <span class="kw">song song</span> với nhau thì không bao giờ cắt nhau dù kéo dài mãi về hai phía — trên hình được đánh dấu bằng các mũi tên nhỏ giống nhau trên mỗi đường. Hai đường thẳng chỉ cắt nhau xiên (không tạo góc vuông, không song song) thì không thuộc cả hai trường hợp trên.</p>
+
+      <div class="problem" data-pool="g2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Quan sát 4 hình vẽ bên, mỗi hình gồm hai đường thẳng.</p>
+          <div class="obj-grid">
+            <div class="obj-chip"><svg viewBox="0 0 70 70"><line x1="35" y1="10" x2="35" y2="60" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><line x1="10" y1="35" x2="60" y2="35" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><rect x="35" y="27" width="8" height="8" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/></svg><span class="cap">Hình 1</span></div>
+            <div class="obj-chip"><svg viewBox="0 0 70 70"><line x1="12" y1="55" x2="58" y2="15" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><line x1="15" y1="15" x2="55" y2="58" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/></svg><span class="cap">Hình 2</span></div>
+            <div class="obj-chip"><svg viewBox="0 0 70 70"><line x1="10" y1="22" x2="60" y2="22" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><line x1="10" y1="48" x2="60" y2="48" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><path d="M30,18 L38,22 L30,26" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/><path d="M30,44 L38,48 L30,52" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/></svg><span class="cap">Hình 3</span></div>
+            <div class="obj-chip"><svg viewBox="0 0 70 70"><line x1="15" y1="55" x2="55" y2="15" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><line x1="15" y1="15" x2="55" y2="55" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><rect x="31" y="20" width="8" height="8" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" transform="rotate(45 35 35)"/></svg><span class="cap">Hình 4</span></div>
+          </div>
+          <p>a) Có bao nhiêu hình thể hiện hai đường thẳng <b>vuông góc</b> với nhau? &nbsp;b) Có bao nhiêu hình thể hiện hai đường thẳng <b>song song</b> với nhau?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Hai đường thẳng vuông góc được đánh dấu bằng kí hiệu hình vuông nhỏ tại giao điểm; hai đường thẳng song song được đánh dấu bằng các mũi tên nhỏ giống nhau trên mỗi đường.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Hình 1 và Hình 4 đều có kí hiệu hình vuông nhỏ tại giao điểm → đây là hai đường thẳng vuông góc. Hình 2 chỉ là hai đường thẳng cắt nhau xiên, không có kí hiệu vuông góc → không tính.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hình 3 có các mũi tên nhỏ giống nhau trên hai đường → đây là hai đường thẳng song song.</p></div></div>
+          <p class="answer hidden">a) Có <b>2 hình</b> thể hiện hai đường thẳng vuông góc (Hình 1, Hình 4). &nbsp;b) Có <b>1 hình</b> thể hiện hai đường thẳng song song (Hình 3).</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="g2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Hình thang vuông <b>ABCD</b> bên có cạnh AB song song với cạnh DC, và có 2 góc vuông tại đỉnh A và D (đã đánh dấu).</p>
+          <div class="geo-figure"><svg viewBox="0 0 200 150" width="220" height="165">
+            <polygon points="40,30 170,30 130,120 40,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <rect x="40" y="30" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/>
+            <rect x="40" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/>
+            <path d="M97,26 L105,30 L97,34" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M77,116 L85,120 L77,124" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/>
+            <text x="28" y="24" font-size="13" font-weight="700" fill="var(--ink)">A</text>
+            <text x="173" y="24" font-size="13" font-weight="700" fill="var(--ink)">B</text>
+            <text x="134" y="136" font-size="13" font-weight="700" fill="var(--ink)">C</text>
+            <text x="22" y="136" font-size="13" font-weight="700" fill="var(--ink)">D</text>
+          </svg></div>
+          <p>a) Cạnh AD vuông góc với những cạnh nào? &nbsp;b) Cạnh nào song song với cạnh AB?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Kí hiệu hình vuông nhỏ tại đỉnh A cho biết góc giữa cạnh AB và cạnh AD là góc vuông — vậy AD vuông góc với AB.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Kí hiệu hình vuông nhỏ tại đỉnh D cho biết góc giữa cạnh AD và cạnh DC là góc vuông — vậy AD vuông góc với DC.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Hai cạnh AB và DC có kí hiệu mũi tên giống nhau, và đề bài đã cho biết AB song song với DC.</p></div></div>
+          <p class="answer hidden">a) Cạnh AD vuông góc với <b>cạnh AB</b> và <b>cạnh DC</b>. &nbsp;b) Cạnh <b>DC</b> song song với cạnh AB.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">▱</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 3</span>Diện tích hình bình hành</h2>
+      </div>
+      <p class="topic-intro"><span class="kw">Hình bình hành</span> có hai cặp cạnh đối diện song song và bằng nhau. Cạnh được chọn làm chuẩn để tính diện tích gọi là <span class="kw">đáy</span>; <span class="kw">chiều cao</span> là đoạn thẳng vuông góc hạ từ một điểm trên cạnh đối diện xuống đáy (hoặc đường kéo dài của đáy) — trên hình được vẽ bằng nét đứt, có kí hiệu góc vuông tại chân đường cao.</p>
+      <div class="callout formula" style="max-width:780px;">
+        <div class="label">📐 Công thức cần nhớ</div>
+        <ul class="formula-list">
+          <li>Diện tích hình bình hành = đáy × chiều cao</li>
+          <li>Suy ra: chiều cao = diện tích : đáy &nbsp;|&nbsp; đáy = diện tích : chiều cao</li>
+        </ul>
+      </div>
+
+      <div class="problem" data-pool="g3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Một hình bình hành có độ dài đáy <b>22cm</b>, chiều cao <b>15cm</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 210 140" width="230" height="153">
+            <polygon points="30,110 150,110 180,40 60,40" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="60" y1="40" x2="60" y2="110" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="60" y="100" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/>
+            <text x="90" y="128" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy = 22 cm</text>
+            <text x="35" y="78" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều cao</text>
+            <text x="35" y="92" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">= 15 cm</text>
+          </svg></div>
+          <p>Tính diện tích hình bình hành đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: diện tích hình bình hành = đáy × chiều cao.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số vào công thức: 22 × 15.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 22 × 15 = 330.</p></div></div>
+          <p class="answer hidden">Diện tích hình bình hành là <b>330cm²</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="g3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Một hình bình hành có diện tích <b>480cm²</b>, độ dài đáy là <b>24cm</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 210 140" width="230" height="153">
+            <polygon points="30,110 150,110 180,40 60,40" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="60" y1="40" x2="60" y2="110" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="60" y="100" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/>
+            <text x="90" y="128" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy = 24 cm</text>
+            <text x="35" y="78" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều cao</text>
+            <text x="35" y="92" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">= ?</text>
+            <text x="115" y="80" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">S = 480cm²</text>
+          </svg></div>
+          <p>Tính chiều cao của hình bình hành đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: diện tích hình bình hành = đáy × chiều cao. Vậy muốn tìm chiều cao, ta làm ngược lại: chiều cao = diện tích : đáy.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số: chiều cao = 480 : 24.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 480 : 24 = 20.</p></div></div>
+          <p class="answer hidden">Chiều cao của hình bình hành đó là <b>20cm</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🔶</span>
+        <h2 class="topic-title"><span class="topic-num">Chủ đề 4</span>Diện tích hình thoi</h2>
+      </div>
+      <p class="topic-intro"><span class="kw">Hình thoi</span> có 4 cạnh bằng nhau; hai <span class="kw">đường chéo</span> vuông góc với nhau tại trung điểm mỗi đường (trên hình vẽ bằng nét đứt). Diện tích hình thoi được tính qua độ dài hai đường chéo đó. Khi đổi đơn vị đo diện tích, nhớ quy tắc: mỗi đơn vị liền kề gấp — kém nhau <b>100 lần</b> (1m² = 100dm² = 10 000cm²; 1km² = 1 000 000m²).</p>
+      <div class="callout formula" style="max-width:780px;">
+        <div class="label">📐 Công thức cần nhớ</div>
+        <ul class="formula-list">
+          <li>Diện tích hình thoi = (đường chéo 1 × đường chéo 2) : 2</li>
+          <li>1m² = 100dm² = 10 000cm² &nbsp;|&nbsp; 1km² = 1 000 000m²</li>
+        </ul>
+      </div>
+
+      <div class="problem" data-pool="g4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Một hình thoi <b>ABCD</b> có độ dài hai đường chéo lần lượt là <b>16cm</b> và <b>24cm</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 200 140" width="210" height="147">
+            <polygon points="100,20 160,70 100,120 40,70" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="40" y1="70" x2="160" y2="70" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <line x1="100" y1="20" x2="100" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="100" y="70" width="8" height="8" fill="none" stroke="var(--accent-warm)" stroke-width="2"/>
+            <text x="100" y="14" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">A</text>
+            <text x="172" y="74" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">B</text>
+            <text x="100" y="134" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">C</text>
+            <text x="26" y="74" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">D</text>
+            <text x="70" y="65" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">16 cm</text>
+            <text x="128" y="45" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">24 cm</text>
+          </svg></div>
+          <p>Tính diện tích hình thoi ABCD đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: diện tích hình thoi = (đường chéo 1 × đường chéo 2) : 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số: diện tích = (16 × 24) : 2.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 16 × 24 = 384; 384 : 2 = 192.</p></div></div>
+          <p class="answer hidden">Diện tích hình thoi ABCD là <b>192cm²</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="g4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Một miếng kính hình thoi có độ dài hai đường chéo lần lượt là <b>70dm</b> và <b>40dm</b>.</p>
+          <div class="geo-figure"><svg viewBox="0 0 200 140" width="210" height="147">
+            <polygon points="100,20 160,70 100,120 40,70" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <line x1="40" y1="70" x2="160" y2="70" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <line x1="100" y1="20" x2="100" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="100" y="70" width="8" height="8" fill="none" stroke="var(--accent-warm)" stroke-width="2"/>
+            <text x="70" y="65" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">70 dm</text>
+            <text x="128" y="45" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">40 dm</text>
+          </svg></div>
+          <p>a) Tính diện tích miếng kính đó theo <b>dm²</b>. &nbsp;b) Đổi diện tích đó ra <b>m²</b> (biết 1m² = 100dm²).</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>a)</b> Diện tích hình thoi = (đường chéo 1 × đường chéo 2) : 2 = (70 × 40) : 2.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tính: 70 × 40 = 2800; 2800 : 2 = 1400. Vậy diện tích là 1400dm².</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>b)</b> Vì 1m² = 100dm², nên 1400dm² = 1400 : 100 = 14m².</p></div></div>
+          <p class="answer hidden">a) Diện tích miếng kính là <b>1400dm²</b>. &nbsp;b) Đổi ra bằng <b>14m²</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán lớp 4, chủ đề Chu Vi – Diện Tích – Hình Học Toán 4. Toàn bộ đề bài, hình vẽ và lời giải trong tài liệu này là nội dung tự soạn mới, bám sát mảng hình học — đo lường của chương trình lớp 4 (góc nhọn, góc tù, góc bẹt, hai đường thẳng vuông góc — song song, diện tích hình bình hành, diện tích hình thoi), không sao chép từ bất kỳ nguồn nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'g1-1': [{
+      qHtml: '<p>Từ đỉnh <b>O</b>, người ta vẽ các tia <b>OA, OB, OC, OD</b> như hình bên, trong đó <b>A, O, D thẳng hàng</b> (OA và OD là hai tia đối nhau). Số đo các góc đã được ghi ngay trên hình.</p><div class="geo-figure"><svg viewBox="0 0 220 150" width="240" height="164"><line x1="20" y1="125" x2="200" y2="125" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/><line x1="110" y1="125" x2="176.88" y2="64.78" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/><line x1="110" y1="125" x2="32.06" y2="80" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/><path d="M134,125 A24 24 0 0 1 127.83,108.94" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/><path d="M127.83,108.94 A24 24 0 0 1 89.22,113" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/><path d="M89.22,113 A24 24 0 0 1 86,125" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/><circle cx="110" cy="125" r="3" fill="var(--ink)"/><text x="204" y="129" font-size="13" font-weight="700" fill="var(--ink)">A</text><text x="179" y="61" font-size="13" font-weight="700" fill="var(--ink)">B</text><text x="20" y="78" font-size="13" font-weight="700" fill="var(--ink)">C</text><text x="6" y="129" font-size="13" font-weight="700" fill="var(--ink)">D</text><text x="100" y="140" font-size="12" font-weight="700" fill="var(--ink-soft)">O</text><text x="143.6" y="113" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">42°</text><text x="106.2" y="88.2" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">108°</text><text x="75.2" y="120" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">30°</text></svg></div><p>Hỏi trong hình bên có tất cả bao nhiêu góc nhọn, bao nhiêu góc tù và bao nhiêu góc bẹt (tính cả góc AOD)?</p>',
+      steps: [
+        '<p>Nhắc lại: góc nhọn &lt; 90°; góc tù lớn hơn 90° và nhỏ hơn 180°; góc bẹt = 180° (hai cạnh là hai tia đối nhau).</p>',
+        '<p>Xét từng góc đã ghi số đo: ∠AOB = 42° (nhọn), ∠BOC = 108° (tù), ∠COD = 30° (nhọn).</p>',
+        '<p>Vì A, O, D thẳng hàng nên ∠AOD = 180°, đây chính là một góc bẹt. Đếm lại: nhọn có ∠AOB và ∠COD (2 góc); tù có ∠BOC (1 góc); bẹt có ∠AOD (1 góc).</p>'
+      ],
+      answerHtml: 'Hình bên có <b>2 góc nhọn</b> (∠AOB = 42°, ∠COD = 30°), <b>1 góc tù</b> (∠BOC = 108°) và <b>1 góc bẹt</b> (∠AOD = 180°).'
+    }],
+    'g1-2': [{
+      qHtml: '<p>Tam giác <b>MNP</b> có số đo các góc đã được ghi ngay trên hình.</p><div class="geo-figure"><svg viewBox="0 0 200 150" width="220" height="165"><polygon points="70,22 20,128 178,112" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><path d="M70,37 A15 15 0 0 1 61,46" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/><path d="M36,118 A15 15 0 0 1 34,103" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/><path d="M161,107 A20 20 0 0 1 158,87" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="3 2"/><text x="65" y="16" font-size="13" font-weight="700" fill="var(--ink)">M</text><text x="6" y="138" font-size="13" font-weight="700" fill="var(--ink)">N</text><text x="182" y="120" font-size="13" font-weight="700" fill="var(--ink)">P</text><text x="58" y="53" font-size="12" font-weight="700" fill="var(--accent-warm)">25°</text><text x="38" y="100" font-size="12" font-weight="700" fill="var(--accent-warm)">40°</text><text x="132" y="90" font-size="12" font-weight="700" fill="var(--accent-warm)">115°</text></svg></div><p>Trong tam giác MNP bên, góc nào là góc tù?</p><div class="mcq-opts"><span><b>A.</b> Góc M (25°)</span><span><b>B.</b> Góc N (40°)</span><span><b>C.</b> Góc P (115°)</span><span><b>D.</b> Không có góc tù nào</span></div>',
+      steps: [
+        '<p>Góc tù là góc có số đo lớn hơn 90° và nhỏ hơn 180°.</p>',
+        '<p>Xét từng góc: góc M = 25° (nhỏ hơn 90° → nhọn), góc N = 40° (nhỏ hơn 90° → nhọn), góc P = 115° (lớn hơn 90° và nhỏ hơn 180° → tù).</p>',
+        '<p>Kiểm tra lại: 25° + 40° + 115° = 180° (đúng bằng tổng ba góc trong một tam giác), vậy số liệu hợp lý.</p>'
+      ],
+      answerHtml: 'Đáp án: C — <b>góc P (115°)</b> là góc tù.'
+    }],
+    'g2-1': [{
+      qHtml: '<p>Quan sát 4 hình vẽ bên, mỗi hình gồm hai đường thẳng.</p><div class="obj-grid"><div class="obj-chip"><svg viewBox="0 0 70 70"><line x1="10" y1="22" x2="60" y2="22" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><line x1="10" y1="48" x2="60" y2="48" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><path d="M30,18 L38,22 L30,26" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/><path d="M30,44 L38,48 L30,52" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/></svg><span class="cap">Hình 1</span></div><div class="obj-chip"><svg viewBox="0 0 70 70"><line x1="35" y1="10" x2="35" y2="60" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><line x1="10" y1="35" x2="60" y2="35" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><rect x="35" y="27" width="8" height="8" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/></svg><span class="cap">Hình 2</span></div><div class="obj-chip"><svg viewBox="0 0 70 70"><line x1="12" y1="55" x2="58" y2="15" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><line x1="15" y1="15" x2="55" y2="58" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/></svg><span class="cap">Hình 3</span></div><div class="obj-chip"><svg viewBox="0 0 70 70"><line x1="15" y1="55" x2="55" y2="15" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><line x1="15" y1="15" x2="55" y2="55" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><rect x="31" y="20" width="8" height="8" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" transform="rotate(45 35 35)"/></svg><span class="cap">Hình 4</span></div></div><p>a) Có bao nhiêu hình thể hiện hai đường thẳng <b>vuông góc</b> với nhau? &nbsp;b) Có bao nhiêu hình thể hiện hai đường thẳng <b>song song</b> với nhau?</p>',
+      steps: [
+        '<p>Hai đường thẳng vuông góc được đánh dấu bằng kí hiệu hình vuông nhỏ tại giao điểm; hai đường thẳng song song được đánh dấu bằng các mũi tên nhỏ giống nhau trên mỗi đường.</p>',
+        '<p>Hình 2 và Hình 4 đều có kí hiệu hình vuông nhỏ tại giao điểm → đây là hai đường thẳng vuông góc. Hình 3 chỉ là hai đường thẳng cắt nhau xiên, không có kí hiệu vuông góc → không tính.</p>',
+        '<p>Hình 1 có các mũi tên nhỏ giống nhau trên hai đường → đây là hai đường thẳng song song.</p>'
+      ],
+      answerHtml: 'a) Có <b>2 hình</b> thể hiện hai đường thẳng vuông góc (Hình 2, Hình 4). &nbsp;b) Có <b>1 hình</b> thể hiện hai đường thẳng song song (Hình 1).'
+    }],
+    'g2-2': [{
+      qHtml: '<p>Hình thang vuông <b>MNPQ</b> bên có cạnh MN song song với cạnh QP, và có 2 góc vuông tại đỉnh M và Q (đã đánh dấu).</p><div class="geo-figure"><svg viewBox="0 0 200 150" width="220" height="165"><polygon points="160,30 30,30 70,120 160,120" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><rect x="150" y="30" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/><rect x="150" y="110" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/><path d="M103,26 L95,30 L103,34" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/><path d="M123,116 L115,120 L123,124" fill="none" stroke="var(--accent-warm)" stroke-width="2.5" stroke-linejoin="round"/><text x="164" y="24" font-size="13" font-weight="700" fill="var(--ink)">M</text><text x="16" y="24" font-size="13" font-weight="700" fill="var(--ink)">N</text><text x="58" y="136" font-size="13" font-weight="700" fill="var(--ink)">P</text><text x="164" y="136" font-size="13" font-weight="700" fill="var(--ink)">Q</text></svg></div><p>a) Cạnh MQ vuông góc với những cạnh nào? &nbsp;b) Cạnh nào song song với cạnh MN?</p>',
+      steps: [
+        '<p>Kí hiệu hình vuông nhỏ tại đỉnh M cho biết góc giữa cạnh MN và cạnh MQ là góc vuông — vậy MQ vuông góc với MN.</p>',
+        '<p>Kí hiệu hình vuông nhỏ tại đỉnh Q cho biết góc giữa cạnh MQ và cạnh QP là góc vuông — vậy MQ vuông góc với QP.</p>',
+        '<p>Hai cạnh MN và QP có kí hiệu mũi tên giống nhau, và đề bài đã cho biết MN song song với QP.</p>'
+      ],
+      answerHtml: 'a) Cạnh MQ vuông góc với <b>cạnh MN</b> và <b>cạnh QP</b>. &nbsp;b) Cạnh <b>QP</b> song song với cạnh MN.'
+    }],
+    'g3-1': [{
+      qHtml: '<p>Một hình bình hành có độ dài đáy <b>26cm</b>, chiều cao <b>15cm</b>.</p><div class="geo-figure"><svg viewBox="0 0 210 140" width="230" height="153"><polygon points="30,110 160,110 190,40 60,40" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><line x1="60" y1="40" x2="60" y2="110" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><rect x="60" y="100" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/><text x="95" y="128" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy = 26 cm</text><text x="35" y="78" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều cao</text><text x="35" y="92" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">= 15 cm</text></svg></div><p>Tính diện tích hình bình hành đó.</p>',
+      steps: [
+        '<p>Nhớ lại công thức: diện tích hình bình hành = đáy × chiều cao.</p>',
+        '<p>Thay số vào công thức: 26 × 15.</p>',
+        '<p>Tính: 26 × 15 = 390.</p>'
+      ],
+      answerHtml: 'Diện tích hình bình hành là <b>390cm²</b>.'
+    }],
+    'g3-2': [{
+      qHtml: '<p>Một hình bình hành có diện tích <b>294cm²</b>, độ dài đáy là <b>21cm</b>.</p><div class="geo-figure"><svg viewBox="0 0 210 140" width="230" height="153"><polygon points="30,110 150,110 180,40 60,40" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><line x1="60" y1="40" x2="60" y2="110" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><rect x="60" y="100" width="10" height="10" fill="none" stroke="var(--accent-warm)" stroke-width="2.5"/><text x="90" y="128" font-size="13" font-weight="700" fill="var(--ink-soft)" text-anchor="middle">đáy = 21 cm</text><text x="35" y="78" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">chiều cao</text><text x="35" y="92" font-size="13" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">= ?</text><text x="115" y="80" font-size="13" font-weight="700" fill="var(--ink)" text-anchor="middle">S = 294cm²</text></svg></div><p>Tính chiều cao của hình bình hành đó.</p>',
+      steps: [
+        '<p>Nhớ lại công thức: diện tích hình bình hành = đáy × chiều cao. Vậy muốn tìm chiều cao, ta làm ngược lại: chiều cao = diện tích : đáy.</p>',
+        '<p>Thay số: chiều cao = 294 : 21.</p>',
+        '<p>Tính: 294 : 21 = 14.</p>'
+      ],
+      answerHtml: 'Chiều cao của hình bình hành đó là <b>14cm</b>.'
+    }],
+    'g4-1': [{
+      qHtml: '<p>Một hình thoi <b>ABCD</b> có độ dài hai đường chéo lần lượt là <b>18cm</b> và <b>26cm</b>.</p><div class="geo-figure"><svg viewBox="0 0 200 140" width="210" height="147"><polygon points="100,20 160,70 100,120 40,70" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><line x1="40" y1="70" x2="160" y2="70" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><line x1="100" y1="20" x2="100" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><rect x="100" y="70" width="8" height="8" fill="none" stroke="var(--accent-warm)" stroke-width="2"/><text x="100" y="14" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">A</text><text x="172" y="74" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">B</text><text x="100" y="134" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">C</text><text x="26" y="74" font-size="12" font-weight="700" fill="var(--ink)" text-anchor="middle">D</text><text x="70" y="65" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">18 cm</text><text x="128" y="45" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">26 cm</text></svg></div><p>Tính diện tích hình thoi ABCD đó.</p>',
+      steps: [
+        '<p>Nhớ lại công thức: diện tích hình thoi = (đường chéo 1 × đường chéo 2) : 2.</p>',
+        '<p>Thay số: diện tích = (18 × 26) : 2.</p>',
+        '<p>Tính: 18 × 26 = 468; 468 : 2 = 234.</p>'
+      ],
+      answerHtml: 'Diện tích hình thoi ABCD là <b>234cm²</b>.'
+    }],
+    'g4-2': [{
+      qHtml: '<p>Một tấm bạt hình thoi có độ dài hai đường chéo lần lượt là <b>90dm</b> và <b>60dm</b>.</p><div class="geo-figure"><svg viewBox="0 0 200 140" width="210" height="147"><polygon points="100,20 160,70 100,120 40,70" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/><line x1="40" y1="70" x2="160" y2="70" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><line x1="100" y1="20" x2="100" y2="120" stroke="var(--ink-faint)" stroke-width="2" stroke-dasharray="4 3"/><rect x="100" y="70" width="8" height="8" fill="none" stroke="var(--accent-warm)" stroke-width="2"/><text x="70" y="65" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">90 dm</text><text x="128" y="45" font-size="12.5" font-weight="700" fill="var(--accent-warm)" text-anchor="middle">60 dm</text></svg></div><p>a) Tính diện tích tấm bạt đó theo <b>dm²</b>. &nbsp;b) Đổi diện tích đó ra <b>m²</b> (biết 1m² = 100dm²).</p>',
+      steps: [
+        '<p><b>a)</b> Diện tích hình thoi = (đường chéo 1 × đường chéo 2) : 2 = (90 × 60) : 2.</p>',
+        '<p>Tính: 90 × 60 = 5400; 5400 : 2 = 2700. Vậy diện tích là 2700dm².</p>',
+        '<p><b>b)</b> Vì 1m² = 100dm², nên 2700dm² = 2700 : 100 = 27m².</p>'
+      ],
+      answerHtml: 'a) Diện tích tấm bạt là <b>2700dm²</b>. &nbsp;b) Đổi ra bằng <b>27m²</b>.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('cvdt-hh-toan4-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('cvdt-hh-toan4-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

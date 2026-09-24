@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chuyên Đề Bồi Dưỡng Toán 4</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f7f2e6;
+    --bg-alt: #efe6d2;
+    --paper: #fffcf5;
+    --ink: #24314a;
+    --ink-soft: #51617e;
+    --ink-faint: #8b95ab;
+    --accent: #2f4d7a;
+    --accent-soft: #e2e8f5;
+    --accent-warm: #b8860f;
+    --accent-warm-soft: #f6e9c8;
+    --line: #e6dcc4;
+    --line-strong: #d7c9a3;
+    --shadow: 0 1px 2px rgba(40, 30, 10, 0.06), 0 6px 20px rgba(40, 30, 10, 0.08);
+    --radius: 16px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #10182a;
+    --bg-alt: #16203a;
+    --paper: #17203a;
+    --ink: #eef1f8;
+    --ink-soft: #b9c2d9;
+    --ink-faint: #7c88a6;
+    --accent: #86a6de;
+    --accent-soft: #22304f;
+    --accent-warm: #e8c15a;
+    --accent-warm-soft: #3a2f14;
+    --line: #29334c;
+    --line-strong: #3a4867;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10182a;
+      --bg-alt: #16203a;
+      --paper: #17203a;
+      --ink: #eef1f8;
+      --ink-soft: #b9c2d9;
+      --ink-faint: #7c88a6;
+      --accent: #86a6de;
+      --accent-soft: #22304f;
+      --accent-warm: #e8c15a;
+      --accent-warm-soft: #3a2f14;
+      --line: #29334c;
+      --line-strong: #3a4867;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 236px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 30px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(28px, 4.4vw, 40px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17.5px;
+    margin: 0;
+  }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(22px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 20px;
+  }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 70ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-soft);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent); }
+  .callout.cue {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+    margin: 0 0 22px;
+  }
+  .callout.cue .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 22px 26px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 20px 26px 24px;
+    background: var(--paper);
+    font-size: 15.5px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 30px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 13px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 17px 19px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+  .method-card p.op { margin-top: 6px; font-size: 13.5px; color: var(--accent-warm); font-weight: 700; }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">6 chuyên đề</div>
+    <ol>
+      <li><a href="#cd1"><span class="n">🔢</span>Dãy số cách đều</a></li>
+      <li><a href="#cd2"><span class="n">⚖️</span>Tổng — hiệu ba số</a></li>
+      <li><a href="#cd3"><span class="n">🚴</span>Chuyển động đơn giản</a></li>
+      <li><a href="#cd4"><span class="n">📚</span>So sánh phân số nâng cao</a></li>
+      <li><a href="#cd5"><span class="n">✂️</span>Diện tích hình phức hợp</a></li>
+      <li><a href="#cd6"><span class="n">🧭</span>Suy luận ngược nhiều bước</a></li>
+      <li><a href="#phuong-phap"><span class="n">🗂️</span>Bảng phương pháp</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 4</div>
+      <h1>Chuyên Đề Bồi Dưỡng Toán 4</h1>
+      <p class="lede">Một cuốn "sổ tay chuyên đề" dành cho học sinh bồi dưỡng học sinh giỏi lớp 4 — thay vì làm bài tràn lan, con học theo từng <b>chuyên đề</b> tách bạch, mỗi chuyên đề có một khung <b>"Phương pháp"</b> tóm tắt cách làm trước khi vào bài tập. Tài liệu gồm <b>6 chuyên đề</b> kinh điển thường gặp trong các bộ đề bồi dưỡng học sinh giỏi Toán 4.</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Chuyên Đề Bồi Dưỡng Toán 4</b> là tài liệu ôn tập do đội ngũ tự biên soạn mới hoàn toàn — toàn bộ số liệu, tình huống và lời giải trong bài đều là nội dung gốc, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào. Mỗi chuyên đề chỉ có <b>1 bài tập mẫu</b> nhưng đi kèm khung phương pháp rõ ràng và lời giải từng bước. Bấm nút <b>"Gợi ý"</b> để xem từng bước một, hoặc <b>"Đổi bài tương tự"</b> để luyện lại đúng chuyên đề với số liệu khác.</p>
+    </div>
+
+    <!-- ================= CHUYÊN ĐỀ 1 ================= -->
+    <section class="topic" id="cd1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 1</span>Dãy số cách đều</h2>
+      </div>
+      <div class="callout cue">
+        <div class="label">🧭 Phương pháp</div>
+        <p>Một dãy số cách đều có <span class="kw">khoảng cách</span> giữa hai số hạng liên tiếp luôn bằng nhau. Để tìm <b>số hạng cuối</b>: lấy số hạng đầu <span class="kw">cộng</span> với (số số hạng trừ 1) nhân khoảng cách. Để tính <b>tổng cả dãy</b>: lấy (số hạng đầu + số hạng cuối) nhân số số hạng, rồi <span class="kw">chia 2</span>.</p>
+      </div>
+
+      <div class="problem" data-pool="cd1" data-qid="Bài 1">
+        <div class="q"><span class="qid">Bài 1</span><div class="qtext">
+          <p>Cho dãy số cách đều: <b>5, 9, 13, 17, ...</b>, gồm <b>25</b> số hạng.</p>
+          <p>Tìm số hạng cuối cùng của dãy và tính tổng của cả dãy số đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Nhận diện dạng:</b> Dãy 5, 9, 13, 17, ... có mỗi số hạng hơn số hạng liền trước 4 đơn vị — đây là dãy số cách đều với khoảng cách không đổi.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Tìm khoảng cách:</b> Khoảng cách giữa hai số hạng liên tiếp là 9 − 5 = 4.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tìm số hạng cuối:</b> Số hạng cuối = số hạng đầu + (số số hạng − 1) × khoảng cách = 5 + (25 − 1) × 4 = 5 + 96 = 101.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính tổng cả dãy:</b> Tổng = (số hạng đầu + số hạng cuối) × số số hạng : 2 = (5 + 101) × 25 : 2 = 106 × 25 : 2 = 1325.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Số hạng cuối cùng của dãy là 101, tổng của cả dãy số là 1325."</p></div></div>
+          <p class="answer hidden">Đáp số: số hạng cuối là <b>101</b>; tổng cả dãy là <b>1325</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHUYÊN ĐỀ 2 ================= -->
+    <section class="topic" id="cd2">
+      <div class="topic-head">
+        <span class="topic-badge">⚖️</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 2</span>Tổng — hiệu ba số nâng cao</h2>
+      </div>
+      <div class="callout cue">
+        <div class="label">🧭 Phương pháp</div>
+        <p>Khi đề cho <span class="kw">tổng của ba số</span> cùng với các mối quan hệ "hơn/kém" giữa từng cặp số liên tiếp, con hãy <b>đưa cả ba số về theo số nhỏ nhất</b> (cộng thêm phần hơn tương ứng), viết tổng thành một phép tính chỉ còn một ẩn, rồi giải như bài toán tìm số.</p>
+      </div>
+
+      <div class="problem" data-pool="cd2" data-qid="Bài 2">
+        <div class="q"><span class="qid">Bài 2</span><div class="qtext">
+          <p>Tổng của ba số là <b>160</b>. Biết số thứ nhất hơn số thứ hai <b>20</b> đơn vị, số thứ hai hơn số thứ ba <b>10</b> đơn vị.</p>
+          <p>Tìm ba số đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Nhận diện dạng:</b> Đề cho tổng ba số cùng hai mối quan hệ "hơn" liên tiếp giữa các số — đây đúng là dạng tổng ba số nâng cao, cần đưa về một ẩn chung.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Đưa về số nhỏ nhất:</b> Chọn số thứ ba làm chuẩn. Số thứ hai = số thứ ba + 10. Số thứ nhất = số thứ hai + 20 = số thứ ba + 30.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Viết lại tổng theo một ẩn:</b> Tổng ba số = số thứ ba + (số thứ ba + 10) + (số thứ ba + 30) = 3 × số thứ ba + 40 = 160.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tìm số thứ ba:</b> 3 × số thứ ba = 160 − 40 = 120, nên số thứ ba = 120 : 3 = 40.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Suy ra hai số còn lại:</b> Số thứ hai = 40 + 10 = 50. Số thứ nhất = 50 + 20 = 70.</p></div></div>
+          <p class="answer hidden">Đáp số: số thứ nhất <b>70</b>, số thứ hai <b>50</b>, số thứ ba <b>40</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHUYÊN ĐỀ 3 ================= -->
+    <section class="topic" id="cd3">
+      <div class="topic-head">
+        <span class="topic-badge">🚴</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 3</span>Toán chuyển động đơn giản</h2>
+      </div>
+      <div class="callout cue">
+        <div class="label">🧭 Phương pháp</div>
+        <p>Khi hai xe xuất phát <span class="kw">cùng một lúc</span> từ hai đầu quãng đường và đi <span class="kw">ngược chiều</span> nhau, khoảng cách giữa hai xe giảm dần theo <b>tổng vận tốc</b> hai xe. Thời gian để hai xe gặp nhau = quãng đường : tổng vận tốc; giờ gặp nhau = giờ khởi hành + thời gian đó.</p>
+      </div>
+
+      <div class="problem" data-pool="cd3" data-qid="Bài 3">
+        <div class="q"><span class="qid">Bài 3</span><div class="qtext">
+          <p>Lúc <b>7 giờ</b>, một xe máy xuất phát từ A đi về B với vận tốc <b>40km/giờ</b>. Cùng lúc đó, một xe đạp xuất phát từ B đi về A với vận tốc <b>15km/giờ</b>. Quãng đường AB dài <b>110km</b>.</p>
+          <p>Hỏi hai xe gặp nhau lúc mấy giờ?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Nhận diện dạng:</b> Hai xe xuất phát cùng lúc từ hai đầu quãng đường AB, đi ngược chiều nhau — đây đúng là dạng chuyển động ngược chiều cơ bản.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Tính tổng vận tốc:</b> Tổng vận tốc hai xe là 40 + 15 = 55km/giờ.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính thời gian gặp nhau:</b> Thời gian để hai xe gặp nhau là 110 : 55 = 2 giờ.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính giờ gặp nhau:</b> Hai xe khởi hành lúc 7 giờ, sau 2 giờ thì gặp nhau, tức là lúc 7 + 2 = 9 giờ.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Hai xe gặp nhau lúc 9 giờ."</p></div></div>
+          <p class="answer hidden">Đáp số: hai xe gặp nhau lúc <b>9 giờ</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHUYÊN ĐỀ 4 ================= -->
+    <section class="topic" id="cd4">
+      <div class="topic-head">
+        <span class="topic-badge">📚</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 4</span>So sánh phân số bằng phần bù</h2>
+      </div>
+      <div class="callout cue">
+        <div class="label">🧭 Phương pháp</div>
+        <p>Khi hai phân số đều gần bằng 1 và có <span class="kw">phần bù đến 1</span> (1 trừ phân số đó) cùng tử số, con <b>không cần quy đồng</b>: chỉ so sánh hai phần bù — phần bù nào có mẫu số nhỏ hơn thì phần bù đó lớn hơn, và phân số ứng với phần bù lớn hơn sẽ <span class="kw">nhỏ hơn</span>.</p>
+      </div>
+
+      <div class="problem" data-pool="cd4" data-qid="Bài 4">
+        <div class="q"><span class="qid">Bài 4</span><div class="qtext">
+          <p>Hai bạn Lan và Hà cùng đọc một quyển truyện dày như nhau. Lan đọc được <b>7/9</b> quyển truyện, Hà đọc được <b>11/13</b> quyển truyện.</p>
+          <p>Hỏi ai đọc được nhiều trang truyện hơn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Nhận diện dạng:</b> Hai phân số 7/9 và 11/13 đều gần bằng 1 (tử số kém mẫu số không nhiều) — đây đúng là dạng so sánh bằng phần bù, không cần quy đồng.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Tìm phần bù mỗi phân số:</b> Phần Lan chưa đọc là 1 − 7/9 = 2/9. Phần Hà chưa đọc là 1 − 11/13 = 2/13.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>So sánh hai phần bù:</b> 2/9 và 2/13 có tử số bằng nhau (đều là 2), mà 9 &lt; 13, nên 2/9 &gt; 2/13.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Suy luận:</b> Phần chưa đọc của Lan (2/9) lớn hơn phần chưa đọc của Hà (2/13), nghĩa là Lan còn lại nhiều hơn nên Lan đọc <span class="kw">ít</span> hơn Hà. Vậy 7/9 &lt; 11/13.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Hà đọc được nhiều trang truyện hơn Lan."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>Hà</b> đọc được nhiều hơn (vì 11/13 &gt; 7/9).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHUYÊN ĐỀ 5 ================= -->
+    <section class="topic" id="cd5">
+      <div class="topic-head">
+        <span class="topic-badge">✂️</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 5</span>Diện tích hình phức hợp</h2>
+      </div>
+      <div class="callout cue">
+        <div class="label">🧭 Phương pháp</div>
+        <p>Với hình phức hợp là một hình lớn (hình chữ nhật) bị <span class="kw">cắt bỏ</span> một hình nhỏ (hình thoi, hình bình hành...) nằm gọn bên trong, con hãy tính <b>diện tích từng hình riêng</b> bằng đúng công thức của hình đó, rồi lấy diện tích hình lớn <span class="kw">trừ</span> đi diện tích hình bị cắt.</p>
+      </div>
+
+      <div class="problem" data-pool="cd5" data-qid="Bài 5">
+        <div class="q"><span class="qid">Bài 5</span><div class="qtext">
+          <p>Một mảnh đất hình chữ nhật có chiều dài <b>24m</b>, chiều rộng <b>15m</b>. Người ta đào một cái ao hình thoi có hai đường chéo lần lượt là <b>10m</b> và <b>8m</b>, nằm gọn trong mảnh đất.</p>
+          <p>Hỏi diện tích phần đất còn lại (không tính ao) là bao nhiêu mét vuông?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Nhận diện dạng:</b> Mảnh đất hình chữ nhật có một cái ao hình thoi nằm gọn bên trong, hỏi phần đất còn lại — đây đúng là dạng diện tích hình phức hợp (hình lớn trừ hình nhỏ).</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Tính diện tích hình chữ nhật:</b> Diện tích mảnh đất là 24 × 15 = 360m².</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính diện tích hình thoi:</b> Diện tích ao là (10 × 8) : 2 = 40m².</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Trừ để tìm phần còn lại:</b> Diện tích đất còn lại là 360 − 40 = 320m².</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Diện tích phần đất còn lại là 320m²."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>320m²</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHUYÊN ĐỀ 6 ================= -->
+    <section class="topic" id="cd6">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Chuyên đề 6</span>Suy luận ngược nhiều bước</h2>
+      </div>
+      <div class="callout cue">
+        <div class="label">🧭 Phương pháp</div>
+        <p>Khi đề kể lại một <span class="kw">chuỗi phép tính</span> (có cả nhân, cộng, nhân phân số, trừ...) áp dụng lên một số bí ẩn và chỉ cho biết <b>kết quả cuối cùng</b>, con hãy làm <span class="kw">ngược lại từ dưới lên</span>, theo đúng thứ tự đảo ngược, dùng phép tính ngược của từng bước (ngược của cộng là trừ, ngược của nhân là chia, ngược của "nhân với 1/n" là nhân với n).</p>
+      </div>
+
+      <div class="problem" data-pool="cd6" data-qid="Bài 6">
+        <div class="q"><span class="qid">Bài 6</span><div class="qtext">
+          <p>Một số tự nhiên đem <b>nhân với 4</b>, được bao nhiêu <b>cộng thêm 18</b>, rồi lấy <b>1/3</b> kết quả đó, cuối cùng <b>trừ đi 5</b> thì được kết quả là <b>25</b>.</p>
+          <p>Tìm số tự nhiên ban đầu.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Nhận diện dạng:</b> Đề kể chuỗi 4 phép tính "×4 → +18 → ×1/3 → −5" áp dụng cho một số bí ẩn, chỉ biết kết quả cuối là 25 — đây đúng là dạng suy luận ngược nhiều bước.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Xác định thứ tự làm ngược:</b> Đề làm theo thứ tự "×4" → "+18" → "×1/3" → "−5" → ra 25. Con làm ngược lại, bắt đầu từ 25: <span class="kw">cộng</span> 5 (ngược của trừ), rồi <span class="kw">nhân</span> 3 (ngược của lấy 1/3), rồi <span class="kw">trừ</span> 18 (ngược của cộng), rồi <span class="kw">chia</span> 4 (ngược của nhân).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước ngược 1 (cộng ngược của trừ):</b> 25 + 5 = 30.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Bước ngược 2 (nhân ngược của ×1/3):</b> Lấy 1/3 một số được 30 thì số đó là 30 × 3 = 90.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Bước ngược 3 (trừ ngược của cộng) và bước ngược 4 (chia ngược của nhân):</b> 90 − 18 = 72; rồi 72 : 4 = 18.</p></div></div>
+          <p class="answer hidden">Đáp số: số ban đầu là <b>18</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BẢNG PHƯƠNG PHÁP ================= -->
+    <section class="topic appendix" id="phuong-phap">
+      <div class="topic-head">
+        <span class="topic-badge">🗂️</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Bảng phương pháp — 6 chuyên đề trong 1 trang</h2>
+      </div>
+      <p class="topic-intro">Trước khi làm bài, hãy đọc kỹ đề và đối chiếu với bảng phương pháp dưới đây — mỗi chuyên đề chỉ cần nhớ đúng công thức hoặc mẹo suy luận là làm được bài.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">CĐ 1 · Dãy số cách đều</span>
+          <p>Các số hạng cách đều nhau một khoảng cố định.</p>
+          <p class="op">Cuối = đầu + (số hạng − 1) × khoảng cách</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">CĐ 2 · Tổng — hiệu ba số</span>
+          <p>Tổng ba số kèm quan hệ "hơn/kém" giữa từng cặp.</p>
+          <p class="op">Đưa về số nhỏ nhất, giải 1 ẩn</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">CĐ 3 · Chuyển động ngược chiều</span>
+          <p>Hai xe xuất phát cùng lúc, đi ngược chiều nhau.</p>
+          <p class="op">Thời gian gặp = quãng đường : tổng vận tốc</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">CĐ 4 · So sánh bằng phần bù</span>
+          <p>Hai phân số gần bằng 1, phần bù cùng tử số.</p>
+          <p class="op">Phần bù mẫu nhỏ hơn → phân số lớn hơn</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">CĐ 5 · Diện tích hình phức hợp</span>
+          <p>Hình nhỏ (thoi, bình hành) nằm gọn trong hình lớn.</p>
+          <p class="op">Diện tích lớn − diện tích nhỏ</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">CĐ 6 · Suy luận ngược</span>
+          <p>Chuỗi phép tính trên số bí ẩn, chỉ biết kết quả cuối.</p>
+          <p class="op">Làm ngược từ dưới lên, đổi phép tính</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Chuyên Đề Bồi Dưỡng Toán 4. Toàn bộ bài tập, số liệu và lời giải trong tài liệu này là nội dung mới do đội ngũ tự viết, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    'cd1': [{
+      qHtml: '<p>Cho dãy số cách đều: <b>8, 15, 22, 29, ...</b>, gồm <b>30</b> số hạng.</p><p>Tìm số hạng cuối cùng của dãy và tính tổng của cả dãy số đó.</p>',
+      steps: [
+        '<p><b>Nhận diện dạng:</b> Dãy 8, 15, 22, 29, ... có mỗi số hạng hơn số hạng liền trước 7 đơn vị — đây là dãy số cách đều với khoảng cách không đổi.</p>',
+        '<p><b>Tìm khoảng cách:</b> Khoảng cách giữa hai số hạng liên tiếp là 15 − 8 = 7.</p>',
+        '<p><b>Tìm số hạng cuối:</b> Số hạng cuối = số hạng đầu + (số số hạng − 1) × khoảng cách = 8 + (30 − 1) × 7 = 8 + 203 = 211.</p>',
+        '<p><b>Tính tổng cả dãy:</b> Tổng = (số hạng đầu + số hạng cuối) × số số hạng : 2 = (8 + 211) × 30 : 2 = 219 × 15 = 3285.</p>',
+        '<p><b>Viết câu trả lời:</b> "Số hạng cuối cùng của dãy là 211, tổng của cả dãy số là 3285."</p>'
+      ],
+      answerHtml: 'Đáp số: số hạng cuối là <b>211</b>; tổng cả dãy là <b>3285</b>.'
+    }],
+    'cd2': [{
+      qHtml: '<p>Tổng của ba số là <b>210</b>. Biết số thứ nhất hơn số thứ hai <b>30</b> đơn vị, số thứ hai hơn số thứ ba <b>15</b> đơn vị.</p><p>Tìm ba số đó.</p>',
+      steps: [
+        '<p><b>Nhận diện dạng:</b> Đề cho tổng ba số cùng hai mối quan hệ "hơn" liên tiếp giữa các số — đây đúng là dạng tổng ba số nâng cao, cần đưa về một ẩn chung.</p>',
+        '<p><b>Đưa về số nhỏ nhất:</b> Chọn số thứ ba làm chuẩn. Số thứ hai = số thứ ba + 15. Số thứ nhất = số thứ hai + 30 = số thứ ba + 45.</p>',
+        '<p><b>Viết lại tổng theo một ẩn:</b> Tổng ba số = số thứ ba + (số thứ ba + 15) + (số thứ ba + 45) = 3 × số thứ ba + 60 = 210.</p>',
+        '<p><b>Tìm số thứ ba:</b> 3 × số thứ ba = 210 − 60 = 150, nên số thứ ba = 150 : 3 = 50.</p>',
+        '<p><b>Suy ra hai số còn lại:</b> Số thứ hai = 50 + 15 = 65. Số thứ nhất = 65 + 30 = 95.</p>'
+      ],
+      answerHtml: 'Đáp số: số thứ nhất <b>95</b>, số thứ hai <b>65</b>, số thứ ba <b>50</b>.'
+    }],
+    'cd3': [{
+      qHtml: '<p>Lúc <b>6 giờ</b>, một xe máy xuất phát từ A đi về B với vận tốc <b>45km/giờ</b>. Cùng lúc đó, một xe đạp xuất phát từ B đi về A với vận tốc <b>20km/giờ</b>. Quãng đường AB dài <b>130km</b>.</p><p>Hỏi hai xe gặp nhau lúc mấy giờ?</p>',
+      steps: [
+        '<p><b>Nhận diện dạng:</b> Hai xe xuất phát cùng lúc từ hai đầu quãng đường AB, đi ngược chiều nhau — đây đúng là dạng chuyển động ngược chiều cơ bản.</p>',
+        '<p><b>Tính tổng vận tốc:</b> Tổng vận tốc hai xe là 45 + 20 = 65km/giờ.</p>',
+        '<p><b>Tính thời gian gặp nhau:</b> Thời gian để hai xe gặp nhau là 130 : 65 = 2 giờ.</p>',
+        '<p><b>Tính giờ gặp nhau:</b> Hai xe khởi hành lúc 6 giờ, sau 2 giờ thì gặp nhau, tức là lúc 6 + 2 = 8 giờ.</p>',
+        '<p><b>Viết câu trả lời:</b> "Hai xe gặp nhau lúc 8 giờ."</p>'
+      ],
+      answerHtml: 'Đáp số: hai xe gặp nhau lúc <b>8 giờ</b>.'
+    }],
+    'cd4': [{
+      qHtml: '<p>Hai bạn Minh và Tuấn cùng đọc một quyển sách dày như nhau. Minh đọc được <b>5/8</b> quyển sách, Tuấn đọc được <b>8/11</b> quyển sách.</p><p>Hỏi ai đọc được nhiều trang sách hơn?</p>',
+      steps: [
+        '<p><b>Nhận diện dạng:</b> Hai phân số 5/8 và 8/11 đều gần bằng 1 (tử số kém mẫu số không nhiều) — đây đúng là dạng so sánh bằng phần bù, không cần quy đồng.</p>',
+        '<p><b>Tìm phần bù mỗi phân số:</b> Phần Minh chưa đọc là 1 − 5/8 = 3/8. Phần Tuấn chưa đọc là 1 − 8/11 = 3/11.</p>',
+        '<p><b>So sánh hai phần bù:</b> 3/8 và 3/11 có tử số bằng nhau (đều là 3), mà 8 &lt; 11, nên 3/8 &gt; 3/11.</p>',
+        '<p><b>Suy luận:</b> Phần chưa đọc của Minh (3/8) lớn hơn phần chưa đọc của Tuấn (3/11), nghĩa là Minh còn lại nhiều hơn nên Minh đọc <span class="kw">ít</span> hơn Tuấn. Vậy 5/8 &lt; 8/11.</p>',
+        '<p><b>Viết câu trả lời:</b> "Tuấn đọc được nhiều trang sách hơn Minh."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>Tuấn</b> đọc được nhiều hơn (vì 8/11 &gt; 5/8).'
+    }],
+    'cd5': [{
+      qHtml: '<p>Một mảnh đất hình chữ nhật có chiều dài <b>30m</b>, chiều rộng <b>18m</b>. Người ta đào một cái ao hình bình hành có đáy <b>12m</b>, chiều cao <b>5m</b>, nằm gọn trong mảnh đất.</p><p>Hỏi diện tích phần đất còn lại (không tính ao) là bao nhiêu mét vuông?</p>',
+      steps: [
+        '<p><b>Nhận diện dạng:</b> Mảnh đất hình chữ nhật có một cái ao hình bình hành nằm gọn bên trong, hỏi phần đất còn lại — đây đúng là dạng diện tích hình phức hợp (hình lớn trừ hình nhỏ).</p>',
+        '<p><b>Tính diện tích hình chữ nhật:</b> Diện tích mảnh đất là 30 × 18 = 540m².</p>',
+        '<p><b>Tính diện tích hình bình hành:</b> Diện tích ao là 12 × 5 = 60m².</p>',
+        '<p><b>Trừ để tìm phần còn lại:</b> Diện tích đất còn lại là 540 − 60 = 480m².</p>',
+        '<p><b>Viết câu trả lời:</b> "Diện tích phần đất còn lại là 480m²."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>480m²</b>.'
+    }],
+    'cd6': [{
+      qHtml: '<p>Một số tự nhiên đem <b>nhân với 5</b>, được bao nhiêu <b>cộng thêm 12</b>, rồi lấy <b>1/4</b> kết quả đó, cuối cùng <b>trừ đi 7</b> thì được kết quả là <b>26</b>.</p><p>Tìm số tự nhiên ban đầu.</p>',
+      steps: [
+        '<p><b>Nhận diện dạng:</b> Đề kể chuỗi 4 phép tính "×5 → +12 → ×1/4 → −7" áp dụng cho một số bí ẩn, chỉ biết kết quả cuối là 26 — đây đúng là dạng suy luận ngược nhiều bước.</p>',
+        '<p><b>Xác định thứ tự làm ngược:</b> Đề làm theo thứ tự "×5" → "+12" → "×1/4" → "−7" → ra 26. Con làm ngược lại, bắt đầu từ 26: <span class="kw">cộng</span> 7 (ngược của trừ), rồi <span class="kw">nhân</span> 4 (ngược của lấy 1/4), rồi <span class="kw">trừ</span> 12 (ngược của cộng), rồi <span class="kw">chia</span> 5 (ngược của nhân).</p>',
+        '<p><b>Bước ngược 1 (cộng ngược của trừ):</b> 26 + 7 = 33.</p>',
+        '<p><b>Bước ngược 2 (nhân ngược của ×1/4):</b> Lấy 1/4 một số được 33 thì số đó là 33 × 4 = 132.</p>',
+        '<p><b>Bước ngược 3 (trừ ngược của cộng) và bước ngược 4 (chia ngược của nhân):</b> 132 − 12 = 120; rồi 120 : 5 = 24.</p>'
+      ],
+      answerHtml: 'Đáp số: số ban đầu là <b>24</b>.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('cdbdt4-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('cdbdt4-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

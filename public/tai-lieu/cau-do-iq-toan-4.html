@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Câu Đố IQ Toán 4 — Ôn luyện Toán lớp 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4fbf9;
+    --bg-alt: #e3f5ef;
+    --paper: #ffffff;
+    --ink: #0f2e2a;
+    --ink-soft: #3f6b62;
+    --ink-faint: #83a89f;
+    --accent: #0d9488;
+    --accent-soft: #d7f2ec;
+    --accent-warm: #ea580c;
+    --accent-warm-soft: #ffe8d6;
+    --line: #cdeae2;
+    --line-strong: #a9dbd0;
+    --shadow: 0 1px 2px rgba(6, 40, 34, 0.08), 0 6px 20px rgba(6, 40, 34, 0.1);
+    --radius: 18px;
+    --display: "Baloo 2", "Segoe UI", Calibri, sans-serif;
+    --sans: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #081714;
+    --bg-alt: #0d211c;
+    --paper: #102822;
+    --ink: #eafaf5;
+    --ink-soft: #a9d9cd;
+    --ink-faint: #6f9d92;
+    --accent: #2dd4bf;
+    --accent-soft: #113330;
+    --accent-warm: #fb923c;
+    --accent-warm-soft: #3a2412;
+    --line: #143a33;
+    --line-strong: #1c4e44;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #081714;
+      --bg-alt: #0d211c;
+      --paper: #102822;
+      --ink: #eafaf5;
+      --ink-soft: #a9d9cd;
+      --ink-faint: #6f9d92;
+      --accent: #2dd4bf;
+      --accent-soft: #113330;
+      --accent-warm: #fb923c;
+      --accent-warm-soft: #3a2412;
+      --line: #143a33;
+      --line-strong: #1c4e44;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--accent); }
+
+  .shell {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 44px 20px 96px;
+    display: grid;
+    grid-template-columns: 214px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 32px 16px 72px; }
+  }
+
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 6px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 4px; }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; margin-left: 0; }
+  }
+
+  main { min-width: 0; }
+
+  .doc-head { max-width: 780px; margin: 0 0 28px; }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 41px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede { color: var(--ink-soft); max-width: 66ch; font-size: 17px; margin: 0; }
+
+  section.topic { padding-top: 52px; scroll-margin-top: 18px; }
+  section.topic:first-of-type { padding-top: 18px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(21px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 12.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    font-family: var(--mono);
+  }
+  p.topic-intro { color: var(--ink-soft); max-width: 68ch; margin: 12px 0 28px; }
+
+  p { max-width: 68ch; margin: 0 0 12px; }
+  .kw { color: var(--accent); font-weight: 700; }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0 32px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note { background: var(--accent-warm-soft); border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line)); }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .qhead { padding: 16px 22px 0; }
+  .problem .qid { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 700; }
+  .problem .qtext { padding: 8px 22px 18px; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .problem .qtext p { margin: 0 0 10px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+
+  .geo-figure { display: flex; justify-content: center; padding: 14px 0 4px; }
+  .geo-figure svg { max-width: 100%; height: auto; }
+
+  .scale-pair { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; margin-top: 4px; }
+  .scale-block { text-align: center; }
+  .scale-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 55%, var(--line-strong)); color: color-mix(in srgb, var(--accent-warm) 80%, var(--ink)); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+
+  .sol-body { padding: 18px 22px 22px; background: var(--paper); font-size: 15px; }
+  .sol-body:empty { padding: 0; }
+  @media (prefers-reduced-motion: no-preference) { .sol-body .step { scroll-margin-top: 90px; } }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step[hidden] { display: none; }
+  .sol-body .step::before {
+    content: attr(data-n);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .answer[hidden] { display: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-faint); max-width: 780px; }
+</style>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 vòng câu đố</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">🔢</span>Đố vui số học</a></li>
+      <li><a href="#sec2"><span class="n">🖼️</span>Đố vui hình ảnh</a></li>
+      <li><a href="#sec3"><span class="n">🎩</span>Đố mẹo</a></li>
+      <li><a href="#sec4"><span class="n">⚖️</span>Đố cân bằng</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="doc-head">
+      <div class="doc-eyebrow">🧠 Ôn luyện Toán lớp 4 · Sổ tay đố vui IQ</div>
+      <h1>Câu Đố IQ Toán 4</h1>
+      <p class="lede">8 câu đố "não cân não" phong cách sách đố vui IQ thiếu nhi — ngắn, gọn, bất ngờ, và luôn giấu một cái bẫy nho nhỏ. Số đã tới lớp triệu, hình đã có hình bình hành và hình thoi, câu đố mẹo đã "xoắn não" hơn — nhưng đáp án thì luôn rõ ràng, duy nhất, chỉ cần bạn chịu khó đọc kỹ và suy nghĩ cẩn thận!</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">🧠 Về tài liệu này</div>
+      <p><b>Câu Đố IQ Toán 4</b> là tuyển tập 8 câu đố tư duy mang phong cách các cuốn sách đố vui IQ thiếu nhi (kiểu "365 ngày phát triển IQ") — có yếu tố toán học, quan sát và suy luận ngược, phù hợp trình độ lớp 4 (số tới lớp triệu, phân số, chia có dư), nhưng luôn giữ đáp án rõ ràng, duy nhất. Toàn bộ đề bài, số liệu, hình vẽ và lời giải trong tài liệu này là <b>nội dung tự soạn mới hoàn toàn</b>, chỉ tham khảo tinh thần và độ khó quen thuộc của thể loại đố vui IQ chứ không sao chép nguyên văn từ bất kỳ cuốn sách hay câu đố dân gian cụ thể nào. Mỗi câu có nút <b>🔄 Đổi câu đố tương tự</b> để luyện lại đúng kiểu bài với tình huống khác.</p>
+    </div>
+
+    <!-- ================= SEC 1: ĐỐ VUI SỐ HỌC ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 1</span>Đố vui số học</h2>
+      </div>
+      <p class="topic-intro">Ở lớp 4, các con số đã lớn tới <span class="kw">lớp triệu</span>, và phân số cũng đã xuất hiện. Nhưng cái khó nhất đôi khi không phải là phép tính — mà là <span class="kw">đọc đúng từng chữ</span> trong đề bài trước khi đặt bút. Đọc chậm lại một chút nhé!</p>
+
+      <div class="problem" data-pool="sec1-1" data-qid="Đố 1.1">
+        <div class="qhead"><span class="qid">Đố 1.1</span></div>
+        <div class="qtext">
+          <p>🔢 Một số khi đem chia cho <b>99</b> thì được thương là <b>10101</b>, còn số dư là <b>số dư lớn nhất có thể có</b> trong phép chia đó. Đố bạn: số đó là số nào — và nó thuộc lớp nghìn hay đã "nhảy vọt" sang <b>lớp triệu</b>?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Nhớ quy tắc: trong phép chia có dư, số dư luôn LUÔN bé hơn số chia. Chia cho 99 thì số dư lớn nhất có thể có là bao nhiêu?</div>
+          <div class="step" data-n="2" hidden>Số dư phải bé hơn 99, nên số dư lớn nhất có thể có là 98 (không phải 99!).</div>
+          <div class="step" data-n="3" hidden>Số bị chia = thương × số chia + số dư = 10101 × 99 + 98. Tính 10101 × 99 trước bằng cách: 10101 × 100 − 10101 = 1 010 100 − 10 101 = 999 999.</div>
+          <div class="step" data-n="4" hidden>Cộng số dư: 999 999 + 98 = 1 000 097. Nhìn kỹ mà xem: con số 999 999 chỉ có 6 chữ số (lớp nghìn), vậy mà chỉ cộng thêm 98 thôi đã "nhảy vọt" thành số có 7 chữ số — bước hẳn sang LỚP TRIỆU!</div>
+          <div class="answer" hidden>Đáp số: Số đó là 1 000 097 — một số có 7 chữ số, đã thuộc lớp triệu.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec1-2" data-qid="Đố 1.2">
+        <div class="qhead"><span class="qid">Đố 1.2</span></div>
+        <div class="qtext">
+          <p>📖 Một quyển truyện dày <b>240 trang</b>. Ngày thứ nhất, Lan đọc hết <b>1/4 số trang của CẢ quyển truyện</b>. Ngày thứ hai, Lan đọc tiếp <b>1/4 số trang CÒN LẠI</b> (sau ngày thứ nhất) — chứ không phải 1/4 của cả quyển truyện. Đố bạn: sau 2 ngày, Lan còn lại bao nhiêu trang chưa đọc?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Bẫy ở đây: đừng vội cộng 1/4 + 1/4 = 1/2 rồi tính luôn 1/2 của 240 trang! Vì "1/4 số trang còn lại" ở ngày 2 được tính trên một số trang KHÁC (đã bị bớt đi sau ngày 1), không phải 1/4 của 240.</div>
+          <div class="step" data-n="2" hidden>Ngày 1: Lan đọc 1/4 × 240 = 60 trang. Số trang còn lại sau ngày 1: 240 − 60 = 180 trang.</div>
+          <div class="step" data-n="3" hidden>Ngày 2: Lan đọc 1/4 của 180 trang còn lại, tức là 1/4 × 180 = 45 trang. Số trang còn lại sau ngày 2: 180 − 45 = 135 trang.</div>
+          <div class="step" data-n="4" hidden>Nếu tính nhầm theo kiểu "1/4 + 1/4 = 1/2 của 240 = 120 trang đã đọc, còn lại 120 trang" thì SAI — vì hai lần 1/4 đó không cùng tính trên một tổng số trang.</div>
+          <div class="answer" hidden>Đáp số: Lan còn lại 135 trang chưa đọc.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 2: ĐỐ VUI HÌNH ẢNH ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">🖼️</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 2</span>Đố vui hình ảnh</h2>
+      </div>
+      <p class="topic-intro">Mắt của bạn đôi khi cũng biết "nói dối" đấy! Ở vòng này có cả <span class="kw">hình bình hành</span> và <span class="kw">hình thoi</span> — hãy quan sát thật kỹ từng đường nét trước khi trả lời, đừng tin ngay vào cảm giác đầu tiên.</p>
+
+      <div class="problem" data-pool="sec2-1" data-qid="Đố 2.1">
+        <div class="qhead"><span class="qid">Đố 2.1</span></div>
+        <div class="qtext">
+          <p>🖼️ Hình bình hành lớn dưới đây được chia bởi 2 đường thẳng (mỗi đường song song với một cặp cạnh) thành 4 hình bình hành nhỏ bằng nhau. Đố bạn: nhìn thật kỹ, trong hình có tất cả bao nhiêu <b>HÌNH BÌNH HÀNH</b> (tính cả hình nhỏ, và cả những hình được ghép từ nhiều hình nhỏ liền nhau)?</p>
+          <div class="geo-figure"><svg viewBox="0 0 140 100" width="220" height="157">
+            <polygon points="30,10 130,10 100,90 0,90" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>
+            <line x1="80" y1="10" x2="50" y2="90" stroke="var(--accent)" stroke-width="2.2"/>
+            <line x1="15" y1="50" x2="115" y2="50" stroke="var(--accent)" stroke-width="2.2"/>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đừng chỉ đếm 4 hình nhỏ nhất rồi dừng lại! Hai ô nhỏ ghép liền nhau (dù bị "xiên") vẫn tạo thành một hình bình hành mới.</div>
+          <div class="step" data-n="2" hidden>Đếm hình cỡ nhỏ nhất (từng ô một): có 4 hình bình hành nhỏ.</div>
+          <div class="step" data-n="3" hidden>Đếm hình cỡ vừa (ghép 2 ô liền nhau): ghép theo "hàng" được 2 hình (hàng trên, hàng dưới), ghép theo "cột xiên" được 2 hình (cột trái, cột phải) → 4 hình cỡ vừa.</div>
+          <div class="step" data-n="4" hidden>Đếm hình cỡ lớn nhất (ghép cả 4 ô): chính là cả hình bình hành ban đầu → 1 hình. Cộng lại: 4 + 4 + 1 = 9 hình.</div>
+          <div class="answer" hidden>Đáp số: 9 hình bình hành.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec2-2" data-qid="Đố 2.2">
+        <div class="qhead"><span class="qid">Đố 2.2</span></div>
+        <div class="qtext">
+          <p>👁️ Hình vuông dưới đây có cạnh dài <b>8cm</b>. Người ta nối lần lượt 4 trung điểm của 4 cạnh hình vuông lại với nhau để được hình thoi tô màu ở giữa (xem hình). Nhìn thoáng qua, hình thoi trông có vẻ khá "bé xíu" so với hình vuông lớn bên ngoài. Đố bạn: diện tích hình thoi tô màu đó thực sự bằng bao nhiêu cm²?</p>
+          <div class="geo-figure"><svg viewBox="0 0 100 100" width="190" height="190">
+            <rect x="10" y="10" width="80" height="80" fill="none" stroke="var(--ink-soft)" stroke-width="2.5"/>
+            <polygon points="50,10 90,50 50,90 10,50" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="50" cy="10" r="2.6" fill="var(--accent-warm)"/>
+            <circle cx="90" cy="50" r="2.6" fill="var(--accent-warm)"/>
+            <circle cx="50" cy="90" r="2.6" fill="var(--accent-warm)"/>
+            <circle cx="10" cy="50" r="2.6" fill="var(--accent-warm)"/>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Đừng đoán bừa "chắc bằng 1/3 hay 1/4 hình vuông thôi"! Hãy nhìn 4 góc hình vuông còn trống (không bị hình thoi che) — mỗi góc là một tam giác vuông nhỏ.</div>
+          <div class="step" data-n="2" hidden>Hình vuông cạnh 8cm nên diện tích hình vuông = 8 × 8 = 64 cm². Mỗi tam giác vuông ở góc có 2 cạnh góc vuông đều dài 8 : 2 = 4cm (vì là nửa cạnh hình vuông).</div>
+          <div class="step" data-n="3" hidden>Diện tích mỗi tam giác vuông ở góc = (4 × 4) : 2 = 8 cm². Có 4 góc như vậy → tổng diện tích 4 góc = 4 × 8 = 32 cm².</div>
+          <div class="step" data-n="4" hidden>Diện tích hình thoi = diện tích hình vuông − diện tích 4 góc = 64 − 32 = 32 cm². Bất ngờ chưa: hình thoi "trông bé" đó thực ra chiếm đúng MỘT NỬA hình vuông lớn!</div>
+          <div class="answer" hidden>Đáp số: Diện tích hình thoi tô màu là 32 cm² (đúng bằng một nửa hình vuông lớn).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 3: ĐỐ MẸO ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">🎩</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 3</span>Đố mẹo</h2>
+      </div>
+      <p class="topic-intro">Vòng này không cần tính phức tạp — chỉ cần bạn biết <span class="kw">nghĩ ngược lại</span> hoặc để ý một chi tiết nhỏ mà đề bài "giấu" đi. Nhiều bạn trả lời sai không phải vì không biết tính, mà vì trả lời quá nhanh!</p>
+
+      <div class="problem" data-pool="sec3-1" data-qid="Đố 3.1">
+        <div class="qhead"><span class="qid">Đố 3.1</span></div>
+        <div class="qtext">
+          <p>🪵 Bác thợ mộc có một khúc gỗ dài, muốn cưa thành <b>6 đoạn</b> ngắn bằng nhau để làm ghế. Mỗi nhát cưa cắt đứt khúc gỗ mất đúng <b>3 phút</b>, và giữa 2 nhát cưa liên tiếp bác nghỉ tay đúng <b>2 phút</b>. Đố bạn: bác thợ mộc cần tất cả bao nhiêu phút để cưa xong hết cả khúc gỗ?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Bẫy đầu tiên: cưa một khúc gỗ thẳng thành 6 đoạn KHÔNG cần đến 6 nhát cưa! Hãy tưởng tượng cắt một chiếc bánh mì dài: cắt 6 khúc chỉ cần 5 nhát dao. Vậy 6 đoạn gỗ cần: 6 − 1 = 5 nhát cưa.</div>
+          <div class="step" data-n="2" hidden>Thời gian cưa: mỗi nhát 3 phút, có 5 nhát → 5 × 3 = 15 phút.</div>
+          <div class="step" data-n="3" hidden>Bẫy thứ hai: giữa 5 nhát cưa chỉ có 4 khoảng nghỉ mà thôi (nghỉ giữa nhát 1-2, 2-3, 3-4, 4-5) — không phải 5 hay 6 lần nghỉ!</div>
+          <div class="step" data-n="4" hidden>Thời gian nghỉ: 4 × 2 = 8 phút. Tổng thời gian = thời gian cưa + thời gian nghỉ = 15 + 8 = 23 phút.</div>
+          <div class="answer" hidden>Đáp số: Bác thợ mộc cần 23 phút.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec3-2" data-qid="Đố 3.2">
+        <div class="qhead"><span class="qid">Đố 3.2</span></div>
+        <div class="qtext">
+          <p>🔮 Cô giáo đố cả lớp: "Cô đang nghĩ trong đầu một số. Nếu đem số đó <b>nhân với 3</b>, rồi <b>cộng thêm 7</b>, sau đó <b>chia kết quả cho 2</b>, thì được đúng <b>20</b>." Đố bạn: số mà cô giáo đang nghĩ trong đầu là số nào?</p>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Mẹo ở đây là "nghĩ ngược lại": thay vì đoán mò số ban đầu, hãy đi NGƯỢC từng bước, bắt đầu từ kết quả cuối cùng (20) và làm phép tính ngược lại của từng bước cô giáo đã làm.</div>
+          <div class="step" data-n="2" hidden>Bước cuối cùng cô làm là "chia cho 2" để ra 20 → phép tính ngược là NHÂN 2: trước khi chia, số đó là 20 × 2 = 40.</div>
+          <div class="step" data-n="3" hidden>Trước "chia cho 2" là bước "cộng thêm 7" để ra 40 → phép tính ngược là TRỪ 7: trước khi cộng, số đó là 40 − 7 = 33.</div>
+          <div class="step" data-n="4" hidden>Trước "cộng thêm 7" là bước "nhân với 3" để ra 33 → phép tính ngược là CHIA 3: số ban đầu là 33 : 3 = 11.</div>
+          <div class="answer" hidden>Đáp số: Số cô giáo đang nghĩ là 11. (Thử lại: 11 × 3 = 33; 33 + 7 = 40; 40 : 2 = 20 ✓)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SEC 4: ĐỐ CÂN BẰNG ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">⚖️</span>
+        <h2 class="topic-title"><span class="topic-num">Vòng 4</span>Đố cân bằng</h2>
+      </div>
+      <p class="topic-intro">Chiếc cân thăng bằng khi hai đĩa cân nặng bằng nhau. Ở lớp 4, bài cân bằng đã có tới <span class="kw">3 loại vật</span> khác nhau — có khi phải "nối" qua 2 chiếc cân, có khi phải khéo léo so sánh phần chênh lệch giữa hai đĩa mới tìm ra được khối lượng còn ẩn.</p>
+
+      <div class="problem" data-pool="sec4-1" data-qid="Đố 4.1">
+        <div class="qhead"><span class="qid">Đố 4.1</span></div>
+        <div class="qtext">
+          <p>⚖️ <b>Cân 1</b>: đĩa cân bên trái có 1 con voi đồ chơi, đĩa cân bên phải có 2 con gấu đồ chơi giống hệt nhau. Cân 1 đang thăng bằng.<br>
+          <b>Cân 2</b>: đĩa cân bên trái có 1 con gấu đồ chơi (giống hệt gấu ở Cân 1), đĩa cân bên phải có 3 con khỉ đồ chơi giống hệt nhau. Cân 2 cũng đang thăng bằng.<br>
+          Biết mỗi con khỉ đồ chơi nặng đúng <b>120g</b>. Đố bạn: con voi đồ chơi nặng bao nhiêu gam?</p>
+          <div class="scale-pair">
+            <div class="scale-block">
+              <div class="scale-label">Cân 1</div>
+              <div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117">
+                <polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/>
+                <rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/>
+                <circle cx="120" cy="56" r="6" fill="var(--accent)"/>
+                <line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/>
+                <line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+                <line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+                <text x="40" y="99" text-anchor="middle" font-size="15">🐘</text>
+                <text x="200" y="99" text-anchor="middle" font-size="14">🐻×2</text>
+              </svg></div>
+            </div>
+            <div class="scale-block">
+              <div class="scale-label">Cân 2</div>
+              <div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117">
+                <polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/>
+                <rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/>
+                <circle cx="120" cy="56" r="6" fill="var(--accent)"/>
+                <line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/>
+                <line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+                <line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+                <ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+                <text x="40" y="99" text-anchor="middle" font-size="15">🐻</text>
+                <text x="200" y="99" text-anchor="middle" font-size="13">🐵×3</text>
+              </svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Bài này có tới 3 loại vật (voi, gấu, khỉ) nên phải "nối" qua từng cân một. Bắt đầu từ Cân 2 vì đã biết số liệu cụ thể: 1 gấu = 3 khỉ, mỗi khỉ nặng 120g.</div>
+          <div class="step" data-n="2" hidden>Vậy gấu nặng: 3 × 120 = 360g.</div>
+          <div class="step" data-n="3" hidden>Sang Cân 1: 1 voi = 2 gấu. Mà mỗi gấu nặng 360g (vừa tìm được ở bước trên).</div>
+          <div class="step" data-n="4" hidden>Vậy voi nặng: 2 × 360 = 720g. Thử lại: 2 gấu (2 × 360 = 720g) đúng bằng voi (720g) ✓; và 1 gấu (360g) đúng bằng 3 khỉ (3 × 120 = 360g) ✓.</div>
+          <div class="answer" hidden>Đáp số: Con voi đồ chơi nặng 720g.</div>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="sec4-2" data-qid="Đố 4.2">
+        <div class="qhead"><span class="qid">Đố 4.2</span></div>
+        <div class="qtext">
+          <p>⚖️ Đĩa cân bên trái có 1 con gấu trúc đồ chơi và <b>2 con nhím</b> đồ chơi. Đĩa cân bên phải có 1 con hươu cao cổ đồ chơi và <b>5 con nhím</b> đồ chơi giống hệt nhím bên trái. Cân đang thăng bằng. Biết con gấu trúc đồ chơi nặng <b>gấp đôi</b> con hươu cao cổ đồ chơi, và con hươu cao cổ đồ chơi nặng <b>90g</b>. Đố bạn: mỗi con nhím đồ chơi nặng bao nhiêu gam?</p>
+          <div class="geo-figure"><svg viewBox="0 0 240 140" width="240" height="140">
+            <polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/>
+            <rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/>
+            <circle cx="120" cy="56" r="6" fill="var(--accent)"/>
+            <line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+            <line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+            <ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+            <line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/>
+            <ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/>
+            <text x="40" y="99" text-anchor="middle" font-size="12">🐼+🦔×2</text>
+            <text x="200" y="99" text-anchor="middle" font-size="12">🦒+🦔×5</text>
+          </svg></div>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi câu đố tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step" data-n="1" hidden>Trước tiên tính khối lượng gấu trúc: gấu trúc nặng gấp đôi hươu cao cổ, mà hươu cao cổ nặng 90g, nên gấu trúc nặng 2 × 90 = 180g.</div>
+          <div class="step" data-n="2" hidden>Cân thăng bằng nghĩa là: gấu trúc + 2 nhím = hươu cao cổ + 5 nhím, tức là (tính theo gam): 180 + 2 nhím = 90 + 5 nhím.</div>
+          <div class="step" data-n="3" hidden>Đĩa phải có nhiều hơn đĩa trái 5 − 2 = 3 con nhím. Nhưng đĩa trái lại "nặng sẵn" hơn đĩa phải 180 − 90 = 90g (nhờ gấu trúc nặng hơn hươu cao cổ). Để hai đĩa bằng nhau, 3 con nhím dư ra ở đĩa phải phải bù đắp đúng 90g chênh lệch đó.</div>
+          <div class="step" data-n="4" hidden>Vậy mỗi con nhím nặng: 90 : 3 = 30g. Thử lại: đĩa trái = 180 + 2×30 = 240g; đĩa phải = 90 + 5×30 = 240g ✓.</div>
+          <div class="answer" hidden>Đáp số: Mỗi con nhím đồ chơi nặng 30g.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Tài liệu "Câu Đố IQ Toán 4" — bộ câu đố tự biên soạn mới hoàn toàn, lấy cảm hứng từ thể loại sách đố vui IQ dành cho thiếu nhi, dùng cho mục đích ôn luyện. Đáp án và lời giải chỉ mang tính tham khảo, khuyến khích các em tự suy nghĩ thật kỹ trước khi bấm "Xem đáp số ngay".</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+window.VARIANTS = {
+  'sec1-1': [{
+    qtext: '<p>🔢 Một số khi đem chia cho <b>49</b> thì được thương là <b>20408</b>, còn số dư là <b>số dư lớn nhất có thể có</b> trong phép chia đó. Đố bạn: số đó là số nào — và nó thuộc lớp nghìn hay đã "nhảy vọt" sang <b>lớp triệu</b>?</p>',
+    steps: [
+      'Nhớ quy tắc: số dư luôn bé hơn số chia. Chia cho 49 thì số dư lớn nhất có thể có là bao nhiêu?',
+      'Số dư phải bé hơn 49, nên số dư lớn nhất có thể có là 48 (không phải 49!).',
+      'Số bị chia = thương × số chia + số dư = 20408 × 49 + 48. Tính 20408 × 49 = 20408 × 50 − 20408 = 1 020 400 − 20 408 = 999 992.',
+      'Cộng số dư: 999 992 + 48 = 1 000 040. Chỉ cần cộng thêm 48 mà con số 6 chữ số đã vọt lên thành 7 chữ số — bước sang lớp triệu!'
+    ],
+    answer: 'Đáp số: Số đó là 1 000 040 — cũng là một số có 7 chữ số, thuộc lớp triệu.'
+  }],
+  'sec1-2': [{
+    qtext: '<p>📖 Một quyển truyện dày <b>360 trang</b>. Ngày thứ nhất, Bình đọc hết <b>1/4 số trang của CẢ quyển truyện</b>. Ngày thứ hai, Bình đọc tiếp <b>1/3 số trang CÒN LẠI</b> (sau ngày thứ nhất) — chứ không phải 1/3 của cả quyển truyện. Đố bạn: sau 2 ngày, Bình còn lại bao nhiêu trang chưa đọc?</p>',
+    steps: [
+      'Đừng cộng gộp 1/4 và 1/3 của cả quyển truyện lại với nhau! "1/3 số trang còn lại" ở ngày 2 được tính trên số trang MỚI (sau khi đã bớt đi ở ngày 1), không phải trên 360 trang ban đầu.',
+      'Ngày 1: Bình đọc 1/4 × 360 = 90 trang. Số trang còn lại sau ngày 1: 360 − 90 = 270 trang.',
+      'Ngày 2: Bình đọc 1/3 × 270 = 90 trang. Số trang còn lại sau ngày 2: 270 − 90 = 180 trang.',
+      'Đáp án đúng phụ thuộc vào việc tính TUẦN TỰ từng ngày một, tuyệt đối không được gộp hai phân số lại rồi tính một lần.'
+    ],
+    answer: 'Đáp số: Bình còn lại 180 trang chưa đọc.'
+  }],
+  'sec2-1': [{
+    qtext: '<p>🖼️ Hình bình hành lớn dưới đây được chia bởi 2 đường thẳng (mỗi đường song song với 2 cạnh xiên) thành 3 hình bình hành nhỏ bằng nhau, xếp thành một "hàng xiên". Đố bạn: nhìn thật kỹ, trong hình có tất cả bao nhiêu <b>HÌNH BÌNH HÀNH</b> (tính cả hình nhỏ, và cả những hình được ghép từ nhiều hình nhỏ liền nhau)?</p><div class="geo-figure"><svg viewBox="0 0 160 80" width="230" height="115"><polygon points="30,10 150,10 120,70 0,70" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/><line x1="70" y1="10" x2="40" y2="70" stroke="var(--accent)" stroke-width="2.2"/><line x1="110" y1="10" x2="80" y2="70" stroke="var(--accent)" stroke-width="2.2"/></svg></div>',
+    steps: [
+      'Đừng chỉ đếm 3 hình nhỏ nhất rồi dừng lại! Các hình nhỏ liền nhau ghép lại cũng tạo thành hình bình hành mới.',
+      'Đếm hình cỡ nhỏ nhất (từng ô một): có 3 hình.',
+      'Đếm hình cỡ vừa (ghép 2 ô liền nhau): ô 1+2 ghép được 1 hình, ô 2+3 ghép được 1 hình → 2 hình cỡ vừa.',
+      'Đếm hình cỡ lớn nhất (ghép cả 3 ô): chính là cả hình bình hành ban đầu → 1 hình. Cộng lại: 3 + 2 + 1 = 6 hình.'
+    ],
+    answer: 'Đáp số: 6 hình bình hành.'
+  }],
+  'sec2-2': [{
+    qtext: '<p>👁️ Hình vuông dưới đây có cạnh dài <b>10cm</b>. Người ta nối lần lượt 4 trung điểm của 4 cạnh hình vuông lại với nhau để được hình thoi tô màu ở giữa (xem hình). Nhìn thoáng qua, hình thoi trông có vẻ khá "bé xíu" so với hình vuông lớn bên ngoài. Đố bạn: diện tích hình thoi tô màu đó thực sự bằng bao nhiêu cm²?</p><div class="geo-figure"><svg viewBox="0 0 100 100" width="190" height="190"><rect x="10" y="10" width="80" height="80" fill="none" stroke="var(--ink-soft)" stroke-width="2.5"/><polygon points="50,10 90,50 50,90 10,50" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/><circle cx="50" cy="10" r="2.6" fill="var(--accent-warm)"/><circle cx="90" cy="50" r="2.6" fill="var(--accent-warm)"/><circle cx="50" cy="90" r="2.6" fill="var(--accent-warm)"/><circle cx="10" cy="50" r="2.6" fill="var(--accent-warm)"/></svg></div>',
+    steps: [
+      'Đừng đoán bừa "chắc bằng 1/3 hay 1/4 hình vuông thôi"! Hãy nhìn 4 góc hình vuông còn trống (không bị hình thoi che) — mỗi góc là một tam giác vuông nhỏ.',
+      'Hình vuông cạnh 10cm nên diện tích hình vuông = 10 × 10 = 100 cm². Mỗi tam giác vuông ở góc có 2 cạnh góc vuông đều dài 10 : 2 = 5cm.',
+      'Diện tích mỗi tam giác vuông ở góc = (5 × 5) : 2 = 12,5 cm². Có 4 góc như vậy → tổng diện tích 4 góc = 4 × 12,5 = 50 cm².',
+      'Diện tích hình thoi = diện tích hình vuông − diện tích 4 góc = 100 − 50 = 50 cm². Vẫn đúng bằng MỘT NỬA hình vuông lớn, y hệt "mẹo" ở câu trước!'
+    ],
+    answer: 'Đáp số: Diện tích hình thoi tô màu là 50 cm² (đúng bằng một nửa hình vuông lớn).'
+  }],
+  'sec3-1': [{
+    qtext: '<p>🪵 Bác thợ mộc có một khúc gỗ dài, muốn cưa thành <b>8 đoạn</b> ngắn bằng nhau để làm ghế. Mỗi nhát cưa cắt đứt khúc gỗ mất đúng <b>2 phút</b>, và giữa 2 nhát cưa liên tiếp bác nghỉ tay đúng <b>3 phút</b>. Đố bạn: bác thợ mộc cần tất cả bao nhiêu phút để cưa xong hết cả khúc gỗ?</p>',
+    steps: [
+      'Cưa một khúc gỗ thẳng thành 8 đoạn KHÔNG cần đến 8 nhát cưa! Giống như cắt bánh mì dài thành 8 khúc chỉ cần 7 nhát dao. Vậy 8 đoạn gỗ cần: 8 − 1 = 7 nhát cưa.',
+      'Thời gian cưa: mỗi nhát 2 phút, có 7 nhát → 7 × 2 = 14 phút.',
+      'Giữa 7 nhát cưa chỉ có 6 khoảng nghỉ mà thôi (nghỉ giữa nhát 1-2, 2-3, ..., 6-7) — không phải 7 hay 8 lần nghỉ!',
+      'Thời gian nghỉ: 6 × 3 = 18 phút. Tổng thời gian = 14 + 18 = 32 phút.'
+    ],
+    answer: 'Đáp số: Bác thợ mộc cần 32 phút.'
+  }],
+  'sec3-2': [{
+    qtext: '<p>🔮 Cô giáo đố cả lớp: "Cô đang nghĩ trong đầu một số. Nếu đem số đó <b>nhân với 4</b>, rồi <b>cộng thêm 5</b>, sau đó <b>chia kết quả cho 3</b>, thì được đúng <b>11</b>." Đố bạn: số mà cô giáo đang nghĩ trong đầu là số nào?</p>',
+    steps: [
+      'Vẫn dùng mẹo "nghĩ ngược lại": bắt đầu từ kết quả cuối cùng (11) và làm phép tính ngược lại của từng bước, theo đúng thứ tự ngược với đề bài.',
+      'Bước cuối cùng cô làm là "chia cho 3" để ra 11 → phép tính ngược là NHÂN 3: trước khi chia, số đó là 11 × 3 = 33.',
+      'Trước "chia cho 3" là bước "cộng thêm 5" để ra 33 → phép tính ngược là TRỪ 5: trước khi cộng, số đó là 33 − 5 = 28.',
+      'Trước "cộng thêm 5" là bước "nhân với 4" để ra 28 → phép tính ngược là CHIA 4: số ban đầu là 28 : 4 = 7.'
+    ],
+    answer: 'Đáp số: Số cô giáo đang nghĩ là 7. (Thử lại: 7 × 4 = 28; 28 + 5 = 33; 33 : 3 = 11 ✓)'
+  }],
+  'sec4-1': [{
+    qtext: '<p>⚖️ <b>Cân 1</b>: đĩa cân bên trái có 1 con sư tử đồ chơi, đĩa cân bên phải có 3 con cáo đồ chơi giống hệt nhau. Cân 1 đang thăng bằng.<br><b>Cân 2</b>: đĩa cân bên trái có 1 con cáo đồ chơi (giống hệt cáo ở Cân 1), đĩa cân bên phải có 4 con sóc đồ chơi giống hệt nhau. Cân 2 cũng đang thăng bằng.<br>Biết mỗi con sóc đồ chơi nặng đúng <b>45g</b>. Đố bạn: con sư tử đồ chơi nặng bao nhiêu gam?</p><div class="scale-pair"><div class="scale-block"><div class="scale-label">Cân 1</div><div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117"><polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/><rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/><circle cx="120" cy="56" r="6" fill="var(--accent)"/><line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/><line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><text x="40" y="99" text-anchor="middle" font-size="15">🦁</text><text x="200" y="99" text-anchor="middle" font-size="13">🦊×3</text></svg></div></div><div class="scale-block"><div class="scale-label">Cân 2</div><div class="geo-figure"><svg viewBox="0 0 240 140" width="200" height="117"><polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/><rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/><circle cx="120" cy="56" r="6" fill="var(--accent)"/><line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/><line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><text x="40" y="99" text-anchor="middle" font-size="15">🦊</text><text x="200" y="99" text-anchor="middle" font-size="13">🐿️×4</text></svg></div></div></div>',
+    steps: [
+      'Bài này có 3 loại vật (sư tử, cáo, sóc) nên phải "nối" qua từng cân một. Bắt đầu từ Cân 2 vì đã biết số liệu cụ thể: 1 cáo = 4 sóc, mỗi sóc nặng 45g.',
+      'Vậy cáo nặng: 4 × 45 = 180g.',
+      'Sang Cân 1: 1 sư tử = 3 cáo. Mà mỗi cáo nặng 180g (vừa tìm được ở bước trên).',
+      'Vậy sư tử nặng: 3 × 180 = 540g. Thử lại: 3 cáo (3 × 180 = 540g) đúng bằng sư tử (540g) ✓; và 1 cáo (180g) đúng bằng 4 sóc (4 × 45 = 180g) ✓.'
+    ],
+    answer: 'Đáp số: Con sư tử đồ chơi nặng 540g.'
+  }],
+  'sec4-2': [{
+    qtext: '<p>⚖️ Đĩa cân bên trái có 1 con hà mã đồ chơi và <b>3 con chuột</b> đồ chơi. Đĩa cân bên phải có 1 con lợn con đồ chơi và <b>6 con chuột</b> đồ chơi giống hệt chuột bên trái. Cân đang thăng bằng. Biết con hà mã đồ chơi nặng <b>gấp đôi</b> con lợn con đồ chơi, và con lợn con đồ chơi nặng <b>120g</b>. Đố bạn: mỗi con chuột đồ chơi nặng bao nhiêu gam?</p><div class="geo-figure"><svg viewBox="0 0 240 140" width="240" height="140"><polygon points="100,136 140,136 120,118" fill="var(--line-strong)"/><rect x="117" y="58" width="6" height="62" rx="2" fill="var(--line-strong)"/><circle cx="120" cy="56" r="6" fill="var(--accent)"/><line x1="40" y1="56" x2="200" y2="56" stroke="var(--ink-soft)" stroke-width="4" stroke-linecap="round"/><line x1="40" y1="56" x2="20" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="40" y1="56" x2="60" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="40" cy="94" rx="34" ry="14" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><line x1="200" y1="56" x2="180" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><line x1="200" y1="56" x2="220" y2="90" stroke="var(--ink-faint)" stroke-width="1.6"/><ellipse cx="200" cy="94" rx="34" ry="14" fill="var(--accent-warm-soft)" stroke="var(--accent-warm)" stroke-width="2"/><text x="40" y="99" text-anchor="middle" font-size="12">🦛+🐭×3</text><text x="200" y="99" text-anchor="middle" font-size="12">🐷+🐭×6</text></svg></div>',
+    steps: [
+      'Trước tiên tính khối lượng hà mã: hà mã nặng gấp đôi lợn con, mà lợn con nặng 120g, nên hà mã nặng 2 × 120 = 240g.',
+      'Cân thăng bằng nghĩa là: hà mã + 3 chuột = lợn con + 6 chuột, tức là (tính theo gam): 240 + 3 chuột = 120 + 6 chuột.',
+      'Đĩa phải có nhiều hơn đĩa trái 6 − 3 = 3 con chuột. Nhưng đĩa trái lại "nặng sẵn" hơn đĩa phải 240 − 120 = 120g (nhờ hà mã nặng hơn lợn con). Để hai đĩa bằng nhau, 3 con chuột dư ra ở đĩa phải phải bù đắp đúng 120g chênh lệch đó.',
+      'Vậy mỗi con chuột nặng: 120 : 3 = 40g. Thử lại: đĩa trái = 240 + 3×40 = 360g; đĩa phải = 120 + 6×40 = 360g ✓.'
+    ],
+    answer: 'Đáp số: Mỗi con chuột đồ chơi nặng 40g.'
+  }]
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function buildOriginal(el) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    return {
+      qtext: qtext.innerHTML,
+      steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) { return s.innerHTML; }),
+      answer: solBody.querySelector('.answer').innerHTML
+    };
+  }
+
+  function render(el, item) {
+    var qtext = el.querySelector('.qtext');
+    var solBody = el.querySelector('.sol-body');
+    qtext.innerHTML = item.qtext;
+    var steps = solBody.querySelectorAll('.step');
+    if (steps.length !== item.steps.length) {
+      var html = item.steps.map(function (s, i) {
+        return '<div class="step" data-n="' + (i + 1) + '" hidden>' + s + '</div>';
+      }).join('');
+      html += '<div class="answer" hidden>' + item.answer + '</div>';
+      solBody.innerHTML = html;
+    } else {
+      steps.forEach(function (stepEl, i) {
+        stepEl.innerHTML = item.steps[i];
+        stepEl.hidden = true;
+      });
+      var ansEl = solBody.querySelector('.answer');
+      ansEl.innerHTML = item.answer;
+      ansEl.hidden = true;
+    }
+  }
+
+  function initProblem(el) {
+    var poolId = el.dataset.pool;
+    var pool = [buildOriginal(el)].concat((window.VARIANTS && window.VARIANTS[poolId]) || []);
+    var state = { index: 0, revealed: 0, answerShown: false };
+
+    var btnHint = el.querySelector('.btn-hint');
+    var btnAnswer = el.querySelector('.btn-answer');
+    var btnSwap = el.querySelector('.btn-swap');
+    var btnReset = el.querySelector('.btn-reset');
+    var solBody = el.querySelector('.sol-body');
+
+    if (pool.length <= 1 && btnSwap) btnSwap.setAttribute('hidden', '');
+
+    function updateButtons() {
+      var steps = solBody.querySelectorAll('.step');
+      var anyRevealed = state.revealed > 0 || state.answerShown;
+      if (btnHint) {
+        btnHint.disabled = state.revealed >= steps.length;
+        btnHint.textContent = state.revealed >= steps.length ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+      }
+      if (btnReset) btnReset.hidden = !anyRevealed;
+    }
+
+    if (btnHint) btnHint.addEventListener('click', function () {
+      var steps = solBody.querySelectorAll('.step');
+      if (state.revealed >= steps.length) return;
+      var stepEl = steps[state.revealed];
+      stepEl.hidden = false;
+      state.revealed++;
+      updateButtons();
+      stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+    });
+
+    if (btnAnswer) btnAnswer.addEventListener('click', function () {
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) {
+        ansEl.hidden = false;
+        state.answerShown = true;
+        updateButtons();
+        ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      }
+    });
+
+    if (btnSwap) btnSwap.addEventListener('click', function () {
+      state.index = (state.index + 1) % pool.length;
+      render(el, pool[state.index]);
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    if (btnReset) btnReset.addEventListener('click', function () {
+      solBody.querySelectorAll('.step').forEach(function (s) { s.hidden = true; });
+      var ansEl = solBody.querySelector('.answer');
+      if (ansEl) ansEl.hidden = true;
+      state.revealed = 0;
+      state.answerShown = false;
+      updateButtons();
+    });
+
+    updateButtons();
+  }
+
+  document.querySelectorAll('.problem').forEach(initProblem);
+});
+</script>
+
+</body>
+</html>

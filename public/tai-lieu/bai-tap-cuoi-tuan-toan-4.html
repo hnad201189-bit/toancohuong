@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài Tập Cuối Tuần Toán 4</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --bg-alt: #eaeef8;
+    --paper: #ffffff;
+    --ink: #1a2340;
+    --ink-soft: #4f5b7a;
+    --ink-faint: #8790ab;
+    --accent: #3454d1;
+    --accent-soft: #e2e8fb;
+    --accent-warm: #d97706;
+    --accent-warm-soft: #fdedd3;
+    --line: #dce1f0;
+    --line-strong: #b9c3e3;
+    --shadow: 0 1px 2px rgba(26, 35, 64, 0.06), 0 6px 20px rgba(26, 35, 64, 0.08);
+    --radius: 17px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #10142a;
+    --bg-alt: #161b35;
+    --paper: #1a2040;
+    --ink: #e8ebf7;
+    --ink-soft: #aab2d1;
+    --ink-faint: #6b75a0;
+    --accent: #7c93ff;
+    --accent-soft: #232d5c;
+    --accent-warm: #ffb454;
+    --accent-warm-soft: #3a2712;
+    --line: #2a3260;
+    --line-strong: #3c4780;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10142a;
+      --bg-alt: #161b35;
+      --paper: #1a2040;
+      --ink: #e8ebf7;
+      --ink-soft: #aab2d1;
+      --ink-faint: #6b75a0;
+      --accent: #7c93ff;
+      --accent-soft: #232d5c;
+      --accent-warm: #ffb454;
+      --accent-warm-soft: #3a2712;
+      --line: #2a3260;
+      --line-strong: #3c4780;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.66;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 44px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 9px 0 9px 16px;
+    font-size: 13.6px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 28px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(27px, 4.2vw, 38px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17px;
+    margin: 0;
+  }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(21px, 2.4vw, 26px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 68ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 68ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+  .frac sup, .frac sub { font-size: 0.75em; }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 760px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 18px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 780px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 20px 24px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .problem .qtext .concrete { font-size: 22px; letter-spacing: 3px; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.3px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 18px 24px 22px;
+    background: var(--paper);
+    font-size: 15px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 28px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.3px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 Tuần ôn luyện</div>
+    <ol>
+      <li><a href="#tuan1"><span class="n">🔢</span>Tuần 1</a></li>
+      <li><a href="#tuan2"><span class="n">✖️</span>Tuần 2</a></li>
+      <li><a href="#tuan3"><span class="n">🍕</span>Tuần 3</a></li>
+      <li><a href="#tuan4"><span class="n">📐</span>Tuần 4</a></li>
+      <li><a href="#meo-on-tap"><span class="n">🌟</span>Mẹo ôn tập</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 4</div>
+      <h1>Bài Tập Cuối Tuần Toán 4</h1>
+      <p class="lede">4 phiếu bài tập cuối tuần, mỗi phiếu ôn lại đúng những kỹ năng con vừa học trong tuần — độ khó tăng dần từ số đến lớp triệu và cộng trừ số nhiều chữ số, đến nhân số nhiều chữ số và chia cho số có hai — ba chữ số, rồi đến phân số (rút gọn, quy đồng, so sánh), và cuối cùng là hình bình hành, hình thoi cùng bài toán có lời văn nhiều bước.</p>
+    </div>
+
+    <div class="callout note" style="max-width:760px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Bài Tập Cuối Tuần Toán 4</b> gồm 4 phiếu, mỗi phiếu ứng với một tuần ôn luyện, độ khó tăng dần theo đúng tiến trình chương trình Toán lớp 4. Toàn bộ đề bài, số liệu và lời giải trong tài liệu này do đội ngũ tự biên soạn mới hoàn toàn, chỉ lấy cảm hứng về hình thức "phiếu bài tập cuối tuần" quen thuộc trong các bộ sách ôn luyện, không sao chép nội dung từ bất kỳ đầu sách cụ thể nào. Mỗi bài có nút <b>"Đổi bài tương tự"</b> để luyện lại đúng dạng với số liệu khác.</p>
+    </div>
+
+    <!-- ================= TUẦN 1 ================= -->
+    <section class="topic" id="tuan1">
+      <div class="topic-head">
+        <span class="topic-badge">🔢</span>
+        <h2 class="topic-title"><span class="topic-num">Tuần 1</span>Lớp triệu — Cộng trừ số nhiều chữ số</h2>
+      </div>
+      <p class="topic-intro">Tuần đầu tiên, con ôn lại cách <span class="kw">đọc, viết số</span> có nhiều chữ số theo từng hàng, từng lớp (lớp triệu, lớp nghìn, lớp đơn vị), xác định giá trị của một chữ số theo vị trí của nó, cùng phép <span class="kw">cộng, trừ số có nhiều chữ số</span> trong các bài toán nhiều bước.</p>
+
+      <div class="problem" data-pool="t1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Cho số <b>704 268 953</b>.</p>
+          <p>Chữ số <b>4</b> trong số đó thuộc hàng nào, lớp nào, và có giá trị bằng bao nhiêu? Hãy đọc số đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Đếm các hàng từ phải sang trái: đơn vị, chục, trăm, nghìn, chục nghìn, trăm nghìn, triệu, chục triệu, trăm triệu.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Trong số 704 268 953, đếm từ phải: 3 (đơn vị), 5 (chục), 9 (trăm), 8 (nghìn), 6 (chục nghìn), 2 (trăm nghìn), 4 (triệu) — vậy chữ số 4 thuộc <b>hàng triệu</b>, <b>lớp triệu</b>.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Giá trị của chữ số 4 ở hàng triệu là 4 × 1 000 000 = <b>4 000 000</b>.</p></div></div>
+          <p class="answer hidden">Chữ số 4 thuộc <b>hàng triệu</b>, <b>lớp triệu</b>, có giá trị <b>4 000 000</b>. Số 704 268 953 đọc là: <i>Bảy trăm linh bốn triệu, hai trăm sáu mươi tám nghìn, chín trăm năm mươi ba</i>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="t1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Tuần trước, một siêu thị bán được <b>128 450kg</b> gạo. Tuần này, siêu thị bán nhiều hơn tuần trước <b>36 780kg</b> gạo. Theo kế hoạch, siêu thị phải bán được <b>512 000kg</b> gạo trong hai tuần đó.</p>
+          <p>Hỏi siêu thị còn phải bán thêm bao nhiêu ki-lô-gam gạo nữa mới đạt kế hoạch?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài toán có <b>3 bước</b>: tìm số gạo bán được tuần này, tính tổng số gạo hai tuần, rồi so với kế hoạch.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (cộng):</b> Số gạo bán được tuần này là 128 450 + 36 780 = 165 230kg.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (cộng):</b> Tổng số gạo bán được trong hai tuần là 128 450 + 165 230 = 293 680kg.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Bước 3 (trừ):</b> Số gạo còn phải bán thêm là 512 000 − 293 680 = 218 320kg.</p></div></div>
+          <p class="answer hidden">Siêu thị còn phải bán thêm <b>218 320kg</b> gạo nữa mới đạt kế hoạch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TUẦN 2 ================= -->
+    <section class="topic" id="tuan2">
+      <div class="topic-head">
+        <span class="topic-badge">✖️</span>
+        <h2 class="topic-title"><span class="topic-num">Tuần 2</span>Nhân số nhiều chữ số — Chia cho số có 2-3 chữ số</h2>
+      </div>
+      <p class="topic-intro">Sang tuần 2, con luyện phép <span class="kw">nhân số có nhiều chữ số với số có hai chữ số</span> bằng cách tách thành các tích riêng, và phép <span class="kw">chia cho số có hai, ba chữ số</span> — chia lần lượt từ trái sang phải, hạ từng chữ số một, rồi phối hợp cả hai phép tính trong bài toán có lời văn.</p>
+
+      <div class="problem" data-pool="t2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Đặt tính rồi tính:</p>
+          <p>a) 3846 × 58 &nbsp;&nbsp;&nbsp; b) 26 676 : 78</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Phần a (nhân):</b> Tách 58 = 50 + 8. Tích riêng thứ nhất: 3846 × 8 = 30 768.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tích riêng thứ hai: 3846 × 50 = 192 300 (viết lùi sang trái 1 hàng so với tích riêng thứ nhất). Cộng hai tích riêng: 30 768 + 192 300 = 223 068.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Phần b (chia):</b> Chia 26 676 : 78 lần lượt: 266 : 78 = 3 (dư 32); hạ 7 được 327, 327 : 78 = 4 (dư 15); hạ 6 được 156, 156 : 78 = 2 (dư 0).</p></div></div>
+          <p class="answer hidden">a) 3846 × 58 = <b>223 068</b>. &nbsp; b) 26 676 : 78 = <b>342</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="t2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Một nhà sách nhập về <b>18 900</b> quyển truyện, xếp đều vào <b>135</b> thùng. Sau đó nhà sách bán đi số truyện của <b>40</b> thùng như vậy.</p>
+          <p>Hỏi nhà sách đã bán đi bao nhiêu quyển truyện?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài toán có <b>2 bước</b>: tìm số truyện có trong mỗi thùng trước, sau đó mới nhân với số thùng đã bán.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (chia cho số có 3 chữ số):</b> Mỗi thùng có 18 900 : 135 = 140 quyển truyện.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (nhân):</b> Số truyện đã bán là 140 × 40 = 5600 quyển.</p></div></div>
+          <p class="answer hidden">Nhà sách đã bán đi <b>5600</b> quyển truyện.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TUẦN 3 ================= -->
+    <section class="topic" id="tuan3">
+      <div class="topic-head">
+        <span class="topic-badge">🍕</span>
+        <h2 class="topic-title"><span class="topic-num">Tuần 3</span>Phân số — Rút gọn, quy đồng, so sánh</h2>
+      </div>
+      <p class="topic-intro">Tuần 3 ôn lại <span class="kw">khái niệm phân số</span>, cách <span class="kw">rút gọn phân số</span> về phân số tối giản, <span class="kw">quy đồng mẫu số</span> để so sánh và cộng hai phân số khác mẫu — những kỹ năng nền tảng cho toàn bộ mạch kiến thức phân số ở lớp 4.</p>
+
+      <div class="problem" data-pool="t3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Một hình chữ nhật được chia thành <b>36</b> ô vuông bằng nhau, trong đó có <b>24</b> ô đã được tô màu.</p>
+          <p>a) Viết phân số chỉ số phần ô đã tô màu. &nbsp;b) Rút gọn phân số đó về phân số tối giản.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Số phần đã tô màu so với tổng số ô là phân số có tử số là số ô đã tô, mẫu số là tổng số ô: <span class="frac"><sup>24</sup>&frasl;<sub>36</sub></span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Tìm số lớn nhất chia hết cả tử số và mẫu số của <span class="frac"><sup>24</sup>&frasl;<sub>36</sub></span> — đó là 12 (vì 24 : 12 = 2, 36 : 12 = 3).</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Chia cả tử số và mẫu số cho 12: <span class="frac"><sup>24</sup>&frasl;<sub>36</sub></span> = <span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span>. Vì 2 và 3 không còn ước chung nào khác 1, đây đã là phân số tối giản.</p></div></div>
+          <p class="answer hidden">a) Phân số chỉ số ô đã tô màu là <b><span class="frac"><sup>24</sup>&frasl;<sub>36</sub></span></b>. &nbsp;b) Rút gọn được <b><span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span></b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="t3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Bạn Lan đọc một quyển truyện trong 2 ngày: ngày thứ nhất đọc được <span class="frac"><sup>2</sup>&frasl;<sub>7</sub></span> quyển truyện, ngày thứ hai đọc được <span class="frac"><sup>3</sup>&frasl;<sub>5</sub></span> quyển truyện.</p>
+          <p>a) Ngày nào Lan đọc được nhiều hơn? &nbsp;b) Cả hai ngày Lan đọc được bao nhiêu phần quyển truyện?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Quy đồng mẫu số của <span class="frac"><sup>2</sup>&frasl;<sub>7</sub></span> và <span class="frac"><sup>3</sup>&frasl;<sub>5</sub></span>: MSC = 35 → <span class="frac"><sup>2</sup>&frasl;<sub>7</sub></span> = <span class="frac"><sup>2×5</sup>&frasl;<sub>7×5</sub></span> = <span class="frac"><sup>10</sup>&frasl;<sub>35</sub></span>, &nbsp;<span class="frac"><sup>3</sup>&frasl;<sub>5</sub></span> = <span class="frac"><sup>3×7</sup>&frasl;<sub>5×7</sub></span> = <span class="frac"><sup>21</sup>&frasl;<sub>35</sub></span>.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>So sánh hai phân số cùng mẫu số: <span class="frac"><sup>10</sup>&frasl;<sub>35</sub></span> &lt; <span class="frac"><sup>21</sup>&frasl;<sub>35</sub></span> (vì 10 &lt; 21), nghĩa là <span class="frac"><sup>2</sup>&frasl;<sub>7</sub></span> &lt; <span class="frac"><sup>3</sup>&frasl;<sub>5</sub></span> — ngày thứ hai Lan đọc được nhiều hơn.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Cộng hai phân số cùng mẫu: <span class="frac"><sup>10</sup>&frasl;<sub>35</sub></span> + <span class="frac"><sup>21</sup>&frasl;<sub>35</sub></span> = <span class="frac"><sup>31</sup>&frasl;<sub>35</sub></span>.</p></div></div>
+          <p class="answer hidden">a) Ngày <b>thứ hai</b> Lan đọc được nhiều hơn. &nbsp;b) Cả hai ngày Lan đọc được <b><span class="frac"><sup>31</sup>&frasl;<sub>35</sub></span></b> quyển truyện.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TUẦN 4 ================= -->
+    <section class="topic" id="tuan4">
+      <div class="topic-head">
+        <span class="topic-badge">📐</span>
+        <h2 class="topic-title"><span class="topic-num">Tuần 4</span>Hình bình hành, hình thoi — Bài toán có lời văn</h2>
+      </div>
+      <p class="topic-intro">Tuần cuối cùng, con ôn công thức tính diện tích <span class="kw">hình bình hành</span> (đáy × chiều cao) và <span class="kw">hình thoi</span> ((đường chéo 1 × đường chéo 2) : 2), biết vận dụng ngược để tìm chiều cao khi biết diện tích, rồi ghép các công thức đó vào <span class="kw">bài toán có lời văn nhiều bước</span>.</p>
+
+      <div class="problem" data-pool="t4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Một hình bình hành có diện tích <b>486cm²</b> và độ dài đáy là <b>27cm</b>.</p>
+          <p>Tính chiều cao của hình bình hành đó.</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Nhớ lại công thức: diện tích hình bình hành = đáy × chiều cao, suy ra chiều cao = diện tích : đáy.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p>Thay số vào công thức: 486 : 27.</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p>Tính: 486 : 27 = 18.</p></div></div>
+          <p class="answer hidden">Chiều cao của hình bình hành là <b>18cm</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="t4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Một khu vườn hình thoi có độ dài hai đường chéo lần lượt là <b>24m</b> và <b>18m</b>. Người ta trồng hoa trên toàn bộ khu vườn, cứ mỗi mét vuông cần <b>5</b> cây hoa giống.</p>
+          <p>Hỏi cần bao nhiêu cây hoa giống để trồng hết khu vườn?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p>Bài toán có <b>2 bước</b>: tính diện tích khu vườn hình thoi trước, rồi nhân với số cây hoa cần cho mỗi mét vuông.</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t"><p><b>Bước 1 (công thức hình thoi):</b> Diện tích khu vườn là (24 × 18) : 2 = 432 : 2 = 216m².</p></div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Bước 2 (nhân):</b> Số cây hoa giống cần dùng là 216 × 5 = 1080 cây.</p></div></div>
+          <p class="answer hidden">Cần <b>1080</b> cây hoa giống để trồng hết khu vườn.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="meo-on-tap">
+      <div class="topic-head">
+        <span class="topic-badge">🌟</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>Mẹo ôn cuối tuần cùng con</h2>
+      </div>
+      <p class="topic-intro">5 gợi ý ngắn gọn để việc làm phiếu bài tập cuối tuần trở thành một thói quen nhẹ nhàng, giúp con vững kiến thức trước khi bước sang tuần học mới.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Ôn ngay trong tuần, đừng để dồn.</b> Làm 1 bài mỗi tối thay vì dồn cả phiếu vào cuối tuần — kiến thức mới học sẽ được nhớ lâu hơn nếu ôn sớm.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Tách số lớn thành từng lớp trước khi đọc.</b> Với số có 8-9 chữ số, hướng dẫn con tách thành lớp triệu — lớp nghìn — lớp đơn vị (mỗi lớp 3 chữ số) trước khi đọc, tránh nhầm hàng.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Chia dài từng bước, đừng vội.</b> Với phép chia cho số có 2-3 chữ số, chia lần lượt từ trái sang phải, mỗi lần hạ đúng 1 chữ số, luôn kiểm tra số dư phải bé hơn số chia.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Luôn quy đồng mẫu số trước khi so sánh hoặc cộng trừ phân số.</b> Nhắc con tìm đúng mẫu số chung, tránh nhân bừa mẫu số cho nhanh mà quên rút gọn kết quả về phân số tối giản.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">5</span>
+          <p><b>Luyện thêm bằng bài tương tự.</b> Nếu con làm sai, dùng nút "Đổi bài tương tự" để luyện lại đúng dạng bài đó với số liệu khác cho đến khi con tự tin.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Ôn luyện Toán 4, theo hình thức phiếu bài tập cuối tuần. Toàn bộ đề bài và lời giải trong tài liệu này là nội dung mới, không sao chép từ bất kỳ đầu sách nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    't1-1': [{
+      qHtml: '<p>Cho số <b>528 371 649</b>.</p><p>Chữ số <b>7</b> trong số đó thuộc hàng nào, lớp nào, và có giá trị bằng bao nhiêu? Hãy đọc số đó.</p>',
+      steps: [
+        '<p>Đếm các hàng từ phải sang trái: đơn vị, chục, trăm, nghìn, chục nghìn, trăm nghìn, triệu, chục triệu, trăm triệu.</p>',
+        '<p>Trong số 528 371 649, đếm từ phải: 9 (đơn vị), 4 (chục), 6 (trăm), 1 (nghìn), 7 (chục nghìn) — vậy chữ số 7 thuộc <b>hàng chục nghìn</b>, <b>lớp nghìn</b>.</p>',
+        '<p>Giá trị của chữ số 7 ở hàng chục nghìn là 7 × 10 000 = <b>70 000</b>.</p>'
+      ],
+      answerHtml: 'Chữ số 7 thuộc <b>hàng chục nghìn</b>, <b>lớp nghìn</b>, có giá trị <b>70 000</b>. Số 528 371 649 đọc là: <i>Năm trăm hai mươi tám triệu, ba trăm bảy mươi mốt nghìn, sáu trăm bốn mươi chín</i>.'
+    }],
+    't1-2': [{
+      qHtml: '<p>Tháng trước, một xưởng gỗ sản xuất được <b>96 350</b> chiếc ghế. Tháng này, xưởng sản xuất nhiều hơn tháng trước <b>28 470</b> chiếc ghế. Theo kế hoạch quý, xưởng phải sản xuất được <b>350 000</b> chiếc ghế trong hai tháng đó.</p><p>Hỏi xưởng còn phải sản xuất thêm bao nhiêu chiếc ghế nữa mới đạt kế hoạch?</p>',
+      steps: [
+        '<p>Bài toán có <b>3 bước</b>: tìm số ghế sản xuất được tháng này, tính tổng số ghế hai tháng, rồi so với kế hoạch.</p>',
+        '<p><b>Bước 1 (cộng):</b> Số ghế sản xuất được tháng này là 96 350 + 28 470 = 124 820 chiếc.</p>',
+        '<p><b>Bước 2 (cộng):</b> Tổng số ghế sản xuất được trong hai tháng là 96 350 + 124 820 = 221 170 chiếc.</p>',
+        '<p><b>Bước 3 (trừ):</b> Số ghế còn phải sản xuất thêm là 350 000 − 221 170 = 128 830 chiếc.</p>'
+      ],
+      answerHtml: 'Xưởng còn phải sản xuất thêm <b>128 830</b> chiếc ghế nữa mới đạt kế hoạch.'
+    }],
+    't2-1': [{
+      qHtml: '<p>Đặt tính rồi tính:</p><p>a) 2957 × 46 &nbsp;&nbsp;&nbsp; b) 16 002 : 63</p>',
+      steps: [
+        '<p><b>Phần a (nhân):</b> Tách 46 = 40 + 6. Tích riêng thứ nhất: 2957 × 6 = 17 742.</p>',
+        '<p>Tích riêng thứ hai: 2957 × 40 = 118 280. Cộng hai tích riêng: 17 742 + 118 280 = 136 022.</p>',
+        '<p><b>Phần b (chia):</b> Chia 16 002 : 63 lần lượt: 160 : 63 = 2 (dư 34); hạ 0 được 340, 340 : 63 = 5 (dư 25); hạ 2 được 252, 252 : 63 = 4 (dư 0).</p>'
+      ],
+      answerHtml: 'a) 2957 × 46 = <b>136 022</b>. &nbsp; b) 16 002 : 63 = <b>254</b>.'
+    }],
+    't2-2': [{
+      qHtml: '<p>Một nhà máy nhập về <b>24 300</b> viên gạch, xếp đều vào <b>162</b> pallet. Sau đó nhà máy xuất đi số gạch của <b>55</b> pallet như vậy.</p><p>Hỏi nhà máy đã xuất đi bao nhiêu viên gạch?</p>',
+      steps: [
+        '<p>Bài toán có <b>2 bước</b>: tìm số gạch có trong mỗi pallet trước, sau đó mới nhân với số pallet đã xuất.</p>',
+        '<p><b>Bước 1 (chia cho số có 3 chữ số):</b> Mỗi pallet có 24 300 : 162 = 150 viên gạch.</p>',
+        '<p><b>Bước 2 (nhân):</b> Số gạch đã xuất là 150 × 55 = 8250 viên.</p>'
+      ],
+      answerHtml: 'Nhà máy đã xuất đi <b>8250</b> viên gạch.'
+    }],
+    't3-1': [{
+      qHtml: '<p>Một vườn cây ăn quả có <b>42</b> cây, trong đó có <b>28</b> cây đang ra hoa.</p><p>a) Viết phân số chỉ số cây đang ra hoa. &nbsp;b) Rút gọn phân số đó về phân số tối giản.</p>',
+      steps: [
+        '<p>Số cây đang ra hoa so với tổng số cây là phân số có tử số là số cây ra hoa, mẫu số là tổng số cây: <span class="frac"><sup>28</sup>&frasl;<sub>42</sub></span>.</p>',
+        '<p>Tìm số lớn nhất chia hết cả tử số và mẫu số của <span class="frac"><sup>28</sup>&frasl;<sub>42</sub></span> — đó là 14 (vì 28 : 14 = 2, 42 : 14 = 3).</p>',
+        '<p>Chia cả tử số và mẫu số cho 14: <span class="frac"><sup>28</sup>&frasl;<sub>42</sub></span> = <span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span>. Vì 2 và 3 không còn ước chung nào khác 1, đây đã là phân số tối giản.</p>'
+      ],
+      answerHtml: 'a) Phân số chỉ số cây đang ra hoa là <b><span class="frac"><sup>28</sup>&frasl;<sub>42</sub></span></b>. &nbsp;b) Rút gọn được <b><span class="frac"><sup>2</sup>&frasl;<sub>3</sub></span></b>.'
+    }],
+    't3-2': [{
+      qHtml: '<p>Bạn Nam làm một bài tập lớn trong 2 buổi: buổi sáng làm được <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> bài, buổi chiều làm được <span class="frac"><sup>1</sup>&frasl;<sub>3</sub></span> bài.</p><p>a) Buổi nào Nam làm được nhiều hơn? &nbsp;b) Cả hai buổi Nam làm được bao nhiêu phần bài tập?</p>',
+      steps: [
+        '<p>Quy đồng mẫu số của <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> và <span class="frac"><sup>1</sup>&frasl;<sub>3</sub></span>: MSC = 24 → <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> = <span class="frac"><sup>3×3</sup>&frasl;<sub>8×3</sub></span> = <span class="frac"><sup>9</sup>&frasl;<sub>24</sub></span>, &nbsp;<span class="frac"><sup>1</sup>&frasl;<sub>3</sub></span> = <span class="frac"><sup>1×8</sup>&frasl;<sub>3×8</sub></span> = <span class="frac"><sup>8</sup>&frasl;<sub>24</sub></span>.</p>',
+        '<p>So sánh hai phân số cùng mẫu số: <span class="frac"><sup>9</sup>&frasl;<sub>24</sub></span> &gt; <span class="frac"><sup>8</sup>&frasl;<sub>24</sub></span> (vì 9 &gt; 8), nghĩa là <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> &gt; <span class="frac"><sup>1</sup>&frasl;<sub>3</sub></span> — buổi sáng Nam làm được nhiều hơn.</p>',
+        '<p>Cộng hai phân số cùng mẫu: <span class="frac"><sup>9</sup>&frasl;<sub>24</sub></span> + <span class="frac"><sup>8</sup>&frasl;<sub>24</sub></span> = <span class="frac"><sup>17</sup>&frasl;<sub>24</sub></span>.</p>'
+      ],
+      answerHtml: 'a) Buổi <b>sáng</b> Nam làm được nhiều hơn. &nbsp;b) Cả hai buổi Nam làm được <b><span class="frac"><sup>17</sup>&frasl;<sub>24</sub></span></b> bài tập.'
+    }],
+    't4-1': [{
+      qHtml: '<p>Một hình bình hành có diện tích <b>720cm²</b> và độ dài đáy là <b>36cm</b>.</p><p>Tính chiều cao của hình bình hành đó.</p>',
+      steps: [
+        '<p>Nhớ lại công thức: diện tích hình bình hành = đáy × chiều cao, suy ra chiều cao = diện tích : đáy.</p>',
+        '<p>Thay số vào công thức: 720 : 36.</p>',
+        '<p>Tính: 720 : 36 = 20.</p>'
+      ],
+      answerHtml: 'Chiều cao của hình bình hành là <b>20cm</b>.'
+    }],
+    't4-2': [{
+      qHtml: '<p>Một khu vườn hình thoi có độ dài hai đường chéo lần lượt là <b>32m</b> và <b>15m</b>. Người ta trồng rau trên toàn bộ khu vườn, cứ mỗi mét vuông cần <b>3kg</b> hạt giống.</p><p>Hỏi cần bao nhiêu ki-lô-gam hạt giống để gieo hết khu vườn?</p>',
+      steps: [
+        '<p>Bài toán có <b>2 bước</b>: tính diện tích khu vườn hình thoi trước, rồi nhân với số hạt giống cần cho mỗi mét vuông.</p>',
+        '<p><b>Bước 1 (công thức hình thoi):</b> Diện tích khu vườn là (32 × 15) : 2 = 480 : 2 = 240m².</p>',
+        '<p><b>Bước 2 (nhân):</b> Số hạt giống cần dùng là 240 × 3 = 720kg.</p>'
+      ],
+      answerHtml: 'Cần <b>720kg</b> hạt giống để gieo hết khu vườn.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('bt-cuoi-tuan-toan4-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('bt-cuoi-tuan-toan4-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>

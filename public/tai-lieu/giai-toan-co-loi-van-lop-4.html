@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giải Toán Có Lời Văn Lớp 4</title>
+</head>
+<body>
+<style>
+  :root {
+    --bg: #f4f6fc;
+    --bg-alt: #e9edf9;
+    --paper: #ffffff;
+    --ink: #17213e;
+    --ink-soft: #45507a;
+    --ink-faint: #8590b8;
+    --accent: #3352d6;
+    --accent-soft: #e2e7fb;
+    --accent-warm: #b8760f;
+    --accent-warm-soft: #f8ecd5;
+    --line: #dde3f7;
+    --line-strong: #c1cbf1;
+    --shadow: 0 1px 2px rgba(20, 30, 70, 0.06), 0 6px 20px rgba(20, 30, 70, 0.08);
+    --radius: 16px;
+    --sans: "Segoe UI", "Be Vietnam Pro", Calibri, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b0f24;
+    --bg-alt: #111632;
+    --paper: #141a3a;
+    --ink: #edf0ff;
+    --ink-soft: #b3bce6;
+    --ink-faint: #767fab;
+    --accent: #7f97ff;
+    --accent-soft: #1f2a5c;
+    --accent-warm: #ffbf55;
+    --accent-warm-soft: #3b2a10;
+    --line: #232c58;
+    --line-strong: #343f7a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b0f24;
+      --bg-alt: #111632;
+      --paper: #141a3a;
+      --ink: #edf0ff;
+      --ink-soft: #b3bce6;
+      --ink-faint: #767fab;
+      --accent: #7f97ff;
+      --accent-soft: #1f2a5c;
+      --accent-warm: #ffbf55;
+      --accent-warm-soft: #3b2a10;
+      --line: #232c58;
+      --line-strong: #343f7a;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.68;
+    margin: 0;
+    padding: 0;
+  }
+  body { overflow-x: hidden; }
+  ::selection { background: var(--accent-soft); }
+
+  a { color: var(--accent); }
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+  @media (max-width: 880px) {
+    .shell { grid-template-columns: 1fr; padding: 76px 16px 72px; }
+  }
+
+  /* ---------- Side nav ---------- */
+  nav.toc {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    padding-top: 8px;
+  }
+  nav.toc .toc-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 14px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--line);
+  }
+  nav.toc a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+  }
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--line-strong); }
+  nav.toc .n { margin-right: 8px; }
+  @media (max-width: 880px) {
+    nav.toc {
+      position: static;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 8px;
+    }
+    nav.toc ol { flex-direction: row; flex-wrap: wrap; border-left: none; gap: 8px; }
+    nav.toc a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-left: 0;
+    }
+  }
+
+  main { min-width: 0; }
+
+  /* ---------- Header ---------- */
+  .doc-head {
+    max-width: 780px;
+    margin: 0 0 30px;
+  }
+  .doc-eyebrow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .doc-head h1 {
+    font-weight: 800;
+    font-size: clamp(28px, 4.4vw, 40px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .doc-head p.lede {
+    color: var(--ink-soft);
+    max-width: 66ch;
+    font-size: 17.5px;
+    margin: 0;
+  }
+
+  section.topic {
+    padding-top: 54px;
+    scroll-margin-top: 20px;
+  }
+  section.topic:first-of-type { padding-top: 20px; }
+  section.topic + section.topic { border-top: 1px solid var(--line); }
+
+  .topic-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .topic-badge {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  h2.topic-title {
+    font-weight: 800;
+    font-size: clamp(22px, 2.5vw, 27px);
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  h2.topic-title .topic-num {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--accent-warm);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  p.topic-intro {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 14px 0 26px;
+  }
+
+  p { max-width: 70ch; margin: 0 0 14px; }
+  ul.plain, ol.plain { max-width: 70ch; padding-left: 22px; margin: 0 0 16px; }
+  ul.plain li, ol.plain li { margin-bottom: 6px; }
+
+  .kw { color: var(--accent); font-weight: 700; }
+  .frac sup, .frac sub { font-size: 0.75em; }
+
+  /* ---------- Bar model (sơ đồ đoạn thẳng) ---------- */
+  .bar-model {
+    margin: 10px 0 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    max-width: 480px;
+  }
+  .bar-row { display: flex; align-items: center; gap: 10px; }
+  .bar-label {
+    flex: none;
+    width: 92px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.25;
+  }
+  .bar-track {
+    display: flex;
+    height: 28px;
+    border-radius: 7px;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    flex: none;
+  }
+  .bar-seg { height: 100%; }
+  .bar-seg.s-base { background: var(--accent); }
+  .bar-seg.s-diff { background: var(--accent-warm); }
+  .bar-seg.s-part { background: var(--accent); border-right: 1px solid var(--paper); }
+  .bar-seg.s-part:last-child { border-right: none; }
+  .bar-seg.s-empty { background: var(--accent-soft); border-right: 1px solid var(--paper); }
+  .bar-seg.s-empty:last-child { border-right: none; }
+  .bar-caption { font-size: 12.5px; color: var(--ink-faint); margin: 0; }
+  @media (max-width: 480px) {
+    .bar-label { width: 74px; font-size: 11px; }
+  }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 22px 0 28px;
+    max-width: 780px;
+    border: 1px solid var(--line);
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .callout.note {
+    background: var(--accent-warm-soft);
+    border-color: color-mix(in srgb, var(--accent-warm) 35%, var(--line));
+  }
+  .callout.note .label { color: var(--accent-warm); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Problem blocks ---------- */
+  .problem {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 20px 0;
+    overflow: hidden;
+    background: var(--paper);
+    max-width: 800px;
+    box-shadow: var(--shadow);
+  }
+  .problem .q {
+    padding: 22px 26px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .problem .qid {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 1px;
+    font-weight: 700;
+  }
+  .problem .qtext { color: var(--ink); }
+  .problem .qtext p { margin: 0 0 8px; max-width: none; }
+  .problem .qtext p:last-child { margin-bottom: 0; }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 26px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls .btn {
+    font-family: var(--sans);
+    font-size: 13.6px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .controls .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .controls .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .controls .btn:disabled { cursor: default; opacity: 0.55; border-color: var(--line); color: var(--ink-faint); }
+  .controls .btn-hint { border-color: color-mix(in srgb, var(--accent) 45%, var(--line-strong)); color: var(--accent); }
+  .controls .btn-hint:hover { background: var(--accent-soft); }
+  .controls .btn-answer { border-color: color-mix(in srgb, var(--accent-warm) 45%, var(--line-strong)); color: var(--accent-warm); }
+  .controls .btn-answer:hover { background: var(--accent-warm-soft); }
+  .controls .btn-swap:hover { background: var(--bg); }
+  .controls .btn-reset { margin-left: auto; }
+  .controls .btn-reset[hidden] { display: none; }
+  .controls .btn-swap[hidden] { display: none; }
+  .sol-body {
+    padding: 20px 26px 24px;
+    background: var(--paper);
+    font-size: 15.5px;
+  }
+  .sol-body:empty { padding: 0; }
+  .sol-body .step.hidden,
+  .sol-body .answer.hidden { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sol-body .step { scroll-margin-top: 90px; }
+  }
+  .sol-body .step {
+    display: grid;
+    grid-template-columns: 30px minmax(0,1fr);
+    gap: 4px 12px;
+    margin-bottom: 13px;
+  }
+  .sol-body .step .b {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--paper);
+    background: var(--accent);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sol-body .step .t p { margin: 0 0 4px; max-width: none; }
+  .sol-body .answer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-weight: 700;
+    color: var(--accent-warm);
+  }
+
+  /* ---------- Appendix / closing ---------- */
+  .appendix {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .method-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 17px 19px;
+    background: var(--paper);
+  }
+  .method-card .mnum {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .method-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+</style>
+
+<button type="button" class="theme-toggle" id="themeToggle">🌗 Đổi giao diện</button>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">4 dạng lời văn</div>
+    <ol>
+      <li><a href="#sec1"><span class="n">📏</span>Tổng và hiệu</a></li>
+      <li><a href="#sec2"><span class="n">⚖️</span>Tổng và tỉ số</a></li>
+      <li><a href="#sec3"><span class="n">🍰</span>Phân số của một số</a></li>
+      <li><a href="#sec4"><span class="n">🧩</span>Bài toán 2 bước kết hợp</a></li>
+      <li><a href="#4-buoc-giai-toan"><span class="n">🧭</span>4 bước giải toán</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">Ôn luyện Toán lớp 4</div>
+      <h1>Giải Toán Có Lời Văn Lớp 4</h1>
+      <p class="lede">Cuốn sổ tay nhỏ giúp con nắm vững <b>CÁCH LÀM</b> bài toán có lời văn ở lớp 4 — không chỉ luyện tính, mà học đúng quy trình: tóm tắt đề (kèm <b>sơ đồ đoạn thẳng</b>, không dùng ẩn x), chọn phép tính &amp; giải thích, tính toán, và viết câu trả lời đầy đủ. Tài liệu đi qua <b>4 dạng lời văn</b> đặc trưng của lớp 4: tìm hai số khi biết tổng và hiệu, tìm hai số khi biết tổng và tỉ số, bài toán về phân số của một số, và bài toán kết hợp hai bước tính.</p>
+    </div>
+
+    <div class="callout note" style="max-width:780px; margin: 0 0 36px;">
+      <div class="label">📖 Về tài liệu này</div>
+      <p><b>Giải Toán Có Lời Văn Lớp 4</b> là tài liệu ôn tập do đội ngũ tự biên soạn mới hoàn toàn — toàn bộ số liệu, tình huống và lời giải trong bài đều là nội dung gốc, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào. Mỗi bài đều đi theo đúng quy trình: <b>tóm tắt đề &amp; vẽ sơ đồ đoạn thẳng</b> → <b>chọn phép tính</b> (và giải thích tại sao) → <b>tính toán</b> → <b>viết câu trả lời đầy đủ</b>. Bấm nút <b>"Gợi ý"</b> để xem từng bước một, hoặc <b>"Đổi bài tương tự"</b> để luyện lại đúng dạng với số liệu khác.</p>
+    </div>
+
+    <!-- ================= SECTION 1 ================= -->
+    <section class="topic" id="sec1">
+      <div class="topic-head">
+        <span class="topic-badge">📏</span>
+        <h2 class="topic-title"><span class="topic-num">Dạng bài 1</span>Tìm hai số khi biết tổng và hiệu</h2>
+      </div>
+      <p class="topic-intro">Đề bài cho biết <span class="kw">tổng</span> (cộng lại) và <span class="kw">hiệu</span> (hơn kém nhau bao nhiêu) của hai số, rồi hỏi mỗi số là bao nhiêu. Con vẽ <span class="kw">sơ đồ đoạn thẳng</span>: nếu "cắt bớt" phần hiệu khỏi số lớn, hai đoạn sẽ bằng nhau, khi đó hai lần số bé chính là tổng trừ đi hiệu. Từ đó: <span class="kw">số bé = (tổng − hiệu) : 2</span>, rồi <span class="kw">số lớn = số bé + hiệu</span> (hoặc tổng − số bé).</p>
+
+      <div class="problem" data-pool="s1-1" data-qid="Bài 1.1">
+        <div class="q"><span class="qid">Bài 1.1</span><div class="qtext">
+          <p>Hai thửa ruộng thu hoạch được tất cả <b>850kg</b> thóc. Thửa ruộng thứ nhất thu hoạch được nhiều hơn thửa ruộng thứ hai <b>120kg</b> thóc.</p>
+          <p>Hỏi mỗi thửa ruộng thu hoạch được bao nhiêu ki-lô-gam thóc?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Hai thửa ruộng tổng cộng 850kg thóc. Thửa 1 nhiều hơn thửa 2 là 120kg. Câu hỏi là: mỗi thửa thu hoạch được bao nhiêu ki-lô-gam thóc?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (sơ đồ tổng − hiệu):</b> Đây là dạng <b>tổng và hiệu</b>. Nếu bớt 120kg (phần hiệu) khỏi thửa 1, hai thửa sẽ bằng nhau và bằng thửa 2 (số bé). Vậy hai lần số bé = tổng − hiệu = 850 − 120.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Thửa 1 (lớn)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span><span class="bar-seg s-diff" style="width:42px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">Thửa 2 (bé)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span></div></div>
+            </div>
+            <p class="bar-caption">Ô xanh = phần bằng nhau ở hai thửa · ô cam = phần hiệu (120kg) chỉ có ở thửa 1.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính số bé (thửa 2):</b> Thửa 2 = (850 − 120) : 2 = 730 : 2 = 365kg.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính số lớn (thửa 1):</b> Thửa 1 = 365 + 120 = 485kg. (Kiểm tra: 365 + 485 = 850 ✓)</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Thửa ruộng thứ nhất thu hoạch được 485kg thóc, thửa ruộng thứ hai thu hoạch được 365kg thóc."</p></div></div>
+          <p class="answer hidden">Đáp số: Thửa 1: <b>485kg</b>; Thửa 2: <b>365kg</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s1-2" data-qid="Bài 1.2">
+        <div class="q"><span class="qid">Bài 1.2</span><div class="qtext">
+          <p>Lớp 4A và lớp 4B có tất cả <b>84</b> học sinh. Lớp 4A có nhiều hơn lớp 4B <b>6</b> học sinh.</p>
+          <p>Hỏi mỗi lớp có bao nhiêu học sinh?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Lớp 4A và 4B tổng cộng 84 học sinh. Lớp 4A nhiều hơn lớp 4B là 6 học sinh. Câu hỏi là: mỗi lớp có bao nhiêu học sinh?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (sơ đồ tổng − hiệu):</b> Nếu bớt 6 học sinh (phần hiệu) khỏi lớp 4A, hai lớp sẽ bằng nhau và bằng lớp 4B (số bé). Vậy hai lần số bé = tổng − hiệu = 84 − 6.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Lớp 4A (lớn)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span><span class="bar-seg s-diff" style="width:42px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">Lớp 4B (bé)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span></div></div>
+            </div>
+            <p class="bar-caption">Ô xanh = phần bằng nhau ở hai lớp · ô cam = phần hiệu (6 học sinh) chỉ có ở lớp 4A.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính số bé (lớp 4B):</b> Lớp 4B = (84 − 6) : 2 = 78 : 2 = 39 học sinh.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính số lớn (lớp 4A):</b> Lớp 4A = 39 + 6 = 45 học sinh. (Kiểm tra: 39 + 45 = 84 ✓)</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Lớp 4A có 45 học sinh, lớp 4B có 39 học sinh."</p></div></div>
+          <p class="answer hidden">Đáp số: Lớp 4A: <b>45</b> học sinh; Lớp 4B: <b>39</b> học sinh.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2 ================= -->
+    <section class="topic" id="sec2">
+      <div class="topic-head">
+        <span class="topic-badge">⚖️</span>
+        <h2 class="topic-title"><span class="topic-num">Dạng bài 2</span>Tìm hai số khi biết tổng và tỉ số của hai số</h2>
+      </div>
+      <p class="topic-intro">Đề bài cho biết <span class="kw">tổng</span> của hai số, và cho biết số này <span class="kw">gấp mấy lần</span> số kia (tỉ số). Con vẽ sơ đồ đoạn thẳng chia mỗi số thành các <span class="kw">phần bằng nhau</span>: số bé ứng với 1 phần, số lớn ứng với nhiều phần theo đúng tỉ số. Từ đó: <span class="kw">tổng số phần</span> = phần số bé + phần số lớn; <span class="kw">giá trị 1 phần = tổng : tổng số phần</span>; rồi nhân ngược lại để tìm mỗi số.</p>
+
+      <div class="problem" data-pool="s2-1" data-qid="Bài 2.1">
+        <div class="q"><span class="qid">Bài 2.1</span><div class="qtext">
+          <p>Một cửa hàng có tất cả <b>72</b> cái bàn và ghế. Số ghế gấp <b>3</b> lần số bàn.</p>
+          <p>Hỏi cửa hàng có bao nhiêu cái bàn, bao nhiêu cái ghế?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Bàn và ghế tổng cộng 72 cái. Số ghế gấp 3 lần số bàn (tỉ số bàn : ghế = 1 : 3). Câu hỏi là: có bao nhiêu cái bàn, bao nhiêu cái ghế?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (sơ đồ tổng − tỉ):</b> Coi số bàn là 1 phần thì số ghế là 3 phần bằng nhau như thế. Tổng số phần = 1 + 3 = 4 phần, ứng với 72 cái.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Bàn</span><div class="bar-track"><span class="bar-seg s-part" style="width:45px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">Ghế</span><div class="bar-track"><span class="bar-seg s-part" style="width:45px"></span><span class="bar-seg s-part" style="width:45px"></span><span class="bar-seg s-part" style="width:45px"></span></div></div>
+            </div>
+            <p class="bar-caption">Mỗi ô xanh là 1 phần bằng nhau — bàn có 1 phần, ghế có 3 phần như thế.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính giá trị 1 phần:</b> 1 phần = 72 : (1 + 3) = 72 : 4 = 18.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính số bàn:</b> Số bàn = 18 × 1 = 18 cái.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Tính số ghế:</b> Số ghế = 18 × 3 = 54 cái. (Kiểm tra: 18 + 54 = 72 ✓)</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p><b>Viết câu trả lời:</b> "Cửa hàng có 18 cái bàn và 54 cái ghế."</p></div></div>
+          <p class="answer hidden">Đáp số: Bàn: <b>18</b> cái; Ghế: <b>54</b> cái.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s2-2" data-qid="Bài 2.2">
+        <div class="q"><span class="qid">Bài 2.2</span><div class="qtext">
+          <p>Tổng số tuổi của hai mẹ con hiện nay là <b>60</b> tuổi. Tuổi mẹ gấp <b>4</b> lần tuổi con.</p>
+          <p>Hỏi mẹ bao nhiêu tuổi, con bao nhiêu tuổi?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Tổng số tuổi hai mẹ con là 60 tuổi. Tuổi mẹ gấp 4 lần tuổi con (tỉ số con : mẹ = 1 : 4). Câu hỏi là: mẹ bao nhiêu tuổi, con bao nhiêu tuổi?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (sơ đồ tổng − tỉ):</b> Coi tuổi con là 1 phần thì tuổi mẹ là 4 phần bằng nhau như thế. Tổng số phần = 1 + 4 = 5 phần, ứng với 60 tuổi.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Con</span><div class="bar-track"><span class="bar-seg s-part" style="width:38px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">Mẹ</span><div class="bar-track"><span class="bar-seg s-part" style="width:38px"></span><span class="bar-seg s-part" style="width:38px"></span><span class="bar-seg s-part" style="width:38px"></span><span class="bar-seg s-part" style="width:38px"></span></div></div>
+            </div>
+            <p class="bar-caption">Mỗi ô xanh là 1 phần bằng nhau — con có 1 phần, mẹ có 4 phần như thế.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính giá trị 1 phần:</b> 1 phần = 60 : (1 + 4) = 60 : 5 = 12.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính tuổi con:</b> Tuổi con = 12 × 1 = 12 tuổi.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Tính tuổi mẹ:</b> Tuổi mẹ = 12 × 4 = 48 tuổi. (Kiểm tra: 12 + 48 = 60 ✓)</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p><b>Viết câu trả lời:</b> "Mẹ 48 tuổi, con 12 tuổi."</p></div></div>
+          <p class="answer hidden">Đáp số: Mẹ: <b>48</b> tuổi; Con: <b>12</b> tuổi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3 ================= -->
+    <section class="topic" id="sec3">
+      <div class="topic-head">
+        <span class="topic-badge">🍰</span>
+        <h2 class="topic-title"><span class="topic-num">Dạng bài 3</span>Bài toán về phân số của một số</h2>
+      </div>
+      <p class="topic-intro">Đề bài hỏi <span class="kw">một phân số của một số lượng</span> là bao nhiêu, ví dụ "<span class="kw">2/5</span> của 45km là bao nhiêu?". Con hình dung chia số lượng đó thành <span class="kw">các phần bằng nhau</span>, số phần bằng đúng <span class="kw">mẫu số</span>. Muốn tìm <span class="kw">a/b</span> của một số, con lấy số đó <span class="kw">chia cho b</span> (tìm giá trị 1 phần), rồi lấy kết quả <span class="kw">nhân với a</span> (số phần cần lấy).</p>
+
+      <div class="problem" data-pool="s3-1" data-qid="Bài 3.1">
+        <div class="q"><span class="qid">Bài 3.1</span><div class="qtext">
+          <p>Một đội công nhân nhận sửa một đoạn đường dài <b>45km</b>. Tuần đầu, đội sửa được <span class="frac"><sup>3</sup>&frasl;<sub>5</sub></span> quãng đường đó.</p>
+          <p>Hỏi tuần đầu đội sửa được bao nhiêu ki-lô-mét đường?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Đoạn đường dài 45km. Tuần đầu đội sửa được <span class="frac"><sup>3</sup>&frasl;<sub>5</sub></span> quãng đường. Câu hỏi là: tuần đầu đội sửa được bao nhiêu ki-lô-mét?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (phân số của một số):</b> Chia 45km thành 5 phần bằng nhau (theo mẫu số), rồi lấy 3 phần (theo tử số) — tức là <b>chia cho 5</b> rồi <b>nhân với 3</b>.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">45km</span><div class="bar-track"><span class="bar-seg s-part" style="width:38px"></span><span class="bar-seg s-part" style="width:38px"></span><span class="bar-seg s-part" style="width:38px"></span><span class="bar-seg s-empty" style="width:38px"></span><span class="bar-seg s-empty" style="width:38px"></span></div></div>
+            </div>
+            <p class="bar-caption">5 phần bằng nhau, 3 ô xanh (đã sửa) trên tổng 5 ô = <span class="frac"><sup>3</sup>&frasl;<sub>5</sub></span> quãng đường.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính giá trị 1 phần:</b> 1 phần = 45 : 5 = 9km.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính kết quả:</b> Tuần đầu sửa được = 9 × 3 = 27km.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Tuần đầu đội sửa được 27km đường."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>27km</b>.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s3-2" data-qid="Bài 3.2">
+        <div class="q"><span class="qid">Bài 3.2</span><div class="qtext">
+          <p>Một trại chăn nuôi có tất cả <b>350</b> con gà. Số gà mái chiếm <span class="frac"><sup>4</sup>&frasl;<sub>7</sub></span> tổng số gà của trại.</p>
+          <p>Hỏi trại đó có bao nhiêu con gà mái?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Trại có 350 con gà. Số gà mái chiếm <span class="frac"><sup>4</sup>&frasl;<sub>7</sub></span> tổng số gà. Câu hỏi là: trại có bao nhiêu con gà mái?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính (phân số của một số):</b> Chia 350 con thành 7 phần bằng nhau (theo mẫu số), rồi lấy 4 phần (theo tử số) — tức là <b>chia cho 7</b> rồi <b>nhân với 4</b>.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">350 con gà</span><div class="bar-track"><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-empty" style="width:27px"></span><span class="bar-seg s-empty" style="width:27px"></span><span class="bar-seg s-empty" style="width:27px"></span></div></div>
+            </div>
+            <p class="bar-caption">7 phần bằng nhau, 4 ô xanh (gà mái) trên tổng 7 ô = <span class="frac"><sup>4</sup>&frasl;<sub>7</sub></span> tổng số gà.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính giá trị 1 phần:</b> 1 phần = 350 : 7 = 50 con.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính kết quả:</b> Số gà mái = 50 × 4 = 200 con.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Viết câu trả lời:</b> "Trại đó có 200 con gà mái."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>200</b> con gà mái.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4 ================= -->
+    <section class="topic" id="sec4">
+      <div class="topic-head">
+        <span class="topic-badge">🧩</span>
+        <h2 class="topic-title"><span class="topic-num">Dạng bài 4</span>Bài toán 2 bước kết hợp</h2>
+      </div>
+      <p class="topic-intro">Dạng toán khó nhất — bài toán cần <span class="kw">kết hợp hai dạng đã học</span> (tổng-hiệu, tổng-tỉ, phân số của một số) để giải, ví dụ tìm hai số theo tổng-hiệu rồi tính phân số của một trong hai số đó, hoặc tính phân số của một số rồi so sánh hơn kém. Con cần tách bài toán thành <span class="kw">từng bước nhỏ</span>, giải quyết <span class="kw">lần lượt</span> — kết quả của bước trước là dữ liệu để làm bước sau, không được tính gộp hay đảo thứ tự.</p>
+
+      <div class="problem" data-pool="s4-1" data-qid="Bài 4.1">
+        <div class="q"><span class="qid">Bài 4.1</span><div class="qtext">
+          <p>Hai kho chứa tất cả <b>900 tấn</b> thóc. Kho A chứa nhiều hơn kho B <b>100 tấn</b> thóc. Sau đó người ta lấy đi <span class="frac"><sup>1</sup>&frasl;<sub>4</sub></span> số thóc của kho A để chuyển đi nơi khác.</p>
+          <p>Hỏi kho A còn lại bao nhiêu tấn thóc?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Hai kho tổng cộng 900 tấn thóc. Kho A nhiều hơn kho B 100 tấn. Sau đó lấy đi <span class="frac"><sup>1</sup>&frasl;<sub>4</sub></span> số thóc của kho A. Câu hỏi là: kho A còn lại bao nhiêu tấn thóc?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính bước 1 (tổng − hiệu):</b> Muốn biết kho A còn lại bao nhiêu, trước tiên phải biết kho A có bao nhiêu tấn — dùng sơ đồ tổng-hiệu: hai lần số bé (kho B) = tổng − hiệu = 900 − 100.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">Kho A (lớn)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span><span class="bar-seg s-diff" style="width:42px"></span></div></div>
+              <div class="bar-row"><span class="bar-label">Kho B (bé)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span></div></div>
+            </div>
+            <p class="bar-caption">Ô xanh = phần bằng nhau ở hai kho · ô cam = phần hiệu (100 tấn) chỉ có ở kho A.</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính kho B (số bé):</b> Kho B = (900 − 100) : 2 = 800 : 2 = 400 tấn.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính kho A (số lớn):</b> Kho A = 400 + 100 = 500 tấn. (Kiểm tra: 400 + 500 = 900 ✓)</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Chọn phép tính bước 2 (phân số của một số):</b> Số thóc lấy đi = <span class="frac"><sup>1</sup>&frasl;<sub>4</sub></span> của kho A — chia kho A thành 4 phần bằng nhau, lấy đi 1 phần: 500 : 4.</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p><b>Tính số thóc còn lại:</b> Số thóc lấy đi = 500 : 4 = 125 tấn. Số thóc kho A còn lại = 500 − 125 = 375 tấn.</p></div></div>
+          <div class="step hidden"><span class="b">7</span><div class="t"><p><b>Viết câu trả lời:</b> "Kho A còn lại 375 tấn thóc."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>375 tấn</b> thóc.</p>
+        </div>
+      </div>
+
+      <div class="problem" data-pool="s4-2" data-qid="Bài 4.2">
+        <div class="q"><span class="qid">Bài 4.2</span><div class="qtext">
+          <p>Một cửa hàng có <b>240kg</b> gạo tẻ. Số gạo nếp bằng <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> số gạo tẻ.</p>
+          <p>Hỏi số gạo tẻ nhiều hơn số gạo nếp bao nhiêu ki-lô-gam?</p>
+        </div></div>
+        <div class="controls">
+          <button type="button" class="btn btn-hint">💡 Gợi ý bước tiếp theo</button>
+          <button type="button" class="btn btn-answer">👁 Xem đáp số ngay</button>
+          <button type="button" class="btn btn-swap">🔄 Đổi bài tương tự</button>
+          <button type="button" class="btn btn-reset" hidden>↺ Làm lại</button>
+        </div>
+        <div class="sol-body">
+          <div class="step hidden"><span class="b">1</span><div class="t"><p><b>Tóm tắt đề:</b> Cửa hàng có 240kg gạo tẻ. Số gạo nếp bằng <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> số gạo tẻ. Câu hỏi là: gạo tẻ nhiều hơn gạo nếp bao nhiêu ki-lô-gam?</p></div></div>
+          <div class="step hidden"><span class="b">2</span><div class="t">
+            <p><b>Chọn phép tính bước 1 (phân số của một số):</b> Muốn so sánh, trước tiên phải biết số gạo nếp — chia 240kg gạo tẻ thành 8 phần bằng nhau, số gạo nếp bằng 3 phần như thế.</p>
+            <div class="bar-model">
+              <div class="bar-row"><span class="bar-label">240kg gạo tẻ</span><div class="bar-track"><span class="bar-seg s-part" style="width:24px"></span><span class="bar-seg s-part" style="width:24px"></span><span class="bar-seg s-part" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span></div></div>
+            </div>
+            <p class="bar-caption">8 phần bằng nhau, 3 ô xanh = số gạo nếp (<span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> gạo tẻ).</p>
+          </div></div>
+          <div class="step hidden"><span class="b">3</span><div class="t"><p><b>Tính giá trị 1 phần:</b> 1 phần = 240 : 8 = 30kg.</p></div></div>
+          <div class="step hidden"><span class="b">4</span><div class="t"><p><b>Tính số gạo nếp:</b> Số gạo nếp = 30 × 3 = 90kg.</p></div></div>
+          <div class="step hidden"><span class="b">5</span><div class="t"><p><b>Chọn phép tính bước 2 (so sánh hơn kém):</b> Muốn biết gạo tẻ nhiều hơn gạo nếp bao nhiêu, lấy số gạo tẻ <b>trừ</b> số gạo nếp: 240 − 90.</p></div></div>
+          <div class="step hidden"><span class="b">6</span><div class="t"><p><b>Tính toán:</b> 240 − 90 = 150kg.</p></div></div>
+          <div class="step hidden"><span class="b">7</span><div class="t"><p><b>Viết câu trả lời:</b> "Số gạo tẻ nhiều hơn số gạo nếp 150kg."</p></div></div>
+          <p class="answer hidden">Đáp số: <b>150kg</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHỤ LỤC ================= -->
+    <section class="topic appendix" id="4-buoc-giai-toan">
+      <div class="topic-head">
+        <span class="topic-badge">🧭</span>
+        <h2 class="topic-title"><span class="topic-num">Phụ lục</span>4 bước giải toán có lời văn — nhớ nhanh</h2>
+      </div>
+      <p class="topic-intro">Dù là dạng "tổng và hiệu", "tổng và tỉ số", "phân số của một số" hay bài toán kết hợp 2 bước, con luôn áp dụng đúng 4 bước sau đây theo thứ tự, không bỏ bước nào. Nếu bài cần 2 bước tính, hãy làm lần lượt từng bước một, không tính gộp.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mnum">1</span>
+          <p><b>Đọc kỹ &amp; tóm tắt.</b> Đọc đề 2 lần, gạch chân số liệu: đề bài cho biết gì, và câu hỏi là gì. Chú ý các từ như "tổng", "hơn... kém", "gấp... lần", "tỉ số", "a/b của...".</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">2</span>
+          <p><b>Chọn đúng phương pháp &amp; vẽ sơ đồ.</b> "Tổng và hiệu" → (tổng − hiệu) : 2. "Tổng và tỉ số" → chia phần bằng nhau. "Phân số của 1 số" → chia mẫu số, nhân tử số. Bài 2 bước → làm lần lượt từng dạng.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">3</span>
+          <p><b>Tính toán cẩn thận.</b> Làm đúng thứ tự từng phép tính, không gộp bước. Sau khi tìm được hai số, thử lại bằng phép cộng (hoặc phép chia tỉ số) để kiểm tra kết quả.</p>
+        </div>
+        <div class="method-card">
+          <span class="mnum">4</span>
+          <p><b>Viết câu trả lời &amp; đáp số.</b> Viết câu trả lời đầy đủ theo đúng câu hỏi (không viết trống số), rồi ghi Đáp số kèm đơn vị (kg, tấn, tuổi, cái, con, km...).</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tài liệu tự biên soạn — Giải Toán Có Lời Văn Lớp 4. Toàn bộ bài tập, số liệu và lời giải trong tài liệu này là nội dung mới do đội ngũ tự viết, không sao chép từ bất kỳ sách bài tập hay đề thi cụ thể nào.</footer>
+
+  </main>
+</div>
+
+<script>
+  window.VARIANTS = {
+    's1-1': [{
+      qHtml: '<p>Hai đội trồng cây tổng cộng được <b>640</b> cây. Đội A trồng được nhiều hơn đội B <b>80</b> cây.</p><p>Hỏi mỗi đội trồng được bao nhiêu cây?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Hai đội tổng cộng 640 cây. Đội A nhiều hơn đội B là 80 cây. Câu hỏi là: mỗi đội trồng được bao nhiêu cây?</p>',
+        '<p><b>Chọn phép tính (sơ đồ tổng − hiệu):</b> Nếu bớt 80 cây (phần hiệu) khỏi đội A, hai đội sẽ bằng nhau và bằng đội B (số bé). Vậy hai lần số bé = tổng − hiệu = 640 − 80.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Đội A (lớn)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span><span class="bar-seg s-diff" style="width:42px"></span></div></div><div class="bar-row"><span class="bar-label">Đội B (bé)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span></div></div></div><p class="bar-caption">Ô xanh = phần bằng nhau ở hai đội · ô cam = phần hiệu (80 cây) chỉ có ở đội A.</p>',
+        '<p><b>Tính số bé (đội B):</b> Đội B = (640 − 80) : 2 = 560 : 2 = 280 cây.</p>',
+        '<p><b>Tính số lớn (đội A):</b> Đội A = 280 + 80 = 360 cây. (Kiểm tra: 280 + 360 = 640 ✓)</p>',
+        '<p><b>Viết câu trả lời:</b> "Đội A trồng được 360 cây, đội B trồng được 280 cây."</p>'
+      ],
+      answerHtml: 'Đáp số: Đội A: <b>360</b> cây; Đội B: <b>280</b> cây.'
+    }],
+    's1-2': [{
+      qHtml: '<p>Hai thùng dầu có tất cả <b>156</b> lít dầu. Thùng thứ nhất có ít hơn thùng thứ hai <b>24</b> lít dầu.</p><p>Hỏi mỗi thùng có bao nhiêu lít dầu?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Hai thùng tổng cộng 156 lít dầu. Thùng 1 ít hơn thùng 2 là 24 lít. Câu hỏi là: mỗi thùng có bao nhiêu lít dầu?</p>',
+        '<p><b>Chọn phép tính (sơ đồ tổng − hiệu):</b> Thùng 1 ít hơn nên là số bé, thùng 2 là số lớn. Nếu bớt 24 lít (phần hiệu) khỏi thùng 2, hai thùng sẽ bằng nhau và bằng thùng 1. Vậy hai lần số bé = tổng − hiệu = 156 − 24.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Thùng 2 (lớn)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span><span class="bar-seg s-diff" style="width:42px"></span></div></div><div class="bar-row"><span class="bar-label">Thùng 1 (bé)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span></div></div></div><p class="bar-caption">Ô xanh = phần bằng nhau ở hai thùng · ô cam = phần hiệu (24 lít) chỉ có ở thùng 2.</p>',
+        '<p><b>Tính số bé (thùng 1):</b> Thùng 1 = (156 − 24) : 2 = 132 : 2 = 66 lít.</p>',
+        '<p><b>Tính số lớn (thùng 2):</b> Thùng 2 = 66 + 24 = 90 lít. (Kiểm tra: 66 + 90 = 156 ✓)</p>',
+        '<p><b>Viết câu trả lời:</b> "Thùng thứ nhất có 66 lít dầu, thùng thứ hai có 90 lít dầu."</p>'
+      ],
+      answerHtml: 'Đáp số: Thùng 1: <b>66</b> lít; Thùng 2: <b>90</b> lít.'
+    }],
+    's2-1': [{
+      qHtml: '<p>Một khu vườn trồng tất cả <b>96</b> cây cam và cây bưởi. Số cây bưởi gấp <b>5</b> lần số cây cam.</p><p>Hỏi vườn có bao nhiêu cây cam, bao nhiêu cây bưởi?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Cam và bưởi tổng cộng 96 cây. Số bưởi gấp 5 lần số cam (tỉ số cam : bưởi = 1 : 5). Câu hỏi là: có bao nhiêu cây cam, bao nhiêu cây bưởi?</p>',
+        '<p><b>Chọn phép tính (sơ đồ tổng − tỉ):</b> Coi số cam là 1 phần thì số bưởi là 5 phần bằng nhau như thế. Tổng số phần = 1 + 5 = 6 phần, ứng với 96 cây.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Cam</span><div class="bar-track"><span class="bar-seg s-part" style="width:32px"></span></div></div><div class="bar-row"><span class="bar-label">Bưởi</span><div class="bar-track"><span class="bar-seg s-part" style="width:32px"></span><span class="bar-seg s-part" style="width:32px"></span><span class="bar-seg s-part" style="width:32px"></span><span class="bar-seg s-part" style="width:32px"></span><span class="bar-seg s-part" style="width:32px"></span></div></div></div><p class="bar-caption">Mỗi ô xanh là 1 phần bằng nhau — cam có 1 phần, bưởi có 5 phần như thế.</p>',
+        '<p><b>Tính giá trị 1 phần:</b> 1 phần = 96 : (1 + 5) = 96 : 6 = 16.</p>',
+        '<p><b>Tính số cây cam:</b> Số cam = 16 × 1 = 16 cây.</p>',
+        '<p><b>Tính số cây bưởi:</b> Số bưởi = 16 × 5 = 80 cây. (Kiểm tra: 16 + 80 = 96 ✓)</p>',
+        '<p><b>Viết câu trả lời:</b> "Vườn có 16 cây cam và 80 cây bưởi."</p>'
+      ],
+      answerHtml: 'Đáp số: Cam: <b>16</b> cây; Bưởi: <b>80</b> cây.'
+    }],
+    's2-2': [{
+      qHtml: '<p>Tổng số tuổi của hai ông cháu hiện nay là <b>77</b> tuổi. Tuổi ông gấp <b>6</b> lần tuổi cháu.</p><p>Hỏi ông bao nhiêu tuổi, cháu bao nhiêu tuổi?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Tổng số tuổi hai ông cháu là 77 tuổi. Tuổi ông gấp 6 lần tuổi cháu (tỉ số cháu : ông = 1 : 6). Câu hỏi là: ông bao nhiêu tuổi, cháu bao nhiêu tuổi?</p>',
+        '<p><b>Chọn phép tính (sơ đồ tổng − tỉ):</b> Coi tuổi cháu là 1 phần thì tuổi ông là 6 phần bằng nhau như thế. Tổng số phần = 1 + 6 = 7 phần, ứng với 77 tuổi.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Cháu</span><div class="bar-track"><span class="bar-seg s-part" style="width:27px"></span></div></div><div class="bar-row"><span class="bar-label">Ông</span><div class="bar-track"><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-part" style="width:27px"></span><span class="bar-seg s-part" style="width:27px"></span></div></div></div><p class="bar-caption">Mỗi ô xanh là 1 phần bằng nhau — cháu có 1 phần, ông có 6 phần như thế.</p>',
+        '<p><b>Tính giá trị 1 phần:</b> 1 phần = 77 : (1 + 6) = 77 : 7 = 11.</p>',
+        '<p><b>Tính tuổi cháu:</b> Tuổi cháu = 11 × 1 = 11 tuổi.</p>',
+        '<p><b>Tính tuổi ông:</b> Tuổi ông = 11 × 6 = 66 tuổi. (Kiểm tra: 11 + 66 = 77 ✓)</p>',
+        '<p><b>Viết câu trả lời:</b> "Ông 66 tuổi, cháu 11 tuổi."</p>'
+      ],
+      answerHtml: 'Đáp số: Ông: <b>66</b> tuổi; Cháu: <b>11</b> tuổi.'
+    }],
+    's3-1': [{
+      qHtml: '<p>Một thư viện có tất cả <b>360</b> quyển sách. Số sách Toán chiếm <span class="frac"><sup>2</sup>&frasl;<sub>9</sub></span> tổng số sách của thư viện.</p><p>Hỏi thư viện có bao nhiêu quyển sách Toán?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Thư viện có 360 quyển sách. Số sách Toán chiếm <span class="frac"><sup>2</sup>&frasl;<sub>9</sub></span> tổng số sách. Câu hỏi là: thư viện có bao nhiêu quyển sách Toán?</p>',
+        '<p><b>Chọn phép tính (phân số của một số):</b> Chia 360 quyển thành 9 phần bằng nhau (theo mẫu số), rồi lấy 2 phần (theo tử số) — tức là <b>chia cho 9</b> rồi <b>nhân với 2</b>.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">360 quyển</span><div class="bar-track"><span class="bar-seg s-part" style="width:21px"></span><span class="bar-seg s-part" style="width:21px"></span><span class="bar-seg s-empty" style="width:21px"></span><span class="bar-seg s-empty" style="width:21px"></span><span class="bar-seg s-empty" style="width:21px"></span><span class="bar-seg s-empty" style="width:21px"></span><span class="bar-seg s-empty" style="width:21px"></span><span class="bar-seg s-empty" style="width:21px"></span><span class="bar-seg s-empty" style="width:21px"></span></div></div></div><p class="bar-caption">9 phần bằng nhau, 2 ô xanh (sách Toán) trên tổng 9 ô = <span class="frac"><sup>2</sup>&frasl;<sub>9</sub></span> tổng số sách.</p>',
+        '<p><b>Tính giá trị 1 phần:</b> 1 phần = 360 : 9 = 40 quyển.</p>',
+        '<p><b>Tính kết quả:</b> Số sách Toán = 40 × 2 = 80 quyển.</p>',
+        '<p><b>Viết câu trả lời:</b> "Thư viện có 80 quyển sách Toán."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>80</b> quyển sách Toán.'
+    }],
+    's3-2': [{
+      qHtml: '<p>Một hội chợ bán được tất cả <b>480</b> vé. Số vé bán cho học sinh chiếm <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> tổng số vé.</p><p>Hỏi hội chợ đã bán được bao nhiêu vé cho học sinh?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Hội chợ bán được 480 vé. Số vé bán cho học sinh chiếm <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> tổng số vé. Câu hỏi là: hội chợ bán được bao nhiêu vé cho học sinh?</p>',
+        '<p><b>Chọn phép tính (phân số của một số):</b> Chia 480 vé thành 8 phần bằng nhau (theo mẫu số), rồi lấy 3 phần (theo tử số) — tức là <b>chia cho 8</b> rồi <b>nhân với 3</b>.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">480 vé</span><div class="bar-track"><span class="bar-seg s-part" style="width:24px"></span><span class="bar-seg s-part" style="width:24px"></span><span class="bar-seg s-part" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span><span class="bar-seg s-empty" style="width:24px"></span></div></div></div><p class="bar-caption">8 phần bằng nhau, 3 ô xanh (vé học sinh) trên tổng 8 ô = <span class="frac"><sup>3</sup>&frasl;<sub>8</sub></span> tổng số vé.</p>',
+        '<p><b>Tính giá trị 1 phần:</b> 1 phần = 480 : 8 = 60 vé.</p>',
+        '<p><b>Tính kết quả:</b> Số vé học sinh = 60 × 3 = 180 vé.</p>',
+        '<p><b>Viết câu trả lời:</b> "Hội chợ đã bán được 180 vé cho học sinh."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>180</b> vé.'
+    }],
+    's4-1': [{
+      qHtml: '<p>Hai xưởng dệt có tất cả <b>1 200m</b> vải. Xưởng M có ít hơn xưởng N <b>200m</b> vải. Sau đó người ta dùng hết <span class="frac"><sup>1</sup>&frasl;<sub>5</sub></span> số vải của xưởng N để may đồng phục.</p><p>Hỏi xưởng N còn lại bao nhiêu mét vải?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Hai xưởng tổng cộng 1 200m vải. Xưởng M ít hơn xưởng N 200m. Sau đó dùng hết <span class="frac"><sup>1</sup>&frasl;<sub>5</sub></span> số vải của xưởng N. Câu hỏi là: xưởng N còn lại bao nhiêu mét vải?</p>',
+        '<p><b>Chọn phép tính bước 1 (tổng − hiệu):</b> Xưởng M ít hơn nên là số bé, xưởng N là số lớn. Muốn biết xưởng N còn lại bao nhiêu, trước tiên phải biết xưởng N có bao nhiêu mét — dùng sơ đồ tổng-hiệu: hai lần số bé (xưởng M) = tổng − hiệu = 1 200 − 200.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">Xưởng N (lớn)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span><span class="bar-seg s-diff" style="width:42px"></span></div></div><div class="bar-row"><span class="bar-label">Xưởng M (bé)</span><div class="bar-track"><span class="bar-seg s-base" style="width:112px"></span></div></div></div><p class="bar-caption">Ô xanh = phần bằng nhau ở hai xưởng · ô cam = phần hiệu (200m) chỉ có ở xưởng N.</p>',
+        '<p><b>Tính xưởng M (số bé):</b> Xưởng M = (1 200 − 200) : 2 = 1 000 : 2 = 500m.</p>',
+        '<p><b>Tính xưởng N (số lớn):</b> Xưởng N = 500 + 200 = 700m. (Kiểm tra: 500 + 700 = 1 200 ✓)</p>',
+        '<p><b>Chọn phép tính bước 2 (phân số của một số):</b> Số vải dùng hết = <span class="frac"><sup>1</sup>&frasl;<sub>5</sub></span> của xưởng N — chia xưởng N thành 5 phần bằng nhau, dùng hết 1 phần: 700 : 5.</p>',
+        '<p><b>Tính số vải còn lại:</b> Số vải đã dùng = 700 : 5 = 140m. Số vải xưởng N còn lại = 700 − 140 = 560m.</p>',
+        '<p><b>Viết câu trả lời:</b> "Xưởng N còn lại 560m vải."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>560m</b> vải.'
+    }],
+    's4-2': [{
+      qHtml: '<p>Một xưởng may có <b>280kg</b> vải xanh. Số vải đỏ bằng <span class="frac"><sup>3</sup>&frasl;<sub>4</sub></span> số vải xanh.</p><p>Hỏi số vải xanh nhiều hơn số vải đỏ bao nhiêu ki-lô-gam?</p>',
+      steps: [
+        '<p><b>Tóm tắt đề:</b> Xưởng có 280kg vải xanh. Số vải đỏ bằng <span class="frac"><sup>3</sup>&frasl;<sub>4</sub></span> số vải xanh. Câu hỏi là: vải xanh nhiều hơn vải đỏ bao nhiêu ki-lô-gam?</p>',
+        '<p><b>Chọn phép tính bước 1 (phân số của một số):</b> Muốn so sánh, trước tiên phải biết số vải đỏ — chia 280kg vải xanh thành 4 phần bằng nhau, số vải đỏ bằng 3 phần như thế.</p><div class="bar-model"><div class="bar-row"><span class="bar-label">280kg vải xanh</span><div class="bar-track"><span class="bar-seg s-part" style="width:46px"></span><span class="bar-seg s-part" style="width:46px"></span><span class="bar-seg s-part" style="width:46px"></span><span class="bar-seg s-empty" style="width:46px"></span></div></div></div><p class="bar-caption">4 phần bằng nhau, 3 ô xanh = số vải đỏ (<span class="frac"><sup>3</sup>&frasl;<sub>4</sub></span> vải xanh).</p>',
+        '<p><b>Tính giá trị 1 phần:</b> 1 phần = 280 : 4 = 70kg.</p>',
+        '<p><b>Tính số vải đỏ:</b> Số vải đỏ = 70 × 3 = 210kg.</p>',
+        '<p><b>Chọn phép tính bước 2 (so sánh hơn kém):</b> Muốn biết vải xanh nhiều hơn vải đỏ bao nhiêu, lấy số vải xanh <b>trừ</b> số vải đỏ: 280 − 210.</p>',
+        '<p><b>Tính toán:</b> 280 − 210 = 70kg.</p>',
+        '<p><b>Viết câu trả lời:</b> "Số vải xanh nhiều hơn số vải đỏ 70kg."</p>'
+      ],
+      answerHtml: 'Đáp số: <b>70kg</b>.'
+    }]
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Theme toggle ----------
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    var savedTheme = null;
+    try { savedTheme = localStorage.getItem('gtclv-lop4-theme'); } catch (e) {}
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.setAttribute('data-theme', savedTheme);
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('gtclv-lop4-theme', next); } catch (e) {}
+      });
+    }
+
+    function initProblem(el) {
+      var qtext = el.querySelector('.qtext');
+      var solBody = el.querySelector('.sol-body');
+      var qidEl = el.querySelector('.qid');
+      var baseQid = el.dataset.qid || (qidEl ? qidEl.textContent : '');
+
+      var original = {
+        qHtml: qtext.innerHTML,
+        steps: Array.prototype.map.call(solBody.querySelectorAll('.step'), function (s) {
+          return s.querySelector('.t').innerHTML;
+        }),
+        answerHtml: (function () {
+          var a = solBody.querySelector('.answer');
+          return a ? a.innerHTML : '';
+        })()
+      };
+      var poolKey = el.dataset.pool;
+      var extra = (poolKey && window.VARIANTS[poolKey]) ? window.VARIANTS[poolKey] : [];
+      var pool = [original].concat(extra);
+
+      var state = { revealed: 0, answerShown: false, variantIndex: 0 };
+
+      var btnHint = el.querySelector('.btn-hint');
+      var btnAnswer = el.querySelector('.btn-answer');
+      var btnSwap = el.querySelector('.btn-swap');
+      var btnReset = el.querySelector('.btn-reset');
+
+      if (btnSwap && pool.length <= 1) btnSwap.setAttribute('hidden', '');
+
+      function updateButtons() {
+        var totalSteps = solBody.querySelectorAll('.step').length;
+        if (btnHint) {
+          btnHint.disabled = state.revealed >= totalSteps;
+          btnHint.textContent = state.revealed >= totalSteps ? '💡 Đã hiện hết gợi ý' : '💡 Gợi ý bước tiếp theo';
+        }
+        if (btnReset) {
+          if (state.revealed > 0 || state.answerShown) btnReset.removeAttribute('hidden');
+          else btnReset.setAttribute('hidden', '');
+        }
+      }
+
+      function renderVariant(idx) {
+        var v = pool[idx];
+        qtext.innerHTML = v.qHtml;
+        var steps = solBody.querySelectorAll('.step');
+        if (steps.length !== v.steps.length) {
+          var html = v.steps.map(function (stepHtml, i) {
+            return '<div class="step hidden"><span class="b">' + (i + 1) + '</span><div class="t">' + stepHtml + '</div></div>';
+          }).join('');
+          html += '<p class="answer hidden">' + v.answerHtml + '</p>';
+          solBody.innerHTML = html;
+        } else {
+          steps.forEach(function (stepEl, i) {
+            stepEl.querySelector('.t').innerHTML = v.steps[i];
+            stepEl.classList.add('hidden');
+          });
+          var ansEl = solBody.querySelector('.answer');
+          if (ansEl) { ansEl.innerHTML = v.answerHtml; ansEl.classList.add('hidden'); }
+        }
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+        if (qidEl) {
+          qidEl.textContent = idx === 0 ? baseQid : (baseQid + ' · biến thể ' + idx + '/' + extra.length);
+        }
+      }
+
+      if (btnHint) btnHint.addEventListener('click', function () {
+        var steps = solBody.querySelectorAll('.step');
+        if (state.revealed >= steps.length) return;
+        var stepEl = steps[state.revealed];
+        stepEl.classList.remove('hidden');
+        state.revealed++;
+        updateButtons();
+        stepEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+      });
+
+      if (btnAnswer) btnAnswer.addEventListener('click', function () {
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) {
+          ansEl.classList.remove('hidden');
+          state.answerShown = true;
+          updateButtons();
+          ansEl.scrollIntoView({ block: 'nearest', behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
+        }
+      });
+
+      if (btnSwap) btnSwap.addEventListener('click', function () {
+        state.variantIndex = (state.variantIndex + 1) % pool.length;
+        renderVariant(state.variantIndex);
+      });
+
+      if (btnReset) btnReset.addEventListener('click', function () {
+        solBody.querySelectorAll('.step').forEach(function (s) { s.classList.add('hidden'); });
+        var ansEl = solBody.querySelector('.answer');
+        if (ansEl) ansEl.classList.add('hidden');
+        state.revealed = 0;
+        state.answerShown = false;
+        updateButtons();
+      });
+
+      updateButtons();
+    }
+
+    document.querySelectorAll('.problem').forEach(initProblem);
+  });
+</script>
+
+</body>
+</html>
