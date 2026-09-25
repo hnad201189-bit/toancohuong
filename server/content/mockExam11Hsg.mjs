@@ -18,7 +18,9 @@ export const MOCK_EXAM_11_HSG = {
   title: 'Đề thi học sinh giỏi Toán 11',
   kind: 'tuluan',
   duration: 150, // phút — chuẩn thi HSG cấp trường/tỉnh
-  matrix: [
+  variants: [
+    {
+      matrix: [
     { chapter: 'Phương trình lượng giác chứa tham số', nb: 0, th: 0, vd: 1, vdc: 1 },
     { chapter: 'Dãy số truy hồi nâng cao', nb: 0, th: 0, vd: 1, vdc: 1 },
     { chapter: 'Giới hạn dãy số nâng cao', nb: 0, th: 0, vd: 1, vdc: 1 },
@@ -132,6 +134,8 @@ export const MOCK_EXAM_11_HSG = {
         'Kiểm tra: $330+660+330+44+1=1365$, tổng xác suất bằng $1$ (hợp lệ).',
         'Kỳ vọng: $E(X)=0\\cdot\\dfrac{330}{1365}+1\\cdot\\dfrac{660}{1365}+2\\cdot\\dfrac{330}{1365}+3\\cdot\\dfrac{44}{1365}+4\\cdot\\dfrac{1}{1365}=\\dfrac{1456}{1365}=\\dfrac{16}{15}$.',
         'Vậy $E(X)=\\dfrac{16}{15}$ (kiểm tra nhanh bằng công thức phân phối siêu bội $E(X)=n\\cdot\\dfrac{K}{N}=4\\cdot\\dfrac{4}{15}=\\dfrac{16}{15}$, khớp kết quả).',
+      ],
+    },
       ],
     },
   ],

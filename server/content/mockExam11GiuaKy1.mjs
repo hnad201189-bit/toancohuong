@@ -12,7 +12,9 @@ export const MOCK_EXAM_11_GIUA_KY_1 = {
   title: 'Đề kiểm tra giữa học kì I — Toán 11',
   kind: 'tracnghiem-3phan',
   duration: 90,
-  matrix: [
+  variants: [
+    {
+      matrix: [
     { chapter: 'Hàm số lượng giác và đồ thị', nb: 3, th: 2, vd: 1, vdc: 0 },
     { chapter: 'Phương trình lượng giác cơ bản', nb: 3, th: 3, vd: 2, vdc: 0 },
   ],
@@ -212,6 +214,8 @@ export const MOCK_EXAM_11_GIUA_KY_1 = {
       question: 'Cho $\\tan x = 2$ với $x\\in\\left(0;\\dfrac{\\pi}{2}\\right)$. Tính giá trị của biểu thức $P=\\dfrac{2\\sin x+\\cos x}{\\sin x-3\\cos x}$ (nhập kết quả dưới dạng số thập phân).',
       answer: '-5',
       solution: 'Chia cả tử và mẫu cho $\\cos x$: $P=\\dfrac{2\\tan x+1}{\\tan x-3}=\\dfrac{2\\cdot2+1}{2-3}=\\dfrac{5}{-1}=-5$.',
+    },
+      ],
     },
   ],
 }

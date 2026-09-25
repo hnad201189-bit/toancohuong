@@ -1279,6 +1279,23 @@ table {
 
 /* Đề thi thử — định dạng 3 phần (TN + Đúng/Sai + trả lời ngắn) */
 
+.exam-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.exam-card__head h3 {
+  margin: 0;
+}
+
+.exam-card__shuffle {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 .exam-part-title {
   margin: 24px 0 12px;
   font-size: 15px;

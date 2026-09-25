@@ -15,7 +15,9 @@ export const MOCK_EXAM_11_HET_KY_1 = {
   title: 'Đề kiểm tra học kì I — Toán 11',
   kind: 'tracnghiem-3phan',
   duration: 90,
-  matrix: [
+  variants: [
+    {
+      matrix: [
     { chapter: 'Hàm số lượng giác', nb: 2, th: 0, vd: 0, vdc: 0 },
     { chapter: 'Phương trình lượng giác', nb: 1, th: 1, vd: 2, vdc: 0 },
     { chapter: 'Công thức biến đổi lượng giác', nb: 0, th: 0, vd: 1, vdc: 0 },
@@ -216,6 +218,8 @@ export const MOCK_EXAM_11_HET_KY_1 = {
       question: 'Một quả bóng được thả rơi từ độ cao 8m. Mỗi lần chạm đất, quả bóng nảy lên đến độ cao bằng $\\dfrac12$ độ cao của lần rơi ngay trước đó, rồi lại rơi xuống, cứ tiếp tục như vậy mãi mãi. Tính tổng quãng đường quả bóng di chuyển được (đơn vị mét).',
       answer: '24',
       solution: 'Gọi $h=8$ là độ cao thả ban đầu, $r=\\dfrac12$ là tỉ số độ cao giữa hai lần nảy liên tiếp. Sau khi rơi đoạn $h$, quả bóng nảy lên rồi rơi xuống liên tiếp các đoạn $2hr, 2hr^2, 2hr^3,\\ldots$ tạo thành hai lần một cấp số nhân lùi vô hạn công bội $r$. Tổng quãng đường $D=h+2hr+2hr^2+\\cdots=h+\\dfrac{2hr}{1-r}=8+\\dfrac{2\\cdot8\\cdot\\frac12}{1-\\frac12}=8+\\dfrac{8}{\\frac12}=8+16=24$ (m).',
+    },
+      ],
     },
   ],
 }

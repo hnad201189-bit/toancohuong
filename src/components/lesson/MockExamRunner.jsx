@@ -19,16 +19,30 @@ function normalizeAnswer(text) {
     .replace(',', '.')
 }
 
+function randomIndex(length, exclude) {
+  if (length <= 1) return 0
+  let i = Math.floor(Math.random() * length)
+  while (i === exclude) i = Math.floor(Math.random() * length)
+  return i
+}
+
 export default function MockExamRunner({ exam }) {
+  // Mỗi đề (giữa kì, hết kì, ...) có một kho nhiều mã đề khác nhau
+  // (exam.variants) — mặc định hiện ngẫu nhiên một mã đề, có nút "Đổi đề" để
+  // chọn mã đề khác, không đánh số "Đề 1, Đề 2..." (giống trang đề HSG lớp 6).
+  const variants = exam.variants?.length > 0 ? exam.variants : [exam]
+  const [variantIndex, setVariantIndex] = useState(() => randomIndex(variants.length))
+  const current = variants[variantIndex] || variants[0]
+
   const [phase, setPhase] = useState('idle') // idle | running | finished
   const [answersI, setAnswersI] = useState({})
   const [answersII, setAnswersII] = useState({}) // { [clusterIndex]: { [statementIndex]: boolean } }
   const [answersIII, setAnswersIII] = useState({})
   const [secondsLeft, setSecondsLeft] = useState(0)
   const [showSpec, setShowSpec] = useState(false)
+  const [openSolutions, setOpenSolutions] = useState({})
 
   const isEssayExam = exam.kind === 'tuluan'
-  const [openSolutions, setOpenSolutions] = useState({})
 
   useEffect(() => {
     if (phase !== 'running') return undefined
@@ -44,6 +58,10 @@ export default function MockExamRunner({ exam }) {
     }, 1000)
     return () => clearInterval(id)
   }, [phase])
+
+  function changeVariant() {
+    setVariantIndex((prev) => randomIndex(variants.length, prev))
+  }
 
   function start() {
     setAnswersI({})
@@ -69,18 +87,16 @@ export default function MockExamRunner({ exam }) {
     setAnswersIII((prev) => ({ ...prev, [qIndex]: value }))
   }
 
-  const partI = exam.partI || []
-  const partII = exam.partII || []
-  const partIII = exam.partIII || []
+  const partI = current.partI || []
+  const partII = current.partII || []
+  const partIII = current.partIII || []
+  const essays = current.essays || []
 
   const scoreI = partI.reduce((sum, q, i) => sum + (answersI[i] === q.correctIndex ? 3 / (partI.length || 1) : 0), 0)
 
   const scoreII = partII.reduce((sum, cluster, ci) => {
     const chosen = answersII[ci] || {}
-    const correctCount = cluster.statements.reduce(
-      (n, st, si) => n + (chosen[si] === st.isTrue ? 1 : 0),
-      0
-    )
+    const correctCount = cluster.statements.reduce((n, st, si) => n + (chosen[si] === st.isTrue ? 1 : 0), 0)
     return sum + PART_II_SCORE_BY_CORRECT_COUNT[correctCount]
   }, 0)
 
@@ -91,13 +107,21 @@ export default function MockExamRunner({ exam }) {
 
   const totalScore = Math.round((scoreI + scoreII + scoreIII) * 100) / 100
 
+  const changeDeButton = variants.length > 1 && phase === 'idle' && (
+    <button className="btn btn--ghost exam-card__shuffle" onClick={changeVariant}>
+      🔄 Đổi đề
+    </button>
+  )
+
   if (isEssayExam) {
-    const essays = exam.essays || []
     if (phase === 'idle') {
       return (
         <div className="exam-tab">
           <div className="card exam-card">
-            <h3>{exam.title}</h3>
+            <div className="exam-card__head">
+              <h3>{exam.title}</h3>
+              {changeDeButton}
+            </div>
             <div className="exam-card__stats">
               <div className="exam-stat">
                 <span className="exam-stat__value">{essays.length}</span>
@@ -108,7 +132,7 @@ export default function MockExamRunner({ exam }) {
                 <span className="exam-stat__label">thời gian làm bài</span>
               </div>
             </div>
-            {exam.matrix?.length > 0 && <ExamMatrix matrix={exam.matrix} />}
+            {current.matrix?.length > 0 && <ExamMatrix matrix={current.matrix} />}
             <button className="btn btn--primary exam-card__start" onClick={start} disabled={essays.length === 0}>
               Bắt đầu làm bài
             </button>
@@ -165,7 +189,10 @@ export default function MockExamRunner({ exam }) {
     return (
       <div className="exam-tab">
         <div className="card exam-card">
-          <h3>{exam.title}</h3>
+          <div className="exam-card__head">
+            <h3>{exam.title}</h3>
+            {changeDeButton}
+          </div>
           <div className="exam-card__stats">
             <div className="exam-stat">
               <span className="exam-stat__value">{partI.length}</span>
@@ -185,14 +212,14 @@ export default function MockExamRunner({ exam }) {
             </div>
           </div>
 
-          {exam.matrix?.length > 0 && <ExamMatrix matrix={exam.matrix} />}
+          {current.matrix?.length > 0 && <ExamMatrix matrix={current.matrix} />}
 
-          {exam.specification?.length > 0 && (
+          {current.specification?.length > 0 && (
             <>
               <button className="btn btn--ghost" onClick={() => setShowSpec((v) => !v)}>
                 {showSpec ? 'Ẩn bản đặc tả' : 'Xem bản đặc tả đề thi'}
               </button>
-              {showSpec && <ExamSpecification specification={exam.specification} />}
+              {showSpec && <ExamSpecification specification={current.specification} />}
             </>
           )}
 

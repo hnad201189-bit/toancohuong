@@ -18,7 +18,9 @@ export const MOCK_EXAM_11_HET_KY_2 = {
   title: 'Đề kiểm tra học kì II — Toán 11',
   kind: 'tracnghiem-3phan',
   duration: 90,
-  matrix: [
+  variants: [
+    {
+      matrix: [
     { chapter: 'Đường thẳng và mặt phẳng trong không gian, quan hệ song song', nb: 3, th: 4, vd: 3, vdc: 0 },
     { chapter: 'Quan hệ vuông góc trong không gian', nb: 4, th: 4, vd: 5, vdc: 1 },
     { chapter: 'Thống kê & Xác suất', nb: 5, th: 2, vd: 2, vdc: 1 },
@@ -237,6 +239,8 @@ export const MOCK_EXAM_11_HET_KY_2 = {
       question: 'Xác suất để một xạ thủ bắn trúng bia trong một lần bắn là $0{,}6$. Xạ thủ bắn 2 phát súng một cách độc lập. Biết xác suất để xạ thủ bắn trúng bia ít nhất 1 lần trong 2 phát bằng $p$. Tính $100p$.',
       answer: '84',
       solution: 'Gọi $A_1,A_2$ là biến cố trúng bia ở phát thứ nhất, thứ hai; $A_1,A_2$ độc lập, $P(A_1)=P(A_2)=0{,}6$. Xác suất trượt cả hai phát (biến cố đối, hai biến cố trượt cũng độc lập) là $(1-0{,}6)(1-0{,}6)=0{,}4\\cdot0{,}4=0{,}16$. Vậy $p=1-0{,}16=0{,}84$, suy ra $100p=84$.',
+    },
+      ],
     },
   ],
 }

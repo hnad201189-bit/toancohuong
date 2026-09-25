@@ -15,7 +15,9 @@ export const MOCK_EXAM_11_KHAO_SAT_CUOI_NAM = {
   title: 'Đề khảo sát chất lượng cuối năm — Toán 11',
   kind: 'tracnghiem-3phan',
   duration: 90,
-  matrix: [
+  variants: [
+    {
+      matrix: [
     { chapter: 'Hàm số lượng giác và phương trình lượng giác', nb: 1, th: 2, vd: 1, vdc: 0 },
     { chapter: 'Dãy số, cấp số cộng — cấp số nhân', nb: 1, th: 1, vd: 2, vdc: 0 },
     { chapter: 'Giới hạn dãy số', nb: 1, th: 0, vd: 1, vdc: 0 },
@@ -214,6 +216,8 @@ export const MOCK_EXAM_11_KHAO_SAT_CUOI_NAM = {
       answer: '0.5',
       solution:
         'Vì $CD\\perp AD$ (đáy là hình vuông) và $CD\\perp SA$ (do $SA\\perp(ABCD)$) nên $CD\\perp(SAD)$, suy ra $(SCD)\\perp(SAD)$ theo giao tuyến $SD$.<br>Gọi $H$ là hình chiếu của $A$ lên $SD$ trong mặt phẳng $(SAD)$; vì $CD\\perp(SAD)$ nên $CD\\perp AH$, kết hợp $AH\\perp SD$ suy ra $AH\\perp(SCD)$. Vậy $d=AH$.<br>Trong tam giác vuông $SAD$ (vuông tại $A$, $SA=a$, $AD=a$): $\\dfrac1{AH^2}=\\dfrac1{SA^2}+\\dfrac1{AD^2}=\\dfrac1{a^2}+\\dfrac1{a^2}=\\dfrac2{a^2}$, suy ra $AH^2=\\dfrac{a^2}{2}$.<br>Vậy $\\dfrac{d^2}{a^2}=\\dfrac{AH^2}{a^2}=\\dfrac12=0{,}5$.',
+    },
+      ],
     },
   ],
 }

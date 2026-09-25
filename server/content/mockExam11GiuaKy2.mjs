@@ -15,7 +15,9 @@ export const MOCK_EXAM_11_GIUA_KY_2 = {
   title: 'Đề kiểm tra giữa học kì II — Toán 11',
   kind: 'tracnghiem-3phan',
   duration: 90,
-  matrix: [
+  variants: [
+    {
+      matrix: [
     { chapter: 'Giới hạn hàm số và hàm số liên tục', nb: 5, th: 5, vd: 5, vdc: 1 },
     { chapter: 'Hàm số mũ và hàm số lôgarit', nb: 3, th: 7, vd: 6, vdc: 2 },
   ],
@@ -201,6 +203,8 @@ export const MOCK_EXAM_11_GIUA_KY_2 = {
       question: 'Độ pH của một dung dịch được tính bởi công thức $pH=-\\log_{10}[H^+]$, trong đó $[H^+]$ là nồng độ ion $H^+$ (mol/l). Một dung dịch A có $pH=6$. Dung dịch B có nồng độ ion $H^+$ gấp 100 lần dung dịch A. Tính $pH$ của dung dịch B.',
       answer: '4',
       solution: 'Từ $pH_A=6$ suy ra $[H^+]_A=10^{-6}$. Do đó $[H^+]_B=100\\cdot10^{-6}=10^{-4}$. Vậy $pH_B=-\\log_{10}(10^{-4})=4$.',
+    },
+      ],
     },
   ],
 }
