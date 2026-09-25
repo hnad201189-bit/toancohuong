@@ -41,6 +41,7 @@ import { LOP12_PT_MP_DT_MC } from './content/lop12PtMpDtMc.mjs'
 import { LOP12_THONG_KE_NANG_CAO } from './content/lop12ThongKeNangCao.mjs'
 import { LOP12_XAC_SUAT_CO_DIEU_KIEN } from './content/lop12XacSuatCoDieuKien.mjs'
 import { SAMPLE_LESSON } from '../src/data/topics.js'
+import { MOCK_EXAMS_11 } from './content/mockExams11.mjs'
 
 const { id: sampleId, areaId: _sampleAreaId, title: sampleTitle, ...sampleContent } = SAMPLE_LESSON
 
@@ -239,4 +240,38 @@ export function backfillPracticeBanks() {
     console.log(`Backfilled practice banks for ${patched} lesson(s) that were missing practiceBank.`)
   }
   return patched
+}
+
+// Runs on every server start. Inserts a mock_exams row for any (grade,
+// examType) present in the source maps (MOCK_EXAMS_11, ...) but not yet in
+// the DB — same idempotent "only fill what's missing" idea as
+// seedMissingLessons, so an admin's manual edits are never overwritten and a
+// newly authored exam (a new key added to a content file) appears on the
+// next server restart without touching existing rows.
+export function backfillMockExams() {
+  let inserted = 0
+  const bySourceGrade = { 11: MOCK_EXAMS_11 }
+
+  for (const [gradeStr, source] of Object.entries(bySourceGrade)) {
+    const grade = Number(gradeStr)
+    for (const [examType, exam] of Object.entries(source)) {
+      const id = `${grade}-${examType}`
+      if (db.prepare('SELECT 1 FROM mock_exams WHERE id = ?').get(id)) continue
+
+      const { title, ...content } = exam
+      db.prepare('INSERT INTO mock_exams (id, grade, exam_type, title, content) VALUES (?, ?, ?, ?, ?)').run(
+        id,
+        grade,
+        examType,
+        title,
+        JSON.stringify(content)
+      )
+      inserted++
+    }
+  }
+
+  if (inserted > 0) {
+    console.log(`Seeded ${inserted} new mock exam(s) from source content.`)
+  }
+  return inserted
 }

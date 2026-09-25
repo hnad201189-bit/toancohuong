@@ -5,6 +5,8 @@ import AdminLayout from './AdminLayout'
 import AdminAreasPage from './AdminAreasPage'
 import AdminAreaTopicsPage from './AdminAreaTopicsPage'
 import AdminHsgPage from './AdminHsgPage'
+import AdminMockExamsPage from './AdminMockExamsPage'
+import AdminMockExamEditorPage from './AdminMockExamEditorPage'
 import AdminLessonEditorPage from './AdminLessonEditorPage'
 import AdminImportPage from './AdminImportPage'
 import AdminTutorsPage from './AdminTutorsPage'
@@ -32,6 +34,8 @@ export default function AdminApp() {
         <Route index element={<AdminAreasPage />} />
         <Route path="areas/:areaId" element={<AdminAreaTopicsPage />} />
         <Route path="hsg" element={<AdminHsgPage />} />
+        <Route path="mock-exams" element={<AdminMockExamsPage />} />
+        <Route path="mock-exams/:examId" element={<AdminMockExamEditorPage />} />
         <Route path="import" element={<AdminImportPage />} />
         <Route path="tutors" element={<AdminTutorsPage />} />
         <Route path="contact-requests" element={<AdminContactRequestsPage />} />

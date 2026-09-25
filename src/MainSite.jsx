@@ -10,7 +10,8 @@ import GradeGate from './components/GradeGate'
 import Games from './components/games/Games'
 import OnLuyen from './components/OnLuyen'
 import ThiThu from './components/ThiThu'
-import { getAreas, getHsgTopics, getLesson } from './api/client'
+import { getAreas, getHsgTopics, getLesson, getMockExam } from './api/client'
+import MockExamRunner from './components/lesson/MockExamRunner'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { getGradeBand } from './data/grades'
 import { getMockExams } from './data/exams'
@@ -22,6 +23,7 @@ export default function MainSite() {
   const [areas, setAreas] = useState(null)
   const [hsgTopics, setHsgTopics] = useState(null)
   const [lesson, setLesson] = useState(null)
+  const [mockExam, setMockExam] = useState(null)
   const [loadError, setLoadError] = useState(null)
   const [navOpen, setNavOpen] = useState(false)
   // Not persisted on purpose — the grade picker is meant to greet the user
@@ -129,7 +131,14 @@ export default function MainSite() {
     goLesson(topicId, { label: 'Thi thử', screen: 'thi-thu' })
   }
 
-  function goMockExam(exam) {
+  async function goMockExam(exam) {
+    setView({ screen: 'mock-exam-loading' })
+    try {
+      const data = await getMockExam(`${grade}-${exam.id}`)
+      setMockExam(data)
+    } catch {
+      setMockExam(null)
+    }
     navigate({ screen: 'mock-exam', examId: exam.id, examName: exam.name })
   }
 
@@ -267,15 +276,25 @@ export default function MainSite() {
           />
         )}
 
+        {view.screen === 'mock-exam-loading' && (
+          <div className="screen">
+            <p>Đang tải đề thi…</p>
+          </div>
+        )}
+
         {view.screen === 'mock-exam' && (
           <div className="screen">
             <button className="breadcrumb" onClick={goThiThu}>
               ← Thi thử
             </button>
-            <div className="card empty-state">
-              <h2>{view.examName}</h2>
-              <p>Đề thi thử cho khối lớp {grade} đang được biên soạn, sẽ sớm được cập nhật.</p>
-            </div>
+            {mockExam ? (
+              <MockExamRunner exam={mockExam} />
+            ) : (
+              <div className="card empty-state">
+                <h2>{view.examName}</h2>
+                <p>Đề thi thử cho khối lớp {grade} đang được biên soạn, sẽ sớm được cập nhật.</p>
+              </div>
+            )}
           </div>
         )}
 

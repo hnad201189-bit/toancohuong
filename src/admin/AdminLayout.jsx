@@ -26,6 +26,9 @@ export default function AdminLayout({ onLogout }) {
           <NavLink to="/admin/hsg" onClick={close} className={({ isActive }) => `sidebar__item ${isActive ? 'is-active' : ''}`}>
             Chuyên đề HSG
           </NavLink>
+          <NavLink to="/admin/mock-exams" onClick={close} className={({ isActive }) => `sidebar__item ${isActive ? 'is-active' : ''}`}>
+            Đề thi thử
+          </NavLink>
           <NavLink to="/admin/import" onClick={close} className={({ isActive }) => `sidebar__item ${isActive ? 'is-active' : ''}`}>
             Nhập dữ liệu hàng loạt
           </NavLink>

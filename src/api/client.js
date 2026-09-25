@@ -58,6 +58,8 @@ export const getAreas = (grade = 11) => request(`/areas?grade=${grade}`)
 export const getArea = (id) => request(`/areas/${id}`)
 export const getHsgTopics = (grade = 11) => request(`/hsg-topics?grade=${grade}`)
 export const getLesson = (topicId) => request(`/topics/${topicId}/lesson`)
+export const getMockExamsList = (grade = 11) => request(`/mock-exams?grade=${grade}`)
+export const getMockExam = (id) => request(`/mock-exams/${id}`)
 
 // ---- Tutors (gia sư) ----
 export const getTutors = (filters = {}) => {
@@ -116,6 +118,10 @@ export const createHsgTopic = (data) => request('/hsg-topics', { method: 'POST',
 export const updateHsgTopic = (id, data) =>
   request(`/hsg-topics/${id}`, { method: 'PUT', body: data, auth: true })
 export const deleteHsgTopic = (id) => request(`/hsg-topics/${id}`, { method: 'DELETE', auth: true })
+
+// ---- Admin writes (mock exams: Thi thử giữa kì / hết kì / HSG / khảo sát) ----
+export const saveMockExam = (id, data) => request(`/mock-exams/${id}`, { method: 'PUT', body: data, auth: true })
+export const deleteMockExam = (id) => request(`/mock-exams/${id}`, { method: 'DELETE', auth: true })
 
 // ---- Admin writes (bulk import) ----
 export const importAreas = (rows) => request('/import/areas', { method: 'POST', body: { rows }, auth: true })

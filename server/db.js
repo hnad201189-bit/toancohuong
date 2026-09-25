@@ -49,6 +49,19 @@ db.exec(`
     content TEXT NOT NULL
   );
 
+  -- Full-length mock exams (Thi thử: giữa kì / hết kì / HSG / khảo sát cuối
+  -- năm) — separate from the per-chuyên-đề "Đề kiểm tra" tab in lessons,
+  -- since these follow the whole-grade Thông tư 22/2021 assessment format
+  -- (Quyết định 764/QĐ-BGDĐT 3-phần structure) rather than a single topic's
+  -- question bank. id = "<grade>-<examType>", e.g. "11-giua-ky-1".
+  CREATE TABLE IF NOT EXISTS mock_exams (
+    id TEXT PRIMARY KEY,
+    grade INTEGER NOT NULL,
+    exam_type TEXT NOT NULL,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL
+  );
+
   CREATE TABLE IF NOT EXISTS tutors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,

@@ -12,7 +12,13 @@ import {
   GRADE6_HSG_TOPICS,
   SAMPLE_LESSON,
 } from '../src/data/topics.js'
-import { seedFullContent, backfillMissingExamBanks, seedMissingLessons, backfillPracticeBanks } from './seedFullContent.js'
+import {
+  seedFullContent,
+  backfillMissingExamBanks,
+  seedMissingLessons,
+  backfillPracticeBanks,
+  backfillMockExams,
+} from './seedFullContent.js'
 
 const insertArea = db.prepare(
   'INSERT INTO areas (id, grade, order_num, name, description, progress) VALUES (?, ?, ?, ?, ?, ?)'
@@ -98,4 +104,5 @@ export function seedIfEmpty() {
   seedMissingLessons()
   backfillMissingExamBanks()
   backfillPracticeBanks()
+  backfillMockExams()
 }

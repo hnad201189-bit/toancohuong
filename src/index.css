@@ -1277,6 +1277,93 @@ table {
   background: var(--primary-soft);
 }
 
+/* Đề thi thử — định dạng 3 phần (TN + Đúng/Sai + trả lời ngắn) */
+
+.exam-part-title {
+  margin: 24px 0 12px;
+  font-size: 15px;
+}
+
+.ds-statements {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-statement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.ds-statement__text {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.ds-statement__toggle {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ds-btn {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--bg);
+}
+
+.ds-btn:not(:disabled):hover {
+  border-color: var(--primary);
+}
+
+.ds-btn.is-selected {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.ds-btn.is-correct {
+  border-color: var(--success);
+  background: rgba(46, 125, 91, 0.08);
+}
+
+.ds-btn.is-wrong {
+  border-color: var(--danger);
+  background: rgba(192, 57, 43, 0.08);
+}
+
+.short-answer-input {
+  width: 100%;
+  max-width: 220px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.short-answer-input.is-correct {
+  border-color: var(--success);
+  background: rgba(46, 125, 91, 0.08);
+}
+
+.short-answer-input.is-wrong {
+  border-color: var(--danger);
+  background: rgba(192, 57, 43, 0.08);
+}
+
+.short-answer-key {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
 /* Empty state */
 
 .empty-state {
